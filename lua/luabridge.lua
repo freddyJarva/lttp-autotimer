@@ -97,20 +97,15 @@ local function onMessage(s)
       parts[#parts + 1] = part
   end
   if parts[1] == "Read" then
-      print("Message of type 'Read' received")
       local adr = tonumber(parts[2])
       local length = tonumber(parts[3])
       local domain
       if is_snes9x ~= true then
         domain = parts[4]
       end
-      print("adr: ", adr, " length: ", length, " domain: ", domain)
       local byteRange = readbyterange(adr, length, domain)
-      local return_message = "{\"data\": [" .. table.concat(byteRange, ",") .. "]}\n"
-      print("return_message: ", return_message)
-      connection:send(return_message)
+      connection:send("{\"data\": [" .. table.concat(byteRange, ",") .. "]}\n")
   elseif parts[1] == "Write" then
-      print("Message of type 'Write' received")
       local adr = tonumber(parts[2])
       local domain
       local offset = 2
@@ -123,9 +118,57 @@ local function onMessage(s)
               writebyte(adr + k - offset - 1, tonumber(v), domain)
           end
       end
-elseif parts[1] == "SetName" then
-  name = parts[2]
-      print("My name is " .. name .. "!")
+  elseif parts[1] == "SetName" then
+    name = parts[2]
+    print("My name is " .. name .. "!")
+
+  elseif parts[1] == "Message" then
+      print(parts[2])
+  elseif parts[1] == "Exit" then
+      print("Lua script stopped, to restart the script press \"Restart\"")
+      stopped = true
+  elseif parts[1] == "Version" then
+      connection:send("Version|Multitroid LUA|" .. version .. "|\n")
+  end
+end
+
+function TableConcat(t1,t2)
+  for i=1,#t2 do
+      t1[#t1+1] = t2[i]
+  end
+  return t1
+end
+
+local function onMessage(s)
+  local parts = {}
+  local length = 2
+  local domain
+  for part in string.gmatch(s, '([^|]+)') do
+      parts[#parts + 1] = part
+  end
+  if parts[1] == "READ" then
+      local addresses = {}
+      for adr in string.gmatch(parts[2], '([^,]+)') do
+        addresses = TableConcat(addresses, readbyterange(tonumber(adr), length, domain))
+      end
+      local return_message = "{\"data\": [" .. table.concat(addresses, ",") .. "]}\n"
+      connection:send(return_message)
+  elseif parts[1] == "Write" then
+      local adr = tonumber(parts[2])
+      local domain
+      local offset = 2
+      if is_snes9x ~= true then
+        domain = parts[3]
+        offset = 3
+      end
+      for k, v in pairs(parts) do
+          if k > offset then
+              writebyte(adr + k - offset - 1, tonumber(v), domain)
+          end
+      end
+  elseif parts[1] == "SetName" then
+    name = parts[2]
+    print("My name is " .. name .. "!")
 
   elseif parts[1] == "Message" then
       print(parts[2])
@@ -167,7 +210,6 @@ local main = function()
       return
   end
   local s, status = connection:receive('*l')
-  -- print("s: ", s, "status: ", status)
   if s then
       onMessage(s)
   end

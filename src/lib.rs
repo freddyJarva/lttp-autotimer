@@ -1,18 +1,27 @@
+use chrono::serde::ts_milliseconds;
+use chrono::DateTime;
+use chrono::Utc;
+use serde::Serialize;
+
 use crate::request::Response;
 use crate::request::MESSAGE_TERMINATOR;
 
+pub mod read;
 pub mod request;
-
-// 7E0000 to 7FFFFF
 
 /// Snes memory address
 pub const VRAM_START: u32 = 0x7E0000;
+pub const VRAM_START_U8: &[u8; 8] = b"0x7E0000";
 /// Snes memory address
 pub const VRAM_END: u32 = 0x7FFFFF;
+pub const VRAM_END_U8: &[u8; 8] = b"0x7FFFFF";
+
 /// Address keeping track of current overworld tile, remains at previous value when entering non-ow tile
+pub const ADDRESS_OW_TILE_INDEX_U8: &[u8; 8] = b"0x7E008A";
 pub const ADDRESS_OW_TILE_INDEX: u32 = 0x7E008A;
 /// Address keeping track of current overworld tile, but will shift to 0 when entering non-ow tile
-pub const ADDRESS_OW_SLOT_INDEX: u32 = 0x7E040A;
+pub const ADDRESS_OW_SLOT_INDEX_U8: &[u8; 8] = b"0x7E040A";
+pub const ADDRESS_OW_SLOT_INDEX: u32 = 0x7E008A;
 
 pub fn deserialize_message(buf: &[u8]) -> anyhow::Result<Response> {
     let data =
@@ -25,6 +34,24 @@ pub fn deserialize_message(buf: &[u8]) -> anyhow::Result<Response> {
             ))?];
     let deserialized = serde_json::from_slice(&data)?;
     Ok(deserialized)
+}
+
+#[derive(Serialize, Debug)]
+pub struct Transition {
+    #[serde(with = "ts_milliseconds")]
+    timestamp: DateTime<Utc>,
+    from: u16,
+    to: u16,
+}
+
+impl Transition {
+    pub fn new(from: u16, to: u16) -> Self {
+        Transition {
+            timestamp: Utc::now(),
+            from,
+            to,
+        }
+    }
 }
 
 #[cfg(test)]

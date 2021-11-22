@@ -8,6 +8,7 @@ use serde::Deserialize;
 pub const MESSAGE_TERMINATOR: u8 = b'\n';
 pub const FIELD_DELIMITER: u8 = b'|';
 pub const ADDRESS_DELIMITER: u8 = b',';
+pub const DEVICE_TYPE_SYSTEM_BUS: &'static str = "System Bus";
 
 #[derive(Debug, PartialEq, Hash, Eq, Clone)]
 pub enum RequestType {
@@ -19,7 +20,7 @@ pub enum RequestType {
 pub struct RequestBody {
     pub request_type: RequestType,
     pub addresses: Vec<Vec<u8>>,
-    pub address_length: u8,
+    pub address_length: u32,
     pub device_type: String,
 }
 
@@ -41,7 +42,11 @@ fn serialize_body(body: RequestBody) -> Vec<u8> {
         serialized.push(ADDRESS_DELIMITER);
     }
     serialized.push(FIELD_DELIMITER);
-    serialized.push(body.address_length as u8);
+    // byte message expects ANSI value of integer
+    for c in body.address_length.to_string().chars() {
+        serialized.push(c as u8);
+    }
+    // serialized.extend_from_slice(body.address_length.);
     serialized.push(FIELD_DELIMITER);
     serialized.extend_from_slice(b"System Bus");
     serialized.push(MESSAGE_TERMINATOR);
@@ -60,19 +65,28 @@ impl Response {
     }
 }
 
-pub fn two_byte_addresses<S: AsRef<str>, T: Write + Read>(
+pub fn two_byte_addresses<S: AsRef<[u8]>, T: Write + Read>(
     stream: &mut T,
     buf: &mut [u8],
-    memory_addresses: &[S],
+    memory_addresses: Vec<S>,
 ) -> anyhow::Result<usize> {
-    stream.write(b"READ|0x7E040A,0x7E008A|2|System Bus\n")?;
+    let mut body = RequestBody {
+        request_type: RequestType::Read,
+        addresses: memory_addresses
+            .iter()
+            .map(|v| v.as_ref().to_vec())
+            .collect(),
+        // address_length: b'2',
+        address_length: 2,
+        device_type: "System Bus".to_string(),
+    };
+    stream.write(&body.serialize())?;
     let res = stream.read(buf)?;
     Ok(res)
 }
 
 #[cfg(test)]
 mod tests {
-    use std::char::from_digit;
 
     use super::*;
 
@@ -81,7 +95,7 @@ mod tests {
         let mut body = RequestBody {
             request_type: RequestType::Read,
             addresses: vec![b"0x7E040A".to_vec(), b"0x7E008A".to_vec()],
-            address_length: b'2',
+            address_length: 2,
             device_type: "System Bus".to_string(),
         };
         let expected = b"READ|0x7E040A,0x7E008A,|2|System Bus\n";

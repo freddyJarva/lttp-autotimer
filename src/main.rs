@@ -28,7 +28,7 @@ fn main() -> anyhow::Result<()> {
 
     let mut responses: VecDeque<Response> = VecDeque::new();
     let time_start = Utc::now();
-    let csv_name = time_start.format("data/%Y%m%d_%H%M%S.csv").to_string();
+    let csv_name = time_start.format("%Y%m%d_%H%M%S.csv").to_string();
     File::create(&csv_name)?;
     let mut writer = Writer::from_path(csv_name)?;
 

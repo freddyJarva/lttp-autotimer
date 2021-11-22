@@ -11,7 +11,7 @@ pub fn overworld_location<S: AsRef<[u8]>, T: Write + Read>(
     buf: &mut [u8],
     memory_addresses: Vec<S>,
 ) -> anyhow::Result<Response> {
-    request::two_byte_addresses(stream, buf, memory_addresses)?;
+    request::one_byte_addresses(stream, buf, memory_addresses)?;
     let deserialized = deserialize_message(&buf)?;
     Ok(deserialized)
 }

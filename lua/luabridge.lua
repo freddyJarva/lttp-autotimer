@@ -39,7 +39,7 @@ end
 
 function readbyterange(addr, lenght, domain)
   if is_snes9x then
-      print("readbyterange, addr: ", addr, "length: ", lenght, "domain: ", domain)
+      -- print("readbyterange, addr: ", addr, "length: ", lenght, "domain: ", domain)
       return memory.readbyterange(addr, lenght)
   else
       local mtable = memory.readbyterange(addr, lenght, domain)
@@ -141,11 +141,12 @@ end
 
 local function onMessage(s)
   local parts = {}
-  local length = 2
+  -- local length = 2
   local domain
   for part in string.gmatch(s, '([^|]+)') do
       parts[#parts + 1] = part
   end
+  local length = tonumber(parts[3])
   if parts[1] == "READ" then
       local addresses = {}
       for adr in string.gmatch(parts[2], '([^,]+)') do

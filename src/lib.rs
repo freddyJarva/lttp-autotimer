@@ -22,6 +22,9 @@ pub const ADDRESS_OW_TILE_INDEX: u32 = 0x7E008A;
 /// Address keeping track of current overworld tile, but will shift to 0 when entering non-ow tile
 pub const ADDRESS_OW_SLOT_INDEX_U8: &[u8; 8] = b"0x7E040A";
 pub const ADDRESS_OW_SLOT_INDEX: u32 = 0x7E008A;
+pub const ADDRESS_ENTRANCE_ID_U8: &[u8; 8] = b"0x7E010E";
+/// Address that's `1` if Link is inside, `0` if outside;
+pub const ADDRESS_IS_INSIDE_U8: &[u8; 8] = b"0x7E001B";
 
 pub fn deserialize_message(buf: &[u8]) -> anyhow::Result<Response> {
     let data =
@@ -40,15 +43,15 @@ pub fn deserialize_message(buf: &[u8]) -> anyhow::Result<Response> {
 pub struct Transition {
     #[serde(with = "ts_milliseconds")]
     timestamp: DateTime<Utc>,
-    from: u16,
+    indoors: bool,
     to: u16,
 }
 
 impl Transition {
-    pub fn new(from: u16, to: u16) -> Self {
+    pub fn new(to: u16, indoors: bool) -> Self {
         Transition {
             timestamp: Utc::now(),
-            from,
+            indoors,
             to,
         }
     }

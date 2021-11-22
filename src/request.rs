@@ -60,6 +60,17 @@ pub struct Response {
 }
 
 impl Response {
+    /// Reads the the data from the given offset as a u16 integer,
+    /// which means it'll combine the byte at the given position with the next one
+    ///
+    /// ## Example
+    /// ```
+    /// use lttp_autotimer::request::Response;
+    ///
+    /// let response = Response { data: vec![1, 1, 0] };
+    /// assert_eq!(response.two_bytes(1), 1);
+    /// assert_eq!(response.two_bytes(0), 257);
+    /// ```
     pub fn two_bytes(&self, offset: usize) -> u16 {
         LittleEndian::read_u16(&self.data[offset..offset + 2])
     }
@@ -76,8 +87,26 @@ pub fn two_byte_addresses<S: AsRef<[u8]>, T: Write + Read>(
             .iter()
             .map(|v| v.as_ref().to_vec())
             .collect(),
-        // address_length: b'2',
         address_length: 2,
+        device_type: "System Bus".to_string(),
+    };
+    stream.write(&body.serialize())?;
+    let res = stream.read(buf)?;
+    Ok(res)
+}
+
+pub fn one_byte_addresses<S: AsRef<[u8]>, T: Write + Read>(
+    stream: &mut T,
+    buf: &mut [u8],
+    memory_addresses: Vec<S>,
+) -> anyhow::Result<usize> {
+    let mut body = RequestBody {
+        request_type: RequestType::Read,
+        addresses: memory_addresses
+            .iter()
+            .map(|v| v.as_ref().to_vec())
+            .collect(),
+        address_length: 1,
         device_type: "System Bus".to_string(),
     };
     stream.write(&body.serialize())?;
@@ -99,6 +128,18 @@ mod tests {
             device_type: "System Bus".to_string(),
         };
         let expected = b"READ|0x7E040A,0x7E008A,|2|System Bus\n";
+        assert_eq!(body.serialize(), expected)
+    }
+
+    #[test]
+    fn test_serialize_with_length_1() {
+        let mut body = RequestBody {
+            request_type: RequestType::Read,
+            addresses: vec![b"0x7E040A".to_vec(), b"0x7E008A".to_vec()],
+            address_length: 1,
+            device_type: "System Bus".to_string(),
+        };
+        let expected = b"READ|0x7E040A,0x7E008A,|1|System Bus\n";
         assert_eq!(body.serialize(), expected)
     }
 }

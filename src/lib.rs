@@ -1,25 +1,20 @@
-use byteorder::{ByteOrder, LittleEndian};
-use serde::Deserialize;
+use crate::request::Response;
+use crate::request::MESSAGE_TERMINATOR;
 
-#[derive(Deserialize, Debug, PartialEq)]
-pub struct Message {
-    data: Vec<u8>,
-}
+pub mod request;
 
-impl Message {
-    pub fn two_bytes(&self, offset: usize) -> u16 {
-        LittleEndian::read_u16(&self.data[offset..offset + 2])
-    }
-}
+// 7E0000 to 7FFFFF
 
-/// `u8` Value of `\n` in byte string
-pub const MESSAGE_TERMINATOR: u8 = 10;
+/// Snes memory address
+pub const VRAM_START: u32 = 0x7E0000;
+/// Snes memory address
+pub const VRAM_END: u32 = 0x7FFFFF;
 /// Address keeping track of current overworld tile, remains at previous value when entering non-ow tile
 pub const ADDRESS_OW_TILE_INDEX: u32 = 0x7E008A;
 /// Address keeping track of current overworld tile, but will shift to 0 when entering non-ow tile
 pub const ADDRESS_OW_SLOT_INDEX: u32 = 0x7E040A;
 
-pub fn deserialize_message(buf: &[u8]) -> anyhow::Result<Message> {
+pub fn deserialize_message(buf: &[u8]) -> anyhow::Result<Response> {
     let data =
         &buf[..buf
             .iter()
@@ -37,7 +32,7 @@ mod tests {
     use super::*;
     #[test]
     fn two_bytes_test() {
-        let message = Message { data: vec![160, 9] };
+        let message = Response { data: vec![160, 9] };
         assert_eq!(message.two_bytes(0), 2464);
     }
 
@@ -54,9 +49,9 @@ mod tests {
     }
 
     test_deserialize_message! {
-        single_val_array: ([123, 34, 100, 97, 116, 97, 34, 58, 32, 91, 49, 49, 55, 93, 125, 10], Message {data: vec![117]}),
-        trailing_zeros_are_ignored: ([123, 34, 100, 97, 116, 97, 34, 58, 32, 91, 49, 49, 55, 93, 125, 10, 0, 0, 0, 0, 0, 0], Message {data: vec![117]}),
-        multi_val_array: (b"{\"data\": [5, 255]}\n".as_ref(), Message {data: vec![5, 255]}),
+        single_val_array: ([123, 34, 100, 97, 116, 97, 34, 58, 32, 91, 49, 49, 55, 93, 125, 10], Response {data: vec![117]}),
+        trailing_zeros_are_ignored: ([123, 34, 100, 97, 116, 97, 34, 58, 32, 91, 49, 49, 55, 93, 125, 10, 0, 0, 0, 0, 0, 0], Response {data: vec![117]}),
+        multi_val_array: (b"{\"data\": [5, 255]}\n".as_ref(), Response {data: vec![5, 255]}),
     }
 
     #[test]

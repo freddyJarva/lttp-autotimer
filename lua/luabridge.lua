@@ -76,10 +76,13 @@ end
 
 local socket = require("socket.core")
 
-local connection
+local qusb_connection
+local timer_connection
 local host = '127.0.0.1'
-local port = 46700
-local connected = false
+local timer_port = 46700
+local qusb_port = 65398
+local qusb_connected = false
+local timer_connected = false
 local stopped = false
 local version = "4"
 if is_snes9x then
@@ -91,7 +94,7 @@ local name = "Unnamed"
 
 memory.usememorydomain("System Bus")
 
-local function onMessage(s)
+local function onQusbMessage(s)
   local parts = {}
   for part in string.gmatch(s, '([^|]+)') do
       parts[#parts + 1] = part
@@ -104,7 +107,7 @@ local function onMessage(s)
         domain = parts[4]
       end
       local byteRange = readbyterange(adr, length, domain)
-      connection:send("{\"data\": [" .. table.concat(byteRange, ",") .. "]}\n")
+      qusb_connection:send("{\"data\": [" .. table.concat(byteRange, ",") .. "]}\n")
   elseif parts[1] == "Write" then
       local adr = tonumber(parts[2])
       local domain
@@ -128,7 +131,7 @@ local function onMessage(s)
       print("Lua script stopped, to restart the script press \"Restart\"")
       stopped = true
   elseif parts[1] == "Version" then
-      connection:send("Version|Multitroid LUA|" .. version .. "|\n")
+      qusb_connection:send("Version|Multitroid LUA|" .. version .. "|\n")
   end
 end
 
@@ -141,7 +144,6 @@ end
 
 local function onMessage(s)
   local parts = {}
-  -- local length = 2
   local domain
   for part in string.gmatch(s, '([^|]+)') do
       parts[#parts + 1] = part
@@ -153,7 +155,7 @@ local function onMessage(s)
         addresses = TableConcat(addresses, readbyterange(tonumber(adr), length, domain))
       end
       local return_message = "{\"data\": [" .. table.concat(addresses, ",") .. "]}\n"
-      connection:send(return_message)
+      timer_connection:send(return_message)
   elseif parts[1] == "Write" then
       local adr = tonumber(parts[2])
       local domain
@@ -177,7 +179,7 @@ local function onMessage(s)
       print("Lua script stopped, to restart the script press \"Restart\"")
       stopped = true
   elseif parts[1] == "Version" then
-      connection:send("Version|Multitroid LUA|" .. version .. "|\n")
+      timer_connection:send("Version|Multitroid LUA|" .. version .. "|\n")
   end
 end
 
@@ -187,37 +189,70 @@ local main = function()
       return nil
   end
 
-  if not connected then
+  if not timer_connected then
       print('LuaBridge r' .. version)
-      print('Connecting to QUsb2Snes at ' .. host .. ':' .. port)
-      connection, err = socket:tcp()
+      print('Connecting to Timer at ' .. host .. ':' .. timer_port)
+      timer_connection, err = socket:tcp()
       if err ~= nil then
           emu.print(err)
           return
       end
 
-      local returnCode, errorMessage = connection:connect(host, port)
+      local returnCode, errorMessage = timer_connection:connect(host, timer_port)
       if (returnCode == nil) then
           print("Error while connecting: " .. errorMessage)
           stopped = true
-          connected = false
-          print("Please press \"Restart\" to try to reconnect to QUsb2Snes, make sure it's running and the Lua bridge device is activated")
+          timer_connected = false
+          print("Please press \"Restart\" to try to reconnect to Timer, make sure it's running and the Lua bridge device is activated")
           return
       end
 
-      connection:settimeout(0)
-      connected = true
-      print('Connected to QUsb2Snes')
+      timer_connection:settimeout(0)
+      timer_connected = true
+      print('connected to Timer')
       return
   end
-  local s, status = connection:receive('*l')
+  if not qusb_connected then
+    print('LuaBridge r' .. version)
+    print('Connecting to qusb at ' .. host .. ':' .. qusb_port)
+    qusb_connection, err = socket:tcp()
+    if err ~= nil then
+        emu.print(err)
+        return
+    end
+
+    local returnCode, errorMessage = qusb_connection:connect(host, qusb_port)
+    if (returnCode == nil) then
+        print("Error while connecting: " .. errorMessage)
+        stopped = true
+        qusb_connected = false
+        print("Please press \"Restart\" to try to reconnect to qusb, make sure it's running and the Lua bridge device is activated")
+        return
+    end
+
+    qusb_connection:settimeout(0)
+    qusb_connected = true
+    print('connected to qusb')
+    return
+  end
+  local s, status = timer_connection:receive('*l')
   if s then
       onMessage(s)
   end
   if status == 'closed' then
-      print('Connection to QUsb2Snes is closed')
-      connection:close()
-      connected = false
+      print('timer_connection to timer is closed')
+      timer_connection:close()
+      timer_connected = false
+      return
+  end
+  local qusb_s, qusb_status = qusb_connection:receive('*l')
+  if qusb_s then
+      onMessage(qusb_s)
+  end
+  if qusb_status == 'closed' then
+      print('timer_connection to timer is closed')
+      timer_connection:close()
+      timer_connected = false
       return
   end
 end

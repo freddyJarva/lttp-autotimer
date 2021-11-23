@@ -235,6 +235,7 @@ local main = function()
     print('connected to qusb')
     return
   end
+  
   local s, status = timer_connection:receive('*l')
   if s then
       onMessage(s)
@@ -247,7 +248,7 @@ local main = function()
   end
   local qusb_s, qusb_status = qusb_connection:receive('*l')
   if qusb_s then
-      onMessage(qusb_s)
+      onQusbMessage(qusb_s)
   end
   if qusb_status == 'closed' then
       print('timer_connection to timer is closed')

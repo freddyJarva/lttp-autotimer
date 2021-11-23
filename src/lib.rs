@@ -2,6 +2,7 @@ use chrono::serde::ts_milliseconds;
 use chrono::DateTime;
 use chrono::Utc;
 use serde::Serialize;
+use serde::Serializer;
 
 use crate::request::Response;
 use crate::request::MESSAGE_TERMINATOR;
@@ -39,12 +40,21 @@ pub fn deserialize_message(buf: &[u8]) -> anyhow::Result<Response> {
     Ok(deserialized)
 }
 
+fn hex_serialize<S>(x: &u16, s: S) -> Result<S::Ok, S::Error>
+where
+    S: Serializer,
+{
+    s.serialize_str(format!("{:X}", x).as_ref())
+    // s.serialize_f32(x.round())
+}
+
 #[derive(Serialize, Debug)]
 pub struct Transition {
     #[serde(with = "ts_milliseconds")]
-    timestamp: DateTime<Utc>,
-    indoors: bool,
-    to: u16,
+    pub timestamp: DateTime<Utc>,
+    pub indoors: bool,
+    #[serde(serialize_with = "hex_serialize")]
+    pub to: u16,
 }
 
 impl Transition {

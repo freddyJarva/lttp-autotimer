@@ -46,12 +46,15 @@ fn main() -> anyhow::Result<()> {
         if responses.len() > 0 {
             match responses.get(responses.len() - 1) {
                 Some(previous_res) if overworld_transition(previous_res, &response) => {
-                    let transition = Transition::new(previous_res.data[0] as u16, false);
+                    let transition = Transition::new(response.data[0] as u16, false);
 
                     writer.serialize(&transition)?;
                     writer.flush()?;
 
-                    println!("Transition made!: {:?}", transition);
+                    println!(
+                        "Transition made!: time: {:?}, indoors: {:?}, to: {:X}",
+                        transition.timestamp, transition.indoors, transition.to
+                    );
                 }
                 Some(previous_res) if entrance_transition(previous_res, &response) => {
                     let to;
@@ -67,7 +70,10 @@ fn main() -> anyhow::Result<()> {
                     writer.serialize(&transition)?;
                     writer.flush()?;
 
-                    println!("Transition made!: {:?}", transition);
+                    println!(
+                        "Transition made!: time: {:?}, indoors: {:?}, to: {:X}",
+                        transition.timestamp, transition.indoors, transition.to
+                    );
                 }
                 _ => (),
             };
@@ -85,7 +91,7 @@ fn main() -> anyhow::Result<()> {
 }
 
 fn overworld_transition(previous_res: &Response, response: &Response) -> bool {
-    previous_res.two_bytes(0) != response.two_bytes(0)
+    previous_res.data[0] != response.data[0]
 }
 
 fn entrance_transition(previous_res: &Response, response: &Response) -> bool {

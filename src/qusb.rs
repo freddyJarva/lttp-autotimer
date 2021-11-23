@@ -41,4 +41,13 @@ impl QusbRequestMessage {
             operands: Some(vec![device.as_ref().to_string()]),
         }
     }
+
+    pub fn get_address(address: u32, size: usize) -> Self {
+        let operands = Some(vec![format!("{:X}", address), format!("{:X}", size)]);
+        QusbRequestMessage {
+            op_code: "GetAddress".to_string(),
+            space: "SNES".to_string(),
+            operands,
+        }
+    }
 }

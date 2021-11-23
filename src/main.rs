@@ -3,31 +3,21 @@ use core::time;
 use clap::{Arg, ArgMatches};
 use colored::*;
 use lttp_autotimer::qusb::{QusbRequestMessage, QusbResponseMessage};
+use lttp_autotimer::snes::NamedAddresses;
 use std::borrow::Cow;
 use std::collections::VecDeque;
 use std::fs::File;
 use websocket::{ClientBuilder, Message, OwnedMessage};
 
-use std::net::{Ipv4Addr, SocketAddrV4, TcpListener};
-
 use std::thread::sleep;
 
 use chrono::Utc;
 use csv::Writer;
-use lttp_autotimer::request::Response;
 
-use lttp_autotimer::{
-    qusb, read, Transition, ADDRESS_ENTRANCE_ID_U8, ADDRESS_IS_INSIDE_U8, ADDRESS_OW_SLOT_INDEX_U8,
-};
+use lttp_autotimer::{qusb, Transition, ADDRESS_IS_INSIDE};
 
 fn main() -> anyhow::Result<()> {
     let matches = clap::App::new("Rando Auto Timer")
-        .arg(
-            Arg::new("luabridge")
-                .long("lua-bridge")
-                .about("Use lua bridge (from lua folder in this repo) to connect instead of qusb.")
-                .takes_value(false),
-        )
         .arg(
             Arg::new("host")
                 .long("host")
@@ -43,18 +33,32 @@ fn main() -> anyhow::Result<()> {
                 .about("port that websocket server is listening on. For qusb it's most likely 8080")
                 .takes_value(true)
                 .default_value("8080"),
+        ).arg(
+            Arg::new("update frequency")
+                .long("freq")
+                .short('f')
+                .about("Times per second the timer will check the snes memory for changes")
+                .takes_value(true)
+                .default_value("60")
+        ).arg(
+            Arg::new("verbose")
+                .short('v')
         ).get_matches();
-    if matches.is_present("luabridge") {
-        connect_to_lua(&matches)?;
-    } else {
-        connect_to_qusb(&matches)?;
-    }
+    connect_to_qusb(&matches)?;
     Ok(())
 }
 
 fn connect_to_qusb(args: &ArgMatches) -> anyhow::Result<()> {
     let host = args.value_of("host").unwrap();
     let port = args.value_of("port").unwrap();
+
+    let update_frequency: u64 = args
+        .value_of("update frequency")
+        .unwrap()
+        .parse()
+        .expect("specified update frequency (--freq/-f) needs to be a positive integer");
+    let sleep_time: u64 = 1000 / update_frequency;
+    let verbose = args.is_present("verbose");
     println!(
         "{} to connect to {}:{}",
         "Attempting".green().bold(),
@@ -70,77 +74,84 @@ fn connect_to_qusb(args: &ArgMatches) -> anyhow::Result<()> {
     // We'll just attach to the first one we find, as most use cases will only have one connected snes device.
     while !connected {
         attempt_qusb_connection(&mut client, &mut connected)?;
-
-        // let mut device_list_buf = [0 as u8; 100];
-
-        // let v: serde_json::Value = serde_json::from_slice(&device_list_buf)?;
-        // println!("{:?}", v);
         sleep(time::Duration::from_millis(2000));
     }
-    Ok(())
 
-    // let mut location_buf = [0 as u8; 40];
-    // let mut responses: VecDeque<Response> = VecDeque::new();
-    // let time_start = Utc::now();
-    // let csv_name = time_start.format("%Y%m%d_%H%M%S.csv").to_string();
-    // File::create(&csv_name)?;
-    // let mut writer = Writer::from_path(csv_name)?;
-    // loop {
-    //     let response = read::current_location(
-    //         &mut tcp_stream,
-    //         &mut location_buf,
-    //         vec![
-    //             ADDRESS_OW_SLOT_INDEX_U8,
-    //             ADDRESS_ENTRANCE_ID_U8,
-    //             ADDRESS_IS_INSIDE_U8,
-    //         ],
-    //     )?;
+    let mut responses: VecDeque<Vec<u8>> = VecDeque::new();
+    let time_start = Utc::now();
+    let csv_name = time_start.format("%Y%m%d_%H%M%S.csv").to_string();
+    File::create(&csv_name)?;
+    let mut writer = Writer::from_path(csv_name)?;
 
-    //     if responses.len() > 0 {
-    //         match responses.get(responses.len() - 1) {
-    //             Some(previous_res) if overworld_transition(previous_res, &response) => {
-    //                 let transition = Transition::new(response.data[0] as u16, false);
+    loop {
+        // since we can't choose multiple addresses in a single request, we instead fetch a larger chunk of data from given address and forward
+        // so we don't have to make multiple requests
+        let message = &QusbRequestMessage::get_address(ADDRESS_IS_INSIDE, 0x40B);
 
-    //                 writer.serialize(&transition)?;
-    //                 writer.flush()?;
+        let message = Message {
+            opcode: websocket::message::Type::Text,
+            cd_status_code: None,
+            payload: Cow::Owned(serde_json::to_vec(message)?),
+        };
+        client.send_message(&message)?;
 
-    //                 println!(
-    //                     "Transition made!: time: {:?}, indoors: {:?}, to: {:X}",
-    //                     transition.timestamp, transition.indoors, transition.to
-    //                 );
-    //             }
-    //             Some(previous_res) if entrance_transition(previous_res, &response) => {
-    //                 let to;
-    //                 if response.data[2] == 1 {
-    //                     // new position is inside
-    //                     to = response.data[1];
-    //                 } else {
-    //                     // new position is outside
-    //                     to = response.data[0];
-    //                 }
-    //                 let transition = Transition::new(to as u16, response.data[2] == 1);
+        match client.recv_message() {
+            Ok(response) => match response {
+                OwnedMessage::Binary(res) => {
+                    if verbose {
+                        println!(
+                            "ow {}, indoors {}, entrance {}",
+                            res.overworld_tile(),
+                            res.indoors(),
+                            res.entrance_id()
+                        );
+                    }
 
-    //                 writer.serialize(&transition)?;
-    //                 writer.flush()?;
+                    if responses.len() > 0 {
+                        match responses.get(responses.len() - 1) {
+                            Some(previous_res) if overworld_transition(previous_res, &res) => {
+                                let transition =
+                                    Transition::new(res.overworld_tile() as u16, false);
 
-    //                 println!(
-    //                     "Transition made!: time: {:?}, indoors: {:?}, to: {:X}",
-    //                     transition.timestamp, transition.indoors, transition.to
-    //                 );
-    //             }
-    //             _ => (),
-    //         };
-    //     }
+                                writer.serialize(&transition)?;
+                                writer.flush()?;
 
-    //     // Clean up code below
-    //     responses.push_back(response);
-    //     if responses.len() > 60 {
-    //         responses.pop_front();
-    //     }
-    //     // Clear it for the next message
-    //     location_buf.fill(0);
-    //     sleep(time::Duration::from_millis(16));
-    // }
+                                println!(
+                                    "Transition made!: time: {:?}, indoors: {:?}, to: {:X}",
+                                    transition.timestamp, transition.indoors, transition.to
+                                );
+                            }
+                            Some(previous_res) if entrance_transition(previous_res, &res) => {
+                                let to;
+                                if res.indoors() == 1 {
+                                    // new position is inside
+                                    to = res.entrance_id();
+                                } else {
+                                    // new position is outside
+                                    to = res.overworld_tile();
+                                }
+                                let transition = Transition::new(to as u16, res.indoors() == 1);
+
+                                writer.serialize(&transition)?;
+                                writer.flush()?;
+
+                                println!(
+                                    "Transition made!: time: {:?}, indoors: {:?}, to: {:X}",
+                                    transition.timestamp, transition.indoors, transition.to
+                                );
+                            }
+                            _ => (),
+                        }
+                    }
+                    responses.push_back(res);
+                }
+                _ => (),
+            },
+            Err(e) => println!("{:?}", e),
+        }
+
+        sleep(time::Duration::from_millis(sleep_time));
+    }
 }
 
 fn attempt_qusb_connection(
@@ -201,82 +212,10 @@ fn attempt_qusb_connection(
     )
 }
 
-fn connect_to_lua(args: &ArgMatches) -> anyhow::Result<()> {
-    let loopback = Ipv4Addr::new(127, 0, 0, 1);
-    let socket = SocketAddrV4::new(loopback, 46700);
-    let listener = TcpListener::bind(socket)?;
-    let port = listener.local_addr()?;
-    println!("Listening on {}, access this port to end the program", port);
-    let (mut tcp_stream, addr) = listener.accept()?;
-    println!("Connection received! {:?}.", addr);
-    let mut location_buf = [0 as u8; 40];
-    let mut responses: VecDeque<Response> = VecDeque::new();
-    let time_start = Utc::now();
-    let csv_name = time_start.format("%Y%m%d_%H%M%S.csv").to_string();
-    File::create(&csv_name)?;
-    let mut writer = Writer::from_path(csv_name)?;
-    loop {
-        let response = read::current_location(
-            &mut tcp_stream,
-            &mut location_buf,
-            vec![
-                ADDRESS_OW_SLOT_INDEX_U8,
-                ADDRESS_ENTRANCE_ID_U8,
-                ADDRESS_IS_INSIDE_U8,
-            ],
-        )?;
-
-        if responses.len() > 0 {
-            match responses.get(responses.len() - 1) {
-                Some(previous_res) if overworld_transition(previous_res, &response) => {
-                    let transition = Transition::new(response.data[0] as u16, false);
-
-                    writer.serialize(&transition)?;
-                    writer.flush()?;
-
-                    println!(
-                        "Transition made!: time: {:?}, indoors: {:?}, to: {:X}",
-                        transition.timestamp, transition.indoors, transition.to
-                    );
-                }
-                Some(previous_res) if entrance_transition(previous_res, &response) => {
-                    let to;
-                    if response.data[2] == 1 {
-                        // new position is inside
-                        to = response.data[1];
-                    } else {
-                        // new position is outside
-                        to = response.data[0];
-                    }
-                    let transition = Transition::new(to as u16, response.data[2] == 1);
-
-                    writer.serialize(&transition)?;
-                    writer.flush()?;
-
-                    println!(
-                        "Transition made!: time: {:?}, indoors: {:?}, to: {:X}",
-                        transition.timestamp, transition.indoors, transition.to
-                    );
-                }
-                _ => (),
-            };
-        }
-
-        // Clean up code below
-        responses.push_back(response);
-        if responses.len() > 60 {
-            responses.pop_front();
-        }
-        // Clear it for the next message
-        location_buf.fill(0);
-        sleep(time::Duration::from_millis(16));
-    }
+fn overworld_transition(previous_res: &Vec<u8>, response: &Vec<u8>) -> bool {
+    previous_res.overworld_tile() != response.overworld_tile()
 }
 
-fn overworld_transition(previous_res: &Response, response: &Response) -> bool {
-    previous_res.data[0] != response.data[0]
-}
-
-fn entrance_transition(previous_res: &Response, response: &Response) -> bool {
-    previous_res.data[2] != response.data[2]
+fn entrance_transition(previous_res: &Vec<u8>, response: &Vec<u8>) -> bool {
+    previous_res.indoors() != response.indoors()
 }

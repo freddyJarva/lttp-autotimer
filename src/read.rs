@@ -6,7 +6,7 @@ use crate::{
     VRAM_END, VRAM_START, VRAM_START_U8,
 };
 
-pub fn overworld_location<S: AsRef<[u8]>, T: Write + Read>(
+pub fn current_location<S: AsRef<[u8]>, T: Write + Read>(
     stream: &mut T,
     buf: &mut [u8],
     memory_addresses: Vec<S>,

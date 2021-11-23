@@ -7,6 +7,7 @@ use serde::Serializer;
 use crate::request::Response;
 use crate::request::MESSAGE_TERMINATOR;
 
+pub mod qusb;
 pub mod read;
 pub mod request;
 

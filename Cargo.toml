@@ -13,3 +13,6 @@ byteorder = "1.4"
 cached = "0.26"
 chrono = {version = "0.4", features = ["serde"]}
 csv = "1.1"
+websocket = "0.26"
+clap = "3.0.0-beta.5"
+colored = "2.0.0"

@@ -2,8 +2,9 @@ use core::time;
 
 use clap::{Arg, ArgMatches};
 use colored::*;
-use lttp_autotimer::qusb::{QusbRequestMessage, QusbResponseMessage};
+use lttp_autotimer::qusb::{attempt_qusb_connection, QusbRequestMessage};
 use lttp_autotimer::snes::NamedAddresses;
+use lttp_autotimer::transition::{entrance_transition, overworld_transition, Transition};
 use std::borrow::Cow;
 use std::collections::VecDeque;
 use std::fs::File;
@@ -14,7 +15,7 @@ use std::thread::sleep;
 use chrono::Utc;
 use csv::Writer;
 
-use lttp_autotimer::{qusb, Transition, ADDRESS_IS_INSIDE};
+use lttp_autotimer::ADDRESS_IS_INSIDE;
 
 fn main() -> anyhow::Result<()> {
     let matches = clap::App::new("Rando Auto Timer")
@@ -73,7 +74,7 @@ fn connect_to_qusb(args: &ArgMatches) -> anyhow::Result<()> {
     // As part of completing the connection, we need to find a Snes device to attach to.
     // We'll just attach to the first one we find, as most use cases will only have one connected snes device.
     while !connected {
-        attempt_qusb_connection(&mut client, &mut connected)?;
+        connected = attempt_qusb_connection(&mut client)?;
         sleep(time::Duration::from_millis(2000));
     }
 
@@ -152,70 +153,4 @@ fn connect_to_qusb(args: &ArgMatches) -> anyhow::Result<()> {
 
         sleep(time::Duration::from_millis(sleep_time));
     }
-}
-
-fn attempt_qusb_connection(
-    client: &mut websocket::sync::Client<std::net::TcpStream>,
-    connected: &mut bool,
-) -> Result<(), anyhow::Error> {
-    let qusb_message = serde_json::to_vec(&QusbRequestMessage::device_list())?;
-    let message = Message {
-        opcode: websocket::message::Type::Text,
-        cd_status_code: None,
-        payload: Cow::Owned(qusb_message),
-    };
-    client.send_message(&message)?;
-    Ok(
-        if let OwnedMessage::Text(response) = client.recv_message()? {
-            let devices: qusb::QusbResponseMessage = serde_json::from_str(&response)?;
-            println!("{:?}", &devices);
-
-            match devices.results.get(0) {
-                Some(device) => {
-                    println!(
-                        "{} to the first option in devices: {}",
-                        "Attaching".green().bold(),
-                        &device
-                    );
-                    let message = Message {
-                        opcode: websocket::message::Type::Text,
-                        cd_status_code: None,
-                        payload: Cow::Owned(serde_json::to_vec(&QusbRequestMessage::attach_to(
-                            &device,
-                        ))?),
-                    };
-                    client.send_message(&message)?;
-
-                    let message = Message {
-                        opcode: websocket::message::Type::Text,
-                        cd_status_code: None,
-                        payload: Cow::Owned(serde_json::to_vec(&QusbRequestMessage::device_info(
-                            &device,
-                        ))?),
-                    };
-                    client.send_message(&message)?;
-                    match client.recv_message()? {
-                        OwnedMessage::Text(message) => {
-                            println!(
-                                "{:?}",
-                                serde_json::from_str::<QusbResponseMessage>(&message)?
-                            )
-                        }
-                        _ => (),
-                    };
-                    *connected = true;
-                    println!("{}", "Attached!".green().bold());
-                }
-                None => todo!(),
-            }
-        },
-    )
-}
-
-fn overworld_transition(previous_res: &Vec<u8>, response: &Vec<u8>) -> bool {
-    previous_res.overworld_tile() != response.overworld_tile()
-}
-
-fn entrance_transition(previous_res: &Vec<u8>, response: &Vec<u8>) -> bool {
-    previous_res.indoors() != response.indoors()
 }

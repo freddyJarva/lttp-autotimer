@@ -1,4 +1,10 @@
+use std::borrow::Cow;
+
+use colored::Colorize;
 use serde::{Deserialize, Serialize};
+use websocket::{Message, OwnedMessage};
+
+use crate::qusb;
 
 #[derive(Deserialize, Debug)]
 pub struct QusbResponseMessage {
@@ -50,4 +56,62 @@ impl QusbRequestMessage {
             operands,
         }
     }
+}
+
+pub fn attempt_qusb_connection(
+    client: &mut websocket::sync::Client<std::net::TcpStream>,
+) -> Result<bool, anyhow::Error> {
+    let qusb_message = serde_json::to_vec(&QusbRequestMessage::device_list())?;
+    let message = Message {
+        opcode: websocket::message::Type::Text,
+        cd_status_code: None,
+        payload: Cow::Owned(qusb_message),
+    };
+    let mut connected = false;
+    client.send_message(&message)?;
+    if let OwnedMessage::Text(response) = client.recv_message()? {
+        let devices: qusb::QusbResponseMessage = serde_json::from_str(&response)?;
+        println!("{:?}", &devices);
+
+        match devices.results.get(0) {
+            Some(device) => {
+                println!(
+                    "{} to the first option in devices: {}",
+                    "Attaching".green().bold(),
+                    &device
+                );
+                let message = Message {
+                    opcode: websocket::message::Type::Text,
+                    cd_status_code: None,
+                    payload: Cow::Owned(serde_json::to_vec(&QusbRequestMessage::attach_to(
+                        &device,
+                    ))?),
+                };
+                client.send_message(&message)?;
+
+                let message = Message {
+                    opcode: websocket::message::Type::Text,
+                    cd_status_code: None,
+                    payload: Cow::Owned(serde_json::to_vec(&QusbRequestMessage::device_info(
+                        &device,
+                    ))?),
+                };
+                client.send_message(&message)?;
+                match client.recv_message()? {
+                    OwnedMessage::Text(message) => {
+                        println!(
+                            "{:?}",
+                            serde_json::from_str::<QusbResponseMessage>(&message)?
+                        )
+                    }
+                    _ => (),
+                };
+                connected = true;
+                println!("{}", "Attached!".green().bold());
+            }
+            None => (),
+        }
+    }
+
+    Ok(connected)
 }

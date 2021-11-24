@@ -685,6 +685,7 @@ dependencies = [
  "csv",
  "serde",
  "serde_json",
+ "termcolor",
  "websocket",
 ]
 

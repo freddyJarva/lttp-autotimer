@@ -1,4 +1,5 @@
 use core::time;
+use std::fmt::write;
 
 use clap::{Arg, ArgMatches};
 use colored::*;
@@ -8,6 +9,8 @@ use lttp_autotimer::transition::{entrance_transition, overworld_transition, Tran
 use std::borrow::Cow;
 use std::collections::VecDeque;
 use std::fs::File;
+use std::io::{self, Write};
+use termcolor::{Color, ColorChoice, ColorSpec, StandardStream, WriteColor};
 use websocket::{ClientBuilder, Message, OwnedMessage};
 
 use std::thread::sleep;
@@ -38,15 +41,25 @@ fn main() -> anyhow::Result<()> {
             Arg::new("update frequency")
                 .long("freq")
                 .short('f')
-                .about("Times per second the timer will check the snes memory for changes")
+                .about("Interval in milliseconds the timer will check the snes memory for changes. Default is about 60 times per second")
                 .takes_value(true)
-                .default_value("60")
+                .default_value("16")
         ).arg(
-            Arg::new("verbose")
+            Arg::new("v")
                 .short('v')
+                .multiple_occurrences(true)
+                .about("Sets the level of verbosity for logging. can be set 0-2 times")
         ).get_matches();
+
+    force_cmd_colored_output();
     connect_to_qusb(&matches)?;
     Ok(())
+}
+
+/// Hack to make cmd.exe output colors instead of broken color escape codes
+/// Not sure why it works since I use another crate for  coloring, but it does!
+fn force_cmd_colored_output() {
+    StandardStream::stdout(ColorChoice::Always);
 }
 
 fn connect_to_qusb(args: &ArgMatches) -> anyhow::Result<()> {
@@ -58,8 +71,9 @@ fn connect_to_qusb(args: &ArgMatches) -> anyhow::Result<()> {
         .unwrap()
         .parse()
         .expect("specified update frequency (--freq/-f) needs to be a positive integer");
-    let sleep_time: u64 = 1000 / update_frequency;
-    let verbose = args.is_present("verbose");
+    let verbosity = args.occurrences_of("v");
+    println!("Verbosity level: {}", verbosity);
+
     println!(
         "{} to connect to {}:{}",
         "Attempting".green().bold(),
@@ -99,14 +113,17 @@ fn connect_to_qusb(args: &ArgMatches) -> anyhow::Result<()> {
         match client.recv_message() {
             Ok(response) => match response {
                 OwnedMessage::Binary(res) => {
-                    if verbose {
-                        println!(
+                    match verbosity {
+                        1 => println!(
                             "ow {}, indoors {}, entrance {}",
                             res.overworld_tile(),
                             res.indoors(),
                             res.entrance_id()
-                        );
-                    }
+                        ),
+                        // If using level 2, you might wanna set a higher update interval, (e.g. --freq 10000 to update every 10 seconds) as it's A LOT of data
+                        2.. => println!("Full response: {:?}", res),
+                        _ => (), // on 0 or somehow invalid verbosity level we don't do this logging as it's very spammy
+                    };
 
                     if responses.len() > 0 {
                         match responses.get(responses.len() - 1) {
@@ -151,6 +168,6 @@ fn connect_to_qusb(args: &ArgMatches) -> anyhow::Result<()> {
             Err(e) => println!("{:?}", e),
         }
 
-        sleep(time::Duration::from_millis(sleep_time));
+        sleep(time::Duration::from_millis(update_frequency));
     }
 }

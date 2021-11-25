@@ -3,11 +3,12 @@ use std::io::stdin;
 
 use clap::{Arg, ArgMatches};
 use colored::*;
-use lttp_autotimer::output::{force_cmd_colored_output, print_verbose_diff};
+use lttp_autotimer::check::deserialize_checks;
+use lttp_autotimer::output::{force_cmd_colored_output, print_flags_toggled, print_verbose_diff};
 use lttp_autotimer::qusb::{attempt_qusb_connection, QusbRequestMessage};
 use lttp_autotimer::snes::NamedAddresses;
 use lttp_autotimer::transition::{entrance_transition, overworld_transition, Transition};
-use lttp_autotimer::VRAM_START;
+use lttp_autotimer::{SAVEDATA_START, VRAM_START};
 use std::borrow::Cow;
 use std::collections::VecDeque;
 use std::fs::File;
@@ -92,90 +93,26 @@ fn connect_to_qusb(args: &ArgMatches) -> anyhow::Result<()> {
     }
 
     let mut responses: VecDeque<Vec<u8>> = VecDeque::new();
+    let mut checks_responses: VecDeque<Vec<u8>> = VecDeque::new();
     let time_start = Utc::now();
     let csv_name = time_start.format("%Y%m%d_%H%M%S.csv").to_string();
     File::create(&csv_name)?;
     let mut writer = Writer::from_path(csv_name)?;
 
+    let checks = deserialize_checks()?;
+
     loop {
         // since we can't choose multiple addresses in a single request, we instead fetch a larger chunk of data from given address and forward
         // so we don't have to make multiple requests
-        let message = &QusbRequestMessage::get_address(VRAM_START, 0x40B);
-
-        let message = Message {
-            opcode: websocket::message::Type::Text,
-            cd_status_code: None,
-            payload: Cow::Owned(serde_json::to_vec(message)?),
-        };
-
-        client.send_message(&message)?;
-
-        match client.recv_message() {
-            Ok(response) => match response {
-                OwnedMessage::Binary(res) => {
-                    match verbosity {
-                        1 => println!(
-                            "ow {}, indoors {}, entrance {}",
-                            res.overworld_tile(),
-                            res.indoors(),
-                            res.entrance_id()
-                        ),
-                        // If using level 2, you might wanna set a higher update interval, (e.g. --freq 10000 to update every 10 seconds) as it's A LOT of data
-                        2.. => {
-                            if responses.len() > 0 {
-                                print_verbose_diff(
-                                    responses.get(responses.len() - 1).unwrap(),
-                                    &res,
-                                );
-                            } else {
-                                println!("Full response: {:?}", res)
-                            }
-                        }
-                        _ => (), // on 0 or somehow invalid verbosity level we don't do this logging as it's very spammy
-                    };
-
-                    if responses.len() > 0 {
-                        match responses.get(responses.len() - 1) {
-                            Some(previous_res) if overworld_transition(previous_res, &res) => {
-                                let transition =
-                                    Transition::new(res.overworld_tile() as u16, false);
-
-                                writer.serialize(&transition)?;
-                                writer.flush()?;
-
-                                println!(
-                                    "Transition made!: time: {:?}, indoors: {:?}, to: {:X}",
-                                    transition.timestamp, transition.indoors, transition.to
-                                );
-                            }
-                            Some(previous_res) if entrance_transition(previous_res, &res) => {
-                                let to;
-                                if res.indoors() == 1 {
-                                    // new position is inside
-                                    to = res.entrance_id();
-                                } else {
-                                    // new position is outside
-                                    to = res.overworld_tile();
-                                }
-                                let transition = Transition::new(to as u16, res.indoors() == 1);
-
-                                writer.serialize(&transition)?;
-                                writer.flush()?;
-
-                                println!(
-                                    "Transition made!: time: {:?}, indoors: {:?}, to: {:X}",
-                                    transition.timestamp, transition.indoors, transition.to
-                                );
-                            }
-                            _ => (),
-                        }
-                    }
-                    responses.push_back(res);
+        match get_address_request(&mut client, VRAM_START, 0x580) {
+            Ok(response) => {
+                check_for_transitions(&response, verbosity, &mut responses, &mut writer)?;
+                if let OwnedMessage::Binary(res) = response {
+                    println!("{}", res[0x403]);
                 }
-                _ => (),
-            },
-            Err(e) => println!("{:?}", e),
-        }
+            }
+            Err(e) => println!("Failed request: {:?}", e),
+        };
 
         if manual_update {
             println!("Press enter to update...");
@@ -187,4 +124,92 @@ fn connect_to_qusb(args: &ArgMatches) -> anyhow::Result<()> {
             sleep(time::Duration::from_millis(update_frequency));
         }
     }
+}
+
+fn get_address_request(
+    client: &mut websocket::sync::Client<std::net::TcpStream>,
+    address: u32,
+    size: usize,
+) -> anyhow::Result<OwnedMessage> {
+    let message = &QusbRequestMessage::get_address(address, size);
+
+    let message = Message {
+        opcode: websocket::message::Type::Text,
+        cd_status_code: None,
+        payload: Cow::Owned(serde_json::to_vec(message)?),
+    };
+
+    client.send_message(&message)?;
+    let message = client.recv_message()?;
+    Ok(message)
+}
+
+fn check_for_transitions(
+    response: &OwnedMessage,
+    verbosity: u64,
+    responses: &mut VecDeque<Vec<u8>>,
+    writer: &mut Writer<File>,
+) -> anyhow::Result<()> {
+    match response {
+        OwnedMessage::Binary(res) => {
+            match verbosity {
+                1 => println!(
+                    "ow {}, indoors {}, entrance {}",
+                    res.overworld_tile(),
+                    res.indoors(),
+                    res.entrance_id()
+                ),
+                // If using level 2, you might wanna set a higher update interval, (e.g. --freq 10000 to update every 10 seconds) as it's A LOT of data
+                2.. => {
+                    if responses.len() > 0 {
+                        print_verbose_diff(responses.get(responses.len() - 1).unwrap(), &res);
+                        print_flags_toggled(responses.get(responses.len() - 1).unwrap(), &res);
+                    } else {
+                        println!("Full response: {:?}", res)
+                    }
+                }
+                _ => (), // on 0 or somehow invalid verbosity level we don't do this logging as it's very spammy
+            };
+
+            if responses.len() > 0 {
+                match responses.get(responses.len() - 1) {
+                    Some(previous_res) if overworld_transition(previous_res, &res) => {
+                        let transition = Transition::new(res.overworld_tile() as u16, false);
+
+                        writer.serialize(&transition)?;
+                        writer.flush()?;
+
+                        println!(
+                            "Transition made!: time: {:?}, indoors: {:?}, to: {:X}",
+                            transition.timestamp, transition.indoors, transition.to
+                        );
+                    }
+                    Some(previous_res) if entrance_transition(previous_res, &res) => {
+                        let to;
+                        if res.indoors() == 1 {
+                            // new position is inside
+                            to = res.entrance_id();
+                        } else {
+                            // new position is outside
+                            to = res.overworld_tile();
+                        }
+                        let transition = Transition::new(to as u16, res.indoors() == 1);
+
+                        writer.serialize(&transition)?;
+                        writer.flush()?;
+
+                        println!(
+                            "Transition made!: time: {:?}, indoors: {:?}, to: {:X}",
+                            transition.timestamp, transition.indoors, transition.to
+                        );
+                    }
+                    _ => (),
+                }
+            }
+            responses.push_back(res.clone());
+        }
+        _ => (),
+    }
+
+    Ok(())
 }

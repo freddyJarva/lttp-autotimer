@@ -26,3 +26,21 @@ pub fn print_verbose_diff<T: AsRef<[u8]>>(lhs: T, rhs: T) {
     }
     print!("\n");
 }
+
+/// What's considered flags - according to this function - are boolean values, i.e. values that are either 0 or 1
+pub fn print_flags_toggled<T: AsRef<[u8]>>(lhs: T, rhs: T) {
+    let lhs = lhs.as_ref();
+    let rhs = rhs.as_ref();
+    print!("flags toggled (changed_idx, previous_value, new_value): ");
+    for i in 0..lhs.len() {
+        if lhs[i] as u32 + rhs[i] as u32 == 1 {
+            print!(
+                "({}, {}, {}) ",
+                i,
+                lhs[i].to_string().red(),
+                rhs[i].to_string().green()
+            )
+        }
+    }
+    print!("\n");
+}

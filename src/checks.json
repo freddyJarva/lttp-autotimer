@@ -1,0 +1,1514 @@
+[
+    {
+        "name": "Mushroom",
+        "address": "0x180013",
+        "player_address": "0x186338",
+        "crystal": "False",
+        "hint_text": "in the woods"
+    },
+    {
+        "name": "Bottle Merchant",
+        "address": "0x2eb18",
+        "player_address": "0x186339",
+        "crystal": "False",
+        "hint_text": "with a merchant"
+    },
+    {
+        "name": "Flute Spot",
+        "address": "0x18014a",
+        "player_address": "0x18633d",
+        "crystal": "False",
+        "hint_text": "underground"
+    },
+    {
+        "name": "Sunken Treasure",
+        "address": "0x180145",
+        "player_address": "0x186354",
+        "crystal": "False",
+        "hint_text": "underwater"
+    },
+    {
+        "name": "Purple Chest",
+        "address": "0x33d68",
+        "player_address": "0x186359",
+        "crystal": "False",
+        "hint_text": "from a box"
+    },
+    {
+        "name": "Blind's Hideout - Top",
+        "address": "0xeb0f",
+        "player_address": "0x1862e3",
+        "crystal": "False",
+        "hint_text": "in a basement"
+    },
+    {
+        "name": "Blind's Hideout - Left",
+        "address": "0xeb12",
+        "player_address": "0x1862e6",
+        "crystal": "False",
+        "hint_text": "in a basement"
+    },
+    {
+        "name": "Blind's Hideout - Right",
+        "address": "0xeb15",
+        "player_address": "0x1862e9",
+        "crystal": "False",
+        "hint_text": "in a basement"
+    },
+    {
+        "name": "Blind's Hideout - Far Left",
+        "address": "0xeb18",
+        "player_address": "0x1862ec",
+        "crystal": "False",
+        "hint_text": "in a basement"
+    },
+    {
+        "name": "Blind's Hideout - Far Right",
+        "address": "0xeb1b",
+        "player_address": "0x1862ef",
+        "crystal": "False",
+        "hint_text": "in a basement"
+    },
+    {
+        "name": "Link's Uncle",
+        "address": "0x2df45",
+        "player_address": "0x18635f",
+        "crystal": "False",
+        "hint_text": "with your uncle"
+    },
+    {
+        "name": "Secret Passage",
+        "address": "0xe971",
+        "player_address": "0x186145",
+        "crystal": "False",
+        "hint_text": "near your uncle"
+    },
+    {
+        "name": "King Zora",
+        "address": "0xee1c3",
+        "player_address": "0x186360",
+        "crystal": "False",
+        "hint_text": "at a high price"
+    },
+    {
+        "name": "Zora's Ledge",
+        "address": "0x180149",
+        "player_address": "0x186358",
+        "crystal": "False",
+        "hint_text": "near Zora"
+    },
+    {
+        "name": "Waterfall Fairy - Left",
+        "address": "0xe9b0",
+        "player_address": "0x186184",
+        "crystal": "False",
+        "hint_text": "near a fairy"
+    },
+    {
+        "name": "Waterfall Fairy - Right",
+        "address": "0xe9d1",
+        "player_address": "0x1861a5",
+        "crystal": "False",
+        "hint_text": "near a fairy"
+    },
+    {
+        "name": "King's Tomb",
+        "address": "0xe97a",
+        "player_address": "0x18614e",
+        "crystal": "False",
+        "hint_text": "alone in a cave"
+    },
+    {
+        "name": "Floodgate Chest",
+        "address": "0xe98c",
+        "player_address": "0x186160",
+        "crystal": "False",
+        "hint_text": "in the dam"
+    },
+    {
+        "name": "Link's House",
+        "address": "0xe9bc",
+        "player_address": "0x186190",
+        "crystal": "False",
+        "hint_text": "in your home"
+    },
+    {
+        "name": "Kakariko Tavern",
+        "address": "0xe9ce",
+        "player_address": "0x1861a2",
+        "crystal": "False",
+        "hint_text": "in the bar"
+    },
+    {
+        "name": "Chicken House",
+        "address": "0xe9e9",
+        "player_address": "0x1861bd",
+        "crystal": "False",
+        "hint_text": "near poultry"
+    },
+    {
+        "name": "Aginah's Cave",
+        "address": "0xe9f2",
+        "player_address": "0x1861c6",
+        "crystal": "False",
+        "hint_text": "with Aginah"
+    },
+    {
+        "name": "Sahasrahla's Hut - Left",
+        "address": "0xea82",
+        "player_address": "0x186256",
+        "crystal": "False",
+        "hint_text": "near the elder"
+    },
+    {
+        "name": "Sahasrahla's Hut - Middle",
+        "address": "0xea85",
+        "player_address": "0x186259",
+        "crystal": "False",
+        "hint_text": "near the elder"
+    },
+    {
+        "name": "Sahasrahla's Hut - Right",
+        "address": "0xea88",
+        "player_address": "0x18625c",
+        "crystal": "False",
+        "hint_text": "near the elder"
+    },
+    {
+        "name": "Sahasrahla",
+        "address": "0x2f1fc",
+        "player_address": "0x186365",
+        "crystal": "False",
+        "hint_text": "with the elder"
+    },
+    {
+        "name": "Kakariko Well - Top",
+        "address": "0xea8e",
+        "player_address": "0x186262",
+        "crystal": "False",
+        "hint_text": "in a well"
+    },
+    {
+        "name": "Kakariko Well - Left",
+        "address": "0xea91",
+        "player_address": "0x186265",
+        "crystal": "False",
+        "hint_text": "in a well"
+    },
+    {
+        "name": "Kakariko Well - Middle",
+        "address": "0xea94",
+        "player_address": "0x186268",
+        "crystal": "False",
+        "hint_text": "in a well"
+    },
+    {
+        "name": "Kakariko Well - Right",
+        "address": "0xea97",
+        "player_address": "0x18626b",
+        "crystal": "False",
+        "hint_text": "in a well"
+    },
+    {
+        "name": "Kakariko Well - Bottom",
+        "address": "0xea9a",
+        "player_address": "0x18626e",
+        "crystal": "False",
+        "hint_text": "in a well"
+    },
+    {
+        "name": "Blacksmith",
+        "address": "0x18002a",
+        "player_address": "0x186366",
+        "crystal": "False",
+        "hint_text": "with the smith"
+    },
+    {
+        "name": "Magic Bat",
+        "address": "0x180015",
+        "player_address": "0x18635e",
+        "crystal": "False",
+        "hint_text": "with the bat"
+    },
+    {
+        "name": "Sick Kid",
+        "address": "0x339cf",
+        "player_address": "0x186367",
+        "crystal": "False",
+        "hint_text": "with the sick"
+    },
+    {
+        "name": "Hobo",
+        "address": "0x33e7d",
+        "player_address": "0x186368",
+        "crystal": "False",
+        "hint_text": "with the hobo"
+    },
+    {
+        "name": "Lost Woods Hideout",
+        "address": "0x180000",
+        "player_address": "0x186348",
+        "crystal": "False",
+        "hint_text": "near a thief"
+    },
+    {
+        "name": "Lumberjack Tree",
+        "address": "0x180001",
+        "player_address": "0x186349",
+        "crystal": "False",
+        "hint_text": "in a hole"
+    },
+    {
+        "name": "Cave 45",
+        "address": "0x180003",
+        "player_address": "0x18634b",
+        "crystal": "False",
+        "hint_text": "alone in a cave"
+    },
+    {
+        "name": "Graveyard Cave",
+        "address": "0x180004",
+        "player_address": "0x18634c",
+        "crystal": "False",
+        "hint_text": "alone in a cave"
+    },
+    {
+        "name": "Checkerboard Cave",
+        "address": "0x180005",
+        "player_address": "0x18634d",
+        "crystal": "False",
+        "hint_text": "alone in a cave"
+    },
+    {
+        "name": "Mini Moldorm Cave - Far Left",
+        "address": "0xeb42",
+        "player_address": "0x186316",
+        "crystal": "False",
+        "hint_text": "near Moldorms"
+    },
+    {
+        "name": "Mini Moldorm Cave - Left",
+        "address": "0xeb45",
+        "player_address": "0x186319",
+        "crystal": "False",
+        "hint_text": "near Moldorms"
+    },
+    {
+        "name": "Mini Moldorm Cave - Right",
+        "address": "0xeb48",
+        "player_address": "0x18631c",
+        "crystal": "False",
+        "hint_text": "near Moldorms"
+    },
+    {
+        "name": "Mini Moldorm Cave - Far Right",
+        "address": "0xeb4b",
+        "player_address": "0x18631f",
+        "crystal": "False",
+        "hint_text": "near Moldorms"
+    },
+    {
+        "name": "Mini Moldorm Cave - Generous Guy",
+        "address": "0x180010",
+        "player_address": "0x18635a",
+        "crystal": "False",
+        "hint_text": "near Moldorms"
+    },
+    {
+        "name": "Ice Rod Cave",
+        "address": "0xeb4e",
+        "player_address": "0x186322",
+        "crystal": "False",
+        "hint_text": "in a frozen cave"
+    },
+    {
+        "name": "Bonk Rock Cave",
+        "address": "0xeb3f",
+        "player_address": "0x186313",
+        "crystal": "False",
+        "hint_text": "alone in a cave"
+    },
+    {
+        "name": "Library",
+        "address": "0x180012",
+        "player_address": "0x18635c",
+        "crystal": "False",
+        "hint_text": "near books"
+    },
+    {
+        "name": "Potion Shop",
+        "address": "0x180014",
+        "player_address": "0x18635d",
+        "crystal": "False",
+        "hint_text": "near potions"
+    },
+    {
+        "name": "Lake Hylia Island",
+        "address": "0x180144",
+        "player_address": "0x186353",
+        "crystal": "False",
+        "hint_text": "on an island"
+    },
+    {
+        "name": "Maze Race",
+        "address": "0x180142",
+        "player_address": "0x186351",
+        "crystal": "False",
+        "hint_text": "at the race"
+    },
+    {
+        "name": "Desert Ledge",
+        "address": "0x180143",
+        "player_address": "0x186352",
+        "crystal": "False",
+        "hint_text": "in the desert"
+    },
+    {
+        "name": "Desert Palace - Big Chest",
+        "address": "0xe98f",
+        "player_address": "0x186163",
+        "crystal": "False",
+        "hint_text": "in Desert Palace"
+    },
+    {
+        "name": "Desert Palace - Torch",
+        "address": "0x180160",
+        "player_address": "0x186362",
+        "crystal": "False",
+        "hint_text": "in Desert Palace"
+    },
+    {
+        "name": "Desert Palace - Map Chest",
+        "address": "0xe9b6",
+        "player_address": "0x18618a",
+        "crystal": "False",
+        "hint_text": "in Desert Palace"
+    },
+    {
+        "name": "Desert Palace - Compass Chest",
+        "address": "0xe9cb",
+        "player_address": "0x18619f",
+        "crystal": "False",
+        "hint_text": "in Desert Palace"
+    },
+    {
+        "name": "Desert Palace - Big Key Chest",
+        "address": "0xe9c2",
+        "player_address": "0x186196",
+        "crystal": "False",
+        "hint_text": "in Desert Palace"
+    },
+    {
+        "name": "Desert Palace - Boss",
+        "address": "0x180151",
+        "player_address": "0x18633f",
+        "crystal": "False",
+        "hint_text": "with Lanmolas"
+    },
+    {
+        "name": "Eastern Palace - Compass Chest",
+        "address": "0xe977",
+        "player_address": "0x18614b",
+        "crystal": "False",
+        "hint_text": "in Eastern Palace"
+    },
+    {
+        "name": "Eastern Palace - Big Chest",
+        "address": "0xe97d",
+        "player_address": "0x186151",
+        "crystal": "False",
+        "hint_text": "in Eastern Palace"
+    },
+    {
+        "name": "Eastern Palace - Cannonball Chest",
+        "address": "0xe9b3",
+        "player_address": "0x186187",
+        "crystal": "False",
+        "hint_text": "in Eastern Palace"
+    },
+    {
+        "name": "Eastern Palace - Big Key Chest",
+        "address": "0xe9b9",
+        "player_address": "0x18618d",
+        "crystal": "False",
+        "hint_text": "in Eastern Palace"
+    },
+    {
+        "name": "Eastern Palace - Map Chest",
+        "address": "0xe9f5",
+        "player_address": "0x1861c9",
+        "crystal": "False",
+        "hint_text": "in Eastern Palace"
+    },
+    {
+        "name": "Eastern Palace - Boss",
+        "address": "0x180150",
+        "player_address": "0x18633e",
+        "crystal": "False",
+        "hint_text": "with the Armos"
+    },
+    {
+        "name": "Master Sword Pedestal",
+        "address": "0x289b0",
+        "player_address": "0x186369",
+        "crystal": "False",
+        "hint_text": "at the pedestal"
+    },
+    {
+        "name": "Hyrule Castle - Boomerang Chest",
+        "address": "0xe974",
+        "player_address": "0x186148",
+        "crystal": "False",
+        "hint_text": "in Hyrule Castle"
+    },
+    {
+        "name": "Hyrule Castle - Map Chest",
+        "address": "0xeb0c",
+        "player_address": "0x1862e0",
+        "crystal": "False",
+        "hint_text": "in Hyrule Castle"
+    },
+    {
+        "name": "Hyrule Castle - Zelda's Chest",
+        "address": "0xeb09",
+        "player_address": "0x1862dd",
+        "crystal": "False",
+        "hint_text": "in Hyrule Castle"
+    },
+    {
+        "name": "Sewers - Dark Cross",
+        "address": "0xe96e",
+        "player_address": "0x186142",
+        "crystal": "False",
+        "hint_text": "in the sewers"
+    },
+    {
+        "name": "Sewers - Secret Room - Left",
+        "address": "0xeb5d",
+        "player_address": "0x186331",
+        "crystal": "False",
+        "hint_text": "in the sewers"
+    },
+    {
+        "name": "Sewers - Secret Room - Middle",
+        "address": "0xeb60",
+        "player_address": "0x186334",
+        "crystal": "False",
+        "hint_text": "in the sewers"
+    },
+    {
+        "name": "Sewers - Secret Room - Right",
+        "address": "0xeb63",
+        "player_address": "0x186337",
+        "crystal": "False",
+        "hint_text": "in the sewers"
+    },
+    {
+        "name": "Sanctuary",
+        "address": "0xea79",
+        "player_address": "0x18624d",
+        "crystal": "False",
+        "hint_text": "in Sanctuary"
+    },
+    {
+        "name": "Castle Tower - Room 03",
+        "address": "0xeab5",
+        "player_address": "0x186289",
+        "crystal": "False",
+        "hint_text": "in Castle Tower"
+    },
+    {
+        "name": "Castle Tower - Dark Maze",
+        "address": "0xeab2",
+        "player_address": "0x186286",
+        "crystal": "False",
+        "hint_text": "in Castle Tower"
+    },
+    {
+        "name": "Old Man",
+        "address": "0xf69fa",
+        "player_address": "0x186364",
+        "crystal": "False",
+        "hint_text": "with the old man"
+    },
+    {
+        "name": "Spectacle Rock Cave",
+        "address": "0x180002",
+        "player_address": "0x18634a",
+        "crystal": "False",
+        "hint_text": "alone in a cave"
+    },
+    {
+        "name": "Paradox Cave Lower - Far Left",
+        "address": "0xeb2a",
+        "player_address": "0x1862fe",
+        "crystal": "False",
+        "hint_text": "in a cave with seven chests"
+    },
+    {
+        "name": "Paradox Cave Lower - Left",
+        "address": "0xeb2d",
+        "player_address": "0x186301",
+        "crystal": "False",
+        "hint_text": "in a cave with seven chests"
+    },
+    {
+        "name": "Paradox Cave Lower - Right",
+        "address": "0xeb30",
+        "player_address": "0x186304",
+        "crystal": "False",
+        "hint_text": "in a cave with seven chests"
+    },
+    {
+        "name": "Paradox Cave Lower - Far Right",
+        "address": "0xeb33",
+        "player_address": "0x186307",
+        "crystal": "False",
+        "hint_text": "in a cave with seven chests"
+    },
+    {
+        "name": "Paradox Cave Lower - Middle",
+        "address": "0xeb36",
+        "player_address": "0x18630a",
+        "crystal": "False",
+        "hint_text": "in a cave with seven chests"
+    },
+    {
+        "name": "Paradox Cave Upper - Left",
+        "address": "0xeb39",
+        "player_address": "0x18630d",
+        "crystal": "False",
+        "hint_text": "in a cave with seven chests"
+    },
+    {
+        "name": "Paradox Cave Upper - Right",
+        "address": "0xeb3c",
+        "player_address": "0x186310",
+        "crystal": "False",
+        "hint_text": "in a cave with seven chests"
+    },
+    {
+        "name": "Spiral Cave",
+        "address": "0xe9bf",
+        "player_address": "0x186193",
+        "crystal": "False",
+        "hint_text": "in spiral cave"
+    },
+    {
+        "name": "Ether Tablet",
+        "address": "0x180016",
+        "player_address": "0x18633b",
+        "crystal": "False",
+        "hint_text": "at a monolith"
+    },
+    {
+        "name": "Spectacle Rock",
+        "address": "0x180140",
+        "player_address": "0x18634f",
+        "crystal": "False",
+        "hint_text": "atop a rock"
+    },
+    {
+        "name": "Tower of Hera - Basement Cage",
+        "address": "0x180162",
+        "player_address": "0x18633a",
+        "crystal": "False",
+        "hint_text": "in Tower of Hera"
+    },
+    {
+        "name": "Tower of Hera - Map Chest",
+        "address": "0xe9ad",
+        "player_address": "0x186181",
+        "crystal": "False",
+        "hint_text": "in Tower of Hera"
+    },
+    {
+        "name": "Tower of Hera - Big Key Chest",
+        "address": "0xe9e6",
+        "player_address": "0x1861ba",
+        "crystal": "False",
+        "hint_text": "in Tower of Hera"
+    },
+    {
+        "name": "Tower of Hera - Compass Chest",
+        "address": "0xe9fb",
+        "player_address": "0x1861cf",
+        "crystal": "False",
+        "hint_text": "in Tower of Hera"
+    },
+    {
+        "name": "Tower of Hera - Big Chest",
+        "address": "0xe9f8",
+        "player_address": "0x1861cc",
+        "crystal": "False",
+        "hint_text": "in Tower of Hera"
+    },
+    {
+        "name": "Tower of Hera - Boss",
+        "address": "0x180152",
+        "player_address": "0x186340",
+        "crystal": "False",
+        "hint_text": "with Moldorm"
+    },
+    {
+        "name": "Pyramid",
+        "address": "0x180147",
+        "player_address": "0x186356",
+        "crystal": "False",
+        "hint_text": "on the pyramid"
+    },
+    {
+        "name": "Catfish",
+        "address": "0xee185",
+        "player_address": "0x186361",
+        "crystal": "False",
+        "hint_text": "with a catfish"
+    },
+    {
+        "name": "Stumpy",
+        "address": "0x330c7",
+        "player_address": "0x18636a",
+        "crystal": "False",
+        "hint_text": "with tree boy"
+    },
+    {
+        "name": "Digging Game",
+        "address": "0x180148",
+        "player_address": "0x186357",
+        "crystal": "False",
+        "hint_text": "underground"
+    },
+    {
+        "name": "Bombos Tablet",
+        "address": "0x180017",
+        "player_address": "0x18633c",
+        "crystal": "False",
+        "hint_text": "at a monolith"
+    },
+    {
+        "name": "Hype Cave - Top",
+        "address": "0xeb1e",
+        "player_address": "0x1862f2",
+        "crystal": "False",
+        "hint_text": "near a bat-like man"
+    },
+    {
+        "name": "Hype Cave - Middle Right",
+        "address": "0xeb21",
+        "player_address": "0x1862f5",
+        "crystal": "False",
+        "hint_text": "near a bat-like man"
+    },
+    {
+        "name": "Hype Cave - Middle Left",
+        "address": "0xeb24",
+        "player_address": "0x1862f8",
+        "crystal": "False",
+        "hint_text": "near a bat-like man"
+    },
+    {
+        "name": "Hype Cave - Bottom",
+        "address": "0xeb27",
+        "player_address": "0x1862fb",
+        "crystal": "False",
+        "hint_text": "near a bat-like man"
+    },
+    {
+        "name": "Hype Cave - Generous Guy",
+        "address": "0x180011",
+        "player_address": "0x18635b",
+        "crystal": "False",
+        "hint_text": "with a bat-like man"
+    },
+    {
+        "name": "Peg Cave",
+        "address": "0x180006",
+        "player_address": "0x18634e",
+        "crystal": "False",
+        "hint_text": "alone in a cave"
+    },
+    {
+        "name": "Pyramid Fairy - Left",
+        "address": "0xe980",
+        "player_address": "0x186154",
+        "crystal": "False",
+        "hint_text": "near a fairy"
+    },
+    {
+        "name": "Pyramid Fairy - Right",
+        "address": "0xe983",
+        "player_address": "0x186157",
+        "crystal": "False",
+        "hint_text": "near a fairy"
+    },
+    {
+        "name": "Brewery",
+        "address": "0xe9ec",
+        "player_address": "0x1861c0",
+        "crystal": "False",
+        "hint_text": "alone in a home"
+    },
+    {
+        "name": "C-Shaped House",
+        "address": "0xe9ef",
+        "player_address": "0x1861c3",
+        "crystal": "False",
+        "hint_text": "alone in a home"
+    },
+    {
+        "name": "Chest Game",
+        "address": "0xeda8",
+        "player_address": "0x18636b",
+        "crystal": "False",
+        "hint_text": "as a prize"
+    },
+    {
+        "name": "Bumper Cave Ledge",
+        "address": "0x180146",
+        "player_address": "0x186355",
+        "crystal": "False",
+        "hint_text": "on a ledge"
+    },
+    {
+        "name": "Mire Shed - Left",
+        "address": "0xea73",
+        "player_address": "0x186247",
+        "crystal": "False",
+        "hint_text": "near sparks"
+    },
+    {
+        "name": "Mire Shed - Right",
+        "address": "0xea76",
+        "player_address": "0x18624a",
+        "crystal": "False",
+        "hint_text": "near sparks"
+    },
+    {
+        "name": "Superbunny Cave - Top",
+        "address": "0xea7c",
+        "player_address": "0x186250",
+        "crystal": "False",
+        "hint_text": "in a connection"
+    },
+    {
+        "name": "Superbunny Cave - Bottom",
+        "address": "0xea7f",
+        "player_address": "0x186253",
+        "crystal": "False",
+        "hint_text": "in a connection"
+    },
+    {
+        "name": "Spike Cave",
+        "address": "0xea8b",
+        "player_address": "0x18625f",
+        "crystal": "False",
+        "hint_text": "beyond spikes"
+    },
+    {
+        "name": "Hookshot Cave - Top Right",
+        "address": "0xeb51",
+        "player_address": "0x186325",
+        "crystal": "False",
+        "hint_text": "across pits"
+    },
+    {
+        "name": "Hookshot Cave - Top Left",
+        "address": "0xeb54",
+        "player_address": "0x186328",
+        "crystal": "False",
+        "hint_text": "across pits"
+    },
+    {
+        "name": "Hookshot Cave - Bottom Right",
+        "address": "0xeb5a",
+        "player_address": "0x18632e",
+        "crystal": "False",
+        "hint_text": "across pits"
+    },
+    {
+        "name": "Hookshot Cave - Bottom Left",
+        "address": "0xeb57",
+        "player_address": "0x18632b",
+        "crystal": "False",
+        "hint_text": "across pits"
+    },
+    {
+        "name": "Floating Island",
+        "address": "0x180141",
+        "player_address": "0x186350",
+        "crystal": "False",
+        "hint_text": "on an island"
+    },
+    {
+        "name": "Mimic Cave",
+        "address": "0xe9c5",
+        "player_address": "0x186199",
+        "crystal": "False",
+        "hint_text": "in a cave of mimicry"
+    },
+    {
+        "name": "Swamp Palace - Entrance",
+        "address": "0xea9d",
+        "player_address": "0x186271",
+        "crystal": "False",
+        "hint_text": "in Swamp Palace"
+    },
+    {
+        "name": "Swamp Palace - Map Chest",
+        "address": "0xe986",
+        "player_address": "0x18615a",
+        "crystal": "False",
+        "hint_text": "in Swamp Palace"
+    },
+    {
+        "name": "Swamp Palace - Big Chest",
+        "address": "0xe989",
+        "player_address": "0x18615d",
+        "crystal": "False",
+        "hint_text": "in Swamp Palace"
+    },
+    {
+        "name": "Swamp Palace - Compass Chest",
+        "address": "0xeaa0",
+        "player_address": "0x186274",
+        "crystal": "False",
+        "hint_text": "in Swamp Palace"
+    },
+    {
+        "name": "Swamp Palace - Big Key Chest",
+        "address": "0xeaa6",
+        "player_address": "0x18627a",
+        "crystal": "False",
+        "hint_text": "in Swamp Palace"
+    },
+    {
+        "name": "Swamp Palace - West Chest",
+        "address": "0xeaa3",
+        "player_address": "0x186277",
+        "crystal": "False",
+        "hint_text": "in Swamp Palace"
+    },
+    {
+        "name": "Swamp Palace - Flooded Room - Left",
+        "address": "0xeaa9",
+        "player_address": "0x18627d",
+        "crystal": "False",
+        "hint_text": "in Swamp Palace"
+    },
+    {
+        "name": "Swamp Palace - Flooded Room - Right",
+        "address": "0xeaac",
+        "player_address": "0x186280",
+        "crystal": "False",
+        "hint_text": "in Swamp Palace"
+    },
+    {
+        "name": "Swamp Palace - Waterfall Room",
+        "address": "0xeaaf",
+        "player_address": "0x186283",
+        "crystal": "False",
+        "hint_text": "in Swamp Palace"
+    },
+    {
+        "name": "Swamp Palace - Boss",
+        "address": "0x180154",
+        "player_address": "0x186342",
+        "crystal": "False",
+        "hint_text": "with Arrghus"
+    },
+    {
+        "name": "Thieves' Town - Big Key Chest",
+        "address": "0xea04",
+        "player_address": "0x1861d8",
+        "crystal": "False",
+        "hint_text": "in Thieves' Town"
+    },
+    {
+        "name": "Thieves' Town - Map Chest",
+        "address": "0xea01",
+        "player_address": "0x1861d5",
+        "crystal": "False",
+        "hint_text": "in Thieves' Town"
+    },
+    {
+        "name": "Thieves' Town - Compass Chest",
+        "address": "0xea07",
+        "player_address": "0x1861db",
+        "crystal": "False",
+        "hint_text": "in Thieves' Town"
+    },
+    {
+        "name": "Thieves' Town - Ambush Chest",
+        "address": "0xea0a",
+        "player_address": "0x1861de",
+        "crystal": "False",
+        "hint_text": "in Thieves' Town"
+    },
+    {
+        "name": "Thieves' Town - Attic",
+        "address": "0xea0d",
+        "player_address": "0x1861e1",
+        "crystal": "False",
+        "hint_text": "in Thieves' Town"
+    },
+    {
+        "name": "Thieves' Town - Big Chest",
+        "address": "0xea10",
+        "player_address": "0x1861e4",
+        "crystal": "False",
+        "hint_text": "in Thieves' Town"
+    },
+    {
+        "name": "Thieves' Town - Blind's Cell",
+        "address": "0xea13",
+        "player_address": "0x1861e7",
+        "crystal": "False",
+        "hint_text": "in Thieves' Town"
+    },
+    {
+        "name": "Thieves' Town - Boss",
+        "address": "0x180156",
+        "player_address": "0x186344",
+        "crystal": "False",
+        "hint_text": "with Blind"
+    },
+    {
+        "name": "Skull Woods - Compass Chest",
+        "address": "0xe992",
+        "player_address": "0x186166",
+        "crystal": "False",
+        "hint_text": "in Skull Woods"
+    },
+    {
+        "name": "Skull Woods - Map Chest",
+        "address": "0xe99b",
+        "player_address": "0x18616f",
+        "crystal": "False",
+        "hint_text": "in Skull Woods"
+    },
+    {
+        "name": "Skull Woods - Big Chest",
+        "address": "0xe998",
+        "player_address": "0x18616c",
+        "crystal": "False",
+        "hint_text": "in Skull Woods"
+    },
+    {
+        "name": "Skull Woods - Pot Prison",
+        "address": "0xe9a1",
+        "player_address": "0x186175",
+        "crystal": "False",
+        "hint_text": "in Skull Woods"
+    },
+    {
+        "name": "Skull Woods - Pinball Room",
+        "address": "0xe9c8",
+        "player_address": "0x18619c",
+        "crystal": "False",
+        "hint_text": "in Skull Woods"
+    },
+    {
+        "name": "Skull Woods - Big Key Chest",
+        "address": "0xe99e",
+        "player_address": "0x186172",
+        "crystal": "False",
+        "hint_text": "in Skull Woods"
+    },
+    {
+        "name": "Skull Woods - Bridge Room",
+        "address": "0xe9fe",
+        "player_address": "0x1861d2",
+        "crystal": "False",
+        "hint_text": "near Mothula"
+    },
+    {
+        "name": "Skull Woods - Boss",
+        "address": "0x180155",
+        "player_address": "0x186343",
+        "crystal": "False",
+        "hint_text": "with Mothula"
+    },
+    {
+        "name": "Ice Palace - Compass Chest",
+        "address": "0xe9d4",
+        "player_address": "0x1861a8",
+        "crystal": "False",
+        "hint_text": "in Ice Palace"
+    },
+    {
+        "name": "Ice Palace - Freezor Chest",
+        "address": "0xe995",
+        "player_address": "0x186169",
+        "crystal": "False",
+        "hint_text": "in Ice Palace"
+    },
+    {
+        "name": "Ice Palace - Big Chest",
+        "address": "0xe9aa",
+        "player_address": "0x18617e",
+        "crystal": "False",
+        "hint_text": "in Ice Palace"
+    },
+    {
+        "name": "Ice Palace - Iced T Room",
+        "address": "0xe9e3",
+        "player_address": "0x1861b7",
+        "crystal": "False",
+        "hint_text": "in Ice Palace"
+    },
+    {
+        "name": "Ice Palace - Spike Room",
+        "address": "0xe9e0",
+        "player_address": "0x1861b4",
+        "crystal": "False",
+        "hint_text": "in Ice Palace"
+    },
+    {
+        "name": "Ice Palace - Big Key Chest",
+        "address": "0xe9a4",
+        "player_address": "0x186178",
+        "crystal": "False",
+        "hint_text": "in Ice Palace"
+    },
+    {
+        "name": "Ice Palace - Map Chest",
+        "address": "0xe9dd",
+        "player_address": "0x1861b1",
+        "crystal": "False",
+        "hint_text": "in Ice Palace"
+    },
+    {
+        "name": "Ice Palace - Boss",
+        "address": "0x180157",
+        "player_address": "0x186345",
+        "crystal": "False",
+        "hint_text": "with Kholdstare"
+    },
+    {
+        "name": "Misery Mire - Big Chest",
+        "address": "0xea67",
+        "player_address": "0x18623b",
+        "crystal": "False",
+        "hint_text": "in Misery Mire"
+    },
+    {
+        "name": "Misery Mire - Map Chest",
+        "address": "0xea6a",
+        "player_address": "0x18623e",
+        "crystal": "False",
+        "hint_text": "in Misery Mire"
+    },
+    {
+        "name": "Misery Mire - Main Lobby",
+        "address": "0xea5e",
+        "player_address": "0x186232",
+        "crystal": "False",
+        "hint_text": "in Misery Mire"
+    },
+    {
+        "name": "Misery Mire - Bridge Chest",
+        "address": "0xea61",
+        "player_address": "0x186235",
+        "crystal": "False",
+        "hint_text": "in Misery Mire"
+    },
+    {
+        "name": "Misery Mire - Spike Chest",
+        "address": "0xe9da",
+        "player_address": "0x1861ae",
+        "crystal": "False",
+        "hint_text": "in Misery Mire"
+    },
+    {
+        "name": "Misery Mire - Compass Chest",
+        "address": "0xea64",
+        "player_address": "0x186238",
+        "crystal": "False",
+        "hint_text": "in Misery Mire"
+    },
+    {
+        "name": "Misery Mire - Big Key Chest",
+        "address": "0xea6d",
+        "player_address": "0x186241",
+        "crystal": "False",
+        "hint_text": "in Misery Mire"
+    },
+    {
+        "name": "Misery Mire - Boss",
+        "address": "0x180158",
+        "player_address": "0x186346",
+        "crystal": "False",
+        "hint_text": "with Vitreous"
+    },
+    {
+        "name": "Turtle Rock - Compass Chest",
+        "address": "0xea22",
+        "player_address": "0x1861f6",
+        "crystal": "False",
+        "hint_text": "in Turtle Rock"
+    },
+    {
+        "name": "Turtle Rock - Roller Room - Left",
+        "address": "0xea1c",
+        "player_address": "0x1861f0",
+        "crystal": "False",
+        "hint_text": "in Turtle Rock"
+    },
+    {
+        "name": "Turtle Rock - Roller Room - Right",
+        "address": "0xea1f",
+        "player_address": "0x1861f3",
+        "crystal": "False",
+        "hint_text": "in Turtle Rock"
+    },
+    {
+        "name": "Turtle Rock - Chain Chomps",
+        "address": "0xea16",
+        "player_address": "0x1861ea",
+        "crystal": "False",
+        "hint_text": "in Turtle Rock"
+    },
+    {
+        "name": "Turtle Rock - Big Key Chest",
+        "address": "0xea25",
+        "player_address": "0x1861f9",
+        "crystal": "False",
+        "hint_text": "in Turtle Rock"
+    },
+    {
+        "name": "Turtle Rock - Big Chest",
+        "address": "0xea19",
+        "player_address": "0x1861ed",
+        "crystal": "False",
+        "hint_text": "in Turtle Rock"
+    },
+    {
+        "name": "Turtle Rock - Crystaroller Room",
+        "address": "0xea34",
+        "player_address": "0x186208",
+        "crystal": "False",
+        "hint_text": "in Turtle Rock"
+    },
+    {
+        "name": "Turtle Rock - Eye Bridge - Bottom Left",
+        "address": "0xea31",
+        "player_address": "0x186205",
+        "crystal": "False",
+        "hint_text": "in Turtle Rock"
+    },
+    {
+        "name": "Turtle Rock - Eye Bridge - Bottom Right",
+        "address": "0xea2e",
+        "player_address": "0x186202",
+        "crystal": "False",
+        "hint_text": "in Turtle Rock"
+    },
+    {
+        "name": "Turtle Rock - Eye Bridge - Top Left",
+        "address": "0xea2b",
+        "player_address": "0x1861ff",
+        "crystal": "False",
+        "hint_text": "in Turtle Rock"
+    },
+    {
+        "name": "Turtle Rock - Eye Bridge - Top Right",
+        "address": "0xea28",
+        "player_address": "0x1861fc",
+        "crystal": "False",
+        "hint_text": "in Turtle Rock"
+    },
+    {
+        "name": "Turtle Rock - Boss",
+        "address": "0x180159",
+        "player_address": "0x186347",
+        "crystal": "False",
+        "hint_text": "with Trinexx"
+    },
+    {
+        "name": "Palace of Darkness - Shooter Room",
+        "address": "0xea5b",
+        "player_address": "0x18622f",
+        "crystal": "False",
+        "hint_text": "in Palace of Darkness"
+    },
+    {
+        "name": "Palace of Darkness - The Arena - Bridge",
+        "address": "0xea3d",
+        "player_address": "0x186211",
+        "crystal": "False",
+        "hint_text": "in Palace of Darkness"
+    },
+    {
+        "name": "Palace of Darkness - Stalfos Basement",
+        "address": "0xea49",
+        "player_address": "0x18621d",
+        "crystal": "False",
+        "hint_text": "in Palace of Darkness"
+    },
+    {
+        "name": "Palace of Darkness - Big Key Chest",
+        "address": "0xea37",
+        "player_address": "0x18620b",
+        "crystal": "False",
+        "hint_text": "in Palace of Darkness"
+    },
+    {
+        "name": "Palace of Darkness - The Arena - Ledge",
+        "address": "0xea3a",
+        "player_address": "0x18620e",
+        "crystal": "False",
+        "hint_text": "in Palace of Darkness"
+    },
+    {
+        "name": "Palace of Darkness - Map Chest",
+        "address": "0xea52",
+        "player_address": "0x186226",
+        "crystal": "False",
+        "hint_text": "in Palace of Darkness"
+    },
+    {
+        "name": "Palace of Darkness - Compass Chest",
+        "address": "0xea43",
+        "player_address": "0x186217",
+        "crystal": "False",
+        "hint_text": "in Palace of Darkness"
+    },
+    {
+        "name": "Palace of Darkness - Dark Basement - Left",
+        "address": "0xea4c",
+        "player_address": "0x186220",
+        "crystal": "False",
+        "hint_text": "in Palace of Darkness"
+    },
+    {
+        "name": "Palace of Darkness - Dark Basement - Right",
+        "address": "0xea4f",
+        "player_address": "0x186223",
+        "crystal": "False",
+        "hint_text": "in Palace of Darkness"
+    },
+    {
+        "name": "Palace of Darkness - Dark Maze - Top",
+        "address": "0xea55",
+        "player_address": "0x186229",
+        "crystal": "False",
+        "hint_text": "in Palace of Darkness"
+    },
+    {
+        "name": "Palace of Darkness - Dark Maze - Bottom",
+        "address": "0xea58",
+        "player_address": "0x18622c",
+        "crystal": "False",
+        "hint_text": "in Palace of Darkness"
+    },
+    {
+        "name": "Palace of Darkness - Big Chest",
+        "address": "0xea40",
+        "player_address": "0x186214",
+        "crystal": "False",
+        "hint_text": "in Palace of Darkness"
+    },
+    {
+        "name": "Palace of Darkness - Harmless Hellway",
+        "address": "0xea46",
+        "player_address": "0x18621a",
+        "crystal": "False",
+        "hint_text": "in Palace of Darkness"
+    },
+    {
+        "name": "Palace of Darkness - Boss",
+        "address": "0x180153",
+        "player_address": "0x186341",
+        "crystal": "False",
+        "hint_text": "with Helmasaur King"
+    },
+    {
+        "name": "Ganons Tower - Bob's Torch",
+        "address": "0x180161",
+        "player_address": "0x186363",
+        "crystal": "False",
+        "hint_text": "in Ganon's Tower"
+    },
+    {
+        "name": "Ganons Tower - Hope Room - Left",
+        "address": "0xead9",
+        "player_address": "0x1862ad",
+        "crystal": "False",
+        "hint_text": "in Ganon's Tower"
+    },
+    {
+        "name": "Ganons Tower - Hope Room - Right",
+        "address": "0xeadc",
+        "player_address": "0x1862b0",
+        "crystal": "False",
+        "hint_text": "in Ganon's Tower"
+    },
+    {
+        "name": "Ganons Tower - Tile Room",
+        "address": "0xeae2",
+        "player_address": "0x1862b6",
+        "crystal": "False",
+        "hint_text": "in Ganon's Tower"
+    },
+    {
+        "name": "Ganons Tower - Compass Room - Top Left",
+        "address": "0xeae5",
+        "player_address": "0x1862b9",
+        "crystal": "False",
+        "hint_text": "in Ganon's Tower"
+    },
+    {
+        "name": "Ganons Tower - Compass Room - Top Right",
+        "address": "0xeae8",
+        "player_address": "0x1862bc",
+        "crystal": "False",
+        "hint_text": "in Ganon's Tower"
+    },
+    {
+        "name": "Ganons Tower - Compass Room - Bottom Left",
+        "address": "0xeaeb",
+        "player_address": "0x1862bf",
+        "crystal": "False",
+        "hint_text": "in Ganon's Tower"
+    },
+    {
+        "name": "Ganons Tower - Compass Room - Bottom Right",
+        "address": "0xeaee",
+        "player_address": "0x1862c2",
+        "crystal": "False",
+        "hint_text": "in Ganon's Tower"
+    },
+    {
+        "name": "Ganons Tower - DMs Room - Top Left",
+        "address": "0xeab8",
+        "player_address": "0x18628c",
+        "crystal": "False",
+        "hint_text": "in Ganon's Tower"
+    },
+    {
+        "name": "Ganons Tower - DMs Room - Top Right",
+        "address": "0xeabb",
+        "player_address": "0x18628f",
+        "crystal": "False",
+        "hint_text": "in Ganon's Tower"
+    },
+    {
+        "name": "Ganons Tower - DMs Room - Bottom Left",
+        "address": "0xeabe",
+        "player_address": "0x186292",
+        "crystal": "False",
+        "hint_text": "in Ganon's Tower"
+    },
+    {
+        "name": "Ganons Tower - DMs Room - Bottom Right",
+        "address": "0xeac1",
+        "player_address": "0x186295",
+        "crystal": "False",
+        "hint_text": "in Ganon's Tower"
+    },
+    {
+        "name": "Ganons Tower - Map Chest",
+        "address": "0xead3",
+        "player_address": "0x1862a7",
+        "crystal": "False",
+        "hint_text": "in Ganon's Tower"
+    },
+    {
+        "name": "Ganons Tower - Firesnake Room",
+        "address": "0xead0",
+        "player_address": "0x1862a4",
+        "crystal": "False",
+        "hint_text": "in Ganon's Tower"
+    },
+    {
+        "name": "Ganons Tower - Randomizer Room - Top Left",
+        "address": "0xeac4",
+        "player_address": "0x186298",
+        "crystal": "False",
+        "hint_text": "in Ganon's Tower"
+    },
+    {
+        "name": "Ganons Tower - Randomizer Room - Top Right",
+        "address": "0xeac7",
+        "player_address": "0x18629b",
+        "crystal": "False",
+        "hint_text": "in Ganon's Tower"
+    },
+    {
+        "name": "Ganons Tower - Randomizer Room - Bottom Left",
+        "address": "0xeaca",
+        "player_address": "0x18629e",
+        "crystal": "False",
+        "hint_text": "in Ganon's Tower"
+    },
+    {
+        "name": "Ganons Tower - Randomizer Room - Bottom Right",
+        "address": "0xeacd",
+        "player_address": "0x1862a1",
+        "crystal": "False",
+        "hint_text": "in Ganon's Tower"
+    },
+    {
+        "name": "Ganons Tower - Bob's Chest",
+        "address": "0xeadf",
+        "player_address": "0x1862b3",
+        "crystal": "False",
+        "hint_text": "in Ganon's Tower"
+    },
+    {
+        "name": "Ganons Tower - Big Chest",
+        "address": "0xead6",
+        "player_address": "0x1862aa",
+        "crystal": "False",
+        "hint_text": "in Ganon's Tower"
+    },
+    {
+        "name": "Ganons Tower - Big Key Room - Left",
+        "address": "0xeaf4",
+        "player_address": "0x1862c8",
+        "crystal": "False",
+        "hint_text": "in Ganon's Tower"
+    },
+    {
+        "name": "Ganons Tower - Big Key Room - Right",
+        "address": "0xeaf7",
+        "player_address": "0x1862cb",
+        "crystal": "False",
+        "hint_text": "in Ganon's Tower"
+    },
+    {
+        "name": "Ganons Tower - Big Key Chest",
+        "address": "0xeaf1",
+        "player_address": "0x1862c5",
+        "crystal": "False",
+        "hint_text": "in Ganon's Tower"
+    },
+    {
+        "name": "Ganons Tower - Mini Helmasaur Room - Left",
+        "address": "0xeafd",
+        "player_address": "0x1862d1",
+        "crystal": "False",
+        "hint_text": "atop Ganon's Tower"
+    },
+    {
+        "name": "Ganons Tower - Mini Helmasaur Room - Right",
+        "address": "0xeb00",
+        "player_address": "0x1862d4",
+        "crystal": "False",
+        "hint_text": "atop Ganon's Tower"
+    },
+    {
+        "name": "Ganons Tower - Pre-Moldorm Chest",
+        "address": "0xeb03",
+        "player_address": "0x1862d7",
+        "crystal": "False",
+        "hint_text": "atop Ganon's Tower"
+    },
+    {
+        "name": "Ganons Tower - Validation Chest",
+        "address": "0xeb06",
+        "player_address": "0x1862da",
+        "crystal": "False",
+        "hint_text": "atop Ganon's Tower"
+    }
+]

@@ -17,8 +17,6 @@ use std::thread::sleep;
 use chrono::Utc;
 use csv::Writer;
 
-use lttp_autotimer::ADDRESS_IS_INSIDE;
-
 fn main() -> anyhow::Result<()> {
     let matches = clap::App::new("Rando Auto Timer")
         .arg(
@@ -101,13 +99,15 @@ fn connect_to_qusb(args: &ArgMatches) -> anyhow::Result<()> {
     loop {
         // since we can't choose multiple addresses in a single request, we instead fetch a larger chunk of data from given address and forward
         // so we don't have to make multiple requests
-        let message = &QusbRequestMessage::get_address(ADDRESS_IS_INSIDE, 0x40B);
+        let message = &QusbRequestMessage::get_address(0xf50000, 0x40B);
+        println!("{:?}", message);
 
         let message = Message {
             opcode: websocket::message::Type::Text,
             cd_status_code: None,
             payload: Cow::Owned(serde_json::to_vec(message)?),
         };
+
         client.send_message(&message)?;
 
         match client.recv_message() {

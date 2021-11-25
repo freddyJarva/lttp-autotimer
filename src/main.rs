@@ -7,6 +7,7 @@ use lttp_autotimer::output::{force_cmd_colored_output, print_verbose_diff};
 use lttp_autotimer::qusb::{attempt_qusb_connection, QusbRequestMessage};
 use lttp_autotimer::snes::NamedAddresses;
 use lttp_autotimer::transition::{entrance_transition, overworld_transition, Transition};
+use lttp_autotimer::VRAM_START;
 use std::borrow::Cow;
 use std::collections::VecDeque;
 use std::fs::File;
@@ -99,8 +100,7 @@ fn connect_to_qusb(args: &ArgMatches) -> anyhow::Result<()> {
     loop {
         // since we can't choose multiple addresses in a single request, we instead fetch a larger chunk of data from given address and forward
         // so we don't have to make multiple requests
-        let message = &QusbRequestMessage::get_address(0xf50000, 0x40B);
-        println!("{:?}", message);
+        let message = &QusbRequestMessage::get_address(VRAM_START, 0x40B);
 
         let message = Message {
             opcode: websocket::message::Type::Text,

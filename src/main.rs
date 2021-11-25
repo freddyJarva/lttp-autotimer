@@ -1,16 +1,15 @@
 use core::time;
-use std::fmt::write;
+use std::io::stdin;
 
 use clap::{Arg, ArgMatches};
 use colored::*;
+use lttp_autotimer::output::{force_cmd_colored_output, print_verbose_diff};
 use lttp_autotimer::qusb::{attempt_qusb_connection, QusbRequestMessage};
 use lttp_autotimer::snes::NamedAddresses;
 use lttp_autotimer::transition::{entrance_transition, overworld_transition, Transition};
 use std::borrow::Cow;
 use std::collections::VecDeque;
 use std::fs::File;
-use std::io::{self, Write};
-use termcolor::{Color, ColorChoice, ColorSpec, StandardStream, WriteColor};
 use websocket::{ClientBuilder, Message, OwnedMessage};
 
 use std::thread::sleep;
@@ -49,17 +48,17 @@ fn main() -> anyhow::Result<()> {
                 .short('v')
                 .multiple_occurrences(true)
                 .about("Sets the level of verbosity for logging. can be set 0-2 times")
-        ).get_matches();
+        ).arg(
+            Arg::new("manual update")
+                .long("manual")
+                .short('m')
+                .about("Only check for updates when user presses a key. Useful when debugging.")
+        )
+        .get_matches();
 
     force_cmd_colored_output();
     connect_to_qusb(&matches)?;
     Ok(())
-}
-
-/// Hack to make cmd.exe output colors instead of broken color escape codes
-/// Not sure why it works since I use another crate for  coloring, but it does!
-fn force_cmd_colored_output() {
-    StandardStream::stdout(ColorChoice::Always);
 }
 
 fn connect_to_qusb(args: &ArgMatches) -> anyhow::Result<()> {
@@ -73,6 +72,7 @@ fn connect_to_qusb(args: &ArgMatches) -> anyhow::Result<()> {
         .expect("specified update frequency (--freq/-f) needs to be a positive integer");
     let verbosity = args.occurrences_of("v");
     println!("Verbosity level: {}", verbosity);
+    let manual_update = args.is_present("manual update");
 
     println!(
         "{} to connect to {}:{}",
@@ -121,7 +121,16 @@ fn connect_to_qusb(args: &ArgMatches) -> anyhow::Result<()> {
                             res.entrance_id()
                         ),
                         // If using level 2, you might wanna set a higher update interval, (e.g. --freq 10000 to update every 10 seconds) as it's A LOT of data
-                        2.. => println!("Full response: {:?}", res),
+                        2.. => {
+                            if responses.len() > 0 {
+                                print_verbose_diff(
+                                    responses.get(responses.len() - 1).unwrap(),
+                                    &res,
+                                );
+                            } else {
+                                println!("Full response: {:?}", res)
+                            }
+                        }
                         _ => (), // on 0 or somehow invalid verbosity level we don't do this logging as it's very spammy
                     };
 
@@ -168,6 +177,14 @@ fn connect_to_qusb(args: &ArgMatches) -> anyhow::Result<()> {
             Err(e) => println!("{:?}", e),
         }
 
-        sleep(time::Duration::from_millis(update_frequency));
+        if manual_update {
+            println!("Press enter to update...");
+            stdin()
+                .read_line(&mut String::new())
+                .ok()
+                .expect("Failed to read line");
+        } else {
+            sleep(time::Duration::from_millis(update_frequency));
+        }
     }
 }

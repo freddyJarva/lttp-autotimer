@@ -1,3 +1,4 @@
+pub mod output;
 pub mod qusb;
 pub mod snes;
 pub mod transition;

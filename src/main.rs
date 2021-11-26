@@ -192,44 +192,6 @@ fn get_address_request(
     Ok(message)
 }
 
-/// Used for debugging purposes.
-/// `offsets_to_check` is indexes of returned `response` to check for changes.
-///
-/// Will panic if any offset index is larger than response length
-fn check_for_changes<T, U>(
-    response: U,
-    previous_values: &mut VecDeque<Vec<u8>>,
-    offsets_to_check: T,
-) -> anyhow::Result<()>
-where
-    T: AsRef<[usize]>,
-    U: AsRef<[u8]>,
-{
-    let response = response.as_ref();
-    if previous_values.len() > 0 {
-        let previous_value = &previous_values[previous_values.len() - 1];
-        for idx in offsets_to_check.as_ref() {
-            if previous_value[*idx] != response[*idx] {
-                println!(
-                    "{:X}: {}, {}",
-                    idx + DUNKA_VRAM_READ_OFFSET as usize,
-                    previous_value[*idx],
-                    response[*idx]
-                );
-            } else {
-                println!(
-                    "{:X}: {}",
-                    idx + DUNKA_VRAM_READ_OFFSET as usize,
-                    response[*idx]
-                );
-            }
-        }
-    }
-    previous_values.push_back(response.to_vec());
-
-    Ok(())
-}
-
 fn check_for_checks<U>(
     response: U,
     verbosity: u64,

@@ -69,17 +69,39 @@ impl From<&Check> for Event {
 
 impl From<&mut Check> for Event {
     fn from(check: &mut Check) -> Self {
-        Event {
-            timestamp: check
-                .time_of_check
-                .expect("Found check missing timestamp when serializing"),
-            indoors: None,
-            to: None,
-            location_id: Some(check.name.to_string()),
-            item_id: match &check.item {
-                Some(item) => Some(item.to_string()),
-                None => None,
-            },
+        if check.is_item && !check.is_progressive {
+            Event {
+                timestamp: check
+                    .time_of_check
+                    .expect("Found check missing timestamp when serializing"),
+                indoors: None,
+                to: None,
+                location_id: None,
+                item_id: Some(check.name.to_string()),
+            }
+        } else if check.is_item && check.is_progressive {
+            Event {
+                timestamp: check
+                    .time_of_check
+                    .expect("Found check missing timestamp when serializing"),
+                indoors: None,
+                to: None,
+                location_id: None,
+                item_id: Some(format!("{} - {}", check.name, check.progressive_level)),
+            }
+        } else {
+            Event {
+                timestamp: check
+                    .time_of_check
+                    .expect("Found check missing timestamp when serializing"),
+                indoors: None,
+                to: None,
+                location_id: Some(check.name.to_string()),
+                item_id: match &check.item {
+                    Some(item) => Some(item.to_string()),
+                    None => None,
+                },
+            }
         }
     }
 }

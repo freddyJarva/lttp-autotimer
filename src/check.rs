@@ -20,13 +20,35 @@ pub struct Check {
     #[serde(with = "ts_milliseconds_option", default)]
     pub time_of_check: Option<DateTime<Utc>>,
     pub item: Option<String>,
+    #[serde(default)]
+    pub is_progressive: bool,
+    #[serde(default)]
+    pub progressive_level: usize,
+    #[serde(default)]
+    pub snes_value: u8,
+    #[serde(default)]
+    pub is_item: bool,
 }
 
 static CHECKS_JSON: &'static str = include_str!("checks.json");
+static ITEMS_JSON: &'static str = include_str!("items.json");
 
 /// Reads src/checks.json and returns deserialized content
-pub fn deserialize_checks() -> Result<Vec<Check>, serde_json::Error> {
+pub fn deserialize_location_checks() -> Result<Vec<Check>, serde_json::Error> {
     serde_json::from_str(CHECKS_JSON)
+}
+
+/// Reads src/checks.json and returns deserialized content, setting `is_item` to `true` if not already set.
+pub fn deserialize_item_checks() -> Result<Vec<Check>, serde_json::Error> {
+    serde_json::from_str(ITEMS_JSON).map(|items: Vec<Check>| {
+        items
+            .into_iter()
+            .map(|mut item| {
+                item.is_item = true;
+                item
+            })
+            .collect()
+    })
 }
 
 impl Check {
@@ -34,15 +56,21 @@ impl Check {
         self.is_checked = true;
         self.time_of_check = Some(Utc::now())
     }
+
+    pub fn progress_item(&mut self, snes_value: u8) {
+        self.progressive_level += 1;
+        self.snes_value = snes_value;
+        self.time_of_check = Some(Utc::now());
+    }
 }
 
 #[cfg(test)]
 mod tests {
     use super::*;
     #[test]
-    fn test_deserialize_checks() {
+    fn test_deserialize_location_checks() {
         assert_eq!(
-            deserialize_checks().unwrap()[0],
+            deserialize_location_checks().unwrap()[0],
             Check {
                 name: "Mushroom".to_string(),
                 address: 0x180013,
@@ -54,6 +82,33 @@ mod tests {
                 is_checked: false,
                 time_of_check: None,
                 item: None,
+                is_progressive: false,
+                progressive_level: 0,
+                snes_value: 0,
+                is_item: false
+            }
+        )
+    }
+
+    #[test]
+    fn test_deserialize_item_checks() {
+        assert_eq!(
+            deserialize_item_checks().unwrap()[0],
+            Check {
+                name: "Bow".to_string(),
+                address: 0x0,
+                player_address: None,
+                crystal: None,
+                hint_text: None,
+                dunka_offset: 0x38e,
+                dunka_mask: 0x80,
+                is_checked: false,
+                time_of_check: None,
+                item: None,
+                is_progressive: false,
+                progressive_level: 0,
+                snes_value: 0,
+                is_item: true
             }
         )
     }

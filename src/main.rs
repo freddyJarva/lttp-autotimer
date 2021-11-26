@@ -3,7 +3,7 @@ use std::io::stdin;
 
 use clap::{Arg, ArgMatches};
 use colored::*;
-use lttp_autotimer::check::{deserialize_checks, Check};
+use lttp_autotimer::check::{deserialize_item_checks, deserialize_location_checks, Check};
 use lttp_autotimer::output::{force_cmd_colored_output, print_flags_toggled, print_verbose_diff};
 use lttp_autotimer::qusb::{attempt_qusb_connection, QusbRequestMessage};
 use lttp_autotimer::snes::NamedAddresses;
@@ -99,9 +99,13 @@ fn connect_to_qusb(args: &ArgMatches) -> anyhow::Result<()> {
     File::create(&csv_name)?;
     let mut writer = Writer::from_path(csv_name)?;
 
-    let mut checks: Vec<Check> = deserialize_checks()?
+    let mut locations: Vec<Check> = deserialize_location_checks()?
         .into_iter()
         // 0 offset checks hasn't been given a proper value in checks.json yet
+        .filter(|check| check.dunka_offset != 0)
+        .collect();
+    let mut items: Vec<Check> = deserialize_item_checks()?
+        .into_iter()
         .filter(|check| check.dunka_offset != 0)
         .collect();
 
@@ -119,15 +123,31 @@ fn connect_to_qusb(args: &ArgMatches) -> anyhow::Result<()> {
 
         match get_dunka_chunka(&mut client) {
             Ok(response) => {
-                check_for_checks(
+                check_for_location_checks(
                     &response,
                     verbosity,
                     &mut checks_responses,
-                    &mut checks,
+                    &mut locations,
                     &mut writer,
                 )?;
+                check_for_item_checks(
+                    &response,
+                    verbosity,
+                    &mut checks_responses,
+                    &mut items,
+                    &mut writer,
+                )?;
+                checks_responses.push_back(response);
             }
             Err(e) => println!("Failed request: {:?}", e),
+        }
+
+        // Only keep the last few responses to decrease memory usage
+        if responses.len() > 60 {
+            responses.pop_front();
+        }
+        if checks_responses.len() > 60 {
+            checks_responses.pop_front();
         }
 
         if manual_update {
@@ -192,7 +212,7 @@ fn get_address_request(
     Ok(message)
 }
 
-fn check_for_checks<U>(
+fn check_for_location_checks<U>(
     response: U,
     verbosity: u64,
     previous_values: &mut VecDeque<Vec<u8>>,
@@ -242,7 +262,70 @@ where
         }
     }
 
-    previous_values.push_back(response.to_vec());
+    Ok(())
+}
+
+fn check_for_item_checks<U>(
+    response: U,
+    verbosity: u64,
+    previous_values: &mut VecDeque<Vec<u8>>,
+    checks: &mut Vec<Check>,
+    writer: &mut Writer<File>,
+) -> anyhow::Result<()>
+where
+    U: AsRef<[u8]>,
+{
+    let response = response.as_ref();
+
+    for check in checks {
+        let current_check_value = response[check.dunka_offset as usize];
+
+        if previous_values.len() > 0
+            && (previous_values[previous_values.len() - 1][check.dunka_offset as usize]
+                != current_check_value)
+        {
+            let previous_value = &previous_values[previous_values.len() - 1];
+            let previous_check_value = previous_value[check.dunka_offset as usize];
+            if verbosity > 0 {
+                println!(
+                    "{}: {} -> {} -- bitmask applied: {} -> {}",
+                    check.name.on_blue(),
+                    previous_check_value.to_string().red(),
+                    current_check_value.to_string().green(),
+                    (previous_check_value & check.dunka_mask).to_string().red(),
+                    (current_check_value & check.dunka_mask).to_string().green()
+                )
+            } else if !check.is_progressive
+                && current_check_value & check.dunka_mask != 0
+                && !check.is_checked
+            {
+                check.mark_as_checked();
+                println!(
+                    "Item get! time: {:?}, item: {}",
+                    check.time_of_check,
+                    check.name.on_green(),
+                );
+                writer.serialize(Event::from(check))?;
+            } else if check.is_progressive && current_check_value > check.snes_value {
+                check.progress_item(current_check_value);
+                println!(
+                    "Item get! time: {:?}, item: {}",
+                    check.time_of_check,
+                    format!("{} - {}", check.name, check.progressive_level).on_green(),
+                );
+                writer.serialize(Event::from(check))?;
+            }
+        } else {
+            if verbosity > 0 {
+                println!(
+                    "{}: {} -- bitmask applied: {}",
+                    check.name.on_blue(),
+                    current_check_value,
+                    current_check_value & check.dunka_mask
+                )
+            }
+        }
+    }
 
     Ok(())
 }
@@ -286,8 +369,10 @@ where
                 writer.flush()?;
 
                 println!(
-                    "Transition made!: time: {:?}, indoors: {:?}, to: {:X}",
-                    transition.timestamp, transition.indoors, transition.to
+                    "Transition made!: time: {:?}, indoors: {:?}, to: {}",
+                    transition.timestamp,
+                    transition.indoors,
+                    format!("{:X}", transition.to).on_purple()
                 );
             }
             Some(previous_res) if entrance_transition(previous_res, &res) => {
@@ -305,8 +390,10 @@ where
                 writer.flush()?;
 
                 println!(
-                    "Transition made!: time: {:?}, indoors: {:?}, to: {:X}",
-                    transition.timestamp, transition.indoors, transition.to
+                    "Transition made!: time: {:?}, indoors: {:?}, to: {}",
+                    transition.timestamp,
+                    transition.indoors,
+                    format!("{:X}", transition.to).on_purple()
                 );
             }
             _ => (),

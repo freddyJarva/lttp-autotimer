@@ -1,23 +1,16 @@
+use crate::serde_lttp::hex_serialize;
 use chrono::serde::ts_milliseconds;
 use chrono::{DateTime, Utc};
 use serde::Serialize;
-use serde::Serializer;
 
 use crate::snes::NamedAddresses;
 
-pub fn overworld_transition(previous_res: &Vec<u8>, response: &Vec<u8>) -> bool {
-    previous_res.overworld_tile() != response.overworld_tile()
+pub fn overworld_transition<T: AsRef<[u8]>, U: AsRef<[u8]>>(previous_res: T, response: U) -> bool {
+    previous_res.as_ref().overworld_tile() != response.as_ref().overworld_tile()
 }
 
-pub fn entrance_transition(previous_res: &Vec<u8>, response: &Vec<u8>) -> bool {
-    previous_res.indoors() != response.indoors()
-}
-
-fn hex_serialize<S>(x: &u16, s: S) -> Result<S::Ok, S::Error>
-where
-    S: Serializer,
-{
-    s.serialize_str(format!("{:X}", x).as_ref())
+pub fn entrance_transition<T: AsRef<[u8]>, U: AsRef<[u8]>>(previous_res: T, response: U) -> bool {
+    previous_res.as_ref().indoors() != response.as_ref().indoors()
 }
 
 #[derive(Serialize, Debug)]

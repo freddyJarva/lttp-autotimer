@@ -10,7 +10,7 @@ pub fn force_cmd_colored_output() {
 /// Highlight delta changes between two array slices.
 /// Will print changed values as (changed_idx, previous_value, new_value) sets.
 /// This function assumes that left and right hand side arrays are the same size
-pub fn print_verbose_diff<T: AsRef<[u8]>>(lhs: T, rhs: T) {
+pub fn print_verbose_diff<T: AsRef<[u8]>, U: AsRef<[u8]>>(lhs: T, rhs: U) {
     let lhs = lhs.as_ref();
     let rhs = rhs.as_ref();
     print!("delta changes (changed_idx, previous_value, new_value): ");
@@ -28,7 +28,7 @@ pub fn print_verbose_diff<T: AsRef<[u8]>>(lhs: T, rhs: T) {
 }
 
 /// What's considered flags - according to this function - are boolean values, i.e. values that are either 0 or 1
-pub fn print_flags_toggled<T: AsRef<[u8]>>(lhs: T, rhs: T) {
+pub fn print_flags_toggled<T: AsRef<[u8]>, U: AsRef<[u8]>>(lhs: T, rhs: U) {
     let lhs = lhs.as_ref();
     let rhs = rhs.as_ref();
     print!("flags toggled (changed_idx, previous_value, new_value): ");

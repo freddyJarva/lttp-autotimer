@@ -3,12 +3,12 @@ use std::io::stdin;
 
 use clap::{Arg, ArgMatches};
 use colored::*;
-use lttp_autotimer::check::deserialize_checks;
+use lttp_autotimer::check::{deserialize_checks, Check};
 use lttp_autotimer::output::{force_cmd_colored_output, print_flags_toggled, print_verbose_diff};
 use lttp_autotimer::qusb::{attempt_qusb_connection, QusbRequestMessage};
 use lttp_autotimer::snes::NamedAddresses;
 use lttp_autotimer::transition::{entrance_transition, overworld_transition, Transition};
-use lttp_autotimer::{DUNKA_VRAM_READ_OFFSET, DUNKA_VRAM_READ_SIZE, SAVEDATA_START, VRAM_START};
+use lttp_autotimer::{Event, DUNKA_VRAM_READ_OFFSET, SAVEDATA_START, VRAM_START};
 use std::borrow::Cow;
 use std::collections::VecDeque;
 use std::fs::File;
@@ -99,39 +99,36 @@ fn connect_to_qusb(args: &ArgMatches) -> anyhow::Result<()> {
     File::create(&csv_name)?;
     let mut writer = Writer::from_path(csv_name)?;
 
-    let checks = deserialize_checks()?;
+    let mut checks: Vec<Check> = deserialize_checks()?
+        .into_iter()
+        // 0 offset checks hasn't been given a proper value in checks.json yet
+        .filter(|check| check.dunka_offset != 0)
+        .collect();
 
     loop {
         // since we can't choose multiple addresses in a single request, we instead fetch a larger chunk of data from given address and forward
         // so we don't have to make multiple requests
-        match get_address_request(&mut client, VRAM_START, 0x580) {
+        match get_address_request(&mut client, VRAM_START, 0x40B) {
             Ok(response) => {
-                check_for_transitions(&response, verbosity, &mut responses, &mut writer)?;
+                if let OwnedMessage::Binary(response) = response {
+                    check_for_transitions(&response, verbosity, &mut responses, &mut writer)?;
+                }
             }
             Err(e) => println!("Failed request: {:?}", e),
         };
 
         match get_dunka_chunka(&mut client) {
-            Ok(response) => check_for_changes(
-                &response,
-                &mut checks_responses,
-                [0x208, 0x3C6, 0x0AA, 0x411, 0x410],
-            )?,
+            Ok(response) => {
+                check_for_checks(
+                    &response,
+                    verbosity,
+                    &mut checks_responses,
+                    &mut checks,
+                    &mut writer,
+                )?;
+            }
             Err(e) => println!("Failed request: {:?}", e),
         }
-
-        // match get_address_request(
-        //     &mut client,
-        //     DUNKA_VRAM_READ_OFFSET,
-        //     DUNKA_VRAM_READ_SIZE as usize,
-        // ) {
-        //     Ok(response) => check_for_changes(
-        //         &response,
-        //         &mut checks_responses,
-        //         [0x208, 0x3C6, 0x0AA, 0x411, 0x410],
-        //     )?,
-        //     Err(e) => println!("Failed request: {:?}", e),
-        // }
 
         if manual_update {
             println!("Press enter to update...");
@@ -233,72 +230,127 @@ where
     Ok(())
 }
 
-fn check_for_transitions(
-    response: &OwnedMessage,
+fn check_for_checks<U>(
+    response: U,
+    verbosity: u64,
+    previous_values: &mut VecDeque<Vec<u8>>,
+    checks: &mut Vec<Check>,
+    writer: &mut Writer<File>,
+) -> anyhow::Result<()>
+where
+    U: AsRef<[u8]>,
+{
+    let response = response.as_ref();
+
+    for check in checks {
+        let current_check_value = response[check.dunka_offset as usize];
+        if previous_values.len() > 0
+            && (previous_values[previous_values.len() - 1][check.dunka_offset as usize]
+                != current_check_value)
+        {
+            let previous_value = &previous_values[previous_values.len() - 1];
+            let previous_check_value = previous_value[check.dunka_offset as usize];
+            if verbosity > 0 {
+                println!(
+                    "{}: {} -> {} -- bitmask applied: {} -> {}",
+                    check.name.on_blue(),
+                    previous_check_value.to_string().red(),
+                    current_check_value.to_string().green(),
+                    (previous_check_value & check.dunka_mask).to_string().red(),
+                    (current_check_value & check.dunka_mask).to_string().green()
+                )
+            } else if current_check_value & check.dunka_mask != 0 && !check.is_checked {
+                check.mark_as_checked();
+                println!(
+                    "Check made! time: {:?}, location: {}",
+                    check.time_of_check,
+                    check.name.on_blue(),
+                );
+                writer.serialize(Event::from(check))?;
+            }
+        } else {
+            if verbosity > 0 {
+                println!(
+                    "{}: {} -- bitmask applied: {}",
+                    check.name.on_blue(),
+                    current_check_value,
+                    current_check_value & check.dunka_mask
+                )
+            }
+        }
+    }
+
+    previous_values.push_back(response.to_vec());
+
+    Ok(())
+}
+
+fn check_for_transitions<U>(
+    response: U,
     verbosity: u64,
     responses: &mut VecDeque<Vec<u8>>,
     writer: &mut Writer<File>,
-) -> anyhow::Result<()> {
-    match response {
-        OwnedMessage::Binary(res) => {
-            match verbosity {
-                1 => println!(
-                    "ow {}, indoors {}, entrance {}",
-                    res.overworld_tile(),
-                    res.indoors(),
-                    res.entrance_id()
-                ),
-                // If using level 2, you might wanna set a higher update interval, (e.g. --freq 10000 to update every 10 seconds) as it's A LOT of data
-                2.. => {
-                    if responses.len() > 0 {
-                        print_verbose_diff(responses.get(responses.len() - 1).unwrap(), &res);
-                        print_flags_toggled(responses.get(responses.len() - 1).unwrap(), &res);
-                    } else {
-                        println!("Full response: {:?}", res)
-                    }
-                }
-                _ => (), // on 0 or somehow invalid verbosity level we don't do this logging as it's very spammy
-            };
+) -> anyhow::Result<()>
+where
+    U: AsRef<[u8]>,
+{
+    let res = response.as_ref();
 
+    match verbosity {
+        1 => println!(
+            "ow {}, indoors {}, entrance {}",
+            res.overworld_tile(),
+            res.indoors(),
+            res.entrance_id()
+        ),
+        // If using level 2, you might wanna set a higher update interval, (e.g. --freq 10000 to update every 10 seconds) as it's A LOT of data
+        2.. => {
             if responses.len() > 0 {
-                match responses.get(responses.len() - 1) {
-                    Some(previous_res) if overworld_transition(previous_res, &res) => {
-                        let transition = Transition::new(res.overworld_tile() as u16, false);
-
-                        writer.serialize(&transition)?;
-                        writer.flush()?;
-
-                        println!(
-                            "Transition made!: time: {:?}, indoors: {:?}, to: {:X}",
-                            transition.timestamp, transition.indoors, transition.to
-                        );
-                    }
-                    Some(previous_res) if entrance_transition(previous_res, &res) => {
-                        let to;
-                        if res.indoors() == 1 {
-                            // new position is inside
-                            to = res.entrance_id();
-                        } else {
-                            // new position is outside
-                            to = res.overworld_tile();
-                        }
-                        let transition = Transition::new(to as u16, res.indoors() == 1);
-
-                        writer.serialize(&transition)?;
-                        writer.flush()?;
-
-                        println!(
-                            "Transition made!: time: {:?}, indoors: {:?}, to: {:X}",
-                            transition.timestamp, transition.indoors, transition.to
-                        );
-                    }
-                    _ => (),
-                }
+                print_verbose_diff(responses.get(responses.len() - 1).unwrap(), res);
+                print_flags_toggled(responses.get(responses.len() - 1).unwrap(), res);
+            } else {
+                println!("Full response: {:?}", res)
             }
-            responses.push_back(res.clone());
         }
-        _ => (),
+        _ => (), // on 0 or somehow invalid verbosity level we don't do this logging as it's very spammy
+    };
+
+    if responses.len() > 0 {
+        match responses.get(responses.len() - 1) {
+            Some(previous_res) if overworld_transition(previous_res, &res) => {
+                let transition = Transition::new(res.overworld_tile() as u16, false);
+
+                writer.serialize(Event::from(&transition))?;
+                writer.flush()?;
+
+                println!(
+                    "Transition made!: time: {:?}, indoors: {:?}, to: {:X}",
+                    transition.timestamp, transition.indoors, transition.to
+                );
+            }
+            Some(previous_res) if entrance_transition(previous_res, &res) => {
+                let to;
+                if res.indoors() == 1 {
+                    // new position is inside
+                    to = res.entrance_id();
+                } else {
+                    // new position is outside
+                    to = res.overworld_tile();
+                }
+                let transition = Transition::new(to as u16, res.indoors() == 1);
+
+                writer.serialize(Event::from(&transition))?;
+                writer.flush()?;
+
+                println!(
+                    "Transition made!: time: {:?}, indoors: {:?}, to: {:X}",
+                    transition.timestamp, transition.indoors, transition.to
+                );
+            }
+            _ => (),
+        }
     }
+    responses.push_back(res.to_vec());
 
     Ok(())
 }

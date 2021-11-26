@@ -3,7 +3,7 @@ use chrono::serde::ts_milliseconds_option;
 use chrono::{DateTime, Utc};
 use serde::Deserialize;
 
-#[derive(Debug, Deserialize, PartialEq)]
+#[derive(Debug, Deserialize, PartialEq, Default)]
 pub struct Check {
     pub name: String,
     #[serde(deserialize_with = "hex_deserialize")]
@@ -79,13 +79,7 @@ mod tests {
                 hint_text: Some("in the woods".to_string()),
                 dunka_offset: 0x411,
                 dunka_mask: 0x10,
-                is_checked: false,
-                time_of_check: None,
-                item: None,
-                is_progressive: false,
-                progressive_level: 0,
-                snes_value: 0,
-                is_item: false
+                ..Default::default()
             }
         )
     }
@@ -97,18 +91,10 @@ mod tests {
             Check {
                 name: "Bow".to_string(),
                 address: 0x0,
-                player_address: None,
-                crystal: None,
-                hint_text: None,
                 dunka_offset: 0x38e,
                 dunka_mask: 0x80,
-                is_checked: false,
-                time_of_check: None,
-                item: None,
-                is_progressive: false,
-                progressive_level: 0,
-                snes_value: 0,
-                is_item: true
+                is_item: true,
+                ..Default::default()
             }
         )
     }

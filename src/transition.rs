@@ -31,3 +31,13 @@ impl Transition {
         }
     }
 }
+
+impl Default for Transition {
+    fn default() -> Self {
+        Self {
+            timestamp: Utc::now(),
+            indoors: Default::default(),
+            to: Default::default(),
+        }
+    }
+}

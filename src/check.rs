@@ -20,11 +20,13 @@ pub struct Check {
     hint_text: String,
     #[serde(deserialize_with = "hex_deserialize")]
     dunka_offset: u32,
+    #[serde(deserialize_with = "hex_deserialize")]
+    dunka_mask: u32,
 }
 
 static CHECKS_JSON: &'static str = include_str!("checks.json");
 
-/// Reads checks.json and returns deserialized content
+/// Reads src/checks.json and returns deserialized content
 pub fn deserialize_checks() -> Result<Vec<Check>, serde_json::Error> {
     serde_json::from_str(CHECKS_JSON)
 }
@@ -43,6 +45,7 @@ mod tests {
                 crystal: "False".to_string(),
                 hint_text: "in the woods".to_string(),
                 dunka_offset: 0x0,
+                dunka_mask: 0x10,
             }
         )
     }

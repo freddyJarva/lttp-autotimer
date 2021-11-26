@@ -8,7 +8,7 @@ use lttp_autotimer::output::{force_cmd_colored_output, print_flags_toggled, prin
 use lttp_autotimer::qusb::{attempt_qusb_connection, QusbRequestMessage};
 use lttp_autotimer::snes::NamedAddresses;
 use lttp_autotimer::transition::{entrance_transition, overworld_transition, Transition};
-use lttp_autotimer::{SAVEDATA_START, VRAM_START};
+use lttp_autotimer::{DUNKA_VRAM_READ_OFFSET, DUNKA_VRAM_READ_SIZE, SAVEDATA_START, VRAM_START};
 use std::borrow::Cow;
 use std::collections::VecDeque;
 use std::fs::File;
@@ -107,12 +107,31 @@ fn connect_to_qusb(args: &ArgMatches) -> anyhow::Result<()> {
         match get_address_request(&mut client, VRAM_START, 0x580) {
             Ok(response) => {
                 check_for_transitions(&response, verbosity, &mut responses, &mut writer)?;
-                if let OwnedMessage::Binary(res) = response {
-                    println!("{}", res[0x403]);
-                }
             }
             Err(e) => println!("Failed request: {:?}", e),
         };
+
+        match get_dunka_chunka(&mut client) {
+            Ok(response) => check_for_changes(
+                &response,
+                &mut checks_responses,
+                [0x208, 0x3C6, 0x0AA, 0x411, 0x410],
+            )?,
+            Err(e) => println!("Failed request: {:?}", e),
+        }
+
+        // match get_address_request(
+        //     &mut client,
+        //     DUNKA_VRAM_READ_OFFSET,
+        //     DUNKA_VRAM_READ_SIZE as usize,
+        // ) {
+        //     Ok(response) => check_for_changes(
+        //         &response,
+        //         &mut checks_responses,
+        //         [0x208, 0x3C6, 0x0AA, 0x411, 0x410],
+        //     )?,
+        //     Err(e) => println!("Failed request: {:?}", e),
+        // }
 
         if manual_update {
             println!("Press enter to update...");
@@ -124,6 +143,38 @@ fn connect_to_qusb(args: &ArgMatches) -> anyhow::Result<()> {
             sleep(time::Duration::from_millis(update_frequency));
         }
     }
+}
+
+/// Reads twice, guessing due to limitation of request sizes
+fn get_dunka_chunka(
+    client: &mut websocket::sync::Client<std::net::TcpStream>,
+) -> anyhow::Result<Vec<u8>> {
+    let first_message = &QusbRequestMessage::get_address(SAVEDATA_START, 0x280);
+    let second_message = &QusbRequestMessage::get_address(DUNKA_VRAM_READ_OFFSET, 0x280);
+
+    let message = Message {
+        opcode: websocket::message::Type::Text,
+        cd_status_code: None,
+        payload: Cow::Owned(serde_json::to_vec(first_message)?),
+    };
+    let mut combined_result: Vec<u8> = Vec::new();
+    client.send_message(&message)?;
+    let response = client.recv_message()?;
+    if let OwnedMessage::Binary(res) = response {
+        combined_result.append(&mut res.clone());
+    };
+
+    let message = Message {
+        opcode: websocket::message::Type::Text,
+        cd_status_code: None,
+        payload: Cow::Owned(serde_json::to_vec(second_message)?),
+    };
+    client.send_message(&message)?;
+    let response = client.recv_message()?;
+    if let OwnedMessage::Binary(res) = response {
+        combined_result.append(&mut res.clone());
+    };
+    Ok(combined_result)
 }
 
 fn get_address_request(
@@ -142,6 +193,44 @@ fn get_address_request(
     client.send_message(&message)?;
     let message = client.recv_message()?;
     Ok(message)
+}
+
+/// Used for debugging purposes.
+/// `offsets_to_check` is indexes of returned `response` to check for changes.
+///
+/// Will panic if any offset index is larger than response length
+fn check_for_changes<T, U>(
+    response: U,
+    previous_values: &mut VecDeque<Vec<u8>>,
+    offsets_to_check: T,
+) -> anyhow::Result<()>
+where
+    T: AsRef<[usize]>,
+    U: AsRef<[u8]>,
+{
+    let response = response.as_ref();
+    if previous_values.len() > 0 {
+        let previous_value = &previous_values[previous_values.len() - 1];
+        for idx in offsets_to_check.as_ref() {
+            if previous_value[*idx] != response[*idx] {
+                println!(
+                    "{:X}: {}, {}",
+                    idx + DUNKA_VRAM_READ_OFFSET as usize,
+                    previous_value[*idx],
+                    response[*idx]
+                );
+            } else {
+                println!(
+                    "{:X}: {}",
+                    idx + DUNKA_VRAM_READ_OFFSET as usize,
+                    response[*idx]
+                );
+            }
+        }
+    }
+    previous_values.push_back(response.to_vec());
+
+    Ok(())
 }
 
 fn check_for_transitions(

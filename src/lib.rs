@@ -24,12 +24,12 @@ use std::fs::File;
 use csv::Writer;
 use std::thread::sleep;
 
-pub mod check;
+mod check;
 pub mod output;
-pub mod qusb;
+mod qusb;
 mod serde_lttp;
-pub mod snes;
-pub mod transition;
+mod snes;
+mod transition;
 
 /// Snes memory address
 pub const VRAM_START: u32 = 0xf50000;

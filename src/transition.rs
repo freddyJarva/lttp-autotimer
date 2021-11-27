@@ -27,8 +27,12 @@ pub enum TriggeredTransition {
 }
 
 pub fn check_transition(previous: &Transition, current: &Transition) -> TriggeredTransition {
-    if previous.address_value != current.address_value {
+    if previous.address_value != current.address_value && !previous.indoors && !current.indoors {
         TriggeredTransition::Overworld(current.clone())
+    } else if previous.indoors != current.indoors {
+        TriggeredTransition::Entrance(current.clone())
+    } else if previous.indoors && current.indoors && previous.name != current.name {
+        TriggeredTransition::Underworld(current.clone())
     } else {
         TriggeredTransition::None
     }
@@ -120,6 +124,12 @@ pub fn deserialize_transitions_map() -> Result<HashMap<SnesMemoryID, Transition>
         .collect())
 }
 
+impl From<Vec<u8>> for Transition {
+    fn from(_: Vec<u8>) -> Self {
+        todo!()
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -196,39 +206,57 @@ mod tests {
     }
 
     macro_rules! test_trigger_transition {
-        ($($name:ident: $values:expr, $expected_trigger:ident,)*) => {
+        ($($name:ident: $previous:expr, $current:expr, $expected_trigger:ident,)*) => {
             $(
                 #[test]
                 fn $name() {
-                    let (previous, current) = $values;
-                    assert_eq!(check_transition(&previous, &current), TriggeredTransition::$expected_trigger(current))
+                    assert_eq!(check_transition(&$previous, &$current), TriggeredTransition::$expected_trigger($current))
                 }
             )*
         };
     }
 
     macro_rules! test_trigger_no_transition {
-        ($($name:ident: $values:expr,)*) => {
+        ($($name:ident: $previous:expr, $current:expr,)*) => {
             $(
                 #[test]
                 fn $name() {
-                    let (previous, current) = $values;
-                    assert_eq!(check_transition(&previous, &current), TriggeredTransition::None)
+                    assert_eq!(check_transition(&$previous, &$current), TriggeredTransition::None)
                 }
             )*
         };
     }
 
     test_trigger_transition! {
-        overworld_transition: (
+        overworld_transition:
             Transition {address_value: 0x0, ..Default::default()},
-            Transition {address_value: 0x2, ..Default::default()}),
+            Transition {address_value: 0x2, ..Default::default()},
             Overworld,
+        entrance_transition:
+            Transition {address_value: 0x69, indoors: false, ..Default::default()},
+            Transition {address_value: 0x69, indoors: true, ..Default::default()},
+            Entrance,
+        underworld_transition: // TODO: If we have already turned snes vram into Transition objects, then we already have a unique id with the name, thus making all this logic checking redundant
+            Transition {name: "Eastern Palace - Lobby".to_string(), address_value: 0x420, indoors: true, ..Default::default()},
+            Transition {name: "Eastern Palace - Abyss Bridge".to_string(), address_value: 0x420, indoors: true, ..Default::default()},
+            Underworld,
     }
 
     test_trigger_no_transition! {
-        same_overworld_tile: (
+        same_overworld_tile:
             Transition {address_value: 0x0, ..Default::default()},
-            Transition {address_value: 0x0, ..Default::default()}),
+            Transition {address_value: 0x0, ..Default::default()},
+    }
+
+    macro_rules! test_from_vec {
+        ($($name:ident: $values:expr,)*) => {
+            $(
+                #[test]
+                fn $name() {
+                    let (snes_ram, expected) = $values;
+                    assert_eq!(Transition::from(snes_ram), expected)
+                }
+            )*
+        };
     }
 }

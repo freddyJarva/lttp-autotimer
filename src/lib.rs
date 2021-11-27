@@ -392,67 +392,77 @@ where
     match events.latest_transition() {
         Some(previous_transition) => {
             // if overworld_transition(previous_res, response)
+            old_transition_check(&responses, res, transitions, writer)?;
         }
         // Use responses vec for the very first transition trigger. Should move away from this and only rely on events
         None => {
-            panic!("You've reached the unreachable, as EventTracker should always contain a transition when using ::new");
-            if responses.len() > 0 {
-                match responses.get(responses.len() - 1) {
-                    // TODO: Use TriggeredTransition here instead
-                    Some(previous_res) if overworld_transition(previous_res, &res) => {
-                        let mut transition = transitions
-                            .get(&SnesMemoryID {
-                                address_value: Some(res.overworld_tile() as u16),
-                                indoors: Some(false),
-                                ..Default::default()
-                            })
-                            .unwrap()
-                            .clone();
-                        transition.time_transit();
-                        // let transition = Transition::new(res.overworld_tile() as u16, false);
-                        events.push(EventEnum::Transition(transition.clone()));
-                        writer.serialize(Event::from(&transition))?;
-
-                        print_transition(&transition);
-                    }
-                    Some(previous_res) if entrance_transition(previous_res, &res) => {
-                        let to;
-                        if res.indoors() == 1 {
-                            // new position is inside
-                            to = res.entrance_id();
-                        } else {
-                            // new position is outside
-                            to = res.overworld_tile();
-                        }
-                        let snes_id = SnesMemoryID {
-                            address_value: Some(to as u16),
-                            indoors: Some(res.indoors() == 1),
-                            ..Default::default()
-                        };
-                        let mut transition = transitions
-                            .get(&snes_id)
-                            .ok_or(Error::new(
-                                std::io::ErrorKind::NotFound,
-                                format!(
-                                    "Couldn't find {:X} in transitions",
-                                    snes_id.address_value.unwrap()
-                                ),
-                            ))?
-                            .clone();
-                        transition.time_transit();
-                        // let transition = Transition::new(to as u16, res.indoors() == 1);
-                        events.push(EventEnum::Transition(transition.clone()));
-                        writer.serialize(Event::from(&transition))?;
-
-                        print_transition(&transition);
-                    }
-                    _ => (),
-                }
-            }
+            // panic!("You've reached the unreachable, as EventTracker should always contain a transition when using ::new");
+            old_transition_check(&responses, res, transitions, writer)?;
         }
     }
 
     responses.push_back(res.to_vec());
 
     Ok(())
+}
+
+fn old_transition_check(
+    responses: &&mut VecDeque<Vec<u8>>,
+    res: &[u8],
+    transitions: &mut HashMap<SnesMemoryID, Transition>,
+    writer: &mut Writer<File>,
+) -> Result<(), anyhow::Error> {
+    Ok(if responses.len() > 0 {
+        match responses.get(responses.len() - 1) {
+            // TODO: Use TriggeredTransition here instead
+            Some(previous_res) if overworld_transition(previous_res, &res) => {
+                let mut transition = transitions
+                    .get(&SnesMemoryID {
+                        address_value: Some(res.overworld_tile() as u16),
+                        indoors: Some(false),
+                        ..Default::default()
+                    })
+                    .unwrap()
+                    .clone();
+                transition.time_transit();
+                // let transition = Transition::new(res.overworld_tile() as u16, false);
+                // events.push(EventEnum::Transition(transition.clone()));
+                writer.serialize(Event::from(&transition))?;
+
+                print_transition(&transition);
+            }
+            Some(previous_res) if entrance_transition(previous_res, &res) => {
+                let to;
+                if res.indoors() == 1 {
+                    // new position is inside
+                    to = res.entrance_id();
+                } else {
+                    // new position is outside
+                    to = res.overworld_tile();
+                }
+                let snes_id = SnesMemoryID {
+                    address_value: Some(to as u16),
+                    indoors: Some(res.indoors() == 1),
+                    ..Default::default()
+                };
+                let mut transition = transitions
+                    .get(&snes_id)
+                    .ok_or(Error::new(
+                        std::io::ErrorKind::NotFound,
+                        format!(
+                            "Couldn't find {:X} in transitions",
+                            snes_id.address_value.unwrap()
+                        ),
+                    ))?
+                    .clone();
+                transition.time_transit();
+                // let transition = Transition::new(to as u16, res.indoors() == 1);
+                // events.push(EventEnum::Transition(transition.clone()));
+                writer.serialize(Event::from(&transition))?;
+
+                print_transition(&transition);
+            }
+            _ => (),
+        }
+    })
 }

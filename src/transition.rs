@@ -18,11 +18,20 @@ pub fn entrance_transition<T: AsRef<[u8]>, U: AsRef<[u8]>>(previous_res: T, resp
 
 static TRANSITIONS_JSON: &'static str = include_str!("transitions.json");
 
-enum TriggeredTransition {
+#[derive(Debug, PartialEq)]
+pub enum TriggeredTransition {
     Overworld(Transition),
     Entrance(Transition),
     Underworld(Transition),
     None,
+}
+
+pub fn check_transition(previous: &Transition, current: &Transition) -> TriggeredTransition {
+    if previous.address_value != current.address_value {
+        TriggeredTransition::Overworld(current.clone())
+    } else {
+        TriggeredTransition::None
+    }
 }
 
 #[derive(Debug, Deserialize, PartialEq, Clone)]
@@ -186,16 +195,40 @@ mod tests {
         }
     }
 
-    // TODO: Fiish this
-    macro_rules! trigger_transition {
+    macro_rules! test_trigger_transition {
+        ($($name:ident: $values:expr, $expected_trigger:ident,)*) => {
+            $(
+                #[test]
+                fn $name() {
+                    let (previous, current) = $values;
+                    assert_eq!(check_transition(&previous, &current), TriggeredTransition::$expected_trigger(current))
+                }
+            )*
+        };
+    }
+
+    macro_rules! test_trigger_no_transition {
         ($($name:ident: $values:expr,)*) => {
             $(
                 #[test]
                 fn $name() {
-                    let (previous, current, expected) = $values;
-                    assert_eq!(, expected)
+                    let (previous, current) = $values;
+                    assert_eq!(check_transition(&previous, &current), TriggeredTransition::None)
                 }
             )*
         };
+    }
+
+    test_trigger_transition! {
+        overworld_transition: (
+            Transition {address_value: 0x0, ..Default::default()},
+            Transition {address_value: 0x2, ..Default::default()}),
+            Overworld,
+    }
+
+    test_trigger_no_transition! {
+        same_overworld_tile: (
+            Transition {address_value: 0x0, ..Default::default()},
+            Transition {address_value: 0x0, ..Default::default()}),
     }
 }

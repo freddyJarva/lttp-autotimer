@@ -30,6 +30,11 @@ pub mod output;
 mod qusb;
 mod serde_lttp;
 mod snes;
+
+#[cfg(test)]
+#[macro_use]
+mod test_macros;
+
 mod transition;
 
 /// Snes memory address
@@ -385,9 +390,12 @@ where
 
     // Use events if one transition has been triggered.
     match events.latest_transition() {
-        Some(previous_transition) => {}
+        Some(previous_transition) => {
+            // if overworld_transition(previous_res, response)
+        }
         // Use responses vec for the very first transition trigger. Should move away from this and only rely on events
         None => {
+            panic!("You've reached the unreachable, as EventTracker should always contain a transition when using ::new");
             if responses.len() > 0 {
                 match responses.get(responses.len() - 1) {
                     // TODO: Use TriggeredTransition here instead

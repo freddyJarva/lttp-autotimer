@@ -12,9 +12,10 @@ pub trait EventLog {
     fn latest_item_get(&self) -> Option<Check>;
 }
 
-impl EventLog for Vec<EventEnum> {
+impl EventLog for EventTracker {
     fn latest_transition(&self) -> Option<Transition> {
-        self.iter()
+        self.log
+            .iter()
             .rev()
             .find(|event| {
                 if let EventEnum::Transition(_) = event {
@@ -33,7 +34,8 @@ impl EventLog for Vec<EventEnum> {
     }
 
     fn latest_location_check(&self) -> Option<Check> {
-        self.iter()
+        self.log
+            .iter()
             .rev()
             .find(|event| {
                 if let EventEnum::LocationCheck(_) = event {
@@ -52,7 +54,8 @@ impl EventLog for Vec<EventEnum> {
     }
 
     fn latest_item_get(&self) -> Option<Check> {
-        self.iter()
+        self.log
+            .iter()
             .rev()
             .find(|event| {
                 if let EventEnum::ItemGet(_) = event {
@@ -75,6 +78,38 @@ pub enum EventEnum {
     Transition(Transition),
     LocationCheck(Check),
     ItemGet(Check),
+}
+
+pub struct EventTracker {
+    log: Vec<EventEnum>,
+}
+
+impl EventTracker {
+    /// Sets an initial 'auto timer start' Transition with values of `0`.
+    ///
+    /// This is necessary for the absolute first transition check to work,
+    /// as it needs a value to compare to to see if a transition triggered.
+    pub fn new() -> Self {
+        Self {
+            log: vec![EventEnum::Transition(Transition {
+                name: "AUTO_TIMER_START".to_string(),
+                address_value: 0x0,
+                timestamp: Some(Utc::now()),
+                indoors: false,
+                conditions: None,
+            })],
+        }
+    }
+
+    pub fn push(&mut self, event: EventEnum) {
+        self.log.push(event)
+    }
+}
+
+impl From<Vec<EventEnum>> for EventTracker {
+    fn from(log: Vec<EventEnum>) -> Self {
+        EventTracker { log }
+    }
 }
 
 /// Struct used for serializing different types of checks into the same csv format.
@@ -169,10 +204,30 @@ impl Default for Event {
     }
 }
 
+#[allow(non_snake_case)]
 #[cfg(test)]
 mod tests {
 
     use super::*;
+
+    /// used to assert values on object attributes, and prints an informative message on assertion failures
+    ///
+    /// ## Example
+    /// ```
+    /// struct Person {
+    ///     first_name: str,
+    ///     last_name: str
+    /// }
+    /// let andy = Person {first_name: "andy", last_name: "andysson"};
+    /// assert_attrs!(andy: first_name == "andy", last_name != "bulbasaur")
+    /// ```
+    macro_rules! assert_attrs {
+        ($object:ident: $($attr:ident $op:tt $value:expr,)*) => {
+            $(
+                assert!($object.$attr == $value, "expected {:?} == {}, but was {}", stringify!($object.$attr), $object.$attr, $value);
+            )*
+        };
+    }
 
     macro_rules! convert_to_event {
         ($($name:ident: $values:expr,)*) => {
@@ -286,7 +341,8 @@ mod tests {
                 #[test]
                 fn $name() {
                     let (event_log, expected) = $values;
-                    assert_eq!(event_log.$function(), expected)
+                    let event_tracker = EventTracker::from(event_log);
+                    assert_eq!(event_tracker.$function(), expected)
                 }
             )*
         };
@@ -305,8 +361,18 @@ mod tests {
             name: "latest item get".to_string(),
             ..Default::default()
         })),
-        given_no_transitions_then_return_none: latest_transition: (vec![], None),
-        given_no_location_checks_then_return_none: latest_location_check: (vec![], None),
-        given_no_item_get_then_return_none: latest_item_get: (vec![], None),
+        GIVEN_no_transitions_THEN_return_none: latest_transition: (vec![], None),
+        GIVEN_no_location_checks_THEN_return_none: latest_location_check: (vec![], None),
+        GIVEN_no_item_get_THEN_return_none: latest_item_get: (vec![], None),
+    }
+
+    #[test]
+    fn new_event_tracker_is_initialized_with_start_transition() {
+        let last_transition = EventTracker::new().latest_transition().unwrap();
+        assert_attrs! {
+            last_transition: address_value == 0x0,
+            name == "AUTO_TIMER_START",
+            indoors == false,
+        };
     }
 }

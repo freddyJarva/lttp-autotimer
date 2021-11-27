@@ -18,6 +18,13 @@ pub fn entrance_transition<T: AsRef<[u8]>, U: AsRef<[u8]>>(previous_res: T, resp
 
 static TRANSITIONS_JSON: &'static str = include_str!("transitions.json");
 
+enum TriggeredTransition {
+    Overworld(Transition),
+    Entrance(Transition),
+    Underworld(Transition),
+    None,
+}
+
 #[derive(Debug, Deserialize, PartialEq, Clone)]
 pub struct Transition {
     pub name: String,
@@ -177,5 +184,18 @@ mod tests {
                 .unwrap();
             assert_eq!(&transition, should_be_same_transition);
         }
+    }
+
+    // TODO: Fiish this
+    macro_rules! trigger_transition {
+        ($($name:ident: $values:expr,)*) => {
+            $(
+                #[test]
+                fn $name() {
+                    let (previous, current, expected) = $values;
+                    assert_eq!(, expected)
+                }
+            )*
+        };
     }
 }

@@ -1,4 +1,4 @@
-use crate::event::Event;
+use crate::event::{Event, EventEnum, EventLog, EventTracker};
 use check::Check;
 
 use chrono::Utc;
@@ -100,6 +100,8 @@ pub fn connect_to_qusb(args: &ArgMatches) -> anyhow::Result<()> {
     File::create(&csv_name)?;
     let mut writer = Writer::from_path(csv_name)?;
 
+    let mut events = EventTracker::new();
+
     let mut locations: Vec<Check> = deserialize_location_checks()?
         .into_iter()
         // 0 offset checks hasn't been given a proper value in checks.json yet
@@ -123,6 +125,7 @@ pub fn connect_to_qusb(args: &ArgMatches) -> anyhow::Result<()> {
                         &mut responses,
                         &mut transitions,
                         &mut writer,
+                        &mut events,
                     )?;
                 }
             }
@@ -138,6 +141,7 @@ pub fn connect_to_qusb(args: &ArgMatches) -> anyhow::Result<()> {
                     &mut checks_responses,
                     &mut locations,
                     &mut writer,
+                    &mut events,
                 )?;
                 check_for_item_checks(
                     &response,
@@ -145,6 +149,7 @@ pub fn connect_to_qusb(args: &ArgMatches) -> anyhow::Result<()> {
                     &mut checks_responses,
                     &mut items,
                     &mut writer,
+                    &mut events,
                 )?;
                 checks_responses.push_back(response);
             }
@@ -229,6 +234,7 @@ fn check_for_location_checks<U>(
     previous_values: &mut VecDeque<Vec<u8>>,
     checks: &mut Vec<Check>,
     writer: &mut Writer<File>,
+    events: &mut EventTracker,
 ) -> anyhow::Result<()>
 where
     U: AsRef<[u8]>,
@@ -259,6 +265,7 @@ where
                     check.time_of_check,
                     check.name.on_blue(),
                 );
+                events.push(EventEnum::LocationCheck(check.clone()));
                 writer.serialize(Event::from(check))?;
             }
         } else {
@@ -282,6 +289,7 @@ fn check_for_item_checks<U>(
     previous_values: &mut VecDeque<Vec<u8>>,
     checks: &mut Vec<Check>,
     writer: &mut Writer<File>,
+    events: &mut EventTracker,
 ) -> anyhow::Result<()>
 where
     U: AsRef<[u8]>,
@@ -316,6 +324,7 @@ where
                     check.time_of_check,
                     check.name.on_green(),
                 );
+                events.push(EventEnum::ItemGet(check.clone()));
                 writer.serialize(Event::from(check))?;
             } else if check.is_progressive && current_check_value > check.snes_value {
                 check.progress_item(current_check_value);
@@ -324,6 +333,7 @@ where
                     check.time_of_check,
                     format!("{} - {}", check.name, check.progressive_level).on_green(),
                 );
+                events.push(EventEnum::ItemGet(check.clone()));
                 writer.serialize(Event::from(check))?;
             }
         } else {
@@ -347,6 +357,7 @@ fn check_for_transitions<U>(
     responses: &mut VecDeque<Vec<u8>>,
     transitions: &mut HashMap<SnesMemoryID, Transition>,
     writer: &mut Writer<File>,
+    events: &mut EventTracker,
 ) -> anyhow::Result<()>
 where
     U: AsRef<[u8]>,
@@ -372,58 +383,67 @@ where
         _ => (), // on 0 or somehow invalid verbosity level we don't do this logging as it's very spammy
     };
 
-    if responses.len() > 0 {
-        match responses.get(responses.len() - 1) {
-            Some(previous_res) if overworld_transition(previous_res, &res) => {
-                let mut transition = transitions
-                    .get(&SnesMemoryID {
-                        address_value: Some(res.overworld_tile() as u16),
-                        indoors: Some(false),
-                        ..Default::default()
-                    })
-                    .unwrap()
-                    .clone();
-                transition.time_transit();
-                // let transition = Transition::new(res.overworld_tile() as u16, false);
+    // Use events if one transition has been triggered.
+    match events.latest_transition() {
+        Some(previous_transition) => {}
+        // Use responses vec for the very first transition trigger. Should move away from this and only rely on events
+        None => {
+            if responses.len() > 0 {
+                match responses.get(responses.len() - 1) {
+                    // TODO: Use TriggeredTransition here instead
+                    Some(previous_res) if overworld_transition(previous_res, &res) => {
+                        let mut transition = transitions
+                            .get(&SnesMemoryID {
+                                address_value: Some(res.overworld_tile() as u16),
+                                indoors: Some(false),
+                                ..Default::default()
+                            })
+                            .unwrap()
+                            .clone();
+                        transition.time_transit();
+                        // let transition = Transition::new(res.overworld_tile() as u16, false);
+                        events.push(EventEnum::Transition(transition.clone()));
+                        writer.serialize(Event::from(&transition))?;
 
-                writer.serialize(Event::from(&transition))?;
+                        print_transition(&transition);
+                    }
+                    Some(previous_res) if entrance_transition(previous_res, &res) => {
+                        let to;
+                        if res.indoors() == 1 {
+                            // new position is inside
+                            to = res.entrance_id();
+                        } else {
+                            // new position is outside
+                            to = res.overworld_tile();
+                        }
+                        let snes_id = SnesMemoryID {
+                            address_value: Some(to as u16),
+                            indoors: Some(res.indoors() == 1),
+                            ..Default::default()
+                        };
+                        let mut transition = transitions
+                            .get(&snes_id)
+                            .ok_or(Error::new(
+                                std::io::ErrorKind::NotFound,
+                                format!(
+                                    "Couldn't find {:X} in transitions",
+                                    snes_id.address_value.unwrap()
+                                ),
+                            ))?
+                            .clone();
+                        transition.time_transit();
+                        // let transition = Transition::new(to as u16, res.indoors() == 1);
+                        events.push(EventEnum::Transition(transition.clone()));
+                        writer.serialize(Event::from(&transition))?;
 
-                print_transition(&transition);
-            }
-            Some(previous_res) if entrance_transition(previous_res, &res) => {
-                let to;
-                if res.indoors() == 1 {
-                    // new position is inside
-                    to = res.entrance_id();
-                } else {
-                    // new position is outside
-                    to = res.overworld_tile();
+                        print_transition(&transition);
+                    }
+                    _ => (),
                 }
-                let snes_id = SnesMemoryID {
-                    address_value: Some(to as u16),
-                    indoors: Some(res.indoors() == 1),
-                    ..Default::default()
-                };
-                let mut transition = transitions
-                    .get(&snes_id)
-                    .ok_or(Error::new(
-                        std::io::ErrorKind::NotFound,
-                        format!(
-                            "Couldn't find {:X} in transitions",
-                            snes_id.address_value.unwrap()
-                        ),
-                    ))?
-                    .clone();
-                transition.time_transit();
-                // let transition = Transition::new(to as u16, res.indoors() == 1);
-
-                writer.serialize(Event::from(&transition))?;
-
-                print_transition(&transition);
             }
-            _ => (),
         }
     }
+
     responses.push_back(res.to_vec());
 
     Ok(())

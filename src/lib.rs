@@ -45,6 +45,9 @@ pub const SAVEDATA_START: u32 = VRAM_START + SAVE_DATA_OFFSET as u32;
 pub const DUNKA_VRAM_READ_OFFSET: u32 = SAVEDATA_START + 0x280;
 pub const DUNKA_VRAM_READ_SIZE: u32 = 0x280;
 
+const DUNKA_START: usize = SAVEDATA_START as usize + 0x21;
+const DUNKA_CHUNK_SIZE: usize = 0x3f1;
+
 /// Address keeping track of current overworld tile, remains at previous value when entering non-ow tile
 pub const ADDRESS_OW_SLOT_INDEX: u32 = 0x7E040A;
 /// Address keeping track of latest entrance transition, i.e. walking in or out of house/dungeon/etc
@@ -183,29 +186,17 @@ pub fn connect_to_qusb(args: &ArgMatches) -> anyhow::Result<()> {
     }
 }
 
-/// Reads twice, guessing due to limitation of request sizes
 fn get_dunka_chunka(
     client: &mut websocket::sync::Client<std::net::TcpStream>,
 ) -> anyhow::Result<Vec<u8>> {
-    let first_message = &QusbRequestMessage::get_address(SAVEDATA_START, 0x280);
-    let second_message = &QusbRequestMessage::get_address(DUNKA_VRAM_READ_OFFSET, 0x280);
+    let message = &QusbRequestMessage::get_address(DUNKA_START as u32, DUNKA_CHUNK_SIZE);
 
-    let message = Message {
-        opcode: websocket::message::Type::Text,
-        cd_status_code: None,
-        payload: Cow::Owned(serde_json::to_vec(first_message)?),
-    };
     let mut combined_result: Vec<u8> = Vec::new();
-    client.send_message(&message)?;
-    let response = client.recv_message()?;
-    if let OwnedMessage::Binary(res) = response {
-        combined_result.append(&mut res.clone());
-    };
 
     let message = Message {
         opcode: websocket::message::Type::Text,
         cd_status_code: None,
-        payload: Cow::Owned(serde_json::to_vec(second_message)?),
+        payload: Cow::Owned(serde_json::to_vec(message)?),
     };
     client.send_message(&message)?;
     let response = client.recv_message()?;
@@ -247,13 +238,13 @@ where
     let response = response.as_ref();
 
     for check in checks {
-        let current_check_value = response[check.dunka_offset as usize];
+        let current_check_value = response[(check.dunka_offset - 0x21) as usize];
         if previous_values.len() > 0
-            && (previous_values[previous_values.len() - 1][check.dunka_offset as usize]
+            && (previous_values[previous_values.len() - 1][(check.dunka_offset - 0x21) as usize]
                 != current_check_value)
         {
             let previous_value = &previous_values[previous_values.len() - 1];
-            let previous_check_value = previous_value[check.dunka_offset as usize];
+            let previous_check_value = previous_value[(check.dunka_offset - 0x21) as usize];
             if verbosity > 0 {
                 println!(
                     "{}: {} -> {} -- bitmask applied: {} -> {}",
@@ -302,14 +293,14 @@ where
     let response = response.as_ref();
 
     for check in checks {
-        let current_check_value = response[check.dunka_offset as usize];
+        let current_check_value = response[(check.dunka_offset - 0x21) as usize];
 
         if previous_values.len() > 0
-            && (previous_values[previous_values.len() - 1][check.dunka_offset as usize]
+            && (previous_values[previous_values.len() - 1][(check.dunka_offset - 0x21) as usize]
                 != current_check_value)
         {
             let previous_value = &previous_values[previous_values.len() - 1];
-            let previous_check_value = previous_value[check.dunka_offset as usize];
+            let previous_check_value = previous_value[(check.dunka_offset - 0x21) as usize];
             if verbosity > 0 {
                 println!(
                     "{}: {} -> {} -- bitmask applied: {} -> {}",

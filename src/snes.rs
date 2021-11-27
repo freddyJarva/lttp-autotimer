@@ -1,6 +1,9 @@
+use crate::{SAVEDATA_START, SAVE_DATA_OFFSET, VRAM_START};
+
 const OVERWORLD_TILE_ADDRESS: usize = 0x40a;
 const ENTRANCE_ID_ADDRESS: usize = 0x10E;
 const INDOORS_ADDRESS: usize = 0x1b;
+
 const X_ADDRESS: usize = 0xC184;
 pub trait NamedAddresses {
     fn overworld_tile(&self) -> u8;
@@ -98,6 +101,10 @@ impl NamedAddresses for [u8] {
     fn set_y(&mut self, word: u16) {
         todo!()
     }
+}
+
+pub fn normalize_dunka(address: usize) -> usize {
+    address + SAVE_DATA_OFFSET
 }
 
 pub struct SnesRam {

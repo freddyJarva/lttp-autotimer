@@ -26,7 +26,6 @@ use std::thread::sleep;
 
 mod check;
 mod event;
-mod explore;
 pub mod output;
 mod qusb;
 mod serde_lttp;

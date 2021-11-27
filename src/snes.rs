@@ -1,4 +1,4 @@
-use crate::{SAVEDATA_START, SAVE_DATA_OFFSET, VRAM_START};
+use crate::{DUNKA_CHUNK_SIZE, SAVEDATA_START, SAVE_DATA_OFFSET, VRAM_START};
 
 const OVERWORLD_TILE_ADDRESS: usize = 0x40a;
 const ENTRANCE_ID_ADDRESS: usize = 0x10E;
@@ -107,10 +107,20 @@ pub fn normalize_dunka(address: usize) -> usize {
     address + SAVE_DATA_OFFSET
 }
 
+
+
+
 pub struct SnesRam {
-    dunka_chunka: [u8; 0x280 + 0x280],
+    dunka_chunka: [u8; DUNKA_CHUNK_SIZE],
     tile_info_chunk: [u8; 0x40b],
     coordinate_chunk: [u8; 0x04],
+}
+
+impl SnesRam {
+    /// addresses are relative to `VRAM_START` (`0xf50000`)
+    fn get_byte(&self, address: usize) {
+        
+    }
 }
 
 /// Right now only used for testing purposes to create fake snes reads

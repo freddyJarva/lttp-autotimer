@@ -2,268 +2,268 @@
     {
         "name": "Bow",
         "address": "0x0",
-        "dunka_offset": "0x38e",
+        "dunka_offset": "0x36d",
         "dunka_mask": "0x80"
     },
     {
         "name": "Silvers",
         "address": "0x0",
-        "dunka_offset": "0x38e",
+        "dunka_offset": "0x36d",
         "dunka_mask": "0x40"
     },
     {
         "name": "Blumerang",
         "address": "0x0",
-        "dunka_offset": "0x38c",
+        "dunka_offset": "0x36b",
         "dunka_mask": "0x80"
     },
     {
         "name": "Boomered",
         "address": "0x0",
-        "dunka_offset": "0x38c",
+        "dunka_offset": "0x36b",
         "dunka_mask": "0x40"
     },
     {
         "name": "Hookshot",
         "address": "0x0",
-        "dunka_offset": "0x342",
+        "dunka_offset": "0x321",
         "dunka_mask": "0x01"
     },
     {
         "name": "Bombs",
         "address": "0x0",
-        "dunka_offset": "0x38e",
+        "dunka_offset": "0x36d",
         "dunka_mask": "0xff"
     },
     {
         "name": "Powder",
         "address": "0x0",
-        "dunka_offset": "0x38c",
+        "dunka_offset": "0x36b",
         "dunka_mask": "0x10"
     },
     {
         "name": "Mushroom",
         "address": "0x0",
-        "dunka_offset": "0x38c",
+        "dunka_offset": "0x36b",
         "dunka_mask": "0x20"
     },
     {
         "name": "Fire Rod",
         "address": "0x0",
-        "dunka_offset": "0x345",
+        "dunka_offset": "0x324",
         "dunka_mask": "0x01"
     },
     {
         "name": "Ice Rod",
         "address": "0x0",
-        "dunka_offset": "0x346",
+        "dunka_offset": "0x325",
         "dunka_mask": "0x01"
     },
     {
         "name": "Bombos Medallion",
         "address": "0x0",
-        "dunka_offset": "0x347",
+        "dunka_offset": "0x326",
         "dunka_mask": "0x01"
     },
     {
         "name": "Ether Medallion",
         "address": "0x0",
-        "dunka_offset": "0x348",
+        "dunka_offset": "0x327",
         "dunka_mask": "0x01"
     },
     {
         "name": "Quake Medallion",
         "address": "0x0",
-        "dunka_offset": "0x349",
+        "dunka_offset": "0x328",
         "dunka_mask": "0x01"
     },
     {
         "name": "Lantern",
         "address": "0x0",
-        "dunka_offset": "0x34a",
+        "dunka_offset": "0x329",
         "dunka_mask": "0x01"
     },
     {
         "name": "Hammer",
         "address": "0x0",
-        "dunka_offset": "0x34b",
+        "dunka_offset": "0x32a",
         "dunka_mask": "0x01"
     },
     {
         "name": "Flute",
         "address": "0x0",
-        "dunka_offset": "0x38c",
+        "dunka_offset": "0x36b",
         "dunka_mask": "0x03"
     },
     {
         "name": "Shovel",
         "address": "0x0",
-        "dunka_offset": "0x38c",
+        "dunka_offset": "0x36b",
         "dunka_mask": "0x04"
     },
     {
         "name": "Net",
         "address": "0x0",
-        "dunka_offset": "0x34d",
+        "dunka_offset": "0x32c",
         "dunka_mask": "0x01"
     },
     {
         "name": "Book",
         "address": "0x0",
-        "dunka_offset": "0x34e",
+        "dunka_offset": "0x32d",
         "dunka_mask": "0x01"
     },
     {
         "name": "Net",
         "address": "0x0",
-        "dunka_offset": "0x34f",
+        "dunka_offset": "0x32e",
         "dunka_mask": "0x01"
     },
     {
         "name": "Bottle 1",
         "address": "0x0",
-        "dunka_offset": "0x35c",
+        "dunka_offset": "0x33b",
         "dunka_mask": "0xff"
     },
     {
         "name": "Bottle 2",
         "address": "0x0",
-        "dunka_offset": "0x35d",
+        "dunka_offset": "0x33c",
         "dunka_mask": "0xff"
     },
     {
         "name": "Bottle 3",
         "address": "0x0",
-        "dunka_offset": "0x35e",
+        "dunka_offset": "0x33d",
         "dunka_mask": "0xff"
     },
     {
         "name": "Bottle 4",
         "address": "0x0",
-        "dunka_offset": "0x35f",
+        "dunka_offset": "0x33e",
         "dunka_mask": "0xff"
     },
     {
         "name": "Cane of Somaria",
         "address": "0x0",
-        "dunka_offset": "0x350",
+        "dunka_offset": "0x32f",
         "dunka_mask": "0x01"
     },
     {
         "name": "Cane of Byrna",
         "address": "0x0",
-        "dunka_offset": "0x351",
+        "dunka_offset": "0x330",
         "dunka_mask": "0x01"
     },
     {
         "name": "Mirror",
         "address": "0x0",
-        "dunka_offset": "0x353",
+        "dunka_offset": "0x332",
         "dunka_mask": "0x02"
     },
     {
         "name": "Boots",
         "address": "0x0",
-        "dunka_offset": "0x355",
+        "dunka_offset": "0x334",
         "dunka_mask": "0x01"
     },
     {
         "name": "Progressive Glove",
         "address": "0x0",
-        "dunka_offset": "0x354",
+        "dunka_offset": "0x333",
         "dunka_mask": "0xff",
         "is_progressive": true
     },
     {
         "name": "Flippers",
         "address": "0x0",
-        "dunka_offset": "0x356",
+        "dunka_offset": "0x335",
         "dunka_mask": "0x01"
     },
     {
         "name": "Orb",
         "address": "0x0",
-        "dunka_offset": "0x357",
+        "dunka_offset": "0x336",
         "dunka_mask": "0x01"
     },
     {
         "name": "Progressive Sword",
         "address": "0x0",
-        "dunka_offset": "0x359",
+        "dunka_offset": "0x338",
         "dunka_mask": "0xff",
         "is_progressive": true
     },
     {
         "name": "Shield",
         "address": "0x0",
-        "dunka_offset": "0x35a",
+        "dunka_offset": "0x339",
         "dunka_mask": "0xff",
         "is_progressive": true
     },
     {
         "name": "Big Key - Hyrule Castle",
         "address": "0x0",
-        "dunka_offset": "0x367",
+        "dunka_offset": "0x346",
         "dunka_mask": "0xc0"
     },
     {
         "name": "Big Key - Eastern Palace",
         "address": "0x0",
-        "dunka_offset": "0x367",
+        "dunka_offset": "0x346",
         "dunka_mask": "0x20"
     },
     {
         "name": "Big Key - Desert Palace",
         "address": "0x0",
-        "dunka_offset": "0x367",
+        "dunka_offset": "0x346",
         "dunka_mask": "0x10"
     },
     {
         "name": "Big Key - Tower of Hera",
         "address": "0x0",
-        "dunka_offset": "0x366",
+        "dunka_offset": "0x345",
         "dunka_mask": "0x20"
     },
     {
         "name": "Big Key - Palace of Darkness",
         "address": "0x0",
-        "dunka_offset": "0x367",
+        "dunka_offset": "0x346",
         "dunka_mask": "0x02"
     },
     {
         "name": "Big Key - Swamp Palace",
         "address": "0x0",
-        "dunka_offset": "0x367",
+        "dunka_offset": "0x346",
         "dunka_mask": "0x04"
     },
     {
         "name": "Big Key - Thieves' Town",
         "address": "0x0",
-        "dunka_offset": "0x366",
+        "dunka_offset": "0x345",
         "dunka_mask": "0x10"
     },
     {
         "name": "Big Key - Ice Palace",
         "address": "0x0",
-        "dunka_offset": "0x366",
+        "dunka_offset": "0x345",
         "dunka_mask": "0x40"
     },
     {
         "name": "Big Key - Misery Mire",
         "address": "0x0",
-        "dunka_offset": "0x367",
+        "dunka_offset": "0x346",
         "dunka_mask": "0x01"
     },
     {
         "name": "Big Key - Turtle Rock",
         "address": "0x0",
-        "dunka_offset": "0x366",
+        "dunka_offset": "0x345",
         "dunka_mask": "0x08"
     },
     {
         "name": "Big Key - Ganon's Tower",
         "address": "0x0",
-        "dunka_offset": "0x366",
+        "dunka_offset": "0x345",
         "dunka_mask": "0x04"
     }
 ]

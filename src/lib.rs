@@ -238,13 +238,13 @@ where
     let response = response.as_ref();
 
     for check in checks {
-        let current_check_value = response[(check.dunka_offset - 0x21) as usize];
+        let current_check_value = response[check.dunka_offset as usize];
         if previous_values.len() > 0
-            && (previous_values[previous_values.len() - 1][(check.dunka_offset - 0x21) as usize]
+            && (previous_values[previous_values.len() - 1][check.dunka_offset as usize]
                 != current_check_value)
         {
             let previous_value = &previous_values[previous_values.len() - 1];
-            let previous_check_value = previous_value[(check.dunka_offset - 0x21) as usize];
+            let previous_check_value = previous_value[check.dunka_offset as usize];
             if verbosity > 0 {
                 println!(
                     "{}: {} -> {} -- bitmask applied: {} -> {}",
@@ -293,14 +293,14 @@ where
     let response = response.as_ref();
 
     for check in checks {
-        let current_check_value = response[(check.dunka_offset - 0x21) as usize];
+        let current_check_value = response[check.dunka_offset as usize];
 
         if previous_values.len() > 0
-            && (previous_values[previous_values.len() - 1][(check.dunka_offset - 0x21) as usize]
+            && (previous_values[previous_values.len() - 1][check.dunka_offset as usize]
                 != current_check_value)
         {
             let previous_value = &previous_values[previous_values.len() - 1];
-            let previous_check_value = previous_value[(check.dunka_offset - 0x21) as usize];
+            let previous_check_value = previous_value[check.dunka_offset as usize];
             if verbosity > 0 {
                 println!(
                     "{}: {} -> {} -- bitmask applied: {} -> {}",

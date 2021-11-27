@@ -3,7 +3,7 @@ use chrono::serde::ts_milliseconds_option;
 use chrono::{DateTime, Utc};
 use serde::Deserialize;
 
-#[derive(Debug, Deserialize, PartialEq, Default)]
+#[derive(Debug, Deserialize, PartialEq, Default, Clone)]
 pub struct Check {
     pub name: String,
     #[serde(deserialize_with = "hex_deserialize")]

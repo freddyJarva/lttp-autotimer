@@ -48,6 +48,11 @@ pub const ADDRESS_ENTRANCE_ID: u32 = 0x7E010E;
 /// Address that's `1` if Link is inside, `0` if outside;
 pub const ADDRESS_IS_INSIDE: u32 = 0x7E001B;
 
+/// X Coordinate that only changes value on transitions while indoors (updates continuously when outside however)
+pub const ADDRESS_X_TRANSITION: u32 = 0x7ec186;
+/// Y Coordinate that only changes value on transitions while indoors (updates continuously when outside however)
+pub const ADDRESS_Y_TRANSITION: u32 = 0x7ec184;
+
 /// Hashable id for map lookups
 #[derive(Default, PartialEq, Hash, Eq, Debug)]
 pub struct SnesMemoryID {

@@ -6,6 +6,77 @@ use serde::Serialize;
 
 use crate::{check::Check, transition::Transition};
 
+pub trait EventLog {
+    fn latest_transition(&self) -> Option<Transition>;
+    fn latest_location_check(&self) -> Option<Check>;
+    fn latest_item_get(&self) -> Option<Check>;
+}
+
+impl EventLog for Vec<EventEnum> {
+    fn latest_transition(&self) -> Option<Transition> {
+        self.iter()
+            .rev()
+            .find(|event| {
+                if let EventEnum::Transition(_) = event {
+                    true
+                } else {
+                    false
+                }
+            })
+            .map(|event| {
+                if let EventEnum::Transition(t) = event {
+                    t.clone()
+                } else {
+                    panic!("This should never happen")
+                }
+            })
+    }
+
+    fn latest_location_check(&self) -> Option<Check> {
+        self.iter()
+            .rev()
+            .find(|event| {
+                if let EventEnum::LocationCheck(_) = event {
+                    true
+                } else {
+                    false
+                }
+            })
+            .map(|event| {
+                if let EventEnum::LocationCheck(t) = event {
+                    t.clone()
+                } else {
+                    panic!("This should never happen")
+                }
+            })
+    }
+
+    fn latest_item_get(&self) -> Option<Check> {
+        self.iter()
+            .rev()
+            .find(|event| {
+                if let EventEnum::ItemGet(_) = event {
+                    true
+                } else {
+                    false
+                }
+            })
+            .map(|event| {
+                if let EventEnum::ItemGet(t) = event {
+                    t.clone()
+                } else {
+                    panic!("This should never happen")
+                }
+            })
+    }
+}
+
+pub enum EventEnum {
+    Transition(Transition),
+    LocationCheck(Check),
+    ItemGet(Check),
+}
+
 /// Struct used for serializing different types of checks into the same csv format.
 /// Events include transitions, checking locations (e.g. chests), and getting items
 #[derive(Serialize, Debug, PartialEq)]
@@ -178,5 +249,64 @@ mod tests {
                 ..Default::default()
             }
         ),
+    }
+
+    fn event_log() -> Vec<EventEnum> {
+        vec![
+            EventEnum::ItemGet(Check {
+                name: "nope".to_string(),
+                ..Default::default()
+            }),
+            EventEnum::Transition(Transition {
+                name: "not latest".to_string(),
+                ..Default::default()
+            }),
+            EventEnum::LocationCheck(Check {
+                name: "meh".to_string(),
+                ..Default::default()
+            }),
+            EventEnum::Transition(Transition {
+                name: "latest".to_string(),
+                ..Default::default()
+            }),
+            EventEnum::LocationCheck(Check {
+                name: "latest location check".to_string(),
+                ..Default::default()
+            }),
+            EventEnum::ItemGet(Check {
+                name: "latest item get".to_string(),
+                ..Default::default()
+            }),
+        ]
+    }
+
+    macro_rules! test_eventlog {
+        ($($name:ident: $function:ident: $values:expr,)*) => {
+            $(
+                #[test]
+                fn $name() {
+                    let (event_log, expected) = $values;
+                    assert_eq!(event_log.$function(), expected)
+                }
+            )*
+        };
+    }
+
+    test_eventlog! {
+        latest_transition: latest_transition: (event_log(), Some(Transition {
+            name: "latest".to_string(),
+            ..Default::default()
+        })),
+        latest_location_check: latest_location_check: (event_log(), Some(Check {
+            name: "latest location check".to_string(),
+            ..Default::default()
+        })),
+        latest_item_get: latest_item_get: (event_log(), Some(Check {
+            name: "latest item get".to_string(),
+            ..Default::default()
+        })),
+        given_no_transitions_then_return_none: latest_transition: (vec![], None),
+        given_no_location_checks_then_return_none: latest_location_check: (vec![], None),
+        given_no_item_get_then_return_none: latest_item_get: (vec![], None),
     }
 }

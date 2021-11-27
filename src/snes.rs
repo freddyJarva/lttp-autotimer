@@ -1,6 +1,5 @@
 use crate::{
-    COORDINATE_CHUNK_SIZE, COORDINATE_OFFSET, DUNKA_CHUNK_SIZE, DUNKA_OFFSET, DUNKA_START,
-    SAVEDATA_START, SAVE_DATA_OFFSET, TILE_INFO_CHUNK_SIZE, VRAM_START,
+    COORDINATE_CHUNK_SIZE, COORDINATE_OFFSET, DUNKA_CHUNK_SIZE, DUNKA_OFFSET, TILE_INFO_CHUNK_SIZE,
 };
 
 const OVERWORLD_TILE_ADDRESS: usize = 0x40a;
@@ -132,10 +131,6 @@ impl NamedAddresses for [u8] {
     fn y(&self) -> u16 {
         todo!()
     }
-}
-
-pub fn normalize_dunka(address: usize) -> usize {
-    address + SAVE_DATA_OFFSET
 }
 
 /// Handles values read from qusb while maintaining correct address locations relative to VRAM_START

@@ -50,18 +50,6 @@ const DUNKA_START: usize = SAVEDATA_START as usize + 0x21;
 const DUNKA_CHUNK_SIZE: usize = 0x3f1;
 const DUNKA_OFFSET: usize = DUNKA_START - VRAM_START as usize;
 
-/// Address keeping track of current overworld tile, remains at previous value when entering non-ow tile
-pub const ADDRESS_OW_SLOT_INDEX: u32 = 0x7E040A;
-/// Address keeping track of latest entrance transition, i.e. walking in or out of house/dungeon/etc
-pub const ADDRESS_ENTRANCE_ID: u32 = 0x7E010E;
-/// Address that's `1` if Link is inside, `0` if outside;
-pub const ADDRESS_IS_INSIDE: u32 = 0x7E001B;
-
-/// X Coordinate that only changes value on transitions while indoors (updates continuously when outside however)
-pub const ADDRESS_X_TRANSITION: u32 = 0x7ec186;
-/// Y Coordinate that only changes value on transitions while indoors (updates continuously when outside however)
-pub const ADDRESS_Y_TRANSITION: u32 = 0x7ec184;
-
 const COORDINATE_OFFSET: usize = 0xc184;
 const COORDINATE_CHUNK_SIZE: usize = 0x4;
 
@@ -186,8 +174,14 @@ fn get_chunka_chungus(
     let tile_info_message = &QusbRequestMessage::get_address(VRAM_START, TILE_INFO_CHUNK_SIZE);
     let dunka_chunka_message =
         &QusbRequestMessage::get_address(DUNKA_START as u32, DUNKA_CHUNK_SIZE);
+    let coordinate_message = &QusbRequestMessage::get_address(
+        VRAM_START + COORDINATE_OFFSET as u32,
+        COORDINATE_CHUNK_SIZE,
+    );
 
     let mut snes_ram = SnesRam::new();
+
+    // location checks + items
     let message = Message {
         opcode: websocket::message::Type::Text,
         cd_status_code: None,
@@ -199,6 +193,7 @@ fn get_chunka_chungus(
         snes_ram.dunka_chunka = res;
     };
 
+    // tiles
     let message = Message {
         opcode: websocket::message::Type::Text,
         cd_status_code: None,
@@ -208,6 +203,18 @@ fn get_chunka_chungus(
     let response = client.recv_message()?;
     if let OwnedMessage::Binary(res) = response {
         snes_ram.tile_info_chunk = res;
+    };
+
+    // coordinates
+    let message = Message {
+        opcode: websocket::message::Type::Text,
+        cd_status_code: None,
+        payload: Cow::Owned(serde_json::to_vec(coordinate_message)?),
+    };
+    client.send_message(&message)?;
+    let response = client.recv_message()?;
+    if let OwnedMessage::Binary(res) = response {
+        snes_ram.coordinate_chunk = res;
     };
 
     Ok(snes_ram)

@@ -2,11 +2,12 @@ use crate::{
     COORDINATE_CHUNK_SIZE, COORDINATE_OFFSET, DUNKA_CHUNK_SIZE, DUNKA_OFFSET, TILE_INFO_CHUNK_SIZE,
 };
 
+use byteorder::{BigEndian, ByteOrder};
+
 const OVERWORLD_TILE_ADDRESS: usize = 0x40a;
 const ENTRANCE_ID_ADDRESS: usize = 0x10E;
 const INDOORS_ADDRESS: usize = 0x1b;
 
-const X_ADDRESS: usize = 0xC184;
 pub trait NamedAddresses {
     fn overworld_tile(&self) -> u8;
     fn entrance_id(&self) -> u8;
@@ -37,11 +38,11 @@ impl NamedAddresses for SnesRam {
     }
 
     fn x(&self) -> u16 {
-        todo!()
+        BigEndian::read_u16(&self.coordinate_chunk[2..])
     }
 
     fn y(&self) -> u16 {
-        todo!()
+        BigEndian::read_u16(&self.coordinate_chunk[..2])
     }
 }
 

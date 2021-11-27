@@ -8,9 +8,9 @@ pub struct Check {
     pub name: String,
     #[serde(deserialize_with = "hex_deserialize")]
     pub address: u32,
-    player_address: Option<String>,
-    crystal: Option<String>,
-    hint_text: Option<String>,
+    pub player_address: Option<String>,
+    pub crystal: Option<String>,
+    pub hint_text: Option<String>,
     #[serde(deserialize_with = "hex_deserialize")]
     pub dunka_offset: u32,
     #[serde(deserialize_with = "hex_byte_deserialize")]

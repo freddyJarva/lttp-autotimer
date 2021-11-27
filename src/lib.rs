@@ -1,30 +1,30 @@
-use crate::serde_lttp::hex_serialize_option;
 use check::Check;
 use chrono::serde::ts_milliseconds;
-use chrono::{DateTime, Utc};
+use chrono::{DateTime, TimeZone, Utc};
 use clap::ArgMatches;
 use serde::Serialize;
-use transition::Transition;
+use transition::{Conditions, Transition};
 use websocket::{ClientBuilder, Message, OwnedMessage};
 
 use core::time;
-use std::io::stdin;
+use std::io::{stdin, Error};
 
 use crate::check::{deserialize_item_checks, deserialize_location_checks};
-use crate::output::{print_flags_toggled, print_verbose_diff};
+use crate::output::{print_flags_toggled, print_transition, print_verbose_diff};
 use crate::qusb::{attempt_qusb_connection, QusbRequestMessage};
 use crate::snes::NamedAddresses;
-use crate::transition::{entrance_transition, overworld_transition};
+use crate::transition::{deserialize_transitions_map, entrance_transition, overworld_transition};
 
 use colored::*;
-use std::borrow::Cow;
-use std::collections::VecDeque;
+use std::borrow::{Borrow, Cow};
+use std::collections::{HashMap, VecDeque};
 use std::fs::File;
 
 use csv::Writer;
 use std::thread::sleep;
 
 mod check;
+mod explore;
 pub mod output;
 mod qusb;
 mod serde_lttp;
@@ -46,13 +46,14 @@ pub const ADDRESS_ENTRANCE_ID: u32 = 0x7E010E;
 /// Address that's `1` if Link is inside, `0` if outside;
 pub const ADDRESS_IS_INSIDE: u32 = 0x7E001B;
 
-#[derive(Serialize, Debug)]
+/// Struct used for serializing different types of checks into the same csv format.
+/// Events include transitions, checking locations (e.g. chests), and getting items
+#[derive(Serialize, Debug, PartialEq)]
 pub struct Event {
     #[serde(with = "ts_milliseconds")]
     timestamp: DateTime<Utc>,
     indoors: Option<bool>,
-    #[serde(serialize_with = "hex_serialize_option")]
-    to: Option<u16>,
+    to: Option<String>,
     location_id: Option<String>,
     item_id: Option<String>,
 }
@@ -60,39 +61,43 @@ pub struct Event {
 impl From<&Transition> for Event {
     fn from(transition: &Transition) -> Self {
         Event {
-            timestamp: transition.timestamp,
+            timestamp: transition
+                .timestamp
+                .expect("Found transition missing timestamp when serializing"),
             indoors: Some(transition.indoors),
-            to: Some(transition.to),
+            to: Some(transition.name.to_string()),
             location_id: None,
             item_id: None,
         }
     }
 }
 
-impl From<&Check> for Event {
-    fn from(check: &Check) -> Self {
+impl From<&mut Transition> for Event {
+    fn from(transition: &mut Transition) -> Self {
         Event {
-            timestamp: check
-                .time_of_check
-                .expect("Found check missing timestamp when serializing"),
-            indoors: None,
-            to: None,
-            location_id: Some(check.name.to_string()),
-            item_id: match &check.item {
-                Some(item) => Some(item.to_string()),
-                None => None,
-            },
+            timestamp: transition
+                .timestamp
+                .expect("Found transition missing timestamp when serializing"),
+            indoors: Some(transition.indoors),
+            to: Some(transition.name.to_string()),
+            location_id: None,
+            item_id: None,
         }
     }
 }
 
-impl From<&mut Check> for Event {
-    fn from(check: &mut Check) -> Self {
+impl<T> From<T> for Event
+where
+    T: Borrow<Check>,
+{
+    fn from(check: T) -> Self {
+        let check: &Check = check.borrow();
+        let timestamp = check
+            .time_of_check
+            .expect("Found check missing timestamp when serializing");
         if check.is_item && !check.is_progressive {
             Event {
-                timestamp: check
-                    .time_of_check
-                    .expect("Found check missing timestamp when serializing"),
+                timestamp,
                 indoors: None,
                 to: None,
                 location_id: None,
@@ -100,9 +105,7 @@ impl From<&mut Check> for Event {
             }
         } else if check.is_item && check.is_progressive {
             Event {
-                timestamp: check
-                    .time_of_check
-                    .expect("Found check missing timestamp when serializing"),
+                timestamp,
                 indoors: None,
                 to: None,
                 location_id: None,
@@ -110,9 +113,7 @@ impl From<&mut Check> for Event {
             }
         } else {
             Event {
-                timestamp: check
-                    .time_of_check
-                    .expect("Found check missing timestamp when serializing"),
+                timestamp,
                 indoors: None,
                 to: None,
                 location_id: Some(check.name.to_string()),
@@ -123,6 +124,28 @@ impl From<&mut Check> for Event {
             }
         }
     }
+}
+
+impl Default for Event {
+    fn default() -> Self {
+        Self {
+            timestamp: chrono::Utc.timestamp_millis(0),
+            indoors: Default::default(),
+            to: Default::default(),
+            location_id: Default::default(),
+            item_id: Default::default(),
+        }
+    }
+}
+
+/// Hashable id for map lookups
+#[derive(Default, PartialEq, Hash, Eq, Debug)]
+pub struct SnesMemoryID {
+    pub address: Option<u32>,
+    pub mask: Option<u8>,
+    pub address_value: Option<u16>,
+    pub indoors: Option<bool>,
+    pub conditions: Option<Conditions>,
 }
 
 pub fn connect_to_qusb(args: &ArgMatches) -> anyhow::Result<()> {
@@ -172,6 +195,7 @@ pub fn connect_to_qusb(args: &ArgMatches) -> anyhow::Result<()> {
         .into_iter()
         .filter(|check| check.dunka_offset != 0)
         .collect();
+    let mut transitions: HashMap<SnesMemoryID, Transition> = deserialize_transitions_map()?;
 
     loop {
         // since we can't choose multiple addresses in a single request, we instead fetch a larger chunk of data from given address and forward
@@ -179,12 +203,19 @@ pub fn connect_to_qusb(args: &ArgMatches) -> anyhow::Result<()> {
         match get_address_request(&mut client, VRAM_START, 0x40B) {
             Ok(response) => {
                 if let OwnedMessage::Binary(response) = response {
-                    check_for_transitions(&response, verbosity, &mut responses, &mut writer)?;
+                    check_for_transitions(
+                        &response,
+                        verbosity,
+                        &mut responses,
+                        &mut transitions,
+                        &mut writer,
+                    )?;
                 }
             }
             Err(e) => println!("Failed request: {:?}", e),
         };
 
+        // Checks reading from the same address and chunk as dunka
         match get_dunka_chunka(&mut client) {
             Ok(response) => {
                 check_for_location_checks(
@@ -213,6 +244,8 @@ pub fn connect_to_qusb(args: &ArgMatches) -> anyhow::Result<()> {
         if checks_responses.len() > 60 {
             checks_responses.pop_front();
         }
+
+        writer.flush()?;
 
         if manual_update {
             println!("Press enter to update...");
@@ -398,6 +431,7 @@ fn check_for_transitions<U>(
     response: U,
     verbosity: u64,
     responses: &mut VecDeque<Vec<u8>>,
+    transitions: &mut HashMap<SnesMemoryID, Transition>,
     writer: &mut Writer<File>,
 ) -> anyhow::Result<()>
 where
@@ -427,17 +461,20 @@ where
     if responses.len() > 0 {
         match responses.get(responses.len() - 1) {
             Some(previous_res) if overworld_transition(previous_res, &res) => {
-                let transition = Transition::new(res.overworld_tile() as u16, false);
+                let mut transition = transitions
+                    .get(&SnesMemoryID {
+                        address_value: Some(res.overworld_tile() as u16),
+                        indoors: Some(false),
+                        ..Default::default()
+                    })
+                    .unwrap()
+                    .clone();
+                transition.time_transit();
+                // let transition = Transition::new(res.overworld_tile() as u16, false);
 
                 writer.serialize(Event::from(&transition))?;
-                writer.flush()?;
 
-                println!(
-                    "Transition made!: time: {:?}, indoors: {:?}, to: {}",
-                    transition.timestamp,
-                    transition.indoors,
-                    format!("{:X}", transition.to).on_purple()
-                );
+                print_transition(&transition);
             }
             Some(previous_res) if entrance_transition(previous_res, &res) => {
                 let to;
@@ -448,17 +485,27 @@ where
                     // new position is outside
                     to = res.overworld_tile();
                 }
-                let transition = Transition::new(to as u16, res.indoors() == 1);
+                let snes_id = SnesMemoryID {
+                    address_value: Some(to as u16),
+                    indoors: Some(res.indoors() == 1),
+                    ..Default::default()
+                };
+                let mut transition = transitions
+                    .get(&snes_id)
+                    .ok_or(Error::new(
+                        std::io::ErrorKind::NotFound,
+                        format!(
+                            "Couldn't find {:X} in transitions",
+                            snes_id.address_value.unwrap()
+                        ),
+                    ))?
+                    .clone();
+                transition.time_transit();
+                // let transition = Transition::new(to as u16, res.indoors() == 1);
 
                 writer.serialize(Event::from(&transition))?;
-                writer.flush()?;
 
-                println!(
-                    "Transition made!: time: {:?}, indoors: {:?}, to: {}",
-                    transition.timestamp,
-                    transition.indoors,
-                    format!("{:X}", transition.to).on_purple()
-                );
+                print_transition(&transition);
             }
             _ => (),
         }
@@ -466,4 +513,88 @@ where
     responses.push_back(res.to_vec());
 
     Ok(())
+}
+
+#[cfg(test)]
+mod tests {
+    use chrono::TimeZone;
+
+    use super::*;
+
+    macro_rules! convert_to_event {
+        ($($name:ident: $values:expr,)*) => {
+            $(
+                #[test]
+                fn $name() {
+                    let (from_struct, expected) = $values;
+                    assert_eq!(Event::from(&from_struct), expected)
+                }
+            )*
+        };
+    }
+
+    convert_to_event! {
+        from_location_check: (
+            Check {
+                name: "Mushroom".to_string(),
+                address: 0x180013,
+                dunka_offset: 0x411,
+                dunka_mask: 0x10,
+                time_of_check: Some(Utc.timestamp_millis(200)),
+                ..Default::default()
+            },
+            Event {
+                location_id: Some("Mushroom".to_string()),
+                timestamp: Utc.timestamp_millis(200),
+                ..Default::default()
+            }
+        ),
+        from_normal_item_check: (
+            Check {
+                name: "Hookshot".to_string(),
+                address: 0x0,
+                dunka_offset: 0x342,
+                dunka_mask: 0x01,
+                time_of_check: Some(Utc.timestamp_millis(200)),
+                is_item: true,
+                ..Default::default()
+            },
+            Event {
+                item_id: Some("Hookshot".to_string()),
+                timestamp: Utc.timestamp_millis(200),
+                ..Default::default()
+            }
+        ),
+        from_progressive_item_check: (
+            Check {
+                name: "Progressive Sword".to_string(),
+                address: 0x0,
+                dunka_offset: 0x342,
+                dunka_mask: 0x01,
+                time_of_check: Some(Utc.timestamp_millis(200)),
+                is_item: true,
+                is_progressive: true,
+                progressive_level: 3,
+                ..Default::default()
+            },
+            Event {
+                item_id: Some("Progressive Sword - 3".to_string()),
+                timestamp: Utc.timestamp_millis(200),
+                ..Default::default()
+            }
+        ),
+        from_transition: (
+            Transition {
+                name: "Lala".to_string(),
+                timestamp: Some(Utc.timestamp_millis(200)),
+                ..Default::default()
+            },
+            Event {
+                to: Some("Lala".to_string()),
+                timestamp: Utc.timestamp_millis(200),
+                indoors: Some(false),
+                ..Default::default()
+            }
+        ),
+    }
 }

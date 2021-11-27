@@ -1,4 +1,7 @@
-use crate::{DUNKA_CHUNK_SIZE, SAVEDATA_START, SAVE_DATA_OFFSET, VRAM_START};
+use crate::{
+    COORDINATE_CHUNK_SIZE, COORDINATE_OFFSET, DUNKA_CHUNK_SIZE, DUNKA_OFFSET, DUNKA_START,
+    SAVEDATA_START, SAVE_DATA_OFFSET, TILE_INFO_CHUNK_SIZE, VRAM_START,
+};
 
 const OVERWORLD_TILE_ADDRESS: usize = 0x40a;
 const ENTRANCE_ID_ADDRESS: usize = 0x10E;
@@ -107,19 +110,37 @@ pub fn normalize_dunka(address: usize) -> usize {
     address + SAVE_DATA_OFFSET
 }
 
-
-
-
+/// Handles values read from qusb while maintaining correct address locations relative to VRAM_START
+///
+/// This allows us to load only the parts we want from qusb while not having to handle tons of different offset values in a myriad of places
 pub struct SnesRam {
-    dunka_chunka: [u8; DUNKA_CHUNK_SIZE],
-    tile_info_chunk: [u8; 0x40b],
-    coordinate_chunk: [u8; 0x04],
+    pub tile_info_chunk: Vec<u8>,
+    pub dunka_chunka: Vec<u8>,
+    pub coordinate_chunk: Vec<u8>,
 }
 
 impl SnesRam {
     /// addresses are relative to `VRAM_START` (`0xf50000`)
-    fn get_byte(&self, address: usize) {
-        
+    pub fn get_byte(&self, address: usize) -> u8 {
+        if address < TILE_INFO_CHUNK_SIZE {
+            self.tile_info_chunk[address]
+        } else if address >= DUNKA_OFFSET && address < DUNKA_OFFSET + DUNKA_CHUNK_SIZE {
+            self.dunka_chunka[address - DUNKA_OFFSET]
+        } else if address >= COORDINATE_OFFSET
+            && address < COORDINATE_OFFSET + COORDINATE_CHUNK_SIZE
+        {
+            self.coordinate_chunk[address - COORDINATE_OFFSET]
+        } else {
+            panic!("Tried to read value from address not fetched from qusb!")
+        }
+    }
+
+    pub fn new() -> Self {
+        Self {
+            tile_info_chunk: vec![],
+            dunka_chunka: vec![],
+            coordinate_chunk: vec![],
+        }
     }
 }
 

@@ -4,6 +4,7 @@ use check::Check;
 use chrono::Utc;
 use clap::ArgMatches;
 
+use snes::SnesRam;
 use transition::{Conditions, Transition};
 use websocket::{ClientBuilder, Message, OwnedMessage};
 
@@ -47,6 +48,7 @@ pub const DUNKA_VRAM_READ_SIZE: u32 = 0x280;
 
 const DUNKA_START: usize = SAVEDATA_START as usize + 0x21;
 const DUNKA_CHUNK_SIZE: usize = 0x3f1;
+const DUNKA_OFFSET: usize = DUNKA_START - VRAM_START as usize;
 
 /// Address keeping track of current overworld tile, remains at previous value when entering non-ow tile
 pub const ADDRESS_OW_SLOT_INDEX: u32 = 0x7E040A;
@@ -59,6 +61,11 @@ pub const ADDRESS_IS_INSIDE: u32 = 0x7E001B;
 pub const ADDRESS_X_TRANSITION: u32 = 0x7ec186;
 /// Y Coordinate that only changes value on transitions while indoors (updates continuously when outside however)
 pub const ADDRESS_Y_TRANSITION: u32 = 0x7ec184;
+
+const COORDINATE_OFFSET: usize = 0xc184;
+const COORDINATE_CHUNK_SIZE: usize = 0x4;
+
+const TILE_INFO_CHUNK_SIZE: usize = 0x40B;
 
 /// Hashable id for map lookups
 #[derive(Default, PartialEq, Hash, Eq, Debug)]
@@ -92,17 +99,16 @@ pub fn connect_to_qusb(args: &ArgMatches) -> anyhow::Result<()> {
     let mut client = ClientBuilder::new(&format!("ws://{}:{}", host, port))?.connect_insecure()?;
     println!("{} to qusb!", "Connected".green().bold());
 
-    let mut connected = false;
-
     // As part of completing the connection, we need to find a Snes device to attach to.
     // We'll just attach to the first one we find, as most use cases will only have one connected snes device.
+    let mut connected = false;
     while !connected {
         connected = attempt_qusb_connection(&mut client)?;
         sleep(time::Duration::from_millis(2000));
     }
 
-    let mut responses: VecDeque<Vec<u8>> = VecDeque::new();
-    let mut checks_responses: VecDeque<Vec<u8>> = VecDeque::new();
+    let mut ram_history: VecDeque<SnesRam> = VecDeque::new();
+
     let time_start = Utc::now();
     let csv_name = time_start.format("%Y%m%d_%H%M%S.csv").to_string();
     File::create(&csv_name)?;
@@ -122,54 +128,40 @@ pub fn connect_to_qusb(args: &ArgMatches) -> anyhow::Result<()> {
     let mut transitions: HashMap<SnesMemoryID, Transition> = deserialize_transitions_map()?;
 
     loop {
-        // since we can't choose multiple addresses in a single request, we instead fetch a larger chunk of data from given address and forward
-        // so we don't have to make multiple requests
-        match get_address_request(&mut client, VRAM_START, 0x40B) {
-            Ok(response) => {
-                if let OwnedMessage::Binary(response) = response {
-                    check_for_transitions(
-                        &response,
-                        verbosity,
-                        &mut responses,
-                        &mut transitions,
-                        &mut writer,
-                        &mut events,
-                    )?;
-                }
-            }
-            Err(e) => println!("Failed request: {:?}", e),
-        };
-
-        // Checks reading from the same address and chunk as dunka
-        match get_dunka_chunka(&mut client) {
-            Ok(response) => {
-                check_for_location_checks(
-                    &response,
+        match get_chunka_chungus(&mut client) {
+            Ok(snes_ram) => {
+                check_for_transitions(
+                    &snes_ram,
                     verbosity,
-                    &mut checks_responses,
+                    &mut ram_history,
+                    &mut transitions,
+                    &mut writer,
+                    &mut events,
+                )?;
+                check_for_location_checks(
+                    &snes_ram,
+                    verbosity,
+                    &mut ram_history,
                     &mut locations,
                     &mut writer,
                     &mut events,
                 )?;
                 check_for_item_checks(
-                    &response,
+                    &snes_ram,
                     verbosity,
-                    &mut checks_responses,
+                    &mut ram_history,
                     &mut items,
                     &mut writer,
                     &mut events,
                 )?;
-                checks_responses.push_back(response);
+                ram_history.push_back(snes_ram);
             }
             Err(e) => println!("Failed request: {:?}", e),
         }
 
         // Only keep the last few responses to decrease memory usage
-        if responses.len() > 60 {
-            responses.pop_front();
-        }
-        if checks_responses.len() > 60 {
-            checks_responses.pop_front();
+        if ram_history.len() > 60 {
+            ram_history.pop_front();
         }
 
         writer.flush()?;
@@ -186,65 +178,57 @@ pub fn connect_to_qusb(args: &ArgMatches) -> anyhow::Result<()> {
     }
 }
 
-fn get_dunka_chunka(
+// since we can't choose multiple addresses in a single request, we instead fetch a larger chunk of data from given address and forward
+// so we don't have to make multiple requests
+fn get_chunka_chungus(
     client: &mut websocket::sync::Client<std::net::TcpStream>,
-) -> anyhow::Result<Vec<u8>> {
-    let message = &QusbRequestMessage::get_address(DUNKA_START as u32, DUNKA_CHUNK_SIZE);
+) -> anyhow::Result<SnesRam> {
+    let tile_info_message = &QusbRequestMessage::get_address(VRAM_START, TILE_INFO_CHUNK_SIZE);
+    let dunka_chunka_message =
+        &QusbRequestMessage::get_address(DUNKA_START as u32, DUNKA_CHUNK_SIZE);
 
-    let mut combined_result: Vec<u8> = Vec::new();
-
+    let mut snes_ram = SnesRam::new();
     let message = Message {
         opcode: websocket::message::Type::Text,
         cd_status_code: None,
-        payload: Cow::Owned(serde_json::to_vec(message)?),
+        payload: Cow::Owned(serde_json::to_vec(dunka_chunka_message)?),
     };
     client.send_message(&message)?;
     let response = client.recv_message()?;
     if let OwnedMessage::Binary(res) = response {
-        combined_result.append(&mut res.clone());
+        snes_ram.dunka_chunka = res;
     };
-    Ok(combined_result)
-}
-
-fn get_address_request(
-    client: &mut websocket::sync::Client<std::net::TcpStream>,
-    address: u32,
-    size: usize,
-) -> anyhow::Result<OwnedMessage> {
-    let message = &QusbRequestMessage::get_address(address, size);
 
     let message = Message {
         opcode: websocket::message::Type::Text,
         cd_status_code: None,
-        payload: Cow::Owned(serde_json::to_vec(message)?),
+        payload: Cow::Owned(serde_json::to_vec(tile_info_message)?),
+    };
+    client.send_message(&message)?;
+    let response = client.recv_message()?;
+    if let OwnedMessage::Binary(res) = response {
+        snes_ram.tile_info_chunk = res;
     };
 
-    client.send_message(&message)?;
-    let message = client.recv_message()?;
-    Ok(message)
+    Ok(snes_ram)
 }
 
-fn check_for_location_checks<U>(
-    response: U,
+fn check_for_location_checks(
+    ram: &SnesRam,
     verbosity: u64,
-    previous_values: &mut VecDeque<Vec<u8>>,
+    ram_history: &mut VecDeque<SnesRam>,
     checks: &mut Vec<Check>,
     writer: &mut Writer<File>,
     events: &mut EventTracker,
-) -> anyhow::Result<()>
-where
-    U: AsRef<[u8]>,
-{
-    let response = response.as_ref();
-
+) -> anyhow::Result<()> {
     for check in checks {
-        let current_check_value = response[check.dunka_offset as usize];
-        if previous_values.len() > 0
-            && (previous_values[previous_values.len() - 1][check.dunka_offset as usize]
+        let current_check_value = ram.dunka_chunka[check.dunka_offset as usize];
+        if ram_history.len() > 0
+            && (ram_history[ram_history.len() - 1].dunka_chunka[check.dunka_offset as usize]
                 != current_check_value)
         {
-            let previous_value = &previous_values[previous_values.len() - 1];
-            let previous_check_value = previous_value[check.dunka_offset as usize];
+            let previous_state = &ram_history[ram_history.len() - 1];
+            let previous_check_value = previous_state.dunka_chunka[check.dunka_offset as usize];
             if verbosity > 0 {
                 println!(
                     "{}: {} -> {} -- bitmask applied: {} -> {}",
@@ -279,28 +263,24 @@ where
     Ok(())
 }
 
-fn check_for_item_checks<U>(
-    response: U,
+fn check_for_item_checks(
+    ram: &SnesRam,
     verbosity: u64,
-    previous_values: &mut VecDeque<Vec<u8>>,
+    previous_values: &mut VecDeque<SnesRam>,
     checks: &mut Vec<Check>,
     writer: &mut Writer<File>,
     events: &mut EventTracker,
-) -> anyhow::Result<()>
-where
-    U: AsRef<[u8]>,
-{
-    let response = response.as_ref();
-
+) -> anyhow::Result<()> {
     for check in checks {
-        let current_check_value = response[check.dunka_offset as usize];
+        let current_check_value = ram.dunka_chunka[check.dunka_offset as usize];
 
         if previous_values.len() > 0
-            && (previous_values[previous_values.len() - 1][check.dunka_offset as usize]
+            && (previous_values[previous_values.len() - 1].dunka_chunka
+                [check.dunka_offset as usize]
                 != current_check_value)
         {
-            let previous_value = &previous_values[previous_values.len() - 1];
-            let previous_check_value = previous_value[check.dunka_offset as usize];
+            let previous_state = &previous_values[previous_values.len() - 1];
+            let previous_check_value = previous_state.dunka_chunka[check.dunka_offset as usize];
             if verbosity > 0 {
                 println!(
                     "{}: {} -> {} -- bitmask applied: {} -> {}",
@@ -347,33 +327,40 @@ where
     Ok(())
 }
 
-fn check_for_transitions<U>(
-    response: U,
+fn check_for_transitions(
+    ram: &SnesRam,
     verbosity: u64,
-    responses: &mut VecDeque<Vec<u8>>,
+    ram_history: &mut VecDeque<SnesRam>,
     transitions: &mut HashMap<SnesMemoryID, Transition>,
     writer: &mut Writer<File>,
     events: &mut EventTracker,
-) -> anyhow::Result<()>
-where
-    U: AsRef<[u8]>,
-{
-    let res = response.as_ref();
-
+) -> anyhow::Result<()> {
     match verbosity {
         1 => println!(
             "ow {}, indoors {}, entrance {}",
-            res.overworld_tile(),
-            res.indoors(),
-            res.entrance_id()
+            ram.tile_info_chunk.overworld_tile(),
+            ram.tile_info_chunk.indoors(),
+            ram.tile_info_chunk.entrance_id()
         ),
         // If using level 2, you might wanna set a higher update interval, (e.g. --freq 10000 to update every 10 seconds) as it's A LOT of data
         2.. => {
-            if responses.len() > 0 {
-                print_verbose_diff(responses.get(responses.len() - 1).unwrap(), res);
-                print_flags_toggled(responses.get(responses.len() - 1).unwrap(), res);
+            if ram_history.len() > 0 {
+                print_verbose_diff(
+                    &ram_history
+                        .get(ram_history.len() - 1)
+                        .unwrap()
+                        .tile_info_chunk,
+                    &ram.tile_info_chunk,
+                );
+                print_flags_toggled(
+                    &ram_history
+                        .get(ram_history.len() - 1)
+                        .unwrap()
+                        .tile_info_chunk,
+                    &ram.tile_info_chunk,
+                );
             } else {
-                println!("Full response: {:?}", res)
+                println!("Full response: {:?}", ram.tile_info_chunk)
             }
         }
         _ => (), // on 0 or somehow invalid verbosity level we don't do this logging as it's very spammy
@@ -383,30 +370,38 @@ where
     match events.latest_transition() {
         Some(previous_transition) => {
             // if overworld_transition(previous_res, response)
-            old_transition_check(&responses, res, transitions, writer)?;
+            old_transition_check(
+                ram_history,
+                ram.tile_info_chunk.as_ref(),
+                transitions,
+                writer,
+            )?;
         }
         // Use responses vec for the very first transition trigger. Should move away from this and only rely on events
         None => {
             // panic!("You've reached the unreachable, as EventTracker should always contain a transition when using ::new");
-            old_transition_check(&responses, res, transitions, writer)?;
+            old_transition_check(
+                ram_history,
+                ram.tile_info_chunk.as_ref(),
+                transitions,
+                writer,
+            )?;
         }
     }
-
-    responses.push_back(res.to_vec());
 
     Ok(())
 }
 
 fn old_transition_check(
-    responses: &&mut VecDeque<Vec<u8>>,
+    ram_history: &mut VecDeque<SnesRam>,
     res: &[u8],
     transitions: &mut HashMap<SnesMemoryID, Transition>,
     writer: &mut Writer<File>,
 ) -> Result<(), anyhow::Error> {
-    Ok(if responses.len() > 0 {
-        match responses.get(responses.len() - 1) {
+    Ok(if ram_history.len() > 0 {
+        match ram_history.get(ram_history.len() - 1) {
             // TODO: Use TriggeredTransition here instead
-            Some(previous_res) if overworld_transition(previous_res, &res) => {
+            Some(previous_state) if overworld_transition(&previous_state.tile_info_chunk, &res) => {
                 let mut transition = transitions
                     .get(&SnesMemoryID {
                         address_value: Some(res.overworld_tile() as u16),
@@ -422,7 +417,7 @@ fn old_transition_check(
 
                 print_transition(&transition);
             }
-            Some(previous_res) if entrance_transition(previous_res, &res) => {
+            Some(previous_state) if entrance_transition(&previous_state.tile_info_chunk, &res) => {
                 let to;
                 if res.indoors() == 1 {
                     // new position is inside

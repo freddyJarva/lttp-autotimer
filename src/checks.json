@@ -5,7 +5,7 @@
         "player_address": "0x186338",
         "crystal": "False",
         "hint_text": "in the woods",
-        "dunka_offset": "0x3f0",
+        "dunka_offset": "0xf411",
         "dunka_mask": "0x10"
     },
     {
@@ -14,7 +14,7 @@
         "player_address": "0x186339",
         "crystal": "False",
         "hint_text": "with a merchant",
-        "dunka_offset": "0x3a8",
+        "dunka_offset": "0xf3c9",
         "dunka_mask": "0x02"
     },
     {
@@ -23,7 +23,7 @@
         "player_address": "0x18633d",
         "crystal": "False",
         "hint_text": "underground",
-        "dunka_offset": "0x289",
+        "dunka_offset": "0xf2aa",
         "dunka_mask": "0x40"
     },
     {
@@ -32,7 +32,7 @@
         "player_address": "0x186354",
         "crystal": "False",
         "hint_text": "underwater",
-        "dunka_offset": "0x29a",
+        "dunka_offset": "0xf2bb",
         "dunka_mask": "0x40"
     },
     {
@@ -41,7 +41,7 @@
         "player_address": "0x186359",
         "crystal": "False",
         "hint_text": "from a box",
-        "dunka_offset": "0x3a8",
+        "dunka_offset": "0xf3c9",
         "dunka_mask": "0x10"
     },
     {
@@ -50,7 +50,7 @@
         "player_address": "0x1862e3",
         "crystal": "False",
         "hint_text": "in a basement",
-        "dunka_offset": "0x219",
+        "dunka_offset": "0xf23a",
         "dunka_mask": "0x10"
     },
     {
@@ -59,7 +59,7 @@
         "player_address": "0x1862e6",
         "crystal": "False",
         "hint_text": "in a basement",
-        "dunka_offset": "0x219",
+        "dunka_offset": "0xf23a",
         "dunka_mask": "0x20"
     },
     {
@@ -68,7 +68,7 @@
         "player_address": "0x1862e9",
         "crystal": "False",
         "hint_text": "in a basement",
-        "dunka_offset": "0x219",
+        "dunka_offset": "0xf23a",
         "dunka_mask": "0x40"
     },
     {
@@ -77,7 +77,7 @@
         "player_address": "0x1862ec",
         "crystal": "False",
         "hint_text": "in a basement",
-        "dunka_offset": "0x219",
+        "dunka_offset": "0xf23a",
         "dunka_mask": "0x80"
     },
     {
@@ -86,7 +86,7 @@
         "player_address": "0x1862ef",
         "crystal": "False",
         "hint_text": "in a basement",
-        "dunka_offset": "0x21a",
+        "dunka_offset": "0xf23b",
         "dunka_mask": "0x01"
     },
     {
@@ -95,7 +95,7 @@
         "player_address": "0x18635f",
         "crystal": "False",
         "hint_text": "with your uncle",
-        "dunka_offset": "0x3a5",
+        "dunka_offset": "0xf3c6",
         "dunka_mask": "0x01"
     },
     {
@@ -104,7 +104,7 @@
         "player_address": "0x186145",
         "crystal": "False",
         "hint_text": "near your uncle",
-        "dunka_offset": "0x89",
+        "dunka_offset": "0xf0aa",
         "dunka_mask": "0x10"
     },
     {
@@ -113,7 +113,7 @@
         "player_address": "0x186360",
         "crystal": "False",
         "hint_text": "at a high price",
-        "dunka_offset": "0x3ef",
+        "dunka_offset": "0xf410",
         "dunka_mask": "0x02"
     },
     {
@@ -122,7 +122,7 @@
         "player_address": "0x186358",
         "crystal": "False",
         "hint_text": "near Zora",
-        "dunka_offset": "0x2e0",
+        "dunka_offset": "0xf301",
         "dunka_mask": "0x40"
     },
     {
@@ -131,7 +131,7 @@
         "player_address": "0x186184",
         "crystal": "False",
         "hint_text": "near a fairy",
-        "dunka_offset": "0x207",
+        "dunka_offset": "0xf228",
         "dunka_mask": "0x10"
     },
     {
@@ -140,7 +140,7 @@
         "player_address": "0x1861a5",
         "crystal": "False",
         "hint_text": "near a fairy",
-        "dunka_offset": "0x207",
+        "dunka_offset": "0xf228",
         "dunka_mask": "0x20"
     },
     {
@@ -149,7 +149,7 @@
         "player_address": "0x18614e",
         "crystal": "False",
         "hint_text": "alone in a cave",
-        "dunka_offset": "0x205",
+        "dunka_offset": "0xf226",
         "dunka_mask": "0x10"
     },
     {
@@ -158,7 +158,7 @@
         "player_address": "0x186160",
         "crystal": "False",
         "hint_text": "in the dam",
-        "dunka_offset": "0x1f5",
+        "dunka_offset": "0xf216",
         "dunka_mask": "0x10"
     },
     {
@@ -167,7 +167,7 @@
         "player_address": "0x186190",
         "crystal": "False",
         "hint_text": "in your home",
-        "dunka_offset": "0x1e7",
+        "dunka_offset": "0xf208",
         "dunka_mask": "0x10"
     },
     {
@@ -176,7 +176,7 @@
         "player_address": "0x1861a2",
         "crystal": "False",
         "hint_text": "in the bar",
-        "dunka_offset": "0x1e5",
+        "dunka_offset": "0xf206",
         "dunka_mask": "0x10"
     },
     {
@@ -185,7 +185,7 @@
         "player_address": "0x1861bd",
         "crystal": "False",
         "hint_text": "near poultry",
-        "dunka_offset": "0x1ef",
+        "dunka_offset": "0xf210",
         "dunka_mask": "0x10"
     },
     {
@@ -194,7 +194,7 @@
         "player_address": "0x1861c6",
         "crystal": "False",
         "hint_text": "with Aginah",
-        "dunka_offset": "0x1f3",
+        "dunka_offset": "0xf214",
         "dunka_mask": "0x10"
     },
     {
@@ -203,7 +203,7 @@
         "player_address": "0x186256",
         "crystal": "False",
         "hint_text": "near the elder",
-        "dunka_offset": "0x1e9",
+        "dunka_offset": "0xf20a",
         "dunka_mask": "0x10"
     },
     {
@@ -212,7 +212,7 @@
         "player_address": "0x186259",
         "crystal": "False",
         "hint_text": "near the elder",
-        "dunka_offset": "0x1e9",
+        "dunka_offset": "0xf20a",
         "dunka_mask": "0x20"
     },
     {
@@ -221,7 +221,7 @@
         "player_address": "0x18625c",
         "crystal": "False",
         "hint_text": "near the elder",
-        "dunka_offset": "0x1e9",
+        "dunka_offset": "0xf20a",
         "dunka_mask": "0x40"
     },
     {
@@ -230,7 +230,7 @@
         "player_address": "0x186365",
         "crystal": "False",
         "hint_text": "with the elder",
-        "dunka_offset": "0x3ef",
+        "dunka_offset": "0xf410",
         "dunka_mask": "0x10"
     },
     {
@@ -239,7 +239,7 @@
         "player_address": "0x186262",
         "crystal": "False",
         "hint_text": "in a well",
-        "dunka_offset": "0x3d",
+        "dunka_offset": "0xf05e",
         "dunka_mask": "0x10"
     },
     {
@@ -248,7 +248,7 @@
         "player_address": "0x186265",
         "crystal": "False",
         "hint_text": "in a well",
-        "dunka_offset": "0x3d",
+        "dunka_offset": "0xf05e",
         "dunka_mask": "0x20"
     },
     {
@@ -257,7 +257,7 @@
         "player_address": "0x186268",
         "crystal": "False",
         "hint_text": "in a well",
-        "dunka_offset": "0x3d",
+        "dunka_offset": "0xf05e",
         "dunka_mask": "0x40"
     },
     {
@@ -266,7 +266,7 @@
         "player_address": "0x18626b",
         "crystal": "False",
         "hint_text": "in a well",
-        "dunka_offset": "0x3d",
+        "dunka_offset": "0xf05e",
         "dunka_mask": "0x80"
     },
     {
@@ -275,7 +275,7 @@
         "player_address": "0x18626e",
         "crystal": "False",
         "hint_text": "in a well",
-        "dunka_offset": "0x3e",
+        "dunka_offset": "0xf05f",
         "dunka_mask": "0x01"
     },
     {
@@ -284,7 +284,7 @@
         "player_address": "0x186366",
         "crystal": "False",
         "hint_text": "with the smith",
-        "dunka_offset": "0x3f0",
+        "dunka_offset": "0xf411",
         "dunka_mask": "0x04"
     },
     {
@@ -293,7 +293,7 @@
         "player_address": "0x18635e",
         "crystal": "False",
         "hint_text": "with the bat",
-        "dunka_offset": "0x3f0",
+        "dunka_offset": "0xf411",
         "dunka_mask": "0x80"
     },
     {
@@ -302,7 +302,7 @@
         "player_address": "0x186367",
         "crystal": "False",
         "hint_text": "with the sick",
-        "dunka_offset": "0x3ef",
+        "dunka_offset": "0xf410",
         "dunka_mask": "0x04"
     },
     {
@@ -311,7 +311,7 @@
         "player_address": "0x186368",
         "crystal": "False",
         "hint_text": "with the hobo",
-        "dunka_offset": "0x3a8",
+        "dunka_offset": "0xf3c9",
         "dunka_mask": "0x01"
     },
     {
@@ -320,7 +320,7 @@
         "player_address": "0x186348",
         "crystal": "False",
         "hint_text": "near a thief",
-        "dunka_offset": "0x1a2",
+        "dunka_offset": "0xf1c3",
         "dunka_mask": "0x02"
     },
     {
@@ -329,7 +329,7 @@
         "player_address": "0x186349",
         "crystal": "False",
         "hint_text": "in a hole",
-        "dunka_offset": "0x1a4",
+        "dunka_offset": "0xf1c5",
         "dunka_mask": "0x02"
     },
     {
@@ -338,7 +338,7 @@
         "player_address": "0x18634b",
         "crystal": "False",
         "hint_text": "alone in a cave",
-        "dunka_offset": "0x216",
+        "dunka_offset": "0xf237",
         "dunka_mask": "0x04"
     },
     {
@@ -347,7 +347,7 @@
         "player_address": "0x18634c",
         "crystal": "False",
         "hint_text": "alone in a cave",
-        "dunka_offset": "0x216",
+        "dunka_offset": "0xf237",
         "dunka_mask": "0x02"
     },
     {
@@ -356,7 +356,7 @@
         "player_address": "0x18634d",
         "crystal": "False",
         "hint_text": "alone in a cave",
-        "dunka_offset": "0x22c",
+        "dunka_offset": "0xf24d",
         "dunka_mask": "0x02"
     },
     {
@@ -365,7 +365,7 @@
         "player_address": "0x186316",
         "crystal": "False",
         "hint_text": "near Moldorms",
-        "dunka_offset": "0x225",
+        "dunka_offset": "0xf246",
         "dunka_mask": "0x10"
     },
     {
@@ -374,7 +374,7 @@
         "player_address": "0x186319",
         "crystal": "False",
         "hint_text": "near Moldorms",
-        "dunka_offset": "0x225",
+        "dunka_offset": "0xf246",
         "dunka_mask": "0x20"
     },
     {
@@ -383,7 +383,7 @@
         "player_address": "0x18631c",
         "crystal": "False",
         "hint_text": "near Moldorms",
-        "dunka_offset": "0x225",
+        "dunka_offset": "0xf246",
         "dunka_mask": "0x40"
     },
     {
@@ -392,7 +392,7 @@
         "player_address": "0x18631f",
         "crystal": "False",
         "hint_text": "near Moldorms",
-        "dunka_offset": "0x225",
+        "dunka_offset": "0xf246",
         "dunka_mask": "0x80"
     },
     {
@@ -401,7 +401,7 @@
         "player_address": "0x18635a",
         "crystal": "False",
         "hint_text": "near Moldorms",
-        "dunka_offset": "0x226",
+        "dunka_offset": "0xf247",
         "dunka_mask": "0x04"
     },
     {
@@ -410,7 +410,7 @@
         "player_address": "0x186322",
         "crystal": "False",
         "hint_text": "in a frozen cave",
-        "dunka_offset": "0x21f",
+        "dunka_offset": "0xf240",
         "dunka_mask": "0x10"
     },
     {
@@ -419,7 +419,7 @@
         "player_address": "0x186313",
         "crystal": "False",
         "hint_text": "alone in a cave",
-        "dunka_offset": "0x227",
+        "dunka_offset": "0xf248",
         "dunka_mask": "0x10"
     },
     {
@@ -428,7 +428,7 @@
         "player_address": "0x18635c",
         "crystal": "False",
         "hint_text": "near books",
-        "dunka_offset": "0x3ef",
+        "dunka_offset": "0xf410",
         "dunka_mask": "0x80"
     },
     {
@@ -437,7 +437,7 @@
         "player_address": "0x18635d",
         "crystal": "False",
         "hint_text": "near potions",
-        "dunka_offset": "0x3f0",
+        "dunka_offset": "0xf411",
         "dunka_mask": "0x20"
     },
     {
@@ -446,7 +446,7 @@
         "player_address": "0x186353",
         "crystal": "False",
         "hint_text": "on an island",
-        "dunka_offset": "0x294",
+        "dunka_offset": "0xf2b5",
         "dunka_mask": "0x40"
     },
     {
@@ -455,7 +455,7 @@
         "player_address": "0x186351",
         "crystal": "False",
         "hint_text": "at the race",
-        "dunka_offset": "0x287",
+        "dunka_offset": "0xf2a8",
         "dunka_mask": "0x40"
     },
     {
@@ -464,7 +464,7 @@
         "player_address": "0x186352",
         "crystal": "False",
         "hint_text": "in the desert",
-        "dunka_offset": "0x28f",
+        "dunka_offset": "0xf2b0",
         "dunka_mask": "0x40"
     },
     {
@@ -581,7 +581,7 @@
         "player_address": "0x186369",
         "crystal": "False",
         "hint_text": "at the pedestal",
-        "dunka_offset": "0x2df",
+        "dunka_offset": "0xf300",
         "dunka_mask": "0x40"
     },
     {
@@ -590,7 +590,7 @@
         "player_address": "0x186148",
         "crystal": "False",
         "hint_text": "in Hyrule Castle",
-        "dunka_offset": "0xc1",
+        "dunka_offset": "0xf0e2",
         "dunka_mask": "0x10"
     },
     {
@@ -599,7 +599,7 @@
         "player_address": "0x1862e0",
         "crystal": "False",
         "hint_text": "in Hyrule Castle",
-        "dunka_offset": "0xc3",
+        "dunka_offset": "0xf0e4",
         "dunka_mask": "0x10"
     },
     {
@@ -608,7 +608,7 @@
         "player_address": "0x1862dd",
         "crystal": "False",
         "hint_text": "in Hyrule Castle",
-        "dunka_offset": "0xdf",
+        "dunka_offset": "0xf100",
         "dunka_mask": "0x10"
     },
     {
@@ -617,7 +617,7 @@
         "player_address": "0x186142",
         "crystal": "False",
         "hint_text": "in the sewers",
-        "dunka_offset": "0x43",
+        "dunka_offset": "0xf064",
         "dunka_mask": "0x10"
     },
     {
@@ -626,7 +626,7 @@
         "player_address": "0x186331",
         "crystal": "False",
         "hint_text": "in the sewers",
-        "dunka_offset": "0x1",
+        "dunka_offset": "0xf022",
         "dunka_mask": "0x10"
     },
     {
@@ -635,7 +635,7 @@
         "player_address": "0x186334",
         "crystal": "False",
         "hint_text": "in the sewers",
-        "dunka_offset": "0x1",
+        "dunka_offset": "0xf022",
         "dunka_mask": "0x20"
     },
     {
@@ -644,7 +644,7 @@
         "player_address": "0x186337",
         "crystal": "False",
         "hint_text": "in the sewers",
-        "dunka_offset": "0x1",
+        "dunka_offset": "0xf022",
         "dunka_mask": "0x40"
     },
     {
@@ -653,7 +653,7 @@
         "player_address": "0x18624d",
         "crystal": "False",
         "hint_text": "in Sanctuary",
-        "dunka_offset": "0x3",
+        "dunka_offset": "0xf024",
         "dunka_mask": "0x10"
     },
     {
@@ -662,7 +662,7 @@
         "player_address": "0x186289",
         "crystal": "False",
         "hint_text": "in Castle Tower",
-        "dunka_offset": "0x19f",
+        "dunka_offset": "0xf1c0",
         "dunka_mask": "0x10"
     },
     {
@@ -671,7 +671,7 @@
         "player_address": "0x186286",
         "crystal": "False",
         "hint_text": "in Castle Tower",
-        "dunka_offset": "0x17f",
+        "dunka_offset": "0xf1a0",
         "dunka_mask": "0x10"
     },
     {
@@ -680,7 +680,7 @@
         "player_address": "0x186364",
         "crystal": "False",
         "hint_text": "with the old man",
-        "dunka_offset": "0x3ef",
+        "dunka_offset": "0xf410",
         "dunka_mask": "0x01"
     },
     {
@@ -689,7 +689,7 @@
         "player_address": "0x18634a",
         "crystal": "False",
         "hint_text": "alone in a cave",
-        "dunka_offset": "0x1b4",
+        "dunka_offset": "0xf1d5",
         "dunka_mask": "0x04"
     },
     {
@@ -698,7 +698,7 @@
         "player_address": "0x1862fe",
         "crystal": "False",
         "hint_text": "in a cave with seven chests",
-        "dunka_offset": "0x1bd",
+        "dunka_offset": "0xf1de",
         "dunka_mask": "0x10"
     },
     {
@@ -707,7 +707,7 @@
         "player_address": "0x186301",
         "crystal": "False",
         "hint_text": "in a cave with seven chests",
-        "dunka_offset": "0x1bd",
+        "dunka_offset": "0xf1de",
         "dunka_mask": "0x20"
     },
     {
@@ -716,7 +716,7 @@
         "player_address": "0x186304",
         "crystal": "False",
         "hint_text": "in a cave with seven chests",
-        "dunka_offset": "0x1bd",
+        "dunka_offset": "0xf1de",
         "dunka_mask": "0x40"
     },
     {
@@ -725,7 +725,7 @@
         "player_address": "0x186307",
         "crystal": "False",
         "hint_text": "in a cave with seven chests",
-        "dunka_offset": "0x1bd",
+        "dunka_offset": "0xf1de",
         "dunka_mask": "0x80"
     },
     {
@@ -734,7 +734,7 @@
         "player_address": "0x18630a",
         "crystal": "False",
         "hint_text": "in a cave with seven chests",
-        "dunka_offset": "0x1be",
+        "dunka_offset": "0xf1df",
         "dunka_mask": "0x01"
     },
     {
@@ -743,7 +743,7 @@
         "player_address": "0x18630d",
         "crystal": "False",
         "hint_text": "in a cave with seven chests",
-        "dunka_offset": "0x1dd",
+        "dunka_offset": "0xf1fe",
         "dunka_mask": "0x10"
     },
     {
@@ -752,7 +752,7 @@
         "player_address": "0x186310",
         "crystal": "False",
         "hint_text": "in a cave with seven chests",
-        "dunka_offset": "0x1dd",
+        "dunka_offset": "0xf1fe",
         "dunka_mask": "0x20"
     },
     {
@@ -761,7 +761,7 @@
         "player_address": "0x186193",
         "crystal": "False",
         "hint_text": "in spiral cave",
-        "dunka_offset": "0x1db",
+        "dunka_offset": "0xf1fc",
         "dunka_mask": "0x10"
     },
     {
@@ -770,7 +770,7 @@
         "player_address": "0x18633b",
         "crystal": "False",
         "hint_text": "at a monolith",
-        "dunka_offset": "0x3f0",
+        "dunka_offset": "0xf411",
         "dunka_mask": "0x01"
     },
     {
@@ -779,7 +779,7 @@
         "player_address": "0x18634f",
         "crystal": "False",
         "hint_text": "atop a rock",
-        "dunka_offset": "0x262",
+        "dunka_offset": "0xf283",
         "dunka_mask": "0x40"
     },
     {
@@ -842,7 +842,7 @@
         "player_address": "0x186356",
         "crystal": "False",
         "hint_text": "on the pyramid",
-        "dunka_offset": "0x2ba",
+        "dunka_offset": "0xf2db",
         "dunka_mask": "0x40"
     },
     {
@@ -851,7 +851,7 @@
         "player_address": "0x186361",
         "crystal": "False",
         "hint_text": "with a catfish",
-        "dunka_offset": "0x3ef",
+        "dunka_offset": "0xf410",
         "dunka_mask": "0x20"
     },
     {
@@ -860,7 +860,7 @@
         "player_address": "0x18636a",
         "crystal": "False",
         "hint_text": "with tree boy",
-        "dunka_offset": "0x3ef",
+        "dunka_offset": "0xf410",
         "dunka_mask": "0x08"
     },
     {
@@ -869,7 +869,7 @@
         "player_address": "0x186357",
         "crystal": "False",
         "hint_text": "underground",
-        "dunka_offset": "0x2c7",
+        "dunka_offset": "0xf2e8",
         "dunka_mask": "0x40"
     },
     {
@@ -878,7 +878,7 @@
         "player_address": "0x18633c",
         "crystal": "False",
         "hint_text": "at a monolith",
-        "dunka_offset": "0x3f0",
+        "dunka_offset": "0xf411",
         "dunka_mask": "0x02"
     },
     {
@@ -887,7 +887,7 @@
         "player_address": "0x1862f2",
         "crystal": "False",
         "hint_text": "near a bat-like man",
-        "dunka_offset": "0x21b",
+        "dunka_offset": "0xf23c",
         "dunka_mask": "0x10"
     },
     {
@@ -896,7 +896,7 @@
         "player_address": "0x1862f8",
         "crystal": "False",
         "hint_text": "near a bat-like man",
-        "dunka_offset": "0x21b",
+        "dunka_offset": "0xf23c",
         "dunka_mask": "0x20"
     },
     {
@@ -905,7 +905,7 @@
         "player_address": "0x1862f5",
         "crystal": "False",
         "hint_text": "near a bat-like man",
-        "dunka_offset": "0x21b",
+        "dunka_offset": "0xf23c",
         "dunka_mask": "0x40"
     },
     {
@@ -914,7 +914,7 @@
         "player_address": "0x1862fb",
         "crystal": "False",
         "hint_text": "near a bat-like man",
-        "dunka_offset": "0x21b",
+        "dunka_offset": "0xf23c",
         "dunka_mask": "0x80"
     },
     {
@@ -923,7 +923,7 @@
         "player_address": "0x18635b",
         "crystal": "False",
         "hint_text": "with a bat-like man",
-        "dunka_offset": "0x21c",
+        "dunka_offset": "0xf23d",
         "dunka_mask": "0x04"
     },
     {
@@ -932,7 +932,7 @@
         "player_address": "0x18634e",
         "crystal": "False",
         "hint_text": "alone in a cave",
-        "dunka_offset": "0x22e",
+        "dunka_offset": "0xf24f",
         "dunka_mask": "0x04"
     },
     {
@@ -941,7 +941,7 @@
         "player_address": "0x186154",
         "crystal": "False",
         "hint_text": "near a fairy",
-        "dunka_offset": "0x20b",
+        "dunka_offset": "0xf22c",
         "dunka_mask": "0x10"
     },
     {
@@ -950,7 +950,7 @@
         "player_address": "0x186157",
         "crystal": "False",
         "hint_text": "near a fairy",
-        "dunka_offset": "0x20b",
+        "dunka_offset": "0xf22c",
         "dunka_mask": "0x20"
     },
     {
@@ -959,7 +959,7 @@
         "player_address": "0x1861c0",
         "crystal": "False",
         "hint_text": "alone in a home",
-        "dunka_offset": "0x1eb",
+        "dunka_offset": "0xf20c",
         "dunka_mask": "0x10"
     },
     {
@@ -968,7 +968,7 @@
         "player_address": "0x1861c3",
         "crystal": "False",
         "hint_text": "alone in a home",
-        "dunka_offset": "0x217",
+        "dunka_offset": "0xf238",
         "dunka_mask": "0x10"
     },
     {
@@ -977,7 +977,7 @@
         "player_address": "0x18636b",
         "crystal": "False",
         "hint_text": "as a prize",
-        "dunka_offset": "0x1ec",
+        "dunka_offset": "0xf20d",
         "dunka_mask": "0x04"
     },
     {
@@ -986,7 +986,7 @@
         "player_address": "0x186355",
         "crystal": "False",
         "hint_text": "on a ledge",
-        "dunka_offset": "0x2a9",
+        "dunka_offset": "0xf2ca",
         "dunka_mask": "0x40"
     },
     {
@@ -995,7 +995,7 @@
         "player_address": "0x186247",
         "crystal": "False",
         "hint_text": "near sparks",
-        "dunka_offset": "0x1f9",
+        "dunka_offset": "0xf21a",
         "dunka_mask": "0x10"
     },
     {
@@ -1004,7 +1004,7 @@
         "player_address": "0x18624a",
         "crystal": "False",
         "hint_text": "near sparks",
-        "dunka_offset": "0x1f9",
+        "dunka_offset": "0xf21a",
         "dunka_mask": "0x20"
     },
     {
@@ -1013,7 +1013,7 @@
         "player_address": "0x186250",
         "crystal": "False",
         "hint_text": "in a connection",
-        "dunka_offset": "0x1cf",
+        "dunka_offset": "0xf1f0",
         "dunka_mask": "0x10"
     },
     {
@@ -1022,7 +1022,7 @@
         "player_address": "0x186253",
         "crystal": "False",
         "hint_text": "in a connection",
-        "dunka_offset": "0x1cf",
+        "dunka_offset": "0xf1f0",
         "dunka_mask": "0x20"
     },
     {
@@ -1031,7 +1031,7 @@
         "player_address": "0x18625f",
         "crystal": "False",
         "hint_text": "beyond spikes",
-        "dunka_offset": "0x20d",
+        "dunka_offset": "0xf22e",
         "dunka_mask": "0x10"
     },
     {
@@ -1040,7 +1040,7 @@
         "player_address": "0x186325",
         "crystal": "False",
         "hint_text": "across pits",
-        "dunka_offset": "0x57",
+        "dunka_offset": "0xf078",
         "dunka_mask": "0x10"
     },
     {
@@ -1049,7 +1049,7 @@
         "player_address": "0x186328",
         "crystal": "False",
         "hint_text": "across pits",
-        "dunka_offset": "0x57",
+        "dunka_offset": "0xf078",
         "dunka_mask": "0x20"
     },
     {
@@ -1058,7 +1058,7 @@
         "player_address": "0x18632b",
         "crystal": "False",
         "hint_text": "across pits",
-        "dunka_offset": "0x57",
+        "dunka_offset": "0xf078",
         "dunka_mask": "0x40"
     },
     {
@@ -1067,7 +1067,7 @@
         "player_address": "0x18632e",
         "crystal": "False",
         "hint_text": "across pits",
-        "dunka_offset": "0x57",
+        "dunka_offset": "0xf078",
         "dunka_mask": "0x80"
     },
     {
@@ -1076,7 +1076,7 @@
         "player_address": "0x186350",
         "crystal": "False",
         "hint_text": "on an island",
-        "dunka_offset": "0x264",
+        "dunka_offset": "0xf285",
         "dunka_mask": "0x40"
     },
     {
@@ -1085,7 +1085,7 @@
         "player_address": "0x186199",
         "crystal": "False",
         "hint_text": "in a cave of mimicry",
-        "dunka_offset": "0x1f7",
+        "dunka_offset": "0xf218",
         "dunka_mask": "0x10"
     },
     {

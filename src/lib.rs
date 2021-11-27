@@ -222,13 +222,13 @@ fn check_for_location_checks(
     events: &mut EventTracker,
 ) -> anyhow::Result<()> {
     for check in checks {
-        let current_check_value = ram.dunka_chunka[check.dunka_offset as usize];
+        let current_check_value = ram.get_byte(check.dunka_offset as usize);
         if ram_history.len() > 0
-            && (ram_history[ram_history.len() - 1].dunka_chunka[check.dunka_offset as usize]
+            && (ram_history[ram_history.len() - 1].get_byte(check.dunka_offset as usize)
                 != current_check_value)
         {
             let previous_state = &ram_history[ram_history.len() - 1];
-            let previous_check_value = previous_state.dunka_chunka[check.dunka_offset as usize];
+            let previous_check_value = previous_state.get_byte(check.dunka_offset as usize);
             if verbosity > 0 {
                 println!(
                     "{}: {} -> {} -- bitmask applied: {} -> {}",

@@ -77,7 +77,7 @@ mod tests {
                 player_address: Some("0x186338".to_string()),
                 crystal: Some("False".to_string()),
                 hint_text: Some("in the woods".to_string()),
-                dunka_offset: 0x411,
+                dunka_offset: 0xf411,
                 dunka_mask: 0x10,
                 ..Default::default()
             }
@@ -91,7 +91,7 @@ mod tests {
             Check {
                 name: "Bow".to_string(),
                 address: 0x0,
-                dunka_offset: 0x38e,
+                dunka_offset: 0xf38e,
                 dunka_mask: 0x80,
                 is_item: true,
                 ..Default::default()

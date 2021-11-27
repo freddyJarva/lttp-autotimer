@@ -14,12 +14,80 @@ pub trait NamedAddresses {
     fn indoors(&self) -> u8;
     fn x(&self) -> u16;
     fn y(&self) -> u16;
+}
 
+pub trait SetNamedAddresses {
     fn set_overworld_tile(&mut self, byte: u8);
     fn set_entrance_id(&mut self, byte: u8);
     fn set_indoors(&mut self, byte: u8);
     fn set_x(&mut self, word: u16);
     fn set_y(&mut self, word: u16);
+}
+
+impl NamedAddresses for SnesRam {
+    fn overworld_tile(&self) -> u8 {
+        self.tile_info_chunk[OVERWORLD_TILE_ADDRESS]
+    }
+
+    fn entrance_id(&self) -> u8 {
+        self.tile_info_chunk[ENTRANCE_ID_ADDRESS]
+    }
+
+    fn indoors(&self) -> u8 {
+        self.tile_info_chunk[INDOORS_ADDRESS]
+    }
+
+    fn x(&self) -> u16 {
+        todo!()
+    }
+
+    fn y(&self) -> u16 {
+        todo!()
+    }
+}
+
+impl SetNamedAddresses for SnesRam {
+    fn set_overworld_tile(&mut self, byte: u8) {
+        self.tile_info_chunk[OVERWORLD_TILE_ADDRESS] = byte
+    }
+
+    fn set_entrance_id(&mut self, byte: u8) {
+        self.tile_info_chunk[ENTRANCE_ID_ADDRESS] = byte
+    }
+
+    fn set_indoors(&mut self, byte: u8) {
+        self.tile_info_chunk[INDOORS_ADDRESS] = byte
+    }
+
+    fn set_x(&mut self, word: u16) {
+        todo!()
+    }
+
+    fn set_y(&mut self, word: u16) {
+        todo!()
+    }
+}
+
+impl NamedAddresses for &SnesRam {
+    fn overworld_tile(&self) -> u8 {
+        self.tile_info_chunk[OVERWORLD_TILE_ADDRESS]
+    }
+
+    fn entrance_id(&self) -> u8 {
+        self.tile_info_chunk[ENTRANCE_ID_ADDRESS]
+    }
+
+    fn indoors(&self) -> u8 {
+        self.tile_info_chunk[INDOORS_ADDRESS]
+    }
+
+    fn x(&self) -> u16 {
+        todo!()
+    }
+
+    fn y(&self) -> u16 {
+        todo!()
+    }
 }
 
 impl NamedAddresses for Vec<u8> {
@@ -35,31 +103,11 @@ impl NamedAddresses for Vec<u8> {
         self[INDOORS_ADDRESS]
     }
 
-    fn set_overworld_tile(&mut self, byte: u8) {
-        self[OVERWORLD_TILE_ADDRESS] = byte
-    }
-
-    fn set_entrance_id(&mut self, byte: u8) {
-        self[ENTRANCE_ID_ADDRESS] = byte
-    }
-
-    fn set_indoors(&mut self, byte: u8) {
-        self[INDOORS_ADDRESS] = byte
-    }
-
     fn x(&self) -> u16 {
         todo!()
     }
 
     fn y(&self) -> u16 {
-        todo!()
-    }
-
-    fn set_x(&mut self, word: u16) {
-        todo!()
-    }
-
-    fn set_y(&mut self, word: u16) {
         todo!()
     }
 }
@@ -77,31 +125,11 @@ impl NamedAddresses for [u8] {
         self[INDOORS_ADDRESS]
     }
 
-    fn set_overworld_tile(&mut self, byte: u8) {
-        self[OVERWORLD_TILE_ADDRESS] = byte
-    }
-
-    fn set_entrance_id(&mut self, byte: u8) {
-        self[ENTRANCE_ID_ADDRESS] = byte
-    }
-
-    fn set_indoors(&mut self, byte: u8) {
-        self[INDOORS_ADDRESS] = byte
-    }
-
     fn x(&self) -> u16 {
         todo!()
     }
 
     fn y(&self) -> u16 {
-        todo!()
-    }
-
-    fn set_x(&mut self, word: u16) {
-        todo!()
-    }
-
-    fn set_y(&mut self, word: u16) {
         todo!()
     }
 }

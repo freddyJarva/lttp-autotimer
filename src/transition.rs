@@ -8,12 +8,20 @@ use serde::Deserialize;
 
 use crate::snes::NamedAddresses;
 
-pub fn overworld_transition<T: AsRef<[u8]>, U: AsRef<[u8]>>(previous_res: T, response: U) -> bool {
-    previous_res.as_ref().overworld_tile() != response.as_ref().overworld_tile()
+pub fn overworld_transition<T, U>(previous_res: T, response: U) -> bool
+where
+    T: NamedAddresses,
+    U: NamedAddresses,
+{
+    previous_res.overworld_tile() != response.overworld_tile()
 }
 
-pub fn entrance_transition<T: AsRef<[u8]>, U: AsRef<[u8]>>(previous_res: T, response: U) -> bool {
-    previous_res.as_ref().indoors() != response.as_ref().indoors()
+pub fn entrance_transition<T, U>(previous_res: T, response: U) -> bool
+where
+    T: NamedAddresses,
+    U: NamedAddresses,
+{
+    previous_res.indoors() != response.indoors()
 }
 
 static TRANSITIONS_JSON: &'static str = include_str!("transitions.json");

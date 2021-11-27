@@ -370,22 +370,12 @@ fn check_for_transitions(
     match events.latest_transition() {
         Some(previous_transition) => {
             // if overworld_transition(previous_res, response)
-            old_transition_check(
-                ram_history,
-                ram.tile_info_chunk.as_ref(),
-                transitions,
-                writer,
-            )?;
+            old_transition_check(ram_history, ram, transitions, writer)?;
         }
         // Use responses vec for the very first transition trigger. Should move away from this and only rely on events
         None => {
             // panic!("You've reached the unreachable, as EventTracker should always contain a transition when using ::new");
-            old_transition_check(
-                ram_history,
-                ram.tile_info_chunk.as_ref(),
-                transitions,
-                writer,
-            )?;
+            old_transition_check(ram_history, ram, transitions, writer)?;
         }
     }
 
@@ -394,17 +384,17 @@ fn check_for_transitions(
 
 fn old_transition_check(
     ram_history: &mut VecDeque<SnesRam>,
-    res: &[u8],
+    ram: &SnesRam,
     transitions: &mut HashMap<SnesMemoryID, Transition>,
     writer: &mut Writer<File>,
 ) -> Result<(), anyhow::Error> {
     Ok(if ram_history.len() > 0 {
         match ram_history.get(ram_history.len() - 1) {
             // TODO: Use TriggeredTransition here instead
-            Some(previous_state) if overworld_transition(&previous_state.tile_info_chunk, &res) => {
+            Some(previous_state) if overworld_transition(previous_state, ram) => {
                 let mut transition = transitions
                     .get(&SnesMemoryID {
-                        address_value: Some(res.overworld_tile() as u16),
+                        address_value: Some(ram.overworld_tile() as u16),
                         indoors: Some(false),
                         ..Default::default()
                     })
@@ -417,18 +407,18 @@ fn old_transition_check(
 
                 print_transition(&transition);
             }
-            Some(previous_state) if entrance_transition(&previous_state.tile_info_chunk, &res) => {
+            Some(previous_state) if entrance_transition(previous_state, ram) => {
                 let to;
-                if res.indoors() == 1 {
+                if ram.indoors() == 1 {
                     // new position is inside
-                    to = res.entrance_id();
+                    to = ram.entrance_id();
                 } else {
                     // new position is outside
-                    to = res.overworld_tile();
+                    to = ram.overworld_tile();
                 }
                 let snes_id = SnesMemoryID {
                     address_value: Some(to as u16),
-                    indoors: Some(res.indoors() == 1),
+                    indoors: Some(ram.indoors() == 1),
                     ..Default::default()
                 };
                 let mut transition = transitions

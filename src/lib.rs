@@ -5,7 +5,7 @@ use chrono::Utc;
 use clap::ArgMatches;
 
 use snes::SnesRam;
-use transition::{Conditions, Transition};
+use transition::{Conditions, Tile};
 use websocket::{ClientBuilder, Message, OwnedMessage};
 
 use core::time;
@@ -113,7 +113,7 @@ pub fn connect_to_qusb(args: &ArgMatches) -> anyhow::Result<()> {
         .into_iter()
         .filter(|check| check.dunka_offset != 0)
         .collect();
-    let mut transitions: HashMap<SnesMemoryID, Transition> = deserialize_transitions_map()?;
+    let mut transitions: HashMap<SnesMemoryID, Tile> = deserialize_transitions_map()?;
 
     loop {
         match get_chunka_chungus(&mut client) {
@@ -337,7 +337,7 @@ fn check_for_transitions(
     ram: &SnesRam,
     verbosity: u64,
     ram_history: &mut VecDeque<SnesRam>,
-    transitions: &mut HashMap<SnesMemoryID, Transition>,
+    transitions: &mut HashMap<SnesMemoryID, Tile>,
     writer: &mut Writer<File>,
     events: &mut EventTracker,
 ) -> anyhow::Result<()> {
@@ -391,7 +391,7 @@ fn check_for_transitions(
 fn old_transition_check(
     ram_history: &mut VecDeque<SnesRam>,
     ram: &SnesRam,
-    transitions: &mut HashMap<SnesMemoryID, Transition>,
+    transitions: &mut HashMap<SnesMemoryID, Tile>,
     writer: &mut Writer<File>,
 ) -> Result<(), anyhow::Error> {
     Ok(if ram_history.len() > 0 {

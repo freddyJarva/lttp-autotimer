@@ -4,16 +4,16 @@ use std::borrow::Borrow;
 use chrono::{DateTime, TimeZone, Utc};
 use serde::Serialize;
 
-use crate::{check::Check, transition::Transition};
+use crate::{check::Check, transition::Tile};
 
 pub trait EventLog {
-    fn latest_transition(&self) -> Option<Transition>;
+    fn latest_transition(&self) -> Option<Tile>;
     fn latest_location_check(&self) -> Option<Check>;
     fn latest_item_get(&self) -> Option<Check>;
 }
 
 impl EventLog for EventTracker {
-    fn latest_transition(&self) -> Option<Transition> {
+    fn latest_transition(&self) -> Option<Tile> {
         self.log
             .iter()
             .rev()
@@ -75,7 +75,7 @@ impl EventLog for EventTracker {
 }
 
 pub enum EventEnum {
-    Transition(Transition),
+    Transition(Tile),
     LocationCheck(Check),
     ItemGet(Check),
 }
@@ -91,7 +91,7 @@ impl EventTracker {
     /// as it needs a value to compare to to see if a transition triggered.
     pub fn new() -> Self {
         Self {
-            log: vec![EventEnum::Transition(Transition {
+            log: vec![EventEnum::Transition(Tile {
                 name: "AUTO_TIMER_START".to_string(),
                 address_value: 0x0,
                 timestamp: Some(Utc::now()),
@@ -124,8 +124,8 @@ pub struct Event {
     item_id: Option<String>,
 }
 
-impl From<&Transition> for Event {
-    fn from(transition: &Transition) -> Self {
+impl From<&Tile> for Event {
+    fn from(transition: &Tile) -> Self {
         Event {
             timestamp: transition
                 .timestamp
@@ -138,8 +138,8 @@ impl From<&Transition> for Event {
     }
 }
 
-impl From<&mut Transition> for Event {
-    fn from(transition: &mut Transition) -> Self {
+impl From<&mut Tile> for Event {
+    fn from(transition: &mut Tile) -> Self {
         Event {
             timestamp: transition
                 .timestamp
@@ -275,7 +275,7 @@ mod tests {
             }
         ),
         from_transition: (
-            Transition {
+            Tile {
                 name: "Lala".to_string(),
                 timestamp: Some(Utc.timestamp_millis(200)),
                 ..Default::default()
@@ -295,7 +295,7 @@ mod tests {
                 name: "nope".to_string(),
                 ..Default::default()
             }),
-            EventEnum::Transition(Transition {
+            EventEnum::Transition(Tile {
                 name: "not latest".to_string(),
                 ..Default::default()
             }),
@@ -303,7 +303,7 @@ mod tests {
                 name: "meh".to_string(),
                 ..Default::default()
             }),
-            EventEnum::Transition(Transition {
+            EventEnum::Transition(Tile {
                 name: "latest".to_string(),
                 ..Default::default()
             }),
@@ -332,7 +332,7 @@ mod tests {
     }
 
     test_eventlog! {
-        latest_transition: latest_transition: (event_log(), Some(Transition {
+        latest_transition: latest_transition: (event_log(), Some(Tile {
             name: "latest".to_string(),
             ..Default::default()
         })),

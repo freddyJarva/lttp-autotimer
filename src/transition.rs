@@ -27,27 +27,27 @@ where
 static TRANSITIONS_JSON: &'static str = include_str!("transitions.json");
 
 #[derive(Debug, PartialEq)]
-pub enum TriggeredTransition {
-    Overworld(Transition),
-    Entrance(Transition),
-    Underworld(Transition),
+pub enum Transition {
+    Overworld(Tile),
+    Entrance(Tile),
+    Underworld(Tile),
     None,
 }
 
-pub fn check_transition(previous: &Transition, current: &Transition) -> TriggeredTransition {
+pub fn check_transition(previous: &Tile, current: &Tile) -> Transition {
     if previous.address_value != current.address_value && !previous.indoors && !current.indoors {
-        TriggeredTransition::Overworld(current.clone())
+        Transition::Overworld(current.clone())
     } else if previous.indoors != current.indoors {
-        TriggeredTransition::Entrance(current.clone())
+        Transition::Entrance(current.clone())
     } else if previous.indoors && current.indoors && previous.name != current.name {
-        TriggeredTransition::Underworld(current.clone())
+        Transition::Underworld(current.clone())
     } else {
-        TriggeredTransition::None
+        Transition::None
     }
 }
 
 #[derive(Debug, Deserialize, PartialEq, Clone)]
-pub struct Transition {
+pub struct Tile {
     pub name: String,
     #[serde(deserialize_with = "hex_16bit_deserialize")]
     pub address_value: u16,
@@ -56,9 +56,9 @@ pub struct Transition {
     pub conditions: Option<Conditions>,
 }
 
-impl Transition {
+impl Tile {
     pub fn new(address_value: u16, indoors: bool) -> Self {
-        Transition {
+        Tile {
             timestamp: Some(Utc::now()),
             indoors,
             address_value,
@@ -71,7 +71,7 @@ impl Transition {
     }
 }
 
-impl Default for Transition {
+impl Default for Tile {
     fn default() -> Self {
         Self {
             timestamp: None,
@@ -111,12 +111,11 @@ pub struct Coordinate {
 }
 
 /// Reads src/checks.json and returns deserialized content
-pub fn deserialize_transitions() -> Result<Vec<Transition>, serde_json::Error> {
+pub fn deserialize_transitions() -> Result<Vec<Tile>, serde_json::Error> {
     serde_json::from_str(TRANSITIONS_JSON)
 }
 
-pub fn deserialize_transitions_map() -> Result<HashMap<SnesMemoryID, Transition>, serde_json::Error>
-{
+pub fn deserialize_transitions_map() -> Result<HashMap<SnesMemoryID, Tile>, serde_json::Error> {
     Ok(deserialize_transitions()?
         .into_iter()
         .map(|transition| {
@@ -132,7 +131,7 @@ pub fn deserialize_transitions_map() -> Result<HashMap<SnesMemoryID, Transition>
         .collect())
 }
 
-impl From<Vec<u8>> for Transition {
+impl From<Vec<u8>> for Tile {
     fn from(_: Vec<u8>) -> Self {
         todo!()
     }
@@ -151,7 +150,7 @@ mod tests {
             .unwrap();
         assert_eq!(
             hobo,
-            Transition {
+            Tile {
                 name: "Hobo".to_string(),
                 indoors: false,
                 address_value: 0x80,
@@ -191,7 +190,7 @@ mod tests {
             .unwrap()
             .into_iter()
             .filter(|transition| transition.conditions.is_none());
-        let transitions_map: HashMap<SnesMemoryID, Transition> = deserialize_transitions_map()
+        let transitions_map: HashMap<SnesMemoryID, Tile> = deserialize_transitions_map()
             .unwrap()
             .into_iter()
             .filter(|(_, transition)| transition.conditions.is_none())
@@ -218,7 +217,7 @@ mod tests {
             $(
                 #[test]
                 fn $name() {
-                    assert_eq!(check_transition(&$previous, &$current), TriggeredTransition::$expected_trigger($current))
+                    assert_eq!(check_transition(&$previous, &$current), Transition::$expected_trigger($current))
                 }
             )*
         };
@@ -229,7 +228,7 @@ mod tests {
             $(
                 #[test]
                 fn $name() {
-                    assert_eq!(check_transition(&$previous, &$current), TriggeredTransition::None)
+                    assert_eq!(check_transition(&$previous, &$current), Transition::None)
                 }
             )*
         };
@@ -237,23 +236,23 @@ mod tests {
 
     test_trigger_transition! {
         overworld_transition:
-            Transition {address_value: 0x0, ..Default::default()},
-            Transition {address_value: 0x2, ..Default::default()},
+            Tile {address_value: 0x0, ..Default::default()},
+            Tile {address_value: 0x2, ..Default::default()},
             Overworld,
         entrance_transition:
-            Transition {address_value: 0x69, indoors: false, ..Default::default()},
-            Transition {address_value: 0x69, indoors: true, ..Default::default()},
+            Tile {address_value: 0x69, indoors: false, ..Default::default()},
+            Tile {address_value: 0x69, indoors: true, ..Default::default()},
             Entrance,
         underworld_transition: // TODO: If we have already turned snes vram into Transition objects, then we already have a unique id with the name, thus making all this logic checking redundant
-            Transition {name: "Eastern Palace - Lobby".to_string(), address_value: 0x420, indoors: true, ..Default::default()},
-            Transition {name: "Eastern Palace - Abyss Bridge".to_string(), address_value: 0x420, indoors: true, ..Default::default()},
+            Tile {name: "Eastern Palace - Lobby".to_string(), address_value: 0x420, indoors: true, ..Default::default()},
+            Tile {name: "Eastern Palace - Abyss Bridge".to_string(), address_value: 0x420, indoors: true, ..Default::default()},
             Underworld,
     }
 
     test_trigger_no_transition! {
         same_overworld_tile:
-            Transition {address_value: 0x0, ..Default::default()},
-            Transition {address_value: 0x0, ..Default::default()},
+            Tile {address_value: 0x0, ..Default::default()},
+            Tile {address_value: 0x0, ..Default::default()},
     }
 
     macro_rules! test_from_vec {

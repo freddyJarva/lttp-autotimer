@@ -1,7 +1,7 @@
 use colored::Colorize;
 use termcolor::{ColorChoice, StandardStream};
 
-use crate::transition::Transition;
+use crate::transition::Tile;
 
 /// Hack to make cmd.exe output colors instead of broken color escape codes
 /// Not sure why it works since I use another crate for  coloring, but it does!
@@ -47,7 +47,7 @@ pub fn print_flags_toggled<T: AsRef<[u8]>, U: AsRef<[u8]>>(lhs: T, rhs: U) {
     print!("\n");
 }
 
-pub fn print_transition(transition: &Transition) {
+pub fn print_transition(transition: &Tile) {
     println!(
         "Transition made!: time: {:?}, indoors: {:?}, to: {}",
         transition.timestamp,

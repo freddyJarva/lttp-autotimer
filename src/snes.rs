@@ -60,11 +60,12 @@ impl SetNamedAddresses for SnesRam {
     }
 
     fn set_x(&mut self, word: u16) {
-        todo!()
+        println!("{:?}", &self.coordinate_chunk);
+        BigEndian::write_u16(&mut self.coordinate_chunk[2..], word)
     }
 
     fn set_y(&mut self, word: u16) {
-        todo!()
+        BigEndian::write_u16(&mut self.coordinate_chunk[..2], word)
     }
 }
 
@@ -82,11 +83,11 @@ impl NamedAddresses for &SnesRam {
     }
 
     fn x(&self) -> u16 {
-        todo!()
+        BigEndian::read_u16(&self.coordinate_chunk[2..])
     }
 
     fn y(&self) -> u16 {
-        todo!()
+        BigEndian::read_u16(&self.coordinate_chunk[..2])
     }
 }
 
@@ -137,6 +138,7 @@ impl NamedAddresses for [u8] {
 /// Handles values read from qusb while maintaining correct address locations relative to VRAM_START
 ///
 /// This allows us to load only the parts we want from qusb while not having to handle tons of different offset values in a myriad of places
+#[derive(Default, Debug)]
 pub struct SnesRam {
     pub tile_info_chunk: Vec<u8>,
     pub dunka_chunka: Vec<u8>,
@@ -161,9 +163,9 @@ impl SnesRam {
 
     pub fn new() -> Self {
         Self {
-            tile_info_chunk: vec![],
-            dunka_chunka: vec![],
-            coordinate_chunk: vec![],
+            tile_info_chunk: vec![0; TILE_INFO_CHUNK_SIZE],
+            dunka_chunka: vec![0; DUNKA_CHUNK_SIZE],
+            coordinate_chunk: vec![0; COORDINATE_CHUNK_SIZE],
         }
     }
 }
@@ -178,13 +180,30 @@ pub struct SnesRamInitializer {
 }
 
 impl SnesRamInitializer {
-    fn build() -> Vec<u8> {
-        vec![0; 0x40b]
+    fn build(&self) -> SnesRam {
+        let mut ram = SnesRam {
+            ..Default::default()
+        };
+        ram.set_entrance_id(self.entrance_id.unwrap_or(0));
+        ram.set_indoors(self.indoors.unwrap_or(0));
+        ram.set_overworld_tile(self.overworld_tile.unwrap_or(0));
+        ram.set_x(self.x.unwrap_or(0));
+        ram.set_y(self.y.unwrap_or(0));
+        ram
     }
 }
 
 #[cfg(test)]
 mod tests {
+    use crate::snes::NamedAddresses;
+
+    use super::{SetNamedAddresses, SnesRam};
+
     #[test]
-    fn setting_xy_sets_two_bytes_each() {}
+    fn test_set_xy() {
+        let mut ram = SnesRam::new();
+        ram.set_x(12);
+        ram.set_y(55000);
+        assert_eq!((ram.x(), ram.y()), (12, 55000));
+    }
 }

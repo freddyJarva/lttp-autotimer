@@ -15,14 +15,158 @@
         "address_value": "0x2"
     },
     {
-        "name": "Castle west wing",
+        "name": "Hyrule Castle - Lobby",
         "indoors": true,
-        "address_value": "0x3"
+        "address_value": "0x4",
+        "entrance_ids": [
+            "0x3",
+            "0x4",
+            "0x5"
+        ],
+        "conditions": {
+            "coordinates": [
+                {
+                    "x": "760",
+                    "y": "3520"
+                },
+                {
+                    "x": "560",
+                    "y": "3320"
+                },
+                {
+                    "x": "536",
+                    "y": "3192"
+                },
+                {
+                    "x": "760",
+                    "y": "3119"
+                },
+                {
+                    "x": "960",
+                    "y": "3320"
+                }
+            ]
+        }
     },
     {
-        "name": "Castle lobby",
+        "name": "Hyrule Castle - West Wing South",
         "indoors": true,
-        "address_value": "0x4"
+        "address_value": "0x4",
+        "entrance_ids": [
+            "0x3",
+            "0x4",
+            "0x5"
+        ],
+        "conditions": {
+            "coordinates": [
+                {
+                    "x": "448",
+                    "y": "3320"
+                },
+                {
+                    "x": "472",
+                    "y": "3192"
+                },
+                {
+                    "x": "376",
+                    "y": "3544"
+                }
+            ]
+        }
+    },
+    {
+        "name": "Hyrule Castle - West Wing North",
+        "indoors": true,
+        "address_value": "0x4",
+        "entrance_ids": [
+            "0x3",
+            "0x4",
+            "0x5"
+        ],
+        "conditions": {
+            "coordinates": [
+                {
+                    "x": "376",
+                    "y": "3008"
+                },
+                {
+                    "x": "448",
+                    "y": "2680"
+                }
+            ]
+        }
+    },
+    {
+        "name": "Hyrule Castle - Statue Hallway",
+        "indoors": true,
+        "address_value": "0x4",
+        "entrance_ids": [
+            "0x3",
+            "0x4",
+            "0x5"
+        ],
+        "conditions": {
+            "coordinates": [
+                {
+                    "x": "560",
+                    "y": "120"
+                },
+                {
+                    "x": "960",
+                    "y": "120"
+                },
+                {
+                    "x": "760",
+                    "y": "99"
+                }
+            ]
+        }
+    },
+    {
+        "name": "Hyrule Castle - Key Guard 1",
+        "indoors": true,
+        "address_value": "0x4",
+        "entrance_ids": [
+            "0x3",
+            "0x4",
+            "0x5"
+        ],
+        "conditions": {
+            "coordinates": [
+                {
+                    "x": "1273",
+                    "y": "3664"
+                },
+                {
+                    "x": "1272",
+                    "y": "3800"
+                }
+            ]
+        }
+    },
+    {
+        "name": "Hyrule Castle - Basement 1",
+        "indoors": true,
+        "address_value": "0x4",
+        "entrance_ids": [
+            "0x3",
+            "0x4",
+            "0x5"
+        ],
+        "conditions": {
+            "coordinates": [
+                {
+                    "type": "range",
+                    "x": "1272",
+                    "y": "3872"
+                },
+                {
+                    "type": "range",
+                    "x": "1184",
+                    "y": "4052"
+                }
+            ]
+        }
     },
     {
         "name": "Castle east wing",
@@ -76,7 +220,378 @@
                 },
                 {
                     "x": "4856",
+                    "y": "6192"
+                }
+            ]
+        }
+    },
+    {
+        "name": "Eastern Palace - Ball Corridor",
+        "indoors": true,
+        "address_value": "0x8",
+        "conditions": {
+            "coordinates": [
+                {
+                    "x": "4856",
                     "y": "6104"
+                },
+                {
+                    "x": "4856",
+                    "y": "5664"
+                },
+                {
+                    "x": "5080",
+                    "y": "5752"
+                },
+                {
+                    "x": "4632",
+                    "y": "5752"
+                }
+            ]
+        }
+    },
+    {
+        "name": "Eastern Palace - Big Chest Room",
+        "indoors": true,
+        "address_value": "0x8",
+        "conditions": {
+            "coordinates": [
+                {
+                    "x": "4856",
+                    "y": "5592"
+                },
+                {
+                    "x": "5064",
+                    "y": "5368"
+                },
+                {
+                    "x": "4648",
+                    "y": "5368"
+                },
+                {
+                    "x": "4656",
+                    "y": "5240"
+                },
+                {
+                    "x": "5056",
+                    "y": "5240"
+                },
+                {
+                    "x": "4786",
+                    "y": "5240"
+                },
+                {
+                    "x": "4925",
+                    "y": "5240"
+                },
+                {
+                    "x": "4856",
+                    "y": "5152"
+                }
+            ]
+        }
+    },
+    {
+        "name": "Eastern Palace - East of Big Chest Room",
+        "indoors": true,
+        "address_value": "0x8",
+        "conditions": {
+            "coordinates": [
+                {
+                    "x": "5144",
+                    "y": "5368"
+                },
+                {
+                    "x": "5336",
+                    "y": "5496"
+                },
+                {
+                    "x": "5336",
+                    "y": "5240"
+                },
+                {
+                    "x": "5168",
+                    "y": "5240"
+                },
+                {
+                    "x": "5240",
+                    "y": "5592"
+                }
+            ]
+        }
+    },
+    {
+        "name": "Eastern Palace - Lone Anti Fairy",
+        "indoors": true,
+        "address_value": "0x8",
+        "conditions": {
+            "coordinates": [
+                {
+                    "x": "5400",
+                    "y": "5240"
+                },
+                {
+                    "x": "5496",
+                    "y": "5312"
+                }
+            ]
+        }
+    },
+    {
+        "name": "Eastern Palace - East Chest Room",
+        "indoors": true,
+        "address_value": "0x8",
+        "conditions": {
+            "coordinates": [
+                {
+                    "x": "5400",
+                    "y": "5496"
+                },
+                {
+                    "x": "5496",
+                    "y": "5408"
+                }
+            ]
+        }
+    },
+    {
+        "name": "Eastern Palace - West of Big Chest Room",
+        "indoors": true,
+        "address_value": "0x8",
+        "conditions": {
+            "coordinates": [
+                {
+                    "x": "4568",
+                    "y": "5368"
+                },
+                {
+                    "x": "4376",
+                    "y": "5496"
+                },
+                {
+                    "x": "4400",
+                    "y": "5240"
+                },
+                {
+                    "x": "4544",
+                    "y": "5240"
+                },
+                {
+                    "x": "4472",
+                    "y": "5592"
+                }
+            ]
+        }
+    },
+    {
+        "name": "Eastern Palace - Stalfos Trap",
+        "indoors": true,
+        "address_value": "0x8",
+        "conditions": {
+            "coordinates": [
+                {
+                    "x": "4296",
+                    "y": "5496"
+                },
+                {
+                    "x": "4216",
+                    "y": "5424"
+                }
+            ]
+        }
+    },
+    {
+        "name": "Eastern Palace - Compass Chest Room",
+        "indoors": true,
+        "address_value": "0x8",
+        "conditions": {
+            "coordinates": [
+                {
+                    "x": "4216",
+                    "y": "5336"
+                },
+                {
+                    "x": "4288",
+                    "y": "5240"
+                }
+            ]
+        }
+    },
+    {
+        "name": "Eastern Palace - Dark Double Anti Fairy",
+        "indoors": true,
+        "address_value": "0x8",
+        "conditions": {
+            "coordinates": [
+                {
+                    "x": "5240",
+                    "y": "5680"
+                },
+                {
+                    "x": "5320",
+                    "y": "5752"
+                },
+                {
+                    "x": "5144",
+                    "y": "5752"
+                }
+            ]
+        }
+    },
+    {
+        "name": "Eastern Palace - Dark Key Pot",
+        "indoors": true,
+        "address_value": "0x8",
+        "conditions": {
+            "coordinates": [
+                {
+                    "x": "5400",
+                    "y": "5752"
+                }
+            ]
+        }
+    },
+    {
+        "name": "Eastern Palace - Big Key Chest Room",
+        "indoors": true,
+        "address_value": "0x8",
+        "conditions": {
+            "coordinates": [
+                {
+                    "x": "4568",
+                    "y": "5752"
+                },
+                {
+                    "x": "4472",
+                    "y": "5664"
+                }
+            ]
+        }
+    },
+    {
+        "name": "Eastern Palace - Fairy Drop",
+        "indoors": true,
+        "address_value": "0x8",
+        "conditions": {
+            "coordinates": [
+                {
+                    "x": "4824",
+                    "y": "4208"
+                }
+            ]
+        }
+    },
+    {
+        "name": "Eastern Palace - Fairy Drop",
+        "indoors": true,
+        "address_value": "0x8",
+        "conditions": {
+            "coordinates": [
+                {
+                    "x": "4824",
+                    "y": "4208"
+                }
+            ]
+        }
+    },
+    {
+        "name": "Eastern Palace - Dark Bastard Room",
+        "indoors": true,
+        "address_value": "0x8",
+        "conditions": {
+            "coordinates": [
+                {
+                    "x": "4856",
+                    "y": "5080"
+                },
+                {
+                    "x": "4984",
+                    "y": "4824"
+                },
+                {
+                    "x": "4984",
+                    "y": "4824"
+                },
+                {
+                    "x": "4729",
+                    "y": "4919"
+                }
+            ]
+        }
+    },
+    {
+        "name": "Eastern Palace - Money",
+        "indoors": true,
+        "address_value": "0x8",
+        "conditions": {
+            "coordinates": [
+                {
+                    "x": "4984",
+                    "y": "4824"
+                }
+            ]
+        }
+    },
+    {
+        "name": "Eastern Palace - Double Anti Fairy",
+        "indoors": true,
+        "address_value": "0x8",
+        "conditions": {
+            "coordinates": [
+                {
+                    "x": "5240",
+                    "y": "6964"
+                },
+                {
+                    "x": "5160",
+                    "y": "7032"
+                }
+            ]
+        }
+    },
+    {
+        "name": "Eastern Palace - Triple Green Goblin (whatever they're called)",
+        "indoors": true,
+        "address_value": "0x8",
+        "conditions": {
+            "coordinates": [
+                {
+                    "x": "5064",
+                    "y": "7032"
+                },
+                {
+                    "x": "4904",
+                    "y": "7032"
+                }
+            ]
+        }
+    },
+    {
+        "name": "Eastern Palace - Ball Room",
+        "indoors": true,
+        "address_value": "0x8",
+        "conditions": {
+            "coordinates": [
+                {
+                    "x": "4808",
+                    "y": "7032"
+                },
+                {
+                    "x": "4648",
+                    "y": "7032"
+                }
+            ]
+        }
+    },
+    {
+        "name": "Eastern Palace - Bow Locked Room",
+        "indoors": true,
+        "address_value": "0x8",
+        "conditions": {
+            "coordinates": [
+                {
+                    "x": "4568",
+                    "y": "7032"
                 }
             ]
         }

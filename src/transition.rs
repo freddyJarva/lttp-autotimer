@@ -1,4 +1,5 @@
 use crate::serde_lttp::coordinate_range_deserialize;
+use crate::serde_lttp::hex_16bit_array_deserialize;
 use crate::{serde_lttp::coordinate_deserialize, snes::SnesRam};
 use anyhow::{anyhow, Result};
 use std::collections::HashMap;
@@ -28,31 +29,11 @@ where
 
 static TRANSITIONS_JSON: &'static str = include_str!("transitions.json");
 
-#[derive(Debug, PartialEq)]
-pub enum Transition {
-    Overworld(Tile),
-    Entrance(Tile),
-    Underworld(Tile),
-    None,
-}
-
-pub fn check_transition(previous: &Tile, current: &Tile) -> Transition {
-    if previous.address_value != current.address_value && !previous.indoors && !current.indoors {
-        Transition::Overworld(current.clone())
-    } else if previous.indoors != current.indoors {
-        Transition::Entrance(current.clone())
-    } else if previous.indoors && current.indoors && previous.name != current.name {
-        Transition::Underworld(current.clone())
-    } else {
-        Transition::None
-    }
-}
-
 #[derive(Debug, Deserialize, PartialEq, Clone)]
 pub struct Tile {
     pub name: String,
-    #[serde(deserialize_with = "hex_16bit_deserialize")]
-    pub address_value: u16,
+    #[serde(deserialize_with = "hex_16bit_array_deserialize")]
+    pub address_value: Vec<u16>,
     pub timestamp: Option<DateTime<Utc>>,
     pub indoors: bool,
     pub conditions: Option<Conditions>,
@@ -63,7 +44,7 @@ impl Tile {
         Tile {
             timestamp: Some(Utc::now()),
             indoors,
-            address_value,
+            address_value: vec![address_value],
             ..Default::default()
         }
     }
@@ -80,12 +61,12 @@ impl Tile {
         let matches: Vec<&Tile> = TILES
             .iter()
             .filter(|&t| {
-                (current.indoors() == 1
+                current.indoors() == 1
                     && t.indoors
-                    && current.entrance_id() as u16 == t.address_value)
+                    && t.address_value.contains(&(current.entrance_id() as u16))
                     || current.indoors() == 0
                         && !t.indoors
-                        && current.overworld_tile() as u16 == t.address_value
+                        && t.address_value.contains(&(current.overworld_tile() as u16))
             })
             .collect();
         match matches.len() {
@@ -103,7 +84,7 @@ impl Tile {
                             }
                         }
                         // If conditions haven't been created yet, just return error
-                        None => panic!("This is bad"),
+                        None => panic!("This is bad: Tile lacking conditions when sharing ram address and value with others: {:?}", tile),
                         // None => return Err(anyhow!("No matches found for current ram value")),
                     };
                 }
@@ -137,7 +118,7 @@ impl Default for Tile {
         Self {
             timestamp: None,
             indoors: Default::default(),
-            address_value: Default::default(),
+            address_value: vec![0],
             conditions: Default::default(),
             name: Default::default(),
         }
@@ -215,22 +196,6 @@ pub fn deserialize_transitions() -> Result<Vec<Tile>, serde_json::Error> {
     serde_json::from_str(TRANSITIONS_JSON)
 }
 
-pub fn deserialize_transitions_map() -> Result<HashMap<SnesMemoryID, Tile>, serde_json::Error> {
-    Ok(deserialize_transitions()?
-        .into_iter()
-        .map(|transition| {
-            (
-                SnesMemoryID {
-                    address_value: Some(transition.address_value),
-                    indoors: Some(transition.indoors),
-                    ..Default::default()
-                },
-                transition,
-            )
-        })
-        .collect())
-}
-
 #[allow(non_snake_case)]
 #[cfg(test)]
 mod tests {
@@ -250,7 +215,7 @@ mod tests {
             Tile {
                 name: "Hobo".to_string(),
                 indoors: false,
-                address_value: 0x80,
+                address_value: vec![0x80],
                 conditions: Some(Conditions {
                     previous_tile: Some(ConditionTransition {
                         name: "Stone Bridge".to_string(),
@@ -262,93 +227,6 @@ mod tests {
                 ..Default::default()
             }
         );
-    }
-
-    // add this test back when adding locations with conditions
-    fn test_deserialize_transitions_map_keys_have_correct_values() {
-        let transitions = deserialize_transitions().unwrap();
-        let transitions_map = deserialize_transitions_map().unwrap();
-
-        for transition in transitions {
-            let should_be_same_transition = transitions_map
-                .get(&SnesMemoryID {
-                    address_value: Some(transition.address_value),
-                    indoors: Some(transition.indoors),
-                    ..Default::default()
-                })
-                .unwrap();
-            assert_eq!(&transition, should_be_same_transition);
-        }
-    }
-
-    fn test_deserialize_transitions_map_keys_have_correct_values_exclude_conditional_locations() {
-        let transitions = deserialize_transitions()
-            .unwrap()
-            .into_iter()
-            .filter(|transition| transition.conditions.is_none());
-        let transitions_map: HashMap<SnesMemoryID, Tile> = deserialize_transitions_map()
-            .unwrap()
-            .into_iter()
-            .filter(|(_, transition)| transition.conditions.is_none())
-            .collect();
-
-        for transition in transitions {
-            let should_be_same_transition = transitions_map
-                .get(&SnesMemoryID {
-                    address_value: Some(transition.address_value),
-                    indoors: Some(transition.indoors),
-                    ..Default::default()
-                })
-                .ok_or(format!(
-                    "hashmap doesn't contain {:X}, indoors: {}",
-                    transition.address_value, transition.indoors
-                ))
-                .unwrap();
-            assert_eq!(&transition, should_be_same_transition);
-        }
-    }
-
-    macro_rules! test_trigger_transition {
-        ($($name:ident: $previous:expr, $current:expr, $expected_trigger:ident,)*) => {
-            $(
-                #[test]
-                fn $name() {
-                    assert_eq!(check_transition(&$previous, &$current), Transition::$expected_trigger($current))
-                }
-            )*
-        };
-    }
-
-    macro_rules! test_trigger_no_transition {
-        ($($name:ident: $previous:expr, $current:expr,)*) => {
-            $(
-                #[test]
-                fn $name() {
-                    assert_eq!(check_transition(&$previous, &$current), Transition::None)
-                }
-            )*
-        };
-    }
-
-    test_trigger_transition! {
-        overworld_transition:
-            Tile {address_value: 0x0, ..Default::default()},
-            Tile {address_value: 0x2, ..Default::default()},
-            Overworld,
-        entrance_transition:
-            Tile {address_value: 0x69, indoors: false, ..Default::default()},
-            Tile {address_value: 0x69, indoors: true, ..Default::default()},
-            Entrance,
-        underworld_transition: // TODO: If we have already turned snes vram into Transition objects, then we already have a unique id with the name, thus making all this logic checking redundant
-            Tile {name: "Eastern Palace - Lobby".to_string(), address_value: 0x420, indoors: true, ..Default::default()},
-            Tile {name: "Eastern Palace - Abyss Bridge".to_string(), address_value: 0x420, indoors: true, ..Default::default()},
-            Underworld,
-    }
-
-    test_trigger_no_transition! {
-        same_overworld_tile:
-            Tile {address_value: 0x0, ..Default::default()},
-            Tile {address_value: 0x0, ..Default::default()},
     }
 
     macro_rules! test_tile_from {

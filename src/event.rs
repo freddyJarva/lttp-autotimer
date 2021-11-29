@@ -93,7 +93,7 @@ impl EventTracker {
         Self {
             log: vec![EventEnum::Transition(Tile {
                 name: "AUTO_TIMER_START".to_string(),
-                address_value: 0x0,
+                address_value: vec![0x0],
                 timestamp: Some(Utc::now()),
                 indoors: false,
                 conditions: None,
@@ -353,7 +353,7 @@ mod tests {
     fn new_event_tracker_is_initialized_with_start_transition() {
         let last_transition = EventTracker::new().latest_transition().unwrap();
         assert_attrs! {
-            last_transition: address_value == 0x0,
+            last_transition: address_value == [0x0],
             name == "AUTO_TIMER_START",
             indoors == false,
         };

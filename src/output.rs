@@ -52,6 +52,6 @@ pub fn print_transition(transition: &Tile) {
         "Transition made!: time: {:?}, indoors: {:?}, to: {}",
         transition.timestamp,
         transition.indoors,
-        format!("{:X} - {}", transition.address_value, transition.name).on_purple()
+        format!("{}", transition.name).on_purple()
     );
 }

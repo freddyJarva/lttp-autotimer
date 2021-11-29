@@ -37,6 +37,17 @@ where
     u16::from_str_radix(&s[2..], 16).map_err(D::Error::custom)
 }
 
+pub fn hex_16bit_array_deserialize<'de, D>(d: D) -> Result<Vec<u16>, D::Error>
+where
+    D: Deserializer<'de>,
+{
+    let strings: Vec<&str> = Deserialize::deserialize(d)?;
+    Ok(strings
+        .into_iter()
+        .map(|s| u16::from_str_radix(&s[2..], 16).unwrap())
+        .collect())
+}
+
 /// Terrible deserializer of 1 byte hex values. But hey, it works. I guess.
 pub fn hex_byte_deserialize<'de, D>(d: D) -> Result<u8, D::Error>
 where
@@ -69,5 +80,63 @@ where
         Ok((vals[0], vals[0]))
     } else {
         Ok((vals[0], vals[1]))
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use crate::{assert_attrs, transition::Tile};
+
+    #[test]
+    fn testname() {
+        let parsed: Tile = serde_json::from_str(
+            "
+        {
+            \"name\": \"Sewers - Bonk Walls\",
+            \"indoors\": true,
+            \"address_value\": [
+                \"0x3\",
+                \"0x4\",
+                \"0x5\",
+                \"0x81\"
+            ],
+            \"conditions\": {
+                \"coordinates\": [
+                    {
+                        \"type\": \"Pair\",
+                        \"x\": \"888\",
+                        \"y\": \"984\"
+                    },
+                    {
+                        \"type\": \"Pair\",
+                        \"x\": \"808\",
+                        \"y\": \"888\"
+                    },
+                    {
+                        \"type\": \"Pair\",
+                        \"x\": \"808\",
+                        \"y\": \"632\"
+                    },
+                    {
+                        \"type\": \"Range\",
+                        \"x\": \"889\",
+                        \"y\": \"567-569\"
+                    },
+                    {
+                        \"type\": \"Range\",
+                        \"x\": \"889\",
+                        \"y\": \"567-569\"
+                    }
+                ]
+            }
+        }
+        ",
+        )
+        .unwrap();
+        assert_attrs!(
+            parsed: name == "Sewers - Bonk Walls",
+            indoors == true,
+            address_value == vec![0x3, 0x4, 0x5, 0x81],
+        );
     }
 }

@@ -18,11 +18,10 @@ use crate::check::{deserialize_item_checks, deserialize_location_checks};
 use crate::output::{print_flags_toggled, print_transition, print_verbose_diff};
 use crate::qusb::{attempt_qusb_connection, QusbRequestMessage};
 use crate::snes::NamedAddresses;
-use crate::transition::deserialize_transitions_map;
 
 use colored::*;
 use std::borrow::Cow;
-use std::collections::{HashMap, VecDeque};
+use std::collections::VecDeque;
 use std::fs::File;
 
 use csv::Writer;

@@ -64,6 +64,10 @@ where
         .into_iter()
         .filter_map(|c| u16::from_str_radix(c, 10).map_err(D::Error::custom).ok())
         .collect();
-    println!("{:?}", vals);
-    Ok((vals[0], vals[1]))
+    if vals.len() == 1 {
+        // If single value defined in json, handle it as a 1 value range, inclusive min & max
+        Ok((vals[0], vals[0]))
+    } else {
+        Ok((vals[0], vals[1]))
+    }
 }

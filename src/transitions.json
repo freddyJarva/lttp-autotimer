@@ -12,7 +12,33 @@
     {
         "name": "Sanctuary",
         "indoors": true,
-        "address_value": "0x2"
+        "address_value": "0x2",
+        "entrance_ids": [
+            "0x2",
+            "0x3",
+            "0x4",
+            "0x5",
+            "0x81"
+        ],
+        "conditions": {
+            "coordinates": [
+                {
+                    "type": "Pair",
+                    "x": "1272",
+                    "y": "568"
+                },
+                {
+                    "type": "Pair",
+                    "x": "1272",
+                    "y": "960"
+                },
+                {
+                    "type": "Pair",
+                    "x": "1272",
+                    "y": "668"
+                }
+            ]
+        }
     },
     {
         "name": "Hyrule Castle - Lobby",
@@ -42,8 +68,8 @@
                 },
                 {
                     "x": "760",
-                    "y": "3119",
-                    "type": "Pair"
+                    "y": "3118-3120",
+                    "type": "Range"
                 },
                 {
                     "x": "960",
@@ -178,15 +204,540 @@
                 {
                     "type": "Range",
                     "x": "1184-1200",
-                    "y": "4052-4052"
+                    "y": "4052"
+                },
+                {
+                    "type": "Range",
+                    "x": "1064-1072",
+                    "y": "4052"
                 }
             ]
         }
     },
     {
-        "name": "Castle east wing",
+        "name": "Hyrule Castle - Basement 2",
         "indoors": true,
-        "address_value": "0x5"
+        "address_value": "0x4",
+        "entrance_ids": [
+            "0x3",
+            "0x4",
+            "0x5"
+        ],
+        "conditions": {
+            "coordinates": [
+                {
+                    "type": "Range",
+                    "x": "1184-1200",
+                    "y": "4108"
+                },
+                {
+                    "type": "Range",
+                    "x": "1036",
+                    "y": "4472-4496"
+                },
+                {
+                    "type": "Range",
+                    "x": "1036",
+                    "y": "4192-4208"
+                },
+                {
+                    "type": "Range",
+                    "x": "1064-1072",
+                    "y": "4108"
+                }
+            ]
+        }
+    },
+    {
+        "name": "Hyrule Castle - Basement 3",
+        "indoors": true,
+        "address_value": "0x4",
+        "entrance_ids": [
+            "0x3",
+            "0x4",
+            "0x5"
+        ],
+        "conditions": {
+            "coordinates": [
+                {
+                    "type": "Range",
+                    "x": "996",
+                    "y": "4472-4496"
+                },
+                {
+                    "type": "Range",
+                    "x": "996",
+                    "y": "4192-4208"
+                },
+                {
+                    "type": "Pair",
+                    "x": "632",
+                    "y": "4152"
+                }
+            ]
+        }
+    },
+    {
+        "name": "Hyrule Castle - Green Guard Trap",
+        "indoors": true,
+        "address_value": "0x4",
+        "entrance_ids": [
+            "0x3",
+            "0x4",
+            "0x5"
+        ],
+        "conditions": {
+            "coordinates": [
+                {
+                    "type": "Pair",
+                    "x": "632",
+                    "y": "4008"
+                },
+                {
+                    "type": "Pair",
+                    "x": "688",
+                    "y": "3960"
+                },
+                {
+                    "type": "Pair",
+                    "x": "632",
+                    "y": "3872"
+                }
+            ]
+        }
+    },
+    {
+        "name": "Hyrule Castle - Key Guard 2",
+        "indoors": true,
+        "address_value": "0x4",
+        "entrance_ids": [
+            "0x3",
+            "0x4",
+            "0x5"
+        ],
+        "conditions": {
+            "coordinates": [
+                {
+                    "type": "Pair",
+                    "x": "832",
+                    "y": "3960"
+                }
+            ]
+        }
+    },
+    {
+        "name": "Hyrule Castle - B7 Q1",
+        "indoors": true,
+        "address_value": "0x4",
+        "entrance_ids": [
+            "0x3",
+            "0x4",
+            "0x5"
+        ],
+        "conditions": {
+            "coordinates": [
+                {
+                    "type": "Pair",
+                    "x": "632",
+                    "y": "3800"
+                },
+                {
+                    "type": "Range",
+                    "x": "672",
+                    "y": "3659-3661"
+                }
+            ]
+        }
+    },
+    {
+        "name": "Hyrule Castle - A7",
+        "indoors": true,
+        "address_value": "0x4",
+        "entrance_ids": [
+            "0x3",
+            "0x4",
+            "0x5"
+        ],
+        "conditions": {
+            "coordinates": [
+                {
+                    "type": "Pair",
+                    "x": "161",
+                    "y": "3641"
+                },
+                {
+                    "type": "Range",
+                    "x": "80",
+                    "y": "3635-3636"
+                }
+            ]
+        }
+    },
+    {
+        "name": "Hyrule Castle - Zelda's Cell",
+        "indoors": true,
+        "address_value": "0x4",
+        "entrance_ids": [
+            "0x3",
+            "0x4",
+            "0x5"
+        ],
+        "conditions": {
+            "coordinates": [
+                {
+                    "type": "Range",
+                    "x": "81",
+                    "y": "4150-4151"
+                }
+            ]
+        }
+    },
+    {
+        "name": "Hyrule Castle - Throne Room",
+        "indoors": true,
+        "address_value": "0x4",
+        "entrance_ids": [
+            "0x3",
+            "0x4",
+            "0x5"
+        ],
+        "conditions": {
+            "coordinates": [
+                {
+                    "type": "Range",
+                    "x": "760",
+                    "y": "2983-2985"
+                }
+            ]
+        }
+    },
+    {
+        "name": "Hyrule Castle - East Wing South",
+        "indoors": true,
+        "address_value": "0x4",
+        "entrance_ids": [
+            "0x3",
+            "0x4",
+            "0x5"
+        ],
+        "conditions": {
+            "coordinates": [
+                {
+                    "type": "Pair",
+                    "x": "1072",
+                    "y": "3320"
+                },
+                {
+                    "type": "Pair",
+                    "x": "1144",
+                    "y": "3128"
+                },
+                {
+                    "type": "Pair",
+                    "x": "1272",
+                    "y": "3104"
+                },
+                {
+                    "type": "Pair",
+                    "x": "1144",
+                    "y": "3544"
+                }
+            ]
+        }
+    },
+    {
+        "name": "Hyrule Castle - East Wing North",
+        "indoors": true,
+        "address_value": "0x4",
+        "entrance_ids": [
+            "0x3",
+            "0x4",
+            "0x5"
+        ],
+        "conditions": {
+            "coordinates": [
+                {
+                    "type": "Pair",
+                    "x": "1072",
+                    "y": "2680"
+                },
+                {
+                    "type": "Pair",
+                    "x": "1144",
+                    "y": "3008"
+                },
+                {
+                    "type": "Pair",
+                    "x": "1272",
+                    "y": "3132"
+                }
+            ]
+        }
+    },
+    {
+        "name": "Sewers - Cactus",
+        "indoors": true,
+        "address_value": "0x4",
+        "entrance_ids": [
+            "0x3",
+            "0x4",
+            "0x5",
+            "0x81"
+        ],
+        "conditions": {
+            "coordinates": [
+                {
+                    "type": "Pair",
+                    "x": "760",
+                    "y": "2496"
+                },
+                {
+                    "type": "Range",
+                    "x": "936",
+                    "y": "2099-2101"
+                }
+            ]
+        }
+    },
+    {
+        "name": "Sewers - Snake Bend",
+        "indoors": true,
+        "address_value": "0x4",
+        "entrance_ids": [
+            "0x3",
+            "0x4",
+            "0x5",
+            "0x81"
+        ],
+        "conditions": {
+            "coordinates": [
+                {
+                    "type": "Range",
+                    "x": "1449",
+                    "y": "2102-2104"
+                },
+                {
+                    "type": "Range",
+                    "x": "1272",
+                    "y": "2105-2107"
+                }
+            ]
+        }
+    },
+    {
+        "name": "Sewers - Dark Cross",
+        "indoors": true,
+        "address_value": "0x4",
+        "entrance_ids": [
+            "0x3",
+            "0x4",
+            "0x5",
+            "0x81"
+        ],
+        "conditions": {
+            "coordinates": [
+                {
+                    "type": "Range",
+                    "x": "1272",
+                    "y": "1974-1976"
+                },
+                {
+                    "type": "Pair",
+                    "x": "1272",
+                    "y": "1568"
+                }
+            ]
+        }
+    },
+    {
+        "name": "Sewers - Splash Zone 1",
+        "indoors": true,
+        "address_value": "0x4",
+        "entrance_ids": [
+            "0x3",
+            "0x4",
+            "0x5",
+            "0x81"
+        ],
+        "conditions": {
+            "coordinates": [
+                {
+                    "type": "Pair",
+                    "x": "1272",
+                    "y": "1496"
+                },
+                {
+                    "type": "Pair",
+                    "x": "1048",
+                    "y": "1400"
+                }
+            ]
+        }
+    },
+    {
+        "name": "Sewers - Splash Zone 2",
+        "indoors": true,
+        "address_value": "0x4",
+        "entrance_ids": [
+            "0x3",
+            "0x4",
+            "0x5",
+            "0x81"
+        ],
+        "conditions": {
+            "coordinates": [
+                {
+                    "type": "Pair",
+                    "x": "984",
+                    "y": "1400"
+                },
+                {
+                    "type": "Pair",
+                    "x": "760",
+                    "y": "1312"
+                }
+            ]
+        }
+    },
+    {
+        "name": "Sewers - Key Snake",
+        "indoors": true,
+        "address_value": "0x4",
+        "entrance_ids": [
+            "0x3",
+            "0x4",
+            "0x5",
+            "0x81"
+        ],
+        "conditions": {
+            "coordinates": [
+                {
+                    "type": "Pair",
+                    "x": "760",
+                    "y": "1240"
+                },
+                {
+                    "type": "Pair",
+                    "x": "888",
+                    "y": "1056"
+                }
+            ]
+        }
+    },
+    {
+        "name": "Sewers - Bonk Walls",
+        "indoors": true,
+        "address_value": "0x4",
+        "entrance_ids": [
+            "0x3",
+            "0x4",
+            "0x5",
+            "0x81"
+        ],
+        "conditions": {
+            "coordinates": [
+                {
+                    "type": "Pair",
+                    "x": "888",
+                    "y": "984"
+                },
+                {
+                    "type": "Pair",
+                    "x": "808",
+                    "y": "888"
+                },
+                {
+                    "type": "Pair",
+                    "x": "808",
+                    "y": "632"
+                },
+                {
+                    "type": "Range",
+                    "x": "889",
+                    "y": "567-569"
+                },
+                {
+                    "type": "Pair",
+                    "x": "889",
+                    "y": "567-569"
+                }
+            ]
+        }
+    },
+    {
+        "name": "Sewers - Secret Room",
+        "indoors": true,
+        "address_value": "0x4",
+        "entrance_ids": [
+            "0x3",
+            "0x4",
+            "0x5",
+            "0x81"
+        ],
+        "conditions": {
+            "coordinates": [
+                {
+                    "type": "Pair",
+                    "x": "712",
+                    "y": "888"
+                },
+                {
+                    "type": "Pair",
+                    "x": "712",
+                    "y": "632"
+                }
+            ]
+        }
+    },
+    {
+        "name": "Sanctuary - Rat Room",
+        "indoors": true,
+        "address_value": "0x4",
+        "entrance_ids": [
+            "0x3",
+            "0x4",
+            "0x5",
+            "0x81"
+        ],
+        "conditions": {
+            "coordinates": [
+                {
+                    "type": "Range",
+                    "x": "1400",
+                    "y": "74-76"
+                },
+                {
+                    "type": "Pair",
+                    "x": "1272",
+                    "y": "192"
+                }
+            ]
+        }
+    },
+    {
+        "name": "Sanctuary - Snakes on a Higher Plane (It's a trap!)",
+        "indoors": true,
+        "address_value": "0x4",
+        "entrance_ids": [
+            "0x3",
+            "0x4",
+            "0x5",
+            "0x81"
+        ],
+        "conditions": {
+            "coordinates": [
+                {
+                    "type": "Pair",
+                    "x": "1272",
+                    "y": "312"
+                },
+                {
+                    "type": "Pair",
+                    "x": "1272",
+                    "y": "424"
+                }
+            ]
+        }
     },
     {
         "name": "Old man cave west",
@@ -1426,7 +1977,7 @@
         "address_value": "0x12"
     },
     {
-        "name": "Sanctuary",
+        "name": "Sanctuary - OW",
         "indoors": false,
         "address_value": "0x13"
     },

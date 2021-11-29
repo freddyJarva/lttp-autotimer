@@ -183,7 +183,10 @@ pub enum Coordinate {
 impl Coordinate {
     /// Matches `self` against another `Coordinate` enum returns `true` if criteria is fulfilled
     ///
-    /// matching `Coordinate::Pair` against `Coordinate::Pair` is a straightforward equality check
+    /// matching `Coordinate::Pair` against `Coordinate::Pair` is a straightforward equality check.
+    ///
+    /// when `self` is of type `Pair` and `other` of type `Range`, a match will be found
+    /// if the coordinates in `self` is bounded by the coordinate ranges in `other`
     pub fn matches(&self, other: &Self) -> bool {
         match self {
             Coordinate::Pair { x, y } => match other {

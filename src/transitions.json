@@ -5,7 +5,7 @@
         "address_value": "0x0"
     },
     {
-        "name": "Link's house",
+        "name": "Link's House - UW",
         "indoors": true,
         "address_value": "0x1"
     },
@@ -472,7 +472,7 @@
         "address_value": "0x5E",
         "conditions": {
             "previous_tile": {
-                "name": "Misery Mire",
+                "name": "Misery Mire - OW",
                 "indoors": false,
                 "address_value": "0x70"
             }
@@ -625,7 +625,13 @@
         "name": "Dark West Death Mountain Big fairy",
         "indoors": true,
         "address_value": "0x5E",
-        "conditions": {}
+        "conditions": {
+            "previous_tile": {
+                "name": "West Dark Death Mountain",
+                "indoors": false,
+                "address_value": "0x43"
+            }
+        }
     },
     {
         "name": "Aginah's cave",
@@ -914,7 +920,7 @@
         "address_value": "0x2B"
     },
     {
-        "name": "Links House",
+        "name": "Link's House - OW",
         "indoors": false,
         "address_value": "0x2C"
     },
@@ -1196,9 +1202,9 @@
         "address_value": "0x80",
         "conditions": {
             "previous_tile": {
-                "name": "Statues",
+                "name": "Stone Bridge",
                 "indoors": false,
-                "address_value": "0x34"
+                "address_value": "0x2D"
             }
         }
     },
@@ -1213,7 +1219,7 @@
         "address_value": "0x88"
     },
     {
-        "name": "Misery Mire",
+        "name": "Misery Mire - OW",
         "indoors": false,
         "address_value": "0x70"
     }

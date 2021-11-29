@@ -1,6 +1,9 @@
 use crate::event::{Event, EventEnum, EventLog, EventTracker};
 use check::Check;
 
+#[macro_use]
+extern crate lazy_static;
+
 use chrono::Utc;
 use clap::ArgMatches;
 
@@ -9,13 +12,13 @@ use transition::{Conditions, Tile};
 use websocket::{ClientBuilder, Message, OwnedMessage};
 
 use core::time;
-use std::io::{stdin, Error};
+use std::io::stdin;
 
 use crate::check::{deserialize_item_checks, deserialize_location_checks};
 use crate::output::{print_flags_toggled, print_transition, print_verbose_diff};
 use crate::qusb::{attempt_qusb_connection, QusbRequestMessage};
 use crate::snes::NamedAddresses;
-use crate::transition::{deserialize_transitions_map, entrance_transition, overworld_transition};
+use crate::transition::deserialize_transitions_map;
 
 use colored::*;
 use std::borrow::Cow;
@@ -113,7 +116,6 @@ pub fn connect_to_qusb(args: &ArgMatches) -> anyhow::Result<()> {
         .into_iter()
         .filter(|check| check.dunka_offset != 0)
         .collect();
-    let mut transitions: HashMap<SnesMemoryID, Tile> = deserialize_transitions_map()?;
 
     loop {
         match get_chunka_chungus(&mut client) {
@@ -122,7 +124,6 @@ pub fn connect_to_qusb(args: &ArgMatches) -> anyhow::Result<()> {
                     &snes_ram,
                     verbosity,
                     &mut ram_history,
-                    &mut transitions,
                     &mut writer,
                     &mut events,
                 )?;
@@ -337,7 +338,6 @@ fn check_for_transitions(
     ram: &SnesRam,
     verbosity: u64,
     ram_history: &mut VecDeque<SnesRam>,
-    transitions: &mut HashMap<SnesMemoryID, Tile>,
     writer: &mut Writer<File>,
     events: &mut EventTracker,
 ) -> anyhow::Result<()> {
@@ -375,76 +375,18 @@ fn check_for_transitions(
     // Use events if one transition has been triggered.
     match events.latest_transition() {
         Some(previous_transition) => {
-            // if overworld_transition(previous_res, response)
-            old_transition_check(ram_history, ram, transitions, writer)?;
+            let mut current_tile = Tile::try_from_ram(ram, &previous_transition)?;
+            if current_tile.name != previous_transition.name {
+                current_tile.time_transit();
+                writer.serialize(Event::from(&current_tile))?;
+                print_transition(&current_tile);
+                events.push(EventEnum::Transition(current_tile));
+            }
         }
-        // Use responses vec for the very first transition trigger. Should move away from this and only rely on events
         None => {
-            // panic!("You've reached the unreachable, as EventTracker should always contain a transition when using ::new");
-            old_transition_check(ram_history, ram, transitions, writer)?;
+            panic!("You've reached the unreachable, as EventTracker should always contain a transition when using ::new");
         }
     }
 
     Ok(())
-}
-
-fn old_transition_check(
-    ram_history: &mut VecDeque<SnesRam>,
-    ram: &SnesRam,
-    transitions: &mut HashMap<SnesMemoryID, Tile>,
-    writer: &mut Writer<File>,
-) -> Result<(), anyhow::Error> {
-    Ok(if ram_history.len() > 0 {
-        match ram_history.get(ram_history.len() - 1) {
-            // TODO: Use TriggeredTransition here instead
-            Some(previous_state) if overworld_transition(previous_state, ram) => {
-                let mut transition = transitions
-                    .get(&SnesMemoryID {
-                        address_value: Some(ram.overworld_tile() as u16),
-                        indoors: Some(false),
-                        ..Default::default()
-                    })
-                    .unwrap()
-                    .clone();
-                transition.time_transit();
-                // let transition = Transition::new(res.overworld_tile() as u16, false);
-                // events.push(EventEnum::Transition(transition.clone()));
-                writer.serialize(Event::from(&transition))?;
-
-                print_transition(&transition);
-            }
-            Some(previous_state) if entrance_transition(previous_state, ram) => {
-                let to;
-                if ram.indoors() == 1 {
-                    // new position is inside
-                    to = ram.entrance_id();
-                } else {
-                    // new position is outside
-                    to = ram.overworld_tile();
-                }
-                let snes_id = SnesMemoryID {
-                    address_value: Some(to as u16),
-                    indoors: Some(ram.indoors() == 1),
-                    ..Default::default()
-                };
-                let mut transition = transitions
-                    .get(&snes_id)
-                    .ok_or(Error::new(
-                        std::io::ErrorKind::NotFound,
-                        format!(
-                            "Couldn't find {:X} in transitions",
-                            snes_id.address_value.unwrap()
-                        ),
-                    ))?
-                    .clone();
-                transition.time_transit();
-                // let transition = Transition::new(to as u16, res.indoors() == 1);
-                // events.push(EventEnum::Transition(transition.clone()));
-                writer.serialize(Event::from(&transition))?;
-
-                print_transition(&transition);
-            }
-            _ => (),
-        }
-    })
 }

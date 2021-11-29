@@ -171,6 +171,7 @@ impl SnesRam {
 }
 
 /// Right now only used for testing purposes to create fake snes reads
+#[derive(Default)]
 pub struct SnesRamInitializer {
     pub overworld_tile: Option<u8>,
     pub entrance_id: Option<u8>,
@@ -180,10 +181,8 @@ pub struct SnesRamInitializer {
 }
 
 impl SnesRamInitializer {
-    fn build(&self) -> SnesRam {
-        let mut ram = SnesRam {
-            ..Default::default()
-        };
+    pub fn build(&self) -> SnesRam {
+        let mut ram = SnesRam::new();
         ram.set_entrance_id(self.entrance_id.unwrap_or(0));
         ram.set_indoors(self.indoors.unwrap_or(0));
         ram.set_overworld_tile(self.overworld_tile.unwrap_or(0));

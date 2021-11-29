@@ -1,3 +1,4 @@
+use crate::serde_lttp::coordinate_range_deserialize;
 use crate::{serde_lttp::coordinate_deserialize, snes::SnesRam};
 use anyhow::{anyhow, Result};
 use std::collections::HashMap;
@@ -117,7 +118,7 @@ fn coordinate_condition_met(conditions: &Conditions, current: &SnesRam) -> bool 
     if let Some(condition_coordinate) = &conditions.coordinates {
         condition_coordinate
             .iter()
-            .any(|c| &Coordinate::from(current) == c)
+            .any(|c| Coordinate::from(current).matches(c))
     } else {
         false
     }
@@ -163,16 +164,43 @@ pub struct Conditions {
 }
 
 #[derive(Debug, Deserialize, PartialEq, Clone, Hash, Eq)]
-pub struct Coordinate {
-    #[serde(deserialize_with = "coordinate_deserialize")]
-    x: u16,
-    #[serde(deserialize_with = "coordinate_deserialize")]
-    y: u16,
+#[serde(tag = "type")]
+pub enum Coordinate {
+    Pair {
+        #[serde(deserialize_with = "coordinate_deserialize")]
+        x: u16,
+        #[serde(deserialize_with = "coordinate_deserialize")]
+        y: u16,
+    },
+    Range {
+        #[serde(deserialize_with = "coordinate_range_deserialize")]
+        x: (u16, u16),
+        #[serde(deserialize_with = "coordinate_range_deserialize")]
+        y: (u16, u16),
+    },
+}
+
+impl Coordinate {
+    pub fn matches(&self, other: &Self) -> bool {
+        match self {
+            Coordinate::Pair { x, y } => {
+                let xy = (x, y);
+                println!("{:?} {:?}", self, other);
+                match other {
+                    Coordinate::Pair { x, y } => xy.0 == x && xy.1 == y,
+                    Coordinate::Range { x, y } => {
+                        xy.0 >= &x.0 && xy.0 <= &x.1 && xy.1 >= &y.0 && xy.1 <= &y.1
+                    }
+                }
+            }
+            Coordinate::Range { x, y } => todo!(),
+        }
+    }
 }
 
 impl From<&SnesRam> for Coordinate {
     fn from(ram: &SnesRam) -> Self {
-        Self {
+        Self::Pair {
             x: ram.x(),
             y: ram.y(),
         }
@@ -358,7 +386,7 @@ mod tests {
             Tile {name: "Mastersword Meadow".to_string(), ..Default::default()},
             "Mastersword Meadow"),
         GIVEN_ram_points_to_ep_uw_AND_xy_points_to_abyss_bridge_THEN_return_abyss_bridge: (
-            SnesRamInitializer {entrance_id: Some(0x8), indoors: Some(1), x: Some(4856), y: Some(6636), ..Default::default()}.build(),
+            SnesRamInitializer {entrance_id: Some(0x8), indoors: Some(1), x: Some(4856), y: Some(6336), ..Default::default()}.build(),
             Tile {..Default::default()},
             "Eastern Palace - Abyss Bridge"),
 

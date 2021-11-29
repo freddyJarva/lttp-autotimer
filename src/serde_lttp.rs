@@ -53,3 +53,17 @@ where
     let s: &str = Deserialize::deserialize(d)?;
     u16::from_str_radix(&s, 10).map_err(D::Error::custom)
 }
+
+pub fn coordinate_range_deserialize<'de, D>(d: D) -> Result<(u16, u16), D::Error>
+where
+    D: Deserializer<'de>,
+{
+    let s: &str = Deserialize::deserialize(d)?;
+    let vals: Vec<u16> = s
+        .split('-')
+        .into_iter()
+        .filter_map(|c| u16::from_str_radix(c, 10).map_err(D::Error::custom).ok())
+        .collect();
+    println!("{:?}", vals);
+    Ok((vals[0], vals[1]))
+}

@@ -181,19 +181,19 @@ pub enum Coordinate {
 }
 
 impl Coordinate {
+    /// Matches `self` against another `Coordinate` enum returns `true` if criteria is fulfilled
+    ///
+    /// matching `Coordinate::Pair` against `Coordinate::Pair` is a straightforward equality check
     pub fn matches(&self, other: &Self) -> bool {
         match self {
-            Coordinate::Pair { x, y } => {
-                let xy = (x, y);
-                println!("{:?} {:?}", self, other);
-                match other {
-                    Coordinate::Pair { x, y } => xy.0 == x && xy.1 == y,
-                    Coordinate::Range { x, y } => {
-                        xy.0 >= &x.0 && xy.0 <= &x.1 && xy.1 >= &y.0 && xy.1 <= &y.1
-                    }
-                }
-            }
-            Coordinate::Range { x, y } => todo!(),
+            Coordinate::Pair { x, y } => match other {
+                Coordinate::Pair { x: _, y: _ } => self == other,
+                Coordinate::Range {
+                    x: x_range,
+                    y: y_range,
+                } => x >= &x_range.0 && x <= &x_range.1 && y >= &y_range.0 && y <= &y_range.1,
+            },
+            Coordinate::Range { x: _, y: _ } => todo!(),
         }
     }
 }
@@ -389,6 +389,9 @@ mod tests {
             SnesRamInitializer {entrance_id: Some(0x8), indoors: Some(1), x: Some(4856), y: Some(6336), ..Default::default()}.build(),
             Tile {..Default::default()},
             "Eastern Palace - Abyss Bridge"),
-
+        GIVEN_ram_points_to_hc_uw_AND_xy_is_in_bounds_for_basement_1_range_THEN_return_basement_1: (
+            SnesRamInitializer {entrance_id: Some(0x4), indoors: Some(1), x: Some(1192), y: Some(4052), ..Default::default()}.build(),
+            Tile {..Default::default()},
+            "Hyrule Castle - Basement 1"),
     }
 }

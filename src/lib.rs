@@ -375,12 +375,13 @@ fn check_for_transitions(
     // Use events if one transition has been triggered.
     match events.latest_transition() {
         Some(previous_transition) => {
-            let mut current_tile = Tile::try_from_ram(ram, &previous_transition)?;
-            if current_tile.name != previous_transition.name {
-                current_tile.time_transit();
-                writer.serialize(Event::from(&current_tile))?;
-                print_transition(&current_tile);
-                events.push(EventEnum::Transition(current_tile));
+            if let Ok(mut current_tile) = Tile::try_from_ram(ram, &previous_transition) {
+                if current_tile.name != previous_transition.name {
+                    current_tile.time_transit();
+                    writer.serialize(Event::from(&current_tile))?;
+                    print_transition(&current_tile);
+                    events.push(EventEnum::Transition(current_tile));
+                }
             }
         }
         None => {

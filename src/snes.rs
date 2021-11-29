@@ -2,7 +2,7 @@ use crate::{
     COORDINATE_CHUNK_SIZE, COORDINATE_OFFSET, DUNKA_CHUNK_SIZE, DUNKA_OFFSET, TILE_INFO_CHUNK_SIZE,
 };
 
-use byteorder::{BigEndian, ByteOrder};
+use byteorder::{ByteOrder, LittleEndian};
 
 const OVERWORLD_TILE_ADDRESS: usize = 0x40a;
 const ENTRANCE_ID_ADDRESS: usize = 0x10E;
@@ -38,11 +38,11 @@ impl NamedAddresses for SnesRam {
     }
 
     fn x(&self) -> u16 {
-        BigEndian::read_u16(&self.coordinate_chunk[2..])
+        LittleEndian::read_u16(&self.coordinate_chunk[2..])
     }
 
     fn y(&self) -> u16 {
-        BigEndian::read_u16(&self.coordinate_chunk[..2])
+        LittleEndian::read_u16(&self.coordinate_chunk[..2])
     }
 }
 
@@ -61,11 +61,11 @@ impl SetNamedAddresses for SnesRam {
 
     fn set_x(&mut self, word: u16) {
         println!("{:?}", &self.coordinate_chunk);
-        BigEndian::write_u16(&mut self.coordinate_chunk[2..], word)
+        LittleEndian::write_u16(&mut self.coordinate_chunk[2..], word)
     }
 
     fn set_y(&mut self, word: u16) {
-        BigEndian::write_u16(&mut self.coordinate_chunk[..2], word)
+        LittleEndian::write_u16(&mut self.coordinate_chunk[..2], word)
     }
 }
 
@@ -83,11 +83,11 @@ impl NamedAddresses for &SnesRam {
     }
 
     fn x(&self) -> u16 {
-        BigEndian::read_u16(&self.coordinate_chunk[2..])
+        LittleEndian::read_u16(&self.coordinate_chunk[2..])
     }
 
     fn y(&self) -> u16 {
-        BigEndian::read_u16(&self.coordinate_chunk[..2])
+        LittleEndian::read_u16(&self.coordinate_chunk[..2])
     }
 }
 
@@ -170,6 +170,7 @@ impl SnesRam {
     }
 }
 
+#[cfg(test)]
 /// Right now only used for testing purposes to create fake snes reads
 #[derive(Default)]
 pub struct SnesRamInitializer {
@@ -180,6 +181,7 @@ pub struct SnesRamInitializer {
     pub y: Option<u16>,
 }
 
+#[cfg(test)]
 impl SnesRamInitializer {
     pub fn build(&self) -> SnesRam {
         let mut ram = SnesRam::new();

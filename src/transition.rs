@@ -101,8 +101,9 @@ impl Tile {
                                 return Ok(tile.clone());
                             }
                         }
-                        // If conditions haven't been created, just take one of the matches found as a last resort
-                        None => return Ok(matches[0].clone()),
+                        // If conditions haven't been created yet, just return error
+                        None => panic!("This is bad"),
+                        // None => return Err(anyhow!("No matches found for current ram value")),
                     };
                 }
                 Err(anyhow!("No matches found for current ram value"))

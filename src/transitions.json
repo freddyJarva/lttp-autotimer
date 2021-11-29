@@ -2,12 +2,16 @@
     {
         "name": "Start",
         "indoors": true,
-        "address_value": "0x0"
+        "entrance_ids": [
+            "0x0"
+        ]
     },
     {
         "name": "Link's House - UW",
         "indoors": true,
-        "address_value": "0x1"
+        "entrance_ids": [
+            "0x1"
+        ]
     },
     {
         "name": "Sanctuary",
@@ -742,17 +746,20 @@
     {
         "name": "Old man cave west",
         "indoors": true,
-        "address_value": "0x6"
+        "entrance_ids": [
+            "0x6"
+        ]
     },
     {
         "name": "Old man cave east",
         "indoors": true,
-        "address_value": "0x7"
+        "entrance_ids": [
+            "0x7"
+        ]
     },
     {
         "name": "Eastern Palace - Lobby",
         "indoors": true,
-        "address_value": "0x8",
         "conditions": {
             "coordinates": [
                 {
@@ -776,12 +783,14 @@
                     "type": "Pair"
                 }
             ]
-        }
+        },
+        "entrance_ids": [
+            "0x8"
+        ]
     },
     {
         "name": "Eastern Palace - Abyss Bridge",
         "indoors": true,
-        "address_value": "0x8",
         "conditions": {
             "coordinates": [
                 {
@@ -795,12 +804,14 @@
                     "type": "Pair"
                 }
             ]
-        }
+        },
+        "entrance_ids": [
+            "0x8"
+        ]
     },
     {
         "name": "Eastern Palace - Ball Corridor",
         "indoors": true,
-        "address_value": "0x8",
         "conditions": {
             "coordinates": [
                 {
@@ -824,12 +835,14 @@
                     "type": "Pair"
                 }
             ]
-        }
+        },
+        "entrance_ids": [
+            "0x8"
+        ]
     },
     {
         "name": "Eastern Palace - Big Chest Room",
         "indoors": true,
-        "address_value": "0x8",
         "conditions": {
             "coordinates": [
                 {
@@ -873,12 +886,14 @@
                     "type": "Pair"
                 }
             ]
-        }
+        },
+        "entrance_ids": [
+            "0x8"
+        ]
     },
     {
         "name": "Eastern Palace - East of Big Chest Room",
         "indoors": true,
-        "address_value": "0x8",
         "conditions": {
             "coordinates": [
                 {
@@ -907,12 +922,14 @@
                     "type": "Pair"
                 }
             ]
-        }
+        },
+        "entrance_ids": [
+            "0x8"
+        ]
     },
     {
         "name": "Eastern Palace - Lone Anti Fairy",
         "indoors": true,
-        "address_value": "0x8",
         "conditions": {
             "coordinates": [
                 {
@@ -926,12 +943,14 @@
                     "type": "Pair"
                 }
             ]
-        }
+        },
+        "entrance_ids": [
+            "0x8"
+        ]
     },
     {
         "name": "Eastern Palace - East Chest Room",
         "indoors": true,
-        "address_value": "0x8",
         "conditions": {
             "coordinates": [
                 {
@@ -945,12 +964,14 @@
                     "type": "Pair"
                 }
             ]
-        }
+        },
+        "entrance_ids": [
+            "0x8"
+        ]
     },
     {
         "name": "Eastern Palace - West of Big Chest Room",
         "indoors": true,
-        "address_value": "0x8",
         "conditions": {
             "coordinates": [
                 {
@@ -979,12 +1000,14 @@
                     "type": "Pair"
                 }
             ]
-        }
+        },
+        "entrance_ids": [
+            "0x8"
+        ]
     },
     {
         "name": "Eastern Palace - Stalfos Trap",
         "indoors": true,
-        "address_value": "0x8",
         "conditions": {
             "coordinates": [
                 {
@@ -998,12 +1021,14 @@
                     "type": "Pair"
                 }
             ]
-        }
+        },
+        "entrance_ids": [
+            "0x8"
+        ]
     },
     {
         "name": "Eastern Palace - Compass Chest Room",
         "indoors": true,
-        "address_value": "0x8",
         "conditions": {
             "coordinates": [
                 {
@@ -1017,12 +1042,14 @@
                     "type": "Pair"
                 }
             ]
-        }
+        },
+        "entrance_ids": [
+            "0x8"
+        ]
     },
     {
         "name": "Eastern Palace - Dark Double Anti Fairy",
         "indoors": true,
-        "address_value": "0x8",
         "conditions": {
             "coordinates": [
                 {
@@ -1041,12 +1068,14 @@
                     "type": "Pair"
                 }
             ]
-        }
+        },
+        "entrance_ids": [
+            "0x8"
+        ]
     },
     {
         "name": "Eastern Palace - Dark Key Pot",
         "indoors": true,
-        "address_value": "0x8",
         "conditions": {
             "coordinates": [
                 {
@@ -1055,12 +1084,14 @@
                     "type": "Pair"
                 }
             ]
-        }
+        },
+        "entrance_ids": [
+            "0x8"
+        ]
     },
     {
         "name": "Eastern Palace - Big Key Chest Room",
         "indoors": true,
-        "address_value": "0x8",
         "conditions": {
             "coordinates": [
                 {
@@ -1074,12 +1105,14 @@
                     "type": "Pair"
                 }
             ]
-        }
+        },
+        "entrance_ids": [
+            "0x8"
+        ]
     },
     {
         "name": "Eastern Palace - Fairy Drop",
         "indoors": true,
-        "address_value": "0x8",
         "conditions": {
             "coordinates": [
                 {
@@ -1088,12 +1121,14 @@
                     "type": "Pair"
                 }
             ]
-        }
+        },
+        "entrance_ids": [
+            "0x8"
+        ]
     },
     {
         "name": "Eastern Palace - Fairy Drop",
         "indoors": true,
-        "address_value": "0x8",
         "conditions": {
             "coordinates": [
                 {
@@ -1102,12 +1137,14 @@
                     "type": "Pair"
                 }
             ]
-        }
+        },
+        "entrance_ids": [
+            "0x8"
+        ]
     },
     {
         "name": "Eastern Palace - Dark Bastard Room",
         "indoors": true,
-        "address_value": "0x8",
         "conditions": {
             "coordinates": [
                 {
@@ -1131,12 +1168,14 @@
                     "type": "Pair"
                 }
             ]
-        }
+        },
+        "entrance_ids": [
+            "0x8"
+        ]
     },
     {
         "name": "Eastern Palace - Money",
         "indoors": true,
-        "address_value": "0x8",
         "conditions": {
             "coordinates": [
                 {
@@ -1145,12 +1184,14 @@
                     "type": "Pair"
                 }
             ]
-        }
+        },
+        "entrance_ids": [
+            "0x8"
+        ]
     },
     {
         "name": "Eastern Palace - Double Anti Fairy",
         "indoors": true,
-        "address_value": "0x8",
         "conditions": {
             "coordinates": [
                 {
@@ -1164,12 +1205,14 @@
                     "type": "Pair"
                 }
             ]
-        }
+        },
+        "entrance_ids": [
+            "0x8"
+        ]
     },
     {
         "name": "Eastern Palace - Triple Green Goblin (whatever they're called)",
         "indoors": true,
-        "address_value": "0x8",
         "conditions": {
             "coordinates": [
                 {
@@ -1183,12 +1226,14 @@
                     "type": "Pair"
                 }
             ]
-        }
+        },
+        "entrance_ids": [
+            "0x8"
+        ]
     },
     {
         "name": "Eastern Palace - Ball Room",
         "indoors": true,
-        "address_value": "0x8",
         "conditions": {
             "coordinates": [
                 {
@@ -1202,12 +1247,14 @@
                     "type": "Pair"
                 }
             ]
-        }
+        },
+        "entrance_ids": [
+            "0x8"
+        ]
     },
     {
         "name": "Eastern Palace - Bow Locked Room",
         "indoors": true,
-        "address_value": "0x8",
         "conditions": {
             "coordinates": [
                 {
@@ -1216,715 +1263,986 @@
                     "type": "Pair"
                 }
             ]
-        }
+        },
+        "entrance_ids": [
+            "0x8"
+        ]
     },
     {
         "name": "Desert Palace lobby",
         "indoors": true,
-        "address_value": "0x9"
+        "entrance_ids": [
+            "0x9"
+        ]
     },
     {
         "name": "Desert Palace east",
         "indoors": true,
-        "address_value": "0xA"
+        "entrance_ids": [
+            "0xA"
+        ]
     },
     {
         "name": "Desert Palace west",
         "indoors": true,
-        "address_value": "0xB"
+        "entrance_ids": [
+            "0xB"
+        ]
     },
     {
         "name": "Desert Palace back",
         "indoors": true,
-        "address_value": "0xC"
+        "entrance_ids": [
+            "0xC"
+        ]
     },
     {
         "name": "Sahasrahla's house west",
         "indoors": true,
-        "address_value": "0xD"
+        "entrance_ids": [
+            "0xD"
+        ]
     },
     {
         "name": "Sahasrahla's house east",
         "indoors": true,
-        "address_value": "0xE"
+        "entrance_ids": [
+            "0xE"
+        ]
     },
     {
         "name": "Angry bro west",
         "indoors": true,
-        "address_value": "0xF"
+        "entrance_ids": [
+            "0xF"
+        ]
     },
     {
         "name": "Angry bro east",
         "indoors": true,
-        "address_value": "0x10"
+        "entrance_ids": [
+            "0x10"
+        ]
     },
     {
         "name": "Magic bat",
         "indoors": true,
-        "address_value": "0x11"
+        "entrance_ids": [
+            "0x11"
+        ]
     },
     {
         "name": "Lumberjack cave",
         "indoors": true,
-        "address_value": "0x12"
+        "entrance_ids": [
+            "0x12"
+        ]
     },
     {
         "name": "Super bunny bottom",
         "indoors": true,
-        "address_value": "0x13"
+        "entrance_ids": [
+            "0x13"
+        ]
     },
     {
         "name": "Super bunny top",
         "indoors": true,
-        "address_value": "0x14"
+        "entrance_ids": [
+            "0x14"
+        ]
     },
     {
         "name": "Turtle Rock laser pots",
         "indoors": true,
-        "address_value": "0x15"
+        "entrance_ids": [
+            "0x15"
+        ]
     },
     {
         "name": "Bumper cave bottom",
         "indoors": true,
-        "address_value": "0x16"
+        "entrance_ids": [
+            "0x16"
+        ]
     },
     {
         "name": "Bumper cave top",
         "indoors": true,
-        "address_value": "0x17"
+        "entrance_ids": [
+            "0x17"
+        ]
     },
     {
         "name": "Turtle Rock laser bridge",
         "indoors": true,
-        "address_value": "0x18"
+        "entrance_ids": [
+            "0x18"
+        ]
     },
     {
         "name": "Turtle Rock big chest",
         "indoors": true,
-        "address_value": "0x19"
+        "entrance_ids": [
+            "0x19"
+        ]
     },
     {
         "name": "East Death Mountain useless bottom",
         "indoors": true,
-        "address_value": "0x1A"
+        "entrance_ids": [
+            "0x1A"
+        ]
     },
     {
         "name": "East Death Mountain useless top",
         "indoors": true,
-        "address_value": "0x1B"
+        "entrance_ids": [
+            "0x1B"
+        ]
     },
     {
         "name": "Spiral cave exit",
         "indoors": true,
-        "address_value": "0x1C"
+        "entrance_ids": [
+            "0x1C"
+        ]
     },
     {
         "name": "Spiral cave top",
         "indoors": true,
-        "address_value": "0x1D"
+        "entrance_ids": [
+            "0x1D"
+        ]
     },
     {
         "name": "Paradox cave bottom",
         "indoors": true,
-        "address_value": "0x1E"
+        "entrance_ids": [
+            "0x1E"
+        ]
     },
     {
         "name": "Paradox cave middle",
         "indoors": true,
-        "address_value": "0x1F"
+        "entrance_ids": [
+            "0x1F"
+        ]
     },
     {
         "name": "Paradox cave top",
         "indoors": true,
-        "address_value": "0x20"
+        "entrance_ids": [
+            "0x20"
+        ]
     },
     {
         "name": "Kiki cave west",
         "indoors": true,
-        "address_value": "0x21"
+        "entrance_ids": [
+            "0x21"
+        ]
     },
     {
         "name": "Kiki cave east",
         "indoors": true,
-        "address_value": "0x22"
+        "entrance_ids": [
+            "0x22"
+        ]
     },
     {
         "name": "Spectacle rock",
         "indoors": true,
-        "address_value": "0x23"
+        "entrance_ids": [
+            "0x23"
+        ]
     },
     {
         "name": "Agahnim's Tower",
         "indoors": true,
-        "address_value": "0x24"
+        "entrance_ids": [
+            "0x24"
+        ]
     },
     {
         "name": "Swamp Palace",
         "indoors": true,
-        "address_value": "0x25"
+        "entrance_ids": [
+            "0x25"
+        ]
     },
     {
         "name": "Palace of Darkness",
         "indoors": true,
-        "address_value": "0x26"
+        "entrance_ids": [
+            "0x26"
+        ]
     },
     {
         "name": "Misery Mire",
         "indoors": true,
-        "address_value": "0x27"
+        "entrance_ids": [
+            "0x27"
+        ]
     },
     {
         "name": "Skull Woods west",
         "indoors": true,
-        "address_value": "0x28"
+        "entrance_ids": [
+            "0x28"
+        ]
     },
     {
         "name": "Skull Woods mummy statue",
         "indoors": true,
-        "address_value": "0x29"
+        "entrance_ids": [
+            "0x29"
+        ]
     },
     {
         "name": "Skull Woods big chest",
         "indoors": true,
-        "address_value": "0x2A"
+        "entrance_ids": [
+            "0x2A"
+        ]
     },
     {
         "name": "Skull Woods back",
         "indoors": true,
-        "address_value": "0x2B"
+        "entrance_ids": [
+            "0x2B"
+        ]
     },
     {
         "name": "Lost Woods hideout",
         "indoors": true,
-        "address_value": "0x2C"
+        "entrance_ids": [
+            "0x2C"
+        ]
     },
     {
         "name": "Ice Palace",
         "indoors": true,
-        "address_value": "0x2D"
+        "entrance_ids": [
+            "0x2D"
+        ]
     },
     {
         "name": "Death Mountain exit west",
         "indoors": true,
-        "address_value": "0x2E"
+        "entrance_ids": [
+            "0x2E"
+        ]
     },
     {
         "name": "Death Mountain exit from summit",
         "indoors": true,
-        "address_value": "0x2F"
+        "entrance_ids": [
+            "0x2F"
+        ]
     },
     {
         "name": "Old man home cave west",
         "indoors": true,
-        "address_value": "0x30"
+        "entrance_ids": [
+            "0x30"
+        ]
     },
     {
         "name": "Old man home cave east",
         "indoors": true,
-        "address_value": "0x31"
+        "entrance_ids": [
+            "0x31"
+        ]
     },
     {
         "name": "Hyrule Castle secret entrance",
         "indoors": true,
-        "address_value": "0x32"
+        "entrance_ids": [
+            "0x32"
+        ]
     },
     {
         "name": "Tower of Hera",
         "indoors": true,
-        "address_value": "0x33"
+        "entrance_ids": [
+            "0x33"
+        ]
     },
     {
         "name": "Thieves' Town",
         "indoors": true,
-        "address_value": "0x34"
+        "entrance_ids": [
+            "0x34"
+        ]
     },
     {
         "name": "Turtle Rock",
         "indoors": true,
-        "address_value": "0x35"
+        "entrance_ids": [
+            "0x35"
+        ]
     },
     {
         "name": "Pyramid drop",
         "indoors": true,
-        "address_value": "0x36"
+        "entrance_ids": [
+            "0x36"
+        ]
     },
     {
         "name": "Ganon's Tower",
         "indoors": true,
-        "address_value": "0x37"
+        "entrance_ids": [
+            "0x37"
+        ]
     },
     {
         "name": "Graveyard fairy",
         "indoors": true,
-        "address_value": "0x38"
+        "entrance_ids": [
+            "0x38"
+        ]
     },
     {
         "name": "Kakariko well",
         "indoors": true,
-        "address_value": "0x39"
+        "entrance_ids": [
+            "0x39"
+        ]
     },
     {
         "name": "Hookshot cave bottom",
         "indoors": true,
-        "address_value": "0x3A"
+        "entrance_ids": [
+            "0x3A"
+        ]
     },
     {
         "name": "Hookshot cave top",
         "indoors": true,
-        "address_value": "0x3B"
+        "entrance_ids": [
+            "0x3B"
+        ]
     },
     {
         "name": "Lost Woods chest game",
         "indoors": true,
-        "address_value": "0x3C"
+        "entrance_ids": [
+            "0x3C"
+        ]
     },
     {
         "name": "Swamp thief cave hideout",
         "indoors": true,
-        "address_value": "0x3D"
+        "entrance_ids": [
+            "0x3D"
+        ]
     },
     {
         "name": "Eastern snitch house",
         "indoors": true,
-        "address_value": "0x3E"
+        "entrance_ids": [
+            "0x3E"
+        ]
     },
     {
         "name": "Cucco easter egg",
         "indoors": true,
-        "address_value": "0x3F"
+        "entrance_ids": [
+            "0x3F"
+        ]
     },
     {
         "name": "Sick kid",
         "indoors": true,
-        "address_value": "0x40"
+        "entrance_ids": [
+            "0x40"
+        ]
     },
     {
         "name": "Spike cave",
         "indoors": true,
-        "address_value": "0x41"
+        "entrance_ids": [
+            "0x41"
+        ]
     },
     {
         "name": "Tavern front",
         "indoors": true,
-        "address_value": "0x42"
+        "entrance_ids": [
+            "0x42"
+        ]
     },
     {
         "name": "Tavern back",
         "indoors": true,
-        "address_value": "0x43"
+        "entrance_ids": [
+            "0x43"
+        ]
     },
     {
         "name": "Kakariko Inn",
         "indoors": true,
-        "address_value": "0x44"
+        "entrance_ids": [
+            "0x44"
+        ]
     },
     {
         "name": "Sahasrahla's hideout",
         "indoors": true,
-        "address_value": "0x45"
+        "entrance_ids": [
+            "0x45"
+        ]
     },
     {
         "name": "Kakariko shop",
         "indoors": true,
-        "address_value": "0x46"
+        "entrance_ids": [
+            "0x46"
+        ]
     },
     {
         "name": "Village of Outcasts chest game",
         "indoors": true,
-        "address_value": "0x47"
+        "entrance_ids": [
+            "0x47"
+        ]
     },
     {
         "name": "Village of Outcasts bombable hut",
         "indoors": true,
-        "address_value": "0x48"
+        "entrance_ids": [
+            "0x48"
+        ]
     },
     {
         "name": "Library",
         "indoors": true,
-        "address_value": "0x49"
+        "entrance_ids": [
+            "0x49"
+        ]
     },
     {
         "name": "Kakariko bombable hut",
         "indoors": true,
-        "address_value": "0x4A"
+        "entrance_ids": [
+            "0x4A"
+        ]
     },
     {
         "name": "Chicken hut",
         "indoors": true,
-        "address_value": "0x4B"
+        "entrance_ids": [
+            "0x4B"
+        ]
     },
     {
         "name": "Potion shop",
         "indoors": true,
-        "address_value": "0x4C"
+        "entrance_ids": [
+            "0x4C"
+        ]
     },
     {
         "name": "Aginah's cave",
         "indoors": true,
-        "address_value": "0x4D"
+        "entrance_ids": [
+            "0x4D"
+        ]
     },
     {
         "name": "Dam",
         "indoors": true,
-        "address_value": "0x4E"
+        "entrance_ids": [
+            "0x4E"
+        ]
     },
     {
         "name": "Mimic cave",
         "indoors": true,
-        "address_value": "0x4F"
+        "entrance_ids": [
+            "0x4F"
+        ]
     },
     {
         "name": "East Death Mountain fairy pond cave",
         "indoors": true,
-        "address_value": "0x50"
+        "entrance_ids": [
+            "0x50"
+        ]
     },
     {
         "name": "Circle of bushes heart piece cave",
         "indoors": true,
-        "address_value": "0x51"
+        "entrance_ids": [
+            "0x51"
+        ]
     },
     {
         "name": "Graveyard ledge heart piece cave",
         "indoors": true,
-        "address_value": "0x52"
+        "entrance_ids": [
+            "0x52"
+        ]
     },
     {
         "name": "Bomb shop",
         "indoors": true,
-        "address_value": "0x53"
+        "entrance_ids": [
+            "0x53"
+        ]
     },
     {
         "name": "C-shaped house",
         "indoors": true,
-        "address_value": "0x54"
+        "entrance_ids": [
+            "0x54"
+        ]
     },
     {
         "name": "Southeast of Eastern Ruins fairy cave",
         "indoors": true,
-        "address_value": "0x55"
+        "entrance_ids": [
+            "0x55"
+        ]
     },
     {
         "name": "Mire big fairy",
         "indoors": true,
-        "address_value": "0x5E",
         "conditions": {
             "previous_tile": {
                 "name": "Misery Mire - OW",
                 "indoors": false,
                 "address_value": "0x70"
             }
-        }
+        },
+        "entrance_ids": [
+            "0x5E"
+        ]
     },
     {
         "name": "Dark World lumberjacks shop",
         "indoors": true,
-        "address_value": "0x60",
-        "conditions": {}
+        "conditions": {},
+        "entrance_ids": [
+            "0x60"
+        ]
     },
     {
         "name": "Lake Hylia shop",
         "indoors": true,
-        "address_value": "0x58",
-        "conditions": {}
+        "conditions": {},
+        "entrance_ids": [
+            "0x58"
+        ]
     },
     {
         "name": "Arrow game",
         "indoors": true,
-        "address_value": "0x59"
+        "entrance_ids": [
+            "0x59"
+        ]
     },
     {
         "name": "Dark World sanctuary cave",
         "indoors": true,
-        "address_value": "0x5A"
+        "entrance_ids": [
+            "0x5A"
+        ]
     },
     {
         "name": "King's tomb",
         "indoors": true,
-        "address_value": "0x5B"
+        "entrance_ids": [
+            "0x5B"
+        ]
     },
     {
         "name": "Waterfall of Wishing",
         "indoors": true,
-        "address_value": "0x5C"
+        "entrance_ids": [
+            "0x5C"
+        ]
     },
     {
         "name": "Pond of Happiness",
         "indoors": true,
-        "address_value": "0x5D"
+        "entrance_ids": [
+            "0x5D"
+        ]
     },
     {
         "name": "Big fairy (Eastern Ruins)",
         "indoors": true,
-        "address_value": "0x5E",
         "previous_tile": {
             "name": "Tree Line",
             "indoors": false,
             "address_value": "0x2E"
-        }
+        },
+        "entrance_ids": [
+            "0x5E"
+        ]
     },
     {
         "name": "Mire shed",
         "indoors": true,
-        "address_value": "0x5F"
+        "entrance_ids": [
+            "0x5F"
+        ]
     },
     {
         "name": "Village of Outcasts shop",
         "indoors": true,
-        "address_value": "0x60",
-        "conditions": {}
+        "conditions": {},
+        "entrance_ids": [
+            "0x60"
+        ]
     },
     {
         "name": "Blind's hut",
         "indoors": true,
-        "address_value": "0x61"
+        "entrance_ids": [
+            "0x61"
+        ]
     },
     {
         "name": "Watto's cave",
         "indoors": true,
-        "address_value": "0x62"
+        "entrance_ids": [
+            "0x62"
+        ]
     },
     {
         "name": "Fat Fairy",
         "indoors": true,
-        "address_value": "0x63"
+        "entrance_ids": [
+            "0x63"
+        ]
     },
     {
         "name": "Smithy's house",
         "indoors": true,
-        "address_value": "0x64"
+        "entrance_ids": [
+            "0x64"
+        ]
     },
     {
         "name": "Light World fortune teller (Kakariko)",
         "indoors": true,
-        "address_value": "0x65"
+        "entrance_ids": [
+            "0x65"
+        ]
     },
     {
         "name": "Dark World fortune teller",
         "indoors": true,
-        "address_value": "0x66"
+        "entrance_ids": [
+            "0x66"
+        ]
     },
     {
         "name": "South of Kakariko chest game",
         "indoors": true,
-        "address_value": "0x67"
+        "entrance_ids": [
+            "0x67"
+        ]
     },
     {
         "name": "Broccoli's house",
         "indoors": true,
-        "address_value": "0x68"
+        "entrance_ids": [
+            "0x68"
+        ]
     },
     {
         "name": "Bird hint NPC cave",
         "indoors": true,
-        "address_value": "0x69"
+        "entrance_ids": [
+            "0x69"
+        ]
     },
     {
         "name": "Hamburger Helper's cave",
         "indoors": true,
-        "address_value": "0x6A"
+        "entrance_ids": [
+            "0x6A"
+        ]
     },
     {
         "name": "Ice rod cave golden bee",
         "indoors": true,
-        "address_value": "0x56"
+        "entrance_ids": [
+            "0x56"
+        ]
     },
     {
         "name": "Big fairy (South of Link's house)",
         "indoors": true,
-        "address_value": "0x5E",
         "conditions": {
             "previous_tile": {
                 "name": "South Pass",
                 "indoors": false,
                 "address_value": "0x3C"
             }
-        }
+        },
+        "entrance_ids": [
+            "0x5E"
+        ]
     },
     {
         "name": "Big fairy (South of Kiki)",
         "indoors": true,
-        "address_value": "0x5E",
-        "conditions": {}
+        "conditions": {},
+        "entrance_ids": [
+            "0x5E"
+        ]
     },
     {
         "name": "Dark Death Mountain shop",
         "indoors": true,
-        "address_value": "0x58",
-        "conditions": {}
+        "conditions": {},
+        "entrance_ids": [
+            "0x58"
+        ]
     },
     {
         "name": "Dark World witch shop",
         "indoors": true,
-        "address_value": "0x60",
-        "conditions": {}
+        "conditions": {},
+        "entrance_ids": [
+            "0x60"
+        ]
     },
     {
         "name": "Dark West Death Mountain Big fairy",
         "indoors": true,
-        "address_value": "0x5E",
         "conditions": {
             "previous_tile": {
                 "name": "West Dark Death Mountain",
                 "indoors": false,
                 "address_value": "0x43"
             }
-        }
+        },
+        "entrance_ids": [
+            "0x5E"
+        ]
     },
     {
         "name": "Aginah's cave",
         "indoors": true,
-        "address_value": "0x4D"
+        "entrance_ids": [
+            "0x4D"
+        ]
     },
     {
         "name": "Desert big fairy",
         "indoors": true,
-        "address_value": "0x5E",
-        "conditions": {}
+        "conditions": {},
+        "entrance_ids": [
+            "0x5E"
+        ]
     },
     {
         "name": "Light World fortune teller (Lake Hylia)",
         "indoors": true,
-        "address_value": "0x65"
+        "entrance_ids": [
+            "0x65"
+        ]
     },
     {
         "name": "Dark Lake Hylia shop",
         "indoors": true,
-        "address_value": "0x60",
-        "conditions": {}
+        "conditions": {},
+        "entrance_ids": [
+            "0x60"
+        ]
     },
     {
         "name": "East of Village of Outcasts shop",
         "indoors": true,
-        "address_value": "0x57"
+        "entrance_ids": [
+            "0x57"
+        ]
     },
     {
         "name": "Bumpkin residency",
         "indoors": true,
-        "address_value": "0x6B"
+        "entrance_ids": [
+            "0x6B"
+        ]
     },
     {
         "name": "Link's house bonk rocks fairy pond",
         "indoors": true,
-        "address_value": "0x71",
-        "conditions": {}
+        "conditions": {},
+        "entrance_ids": [
+            "0x71"
+        ]
     },
     {
         "name": "Bomb shop bonk rocks fairy pond",
         "indoors": true,
-        "address_value": "0x71",
-        "conditions": {}
+        "conditions": {},
+        "entrance_ids": [
+            "0x71"
+        ]
     },
     {
         "name": "Desert thief hideout",
         "indoors": true,
-        "address_value": "0x6D"
+        "entrance_ids": [
+            "0x6D"
+        ]
     },
     {
         "name": "Bonk rocks heart piece cave",
         "indoors": true,
-        "address_value": "0x6E"
+        "entrance_ids": [
+            "0x6E"
+        ]
     },
     {
         "name": "Lake Hylia falls thief hideout",
         "indoors": true,
-        "address_value": "0x6F"
+        "entrance_ids": [
+            "0x6F"
+        ]
     },
     {
         "name": "Dark Lake Hylia falls dev cave",
         "indoors": true,
-        "address_value": "0x70"
+        "entrance_ids": [
+            "0x70"
+        ]
     },
     {
         "name": "Minimoldorm cave",
         "indoors": true,
-        "address_value": "0x6C"
+        "entrance_ids": [
+            "0x6C"
+        ]
     },
     {
         "name": "Checkerboard cave heart piece",
         "indoors": true,
-        "address_value": "0x72"
+        "entrance_ids": [
+            "0x72"
+        ]
     },
     {
         "name": "Stake puzzle heart piece cave",
         "indoors": true,
-        "address_value": "0x83"
+        "entrance_ids": [
+            "0x83"
+        ]
     },
     {
         "name": "Ice rod cave",
         "indoors": true,
-        "address_value": "0x84"
+        "entrance_ids": [
+            "0x84"
+        ]
     },
     {
         "name": "Dark ice rod big fairy",
         "indoors": true,
-        "address_value": "0x5E",
-        "conditions": {}
+        "conditions": {},
+        "entrance_ids": [
+            "0x5E"
+        ]
     },
     {
         "name": "Skull Woods big chest drop",
         "indoors": true,
-        "address_value": "0x76"
+        "entrance_ids": [
+            "0x76"
+        ]
     },
     {
         "name": "Skull Woods compass drop",
         "indoors": true,
-        "address_value": "0x77"
+        "entrance_ids": [
+            "0x77"
+        ]
     },
     {
         "name": "Skull Woods pinball drop",
         "indoors": true,
-        "address_value": "0x78"
+        "entrance_ids": [
+            "0x78"
+        ]
     },
     {
         "name": "Skull Woods Useless drop",
         "indoors": true,
-        "address_value": "0x79"
+        "entrance_ids": [
+            "0x79"
+        ]
     },
     {
         "name": "Lost Woods drop",
         "indoors": true,
-        "address_value": "0x7A"
+        "entrance_ids": [
+            "0x7A"
+        ]
     },
     {
         "name": "Ganon Drop",
         "indoors": true,
-        "address_value": "0x7B"
+        "entrance_ids": [
+            "0x7B"
+        ]
     },
     {
         "name": "Graveyard fairy drop",
         "indoors": true,
-        "address_value": "0x7C",
-        "conditions": {}
+        "conditions": {},
+        "entrance_ids": [
+            "0x7C"
+        ]
     },
     {
         "name": "Castle Secret Passage drop",
         "indoors": true,
-        "address_value": "0x7D"
+        "entrance_ids": [
+            "0x7D"
+        ]
     },
     {
         "name": "Magic Bat drop",
         "indoors": true,
-        "address_value": "0x7E"
+        "entrance_ids": [
+            "0x7E"
+        ]
     },
     {
         "name": "Lumberjack tree drop",
         "indoors": true,
-        "address_value": "0x7F"
+        "entrance_ids": [
+            "0x7F"
+        ]
     },
     {
         "name": "Kakariko Well drop",
         "indoors": true,
-        "address_value": "0x80"
+        "entrance_ids": [
+            "0x80"
+        ]
     },
     {
         "name": "Back of Sewers drop",
         "indoors": true,
-        "address_value": "0x81"
+        "entrance_ids": [
+            "0x81"
+        ]
     },
     {
         "name": "Houlihan drop",
         "indoors": true,
-        "address_value": "0x82"
+        "entrance_ids": [
+            "0x82"
+        ]
     },
     {
         "name": "Lost Woods",

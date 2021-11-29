@@ -7,6 +7,7 @@ use byteorder::{ByteOrder, LittleEndian};
 const OVERWORLD_TILE_ADDRESS: usize = 0x40a;
 const ENTRANCE_ID_ADDRESS: usize = 0x10E;
 const INDOORS_ADDRESS: usize = 0x1b;
+const GAME_MODE_ADDRESS: usize = 0x95;
 
 pub trait NamedAddresses {
     fn overworld_tile(&self) -> u8;
@@ -14,6 +15,8 @@ pub trait NamedAddresses {
     fn indoors(&self) -> u8;
     fn x(&self) -> u16;
     fn y(&self) -> u16;
+    // 15 (in decimal base) on start screen, 7 when the game is started (Link is spawned into the world)
+    fn game_mode(&self) -> u8;
 }
 
 pub trait SetNamedAddresses {
@@ -43,6 +46,10 @@ impl NamedAddresses for SnesRam {
 
     fn y(&self) -> u16 {
         LittleEndian::read_u16(&self.coordinate_chunk[..2])
+    }
+
+    fn game_mode(&self) -> u8 {
+        self.tile_info_chunk[GAME_MODE_ADDRESS]
     }
 }
 
@@ -89,6 +96,10 @@ impl NamedAddresses for &SnesRam {
     fn y(&self) -> u16 {
         LittleEndian::read_u16(&self.coordinate_chunk[..2])
     }
+
+    fn game_mode(&self) -> u8 {
+        self.tile_info_chunk[GAME_MODE_ADDRESS]
+    }
 }
 
 impl NamedAddresses for Vec<u8> {
@@ -111,6 +122,10 @@ impl NamedAddresses for Vec<u8> {
     fn y(&self) -> u16 {
         todo!()
     }
+
+    fn game_mode(&self) -> u8 {
+        todo!()
+    }
 }
 
 impl NamedAddresses for [u8] {
@@ -131,6 +146,10 @@ impl NamedAddresses for [u8] {
     }
 
     fn y(&self) -> u16 {
+        todo!()
+    }
+
+    fn game_mode(&self) -> u8 {
         todo!()
     }
 }
@@ -159,6 +178,10 @@ impl SnesRam {
         } else {
             panic!("Tried to read value from address not fetched from qusb!")
         }
+    }
+
+    pub fn game_has_started(&self) -> bool {
+        vec![3, 7].contains(&self.game_mode())
     }
 
     pub fn new() -> Self {

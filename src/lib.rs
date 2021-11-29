@@ -56,6 +56,7 @@ const COORDINATE_OFFSET: usize = 0xc184;
 const COORDINATE_CHUNK_SIZE: usize = 0x4;
 
 const TILE_INFO_CHUNK_SIZE: usize = 0x40B;
+const GAME_IS_STARTED_VALUE: u8 = 0x7;
 
 /// Hashable id for map lookups
 #[derive(Default, PartialEq, Hash, Eq, Debug)]
@@ -371,20 +372,22 @@ fn check_for_transitions(
         _ => (), // on 0 or somehow invalid verbosity level we don't do this logging as it's very spammy
     };
 
-    // Use events if one transition has been triggered.
-    match events.latest_transition() {
-        Some(previous_transition) => {
-            if let Ok(mut current_tile) = Tile::try_from_ram(ram, &previous_transition) {
-                if current_tile.name != previous_transition.name {
-                    current_tile.time_transit();
-                    writer.serialize(Event::from(&current_tile))?;
-                    print_transition(&current_tile);
-                    events.push(EventEnum::Transition(current_tile));
+    if ram.game_has_started() {
+        // Use events if one transition has been triggered.
+        match events.latest_transition() {
+            Some(previous_transition) => {
+                if let Ok(mut current_tile) = Tile::try_from_ram(ram, &previous_transition) {
+                    if current_tile.name != previous_transition.name {
+                        current_tile.time_transit();
+                        writer.serialize(Event::from(&current_tile))?;
+                        print_transition(&current_tile);
+                        events.push(EventEnum::Transition(current_tile));
+                    }
                 }
             }
-        }
-        None => {
-            panic!("You've reached the unreachable, as EventTracker should always contain a transition when using ::new");
+            None => {
+                panic!("You've reached the unreachable, as EventTracker should always contain a transition when using ::new");
+            }
         }
     }
 

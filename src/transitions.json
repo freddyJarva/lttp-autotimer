@@ -2786,13 +2786,6 @@
         ]
     },
     {
-        "name": "Aginah's cave",
-        "indoors": true,
-        "address_value": [
-            "0x4D"
-        ]
-    },
-    {
         "name": "Desert big fairy",
         "indoors": true,
         "address_value": [

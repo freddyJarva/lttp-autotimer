@@ -2113,19 +2113,9 @@
                 "type": "Coordinates",
                 "coordinates": [
                     {
-                        "type": "Pair",
-                        "x": "3832",
-                        "y": "4032"
-                    },
-                    {
-                        "type": "Stairs",
-                        "x": "3720",
-                        "y": "3932"
-                    },
-                    {
-                        "type": "Stairs",
-                        "x": "3704",
-                        "y": "3659"
+                        "type": "Range",
+                        "x": "3648-4020",
+                        "y": "3650-4032"
                     }
                 ]
             }
@@ -2199,7 +2189,7 @@
         ]
     },
     {
-        "name": "Tower of Hera - Mini Basement",
+        "name": "Tower of Hera - Basement Cage Room",
         "indoors": true,
         "address_value": [
             "0x33"
@@ -2276,14 +2266,9 @@
                 "type": "Coordinates",
                 "coordinates": [
                     {
-                        "type": "Pair",
-                        "x": "632",
-                        "y": "1752"
-                    },
-                    {
-                        "type": "Stairs",
-                        "x": "953",
-                        "y": "1670"
+                        "type": "Range",
+                        "x": "552-968",
+                        "y": "1584-1752"
                     }
                 ]
             }

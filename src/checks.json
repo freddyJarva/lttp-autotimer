@@ -496,32 +496,110 @@
     {
         "name": "Tower of Hera - Basement Cage",
         "sram_offset": "0x0",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "conditions": [
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf435"
+            },
+            {
+                "type": "PreviousTile",
+                "name": "Tower of Hera - Basement Cage Room"
+            }
+        ]
     },
     {
         "name": "Tower of Hera - Map Chest",
         "sram_offset": "0x0",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "conditions": [
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf435"
+            },
+            {
+                "type": "PreviousTile",
+                "name": "Tower of Hera - Lobby"
+            }
+        ]
     },
     {
         "name": "Tower of Hera - Big Key Chest",
         "sram_offset": "0x0",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "conditions": [
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf435"
+            },
+            {
+                "type": "PreviousTile",
+                "name": "Tower of Hera - Basement Chest"
+            }
+        ]
     },
     {
         "name": "Tower of Hera - Compass Chest",
         "sram_offset": "0x0",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "conditions": [
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf435"
+            },
+            {
+                "type": "Underworld"
+            },
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Chest",
+                        "x": "3832",
+                        "y": "1320"
+                    }
+                ]
+            }
+        ]
     },
     {
         "name": "Tower of Hera - Big Chest",
         "sram_offset": "0x0",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "conditions": [
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf435"
+            },
+            {
+                "type": "Underworld"
+            },
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Chest",
+                        "x": "3832",
+                        "y": "1112"
+                    }
+                ]
+            }
+        ]
     },
     {
         "name": "Tower of Hera - Boss",
         "sram_offset": "0x0",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "conditions": [
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf435"
+            },
+            {
+                "type": "PreviousTile",
+                "name": "Tower of Hera - Moldorm"
+            }
+        ]
     },
     {
         "name": "Pyramid",

@@ -56,6 +56,12 @@ pub enum Coordinate {
         #[serde(deserialize_with = "coordinate_deserialize")]
         y: u16,
     },
+    BigChest {
+        #[serde(deserialize_with = "coordinate_deserialize")]
+        x: u16,
+        #[serde(deserialize_with = "coordinate_deserialize")]
+        y: u16,
+    },
     Stairs {
         #[serde(deserialize_with = "coordinate_deserialize")]
         x: u16,
@@ -87,13 +93,22 @@ impl Coordinate {
                     x >= &(x_chest - 10)
                         && x <= &(x_chest + 10)
                         && y >= &(y_chest - 1)
-                        && y <= &(y_chest + 2)
+                        && y <= &(y_chest + 3)
                 }
                 // Stairs transitions can vary slightly on the y-axis
                 Coordinate::Stairs {
                     x: x_stairs,
                     y: y_stairs,
-                } => x == x_stairs && y >= &(y_stairs - 2) && y <= &(y_stairs - 2),
+                } => x == x_stairs && y >= &(y_stairs - 2) && y <= &(y_stairs + 2),
+                Coordinate::BigChest {
+                    x: x_chest,
+                    y: y_chest,
+                } => {
+                    x >= &(x_chest - 24)
+                        && x <= &(x_chest + 24)
+                        && y >= &(y_chest - 1)
+                        && y <= &(y_chest + 3)
+                }
             },
             _ => todo!(),
         }

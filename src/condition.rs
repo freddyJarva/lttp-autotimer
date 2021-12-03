@@ -56,6 +56,12 @@ pub enum Coordinate {
         #[serde(deserialize_with = "coordinate_deserialize")]
         y: u16,
     },
+    Stairs {
+        #[serde(deserialize_with = "coordinate_deserialize")]
+        x: u16,
+        #[serde(deserialize_with = "coordinate_deserialize")]
+        y: u16,
+    },
 }
 
 impl Coordinate {
@@ -83,9 +89,13 @@ impl Coordinate {
                         && y >= &(y_chest - 1)
                         && y <= &(y_chest + 2)
                 }
+                // Stairs transitions can vary slightly on the y-axis
+                Coordinate::Stairs {
+                    x: x_stairs,
+                    y: y_stairs,
+                } => x == x_stairs && y >= &(y_stairs - 2) && y <= &(y_stairs - 2),
             },
-            Coordinate::Range { x: _, y: _ } => todo!(),
-            Coordinate::Chest { x: _, y: _ } => todo!(),
+            _ => todo!(),
         }
     }
 
@@ -119,4 +129,7 @@ pub fn previous_tile_condition_met(
     tile: &Tile,
 ) -> bool {
     condition.name == previous_tile.name || tile.name == previous_tile.name
+}
+pub fn current_tile_condition_met(condition: &ConditionTransition, tile: &Tile) -> bool {
+    condition.name == tile.name
 }

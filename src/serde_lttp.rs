@@ -29,6 +29,7 @@ where
 }
 
 /// Terrible deserializer of hex values. But hey, it works. I guess.
+#[allow(unused)]
 pub fn hex_16bit_deserialize<'de, D>(d: D) -> Result<u16, D::Error>
 where
     D: Deserializer<'de>,

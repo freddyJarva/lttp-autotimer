@@ -8,7 +8,7 @@ extern crate lazy_static;
 use chrono::Utc;
 use clap::ArgMatches;
 
-use condition::{coordinate_condition_met, previous_tile_condition_met};
+use condition::{coordinate_condition_met, current_tile_condition_met};
 use snes::SnesRam;
 use transition::Tile;
 use websocket::{ClientBuilder, Message, OwnedMessage};
@@ -61,7 +61,7 @@ const COORDINATE_CHUNK_SIZE: usize = 0x4;
 const TILE_INFO_CHUNK_SIZE: usize = 0x40B;
 
 const DUNGEON_CHECKS_OFFSET: usize = 0xf434;
-const DUNGEON_CHECKS_SIZE: usize = 0xf43a - DUNGEON_CHECKS_OFFSET;
+const DUNGEON_CHECKS_SIZE: usize = 0x7;
 
 /// Hashable id for map lookups
 #[derive(Default, PartialEq, Hash, Eq, Debug)]
@@ -183,7 +183,10 @@ fn get_chunka_chungus(
         VRAM_START + COORDINATE_OFFSET as u32,
         COORDINATE_CHUNK_SIZE,
     );
-    let dungeon_checks_message = &QusbRequestMessage::get_address(VRAM_START, TILE_INFO_CHUNK_SIZE);
+    let dungeon_checks_message = &QusbRequestMessage::get_address(
+        VRAM_START + DUNGEON_CHECKS_OFFSET as u32,
+        TILE_INFO_CHUNK_SIZE,
+    );
 
     let mut snes_ram = SnesRam::new();
 
@@ -253,8 +256,7 @@ fn check_for_location_checks(
                         let previous_tile = &events
                             .latest_transition()
                             .expect("Transition should always exist");
-                        // we're actually checking for the current room we're in
-                        previous_tile_condition_met(condition, previous_tile, previous_tile)
+                        current_tile_condition_met(condition, previous_tile)
                     }
                     Conditions::Coordinates { coordinates } => {
                         coordinate_condition_met(&coordinates, ram)

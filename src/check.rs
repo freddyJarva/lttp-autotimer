@@ -1,3 +1,4 @@
+use crate::condition::Conditions;
 use crate::serde_lttp::{hex_byte_deserialize, hex_deserialize};
 use chrono::serde::ts_milliseconds_option;
 use chrono::{DateTime, Utc};
@@ -23,6 +24,7 @@ pub struct Check {
     pub snes_value: u8,
     #[serde(default)]
     pub is_item: bool,
+    pub conditions: Option<Vec<Conditions>>,
 }
 
 static CHECKS_JSON: &'static str = include_str!("checks.json");

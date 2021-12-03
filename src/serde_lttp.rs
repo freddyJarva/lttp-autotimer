@@ -57,6 +57,14 @@ where
     u8::from_str_radix(&s[2..], 16).map_err(D::Error::custom)
 }
 
+pub fn hex_usize_deserialize<'de, D>(d: D) -> Result<usize, D::Error>
+where
+    D: Deserializer<'de>,
+{
+    let s: &str = Deserialize::deserialize(d)?;
+    usize::from_str_radix(&s[2..], 16).map_err(D::Error::custom)
+}
+
 pub fn coordinate_deserialize<'de, D>(d: D) -> Result<u16, D::Error>
 where
     D: Deserializer<'de>,

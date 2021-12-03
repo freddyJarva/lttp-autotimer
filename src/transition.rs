@@ -61,6 +61,8 @@ impl Tile {
                                 match c {
                                     Conditions::PreviousTile(condition) => previous_tile_condition_met(condition, previous_tile, tile),
                                     Conditions::Coordinates { coordinates } => coordinate_condition_met(coordinates, current),
+                                    Conditions::Underworld => current.indoors() == 1,
+                                    Conditions::DungeonCounterIncreased { sram_offset: _ } => todo!(),
                                 }
                             })
                             {

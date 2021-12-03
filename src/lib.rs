@@ -8,6 +8,7 @@ extern crate lazy_static;
 use chrono::Utc;
 use clap::ArgMatches;
 
+use condition::{coordinate_condition_met, previous_tile_condition_met};
 use snes::SnesRam;
 use transition::Tile;
 use websocket::{ClientBuilder, Message, OwnedMessage};
@@ -58,6 +59,9 @@ const COORDINATE_OFFSET: usize = 0xc184;
 const COORDINATE_CHUNK_SIZE: usize = 0x4;
 
 const TILE_INFO_CHUNK_SIZE: usize = 0x40B;
+
+const DUNGEON_CHECKS_OFFSET: usize = 0xf434;
+const DUNGEON_CHECKS_SIZE: usize = 0xf43a - DUNGEON_CHECKS_OFFSET;
 
 /// Hashable id for map lookups
 #[derive(Default, PartialEq, Hash, Eq, Debug)]
@@ -110,8 +114,8 @@ pub fn connect_to_qusb(args: &ArgMatches) -> anyhow::Result<()> {
 
     let mut locations: Vec<Check> = deserialize_location_checks()?
         .into_iter()
-        // 0 offset checks hasn't been given a proper value in checks.json yet
-        .filter(|check| check.sram_offset != 0)
+        // 0 offset checks without conditions hasn't been given a proper value in checks.json yet
+        .filter(|check| check.sram_offset != 0 || check.conditions.is_some())
         .collect();
     let mut items: Vec<Check> = deserialize_item_checks()?
         .into_iter()
@@ -130,7 +134,6 @@ pub fn connect_to_qusb(args: &ArgMatches) -> anyhow::Result<()> {
                 )?;
                 check_for_location_checks(
                     &snes_ram,
-                    verbosity,
                     &mut ram_history,
                     &mut locations,
                     &mut writer,
@@ -180,6 +183,7 @@ fn get_chunka_chungus(
         VRAM_START + COORDINATE_OFFSET as u32,
         COORDINATE_CHUNK_SIZE,
     );
+    let dungeon_checks_message = &QusbRequestMessage::get_address(VRAM_START, TILE_INFO_CHUNK_SIZE);
 
     let mut snes_ram = SnesRam::new();
 
@@ -219,52 +223,99 @@ fn get_chunka_chungus(
         snes_ram.coordinate_chunk = res;
     };
 
+    // dungeon chest counters
+    let message = Message {
+        opcode: websocket::message::Type::Text,
+        cd_status_code: None,
+        payload: Cow::Owned(serde_json::to_vec(dungeon_checks_message)?),
+    };
+    client.send_message(&message)?;
+    let response = client.recv_message()?;
+    if let OwnedMessage::Binary(res) = response {
+        snes_ram.dungeon_chunk = res;
+    };
+
     Ok(snes_ram)
 }
 
 fn check_for_location_checks(
     ram: &SnesRam,
-    verbosity: u64,
     ram_history: &mut VecDeque<SnesRam>,
     checks: &mut Vec<Check>,
     writer: &mut Writer<File>,
     events: &mut EventTracker,
 ) -> anyhow::Result<()> {
     for check in checks {
-        let current_check_value = ram.get_byte(check.sram_offset as usize);
-        if ram_history.len() > 0
-            && (ram_history[ram_history.len() - 1].get_byte(check.sram_offset as usize)
-                != current_check_value)
-        {
-            let previous_state = &ram_history[ram_history.len() - 1];
-            let previous_check_value = previous_state.get_byte(check.sram_offset as usize);
-            if verbosity > 0 {
-                println!(
-                    "{}: {} -> {} -- bitmask applied: {} -> {}",
-                    check.name.on_blue(),
-                    previous_check_value.to_string().red(),
-                    current_check_value.to_string().green(),
-                    (previous_check_value & check.sram_mask).to_string().red(),
-                    (current_check_value & check.sram_mask).to_string().green()
-                )
-            } else if current_check_value & check.sram_mask != 0 && !check.is_checked {
-                check.mark_as_checked();
-                println!(
-                    "Check made! time: {:?}, location: {}",
-                    check.time_of_check,
-                    check.name.on_blue(),
-                );
-                events.push(EventEnum::LocationCheck(check.clone()));
-                writer.serialize(Event::from(check))?;
+        match &check.conditions {
+            Some(conditions) => {
+                if conditions.iter().all(|c| match c {
+                    Conditions::PreviousTile(condition) => previous_tile_condition_met(
+                        condition,
+                        &events
+                            .latest_transition()
+                            .expect("Transition should always exist"),
+                        &events
+                            .latest_transition()
+                            .expect("Transition should always exist"),
+                    ),
+                    Conditions::Coordinates { coordinates } => {
+                        if coordinate_condition_met(&coordinates, ram) {
+                            println!("Coordinate condition met!");
+                            true
+                        } else {
+                            false
+                        }
+                    }
+                    Conditions::Underworld => {
+                        if ram.indoors() == 1 {
+                            println!("Indoors!");
+                            true
+                        } else {
+                            false
+                        }
+                    }
+                    Conditions::DungeonCounterIncreased { sram_offset } => {
+                        if ram_history.len() > 0 {
+                            if ram.get_byte(*sram_offset)
+                                > ram_history[ram_history.len() - 1].get_byte(*sram_offset)
+                            {
+                                println!("Dungeon Counter increased!");
+                                true
+                            } else {
+                                false
+                            }
+                        } else {
+                            false
+                        }
+                    }
+                }) {
+                    check.mark_as_checked();
+                    println!(
+                        "Check made! time: {:?}, location: {}",
+                        check.time_of_check,
+                        check.name.on_blue(),
+                    );
+                    events.push(EventEnum::LocationCheck(check.clone()));
+                    writer.serialize(Event::from(check))?;
+                }
             }
-        } else {
-            if verbosity > 0 {
-                println!(
-                    "{}: {} -- bitmask applied: {}",
-                    check.name.on_blue(),
-                    current_check_value,
-                    current_check_value & check.sram_mask
-                )
+            None => {
+                let current_check_value = ram.get_byte(check.sram_offset as usize);
+                if ram_history.len() > 0
+                    && (ram_history[ram_history.len() - 1].get_byte(check.sram_offset as usize)
+                        != current_check_value)
+                {
+                    if current_check_value & check.sram_mask != 0 && !check.is_checked {
+                        check.mark_as_checked();
+                        println!(
+                            "Check made! time: {:?}, location: {}",
+                            check.time_of_check,
+                            check.name.on_blue(),
+                        );
+                        events.push(EventEnum::LocationCheck(check.clone()));
+                        writer.serialize(Event::from(check))?;
+                    }
+                }
             }
         }
     }

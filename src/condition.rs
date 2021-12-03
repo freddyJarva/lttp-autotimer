@@ -1,6 +1,7 @@
 use crate::serde_lttp::coordinate_deserialize;
 use crate::serde_lttp::coordinate_range_deserialize;
 use crate::serde_lttp::hex_16bit_deserialize;
+use crate::serde_lttp::hex_usize_deserialize;
 use crate::snes::NamedAddresses;
 use crate::transition::Tile;
 use crate::SnesRam;
@@ -23,7 +24,14 @@ pub struct ConditionTransition {
 #[serde(tag = "type")]
 pub enum Conditions {
     PreviousTile(ConditionTransition),
-    Coordinates { coordinates: Vec<Coordinate> },
+    Coordinates {
+        coordinates: Vec<Coordinate>,
+    },
+    Underworld,
+    DungeonCounterIncreased {
+        #[serde(deserialize_with = "hex_usize_deserialize")]
+        sram_offset: usize,
+    },
 }
 
 #[derive(Debug, Deserialize, PartialEq, Clone, Hash, Eq)]
@@ -79,6 +87,13 @@ impl Coordinate {
             Coordinate::Chest { x: _, y: _ } => todo!(),
         }
     }
+
+    fn from_continuous_coords(ram: &SnesRam) -> Self {
+        Self::Pair {
+            x: ram.x(),
+            y: ram.y(),
+        }
+    }
 }
 
 impl From<&SnesRam> for Coordinate {
@@ -91,9 +106,10 @@ impl From<&SnesRam> for Coordinate {
 }
 
 pub fn coordinate_condition_met(conditions: &[Coordinate], current: &SnesRam) -> bool {
-    conditions
-        .iter()
-        .any(|c| Coordinate::from(current).matches(c))
+    conditions.iter().any(|c| match c {
+        Coordinate::Chest { x: _, y: _ } => Coordinate::from_continuous_coords(current).matches(c),
+        _ => Coordinate::from(current).matches(c),
+    })
 }
 
 pub fn previous_tile_condition_met(

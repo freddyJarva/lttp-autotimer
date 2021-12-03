@@ -292,7 +292,18 @@
     {
         "name": "Eastern Palace - Compass Chest",
         "sram_offset": "0x0",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "conditions": {
+            "previous_tile": {
+                "name": "Eastern Palace - East Chest Room",
+                "indoors": true,
+                "address_value": "0x8"
+            },
+            "coordinates": {
+                "type": "Range",
+                "x": ""
+            }
+        }
     },
     {
         "name": "Eastern Palace - Big Chest",

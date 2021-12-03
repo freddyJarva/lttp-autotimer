@@ -168,8 +168,8 @@ impl Coordinate {
 impl From<&SnesRam> for Coordinate {
     fn from(ram: &SnesRam) -> Self {
         Self::Pair {
-            x: ram.x(),
-            y: ram.y(),
+            x: ram.transition_x(),
+            y: ram.transition_y(),
         }
     }
 }

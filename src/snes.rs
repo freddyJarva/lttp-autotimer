@@ -13,9 +13,9 @@ pub trait NamedAddresses {
     fn overworld_tile(&self) -> u8;
     fn entrance_id(&self) -> u8;
     fn indoors(&self) -> u8;
-    fn x(&self) -> u16;
-    fn y(&self) -> u16;
-    // 15 (in decimal base) on start screen, 7 when the game is started (Link is spawned into the world)
+    fn transition_x(&self) -> u16;
+    fn transition_y(&self) -> u16;
+    // 15 (in decimal base) on start screen, 7 when the game is started (Link is spawned into the world), 3 after flying
     fn game_mode(&self) -> u8;
 }
 
@@ -40,11 +40,11 @@ impl NamedAddresses for SnesRam {
         self.tile_info_chunk[INDOORS_ADDRESS]
     }
 
-    fn x(&self) -> u16 {
+    fn transition_x(&self) -> u16 {
         LittleEndian::read_u16(&self.coordinate_chunk[2..])
     }
 
-    fn y(&self) -> u16 {
+    fn transition_y(&self) -> u16 {
         LittleEndian::read_u16(&self.coordinate_chunk[..2])
     }
 
@@ -89,11 +89,11 @@ impl NamedAddresses for &SnesRam {
         self.tile_info_chunk[INDOORS_ADDRESS]
     }
 
-    fn x(&self) -> u16 {
+    fn transition_x(&self) -> u16 {
         LittleEndian::read_u16(&self.coordinate_chunk[2..])
     }
 
-    fn y(&self) -> u16 {
+    fn transition_y(&self) -> u16 {
         LittleEndian::read_u16(&self.coordinate_chunk[..2])
     }
 
@@ -115,11 +115,11 @@ impl NamedAddresses for Vec<u8> {
         self[INDOORS_ADDRESS]
     }
 
-    fn x(&self) -> u16 {
+    fn transition_x(&self) -> u16 {
         todo!()
     }
 
-    fn y(&self) -> u16 {
+    fn transition_y(&self) -> u16 {
         todo!()
     }
 
@@ -141,11 +141,11 @@ impl NamedAddresses for [u8] {
         self[INDOORS_ADDRESS]
     }
 
-    fn x(&self) -> u16 {
+    fn transition_x(&self) -> u16 {
         todo!()
     }
 
-    fn y(&self) -> u16 {
+    fn transition_y(&self) -> u16 {
         todo!()
     }
 
@@ -228,6 +228,6 @@ mod tests {
         let mut ram = SnesRam::new();
         ram.set_x(12);
         ram.set_y(55000);
-        assert_eq!((ram.x(), ram.y()), (12, 55000));
+        assert_eq!((ram.transition_x(), ram.transition_y()), (12, 55000));
     }
 }

@@ -17,25 +17,28 @@
             "0x5",
             "0x81"
         ],
-        "conditions": {
-            "coordinates": [
-                {
-                    "type": "Pair",
-                    "x": "1272",
-                    "y": "568"
-                },
-                {
-                    "type": "Pair",
-                    "x": "1272",
-                    "y": "960"
-                },
-                {
-                    "type": "Pair",
-                    "x": "1272",
-                    "y": "668"
-                }
-            ]
-        }
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "1272",
+                        "y": "568"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "1272",
+                        "y": "960"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "1272",
+                        "y": "668"
+                    }
+                ]
+            }
+        ]
     },
     {
         "name": "Hyrule Castle - Lobby",
@@ -45,35 +48,38 @@
             "0x4",
             "0x5"
         ],
-        "conditions": {
-            "coordinates": [
-                {
-                    "x": "760",
-                    "y": "3520",
-                    "type": "Pair"
-                },
-                {
-                    "x": "560",
-                    "y": "3320",
-                    "type": "Pair"
-                },
-                {
-                    "x": "536",
-                    "y": "3192",
-                    "type": "Pair"
-                },
-                {
-                    "x": "760",
-                    "y": "3118-3120",
-                    "type": "Range"
-                },
-                {
-                    "x": "960",
-                    "y": "3320",
-                    "type": "Pair"
-                }
-            ]
-        }
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "x": "760",
+                        "y": "3520",
+                        "type": "Pair"
+                    },
+                    {
+                        "x": "560",
+                        "y": "3320",
+                        "type": "Pair"
+                    },
+                    {
+                        "x": "536",
+                        "y": "3192",
+                        "type": "Pair"
+                    },
+                    {
+                        "x": "760",
+                        "y": "3118-3120",
+                        "type": "Range"
+                    },
+                    {
+                        "x": "960",
+                        "y": "3320",
+                        "type": "Pair"
+                    }
+                ]
+            }
+        ]
     },
     {
         "name": "Hyrule Castle - West Wing South",
@@ -83,30 +89,33 @@
             "0x4",
             "0x5"
         ],
-        "conditions": {
-            "coordinates": [
-                {
-                    "x": "448",
-                    "y": "3320",
-                    "type": "Pair"
-                },
-                {
-                    "x": "472",
-                    "y": "3192",
-                    "type": "Pair"
-                },
-                {
-                    "x": "376",
-                    "y": "3128",
-                    "type": "Pair"
-                },
-                {
-                    "x": "376",
-                    "y": "3544",
-                    "type": "Pair"
-                }
-            ]
-        }
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "x": "448",
+                        "y": "3320",
+                        "type": "Pair"
+                    },
+                    {
+                        "x": "472",
+                        "y": "3192",
+                        "type": "Pair"
+                    },
+                    {
+                        "x": "376",
+                        "y": "3128",
+                        "type": "Pair"
+                    },
+                    {
+                        "x": "376",
+                        "y": "3544",
+                        "type": "Pair"
+                    }
+                ]
+            }
+        ]
     },
     {
         "name": "Hyrule Castle - West Wing North",
@@ -116,20 +125,23 @@
             "0x4",
             "0x5"
         ],
-        "conditions": {
-            "coordinates": [
-                {
-                    "x": "376",
-                    "y": "3008",
-                    "type": "Pair"
-                },
-                {
-                    "x": "448",
-                    "y": "2680",
-                    "type": "Pair"
-                }
-            ]
-        }
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "x": "376",
+                        "y": "3008",
+                        "type": "Pair"
+                    },
+                    {
+                        "x": "448",
+                        "y": "2680",
+                        "type": "Pair"
+                    }
+                ]
+            }
+        ]
     },
     {
         "name": "Hyrule Castle - Statue Hallway",
@@ -139,25 +151,28 @@
             "0x4",
             "0x5"
         ],
-        "conditions": {
-            "coordinates": [
-                {
-                    "x": "560",
-                    "y": "120",
-                    "type": "Pair"
-                },
-                {
-                    "x": "960",
-                    "y": "120",
-                    "type": "Pair"
-                },
-                {
-                    "x": "760",
-                    "y": "99",
-                    "type": "Pair"
-                }
-            ]
-        }
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "x": "560",
+                        "y": "120",
+                        "type": "Pair"
+                    },
+                    {
+                        "x": "960",
+                        "y": "120",
+                        "type": "Pair"
+                    },
+                    {
+                        "x": "760",
+                        "y": "99",
+                        "type": "Pair"
+                    }
+                ]
+            }
+        ]
     },
     {
         "name": "Hyrule Castle - Key Guard 1",
@@ -167,20 +182,23 @@
             "0x4",
             "0x5"
         ],
-        "conditions": {
-            "coordinates": [
-                {
-                    "x": "1273",
-                    "y": "3664-3665",
-                    "type": "Range"
-                },
-                {
-                    "x": "1272",
-                    "y": "3800",
-                    "type": "Pair"
-                }
-            ]
-        }
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "x": "1273",
+                        "y": "3664-3665",
+                        "type": "Range"
+                    },
+                    {
+                        "x": "1272",
+                        "y": "3800",
+                        "type": "Pair"
+                    }
+                ]
+            }
+        ]
     },
     {
         "name": "Hyrule Castle - Basement 1",
@@ -190,25 +208,28 @@
             "0x4",
             "0x5"
         ],
-        "conditions": {
-            "coordinates": [
-                {
-                    "type": "Pair",
-                    "x": "1272",
-                    "y": "3872"
-                },
-                {
-                    "type": "Range",
-                    "x": "1184-1200",
-                    "y": "4052"
-                },
-                {
-                    "type": "Range",
-                    "x": "1064-1072",
-                    "y": "4052"
-                }
-            ]
-        }
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "1272",
+                        "y": "3872"
+                    },
+                    {
+                        "type": "Range",
+                        "x": "1184-1200",
+                        "y": "4052"
+                    },
+                    {
+                        "type": "Range",
+                        "x": "1064-1072",
+                        "y": "4052"
+                    }
+                ]
+            }
+        ]
     },
     {
         "name": "Hyrule Castle - Basement 2",
@@ -218,30 +239,33 @@
             "0x4",
             "0x5"
         ],
-        "conditions": {
-            "coordinates": [
-                {
-                    "type": "Range",
-                    "x": "1184-1200",
-                    "y": "4108"
-                },
-                {
-                    "type": "Range",
-                    "x": "1036",
-                    "y": "4472-4496"
-                },
-                {
-                    "type": "Range",
-                    "x": "1036",
-                    "y": "4192-4208"
-                },
-                {
-                    "type": "Range",
-                    "x": "1064-1072",
-                    "y": "4108"
-                }
-            ]
-        }
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Range",
+                        "x": "1184-1200",
+                        "y": "4108"
+                    },
+                    {
+                        "type": "Range",
+                        "x": "1036",
+                        "y": "4472-4496"
+                    },
+                    {
+                        "type": "Range",
+                        "x": "1036",
+                        "y": "4192-4208"
+                    },
+                    {
+                        "type": "Range",
+                        "x": "1064-1072",
+                        "y": "4108"
+                    }
+                ]
+            }
+        ]
     },
     {
         "name": "Hyrule Castle - Basement 3",
@@ -251,25 +275,28 @@
             "0x4",
             "0x5"
         ],
-        "conditions": {
-            "coordinates": [
-                {
-                    "type": "Range",
-                    "x": "996",
-                    "y": "4472-4496"
-                },
-                {
-                    "type": "Range",
-                    "x": "996",
-                    "y": "4192-4208"
-                },
-                {
-                    "type": "Pair",
-                    "x": "632",
-                    "y": "4152"
-                }
-            ]
-        }
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Range",
+                        "x": "996",
+                        "y": "4472-4496"
+                    },
+                    {
+                        "type": "Range",
+                        "x": "996",
+                        "y": "4192-4208"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "632",
+                        "y": "4152"
+                    }
+                ]
+            }
+        ]
     },
     {
         "name": "Hyrule Castle - Green Guard Trap",
@@ -279,25 +306,28 @@
             "0x4",
             "0x5"
         ],
-        "conditions": {
-            "coordinates": [
-                {
-                    "type": "Pair",
-                    "x": "632",
-                    "y": "4008"
-                },
-                {
-                    "type": "Pair",
-                    "x": "688",
-                    "y": "3960"
-                },
-                {
-                    "type": "Pair",
-                    "x": "632",
-                    "y": "3872"
-                }
-            ]
-        }
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "632",
+                        "y": "4008"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "688",
+                        "y": "3960"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "632",
+                        "y": "3872"
+                    }
+                ]
+            }
+        ]
     },
     {
         "name": "Hyrule Castle - Key Guard 2",
@@ -307,15 +337,18 @@
             "0x4",
             "0x5"
         ],
-        "conditions": {
-            "coordinates": [
-                {
-                    "type": "Pair",
-                    "x": "832",
-                    "y": "3960"
-                }
-            ]
-        }
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "832",
+                        "y": "3960"
+                    }
+                ]
+            }
+        ]
     },
     {
         "name": "Hyrule Castle - B7 Q1",
@@ -325,20 +358,23 @@
             "0x4",
             "0x5"
         ],
-        "conditions": {
-            "coordinates": [
-                {
-                    "type": "Pair",
-                    "x": "632",
-                    "y": "3800"
-                },
-                {
-                    "type": "Range",
-                    "x": "672",
-                    "y": "3659-3661"
-                }
-            ]
-        }
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "632",
+                        "y": "3800"
+                    },
+                    {
+                        "type": "Range",
+                        "x": "672",
+                        "y": "3659-3661"
+                    }
+                ]
+            }
+        ]
     },
     {
         "name": "Hyrule Castle - A7",
@@ -348,20 +384,23 @@
             "0x4",
             "0x5"
         ],
-        "conditions": {
-            "coordinates": [
-                {
-                    "type": "Range",
-                    "x": "161",
-                    "y": "3640-3641"
-                },
-                {
-                    "type": "Range",
-                    "x": "80",
-                    "y": "3635-3636"
-                }
-            ]
-        }
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Range",
+                        "x": "161",
+                        "y": "3640-3641"
+                    },
+                    {
+                        "type": "Range",
+                        "x": "80",
+                        "y": "3635-3636"
+                    }
+                ]
+            }
+        ]
     },
     {
         "name": "Hyrule Castle - Zelda's Cell",
@@ -371,15 +410,18 @@
             "0x4",
             "0x5"
         ],
-        "conditions": {
-            "coordinates": [
-                {
-                    "type": "Range",
-                    "x": "81",
-                    "y": "4150-4151"
-                }
-            ]
-        }
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Range",
+                        "x": "81",
+                        "y": "4150-4151"
+                    }
+                ]
+            }
+        ]
     },
     {
         "name": "Hyrule Castle - Throne Room",
@@ -389,15 +431,18 @@
             "0x4",
             "0x5"
         ],
-        "conditions": {
-            "coordinates": [
-                {
-                    "type": "Range",
-                    "x": "760",
-                    "y": "2983-2985"
-                }
-            ]
-        }
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Range",
+                        "x": "760",
+                        "y": "2983-2985"
+                    }
+                ]
+            }
+        ]
     },
     {
         "name": "Hyrule Castle - East Wing South",
@@ -407,30 +452,33 @@
             "0x4",
             "0x5"
         ],
-        "conditions": {
-            "coordinates": [
-                {
-                    "type": "Pair",
-                    "x": "1072",
-                    "y": "3320"
-                },
-                {
-                    "type": "Pair",
-                    "x": "1144",
-                    "y": "3128"
-                },
-                {
-                    "type": "Pair",
-                    "x": "1272",
-                    "y": "3104"
-                },
-                {
-                    "type": "Pair",
-                    "x": "1144",
-                    "y": "3544"
-                }
-            ]
-        }
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "1072",
+                        "y": "3320"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "1144",
+                        "y": "3128"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "1272",
+                        "y": "3104"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "1144",
+                        "y": "3544"
+                    }
+                ]
+            }
+        ]
     },
     {
         "name": "Hyrule Castle - East Wing North",
@@ -440,25 +488,28 @@
             "0x4",
             "0x5"
         ],
-        "conditions": {
-            "coordinates": [
-                {
-                    "type": "Pair",
-                    "x": "1072",
-                    "y": "2680"
-                },
-                {
-                    "type": "Pair",
-                    "x": "1144",
-                    "y": "3008"
-                },
-                {
-                    "type": "Pair",
-                    "x": "1272",
-                    "y": "3132"
-                }
-            ]
-        }
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "1072",
+                        "y": "2680"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "1144",
+                        "y": "3008"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "1272",
+                        "y": "3132"
+                    }
+                ]
+            }
+        ]
     },
     {
         "name": "Sewers - Cactus",
@@ -469,20 +520,23 @@
             "0x5",
             "0x81"
         ],
-        "conditions": {
-            "coordinates": [
-                {
-                    "type": "Pair",
-                    "x": "760",
-                    "y": "2496"
-                },
-                {
-                    "type": "Range",
-                    "x": "936",
-                    "y": "2099-2101"
-                }
-            ]
-        }
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "760",
+                        "y": "2496"
+                    },
+                    {
+                        "type": "Range",
+                        "x": "936",
+                        "y": "2099-2101"
+                    }
+                ]
+            }
+        ]
     },
     {
         "name": "Sewers - Snake Bend",
@@ -493,20 +547,23 @@
             "0x5",
             "0x81"
         ],
-        "conditions": {
-            "coordinates": [
-                {
-                    "type": "Range",
-                    "x": "1449",
-                    "y": "2102-2104"
-                },
-                {
-                    "type": "Range",
-                    "x": "1272",
-                    "y": "2105-2107"
-                }
-            ]
-        }
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Range",
+                        "x": "1449",
+                        "y": "2102-2104"
+                    },
+                    {
+                        "type": "Range",
+                        "x": "1272",
+                        "y": "2105-2107"
+                    }
+                ]
+            }
+        ]
     },
     {
         "name": "Sewers - Dark Cross",
@@ -517,20 +574,23 @@
             "0x5",
             "0x81"
         ],
-        "conditions": {
-            "coordinates": [
-                {
-                    "type": "Range",
-                    "x": "1272",
-                    "y": "1974-1976"
-                },
-                {
-                    "type": "Pair",
-                    "x": "1272",
-                    "y": "1568"
-                }
-            ]
-        }
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Range",
+                        "x": "1272",
+                        "y": "1974-1976"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "1272",
+                        "y": "1568"
+                    }
+                ]
+            }
+        ]
     },
     {
         "name": "Sewers - Splash Zone 1",
@@ -541,20 +601,23 @@
             "0x5",
             "0x81"
         ],
-        "conditions": {
-            "coordinates": [
-                {
-                    "type": "Pair",
-                    "x": "1272",
-                    "y": "1496"
-                },
-                {
-                    "type": "Pair",
-                    "x": "1048",
-                    "y": "1400"
-                }
-            ]
-        }
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "1272",
+                        "y": "1496"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "1048",
+                        "y": "1400"
+                    }
+                ]
+            }
+        ]
     },
     {
         "name": "Sewers - Splash Zone 2",
@@ -565,20 +628,23 @@
             "0x5",
             "0x81"
         ],
-        "conditions": {
-            "coordinates": [
-                {
-                    "type": "Pair",
-                    "x": "984",
-                    "y": "1400"
-                },
-                {
-                    "type": "Pair",
-                    "x": "760",
-                    "y": "1312"
-                }
-            ]
-        }
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "984",
+                        "y": "1400"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "760",
+                        "y": "1312"
+                    }
+                ]
+            }
+        ]
     },
     {
         "name": "Sewers - Key Snake",
@@ -589,20 +655,23 @@
             "0x5",
             "0x81"
         ],
-        "conditions": {
-            "coordinates": [
-                {
-                    "type": "Pair",
-                    "x": "760",
-                    "y": "1240"
-                },
-                {
-                    "type": "Pair",
-                    "x": "888",
-                    "y": "1056"
-                }
-            ]
-        }
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "760",
+                        "y": "1240"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "888",
+                        "y": "1056"
+                    }
+                ]
+            }
+        ]
     },
     {
         "name": "Sewers - Bonk Walls",
@@ -613,35 +682,38 @@
             "0x5",
             "0x81"
         ],
-        "conditions": {
-            "coordinates": [
-                {
-                    "type": "Pair",
-                    "x": "888",
-                    "y": "984"
-                },
-                {
-                    "type": "Pair",
-                    "x": "808",
-                    "y": "888"
-                },
-                {
-                    "type": "Pair",
-                    "x": "808",
-                    "y": "632"
-                },
-                {
-                    "type": "Range",
-                    "x": "889",
-                    "y": "567-569"
-                },
-                {
-                    "type": "Pair",
-                    "x": "915",
-                    "y": "794"
-                }
-            ]
-        }
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "888",
+                        "y": "984"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "808",
+                        "y": "888"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "808",
+                        "y": "632"
+                    },
+                    {
+                        "type": "Range",
+                        "x": "889",
+                        "y": "567-569"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "915",
+                        "y": "794"
+                    }
+                ]
+            }
+        ]
     },
     {
         "name": "Sewers - Secret Room",
@@ -652,20 +724,23 @@
             "0x5",
             "0x81"
         ],
-        "conditions": {
-            "coordinates": [
-                {
-                    "type": "Pair",
-                    "x": "712",
-                    "y": "888"
-                },
-                {
-                    "type": "Pair",
-                    "x": "712",
-                    "y": "632"
-                }
-            ]
-        }
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "712",
+                        "y": "888"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "712",
+                        "y": "632"
+                    }
+                ]
+            }
+        ]
     },
     {
         "name": "Sanctuary - Rat Room",
@@ -676,20 +751,23 @@
             "0x5",
             "0x81"
         ],
-        "conditions": {
-            "coordinates": [
-                {
-                    "type": "Range",
-                    "x": "1400",
-                    "y": "74-76"
-                },
-                {
-                    "type": "Pair",
-                    "x": "1272",
-                    "y": "192"
-                }
-            ]
-        }
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Range",
+                        "x": "1400",
+                        "y": "74-76"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "1272",
+                        "y": "192"
+                    }
+                ]
+            }
+        ]
     },
     {
         "name": "Sanctuary - Snakes on a Higher Plane (It's a trap!)",
@@ -700,20 +778,23 @@
             "0x5",
             "0x81"
         ],
-        "conditions": {
-            "coordinates": [
-                {
-                    "type": "Pair",
-                    "x": "1272",
-                    "y": "312"
-                },
-                {
-                    "type": "Pair",
-                    "x": "1272",
-                    "y": "424"
-                }
-            ]
-        }
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "1272",
+                        "y": "312"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "1272",
+                        "y": "424"
+                    }
+                ]
+            }
+        ]
     },
     {
         "name": "Old man cave west",
@@ -732,30 +813,33 @@
     {
         "name": "Eastern Palace - Lobby",
         "indoors": true,
-        "conditions": {
-            "coordinates": [
-                {
-                    "x": "4856",
-                    "y": "6616",
-                    "type": "Pair"
-                },
-                {
-                    "x": "4984",
-                    "y": "6432",
-                    "type": "Pair"
-                },
-                {
-                    "x": "4728",
-                    "y": "6432",
-                    "type": "Pair"
-                },
-                {
-                    "x": "4856",
-                    "y": "6448",
-                    "type": "Pair"
-                }
-            ]
-        },
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "x": "4856",
+                        "y": "6616",
+                        "type": "Pair"
+                    },
+                    {
+                        "x": "4984",
+                        "y": "6432",
+                        "type": "Pair"
+                    },
+                    {
+                        "x": "4728",
+                        "y": "6432",
+                        "type": "Pair"
+                    },
+                    {
+                        "x": "4856",
+                        "y": "6448",
+                        "type": "Pair"
+                    }
+                ]
+            }
+        ],
         "address_value": [
             "0x8"
         ]
@@ -763,20 +847,23 @@
     {
         "name": "Eastern Palace - Abyss Bridge",
         "indoors": true,
-        "conditions": {
-            "coordinates": [
-                {
-                    "x": "4856",
-                    "y": "6336",
-                    "type": "Pair"
-                },
-                {
-                    "x": "4856",
-                    "y": "6192",
-                    "type": "Pair"
-                }
-            ]
-        },
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "x": "4856",
+                        "y": "6336",
+                        "type": "Pair"
+                    },
+                    {
+                        "x": "4856",
+                        "y": "6192",
+                        "type": "Pair"
+                    }
+                ]
+            }
+        ],
         "address_value": [
             "0x8"
         ]
@@ -784,30 +871,33 @@
     {
         "name": "Eastern Palace - Ball Corridor",
         "indoors": true,
-        "conditions": {
-            "coordinates": [
-                {
-                    "x": "4856",
-                    "y": "6104",
-                    "type": "Pair"
-                },
-                {
-                    "x": "4856",
-                    "y": "5664",
-                    "type": "Pair"
-                },
-                {
-                    "x": "5080",
-                    "y": "5752",
-                    "type": "Pair"
-                },
-                {
-                    "x": "4632",
-                    "y": "5752",
-                    "type": "Pair"
-                }
-            ]
-        },
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "x": "4856",
+                        "y": "6104",
+                        "type": "Pair"
+                    },
+                    {
+                        "x": "4856",
+                        "y": "5664",
+                        "type": "Pair"
+                    },
+                    {
+                        "x": "5080",
+                        "y": "5752",
+                        "type": "Pair"
+                    },
+                    {
+                        "x": "4632",
+                        "y": "5752",
+                        "type": "Pair"
+                    }
+                ]
+            }
+        ],
         "address_value": [
             "0x8"
         ]
@@ -815,50 +905,53 @@
     {
         "name": "Eastern Palace - Big Chest Room",
         "indoors": true,
-        "conditions": {
-            "coordinates": [
-                {
-                    "x": "4856",
-                    "y": "5592",
-                    "type": "Pair"
-                },
-                {
-                    "x": "5064",
-                    "y": "5368",
-                    "type": "Pair"
-                },
-                {
-                    "x": "4648",
-                    "y": "5368",
-                    "type": "Pair"
-                },
-                {
-                    "x": "4656",
-                    "y": "5240",
-                    "type": "Pair"
-                },
-                {
-                    "x": "5056",
-                    "y": "5240",
-                    "type": "Pair"
-                },
-                {
-                    "x": "4786",
-                    "y": "5240",
-                    "type": "Pair"
-                },
-                {
-                    "x": "4925",
-                    "y": "5240",
-                    "type": "Pair"
-                },
-                {
-                    "x": "4856",
-                    "y": "5152",
-                    "type": "Pair"
-                }
-            ]
-        },
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "x": "4856",
+                        "y": "5592",
+                        "type": "Pair"
+                    },
+                    {
+                        "x": "5064",
+                        "y": "5368",
+                        "type": "Pair"
+                    },
+                    {
+                        "x": "4648",
+                        "y": "5368",
+                        "type": "Pair"
+                    },
+                    {
+                        "x": "4656",
+                        "y": "5240",
+                        "type": "Pair"
+                    },
+                    {
+                        "x": "5056",
+                        "y": "5240",
+                        "type": "Pair"
+                    },
+                    {
+                        "x": "4786",
+                        "y": "5240",
+                        "type": "Pair"
+                    },
+                    {
+                        "x": "4925",
+                        "y": "5240",
+                        "type": "Pair"
+                    },
+                    {
+                        "x": "4856",
+                        "y": "5152",
+                        "type": "Pair"
+                    }
+                ]
+            }
+        ],
         "address_value": [
             "0x8"
         ]
@@ -866,35 +959,38 @@
     {
         "name": "Eastern Palace - East of Big Chest Room",
         "indoors": true,
-        "conditions": {
-            "coordinates": [
-                {
-                    "x": "5144",
-                    "y": "5368",
-                    "type": "Pair"
-                },
-                {
-                    "x": "5336",
-                    "y": "5496",
-                    "type": "Pair"
-                },
-                {
-                    "x": "5336",
-                    "y": "5240",
-                    "type": "Pair"
-                },
-                {
-                    "x": "5168",
-                    "y": "5240",
-                    "type": "Pair"
-                },
-                {
-                    "x": "5240",
-                    "y": "5592",
-                    "type": "Pair"
-                }
-            ]
-        },
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "x": "5144",
+                        "y": "5368",
+                        "type": "Pair"
+                    },
+                    {
+                        "x": "5336",
+                        "y": "5496",
+                        "type": "Pair"
+                    },
+                    {
+                        "x": "5336",
+                        "y": "5240",
+                        "type": "Pair"
+                    },
+                    {
+                        "x": "5168",
+                        "y": "5240",
+                        "type": "Pair"
+                    },
+                    {
+                        "x": "5240",
+                        "y": "5592",
+                        "type": "Pair"
+                    }
+                ]
+            }
+        ],
         "address_value": [
             "0x8"
         ]
@@ -902,20 +998,23 @@
     {
         "name": "Eastern Palace - Lone Anti Fairy",
         "indoors": true,
-        "conditions": {
-            "coordinates": [
-                {
-                    "x": "5400",
-                    "y": "5240",
-                    "type": "Pair"
-                },
-                {
-                    "x": "5496",
-                    "y": "5312",
-                    "type": "Pair"
-                }
-            ]
-        },
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "x": "5400",
+                        "y": "5240",
+                        "type": "Pair"
+                    },
+                    {
+                        "x": "5496",
+                        "y": "5312",
+                        "type": "Pair"
+                    }
+                ]
+            }
+        ],
         "address_value": [
             "0x8"
         ]
@@ -923,20 +1022,23 @@
     {
         "name": "Eastern Palace - East Chest Room",
         "indoors": true,
-        "conditions": {
-            "coordinates": [
-                {
-                    "x": "5400",
-                    "y": "5496",
-                    "type": "Pair"
-                },
-                {
-                    "x": "5496",
-                    "y": "5408",
-                    "type": "Pair"
-                }
-            ]
-        },
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "x": "5400",
+                        "y": "5496",
+                        "type": "Pair"
+                    },
+                    {
+                        "x": "5496",
+                        "y": "5408",
+                        "type": "Pair"
+                    }
+                ]
+            }
+        ],
         "address_value": [
             "0x8"
         ]
@@ -944,35 +1046,38 @@
     {
         "name": "Eastern Palace - West of Big Chest Room",
         "indoors": true,
-        "conditions": {
-            "coordinates": [
-                {
-                    "x": "4568",
-                    "y": "5368",
-                    "type": "Pair"
-                },
-                {
-                    "x": "4376",
-                    "y": "5496",
-                    "type": "Pair"
-                },
-                {
-                    "x": "4400",
-                    "y": "5240",
-                    "type": "Pair"
-                },
-                {
-                    "x": "4544",
-                    "y": "5240",
-                    "type": "Pair"
-                },
-                {
-                    "x": "4472",
-                    "y": "5592",
-                    "type": "Pair"
-                }
-            ]
-        },
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "x": "4568",
+                        "y": "5368",
+                        "type": "Pair"
+                    },
+                    {
+                        "x": "4376",
+                        "y": "5496",
+                        "type": "Pair"
+                    },
+                    {
+                        "x": "4400",
+                        "y": "5240",
+                        "type": "Pair"
+                    },
+                    {
+                        "x": "4544",
+                        "y": "5240",
+                        "type": "Pair"
+                    },
+                    {
+                        "x": "4472",
+                        "y": "5592",
+                        "type": "Pair"
+                    }
+                ]
+            }
+        ],
         "address_value": [
             "0x8"
         ]
@@ -980,20 +1085,23 @@
     {
         "name": "Eastern Palace - Stalfos Trap",
         "indoors": true,
-        "conditions": {
-            "coordinates": [
-                {
-                    "x": "4296",
-                    "y": "5496",
-                    "type": "Pair"
-                },
-                {
-                    "x": "4216",
-                    "y": "5424",
-                    "type": "Pair"
-                }
-            ]
-        },
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "x": "4296",
+                        "y": "5496",
+                        "type": "Pair"
+                    },
+                    {
+                        "x": "4216",
+                        "y": "5424",
+                        "type": "Pair"
+                    }
+                ]
+            }
+        ],
         "address_value": [
             "0x8"
         ]
@@ -1001,20 +1109,23 @@
     {
         "name": "Eastern Palace - Compass Chest Room",
         "indoors": true,
-        "conditions": {
-            "coordinates": [
-                {
-                    "x": "4216",
-                    "y": "5336",
-                    "type": "Pair"
-                },
-                {
-                    "x": "4288",
-                    "y": "5240",
-                    "type": "Pair"
-                }
-            ]
-        },
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "x": "4216",
+                        "y": "5336",
+                        "type": "Pair"
+                    },
+                    {
+                        "x": "4288",
+                        "y": "5240",
+                        "type": "Pair"
+                    }
+                ]
+            }
+        ],
         "address_value": [
             "0x8"
         ]
@@ -1022,25 +1133,28 @@
     {
         "name": "Eastern Palace - Dark Double Anti Fairy",
         "indoors": true,
-        "conditions": {
-            "coordinates": [
-                {
-                    "x": "5240",
-                    "y": "5680",
-                    "type": "Pair"
-                },
-                {
-                    "x": "5320",
-                    "y": "5752",
-                    "type": "Pair"
-                },
-                {
-                    "x": "5144",
-                    "y": "5752",
-                    "type": "Pair"
-                }
-            ]
-        },
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "x": "5240",
+                        "y": "5680",
+                        "type": "Pair"
+                    },
+                    {
+                        "x": "5320",
+                        "y": "5752",
+                        "type": "Pair"
+                    },
+                    {
+                        "x": "5144",
+                        "y": "5752",
+                        "type": "Pair"
+                    }
+                ]
+            }
+        ],
         "address_value": [
             "0x8"
         ]
@@ -1048,15 +1162,18 @@
     {
         "name": "Eastern Palace - Dark Key Pot",
         "indoors": true,
-        "conditions": {
-            "coordinates": [
-                {
-                    "x": "5400",
-                    "y": "5752",
-                    "type": "Pair"
-                }
-            ]
-        },
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "x": "5400",
+                        "y": "5752",
+                        "type": "Pair"
+                    }
+                ]
+            }
+        ],
         "address_value": [
             "0x8"
         ]
@@ -1064,20 +1181,23 @@
     {
         "name": "Eastern Palace - Big Key Chest Room",
         "indoors": true,
-        "conditions": {
-            "coordinates": [
-                {
-                    "x": "4568",
-                    "y": "5752",
-                    "type": "Pair"
-                },
-                {
-                    "x": "4472",
-                    "y": "5664",
-                    "type": "Pair"
-                }
-            ]
-        },
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "x": "4568",
+                        "y": "5752",
+                        "type": "Pair"
+                    },
+                    {
+                        "x": "4472",
+                        "y": "5664",
+                        "type": "Pair"
+                    }
+                ]
+            }
+        ],
         "address_value": [
             "0x8"
         ]
@@ -1085,15 +1205,18 @@
     {
         "name": "Eastern Palace - Fairy Drop",
         "indoors": true,
-        "conditions": {
-            "coordinates": [
-                {
-                    "x": "4824",
-                    "y": "4208",
-                    "type": "Pair"
-                }
-            ]
-        },
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "x": "4824",
+                        "y": "4208",
+                        "type": "Pair"
+                    }
+                ]
+            }
+        ],
         "address_value": [
             "0x8"
         ]
@@ -1101,15 +1224,18 @@
     {
         "name": "Eastern Palace - Fairy Drop",
         "indoors": true,
-        "conditions": {
-            "coordinates": [
-                {
-                    "x": "4824",
-                    "y": "4208",
-                    "type": "Pair"
-                }
-            ]
-        },
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "x": "4824",
+                        "y": "4208",
+                        "type": "Pair"
+                    }
+                ]
+            }
+        ],
         "address_value": [
             "0x8"
         ]
@@ -1117,30 +1243,33 @@
     {
         "name": "Eastern Palace - Dark Bastard Room",
         "indoors": true,
-        "conditions": {
-            "coordinates": [
-                {
-                    "x": "4856",
-                    "y": "5080",
-                    "type": "Pair"
-                },
-                {
-                    "x": "4984",
-                    "y": "4824",
-                    "type": "Pair"
-                },
-                {
-                    "x": "4984",
-                    "y": "4824",
-                    "type": "Pair"
-                },
-                {
-                    "x": "4729",
-                    "y": "4919",
-                    "type": "Pair"
-                }
-            ]
-        },
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "x": "4856",
+                        "y": "5080",
+                        "type": "Pair"
+                    },
+                    {
+                        "x": "4984",
+                        "y": "4824",
+                        "type": "Pair"
+                    },
+                    {
+                        "x": "4984",
+                        "y": "4824",
+                        "type": "Pair"
+                    },
+                    {
+                        "x": "4729",
+                        "y": "4919",
+                        "type": "Pair"
+                    }
+                ]
+            }
+        ],
         "address_value": [
             "0x8"
         ]
@@ -1148,15 +1277,18 @@
     {
         "name": "Eastern Palace - Money",
         "indoors": true,
-        "conditions": {
-            "coordinates": [
-                {
-                    "x": "4984",
-                    "y": "4824",
-                    "type": "Pair"
-                }
-            ]
-        },
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "x": "4984",
+                        "y": "4824",
+                        "type": "Pair"
+                    }
+                ]
+            }
+        ],
         "address_value": [
             "0x8"
         ]
@@ -1164,20 +1296,23 @@
     {
         "name": "Eastern Palace - Double Anti Fairy",
         "indoors": true,
-        "conditions": {
-            "coordinates": [
-                {
-                    "x": "5240",
-                    "y": "6964",
-                    "type": "Pair"
-                },
-                {
-                    "x": "5160",
-                    "y": "7032",
-                    "type": "Pair"
-                }
-            ]
-        },
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "x": "5240",
+                        "y": "6964",
+                        "type": "Pair"
+                    },
+                    {
+                        "x": "5160",
+                        "y": "7032",
+                        "type": "Pair"
+                    }
+                ]
+            }
+        ],
         "address_value": [
             "0x8"
         ]
@@ -1185,20 +1320,23 @@
     {
         "name": "Eastern Palace - Triple Green Goblin (whatever they're called)",
         "indoors": true,
-        "conditions": {
-            "coordinates": [
-                {
-                    "x": "5064",
-                    "y": "7032",
-                    "type": "Pair"
-                },
-                {
-                    "x": "4904",
-                    "y": "7032",
-                    "type": "Pair"
-                }
-            ]
-        },
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "x": "5064",
+                        "y": "7032",
+                        "type": "Pair"
+                    },
+                    {
+                        "x": "4904",
+                        "y": "7032",
+                        "type": "Pair"
+                    }
+                ]
+            }
+        ],
         "address_value": [
             "0x8"
         ]
@@ -1206,20 +1344,23 @@
     {
         "name": "Eastern Palace - Ball Room",
         "indoors": true,
-        "conditions": {
-            "coordinates": [
-                {
-                    "x": "4808",
-                    "y": "7032",
-                    "type": "Pair"
-                },
-                {
-                    "x": "4648",
-                    "y": "7032",
-                    "type": "Pair"
-                }
-            ]
-        },
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "x": "4808",
+                        "y": "7032",
+                        "type": "Pair"
+                    },
+                    {
+                        "x": "4648",
+                        "y": "7032",
+                        "type": "Pair"
+                    }
+                ]
+            }
+        ],
         "address_value": [
             "0x8"
         ]
@@ -1227,20 +1368,23 @@
     {
         "name": "Eastern Palace - Bow Locked Room",
         "indoors": true,
-        "conditions": {
-            "coordinates": [
-                {
-                    "x": "4568",
-                    "y": "7032",
-                    "type": "Pair"
-                },
-                {
-                    "x": "4472",
-                    "y": "6960",
-                    "type": "Pair"
-                }
-            ]
-        },
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "x": "4568",
+                        "y": "7032",
+                        "type": "Pair"
+                    },
+                    {
+                        "x": "4472",
+                        "y": "6960",
+                        "type": "Pair"
+                    }
+                ]
+            }
+        ],
         "address_value": [
             "0x8"
         ]
@@ -1248,15 +1392,18 @@
     {
         "name": "Eastern Palace - Boss Approach",
         "indoors": true,
-        "conditions": {
-            "coordinates": [
-                {
-                    "x": "4472",
-                    "y": "6872",
-                    "type": "Pair"
-                }
-            ]
-        },
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "x": "4472",
+                        "y": "6872",
+                        "type": "Pair"
+                    }
+                ]
+            }
+        ],
         "address_value": [
             "0x8"
         ]
@@ -1264,15 +1411,18 @@
     {
         "name": "Eastern Palace - Armos",
         "indoors": true,
-        "conditions": {
-            "coordinates": [
-                {
-                    "x": "4472",
-                    "y": "6592",
-                    "type": "Pair"
-                }
-            ]
-        },
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "x": "4472",
+                        "y": "6592",
+                        "type": "Pair"
+                    }
+                ]
+            }
+        ],
         "address_value": [
             "0x8"
         ]
@@ -1819,13 +1969,16 @@
     {
         "name": "Mire big fairy",
         "indoors": true,
-        "conditions": {
-            "previous_tile": {
-                "name": "Misery Mire - OW",
-                "indoors": false,
-                "address_value": "0x70"
+        "conditions": [
+            {
+                "type": "PreviousTile",
+                "tile": {
+                    "name": "Misery Mire - OW",
+                    "indoors": false,
+                    "address_value": "0x70"
+                }
             }
-        },
+        ],
         "address_value": [
             "0x5E"
         ]
@@ -1988,13 +2141,16 @@
     {
         "name": "Big fairy (South of Link's house)",
         "indoors": true,
-        "conditions": {
-            "previous_tile": {
-                "name": "South Pass",
-                "indoors": false,
-                "address_value": "0x3C"
+        "conditions": [
+            {
+                "type": "PreviousTile",
+                "tile": {
+                    "name": "South Pass",
+                    "indoors": false,
+                    "address_value": "0x3C"
+                }
             }
-        },
+        ],
         "address_value": [
             "0x5E"
         ]
@@ -2026,13 +2182,16 @@
     {
         "name": "Dark West Death Mountain Big fairy",
         "indoors": true,
-        "conditions": {
-            "previous_tile": {
-                "name": "West Dark Death Mountain",
-                "indoors": false,
-                "address_value": "0x43"
+        "conditions": [
+            {
+                "type": "PreviousTile",
+                "tile": {
+                    "name": "West Dark Death Mountain",
+                    "indoors": false,
+                    "address_value": "0x43"
+                }
             }
-        },
+        ],
         "address_value": [
             "0x5E"
         ]
@@ -2805,13 +2964,16 @@
         "address_value": [
             "0x80"
         ],
-        "conditions": {
-            "previous_tile": {
-                "name": "Lost Woods",
-                "indoors": false,
-                "address_value": "0x0"
+        "conditions": [
+            {
+                "type": "PreviousTile",
+                "tile": {
+                    "name": "Lost Woods",
+                    "indoors": false,
+                    "address_value": "0x0"
+                }
             }
-        }
+        ]
     },
     {
         "name": "Hobo",
@@ -2819,13 +2981,16 @@
         "address_value": [
             "0x80"
         ],
-        "conditions": {
-            "previous_tile": {
-                "name": "Stone Bridge",
-                "indoors": false,
-                "address_value": "0x2D"
+        "conditions": [
+            {
+                "type": "PreviousTile",
+                "tile": {
+                    "name": "Stone Bridge",
+                    "indoors": false,
+                    "address_value": "0x2D"
+                }
             }
-        }
+        ]
     },
     {
         "name": "Zoras Domain",

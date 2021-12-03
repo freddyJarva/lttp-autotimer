@@ -343,9 +343,9 @@ fn check_for_transitions(
     match verbosity {
         1 => println!(
             "ow {}, indoors {}, entrance {}",
-            ram.tile_info_chunk.overworld_tile(),
-            ram.tile_info_chunk.indoors(),
-            ram.tile_info_chunk.entrance_id()
+            ram.overworld_tile(),
+            ram.indoors(),
+            ram.entrance_id()
         ),
         // If using level 2, you might wanna set a higher update interval, (e.g. --freq 10000 to update every 10 seconds) as it's A LOT of data
         2.. => {

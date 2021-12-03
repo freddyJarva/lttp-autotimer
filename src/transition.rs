@@ -250,11 +250,11 @@ mod tests {
             Tile {name: "Mastersword Meadow".to_string(), ..Default::default()},
             "Mastersword Meadow"),
         GIVEN_ram_points_to_ep_uw_AND_xy_points_to_abyss_bridge_THEN_return_abyss_bridge: (
-            SnesRamInitializer {entrance_id: Some(0x8), indoors: Some(1), x: Some(4856), y: Some(6336), ..Default::default()}.build(),
+            SnesRamInitializer {entrance_id: Some(0x8), indoors: Some(1), transition_x: Some(4856), transition_y: Some(6336), ..Default::default()}.build(),
             Tile {..Default::default()},
             "Eastern Palace - Abyss Bridge"),
         GIVEN_ram_points_to_hc_uw_AND_xy_is_in_bounds_for_basement_1_range_THEN_return_basement_1: (
-            SnesRamInitializer {entrance_id: Some(0x4), indoors: Some(1), x: Some(1192), y: Some(4052), ..Default::default()}.build(),
+            SnesRamInitializer {entrance_id: Some(0x4), indoors: Some(1), transition_x: Some(1192), transition_y: Some(4052), ..Default::default()}.build(),
             Tile {..Default::default()},
             "Hyrule Castle - Basement 1"),
     }

@@ -1,3 +1,4 @@
+use crate::condition::Conditions;
 use crate::event::{Event, EventEnum, EventLog, EventTracker};
 use check::Check;
 
@@ -8,7 +9,7 @@ use chrono::Utc;
 use clap::ArgMatches;
 
 use snes::SnesRam;
-use transition::{Conditions, Tile};
+use transition::Tile;
 use websocket::{ClientBuilder, Message, OwnedMessage};
 
 use core::time;
@@ -38,6 +39,7 @@ mod snes;
 #[macro_use]
 mod test_macros;
 
+mod condition;
 mod transition;
 
 /// Snes memory address

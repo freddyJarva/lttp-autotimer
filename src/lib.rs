@@ -249,41 +249,21 @@ fn check_for_location_checks(
         match &check.conditions {
             Some(conditions) => {
                 if conditions.iter().all(|c| match c {
-                    Conditions::PreviousTile(condition) => previous_tile_condition_met(
-                        condition,
-                        &events
+                    Conditions::PreviousTile(condition) => {
+                        let previous_tile = &events
                             .latest_transition()
-                            .expect("Transition should always exist"),
-                        &events
-                            .latest_transition()
-                            .expect("Transition should always exist"),
-                    ),
+                            .expect("Transition should always exist");
+                        // we're actually checking for the current room we're in
+                        previous_tile_condition_met(condition, previous_tile, previous_tile)
+                    }
                     Conditions::Coordinates { coordinates } => {
-                        if coordinate_condition_met(&coordinates, ram) {
-                            println!("Coordinate condition met!");
-                            true
-                        } else {
-                            false
-                        }
+                        coordinate_condition_met(&coordinates, ram)
                     }
-                    Conditions::Underworld => {
-                        if ram.indoors() == 1 {
-                            println!("Indoors!");
-                            true
-                        } else {
-                            false
-                        }
-                    }
+                    Conditions::Underworld => ram.indoors() == 1,
                     Conditions::DungeonCounterIncreased { sram_offset } => {
                         if ram_history.len() > 0 {
-                            if ram.get_byte(*sram_offset)
+                            ram.get_byte(*sram_offset)
                                 > ram_history[ram_history.len() - 1].get_byte(*sram_offset)
-                            {
-                                println!("Dungeon Counter increased!");
-                                true
-                            } else {
-                                false
-                            }
                         } else {
                             false
                         }

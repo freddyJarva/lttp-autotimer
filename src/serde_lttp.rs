@@ -37,6 +37,20 @@ where
     u16::from_str_radix(&s[2..], 16).map_err(D::Error::custom)
 }
 
+pub fn hex_16bit_option_deserialize<'de, D>(d: D) -> Result<Option<u16>, D::Error>
+where
+    D: Deserializer<'de>,
+{
+    let so: Option<&str> = Deserialize::deserialize(d)?;
+    match so {
+        Some(s) => {
+            let res = u16::from_str_radix(&s[2..], 16).map_err(D::Error::custom);
+            Ok(Some(res?))
+        }
+        None => Ok(None),
+    }
+}
+
 pub fn hex_16bit_array_deserialize<'de, D>(d: D) -> Result<Vec<u16>, D::Error>
 where
     D: Deserializer<'de>,

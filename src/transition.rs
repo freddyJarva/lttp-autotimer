@@ -118,8 +118,8 @@ mod tests {
                 address_value: vec![0x80],
                 conditions: Some(vec![Conditions::PreviousTile(ConditionTransition {
                     name: "Stone Bridge".to_string(),
-                    indoors: false,
-                    address_value: 0x2d
+                    address_value: Some(45),
+                    indoors: Some(false),
                 })]),
                 ..Default::default()
             }

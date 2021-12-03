@@ -306,8 +306,8 @@
                 "coordinates": [
                     {
                         "type": "Chest",
-                        "x": "5008",
-                        "y": "5928"
+                        "x": "5552",
+                        "y": "5496"
                     }
                 ]
             }
@@ -316,22 +316,91 @@
     {
         "name": "Eastern Palace - Big Chest",
         "sram_offset": "0x0",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "conditions": [
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf436"
+            },
+            {
+                "type": "Underworld"
+            },
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Chest",
+                        "x": "5008",
+                        "y": "5928"
+                    }
+                ]
+            }
+        ]
     },
     {
         "name": "Eastern Palace - Cannonball Chest",
         "sram_offset": "0x0",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "conditions": [
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf436"
+            },
+            {
+                "type": "Underworld"
+            },
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Chest",
+                        "x": "5008",
+                        "y": "5928"
+                    }
+                ]
+            }
+        ]
     },
     {
         "name": "Eastern Palace - Big Key Chest",
         "sram_offset": "0x0",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "conditions": [
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf436"
+            },
+            {
+                "type": "Underworld"
+            },
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Chest",
+                        "x": "5008",
+                        "y": "5928"
+                    }
+                ]
+            }
+        ]
     },
     {
         "name": "Eastern Palace - Map Chest",
         "sram_offset": "0x0",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "conditions": [
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf436"
+            },
+            {
+                "type": "PreviousTile",
+                "name": "Eastern Palace - Compass Chest Room",
+                "indoors": true,
+                "address_value": "0x8"
+            }
+        ]
     },
     {
         "name": "Eastern Palace - Boss",

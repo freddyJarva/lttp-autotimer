@@ -1972,9 +1972,7 @@
         "conditions": [
             {
                 "type": "PreviousTile",
-                "name": "Misery Mire - OW",
-                "indoors": false,
-                "address_value": "0x70"
+                "name": "Misery Mire - OW"
             }
         ],
         "address_value": [

@@ -1,18 +1,19 @@
 use crate::serde_lttp::coordinate_deserialize;
 use crate::serde_lttp::coordinate_range_deserialize;
-use crate::serde_lttp::hex_16bit_deserialize;
+use crate::serde_lttp::hex_16bit_option_deserialize;
 use crate::serde_lttp::hex_usize_deserialize;
 use crate::snes::NamedAddresses;
 use crate::transition::Tile;
 use crate::SnesRam;
 use serde::Deserialize;
 
-#[derive(Debug, Deserialize, PartialEq, Clone, Hash, Eq)]
+#[derive(Debug, Deserialize, PartialEq, Clone, Hash, Eq, Default)]
 pub struct ConditionTransition {
     pub name: String,
-    #[serde(deserialize_with = "hex_16bit_deserialize")]
-    pub address_value: u16,
-    pub indoors: bool,
+    #[serde(default)]
+    #[serde(deserialize_with = "hex_16bit_option_deserialize")]
+    pub address_value: Option<u16>,
+    pub indoors: Option<bool>,
 }
 
 /// Extra conditions to evaluate to deem that a specific transition has been triggered.

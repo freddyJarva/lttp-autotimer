@@ -56,7 +56,6 @@ const COORDINATE_OFFSET: usize = 0xc184;
 const COORDINATE_CHUNK_SIZE: usize = 0x4;
 
 const TILE_INFO_CHUNK_SIZE: usize = 0x40B;
-const GAME_IS_STARTED_VALUE: u8 = 0x7;
 
 /// Hashable id for map lookups
 #[derive(Default, PartialEq, Hash, Eq, Debug)]

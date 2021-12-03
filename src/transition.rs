@@ -2,30 +2,13 @@ use crate::serde_lttp::coordinate_range_deserialize;
 use crate::serde_lttp::hex_16bit_array_deserialize;
 use crate::{serde_lttp::coordinate_deserialize, snes::SnesRam};
 use anyhow::{anyhow, Result};
-use std::collections::HashMap;
 
-use crate::{serde_lttp::hex_16bit_deserialize, SnesMemoryID};
+use crate::serde_lttp::hex_16bit_deserialize;
 
 use chrono::{DateTime, Utc};
 use serde::Deserialize;
 
 use crate::snes::NamedAddresses;
-
-pub fn overworld_transition<T, U>(previous_res: T, response: U) -> bool
-where
-    T: NamedAddresses,
-    U: NamedAddresses,
-{
-    previous_res.overworld_tile() != response.overworld_tile()
-}
-
-pub fn entrance_transition<T, U>(previous_res: T, response: U) -> bool
-where
-    T: NamedAddresses,
-    U: NamedAddresses,
-{
-    previous_res.indoors() != response.indoors()
-}
 
 static TRANSITIONS_JSON: &'static str = include_str!("transitions.json");
 

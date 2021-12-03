@@ -110,11 +110,11 @@ pub fn connect_to_qusb(args: &ArgMatches) -> anyhow::Result<()> {
     let mut locations: Vec<Check> = deserialize_location_checks()?
         .into_iter()
         // 0 offset checks hasn't been given a proper value in checks.json yet
-        .filter(|check| check.dunka_offset != 0)
+        .filter(|check| check.sram_offset != 0)
         .collect();
     let mut items: Vec<Check> = deserialize_item_checks()?
         .into_iter()
-        .filter(|check| check.dunka_offset != 0)
+        .filter(|check| check.sram_offset != 0)
         .collect();
 
     loop {
@@ -230,23 +230,23 @@ fn check_for_location_checks(
     events: &mut EventTracker,
 ) -> anyhow::Result<()> {
     for check in checks {
-        let current_check_value = ram.get_byte(check.dunka_offset as usize);
+        let current_check_value = ram.get_byte(check.sram_offset as usize);
         if ram_history.len() > 0
-            && (ram_history[ram_history.len() - 1].get_byte(check.dunka_offset as usize)
+            && (ram_history[ram_history.len() - 1].get_byte(check.sram_offset as usize)
                 != current_check_value)
         {
             let previous_state = &ram_history[ram_history.len() - 1];
-            let previous_check_value = previous_state.get_byte(check.dunka_offset as usize);
+            let previous_check_value = previous_state.get_byte(check.sram_offset as usize);
             if verbosity > 0 {
                 println!(
                     "{}: {} -> {} -- bitmask applied: {} -> {}",
                     check.name.on_blue(),
                     previous_check_value.to_string().red(),
                     current_check_value.to_string().green(),
-                    (previous_check_value & check.dunka_mask).to_string().red(),
-                    (current_check_value & check.dunka_mask).to_string().green()
+                    (previous_check_value & check.sram_mask).to_string().red(),
+                    (current_check_value & check.sram_mask).to_string().green()
                 )
-            } else if current_check_value & check.dunka_mask != 0 && !check.is_checked {
+            } else if current_check_value & check.sram_mask != 0 && !check.is_checked {
                 check.mark_as_checked();
                 println!(
                     "Check made! time: {:?}, location: {}",
@@ -262,7 +262,7 @@ fn check_for_location_checks(
                     "{}: {} -- bitmask applied: {}",
                     check.name.on_blue(),
                     current_check_value,
-                    current_check_value & check.dunka_mask
+                    current_check_value & check.sram_mask
                 )
             }
         }
@@ -280,25 +280,25 @@ fn check_for_item_checks(
     events: &mut EventTracker,
 ) -> anyhow::Result<()> {
     for check in checks {
-        let current_check_value = ram.get_byte(check.dunka_offset as usize);
+        let current_check_value = ram.get_byte(check.sram_offset as usize);
 
         if previous_values.len() > 0
-            && (previous_values[previous_values.len() - 1].get_byte(check.dunka_offset as usize)
+            && (previous_values[previous_values.len() - 1].get_byte(check.sram_offset as usize)
                 != current_check_value)
         {
             let previous_state = &previous_values[previous_values.len() - 1];
-            let previous_check_value = previous_state.get_byte(check.dunka_offset as usize);
+            let previous_check_value = previous_state.get_byte(check.sram_offset as usize);
             if verbosity > 0 {
                 println!(
                     "{}: {} -> {} -- bitmask applied: {} -> {}",
                     check.name.on_blue(),
                     previous_check_value.to_string().red(),
                     current_check_value.to_string().green(),
-                    (previous_check_value & check.dunka_mask).to_string().red(),
-                    (current_check_value & check.dunka_mask).to_string().green()
+                    (previous_check_value & check.sram_mask).to_string().red(),
+                    (current_check_value & check.sram_mask).to_string().green()
                 )
             } else if !check.is_progressive
-                && current_check_value & check.dunka_mask != 0
+                && current_check_value & check.sram_mask != 0
                 && !check.is_checked
             {
                 check.mark_as_checked();
@@ -325,7 +325,7 @@ fn check_for_item_checks(
                     "{}: {} -- bitmask applied: {}",
                     check.name.on_blue(),
                     current_check_value,
-                    current_check_value & check.dunka_mask
+                    current_check_value & check.sram_mask
                 )
             }
         }

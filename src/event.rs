@@ -228,9 +228,8 @@ mod tests {
         from_location_check: (
             Check {
                 name: "Mushroom".to_string(),
-                address: 0x180013,
-                dunka_offset: 0x411,
-                dunka_mask: 0x10,
+                sram_offset: 0x411,
+                sram_mask: 0x10,
                 time_of_check: Some(Utc.timestamp_millis(200)),
                 ..Default::default()
             },
@@ -243,9 +242,8 @@ mod tests {
         from_normal_item_check: (
             Check {
                 name: "Hookshot".to_string(),
-                address: 0x0,
-                dunka_offset: 0x342,
-                dunka_mask: 0x01,
+                sram_offset: 0x342,
+                sram_mask: 0x01,
                 time_of_check: Some(Utc.timestamp_millis(200)),
                 is_item: true,
                 ..Default::default()
@@ -259,9 +257,8 @@ mod tests {
         from_progressive_item_check: (
             Check {
                 name: "Progressive Sword".to_string(),
-                address: 0x0,
-                dunka_offset: 0x342,
-                dunka_mask: 0x01,
+                sram_offset: 0x342,
+                sram_mask: 0x01,
                 time_of_check: Some(Utc.timestamp_millis(200)),
                 is_item: true,
                 is_progressive: true,

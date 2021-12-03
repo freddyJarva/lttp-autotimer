@@ -7,14 +7,9 @@ use serde::Deserialize;
 pub struct Check {
     pub name: String,
     #[serde(deserialize_with = "hex_deserialize")]
-    pub address: u32,
-    pub player_address: Option<String>,
-    pub crystal: Option<String>,
-    pub hint_text: Option<String>,
-    #[serde(deserialize_with = "hex_deserialize")]
-    pub dunka_offset: u32,
+    pub sram_offset: u32,
     #[serde(deserialize_with = "hex_byte_deserialize")]
-    pub dunka_mask: u8,
+    pub sram_mask: u8,
     #[serde(default)]
     pub is_checked: bool,
     #[serde(with = "ts_milliseconds_option", default)]
@@ -73,12 +68,8 @@ mod tests {
             deserialize_location_checks().unwrap()[0],
             Check {
                 name: "Mushroom".to_string(),
-                address: 0x180013,
-                player_address: Some("0x186338".to_string()),
-                crystal: Some("False".to_string()),
-                hint_text: Some("in the woods".to_string()),
-                dunka_offset: 0xf411,
-                dunka_mask: 0x10,
+                sram_offset: 0xf411,
+                sram_mask: 0x10,
                 ..Default::default()
             }
         )
@@ -90,9 +81,8 @@ mod tests {
             deserialize_item_checks().unwrap()[0],
             Check {
                 name: "Bow".to_string(),
-                address: 0x0,
-                dunka_offset: 0xf38e,
-                dunka_mask: 0x80,
+                sram_offset: 0xf38e,
+                sram_mask: 0x80,
                 is_item: true,
                 ..Default::default()
             }

@@ -85,58 +85,88 @@ where
 
 #[cfg(test)]
 mod tests {
-    use crate::{assert_attrs, transition::Tile};
+    use serde_json::json;
+
+    use crate::{
+        assert_attrs,
+        condition::{Conditions, Coordinate},
+        transition::Tile,
+    };
 
     #[test]
-    fn testname() {
-        let parsed: Tile = serde_json::from_str(
-            "
-        {
-            \"name\": \"Sewers - Bonk Walls\",
-            \"indoors\": true,
-            \"address_value\": [
-                \"0x3\",
-                \"0x4\",
-                \"0x5\",
-                \"0x81\"
+    fn parse_tile() {
+        let json_val = json!({
+            "name": "Hyrule Castle - Key Guard 1",
+            "indoors": true,
+            "address_value": [
+                "0x3",
+                "0x4",
+                "0x5"
             ],
-            \"conditions\": {
-                \"coordinates\": [
+            "conditions": [
+                {
+                    "type": "Coordinates",
+                    "coordinates": [
+                        {
+                            "x": "1273",
+                            "y": "3664-3665",
+                            "type": "Range"
+                        },
+                        {
+                            "x": "1272",
+                            "y": "3800",
+                            "type": "Pair"
+                        }
+                    ]
+                }
+            ]
+        });
+        let parsed: Tile = serde_json::from_str(&json_val.to_string()).unwrap();
+        assert_attrs!(
+            parsed: name == "Hyrule Castle - Key Guard 1",
+            indoors == true,
+            address_value == vec![0x3, 0x4, 0x5],
+        );
+    }
+
+    #[test]
+    fn parse_coordinates() {
+        let json_val = json!({
+            "x": "1272",
+            "y": "3800",
+            "type": "Pair"
+        });
+        let coordinate: Coordinate = serde_json::from_str(&json_val.to_string()).unwrap();
+        assert_eq!(coordinate, Coordinate::Pair { x: 1272, y: 3800 });
+    }
+
+    #[test]
+    fn parse_conditions() {
+        let json_val = json!(
+        [
+            {
+                "type": "Coordinates",
+                "coordinates": [
                     {
-                        \"type\": \"Pair\",
-                        \"x\": \"888\",
-                        \"y\": \"984\"
+                        "type": "Pair",
+                        "x": "1272",
+                        "y": "568"
                     },
                     {
-                        \"type\": \"Pair\",
-                        \"x\": \"808\",
-                        \"y\": \"888\"
+                        "type": "Pair",
+                        "x": "1272",
+                        "y": "960"
                     },
                     {
-                        \"type\": \"Pair\",
-                        \"x\": \"808\",
-                        \"y\": \"632\"
-                    },
-                    {
-                        \"type\": \"Range\",
-                        \"x\": \"889\",
-                        \"y\": \"567-569\"
-                    },
-                    {
-                        \"type\": \"Range\",
-                        \"x\": \"889\",
-                        \"y\": \"567-569\"
+                        "type": "Pair",
+                        "x": "1272",
+                        "y": "668"
                     }
                 ]
             }
-        }
-        ",
-        )
-        .unwrap();
-        assert_attrs!(
-            parsed: name == "Sewers - Bonk Walls",
-            indoors == true,
-            address_value == vec![0x3, 0x4, 0x5, 0x81],
+        ]
         );
+
+        let _: Vec<Conditions> = serde_json::from_str(&json_val.to_string()).unwrap();
     }
 }

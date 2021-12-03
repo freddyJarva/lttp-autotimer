@@ -1972,11 +1972,9 @@
         "conditions": [
             {
                 "type": "PreviousTile",
-                "tile": {
-                    "name": "Misery Mire - OW",
-                    "indoors": false,
-                    "address_value": "0x70"
-                }
+                "name": "Misery Mire - OW",
+                "indoors": false,
+                "address_value": "0x70"
             }
         ],
         "address_value": [
@@ -1986,7 +1984,6 @@
     {
         "name": "Dark World lumberjacks shop",
         "indoors": true,
-        "conditions": {},
         "address_value": [
             "0x60"
         ]
@@ -1994,7 +1991,6 @@
     {
         "name": "Lake Hylia shop",
         "indoors": true,
-        "conditions": {},
         "address_value": [
             "0x58"
         ]
@@ -2056,7 +2052,6 @@
     {
         "name": "Village of Outcasts shop",
         "indoors": true,
-        "conditions": {},
         "address_value": [
             "0x60"
         ]
@@ -2144,11 +2139,9 @@
         "conditions": [
             {
                 "type": "PreviousTile",
-                "tile": {
-                    "name": "South Pass",
-                    "indoors": false,
-                    "address_value": "0x3C"
-                }
+                "name": "South Pass",
+                "indoors": false,
+                "address_value": "0x3C"
             }
         ],
         "address_value": [
@@ -2158,7 +2151,6 @@
     {
         "name": "Big fairy (South of Kiki)",
         "indoors": true,
-        "conditions": {},
         "address_value": [
             "0x5E"
         ]
@@ -2166,7 +2158,6 @@
     {
         "name": "Dark Death Mountain shop",
         "indoors": true,
-        "conditions": {},
         "address_value": [
             "0x58"
         ]
@@ -2174,7 +2165,6 @@
     {
         "name": "Dark World witch shop",
         "indoors": true,
-        "conditions": {},
         "address_value": [
             "0x60"
         ]
@@ -2185,11 +2175,9 @@
         "conditions": [
             {
                 "type": "PreviousTile",
-                "tile": {
-                    "name": "West Dark Death Mountain",
-                    "indoors": false,
-                    "address_value": "0x43"
-                }
+                "name": "West Dark Death Mountain",
+                "indoors": false,
+                "address_value": "0x43"
             }
         ],
         "address_value": [
@@ -2206,7 +2194,6 @@
     {
         "name": "Desert big fairy",
         "indoors": true,
-        "conditions": {},
         "address_value": [
             "0x5E"
         ]
@@ -2221,7 +2208,6 @@
     {
         "name": "Dark Lake Hylia shop",
         "indoors": true,
-        "conditions": {},
         "address_value": [
             "0x60"
         ]
@@ -2243,7 +2229,6 @@
     {
         "name": "Link's house bonk rocks fairy pond",
         "indoors": true,
-        "conditions": {},
         "address_value": [
             "0x71"
         ]
@@ -2251,7 +2236,6 @@
     {
         "name": "Bomb shop bonk rocks fairy pond",
         "indoors": true,
-        "conditions": {},
         "address_value": [
             "0x71"
         ]
@@ -2315,7 +2299,6 @@
     {
         "name": "Dark ice rod big fairy",
         "indoors": true,
-        "conditions": {},
         "address_value": [
             "0x5E"
         ]
@@ -2365,7 +2348,6 @@
     {
         "name": "Graveyard fairy drop",
         "indoors": true,
-        "conditions": {},
         "address_value": [
             "0x7C"
         ]
@@ -2967,11 +2949,9 @@
         "conditions": [
             {
                 "type": "PreviousTile",
-                "tile": {
-                    "name": "Lost Woods",
-                    "indoors": false,
-                    "address_value": "0x0"
-                }
+                "name": "Lost Woods",
+                "indoors": false,
+                "address_value": "0x0"
             }
         ]
     },
@@ -2984,11 +2964,9 @@
         "conditions": [
             {
                 "type": "PreviousTile",
-                "tile": {
-                    "name": "Stone Bridge",
-                    "indoors": false,
-                    "address_value": "0x2D"
-                }
+                "name": "Stone Bridge",
+                "indoors": false,
+                "address_value": "0x2D"
             }
         ]
     },

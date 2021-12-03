@@ -17,7 +17,7 @@ pub struct Tile {
     pub address_value: Vec<u16>,
     pub timestamp: Option<DateTime<Utc>>,
     pub indoors: bool,
-    pub conditions: Option<Conditions>,
+    pub conditions: Option<Vec<Conditions>>,
 }
 
 impl Tile {
@@ -57,9 +57,15 @@ impl Tile {
                 for &tile in &matches {
                     match &tile.conditions {
                         Some(conditions) => {
-                            let conditions = conditions.clone();
-                            if previous_tile_condition_met(&conditions, previous_tile, tile)
-                                || coordinate_condition_met(&conditions, &current)
+                            if conditions.iter().all(|c| {
+                                match c {
+                                    Conditions::PreviousTile(condition) => previous_tile_condition_met(condition, previous_tile, tile),
+                                    Conditions::Coordinates { coordinates } => coordinate_condition_met(coordinates, current),
+                                }
+                            })
+                            // let conditions = conditions.clone();
+                            // if previous_tile_condition_met(&conditions, previous_tile, tile)
+                            //     || coordinate_condition_met(&conditions, &current)
                             {
                                 return Ok(tile.clone());
                             }
@@ -113,14 +119,11 @@ mod tests {
                 name: "Hobo".to_string(),
                 indoors: false,
                 address_value: vec![0x80],
-                conditions: Some(Conditions {
-                    previous_tile: Some(ConditionTransition {
-                        name: "Stone Bridge".to_string(),
-                        indoors: false,
-                        address_value: 0x2d
-                    }),
-                    ..Default::default()
-                }),
+                conditions: Some(vec![Conditions::PreviousTile(ConditionTransition {
+                    name: "Stone Bridge".to_string(),
+                    indoors: false,
+                    address_value: 0x2d
+                })]),
                 ..Default::default()
             }
         );

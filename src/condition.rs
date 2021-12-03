@@ -19,10 +19,11 @@ pub struct ConditionTransition {
 /// As an example, some tiles use the same address AND address value.
 /// In these cases we can evaluate which specific tile Link enters by checking that the previous address value
 /// equals one defined in `previous_tiles`
-#[derive(Debug, Default, Deserialize, PartialEq, Clone, Hash, Eq)]
-pub struct Conditions {
-    pub previous_tile: Option<ConditionTransition>,
-    pub coordinates: Option<Vec<Coordinate>>,
+#[derive(Debug, Deserialize, PartialEq, Clone, Hash, Eq)]
+#[serde(tag = "type")]
+pub enum Conditions {
+    PreviousTile(ConditionTransition),
+    Coordinates { coordinates: Vec<Coordinate> },
 }
 
 #[derive(Debug, Deserialize, PartialEq, Clone, Hash, Eq)]
@@ -39,6 +40,12 @@ pub enum Coordinate {
         x: (u16, u16),
         #[serde(deserialize_with = "coordinate_range_deserialize")]
         y: (u16, u16),
+    },
+    Chest {
+        #[serde(deserialize_with = "coordinate_deserialize")]
+        x: u16,
+        #[serde(deserialize_with = "coordinate_deserialize")]
+        y: u16,
     },
 }
 
@@ -57,8 +64,19 @@ impl Coordinate {
                     x: x_range,
                     y: y_range,
                 } => x >= &x_range.0 && x <= &x_range.1 && y >= &y_range.0 && y <= &y_range.1,
+                // For chest checks we basically make a bounding box with predefined width/height
+                Coordinate::Chest {
+                    x: x_chest,
+                    y: y_chest,
+                } => {
+                    x >= &(x_chest - 10)
+                        && x <= &(x_chest + 10)
+                        && y >= &(y_chest - 1)
+                        && y <= &(y_chest + 2)
+                }
             },
             Coordinate::Range { x: _, y: _ } => todo!(),
+            Coordinate::Chest { x: _, y: _ } => todo!(),
         }
     }
 }
@@ -72,24 +90,16 @@ impl From<&SnesRam> for Coordinate {
     }
 }
 
-pub fn coordinate_condition_met(conditions: &Conditions, current: &SnesRam) -> bool {
-    if let Some(condition_coordinate) = &conditions.coordinates {
-        condition_coordinate
-            .iter()
-            .any(|c| Coordinate::from(current).matches(c))
-    } else {
-        false
-    }
+pub fn coordinate_condition_met(conditions: &[Coordinate], current: &SnesRam) -> bool {
+    conditions
+        .iter()
+        .any(|c| Coordinate::from(current).matches(c))
 }
 
 pub fn previous_tile_condition_met(
-    conditions: &Conditions,
+    condition: &ConditionTransition,
     previous_tile: &Tile,
     tile: &Tile,
 ) -> bool {
-    if let Some(previous_tile_condition) = &conditions.previous_tile {
-        previous_tile_condition.name == previous_tile.name || tile.name == previous_tile.name
-    } else {
-        false
-    }
+    condition.name == previous_tile.name || tile.name == previous_tile.name
 }

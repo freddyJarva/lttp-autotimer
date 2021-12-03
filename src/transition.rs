@@ -63,16 +63,11 @@ impl Tile {
                                     Conditions::Coordinates { coordinates } => coordinate_condition_met(coordinates, current),
                                 }
                             })
-                            // let conditions = conditions.clone();
-                            // if previous_tile_condition_met(&conditions, previous_tile, tile)
-                            //     || coordinate_condition_met(&conditions, &current)
                             {
                                 return Ok(tile.clone());
                             }
                         }
-                        // If conditions haven't been created yet, just return error
                         None => panic!("This is bad: Tile lacking conditions when sharing ram address and value with others: {:?}", tile),
-                        // None => return Err(anyhow!("No matches found for current ram value")),
                     };
                 }
                 Err(anyhow!("No matches found for current ram value"))

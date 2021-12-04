@@ -2012,7 +2012,7 @@
         ]
     },
     {
-        "name": "Palace of Darkness - Lobby",
+        "name": "Palace of Darkness - Lobby S",
         "indoors": true,
         "address_value": [
             "0x26"
@@ -2025,6 +2025,526 @@
                         "type": "Range",
                         "x": "5232-5504",
                         "y": "2328-2520"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Palace of Darkness - Lobby N",
+        "indoors": true,
+        "address_value": [
+            "0x26"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Range",
+                        "x": "5232-5504",
+                        "y": "2100-2264"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Palace of Darkness - Lobby Basement W",
+        "indoors": true,
+        "address_value": [
+            "0x26"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Stairs",
+                        "x": "4729",
+                        "y": "55"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Palace of Darkness - Fork",
+        "indoors": true,
+        "address_value": [
+            "0x26"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Range",
+                        "x": "5160-5576",
+                        "y": "1568-2008"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Palace of Darkness - Below Fork",
+        "indoors": true,
+        "address_value": [
+            "0x26"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Range",
+                        "x": "5232",
+                        "y": "24-248"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Palace of Darkness - Lobby Basement E",
+        "indoors": true,
+        "address_value": [
+            "0x26"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Range",
+                        "x": "4944-5026",
+                        "y": "24-192"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Palace of Darkness - Portal Hint",
+        "indoors": true,
+        "address_value": [
+            "0x26"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Range",
+                        "x": "5968-6048",
+                        "y": "2124-2264"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Palace of Darkness - Blue Jellyfish Hallway",
+        "indoors": true,
+        "address_value": [
+            "0x26"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "6008",
+                        "y": "2352"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "5752",
+                        "y": "2352"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Palace of Darkness - Mimic Room 1",
+        "indoors": true,
+        "address_value": [
+            "0x26"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "5752",
+                        "y": "2240"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "5752",
+                        "y": "2096"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Palace of Darkness - Conveyor Hallway",
+        "indoors": true,
+        "address_value": [
+            "0x26"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "5752",
+                        "y": "2008"
+                    },
+                    {
+                        "type": "Stairs",
+                        "x": "5752",
+                        "y": "1586"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Palace of Darkness - Statue Switch",
+        "indoors": true,
+        "address_value": [
+            "0x26"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Range",
+                        "x": "5672-5832",
+                        "y": "1044-1470"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Palace of Darkness - Hub",
+        "indoors": true,
+        "address_value": [
+            "0x26"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Range",
+                        "x": "5160-5600",
+                        "y": "1056-1496"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Palace of Darkness - Hammer Jump Bridge",
+        "indoors": true,
+        "address_value": [
+            "0x26"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Range",
+                        "x": "5144-5336",
+                        "y": "632-984"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Palace of Darkness - Turtle Squad Chest",
+        "indoors": true,
+        "address_value": [
+            "0x26"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Range",
+                        "x": "5400-5576",
+                        "y": "560-730"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Palace of Darkness - Rupee Room",
+        "indoors": true,
+        "address_value": [
+            "0x26"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Stairs",
+                        "x": "5449",
+                        "y": "3127"
+                    },
+                    {
+                        "type": "Stairs",
+                        "x": "5545",
+                        "y": "3127"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Palace of Darkness - Harmless Hallway",
+        "indoors": true,
+        "address_value": [
+            "0x26"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Range",
+                        "x": "5416-5576",
+                        "y": "732-984"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Palace of Darkness - Dark Labyrinth",
+        "indoors": true,
+        "address_value": [
+            "0x26"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Range",
+                        "x": "5060-5084",
+                        "y": "632-800"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Palace of Darkness - Mimic Room 2",
+        "indoors": true,
+        "address_value": [
+            "0x26"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "5752",
+                        "y": "984"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "5752",
+                        "y": "816"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Palace of Darkness - Cutscene Room",
+        "indoors": true,
+        "address_value": [
+            "0x26"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "5752",
+                        "y": "728"
+                    },
+                    {
+                        "type": "Stairs",
+                        "x": "6032",
+                        "y": "575"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Palace of Darkness - Dark Hammer Tile Room",
+        "indoors": true,
+        "address_value": [
+            "0x26"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Stairs",
+                        "x": "6032",
+                        "y": "110"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "5912",
+                        "y": "120"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Palace of Darkness - Dark Tiny Hallway",
+        "indoors": true,
+        "address_value": [
+            "0x26"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "5848",
+                        "y": "120"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "5752",
+                        "y": "216"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Palace of Darkness - Dark Turtle Trap",
+        "indoors": true,
+        "address_value": [
+            "0x26"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "5752",
+                        "y": "304"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "5832",
+                        "y": "376"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Palace of Darkness - Dark Portal",
+        "indoors": true,
+        "address_value": [
+            "0x26"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Range",
+                        "x": "5912-6041",
+                        "y": "304-448"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Palace of Darkness - Boss Approach",
+        "indoors": true,
+        "address_value": [
+            "0x26"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Range",
+                        "x": "5473-5518",
+                        "y": "3428-3478"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Palace of Darkness - Helmasaur",
+        "indoors": true,
+        "address_value": [
+            "0x26"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "5496",
+                        "y": "3008"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Palace of Darkness - Fairy Fountain",
+        "indoors": true,
+        "address_value": [
+            "0x26"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "5928",
+                        "y": "1400"
                     }
                 ]
             }

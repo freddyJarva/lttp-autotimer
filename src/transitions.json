@@ -2012,10 +2012,22 @@
         ]
     },
     {
-        "name": "Palace of Darkness",
+        "name": "Palace of Darkness - Lobby",
         "indoors": true,
         "address_value": [
             "0x26"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Range",
+                        "x": "5232-5504",
+                        "y": "2328-2520"
+                    }
+                ]
+            }
         ]
     },
     {
@@ -2545,9 +2557,14 @@
         ],
         "conditions": [
             {
-                "type": "Stairs",
-                "x": "376",
-                "y": "5300"
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Stairs",
+                        "x": "376",
+                        "y": "5300"
+                    }
+                ]
             }
         ]
     },
@@ -2747,24 +2764,299 @@
         ]
     },
     {
+        "name": "Skull Woods - Big Chest",
+        "indoors": true,
+        "address_value": [
+            "0x2a",
+            "0x77",
+            "0x76",
+            "0x78",
+            "0x79"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Range",
+                        "x": "4116-4312",
+                        "y": "2656-3032"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Skull Woods - East of Big Chest",
+        "indoors": true,
+        "address_value": [
+            "0x2a",
+            "0x77",
+            "0x76",
+            "0x78",
+            "0x79"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Range",
+                        "x": "4372-4552",
+                        "y": "2608-3032"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Skull Woods - Bumper Drop",
+        "indoors": true,
+        "address_value": [
+            "0x2a",
+            "0x77",
+            "0x76",
+            "0x78",
+            "0x79"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Range",
+                        "x": "3646-3800",
+                        "y": "3120-3448"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Skull Woods - Chest trigger floor change Room",
+        "indoors": true,
+        "address_value": [
+            "0x2a",
+            "0x77",
+            "0x76",
+            "0x78",
+            "0x79"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Range",
+                        "x": "3864-4060",
+                        "y": "3104-3448"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Skull Woods - West of Big Chest",
+        "indoors": true,
+        "address_value": [
+            "0x2a",
+            "0x77",
+            "0x76",
+            "0x78",
+            "0x79"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Range",
+                        "x": "3880-4060",
+                        "y": "2864-3032"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Skull Woods - Soft Lock Room",
+        "indoors": true,
+        "address_value": [
+            "0x2a",
+            "0x77",
+            "0x76",
+            "0x78",
+            "0x79"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Range",
+                        "x": "4136-4488",
+                        "y": "3096-3448"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Skull Woods - Mummy Statue",
+        "indoors": true,
+        "address_value": [
+            "0x2a",
+            "0x77",
+            "0x76",
+            "0x78",
+            "0x79"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Range",
+                        "x": "3604-3784",
+                        "y": "3032-2864"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Skull Woods - Behind Mummy Statue",
+        "indoors": true,
+        "address_value": [
+            "0x2a",
+            "0x77",
+            "0x76",
+            "0x78",
+            "0x79"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "3704",
+                        "y": "2776"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "3784",
+                        "y": "2680"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Skull Woods - Mid Bumper Drop",
+        "indoors": true,
+        "address_value": [
+            "0x2a",
+            "0x77",
+            "0x76",
+            "0x78",
+            "0x79"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Range",
+                        "x": "3352-3544",
+                        "y": "2608-3008"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Skull Woods - Magic Refill Secret",
+        "indoors": true,
+        "address_value": [
+            "0x2a",
+            "0x77",
+            "0x76",
+            "0x78",
+            "0x79"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "3880",
+                        "y": "2680"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Skull Woods - You just wasted a key, you fool!",
+        "indoors": true,
+        "address_value": [
+            "0x2a",
+            "0x77",
+            "0x76",
+            "0x78",
+            "0x79"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "3192",
+                        "y": "2776"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Skull Woods - Mid West",
+        "indoors": true,
+        "address_value": [
+            "0x2a",
+            "0x77",
+            "0x76",
+            "0x78",
+            "0x79"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Range",
+                        "x": "3112-3132",
+                        "y": "2848-3032"
+                    }
+                ]
+            }
+        ]
+    },
+    {
         "name": "Skull Woods west",
         "indoors": true,
         "address_value": [
             "0x28"
-        ]
+        ],
+        "conditions": []
     },
     {
         "name": "Skull Woods mummy statue",
         "indoors": true,
         "address_value": [
             "0x29"
-        ]
-    },
-    {
-        "name": "Skull Woods big chest",
-        "indoors": true,
-        "address_value": [
-            "0x2A"
         ]
     },
     {
@@ -3695,34 +3987,6 @@
                 "type": "PreviousTile",
                 "name": "Ice Cave"
             }
-        ]
-    },
-    {
-        "name": "Skull Woods big chest drop",
-        "indoors": true,
-        "address_value": [
-            "0x76"
-        ]
-    },
-    {
-        "name": "Skull Woods compass drop",
-        "indoors": true,
-        "address_value": [
-            "0x77"
-        ]
-    },
-    {
-        "name": "Skull Woods pinball drop",
-        "indoors": true,
-        "address_value": [
-            "0x78"
-        ]
-    },
-    {
-        "name": "Skull Woods Useless drop",
-        "indoors": true,
-        "address_value": [
-            "0x79"
         ]
     },
     {

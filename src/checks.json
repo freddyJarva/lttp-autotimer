@@ -914,27 +914,77 @@
     {
         "name": "Misery Mire - Big Chest",
         "sram_offset": "0x0",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "conditions": [
+            {
+                "type": "PreviousTile",
+                "name": "Misery Mire - Big Chest Room"
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf438"
+            }
+        ]
     },
     {
         "name": "Misery Mire - Map Chest",
         "sram_offset": "0x0",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "conditions": [
+            {
+                "type": "PreviousTile",
+                "name": "Misery Mire - Map Chest Room"
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf438"
+            }
+        ]
     },
     {
         "name": "Misery Mire - Main Lobby",
         "sram_offset": "0x0",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "conditions": [
+            {
+                "type": "PreviousTile",
+                "name": "Misery Mire - Hub"
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf438"
+            }
+        ]
     },
     {
         "name": "Misery Mire - Bridge Chest",
         "sram_offset": "0x0",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "conditions": [
+            {
+                "type": "PreviousTile",
+                "name": "Misery Mire - Bridges"
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf438"
+            }
+        ]
     },
     {
         "name": "Misery Mire - Spike Chest",
         "sram_offset": "0x0",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "conditions": [
+            {
+                "type": "PreviousTile",
+                "name": "Misery Mire - Spike Chest Room"
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf438"
+            }
+        ]
     },
     {
         "name": "Misery Mire - Compass Chest",
@@ -944,18 +994,42 @@
             {
                 "type": "PreviousTile",
                 "name": "Misery Mire - North of Tile Room"
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf438"
             }
         ]
     },
     {
         "name": "Misery Mire - Big Key Chest",
         "sram_offset": "0x0",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "conditions": [
+            {
+                "type": "PreviousTile",
+                "name": "Misery Mire - Big Key Chest Room"
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf438"
+            }
+        ]
     },
     {
         "name": "Misery Mire - Boss",
         "sram_offset": "0x0",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "conditions": [
+            {
+                "type": "PreviousTile",
+                "name": "Misery Mire - Vitreous"
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf438"
+            }
+        ]
     },
     {
         "name": "Turtle Rock - Compass Chest",

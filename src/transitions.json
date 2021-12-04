@@ -4699,10 +4699,8 @@
         "name": "Skull Woods - Mummy Statue",
         "indoors": true,
         "address_value": [
-            "0x2a",
-            "0x77",
-            "0x76",
-            "0x78",
+            "0x28",
+            "0x29",
             "0x79"
         ],
         "conditions": [
@@ -4722,10 +4720,8 @@
         "name": "Skull Woods - Behind Mummy Statue",
         "indoors": true,
         "address_value": [
-            "0x2a",
-            "0x77",
-            "0x76",
-            "0x78",
+            "0x28",
+            "0x29",
             "0x79"
         ],
         "conditions": [
@@ -4750,10 +4746,8 @@
         "name": "Skull Woods - Mid Bumper Drop",
         "indoors": true,
         "address_value": [
-            "0x2a",
-            "0x77",
-            "0x76",
-            "0x78",
+            "0x28",
+            "0x29",
             "0x79"
         ],
         "conditions": [
@@ -4773,10 +4767,8 @@
         "name": "Skull Woods - Magic Refill Secret",
         "indoors": true,
         "address_value": [
-            "0x2a",
-            "0x77",
-            "0x76",
-            "0x78",
+            "0x28",
+            "0x29",
             "0x79"
         ],
         "conditions": [
@@ -4796,10 +4788,8 @@
         "name": "Skull Woods - You just wasted a key, you fool!",
         "indoors": true,
         "address_value": [
-            "0x2a",
-            "0x77",
-            "0x76",
-            "0x78",
+            "0x28",
+            "0x29",
             "0x79"
         ],
         "conditions": [
@@ -4819,10 +4809,8 @@
         "name": "Skull Woods - Mid West",
         "indoors": true,
         "address_value": [
-            "0x2a",
-            "0x77",
-            "0x76",
-            "0x78",
+            "0x28",
+            "0x29",
             "0x79"
         ],
         "conditions": [
@@ -4839,25 +4827,204 @@
         ]
     },
     {
-        "name": "Skull Woods west",
+        "name": "Skull Woods Back - Lobby",
         "indoors": true,
         "address_value": [
-            "0x28"
+            "0x2b"
         ],
-        "conditions": []
-    },
-    {
-        "name": "Skull Woods mummy statue",
-        "indoors": true,
-        "address_value": [
-            "0x29"
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "4728",
+                        "y": "3032"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "4800",
+                        "y": "2680"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "4728",
+                        "y": "2592"
+                    }
+                ]
+            }
         ]
     },
     {
-        "name": "Skull Woods back",
+        "name": "Skull Woods Back - Mummy Bumper Room",
         "indoors": true,
         "address_value": [
-            "0x2B"
+            "0x2b"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "4912",
+                        "y": "2936"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "4912",
+                        "y": "2680"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Skull Woods Back - Lobby Chest Corner",
+        "indoors": true,
+        "address_value": [
+            "0x2b"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "4800",
+                        "y": "2936"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Skull Woods Back - Jellyfish Floor Switch Room",
+        "indoors": true,
+        "address_value": [
+            "0x2b"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "4728",
+                        "y": "2520"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "4824",
+                        "y": "2424"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Skull Woods Back - Timed Torches Room",
+        "indoors": true,
+        "address_value": [
+            "0x2b"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "4888",
+                        "y": "2424"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "4904",
+                        "y": "2168"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Skull Woods Back - Drape Vine",
+        "indoors": true,
+        "address_value": [
+            "0x2b"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "4824",
+                        "y": "2168"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Skull Woods Back - Key Mummy",
+        "indoors": true,
+        "address_value": [
+            "0x2b"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "4728",
+                        "y": "1984"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "4824",
+                        "y": "1912"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Skull Woods Back - Boss Approach",
+        "indoors": true,
+        "address_value": [
+            "0x2b"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "4888",
+                        "y": "1912"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Skull Woods Back - Boss Mothula",
+        "indoors": true,
+        "address_value": [
+            "0x2b"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Range",
+                        "x": "4951-5017",
+                        "y": "1385-1434"
+                    }
+                ]
+            }
         ]
     },
     {

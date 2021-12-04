@@ -7762,6 +7762,691 @@
         ]
     },
     {
+        "name": "Ganon's Tower - Spike Floor Switch Room",
+        "indoors": true,
+        "address_value": [
+            "0x37"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Stairs",
+                        "x": "5880",
+                        "y": "3124"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "5752",
+                        "y": "3264"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Ganon's Tower - Mimic Trap Room 1",
+        "indoors": true,
+        "address_value": [
+            "0x37"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "5752",
+                        "y": "3376"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "5832",
+                        "y": "3448"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Ganon's Tower - Mimic Trap Room 2",
+        "indoors": true,
+        "address_value": [
+            "0x37"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "5928",
+                        "y": "3448"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "6008",
+                        "y": "3376"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Ganon's Tower - Big Key Door",
+        "indoors": true,
+        "address_value": [
+            "0x37"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "6008",
+                        "y": "3288"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "6008",
+                        "y": "3104"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Ganon's Tower - Past Big Key Door",
+        "indoors": true,
+        "address_value": [
+            "0x37"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "6008",
+                        "y": "3032"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "6088",
+                        "y": "2680"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Ganon's Tower - Cannon Bridge",
+        "indoors": true,
+        "address_value": [
+            "0x37"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Range",
+                        "x": "6168-6560",
+                        "y": "-2752"
+                    },
+                    {
+                        "type": "Stairs",
+                        "x": "6521",
+                        "y": "2614"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Ganon's Tower - Fairy Secret",
+        "indoors": true,
+        "address_value": [
+            "0x37"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "6520",
+                        "y": "2864"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Ganon's Tower - Gauntlet Room 1",
+        "indoors": true,
+        "address_value": [
+            "0x37"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Stairs",
+                        "x": "7032",
+                        "y": "2612"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "6952",
+                        "y": "2680"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Ganon's Tower - Gauntlet Room 2",
+        "indoors": true,
+        "address_value": [
+            "0x37"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "6856",
+                        "y": "2680"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "6776",
+                        "y": "2752"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Ganon's Tower - Gauntlet Room 3",
+        "indoors": true,
+        "address_value": [
+            "0x37"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "6776",
+                        "y": "2864"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "6776",
+                        "y": "3008"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Ganon's Tower - Gauntlet Room 4",
+        "indoors": true,
+        "address_value": [
+            "0x37"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "6776",
+                        "y": "3120"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "6776",
+                        "y": "3264"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Ganon's Tower - Gauntlet Room 5",
+        "indoors": true,
+        "address_value": [
+            "0x37"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "6776",
+                        "y": "3376"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "6696",
+                        "y": "3448"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Ganon's Tower - Lanmolas Approach",
+        "indoors": true,
+        "address_value": [
+            "0x37"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "6616",
+                        "y": "3448"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "6424",
+                        "y": "3448"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Ganon's Tower - Lanmolas",
+        "indoors": true,
+        "address_value": [
+            "0x37"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "6344",
+                        "y": "3448"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Ganon's Tower - Past Lanmolas",
+        "indoors": true,
+        "address_value": [
+            "0x37"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "6264",
+                        "y": "3264"
+                    },
+                    {
+                        "type": "Stairs",
+                        "x": "6256",
+                        "y": "3127"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Ganon's Tower - Wizrobe Invisible Path",
+        "indoors": true,
+        "address_value": [
+            "0x37"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Stairs",
+                        "x": "2680",
+                        "y": "5172"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "2680",
+                        "y": "5312"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Ganon's Tower - Lazer Bridge",
+        "indoors": true,
+        "address_value": [
+            "0x37"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Range",
+                        "x": "2680-1944",
+                        "y": "5400-5420"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Ganon's Tower - Conveyor Wizrobes",
+        "indoors": true,
+        "address_value": [
+            "0x37"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "2936",
+                        "y": "5312"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "2936",
+                        "y": "5168"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Ganon's Tower - Falling Conveyor Bridge",
+        "indoors": true,
+        "address_value": [
+            "0x37"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "2936",
+                        "y": "5080"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "3032",
+                        "y": "4728"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Ganon's Tower - Timed Torches Climb 1",
+        "indoors": true,
+        "address_value": [
+            "0x37"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "3096",
+                        "y": "4728"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "3272",
+                        "y": "4984"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Ganon's Tower - Lazer Stairs",
+        "indoors": true,
+        "address_value": [
+            "0x37"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "3352",
+                        "y": "4984"
+                    },
+                    {
+                        "type": "Stairs",
+                        "x": "3448",
+                        "y": "5029"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Ganon's Tower - Timed Torches Climb 2",
+        "indoors": true,
+        "address_value": [
+            "0x37"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Stairs",
+                        "x": "7032",
+                        "y": "1911"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "7032",
+                        "y": "1840"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Ganon's Tower - Key Minihelma",
+        "indoors": true,
+        "address_value": [
+            "0x37"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "7032",
+                        "y": "1752"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "6936",
+                        "y": "1656"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Ganon's Tower - Spike Conveyor Bomb Wall",
+        "indoors": true,
+        "address_value": [
+            "0x37"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "6872",
+                        "y": "1656"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "6776",
+                        "y": "1728"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Ganon's Tower - Moldorm Approach",
+        "indoors": true,
+        "address_value": [
+            "0x37"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "6776",
+                        "y": "1840"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "6776",
+                        "y": "2008"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Ganon's Tower - Moldorm",
+        "indoors": true,
+        "address_value": [
+            "0x37"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Range",
+                        "x": "6696-7050",
+                        "y": "2080-2496"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Ganon's Tower - Trolldorm's Gonna Troll ¯\\_(ツ)_/¯",
+        "indoors": true,
+        "address_value": [
+            "0x37"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Range",
+                        "x": "3112-3270",
+                        "y": "5160-5568"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Ganon's Tower - Conveyor Helma Hallway",
+        "indoors": true,
+        "address_value": [
+            "0x37"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "6600",
+                        "y": "2424"
+                    },
+                    {
+                        "type": "Stairs",
+                        "x": "6521",
+                        "y": "2102"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Ganon's Tower - Boss Approach",
+        "indoors": true,
+        "address_value": [
+            "0x37"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "7032",
+                        "y": "564"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Ganon's Tower - Boss Agahnim 2",
+        "indoors": true,
+        "address_value": [
+            "0x37"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "6776",
+                        "y": "448"
+                    }
+                ]
+            }
+        ]
+    },
+    {
         "name": "Graveyard fairy",
         "indoors": true,
         "address_value": [

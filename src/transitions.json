@@ -4250,10 +4250,777 @@
         ]
     },
     {
-        "name": "Ice Palace",
+        "name": "Ice Palace - Lobby",
         "indoors": true,
         "address_value": [
-            "0x2D"
+            "0x2d"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "7544",
+                        "y": "472"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "7464",
+                        "y": "376"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Ice Palace - Jellyfish Key",
+        "indoors": true,
+        "address_value": [
+            "0x2d"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "7368",
+                        "y": "376"
+                    },
+                    {
+                        "type": "Stairs",
+                        "x": "7288",
+                        "y": "308"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Ice Palace - Floor Tile Switch",
+        "indoors": true,
+        "address_value": [
+            "0x2d"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Stairs",
+                        "x": "7289",
+                        "y": "823"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "7368",
+                        "y": "888"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Ice Palace - Movable Block Cross",
+        "indoors": true,
+        "address_value": [
+            "0x2d"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Range",
+                        "x": "7464-7624",
+                        "y": "816-974"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Ice Palace - Penguin Pot Switch",
+        "indoors": true,
+        "address_value": [
+            "0x2d"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "7720",
+                        "y": "888"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "7880",
+                        "y": "888"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Ice Palace - Somaria Trick",
+        "indoors": true,
+        "address_value": [
+            "0x2d"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "7960",
+                        "y": "888"
+                    },
+                    {
+                        "type": "Stairs",
+                        "x": "8032",
+                        "y": "814"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Ice Palace - Penguin Chest",
+        "indoors": true,
+        "address_value": [
+            "0x2d"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "7544",
+                        "y": "1056"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Ice Palace - Bombable Floor",
+        "indoors": true,
+        "address_value": [
+            "0x2d"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "7544",
+                        "y": "728"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Ice Palace - Pre Conveyor Hallway",
+        "indoors": true,
+        "address_value": [
+            "0x2d"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Range",
+                        "x": "7520-7568",
+                        "y": "1620-1672"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Ice Palace - Conveyor Hallway",
+        "indoors": true,
+        "address_value": [
+            "0x2d"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "7544",
+                        "y": "1840"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "7288",
+                        "y": "2008"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Ice Palace - Bomb Jump Room",
+        "indoors": true,
+        "address_value": [
+            "0x2d"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "7288",
+                        "y": "2080"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "7368",
+                        "y": "2168"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Ice Palace - Post Bomb Jump Room",
+        "indoors": true,
+        "address_value": [
+            "0x2d"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "7464",
+                        "y": "2168"
+                    },
+                    {
+                        "type": "Stairs",
+                        "x": "7608",
+                        "y": "2164"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Ice Palace - One Spin Penguin Clear Room",
+        "indoors": true,
+        "address_value": [
+            "0x2d"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Stairs",
+                        "x": "7609",
+                        "y": "3191"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "7544",
+                        "y": "3120"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Ice Palace - Big Spike Cross",
+        "indoors": true,
+        "address_value": [
+            "0x2d"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Range",
+                        "x": "7448-7640",
+                        "y": "2856-3032"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Ice Palace - Spike Chest",
+        "indoors": true,
+        "address_value": [
+            "0x2d"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Range",
+                        "x": "7704-7880",
+                        "y": "2864-3008"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Ice Palace - 'H' Room",
+        "indoors": true,
+        "address_value": [
+            "0x2d"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Stairs",
+                        "x": "7856",
+                        "y": "1844"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "7880",
+                        "y": "1912"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Ice Palace - 'P' Room",
+        "indoors": true,
+        "address_value": [
+            "0x2d"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "7976",
+                        "y": "1912"
+                    },
+                    {
+                        "type": "Stairs",
+                        "x": "8032",
+                        "y": "1886"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Ice Palace - Quad Big Spike",
+        "indoors": true,
+        "address_value": [
+            "0x2d"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Range",
+                        "x": "7745-7800",
+                        "y": "3872-3900"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Ice Palace - Hookshot Abyss",
+        "indoors": true,
+        "address_value": [
+            "0x2d"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Range",
+                        "x": "7700-7800",
+                        "y": "3688-3800"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Ice Palace - Disappering Floor Room",
+        "indoors": true,
+        "address_value": [
+            "0x2d"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "7544",
+                        "y": "2752"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Ice Palace - Ice Rink",
+        "indoors": true,
+        "address_value": [
+            "0x2d"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Range",
+                        "x": "7444-7624",
+                        "y": "3632-4056"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Ice Palace - South of Ice Rink",
+        "indoors": true,
+        "address_value": [
+            "0x2d"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "7544",
+                        "y": "4128"
+                    },
+                    {
+                        "type": "Stairs",
+                        "x": "7496",
+                        "y": "4148"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Ice Palace - Ice T",
+        "indoors": true,
+        "address_value": [
+            "0x2d"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Stairs",
+                        "x": "7497",
+                        "y": "5175"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "7640",
+                        "y": "5240"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Ice Palace - Fire Spinner Ice Bridge",
+        "indoors": true,
+        "address_value": [
+            "0x2d"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "7704",
+                        "y": "5240"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "7800",
+                        "y": "5152"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Ice Palace - Key Pot Room",
+        "indoors": true,
+        "address_value": [
+            "0x2d"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "7800",
+                        "y": "5056"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "7720",
+                        "y": "4984"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Ice Palace - Falling Block Drop Room",
+        "indoors": true,
+        "address_value": [
+            "0x2d"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Range",
+                        "x": "7448-7640",
+                        "y": "4896-5056"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Ice Palace - Stock & Switch Room",
+        "indoors": true,
+        "address_value": [
+            "0x2d"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "7704",
+                        "y": "6008"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Ice Palace - Fairy Drop Room",
+        "indoors": true,
+        "address_value": [
+            "0x2d"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "7544",
+                        "y": "4824"
+                    },
+                    {
+                        "type": "Stairs",
+                        "x": "7544",
+                        "y": "4660"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Ice Palace - Fairy Room",
+        "indoors": true,
+        "address_value": [
+            "0x2d"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Range",
+                        "x": "7976-8136",
+                        "y": "2096-2240"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Ice Palace - Fairy Pot Room",
+        "indoors": true,
+        "address_value": [
+            "0x2d"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Range",
+                        "x": "7464-7624",
+                        "y": "5620-5848"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Ice Palace - Fallen Block Switch Room",
+        "indoors": true,
+        "address_value": [
+            "0x2d"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Range",
+                        "x": "7464-7624",
+                        "y": "5920-6110"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Ice Palace - Slippery Stairs",
+        "indoors": true,
+        "address_value": [
+            "0x2d"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "7384",
+                        "y": "2936"
+                    },
+                    {
+                        "type": "Stairs",
+                        "x": "7232",
+                        "y": "2943"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Ice Palace - Above Big Chest Room",
+        "indoors": true,
+        "address_value": [
+            "0x2d"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "7384",
+                        "y": "3960"
+                    },
+                    {
+                        "type": "Stairs",
+                        "x": "7232",
+                        "y": "4013"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Ice Palace - Big Chest Room",
+        "indoors": true,
+        "address_value": [
+            "0x2d"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Range",
+                        "x": "7208-7384",
+                        "y": "4912-5056"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Ice Palace - Boss Approach",
+        "indoors": true,
+        "address_value": [
+            "0x2d"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "7544",
+                        "y": "6192"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Ice Palace - Boss Kholdstare",
+        "indoors": true,
+        "address_value": [
+            "0x2d"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Range",
+                        "x": "7464-7521",
+                        "y": "6848-6790"
+                    }
+                ]
+            }
         ]
     },
     {

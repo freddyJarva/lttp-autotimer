@@ -2019,10 +2019,345 @@
         ]
     },
     {
-        "name": "Misery Mire",
+        "name": "Misery Mire - Lobby",
         "indoors": true,
         "address_value": [
             "0x27"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "4216",
+                        "y": "5080"
+                    },
+                    {
+                        "type": "Stairs",
+                        "x": "4488",
+                        "y": "4916"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Misery Mire - Post Gap Down Stairs",
+        "indoors": true,
+        "address_value": [
+            "0x9",
+            "0xB",
+            "0xA"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Stairs",
+                        "x": "1417",
+                        "y": "6967"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "1400",
+                        "y": "6704"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Misery Mire - Hub",
+        "indoors": true,
+        "address_value": [
+            "0x9",
+            "0xB",
+            "0xA"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Range",
+                        "x": "1048-1496",
+                        "y": "6176-6616"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Misery Mire - Switch Room",
+        "indoors": true,
+        "address_value": [
+            "0x9",
+            "0xB",
+            "0xA"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "984",
+                        "y": "6520"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "792",
+                        "y": "6520"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "888",
+                        "y": "6616"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Misery Mire - South of Switch Room",
+        "indoors": true,
+        "address_value": [
+            "0x9",
+            "0xB",
+            "0xA"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "888",
+                        "y": "6872"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Misery Mire - Tile Room",
+        "indoors": true,
+        "address_value": [
+            "0x9",
+            "0xB",
+            "0xA"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Range",
+                        "x": "552-728",
+                        "y": "6448-6616"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Misery Mire - North of Tile Room",
+        "indoors": true,
+        "address_value": [
+            "0x9",
+            "0xB",
+            "0xA"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": []
+            }
+        ]
+    },
+    {
+        "name": "Misery Mire - Why are you here room #1",
+        "indoors": true,
+        "address_value": [
+            "0x9",
+            "0xB",
+            "0xA"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Range",
+                        "x": "808-984",
+                        "y": "6176-6336"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Misery Mire - Hour Glass",
+        "indoors": true,
+        "address_value": [
+            "0x9",
+            "0xB",
+            "0xA"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Range",
+                        "x": "792-968",
+                        "y": "5660-6104"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Misery Mire - Portal Destination Big Key Door",
+        "indoors": true,
+        "address_value": [
+            "0x9",
+            "0xB",
+            "0xA"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Range",
+                        "x": "552-728",
+                        "y": "5920-6080"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Misery Mire - Conveyor Snails",
+        "indoors": true,
+        "address_value": [
+            "0x9",
+            "0xB",
+            "0xA"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "632",
+                        "y": "6688"
+                    },
+                    {
+                        "type": "Stairs",
+                        "x": "681",
+                        "y": "6710"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Misery Mire - Wizrobe Torches N",
+        "indoors": true,
+        "address_value": [
+            "0x9",
+            "0xB",
+            "0xA"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Stairs",
+                        "x": "3752",
+                        "y": "4660"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "3704",
+                        "y": "4824"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Misery Mire - Wizrobe Torches S",
+        "indoors": true,
+        "address_value": [
+            "0x9",
+            "0xB",
+            "0xA"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "3704",
+                        "y": "3896"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "3800",
+                        "y": "4984"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Misery Mire - Hint Room",
+        "indoors": true,
+        "address_value": [
+            "0x9",
+            "0xB",
+            "0xA"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "3864",
+                        "y": "4984"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Misery Mire - Big Chest Key Room",
+        "indoors": true,
+        "address_value": [
+            "0x9",
+            "0xB",
+            "0xA"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Range",
+                        "x": "0",
+                        "y": "6944"
+                    }
+                ]
+            }
         ]
     },
     {

@@ -2587,6 +2587,12 @@
         "indoors": true,
         "address_value": [
             "0x60"
+        ],
+        "conditions": [
+            {
+                "type": "PreviousTile",
+                "name": "Dark Lumberjack"
+            }
         ]
     },
     {
@@ -2594,6 +2600,12 @@
         "indoors": true,
         "address_value": [
             "0x58"
+        ],
+        "conditions": [
+            {
+                "type": "PreviousTile",
+                "name": "Lake Hylia"
+            }
         ]
     },
     {
@@ -2634,11 +2646,12 @@
     {
         "name": "Big fairy (Eastern Ruins)",
         "indoors": true,
-        "previous_tile": {
-            "name": "Tree Line",
-            "indoors": false,
-            "address_value": "0x2E"
-        },
+        "conditions": [
+            {
+                "type": "PreviousTile",
+                "name": "Tree Line"
+            }
+        ],
         "address_value": [
             "0x5E"
         ]
@@ -2655,6 +2668,12 @@
         "indoors": true,
         "address_value": [
             "0x60"
+        ],
+        "conditions": [
+            {
+                "type": "PreviousTile",
+                "name": "Village of Outcasts"
+            }
         ]
     },
     {
@@ -2690,6 +2709,12 @@
         "indoors": true,
         "address_value": [
             "0x65"
+        ],
+        "conditions": [
+            {
+                "type": "PreviousTile",
+                "name": "Kakariko Fortune"
+            }
         ]
     },
     {
@@ -2754,6 +2779,12 @@
         "indoors": true,
         "address_value": [
             "0x5E"
+        ],
+        "conditions": [
+            {
+                "type": "PreviousTile",
+                "name": "Dark Tree Line"
+            }
         ]
     },
     {
@@ -2761,6 +2792,12 @@
         "indoors": true,
         "address_value": [
             "0x58"
+        ],
+        "conditions": [
+            {
+                "type": "PreviousTile",
+                "name": "East Dark Death Mountain"
+            }
         ]
     },
     {
@@ -2768,6 +2805,12 @@
         "indoors": true,
         "address_value": [
             "0x60"
+        ],
+        "conditions": [
+            {
+                "type": "PreviousTile",
+                "name": "Dark Witch"
+            }
         ]
     },
     {
@@ -2790,6 +2833,12 @@
         "indoors": true,
         "address_value": [
             "0x5E"
+        ],
+        "conditions": [
+            {
+                "type": "PreviousTile",
+                "name": "Desert Pass"
+            }
         ]
     },
     {
@@ -2797,6 +2846,12 @@
         "indoors": true,
         "address_value": [
             "0x65"
+        ],
+        "conditions": [
+            {
+                "type": "PreviousTile",
+                "name": "Lake Hylia"
+            }
         ]
     },
     {
@@ -2804,6 +2859,12 @@
         "indoors": true,
         "address_value": [
             "0x60"
+        ],
+        "conditions": [
+            {
+                "type": "PreviousTile",
+                "name": "Ice Lake"
+            }
         ]
     },
     {
@@ -2825,6 +2886,12 @@
         "indoors": true,
         "address_value": [
             "0x71"
+        ],
+        "conditions": [
+            {
+                "type": "PreviousTile",
+                "name": "Central Bonk Rocks"
+            }
         ]
     },
     {
@@ -2832,6 +2899,12 @@
         "indoors": true,
         "address_value": [
             "0x71"
+        ],
+        "conditions": [
+            {
+                "type": "PreviousTile",
+                "name": "Dark Bonk Rocks"
+            }
         ]
     },
     {
@@ -2895,6 +2968,12 @@
         "indoors": true,
         "address_value": [
             "0x5E"
+        ],
+        "conditions": [
+            {
+                "type": "PreviousTile",
+                "name": "Ice Cave"
+            }
         ]
     },
     {

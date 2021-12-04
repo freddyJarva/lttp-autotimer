@@ -60,10 +60,6 @@ const COORDINATE_CHUNK_SIZE: usize = 0x4;
 
 const TILE_INFO_CHUNK_SIZE: usize = 0x40B;
 
-const DUNGEON_CHECKS_OFFSET: usize = 0xf434;
-const DUNGEON_CHECKS_SIZE: usize = 0x7;
-
-// F42D, F449, F43A, F43B, F44B
 const GAME_STATS_OFFSET: usize = 0xf42d;
 const GAME_STATS_SIZE: usize = 0x1f;
 
@@ -116,6 +112,8 @@ pub fn connect_to_qusb(args: &ArgMatches) -> anyhow::Result<()> {
 
     let mut events = EventTracker::new();
 
+    let mut game_finished = false;
+
     let mut locations: Vec<Check> = deserialize_location_checks()?
         .into_iter()
         // 0 offset checks without conditions hasn't been given a proper value in checks.json yet
@@ -126,7 +124,7 @@ pub fn connect_to_qusb(args: &ArgMatches) -> anyhow::Result<()> {
         .filter(|check| check.sram_offset != 0)
         .collect();
 
-    loop {
+    while !game_finished {
         match get_chunka_chungus(&mut client) {
             Ok(snes_ram) => {
                 check_for_transitions(
@@ -163,6 +161,11 @@ pub fn connect_to_qusb(args: &ArgMatches) -> anyhow::Result<()> {
 
         writer.flush()?;
 
+        if let Some(latest_item) = events.latest_item_get() {
+            if latest_item.name == "Triforce" {
+                game_finished = true;
+            }
+        }
         if manual_update {
             println!("Press enter to update...");
             stdin()
@@ -173,6 +176,13 @@ pub fn connect_to_qusb(args: &ArgMatches) -> anyhow::Result<()> {
             sleep(time::Duration::from_millis(update_frequency));
         }
     }
+
+    println!("You defeated Ganon, Hurray! Press enter to exit...");
+    stdin()
+        .read_line(&mut String::new())
+        .ok()
+        .expect("Failed to read line");
+    Ok(())
 }
 
 // since we can't choose multiple addresses in a single request, we instead fetch a larger chunk of data from given address and forward

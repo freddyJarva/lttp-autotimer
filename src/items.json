@@ -294,5 +294,10 @@
         "is_progressive": true,
         "sram_offset": "0xf44B",
         "sram_mask": "0xff"
+    },
+    {
+        "name": "Triforce",
+        "sram_offset": "0xf443",
+        "sram_mask": "0x01"
     }
 ]

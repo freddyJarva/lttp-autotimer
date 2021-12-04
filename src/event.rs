@@ -118,6 +118,7 @@ impl From<Vec<EventEnum>> for EventTracker {
 pub struct Event {
     #[serde(with = "ts_milliseconds")]
     timestamp: DateTime<Utc>,
+    #[serde(skip_serializing)]
     indoors: Option<bool>,
     region: Option<String>,
     to: Option<String>,
@@ -195,6 +196,12 @@ where
                 },
             }
         }
+    }
+}
+
+impl From<EventEnum> for Event {
+    fn from(_: EventEnum) -> Self {
+        todo!()
     }
 }
 

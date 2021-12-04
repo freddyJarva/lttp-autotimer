@@ -77,6 +77,19 @@ impl Tile {
             _ => Err(anyhow!("No matches found for current ram value")),
         }
     }
+
+    pub fn region(&self) -> String {
+        match self.name.find("-") {
+            Some(idx) => self.name[..idx - 1].to_string(),
+            None => {
+                if self.indoors {
+                    "Underworld".to_string()
+                } else {
+                    "Overworld".to_string()
+                }
+            }
+        }
+    }
 }
 
 impl Default for Tile {
@@ -142,11 +155,11 @@ mod tests {
         GIVEN_ram_points_to_links_house_ow_THEN_return_links_house_ow_tile: (
             SnesRamInitializer {overworld_tile: Some(0x2c), ..Default::default()}.build(),
             Tile {..Default::default()},
-            "Link's House - OW"),
+            "Link's House OW"),
         GIVEN_ram_points_to_links_house_uw_THEN_return_links_house_uw_tile: (
             SnesRamInitializer {entrance_id: Some(0x1), indoors: Some(1), ..Default::default()}.build(),
             Tile {..Default::default()},
-            "Link's House - UW"),
+            "Link's House UW"),
         GIVEN_ram_points_to_hobo_meadow_AND_previous_tile_stone_bridge_THEN_return_hobo_tile: (
             SnesRamInitializer {overworld_tile: Some(0x80), ..Default::default()}.build(),
             Tile {name: "Stone Bridge".to_string(), ..Default::default()},
@@ -157,7 +170,7 @@ mod tests {
             "Mastersword Meadow"),
         GIVEN_ram_points_to_big_fairy_AND_previous_tile_misery_mire_ow_THEN_return_mire_big_fairy: (
             SnesRamInitializer {entrance_id: Some(0x5e), indoors: Some(1), ..Default::default()}.build(),
-            Tile {name: "Misery Mire - OW".to_string(), ..Default::default()},
+            Tile {name: "Misery Mire".to_string(), ..Default::default()},
             "Mire big fairy"),
         GIVEN_ram_points_to_hobo_meadow_AND_previous_tile_meadow_THEN_return_meadow: (
             SnesRamInitializer {overworld_tile: Some(0x80), ..Default::default()}.build(),
@@ -171,5 +184,28 @@ mod tests {
             SnesRamInitializer {entrance_id: Some(0x4), indoors: Some(1), transition_x: Some(1192), transition_y: Some(4052), ..Default::default()}.build(),
             Tile {..Default::default()},
             "Hyrule Castle - Basement 1"),
+    }
+
+    macro_rules! test_region {
+        ($($name:ident: $values:expr,)*) => {
+            $(
+                #[test]
+                fn $name() {
+                    let (tile_name, expected) = $values;
+                    let tile  = deserialize_transitions()
+                        .unwrap()
+                        .into_iter()
+                        .find(|t| t.name == tile_name.to_string())
+                        .unwrap();
+                    assert_eq!(tile.region(), expected.to_string())
+                }
+            )*
+        };
+    }
+
+    test_region! {
+        skull_woods_front: ("Skull Woods - Big Chest", "Skull Woods"),
+        links_house_ow: ("Link's House OW", "Overworld"),
+        links_house_uw: ("Link's House UW", "Underworld"),
     }
 }

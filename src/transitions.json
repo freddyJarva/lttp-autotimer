@@ -1,6 +1,6 @@
 [
     {
-        "name": "Link's House - UW",
+        "name": "Link's House UW",
         "indoors": true,
         "address_value": [
             "0x0",
@@ -4244,7 +4244,7 @@
         ]
     },
     {
-        "name": "Misery Mire - Misery Mire - Past Dark Somaria",
+        "name": "Misery Mire - Past Dark Somaria",
         "indoors": true,
         "address_value": [
             "0x27"
@@ -8662,7 +8662,7 @@
         "conditions": [
             {
                 "type": "PreviousTile",
-                "name": "Misery Mire - OW"
+                "name": "Misery Mire"
             }
         ],
         "address_value": [
@@ -9190,7 +9190,7 @@
         ]
     },
     {
-        "name": "Sanctuary - OW",
+        "name": "Sanctuary OW",
         "indoors": false,
         "address_value": [
             "0x13"
@@ -9302,7 +9302,7 @@
         ]
     },
     {
-        "name": "Link's House - OW",
+        "name": "Link's House OW",
         "indoors": false,
         "address_value": [
             "0x2C"

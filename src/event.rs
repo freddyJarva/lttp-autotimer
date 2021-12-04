@@ -119,6 +119,7 @@ pub struct Event {
     #[serde(with = "ts_milliseconds")]
     timestamp: DateTime<Utc>,
     indoors: Option<bool>,
+    region: Option<String>,
     to: Option<String>,
     location_id: Option<String>,
     item_id: Option<String>,
@@ -131,6 +132,7 @@ impl From<&Tile> for Event {
                 .timestamp
                 .expect("Found transition missing timestamp when serializing"),
             indoors: Some(transition.indoors),
+            region: Some(transition.region()),
             to: Some(transition.name.to_string()),
             location_id: None,
             item_id: None,
@@ -145,6 +147,7 @@ impl From<&mut Tile> for Event {
                 .timestamp
                 .expect("Found transition missing timestamp when serializing"),
             indoors: Some(transition.indoors),
+            region: Some(transition.region()),
             to: Some(transition.name.to_string()),
             location_id: None,
             item_id: None,
@@ -164,6 +167,7 @@ where
         if check.is_item && !check.is_progressive {
             Event {
                 timestamp,
+                region: None,
                 indoors: None,
                 to: None,
                 location_id: None,
@@ -172,6 +176,7 @@ where
         } else if check.is_item && check.is_progressive {
             Event {
                 timestamp,
+                region: None,
                 indoors: None,
                 to: None,
                 location_id: None,
@@ -181,6 +186,7 @@ where
             Event {
                 timestamp,
                 indoors: None,
+                region: None,
                 to: None,
                 location_id: Some(check.name.to_string()),
                 item_id: match &check.item {
@@ -197,6 +203,7 @@ impl Default for Event {
         Self {
             timestamp: chrono::Utc.timestamp_millis(0),
             indoors: Default::default(),
+            region: Default::default(),
             to: Default::default(),
             location_id: Default::default(),
             item_id: Default::default(),
@@ -281,6 +288,7 @@ mod tests {
                 to: Some("Lala".to_string()),
                 timestamp: Utc.timestamp_millis(200),
                 indoors: Some(false),
+                region: Some("Overworld".to_string()),
                 ..Default::default()
             }
         ),

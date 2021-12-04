@@ -63,6 +63,10 @@ const TILE_INFO_CHUNK_SIZE: usize = 0x40B;
 const DUNGEON_CHECKS_OFFSET: usize = 0xf434;
 const DUNGEON_CHECKS_SIZE: usize = 0x7;
 
+// F42D, F449, F43A, F43B, F44B
+const GAME_STATS_OFFSET: usize = 0xf42d;
+const GAME_STATS_SIZE: usize = 0x1f;
+
 /// Hashable id for map lookups
 #[derive(Default, PartialEq, Hash, Eq, Debug)]
 pub struct SnesMemoryID {
@@ -183,10 +187,8 @@ fn get_chunka_chungus(
         VRAM_START + COORDINATE_OFFSET as u32,
         COORDINATE_CHUNK_SIZE,
     );
-    let dungeon_checks_message = &QusbRequestMessage::get_address(
-        VRAM_START + DUNGEON_CHECKS_OFFSET as u32,
-        TILE_INFO_CHUNK_SIZE,
-    );
+    let game_stats_message =
+        &QusbRequestMessage::get_address(VRAM_START + GAME_STATS_OFFSET as u32, GAME_STATS_SIZE);
 
     let mut snes_ram = SnesRam::new();
 
@@ -230,12 +232,12 @@ fn get_chunka_chungus(
     let message = Message {
         opcode: websocket::message::Type::Text,
         cd_status_code: None,
-        payload: Cow::Owned(serde_json::to_vec(dungeon_checks_message)?),
+        payload: Cow::Owned(serde_json::to_vec(game_stats_message)?),
     };
     client.send_message(&message)?;
     let response = client.recv_message()?;
     if let OwnedMessage::Binary(res) = response {
-        snes_ram.dungeon_chunk = res;
+        snes_ram.game_stats_chunk = res;
     };
 
     Ok(snes_ram)

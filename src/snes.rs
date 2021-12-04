@@ -1,6 +1,6 @@
 use crate::{
     COORDINATE_CHUNK_SIZE, COORDINATE_OFFSET, DUNGEON_CHECKS_OFFSET, DUNGEON_CHECKS_SIZE,
-    DUNKA_CHUNK_SIZE, DUNKA_OFFSET, TILE_INFO_CHUNK_SIZE,
+    DUNKA_CHUNK_SIZE, DUNKA_OFFSET, GAME_STATS_OFFSET, GAME_STATS_SIZE, TILE_INFO_CHUNK_SIZE,
 };
 
 use byteorder::{ByteOrder, LittleEndian};
@@ -138,7 +138,7 @@ pub struct SnesRam {
     pub tile_info_chunk: Vec<u8>,
     pub dunka_chunka: Vec<u8>,
     pub coordinate_chunk: Vec<u8>,
-    pub dungeon_chunk: Vec<u8>,
+    pub game_stats_chunk: Vec<u8>,
 }
 
 impl SnesRam {
@@ -152,10 +152,8 @@ impl SnesRam {
             && address < COORDINATE_OFFSET + COORDINATE_CHUNK_SIZE
         {
             self.coordinate_chunk[address - COORDINATE_OFFSET]
-        } else if address >= DUNGEON_CHECKS_OFFSET
-            && address < DUNGEON_CHECKS_OFFSET + DUNGEON_CHECKS_SIZE
-        {
-            self.dungeon_chunk[address - DUNGEON_CHECKS_OFFSET]
+        } else if address >= GAME_STATS_OFFSET && address < GAME_STATS_OFFSET + GAME_STATS_SIZE {
+            self.game_stats_chunk[address - GAME_STATS_OFFSET]
         } else {
             panic!("Tried to read value from address not fetched from qusb!")
         }
@@ -170,7 +168,7 @@ impl SnesRam {
             tile_info_chunk: vec![0; TILE_INFO_CHUNK_SIZE],
             dunka_chunka: vec![0; DUNKA_CHUNK_SIZE],
             coordinate_chunk: vec![0; COORDINATE_CHUNK_SIZE],
-            dungeon_chunk: vec![0; DUNGEON_CHECKS_SIZE],
+            game_stats_chunk: vec![0; GAME_STATS_SIZE],
         }
     }
 }

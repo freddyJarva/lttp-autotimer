@@ -6126,10 +6126,175 @@
         ]
     },
     {
-        "name": "Turtle Rock",
+        "name": "Turtle Rock - Lobby",
         "indoors": true,
         "address_value": [
             "0x35"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "3448",
+                        "y": "7128"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "3448",
+                        "y": "6688"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Turtle Rock - Hub",
+        "indoors": true,
+        "address_value": [
+            "0x35"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Range",
+                        "x": "3184-3544",
+                        "y": "6176-6616"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Turtle Rock - Quad Torch Ride",
+        "indoors": true,
+        "address_value": [
+            "0x35"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "3608",
+                        "y": "6264"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "3608",
+                        "y": "6520"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Turtle Rock - Lazer Trap Chest",
+        "indoors": true,
+        "address_value": [
+            "0x35"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "3192",
+                        "y": "6688"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Turtle Rock - 'I do not remember flying tiles in TR'-Room",
+        "indoors": true,
+        "address_value": [
+            "0x35"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "3448",
+                        "y": "6104"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "3448",
+                        "y": "5936"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Turtle Rock - Lone Fairy Room",
+        "indoors": true,
+        "address_value": [
+            "0x35"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "3448",
+                        "y": "5848"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Turtle Rock - Cheese Ball Key Drop",
+        "indoors": true,
+        "address_value": [
+            "0x35"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "3192",
+                        "y": "6104"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "3192",
+                        "y": "5920"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Turtle Rock - Chain Chomp Room",
+        "indoors": true,
+        "address_value": [
+            "0x35"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Range",
+                        "x": "3190-3192",
+                        "y": "5660-5848"
+                    }
+                ]
+            }
         ]
     },
     {

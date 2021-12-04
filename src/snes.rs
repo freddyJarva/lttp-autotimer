@@ -159,8 +159,13 @@ impl SnesRam {
         }
     }
 
+    /// Previous way to check, on address 0x7e0095 for values 3 or 7, did not work.
+    /// When starting on pyramid, the start screen value (15, or F in hex) remained as Link spawned,
+    /// meaning there was no way to properly discern game start.
+    ///
+    /// Atm let it just return true as things seem to work anyways.
     pub fn game_has_started(&self) -> bool {
-        vec![3, 7].contains(&self.game_mode())
+        true
     }
 
     pub fn new() -> Self {

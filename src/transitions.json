@@ -1893,13 +1893,6 @@
         ]
     },
     {
-        "name": "Turtle Rock laser pots",
-        "indoors": true,
-        "address_value": [
-            "0x15"
-        ]
-    },
-    {
         "name": "Bumper cave bottom",
         "indoors": true,
         "address_value": [
@@ -1911,20 +1904,6 @@
         "indoors": true,
         "address_value": [
             "0x17"
-        ]
-    },
-    {
-        "name": "Turtle Rock laser bridge",
-        "indoors": true,
-        "address_value": [
-            "0x18"
-        ]
-    },
-    {
-        "name": "Turtle Rock big chest",
-        "indoors": true,
-        "address_value": [
-            "0x19"
         ]
     },
     {
@@ -6129,7 +6108,10 @@
         "name": "Turtle Rock - Lobby",
         "indoors": true,
         "address_value": [
-            "0x35"
+            "0x35",
+            "0x15",
+            "0x18",
+            "0x19"
         ],
         "conditions": [
             {
@@ -6153,7 +6135,10 @@
         "name": "Turtle Rock - Hub",
         "indoors": true,
         "address_value": [
-            "0x35"
+            "0x35",
+            "0x15",
+            "0x18",
+            "0x19"
         ],
         "conditions": [
             {
@@ -6172,7 +6157,10 @@
         "name": "Turtle Rock - Quad Torch Ride",
         "indoors": true,
         "address_value": [
-            "0x35"
+            "0x35",
+            "0x15",
+            "0x18",
+            "0x19"
         ],
         "conditions": [
             {
@@ -6193,10 +6181,35 @@
         ]
     },
     {
+        "name": "Turtle Rock - Rolling Pins Chests",
+        "indoors": true,
+        "address_value": [
+            "0x35",
+            "0x15",
+            "0x18",
+            "0x19"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "3704",
+                        "y": "6104"
+                    }
+                ]
+            }
+        ]
+    },
+    {
         "name": "Turtle Rock - Lazer Trap Chest",
         "indoors": true,
         "address_value": [
-            "0x35"
+            "0x35",
+            "0x15",
+            "0x18",
+            "0x19"
         ],
         "conditions": [
             {
@@ -6215,7 +6228,10 @@
         "name": "Turtle Rock - 'I do not remember flying tiles in TR'-Room",
         "indoors": true,
         "address_value": [
-            "0x35"
+            "0x35",
+            "0x15",
+            "0x18",
+            "0x19"
         ],
         "conditions": [
             {
@@ -6239,7 +6255,10 @@
         "name": "Turtle Rock - Lone Fairy Room",
         "indoors": true,
         "address_value": [
-            "0x35"
+            "0x35",
+            "0x15",
+            "0x18",
+            "0x19"
         ],
         "conditions": [
             {
@@ -6258,7 +6277,10 @@
         "name": "Turtle Rock - Cheese Ball Key Drop",
         "indoors": true,
         "address_value": [
-            "0x35"
+            "0x35",
+            "0x15",
+            "0x18",
+            "0x19"
         ],
         "conditions": [
             {
@@ -6282,7 +6304,10 @@
         "name": "Turtle Rock - Chain Chomp Room",
         "indoors": true,
         "address_value": [
-            "0x35"
+            "0x35",
+            "0x15",
+            "0x18",
+            "0x19"
         ],
         "conditions": [
             {
@@ -6298,6 +6323,437 @@
         ]
     },
     {
+        "name": "Turtle Rock - Below Chain Chomp Room",
+        "indoors": true,
+        "address_value": [
+            "0x35",
+            "0x15",
+            "0x18",
+            "0x19"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Range",
+                        "x": "2584-2681",
+                        "y": "560-960"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Turtle Rock - Lava Chest Room",
+        "indoors": true,
+        "address_value": [
+            "0x35",
+            "0x15",
+            "0x18",
+            "0x19"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Range",
+                        "x": "2068-2520",
+                        "y": "544-984"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Turtle Rock - Quad Anti Fairy Room",
+        "indoors": true,
+        "address_value": [
+            "0x35",
+            "0x15",
+            "0x18",
+            "0x19"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "2008",
+                        "y": "632"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "2008",
+                        "y": "888"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Turtle Rock - Cheese Ball Trap Room",
+        "indoors": true,
+        "address_value": [
+            "0x35",
+            "0x15",
+            "0x18",
+            "0x19"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Range",
+                        "x": "2168-2188",
+                        "y": "1056-1220"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Turtle Rock - 3 Door Hallway",
+        "indoors": true,
+        "address_value": [
+            "0x35",
+            "0x15",
+            "0x18",
+            "0x19"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Range",
+                        "x": "1400-2264",
+                        "y": "1312-1416"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Turtle Rock - Big Chest Room",
+        "indoors": true,
+        "address_value": [
+            "0x35",
+            "0x15",
+            "0x18",
+            "0x19"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Range",
+                        "x": "2328-2424",
+                        "y": "1328-1496"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Turtle Rock - Big Key Door",
+        "indoors": true,
+        "address_value": [
+            "0x35",
+            "0x15",
+            "0x18",
+            "0x19"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Range",
+                        "x": "2328-2430",
+                        "y": "1056-1216"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Turtle Rock - Laser Pots",
+        "indoors": true,
+        "address_value": [
+            "0x35",
+            "0x15",
+            "0x18",
+            "0x19"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "2008",
+                        "y": "1400"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "1912",
+                        "y": "1496"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Turtle Rock - Bonk Wall Room",
+        "indoors": true,
+        "address_value": [
+            "0x35",
+            "0x15",
+            "0x18",
+            "0x19"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Range",
+                        "x": "2088-2248",
+                        "y": "304-472"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Turtle Rock - East of Bonk Wall",
+        "indoors": true,
+        "address_value": [
+            "0x35",
+            "0x15",
+            "0x18",
+            "0x19"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "2344",
+                        "y": "376"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "2424",
+                        "y": "304"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Turtle Rock - Rupee Room",
+        "indoors": true,
+        "address_value": [
+            "0x35",
+            "0x15",
+            "0x18",
+            "0x19"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "2424",
+                        "y": "216"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Turtle Rock - Lone Roller Chest",
+        "indoors": true,
+        "address_value": [
+            "0x35",
+            "0x15",
+            "0x18",
+            "0x19"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "2168",
+                        "y": "192"
+                    },
+                    {
+                        "type": "Stairs",
+                        "x": "2168",
+                        "y": "51"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Turtle Rock - Dark Rail Labyrinth",
+        "indoors": true,
+        "address_value": [
+            "0x35",
+            "0x15",
+            "0x18",
+            "0x19"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Stairs",
+                        "x": "2681",
+                        "y": "5686"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "2680",
+                        "y": "6080"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Turtle Rock - Minihelma Bridge",
+        "indoors": true,
+        "address_value": [
+            "0x35",
+            "0x15",
+            "0x18",
+            "0x19"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Range",
+                        "x": "2584-2680",
+                        "y": "6176-6616"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Turtle Rock - Crystal Switch Grid Room",
+        "indoors": true,
+        "address_value": [
+            "0x35",
+            "0x15",
+            "0x18",
+            "0x19"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "2520",
+                        "y": "6520"
+                    },
+                    {
+                        "type": "Stairs",
+                        "x": "2296",
+                        "y": "6201"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Turtle Rock - Boss Approach",
+        "indoors": true,
+        "address_value": [
+            "0x35",
+            "0x15",
+            "0x18",
+            "0x19"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Stairs",
+                        "x": "2296",
+                        "y": "6071"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Turtle Rock - Boss Trinex",
+        "indoors": true,
+        "address_value": [
+            "0x35",
+            "0x15",
+            "0x18",
+            "0x19"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "2168",
+                        "y": "5568"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Turtle Rock - Lazer Bridge",
+        "indoors": true,
+        "address_value": [
+            "0x35",
+            "0x15",
+            "0x18",
+            "0x19"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "2680",
+                        "y": "6688"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "2680",
+                        "y": "7128"
+                    }
+                ]
+            }
+        ]
+    },
+    {
         "name": "Pyramid drop",
         "indoors": true,
         "address_value": [
@@ -6305,10 +6761,608 @@
         ]
     },
     {
-        "name": "Ganon's Tower",
+        "name": "Ganon's Tower - Lobby",
         "indoors": true,
         "address_value": [
             "0x37"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Range",
+                        "x": "6239-6544",
+                        "y": "55-472"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Ganon's Tower - Bob's Torch Room",
+        "indoors": true,
+        "address_value": [
+            "0x37"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Range",
+                        "x": "6164-6364",
+                        "y": "4150-4314"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Ganon's Tower - Hammer Lock Room",
+        "indoors": true,
+        "address_value": [
+            "0x37"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "6104",
+                        "y": "4216"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "5928",
+                        "y": "4216"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Ganon's Tower - Hook Shot Room",
+        "indoors": true,
+        "address_value": [
+            "0x37"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Range",
+                        "x": "5752-5850",
+                        "y": "4128-4570"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Ganon's Tower - Triple Stalfos Treasure Room",
+        "indoors": true,
+        "address_value": [
+            "0x37"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "5752",
+                        "y": "4032"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Ganon's Tower - Twin Fire Bar Chest Room",
+        "indoors": true,
+        "address_value": [
+            "0x37"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "5912",
+                        "y": "4472"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Ganon's Tower - Hook Extend Room",
+        "indoors": true,
+        "address_value": [
+            "0x37"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "5752",
+                        "y": "4640"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "5848",
+                        "y": "4728"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Ganon's Tower - Spike Switch Room",
+        "indoors": true,
+        "address_value": [
+            "0x37"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "5912",
+                        "y": "4728"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Ganon's Tower - Quad Fire Snake Room",
+        "indoors": true,
+        "address_value": [
+            "0x37"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Range",
+                        "x": "7089-7104",
+                        "y": "3688-3718"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "6776",
+                        "y": "3800"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Ganon's Tower - Portal Labyrinth 1",
+        "indoors": true,
+        "address_value": [
+            "0x37"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Range",
+                        "x": "6696-6856",
+                        "y": "3888-4032"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Ganon's Tower - Portal Labyrinth 2",
+        "indoors": true,
+        "address_value": [
+            "0x37"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Range",
+                        "x": "5672-6108",
+                        "y": "4912-5056"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Ganon's Tower - Bombable Treasure Room",
+        "indoors": true,
+        "address_value": [
+            "0x37"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "6600",
+                        "y": "3960"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Ganon's Tower - Basement Invisible Bridge",
+        "indoors": true,
+        "address_value": [
+            "0x37"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Range",
+                        "x": "6168-6620",
+                        "y": "4640-5056"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Ganon's Tower - Armos Approach",
+        "indoors": true,
+        "address_value": [
+            "0x37"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "6520",
+                        "y": "4568"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Ganon's Tower - Armos on Ice",
+        "indoors": true,
+        "address_value": [
+            "0x37"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Range",
+                        "x": "6420-6600",
+                        "y": "790-960"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Ganon's Tower - Big Chest Key Room",
+        "indoors": true,
+        "address_value": [
+            "0x37"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "6520",
+                        "y": "728"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Ganon's Tower - Below Big Chest Room",
+        "indoors": true,
+        "address_value": [
+            "0x37"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Range",
+                        "x": "6344",
+                        "y": "810-888"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Ganon's Tower - Basement Fairies",
+        "indoors": true,
+        "address_value": [
+            "0x37"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "6264",
+                        "y": "704"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Ganon's Tower - Big Chest Room",
+        "indoors": true,
+        "address_value": [
+            "0x37"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Range",
+                        "x": "6192-6344",
+                        "y": "4374-4568"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Ganon's Tower - Hope Room",
+        "indoors": true,
+        "address_value": [
+            "0x37"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Range",
+                        "x": "6416-6600",
+                        "y": "4150-4288"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Ganon's Tower - Tile Room",
+        "indoors": true,
+        "address_value": [
+            "0x37"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "6680",
+                        "y": "4216"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "6872",
+                        "y": "4216"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Ganon's Tower - Basement Timed Torches",
+        "indoors": true,
+        "address_value": [
+            "0x37"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Range",
+                        "x": "6936-7088",
+                        "y": "4128-4544"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Ganon's Tower - Caged Foes Room",
+        "indoors": true,
+        "address_value": [
+            "0x37"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Range",
+                        "x": "6952-7032",
+                        "y": "3888-4032"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Ganon's Tower - Checkered Tile Pattern Room",
+        "indoors": true,
+        "address_value": [
+            "0x37"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "6872",
+                        "y": "4472"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Ganon's Tower - Mummy Conveyor Room",
+        "indoors": true,
+        "address_value": [
+            "0x37"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "7032",
+                        "y": "4640"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "6936",
+                        "y": "4728"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Ganon's Tower - Bumper Portal Treasure Room",
+        "indoors": true,
+        "address_value": [
+            "0x37"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "6872",
+                        "y": "4728"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Ganon's Tower - Conveyor Key Pot Room",
+        "indoors": true,
+        "address_value": [
+            "0x37"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Range",
+                        "x": "5683-5710",
+                        "y": "3688-3722"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "6104",
+                        "y": "3704"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Ganon's Tower - Basement Falling Bridge",
+        "indoors": true,
+        "address_value": [
+            "0x37"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "6168",
+                        "y": "3704"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "6168",
+                        "y": "3960"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Ganon's Tower - Switch Under Statue Room",
+        "indoors": true,
+        "address_value": [
+            "0x37"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "6104",
+                        "y": "3960"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Ganon's Tower - Basement Straight Invisible Bridge",
+        "indoors": true,
+        "address_value": [
+            "0x37"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Range",
+                        "x": "7016-7060",
+                        "y": "4958-5000"
+                    }
+                ]
+            }
         ]
     },
     {

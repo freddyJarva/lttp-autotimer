@@ -5,17 +5,17 @@
         "sram_mask": "0x80"
     },
     {
-        "name": "Silvers",
+        "name": "Silver Arrows",
         "sram_offset": "0xf38e",
         "sram_mask": "0x40"
     },
     {
-        "name": "Blumerang",
+        "name": "Blue Boomerang",
         "sram_offset": "0xf38c",
         "sram_mask": "0x80"
     },
     {
-        "name": "Boomered",
+        "name": "Red Boomerang",
         "sram_offset": "0xf38c",
         "sram_mask": "0x40"
     },
@@ -25,12 +25,7 @@
         "sram_mask": "0x01"
     },
     {
-        "name": "Bombs",
-        "sram_offset": "0xf38e",
-        "sram_mask": "0xff"
-    },
-    {
-        "name": "Powder",
+        "name": "Magic Powder",
         "sram_offset": "0xf38c",
         "sram_mask": "0x10"
     },
@@ -75,48 +70,34 @@
         "sram_mask": "0x01"
     },
     {
-        "name": "Flute",
-        "sram_offset": "0xf38c",
-        "sram_mask": "0x03"
-    },
-    {
         "name": "Shovel",
         "sram_offset": "0xf38c",
         "sram_mask": "0x04"
     },
     {
-        "name": "Net",
+        "name": "Flute (Inactive)",
+        "sram_offset": "0xf38c",
+        "sram_mask": "0x03"
+    },
+    {
+        "name": "Flute (Activated)",
+        "sram_offset": "0xf38c",
+        "sram_mask": "0x01"
+    },
+    {
+        "name": "Bug-Catching Net",
         "sram_offset": "0xf34d",
         "sram_mask": "0x01"
     },
     {
-        "name": "Book",
+        "name": "Book of Mudora",
         "sram_offset": "0xf34e",
         "sram_mask": "0x01"
     },
     {
-        "name": "Net",
+        "name": "Bottle",
+        "is_progressive": true,
         "sram_offset": "0xf34f",
-        "sram_mask": "0x01"
-    },
-    {
-        "name": "Bottle 1",
-        "sram_offset": "0xf35c",
-        "sram_mask": "0xff"
-    },
-    {
-        "name": "Bottle 2",
-        "sram_offset": "0xf35d",
-        "sram_mask": "0xff"
-    },
-    {
-        "name": "Bottle 3",
-        "sram_offset": "0xf35e",
-        "sram_mask": "0xff"
-    },
-    {
-        "name": "Bottle 4",
-        "sram_offset": "0xf35f",
         "sram_mask": "0xff"
     },
     {
@@ -130,7 +111,7 @@
         "sram_mask": "0x01"
     },
     {
-        "name": "Mirror",
+        "name": "Magic Mirror",
         "sram_offset": "0xf353",
         "sram_mask": "0x02"
     },
@@ -151,7 +132,7 @@
         "sram_mask": "0x01"
     },
     {
-        "name": "Orb",
+        "name": "Moon Pearl",
         "sram_offset": "0xf357",
         "sram_mask": "0x01"
     },
@@ -165,6 +146,18 @@
         "name": "Shield",
         "is_progressive": true,
         "sram_offset": "0xf35a",
+        "sram_mask": "0xff"
+    },
+    {
+        "name": "Armor",
+        "is_progressive": true,
+        "sram_offset": "0xf35b",
+        "sram_mask": "0xff"
+    },
+    {
+        "name": "Magic Upgrade",
+        "is_progressive": true,
+        "sram_offset": "0xf37B",
         "sram_mask": "0xff"
     },
     {
@@ -221,5 +214,85 @@
         "name": "Big Key - Ganon's Tower",
         "sram_offset": "0xf366",
         "sram_mask": "0x04"
+    },
+    {
+        "name": "Pendant of Courage",
+        "sram_offset": "0xf374",
+        "sram_mask": "0x01"
+    },
+    {
+        "name": "Pendant of Wisdom",
+        "sram_offset": "0xf374",
+        "sram_mask": "0x02"
+    },
+    {
+        "name": "Pendant of Power",
+        "sram_offset": "0xf374",
+        "sram_mask": "0x04"
+    },
+    {
+        "name": "Crystal 1",
+        "sram_offset": "0xf37A",
+        "sram_mask": "0x02"
+    },
+    {
+        "name": "Crystal 2",
+        "sram_offset": "0xf37A",
+        "sram_mask": "0x10"
+    },
+    {
+        "name": "Crystal 3",
+        "sram_offset": "0xf37A",
+        "sram_mask": "0x40"
+    },
+    {
+        "name": "Crystal 4",
+        "sram_offset": "0xf37A",
+        "sram_mask": "0x20"
+    },
+    {
+        "name": "Crystal 5",
+        "sram_offset": "0xf37A",
+        "sram_mask": "0x04"
+    },
+    {
+        "name": "Crystal 6",
+        "sram_offset": "0xf37A",
+        "sram_mask": "0x01"
+    },
+    {
+        "name": "Crystal 7",
+        "sram_offset": "0xf37A",
+        "sram_mask": "0x08"
+    },
+    {
+        "name": "Save & Quit",
+        "is_progressive": true,
+        "sram_offset": "0xf42D",
+        "sram_mask": "0xff"
+    },
+    {
+        "name": "Death",
+        "is_progressive": true,
+        "sram_offset": "0xf449",
+        "sram_mask": "0xff"
+    },
+    {
+        "name": "Overworld Mirror",
+        "is_progressive": true,
+        "sram_offset": "0xf43A",
+        "sram_mask": "0xff"
+    },
+    {
+        "name": "Dungeon Mirror",
+        "is_progressive": true,
+        "sram_offset": "0xf43B",
+        "sram_mask": "0xff"
+    },
+    {
+        "name": "Duck Pickup",
+        "is_progressive": true,
+        "sram_offset": "0xf44B",
+        "sram_mask": "0xff"
     }
 ]

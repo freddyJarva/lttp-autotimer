@@ -4521,10 +4521,431 @@
         ]
     },
     {
-        "name": "Thieves' Town",
+        "name": "Thieves' Town - Lobby",
         "indoors": true,
         "address_value": [
             "0x34"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Range",
+                        "x": "5880-6116",
+                        "y": "6668-7128"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Thieves' Town - Front NW",
+        "indoors": true,
+        "address_value": [
+            "0x34"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Range",
+                        "x": "5672-6126",
+                        "y": "6192-6612"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Thieves' Town - Front NE",
+        "indoors": true,
+        "address_value": [
+            "0x34"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Range",
+                        "x": "6140-6600",
+                        "y": "6166-6612"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Thieves' Town - Front SE",
+        "indoors": true,
+        "address_value": [
+            "0x34"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Range",
+                        "x": "6156-6600",
+                        "y": "6668-7104"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Thieves' Town - Boss Approach",
+        "indoors": true,
+        "address_value": [
+            "0x34"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Range",
+                        "x": "6424-6520",
+                        "y": "5654-6104"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Thieves' Town - Southwest of Boss Approach",
+        "indoors": true,
+        "address_value": [
+            "0x34"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Range",
+                        "x": "6168-6360",
+                        "y": "5910-6080"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Thieves' Town - Pre Hellway",
+        "indoors": true,
+        "address_value": [
+            "0x34"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Range",
+                        "x": "5912-6104",
+                        "y": "5910-6080"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Thieves' Town - Hellway",
+        "indoors": true,
+        "address_value": [
+            "0x34"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Range",
+                        "x": "5752-5848",
+                        "y": "5664-6008"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Thieves' Town - Spike Switch",
+        "indoors": true,
+        "address_value": [
+            "0x34"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "5752",
+                        "y": "5592"
+                    },
+                    {
+                        "type": "Stairs",
+                        "x": "5753",
+                        "y": "5430"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Thieves' Town - Hint Room",
+        "indoors": true,
+        "address_value": [
+            "0x34"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Stairs",
+                        "x": "2168",
+                        "y": "3380"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "2248",
+                        "y": "3448"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Thieves' Town - Long Hallway W",
+        "indoors": true,
+        "address_value": [
+            "0x34"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Range",
+                        "x": "2328-2532",
+                        "y": "3424-3472"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Thieves' Town - Long Hallway E",
+        "indoors": true,
+        "address_value": [
+            "0x34"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Range",
+                        "x": "2572-2776",
+                        "y": "3424-3472"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Thieves' Town - Bombable Floor",
+        "indoors": true,
+        "address_value": [
+            "0x34"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "2840",
+                        "y": "3448"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Thieves' Town - Post Hellway",
+        "indoors": true,
+        "address_value": [
+            "0x34"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Range",
+                        "x": "5912-6104",
+                        "y": "5680-5848"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Thieves' Town - Conveyor Mayhem",
+        "indoors": true,
+        "address_value": [
+            "0x34"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Range",
+                        "x": "6168-6284",
+                        "y": "5660-5848"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Thieves' Town - Giant Rock",
+        "indoors": true,
+        "address_value": [
+            "0x34"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Range",
+                        "x": "2600-2688",
+                        "y": "2100-2264"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Thieves' Town - Conveyor Hallway",
+        "indoors": true,
+        "address_value": [
+            "0x34"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Range",
+                        "x": "2328-2520",
+                        "y": "2168-2424"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Thieves' Town - Conveyor Bumper Trap",
+        "indoors": true,
+        "address_value": [
+            "0x34"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "2248",
+                        "y": "2168"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Thieves' Town - Big Chest Room",
+        "indoors": true,
+        "address_value": [
+            "0x34"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "2264",
+                        "y": "2424"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Thieves' Town - Cell Approach",
+        "indoors": true,
+        "address_value": [
+            "0x34"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Range",
+                        "x": "2584-2776",
+                        "y": "2336-2424"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Thieves' Town - Cell",
+        "indoors": true,
+        "address_value": [
+            "0x34"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "2840",
+                        "y": "2424"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Thieves' Town - Boss Blind",
+        "indoors": true,
+        "address_value": [
+            "0x34"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "6520",
+                        "y": "5568"
+                    }
+                ]
+            }
         ]
     },
     {

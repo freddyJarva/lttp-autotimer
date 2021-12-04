@@ -1998,10 +1998,420 @@
         ]
     },
     {
-        "name": "Agahnim's Tower",
+        "name": "Agahnim's tower - Lobby",
         "indoors": true,
         "address_value": [
             "0x24"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "120",
+                        "y": "7640"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "120",
+                        "y": "7456"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Agahnim's tower - Twin Flail Guard",
+        "indoors": true,
+        "address_value": [
+            "0x24"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "120",
+                        "y": "7360"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "200",
+                        "y": "7288"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Agahnim's tower - Twin Dagger Guards",
+        "indoors": true,
+        "address_value": [
+            "0x24"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "280",
+                        "y": "7288"
+                    },
+                    {
+                        "type": "Stairs",
+                        "x": "377",
+                        "y": "7222"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Agahnim's tower - First Dark Room",
+        "indoors": true,
+        "address_value": [
+            "0x24"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Stairs",
+                        "x": "376",
+                        "y": "6708"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "280",
+                        "y": "6776"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Agahnim's tower - Dark Labyrinth",
+        "indoors": true,
+        "address_value": [
+            "0x24"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "200",
+                        "y": "6776"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "216",
+                        "y": "7032"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Agahnim's tower - Post Dark Labyrinth",
+        "indoors": true,
+        "address_value": [
+            "0x24"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "280",
+                        "y": "7032"
+                    },
+                    {
+                        "type": "Stairs",
+                        "x": "409",
+                        "y": "6967"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Agahnim's tower - Pre Dark Abyss",
+        "indoors": true,
+        "address_value": [
+            "0x24"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "280",
+                        "y": "6520"
+                    },
+                    {
+                        "type": "Stairs",
+                        "x": "408",
+                        "y": "6452"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Agahnim's tower - Dark Abyss",
+        "indoors": true,
+        "address_value": [
+            "0x24"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "200",
+                        "y": "6520"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "216",
+                        "y": "6264"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Agahnim's tower - Blue Key Guard",
+        "indoors": true,
+        "address_value": [
+            "0x24"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "296",
+                        "y": "6264"
+                    },
+                    {
+                        "type": "Stairs",
+                        "x": "377",
+                        "y": "6199"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Agahnim's tower - Twin Trident Throwers",
+        "indoors": true,
+        "address_value": [
+            "0x24"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Stairs",
+                        "x": "376",
+                        "y": "5684"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "296",
+                        "y": "5752"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Agahnim's tower - Twin Trident Pokers",
+        "indoors": true,
+        "address_value": [
+            "0x24"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "200",
+                        "y": "5752"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "120",
+                        "y": "5824"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Agahnim's tower - Circle of Pots",
+        "indoors": true,
+        "address_value": [
+            "0x24"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "120",
+                        "y": "5936"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "216",
+                        "y": "6008"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Agahnim's tower - Undefeated Trio",
+        "indoors": true,
+        "address_value": [
+            "0x24"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "280",
+                        "y": "6008"
+                    },
+                    {
+                        "type": "Stairs",
+                        "x": "409",
+                        "y": "5944"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Agahnim's tower - Statue Blockade",
+        "indoors": true,
+        "address_value": [
+            "0x24"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Stairs",
+                        "x": "408",
+                        "y": "2379"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "304",
+                        "y": "2424"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Agahnim's tower - Uplit Abyss",
+        "indoors": true,
+        "address_value": [
+            "0x24"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "192",
+                        "y": "2424"
+                    },
+                    {
+                        "type": "Stairs",
+                        "x": "120",
+                        "y": "2099"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Agahnim's tower - Top Floor",
+        "indoors": true,
+        "address_value": [
+            "0x24"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Stairs",
+                        "x": "120",
+                        "y": "1964"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Agahnim's tower - Zelda Disappearing Act",
+        "indoors": true,
+        "address_value": [
+            "0x24"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "120",
+                        "y": "1728"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Agahnim's tower - Agahnim Boss",
+        "indoors": true,
+        "address_value": [
+            "0x24"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "120",
+                        "y": "1472"
+                    }
+                ]
+            }
         ]
     },
     {

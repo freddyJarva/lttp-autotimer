@@ -1837,6 +1837,235 @@
         ]
     },
     {
+        "name": "Desert Palace - Pre Big Chest Key Room",
+        "indoors": true,
+        "address_value": [
+            "0x9",
+            "0xB",
+            "0xA"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "2840",
+                        "y": "4216"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "2936",
+                        "y": "4144"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Desert Palace - Big Chest Key Room",
+        "indoors": true,
+        "address_value": [
+            "0x9",
+            "0xB",
+            "0xA"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "2936",
+                        "y": "4056"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Desert Palace - North - Lobby",
+        "indoors": true,
+        "address_value": [
+            "0x0c"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "1656",
+                        "y": "3544"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "1656",
+                        "y": "3376"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Desert Palace - North - Tile Room 1",
+        "indoors": true,
+        "address_value": [
+            "0x0c"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "1656",
+                        "y": "3288"
+                    },
+                    {
+                        "type": "Stairs",
+                        "x": "1657",
+                        "y": "3127"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Desert Palace - North - Bridge",
+        "indoors": true,
+        "address_value": [
+            "0x0c"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Stairs",
+                        "x": "1656",
+                        "y": "2612"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "1656",
+                        "y": "2776"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Desert Palace - North - Worm Pile Trap Room",
+        "indoors": true,
+        "address_value": [
+            "0x0c"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "1656",
+                        "y": "2864"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "1736",
+                        "y": "2936"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Desert Palace - North - Key Pot Hallway",
+        "indoors": true,
+        "address_value": [
+            "0x0c"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "1816",
+                        "y": "2936"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "1912",
+                        "y": "2592"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Desert Palace - North - Tile Room 2",
+        "indoors": true,
+        "address_value": [
+            "0x0c"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "1912",
+                        "y": "2520"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "1912",
+                        "y": "2336"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Desert Palace - North - Boss Approach",
+        "indoors": true,
+        "address_value": [
+            "0x0c"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "1912",
+                        "y": "2264"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Desert Palace - North - Boss",
+        "indoors": true,
+        "address_value": [
+            "0x0c"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "1656",
+                        "y": "1984"
+                    }
+                ]
+            }
+        ]
+    },
+    {
         "name": "Sahasrahla's house west",
         "indoors": true,
         "address_value": [

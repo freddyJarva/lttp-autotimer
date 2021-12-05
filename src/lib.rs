@@ -82,8 +82,7 @@ pub fn connect_to_qusb(args: &ArgMatches) -> anyhow::Result<()> {
         .unwrap()
         .parse()
         .expect("specified update frequency (--freq/-f) needs to be a positive integer");
-    let verbosity = args.occurrences_of("v");
-    println!("Verbosity level: {}", verbosity);
+    let _verbosity = args.occurrences_of("v");
     let manual_update = args.is_present("manual update");
 
     println!(
@@ -115,7 +114,7 @@ pub fn connect_to_qusb(args: &ArgMatches) -> anyhow::Result<()> {
     let mut game_finished = false;
     // Intro/start screen counts as not started. Having selected a spawn point counts as game started.
     // This is to ensure it only checks for events - especially transitions - while in-game.
-    let mut game_started = false;
+    let mut game_started = args.is_present("game started");
 
     let mut locations: Vec<Check> = deserialize_location_checks()?
         .into_iter()
@@ -133,13 +132,7 @@ pub fn connect_to_qusb(args: &ArgMatches) -> anyhow::Result<()> {
                 if !game_started {
                     game_started = check_for_game_start(&snes_ram, &mut events)?;
                 } else {
-                    check_for_transitions(
-                        &snes_ram,
-                        verbosity,
-                        &mut ram_history,
-                        &mut writer,
-                        &mut events,
-                    )?;
+                    check_for_transitions(&snes_ram, &mut ram_history, &mut writer, &mut events)?;
                     check_for_location_checks(
                         &snes_ram,
                         &mut ram_history,
@@ -149,7 +142,6 @@ pub fn connect_to_qusb(args: &ArgMatches) -> anyhow::Result<()> {
                     )?;
                     check_for_item_checks(
                         &snes_ram,
-                        verbosity,
                         &mut ram_history,
                         &mut items,
                         &mut writer,
@@ -327,7 +319,6 @@ fn check_for_location_checks(
 
 fn check_for_item_checks(
     ram: &SnesRam,
-    verbosity: u64,
     previous_values: &mut VecDeque<SnesRam>,
     checks: &mut Vec<Check>,
     writer: &mut Writer<File>,
@@ -343,16 +334,7 @@ fn check_for_item_checks(
         {
             let previous_state = &previous_values[previous_values.len() - 1];
             let previous_check_value = previous_state.get_byte(check.sram_offset as usize);
-            if verbosity > 0 {
-                println!(
-                    "{}: {} -> {} -- bitmask applied: {} -> {}",
-                    check.name.on_blue(),
-                    previous_check_value.to_string().red(),
-                    current_check_value.to_string().green(),
-                    (previous_check_value & check.sram_mask).to_string().red(),
-                    (current_check_value & check.sram_mask).to_string().green()
-                )
-            } else if !check.is_progressive
+            if !check.is_progressive
                 && current_check_value & check.sram_mask != 0
                 && !check.is_checked
             {
@@ -375,15 +357,6 @@ fn check_for_item_checks(
                 events.push(EventEnum::ItemGet(check.clone()));
                 writer.serialize(Event::from(check))?;
             }
-        } else {
-            if verbosity > 0 {
-                println!(
-                    "{}: {} -- bitmask applied: {}",
-                    check.name.on_blue(),
-                    current_check_value,
-                    current_check_value & check.sram_mask
-                )
-            }
         }
     }
 
@@ -392,42 +365,10 @@ fn check_for_item_checks(
 
 fn check_for_transitions(
     ram: &SnesRam,
-    verbosity: u64,
     ram_history: &mut VecDeque<SnesRam>,
     writer: &mut Writer<File>,
     events: &mut EventTracker,
 ) -> anyhow::Result<()> {
-    match verbosity {
-        1 => println!(
-            "ow {}, indoors {}, entrance {}",
-            ram.overworld_tile(),
-            ram.indoors(),
-            ram.entrance_id()
-        ),
-        // If using level 2, you might wanna set a higher update interval, (e.g. --freq 10000 to update every 10 seconds) as it's A LOT of data
-        2.. => {
-            if ram_history.len() > 0 {
-                print_verbose_diff(
-                    &ram_history
-                        .get(ram_history.len() - 1)
-                        .unwrap()
-                        .tile_info_chunk,
-                    &ram.tile_info_chunk,
-                );
-                print_flags_toggled(
-                    &ram_history
-                        .get(ram_history.len() - 1)
-                        .unwrap()
-                        .tile_info_chunk,
-                    &ram.tile_info_chunk,
-                );
-            } else {
-                println!("Full response: {:?}", ram.tile_info_chunk)
-            }
-        }
-        _ => (), // on 0 or somehow invalid verbosity level we don't do this logging as it's very spammy
-    };
-
     // Use events if one transition has been triggered.
     match events.latest_transition() {
         Some(previous_transition) => {

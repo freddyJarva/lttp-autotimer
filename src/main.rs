@@ -37,6 +37,10 @@ fn main() -> anyhow::Result<()> {
                 .long("manual")
                 .short('m')
                 .about("Only check for updates when user presses a key. Useful when debugging.")
+        ).arg(
+            Arg::new("game started")
+                .long("--game-started")
+                .about("Set this if you've already begun playing (i.e. spawned Link), as otherwise it might not start checking transitions for awhile")
         )
         .get_matches();
 

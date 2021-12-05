@@ -92,6 +92,7 @@ impl EventTracker {
     pub fn new() -> Self {
         Self {
             log: vec![EventEnum::Transition(Tile {
+                id: 9000,
                 name: "AUTO_TIMER_START".to_string(),
                 address_value: vec![0x0],
                 timestamp: Some(Utc::now()),

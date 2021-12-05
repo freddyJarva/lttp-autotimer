@@ -12,6 +12,7 @@ static TRANSITIONS_JSON: &'static str = include_str!("transitions.json");
 
 #[derive(Debug, Deserialize, PartialEq, Clone)]
 pub struct Tile {
+    pub id: usize,
     pub name: String,
     #[serde(deserialize_with = "hex_16bit_array_deserialize")]
     pub address_value: Vec<u16>,
@@ -96,6 +97,7 @@ impl Tile {
 impl Default for Tile {
     fn default() -> Self {
         Self {
+            id: Default::default(),
             timestamp: None,
             indoors: Default::default(),
             address_value: vec![0],
@@ -128,6 +130,7 @@ mod tests {
         assert_eq!(
             hobo,
             Tile {
+                id: 89,
                 name: "Hobo".to_string(),
                 region: "East Hyrule".to_string(),
                 indoors: false,

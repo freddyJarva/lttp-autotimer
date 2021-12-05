@@ -119,6 +119,7 @@ mod tests {
     #[test]
     fn parse_tile() {
         let json_val = json!({
+            "id": 1337,
             "name": "Hyrule Castle - Key Guard 1",
             "indoors": true,
             "region": "Hyrule Castle",

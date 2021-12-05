@@ -113,6 +113,9 @@ pub fn connect_to_qusb(args: &ArgMatches) -> anyhow::Result<()> {
     let mut events = EventTracker::new();
 
     let mut game_finished = false;
+    // Intro/start screen counts as not started. Having selected a spawn point counts as game started.
+    // This is to ensure it only checks for events - especially transitions - while in-game.
+    let mut game_started = false;
 
     let mut locations: Vec<Check> = deserialize_location_checks()?
         .into_iter()
@@ -127,29 +130,34 @@ pub fn connect_to_qusb(args: &ArgMatches) -> anyhow::Result<()> {
     while !game_finished {
         match get_chunka_chungus(&mut client) {
             Ok(snes_ram) => {
-                check_for_transitions(
-                    &snes_ram,
-                    verbosity,
-                    &mut ram_history,
-                    &mut writer,
-                    &mut events,
-                )?;
-                check_for_location_checks(
-                    &snes_ram,
-                    &mut ram_history,
-                    &mut locations,
-                    &mut writer,
-                    &mut events,
-                )?;
-                check_for_item_checks(
-                    &snes_ram,
-                    verbosity,
-                    &mut ram_history,
-                    &mut items,
-                    &mut writer,
-                    &mut events,
-                )?;
-                ram_history.push_back(snes_ram);
+                if !game_started {
+                    game_started = check_for_game_start(&snes_ram, &mut events)?;
+                } else {
+                    check_for_transitions(
+                        &snes_ram,
+                        verbosity,
+                        &mut ram_history,
+                        &mut writer,
+                        &mut events,
+                    )?;
+                    check_for_location_checks(
+                        &snes_ram,
+                        &mut ram_history,
+                        &mut locations,
+                        &mut writer,
+                        &mut events,
+                    )?;
+                    check_for_item_checks(
+                        &snes_ram,
+                        verbosity,
+                        &mut ram_history,
+                        &mut items,
+                        &mut writer,
+                        &mut events,
+                        &mut game_started,
+                    )?;
+                    ram_history.push_back(snes_ram);
+                }
             }
             Err(e) => println!("Failed request: {:?}", e),
         }
@@ -324,6 +332,7 @@ fn check_for_item_checks(
     checks: &mut Vec<Check>,
     writer: &mut Writer<File>,
     events: &mut EventTracker,
+    game_started: &mut bool,
 ) -> anyhow::Result<()> {
     for check in checks {
         let current_check_value = ram.get_byte(check.sram_offset as usize);
@@ -362,6 +371,7 @@ fn check_for_item_checks(
                     check.time_of_check,
                     format!("{} - {}", check.name, check.progressive_level).on_green(),
                 );
+                *game_started = check.name != "Save & Quit";
                 events.push(EventEnum::ItemGet(check.clone()));
                 writer.serialize(Event::from(check))?;
             }
@@ -418,24 +428,37 @@ fn check_for_transitions(
         _ => (), // on 0 or somehow invalid verbosity level we don't do this logging as it's very spammy
     };
 
-    if ram.game_has_started() {
-        // Use events if one transition has been triggered.
-        match events.latest_transition() {
-            Some(previous_transition) => {
-                if let Ok(mut current_tile) = Tile::try_from_ram(ram, &previous_transition) {
-                    if current_tile.name != previous_transition.name {
-                        current_tile.time_transit();
-                        writer.serialize(Event::from(&current_tile))?;
-                        print_transition(&current_tile);
-                        events.push(EventEnum::Transition(current_tile));
-                    }
+    // Use events if one transition has been triggered.
+    match events.latest_transition() {
+        Some(previous_transition) => {
+            if let Ok(mut current_tile) = Tile::try_from_ram(ram, &previous_transition) {
+                if current_tile.name != previous_transition.name {
+                    current_tile.time_transit();
+                    writer.serialize(Event::from(&current_tile))?;
+                    print_transition(&current_tile);
+                    events.push(EventEnum::Transition(current_tile));
                 }
             }
-            None => {
-                panic!("You've reached the unreachable, as EventTracker should always contain a transition when using ::new");
-            }
+        }
+        None => {
+            panic!("You've reached the unreachable, as EventTracker should always contain a transition when using ::new");
         }
     }
 
     Ok(())
+}
+
+fn check_for_game_start(ram: &SnesRam, events: &EventTracker) -> anyhow::Result<bool> {
+    match events.latest_transition() {
+        Some(previous_transition) => {
+            if let Ok(current_tile) = Tile::try_from_ram(ram, &previous_transition) {
+                let spawn_tiles = vec![20, 21, 61, 118, 205, 209]; //ids correspond to those in transitions.json
+                return Ok(spawn_tiles.contains(&current_tile.id));
+            }
+        }
+        None => {
+            panic!("You've reached the unreachable, as EventTracker should always contain a transition when using ::new");
+        }
+    }
+    Ok(false)
 }

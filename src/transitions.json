@@ -1,5 +1,6 @@
 [
     {
+        "id": 0,
         "name": "Hyrule Castle",
         "region": "Central Hyrule",
         "indoors": false,
@@ -8,6 +9,7 @@
         ]
     },
     {
+        "id": 1,
         "name": "Hyrule Castle secret entrance",
         "region": "Central Hyrule",
         "indoors": true,
@@ -16,6 +18,7 @@
         ]
     },
     {
+        "id": 2,
         "name": "Castle Secret Passage drop",
         "region": "Central Hyrule",
         "indoors": true,
@@ -24,6 +27,7 @@
         ]
     },
     {
+        "id": 3,
         "name": "Lost Woods",
         "region": "West Hyrule",
         "indoors": false,
@@ -32,6 +36,7 @@
         ]
     },
     {
+        "id": 4,
         "name": "Lumberjack",
         "region": "West Hyrule",
         "indoors": false,
@@ -40,6 +45,7 @@
         ]
     },
     {
+        "id": 5,
         "name": "Lost Woods Pass",
         "region": "West Hyrule",
         "indoors": false,
@@ -48,6 +54,7 @@
         ]
     },
     {
+        "id": 6,
         "name": "Kakariko Fortune",
         "region": "West Hyrule",
         "indoors": false,
@@ -56,6 +63,7 @@
         ]
     },
     {
+        "id": 7,
         "name": "Kakariko Pond",
         "region": "West Hyrule",
         "indoors": false,
@@ -64,6 +72,7 @@
         ]
     },
     {
+        "id": 8,
         "name": "Sanctuary OW",
         "region": "West Hyrule",
         "indoors": false,
@@ -72,6 +81,7 @@
         ]
     },
     {
+        "id": 9,
         "name": "Graveyard",
         "region": "West Hyrule",
         "indoors": false,
@@ -80,6 +90,7 @@
         ]
     },
     {
+        "id": 10,
         "name": "Kakariko",
         "region": "West Hyrule",
         "indoors": false,
@@ -88,6 +99,7 @@
         ]
     },
     {
+        "id": 11,
         "name": "Forgotten Forest",
         "region": "West Hyrule",
         "indoors": false,
@@ -96,6 +108,7 @@
         ]
     },
     {
+        "id": 12,
         "name": "Blacksmith",
         "region": "West Hyrule",
         "indoors": false,
@@ -104,6 +117,7 @@
         ]
     },
     {
+        "id": 13,
         "name": "Maze Race",
         "region": "West Hyrule",
         "indoors": false,
@@ -112,6 +126,7 @@
         ]
     },
     {
+        "id": 14,
         "name": "Kakariko Suburb",
         "region": "West Hyrule",
         "indoors": false,
@@ -120,6 +135,7 @@
         ]
     },
     {
+        "id": 15,
         "name": "Flute Boy",
         "region": "West Hyrule",
         "indoors": false,
@@ -128,6 +144,7 @@
         ]
     },
     {
+        "id": 16,
         "name": "Central Bonk Rocks",
         "region": "West Hyrule",
         "indoors": false,
@@ -136,6 +153,7 @@
         ]
     },
     {
+        "id": 17,
         "name": "Link's House OW",
         "region": "West Hyrule",
         "indoors": false,
@@ -144,6 +162,7 @@
         ]
     },
     {
+        "id": 18,
         "name": "Flute Boy Approach",
         "region": "West Hyrule",
         "indoors": false,
@@ -152,6 +171,7 @@
         ]
     },
     {
+        "id": 19,
         "name": "Mastersword Meadow",
         "region": "West Hyrule",
         "indoors": false,
@@ -168,6 +188,7 @@
         ]
     },
     {
+        "id": 20,
         "name": "Link's House UW",
         "region": "West Hyrule",
         "indoors": true,
@@ -177,6 +198,7 @@
         ]
     },
     {
+        "id": 21,
         "name": "Sanctuary",
         "region": "West Hyrule",
         "indoors": true,
@@ -211,6 +233,7 @@
         ]
     },
     {
+        "id": 22,
         "name": "Sahasrahla's house west",
         "region": "West Hyrule",
         "indoors": true,
@@ -219,6 +242,7 @@
         ]
     },
     {
+        "id": 23,
         "name": "Sahasrahla's house east",
         "region": "West Hyrule",
         "indoors": true,
@@ -227,6 +251,7 @@
         ]
     },
     {
+        "id": 24,
         "name": "Angry bro west",
         "region": "West Hyrule",
         "indoors": true,
@@ -235,6 +260,7 @@
         ]
     },
     {
+        "id": 25,
         "name": "Angry bro east",
         "region": "West Hyrule",
         "indoors": true,
@@ -243,6 +269,7 @@
         ]
     },
     {
+        "id": 26,
         "name": "Magic bat",
         "region": "West Hyrule",
         "indoors": true,
@@ -251,6 +278,7 @@
         ]
     },
     {
+        "id": 27,
         "name": "Lumberjack cave",
         "region": "West Hyrule",
         "indoors": true,
@@ -259,6 +287,7 @@
         ]
     },
     {
+        "id": 28,
         "name": "Lost Woods hideout",
         "region": "West Hyrule",
         "indoors": true,
@@ -267,6 +296,7 @@
         ]
     },
     {
+        "id": 29,
         "name": "Kakariko well",
         "region": "West Hyrule",
         "indoors": true,
@@ -275,6 +305,7 @@
         ]
     },
     {
+        "id": 30,
         "name": "Lost Woods chest game",
         "region": "West Hyrule",
         "indoors": true,
@@ -283,6 +314,7 @@
         ]
     },
     {
+        "id": 31,
         "name": "Eastern snitch house",
         "region": "West Hyrule",
         "indoors": true,
@@ -291,6 +323,7 @@
         ]
     },
     {
+        "id": 32,
         "name": "Cucco easter egg",
         "region": "West Hyrule",
         "indoors": true,
@@ -299,6 +332,7 @@
         ]
     },
     {
+        "id": 33,
         "name": "Sick kid",
         "region": "West Hyrule",
         "indoors": true,
@@ -307,6 +341,7 @@
         ]
     },
     {
+        "id": 34,
         "name": "Tavern front",
         "region": "West Hyrule",
         "indoors": true,
@@ -315,6 +350,7 @@
         ]
     },
     {
+        "id": 35,
         "name": "Tavern back",
         "region": "West Hyrule",
         "indoors": true,
@@ -323,6 +359,7 @@
         ]
     },
     {
+        "id": 36,
         "name": "Kakariko Inn",
         "region": "West Hyrule",
         "indoors": true,
@@ -331,6 +368,7 @@
         ]
     },
     {
+        "id": 37,
         "name": "Kakariko shop",
         "region": "West Hyrule",
         "indoors": true,
@@ -339,6 +377,7 @@
         ]
     },
     {
+        "id": 38,
         "name": "Library",
         "region": "West Hyrule",
         "indoors": true,
@@ -347,6 +386,7 @@
         ]
     },
     {
+        "id": 39,
         "name": "Kakariko bombable hut",
         "region": "West Hyrule",
         "indoors": true,
@@ -355,6 +395,7 @@
         ]
     },
     {
+        "id": 40,
         "name": "Chicken hut",
         "region": "West Hyrule",
         "indoors": true,
@@ -363,6 +404,7 @@
         ]
     },
     {
+        "id": 41,
         "name": "Circle of bushes heart piece cave",
         "region": "West Hyrule",
         "indoors": true,
@@ -371,6 +413,7 @@
         ]
     },
     {
+        "id": 42,
         "name": "Graveyard ledge heart piece cave",
         "region": "West Hyrule",
         "indoors": true,
@@ -379,6 +422,7 @@
         ]
     },
     {
+        "id": 43,
         "name": "King's tomb",
         "region": "West Hyrule",
         "indoors": true,
@@ -387,6 +431,7 @@
         ]
     },
     {
+        "id": 44,
         "name": "Blind's hut",
         "region": "West Hyrule",
         "indoors": true,
@@ -395,6 +440,7 @@
         ]
     },
     {
+        "id": 45,
         "name": "Smithy's house",
         "region": "West Hyrule",
         "indoors": true,
@@ -403,6 +449,7 @@
         ]
     },
     {
+        "id": 46,
         "name": "Light World fortune teller (Kakariko)",
         "region": "West Hyrule",
         "indoors": true,
@@ -417,6 +464,7 @@
         ]
     },
     {
+        "id": 47,
         "name": "South of Kakariko chest game",
         "region": "West Hyrule",
         "indoors": true,
@@ -425,6 +473,7 @@
         ]
     },
     {
+        "id": 48,
         "name": "Light World fortune teller (Lake Hylia)",
         "region": "West Hyrule",
         "indoors": true,
@@ -439,6 +488,7 @@
         ]
     },
     {
+        "id": 49,
         "name": "Link's house bonk rocks fairy pond",
         "region": "West Hyrule",
         "indoors": true,
@@ -453,6 +503,7 @@
         ]
     },
     {
+        "id": 50,
         "name": "Bonk rocks heart piece cave",
         "region": "West Hyrule",
         "indoors": true,
@@ -461,6 +512,7 @@
         ]
     },
     {
+        "id": 51,
         "name": "Lost Woods drop",
         "region": "West Hyrule",
         "indoors": true,
@@ -469,6 +521,7 @@
         ]
     },
     {
+        "id": 52,
         "name": "Graveyard fairy drop",
         "region": "West Hyrule",
         "indoors": true,
@@ -477,6 +530,7 @@
         ]
     },
     {
+        "id": 53,
         "name": "Magic Bat drop",
         "region": "West Hyrule",
         "indoors": true,
@@ -485,6 +539,7 @@
         ]
     },
     {
+        "id": 54,
         "name": "Lumberjack tree drop",
         "region": "West Hyrule",
         "indoors": true,
@@ -493,6 +548,7 @@
         ]
     },
     {
+        "id": 55,
         "name": "Kakariko Well drop",
         "region": "West Hyrule",
         "indoors": true,
@@ -501,6 +557,7 @@
         ]
     },
     {
+        "id": 56,
         "name": "Houlihan drop",
         "region": "West Hyrule",
         "indoors": true,
@@ -509,6 +566,7 @@
         ]
     },
     {
+        "id": 57,
         "name": "West Death Mountain",
         "region": "Death Mountain",
         "indoors": false,
@@ -517,6 +575,7 @@
         ]
     },
     {
+        "id": 58,
         "name": "East Death Mountain",
         "region": "Death Mountain",
         "indoors": false,
@@ -525,6 +584,7 @@
         ]
     },
     {
+        "id": 59,
         "name": "Death Mountain TR Pegs",
         "region": "Death Mountain",
         "indoors": false,
@@ -533,6 +593,7 @@
         ]
     },
     {
+        "id": 60,
         "name": "Mountain Entry",
         "region": "Death Mountain",
         "indoors": false,
@@ -541,6 +602,7 @@
         ]
     },
     {
+        "id": 61,
         "name": "Old man cave west",
         "region": "Death Mountain",
         "indoors": true,
@@ -549,6 +611,7 @@
         ]
     },
     {
+        "id": 62,
         "name": "Old man cave east",
         "region": "Death Mountain",
         "indoors": true,
@@ -557,6 +620,7 @@
         ]
     },
     {
+        "id": 63,
         "name": "East Death Mountain useless bottom",
         "region": "Death Mountain",
         "indoors": true,
@@ -565,6 +629,7 @@
         ]
     },
     {
+        "id": 64,
         "name": "East Death Mountain useless top",
         "region": "Death Mountain",
         "indoors": true,
@@ -573,6 +638,7 @@
         ]
     },
     {
+        "id": 65,
         "name": "Spiral cave exit",
         "region": "Death Mountain",
         "indoors": true,
@@ -581,6 +647,7 @@
         ]
     },
     {
+        "id": 66,
         "name": "Spiral cave top",
         "region": "Death Mountain",
         "indoors": true,
@@ -589,6 +656,7 @@
         ]
     },
     {
+        "id": 67,
         "name": "Paradox cave bottom",
         "region": "Death Mountain",
         "indoors": true,
@@ -597,6 +665,7 @@
         ]
     },
     {
+        "id": 68,
         "name": "Paradox cave middle",
         "region": "Death Mountain",
         "indoors": true,
@@ -605,6 +674,7 @@
         ]
     },
     {
+        "id": 69,
         "name": "Paradox cave top",
         "region": "Death Mountain",
         "indoors": true,
@@ -613,6 +683,7 @@
         ]
     },
     {
+        "id": 70,
         "name": "Kiki cave west",
         "region": "Death Mountain",
         "indoors": true,
@@ -621,6 +692,7 @@
         ]
     },
     {
+        "id": 71,
         "name": "Kiki cave east",
         "region": "Death Mountain",
         "indoors": true,
@@ -629,6 +701,7 @@
         ]
     },
     {
+        "id": 72,
         "name": "Spectacle rock",
         "region": "Death Mountain",
         "indoors": true,
@@ -637,6 +710,7 @@
         ]
     },
     {
+        "id": 73,
         "name": "Death Mountain exit west",
         "region": "Death Mountain",
         "indoors": true,
@@ -645,6 +719,7 @@
         ]
     },
     {
+        "id": 74,
         "name": "Death Mountain exit from summit",
         "region": "Death Mountain",
         "indoors": true,
@@ -653,6 +728,7 @@
         ]
     },
     {
+        "id": 75,
         "name": "Old man home cave west",
         "region": "Death Mountain",
         "indoors": true,
@@ -661,6 +737,7 @@
         ]
     },
     {
+        "id": 76,
         "name": "Old man home cave east",
         "region": "Death Mountain",
         "indoors": true,
@@ -669,6 +746,7 @@
         ]
     },
     {
+        "id": 77,
         "name": "Mimic cave",
         "region": "Death Mountain",
         "indoors": true,
@@ -677,6 +755,7 @@
         ]
     },
     {
+        "id": 78,
         "name": "East Death Mountain fairy pond cave",
         "region": "Death Mountain",
         "indoors": true,
@@ -685,6 +764,7 @@
         ]
     },
     {
+        "id": 79,
         "name": "Zora Waterfall",
         "region": "East Hyrule",
         "indoors": false,
@@ -693,6 +773,7 @@
         ]
     },
     {
+        "id": 80,
         "name": "River Bend",
         "region": "East Hyrule",
         "indoors": false,
@@ -701,6 +782,7 @@
         ]
     },
     {
+        "id": 81,
         "name": "Potion Shop",
         "region": "East Hyrule",
         "indoors": false,
@@ -709,6 +791,7 @@
         ]
     },
     {
+        "id": 82,
         "name": "Zora Approach",
         "region": "East Hyrule",
         "indoors": false,
@@ -717,6 +800,7 @@
         ]
     },
     {
+        "id": 83,
         "name": "Wooden Bridge",
         "region": "East Hyrule",
         "indoors": false,
@@ -725,6 +809,7 @@
         ]
     },
     {
+        "id": 84,
         "name": "Eastern Palace",
         "region": "East Hyrule",
         "indoors": false,
@@ -733,6 +818,7 @@
         ]
     },
     {
+        "id": 85,
         "name": "Stone Bridge",
         "region": "East Hyrule",
         "indoors": false,
@@ -741,6 +827,7 @@
         ]
     },
     {
+        "id": 86,
         "name": "Tree Line",
         "region": "East Hyrule",
         "indoors": false,
@@ -749,6 +836,7 @@
         ]
     },
     {
+        "id": 87,
         "name": "Eastern Nook",
         "region": "East Hyrule",
         "indoors": false,
@@ -757,6 +845,7 @@
         ]
     },
     {
+        "id": 88,
         "name": "Statues",
         "region": "East Hyrule",
         "indoors": false,
@@ -765,6 +854,7 @@
         ]
     },
     {
+        "id": 89,
         "name": "Hobo",
         "region": "East Hyrule",
         "indoors": false,
@@ -781,6 +871,7 @@
         ]
     },
     {
+        "id": 90,
         "name": "Zoras Domain",
         "region": "East Hyrule",
         "indoors": false,
@@ -789,6 +880,7 @@
         ]
     },
     {
+        "id": 91,
         "name": "Graveyard fairy",
         "region": "East Hyrule",
         "indoors": true,
@@ -797,6 +889,7 @@
         ]
     },
     {
+        "id": 92,
         "name": "Sahasrahla's hideout",
         "region": "East Hyrule",
         "indoors": true,
@@ -805,6 +898,7 @@
         ]
     },
     {
+        "id": 93,
         "name": "Potion shop",
         "region": "East Hyrule",
         "indoors": true,
@@ -813,6 +907,7 @@
         ]
     },
     {
+        "id": 94,
         "name": "Southeast of Eastern Ruins fairy cave",
         "region": "East Hyrule",
         "indoors": true,
@@ -821,6 +916,7 @@
         ]
     },
     {
+        "id": 95,
         "name": "Waterfall of Wishing",
         "region": "East Hyrule",
         "indoors": true,
@@ -829,20 +925,22 @@
         ]
     },
     {
+        "id": 96,
         "name": "Big fairy (Eastern Ruins)",
         "region": "East Hyrule",
         "indoors": true,
+        "address_value": [
+            "0x5E"
+        ],
         "conditions": [
             {
                 "type": "PreviousTile",
                 "name": "Tree Line"
             }
-        ],
-        "address_value": [
-            "0x5E"
         ]
     },
     {
+        "id": 97,
         "name": "Ice rod cave",
         "region": "South Hyrule",
         "indoors": true,
@@ -851,6 +949,7 @@
         ]
     },
     {
+        "id": 98,
         "name": "Sand Dunes",
         "region": "South Hyrule",
         "indoors": false,
@@ -859,6 +958,7 @@
         ]
     },
     {
+        "id": 99,
         "name": "Desert",
         "region": "South Hyrule",
         "indoors": false,
@@ -867,6 +967,7 @@
         ]
     },
     {
+        "id": 100,
         "name": "C Whirlpool",
         "region": "South Hyrule",
         "indoors": false,
@@ -875,6 +976,7 @@
         ]
     },
     {
+        "id": 101,
         "name": "Lake Hylia",
         "region": "South Hyrule",
         "indoors": false,
@@ -883,6 +985,7 @@
         ]
     },
     {
+        "id": 102,
         "name": "Ice Cave",
         "region": "South Hyrule",
         "indoors": false,
@@ -891,6 +994,7 @@
         ]
     },
     {
+        "id": 103,
         "name": "Desert Pass",
         "region": "South Hyrule",
         "indoors": false,
@@ -899,6 +1003,7 @@
         ]
     },
     {
+        "id": 104,
         "name": "Dam",
         "region": "South Hyrule",
         "indoors": false,
@@ -907,6 +1012,7 @@
         ]
     },
     {
+        "id": 105,
         "name": "South Pass",
         "region": "South Hyrule",
         "indoors": false,
@@ -915,6 +1021,7 @@
         ]
     },
     {
+        "id": 106,
         "name": "Octoballoon",
         "region": "South Hyrule",
         "indoors": false,
@@ -923,6 +1030,7 @@
         ]
     },
     {
+        "id": 107,
         "name": "Aginah's cave",
         "region": "South Hyrule",
         "indoors": true,
@@ -931,6 +1039,7 @@
         ]
     },
     {
+        "id": 108,
         "name": "Dam",
         "region": "South Hyrule",
         "indoors": true,
@@ -939,6 +1048,7 @@
         ]
     },
     {
+        "id": 109,
         "name": "Lake Hylia shop",
         "region": "South Hyrule",
         "indoors": true,
@@ -953,6 +1063,7 @@
         ]
     },
     {
+        "id": 110,
         "name": "Pond of Happiness",
         "region": "South Hyrule",
         "indoors": true,
@@ -961,6 +1072,7 @@
         ]
     },
     {
+        "id": 111,
         "name": "Ice rod cave golden bee",
         "region": "South Hyrule",
         "indoors": true,
@@ -969,9 +1081,13 @@
         ]
     },
     {
+        "id": 112,
         "name": "Big fairy (South of Link's house)",
         "region": "South Hyrule",
         "indoors": true,
+        "address_value": [
+            "0x5E"
+        ],
         "conditions": [
             {
                 "type": "PreviousTile",
@@ -979,12 +1095,10 @@
                 "indoors": false,
                 "address_value": "0x3C"
             }
-        ],
-        "address_value": [
-            "0x5E"
         ]
     },
     {
+        "id": 113,
         "name": "Desert big fairy",
         "region": "South Hyrule",
         "indoors": true,
@@ -999,6 +1113,7 @@
         ]
     },
     {
+        "id": 114,
         "name": "Desert thief hideout",
         "region": "South Hyrule",
         "indoors": true,
@@ -1007,6 +1122,7 @@
         ]
     },
     {
+        "id": 115,
         "name": "Lake Hylia falls thief hideout",
         "region": "South Hyrule",
         "indoors": true,
@@ -1015,6 +1131,7 @@
         ]
     },
     {
+        "id": 116,
         "name": "Minimoldorm cave",
         "region": "South Hyrule",
         "indoors": true,
@@ -1023,6 +1140,7 @@
         ]
     },
     {
+        "id": 117,
         "name": "Checkerboard cave heart piece",
         "region": "South Hyrule",
         "indoors": true,
@@ -1031,6 +1149,7 @@
         ]
     },
     {
+        "id": 118,
         "name": "Pyramid",
         "region": "Central Dark World",
         "indoors": false,
@@ -1039,6 +1158,7 @@
         ]
     },
     {
+        "id": 119,
         "name": "Skull Woods",
         "region": "West Dark World",
         "indoors": false,
@@ -1047,6 +1167,7 @@
         ]
     },
     {
+        "id": 120,
         "name": "Dark Lumberjack",
         "region": "West Dark World",
         "indoors": false,
@@ -1055,6 +1176,7 @@
         ]
     },
     {
+        "id": 121,
         "name": "Bumper Cave",
         "region": "West Dark World",
         "indoors": false,
@@ -1063,6 +1185,7 @@
         ]
     },
     {
+        "id": 122,
         "name": "Skull Woods Pass",
         "region": "West Dark World",
         "indoors": false,
@@ -1071,6 +1194,7 @@
         ]
     },
     {
+        "id": 123,
         "name": "Dark Fortune",
         "region": "West Dark World",
         "indoors": false,
@@ -1079,6 +1203,7 @@
         ]
     },
     {
+        "id": 124,
         "name": "Outcast Pond",
         "region": "West Dark World",
         "indoors": false,
@@ -1087,6 +1212,7 @@
         ]
     },
     {
+        "id": 125,
         "name": "Dark Chapel",
         "region": "West Dark World",
         "indoors": false,
@@ -1095,6 +1221,7 @@
         ]
     },
     {
+        "id": 126,
         "name": "Dark Graveyard",
         "region": "West Dark World",
         "indoors": false,
@@ -1103,6 +1230,7 @@
         ]
     },
     {
+        "id": 127,
         "name": "Village of Outcasts",
         "region": "West Dark World",
         "indoors": false,
@@ -1111,6 +1239,7 @@
         ]
     },
     {
+        "id": 128,
         "name": "Shield Shop",
         "region": "West Dark World",
         "indoors": false,
@@ -1119,6 +1248,7 @@
         ]
     },
     {
+        "id": 129,
         "name": "Hammer Pegs",
         "region": "West Dark World",
         "indoors": false,
@@ -1127,6 +1257,7 @@
         ]
     },
     {
+        "id": 130,
         "name": "Dig Game",
         "region": "West Dark World",
         "indoors": false,
@@ -1135,6 +1266,7 @@
         ]
     },
     {
+        "id": 131,
         "name": "Frog",
         "region": "West Dark World",
         "indoors": false,
@@ -1143,6 +1275,7 @@
         ]
     },
     {
+        "id": 132,
         "name": "Stumpy",
         "region": "West Dark World",
         "indoors": false,
@@ -1151,6 +1284,7 @@
         ]
     },
     {
+        "id": 133,
         "name": "Dark Bonk Rocks",
         "region": "West Dark World",
         "indoors": false,
@@ -1159,6 +1293,7 @@
         ]
     },
     {
+        "id": 134,
         "name": "Big Bomb Shop",
         "region": "West Dark World",
         "indoors": false,
@@ -1167,6 +1302,7 @@
         ]
     },
     {
+        "id": 135,
         "name": "Stumpy Approach",
         "region": "West Dark World",
         "indoors": false,
@@ -1175,6 +1311,7 @@
         ]
     },
     {
+        "id": 136,
         "name": "Bumper cave bottom",
         "region": "West Dark World",
         "indoors": true,
@@ -1183,6 +1320,7 @@
         ]
     },
     {
+        "id": 137,
         "name": "Bumper cave top",
         "region": "West Dark World",
         "indoors": true,
@@ -1191,6 +1329,7 @@
         ]
     },
     {
+        "id": 138,
         "name": "Village of Outcasts chest game",
         "region": "West Dark World",
         "indoors": true,
@@ -1199,6 +1338,7 @@
         ]
     },
     {
+        "id": 139,
         "name": "Village of Outcasts bombable hut",
         "region": "West Dark World",
         "indoors": true,
@@ -1207,6 +1347,7 @@
         ]
     },
     {
+        "id": 140,
         "name": "Bomb shop",
         "region": "West Dark World",
         "indoors": true,
@@ -1215,6 +1356,7 @@
         ]
     },
     {
+        "id": 141,
         "name": "C-shaped house",
         "region": "West Dark World",
         "indoors": true,
@@ -1223,6 +1365,7 @@
         ]
     },
     {
+        "id": 142,
         "name": "Dark World lumberjacks shop",
         "region": "West Dark World",
         "indoors": true,
@@ -1237,6 +1380,7 @@
         ]
     },
     {
+        "id": 143,
         "name": "Arrow game",
         "region": "West Dark World",
         "indoors": true,
@@ -1245,6 +1389,7 @@
         ]
     },
     {
+        "id": 144,
         "name": "Dark World sanctuary cave",
         "region": "West Dark World",
         "indoors": true,
@@ -1253,6 +1398,7 @@
         ]
     },
     {
+        "id": 145,
         "name": "Village of Outcasts shop",
         "region": "West Dark World",
         "indoors": true,
@@ -1267,6 +1413,7 @@
         ]
     },
     {
+        "id": 146,
         "name": "Dark World fortune teller",
         "region": "West Dark World",
         "indoors": true,
@@ -1275,6 +1422,7 @@
         ]
     },
     {
+        "id": 147,
         "name": "East of Village of Outcasts shop",
         "region": "West Dark World",
         "indoors": true,
@@ -1283,6 +1431,7 @@
         ]
     },
     {
+        "id": 148,
         "name": "Bomb shop bonk rocks fairy pond",
         "region": "West Dark World",
         "indoors": true,
@@ -1297,6 +1446,7 @@
         ]
     },
     {
+        "id": 149,
         "name": "Stake puzzle heart piece cave",
         "region": "West Dark World",
         "indoors": true,
@@ -1305,6 +1455,7 @@
         ]
     },
     {
+        "id": 150,
         "name": "West Dark Death Mountain",
         "region": "Dark Death Mountain",
         "indoors": false,
@@ -1313,6 +1464,7 @@
         ]
     },
     {
+        "id": 151,
         "name": "East Dark Death Mountain",
         "region": "Dark Death Mountain",
         "indoors": false,
@@ -1321,6 +1473,7 @@
         ]
     },
     {
+        "id": 152,
         "name": "Turtle Rock",
         "region": "Dark Death Mountain",
         "indoors": false,
@@ -1329,6 +1482,7 @@
         ]
     },
     {
+        "id": 153,
         "name": "Superbunny bottom",
         "region": "Dark Death Mountain",
         "indoors": true,
@@ -1337,6 +1491,7 @@
         ]
     },
     {
+        "id": 154,
         "name": "Superbunny top",
         "region": "Dark Death Mountain",
         "indoors": true,
@@ -1345,6 +1500,7 @@
         ]
     },
     {
+        "id": 155,
         "name": "Hookshot cave bottom",
         "region": "Dark Death Mountain",
         "indoors": true,
@@ -1353,6 +1509,7 @@
         ]
     },
     {
+        "id": 156,
         "name": "Hookshot cave top",
         "region": "Dark Death Mountain",
         "indoors": true,
@@ -1361,6 +1518,7 @@
         ]
     },
     {
+        "id": 157,
         "name": "Spike cave",
         "region": "Dark Death Mountain",
         "indoors": true,
@@ -1369,6 +1527,7 @@
         ]
     },
     {
+        "id": 158,
         "name": "Dark Death Mountain shop",
         "region": "Dark Death Mountain",
         "indoors": true,
@@ -1383,9 +1542,13 @@
         ]
     },
     {
+        "id": 159,
         "name": "Dark West Death Mountain Big fairy",
         "region": "Dark Death Mountain",
         "indoors": true,
+        "address_value": [
+            "0x5E"
+        ],
         "conditions": [
             {
                 "type": "PreviousTile",
@@ -1393,12 +1556,10 @@
                 "indoors": false,
                 "address_value": "0x43"
             }
-        ],
-        "address_value": [
-            "0x5E"
         ]
     },
     {
+        "id": 160,
         "name": "Catfish",
         "region": "East Dark World",
         "indoors": false,
@@ -1407,6 +1568,7 @@
         ]
     },
     {
+        "id": 161,
         "name": "Qirn Jump",
         "region": "East Dark World",
         "indoors": false,
@@ -1415,6 +1577,7 @@
         ]
     },
     {
+        "id": 162,
         "name": "Dark Witch",
         "region": "East Dark World",
         "indoors": false,
@@ -1423,6 +1586,7 @@
         ]
     },
     {
+        "id": 163,
         "name": "Catfish Approach",
         "region": "East Dark World",
         "indoors": false,
@@ -1431,6 +1595,7 @@
         ]
     },
     {
+        "id": 164,
         "name": "Broken Bridge",
         "region": "East Dark World",
         "indoors": false,
@@ -1439,6 +1604,7 @@
         ]
     },
     {
+        "id": 165,
         "name": "Palace of Darkness",
         "region": "East Dark World",
         "indoors": false,
@@ -1447,6 +1613,7 @@
         ]
     },
     {
+        "id": 166,
         "name": "Hammer Bridge",
         "region": "East Dark World",
         "indoors": false,
@@ -1455,6 +1622,7 @@
         ]
     },
     {
+        "id": 167,
         "name": "Dark Tree Line",
         "region": "East Dark World",
         "indoors": false,
@@ -1463,6 +1631,7 @@
         ]
     },
     {
+        "id": 168,
         "name": "Palace of Darkness Nook",
         "region": "East Dark World",
         "indoors": false,
@@ -1471,6 +1640,7 @@
         ]
     },
     {
+        "id": 169,
         "name": "Fat Fairy",
         "region": "East Dark World",
         "indoors": true,
@@ -1479,6 +1649,7 @@
         ]
     },
     {
+        "id": 170,
         "name": "Big fairy (South of Kiki)",
         "region": "East Dark World",
         "indoors": true,
@@ -1493,6 +1664,7 @@
         ]
     },
     {
+        "id": 171,
         "name": "Dark World witch shop",
         "region": "East Dark World",
         "indoors": true,
@@ -1507,6 +1679,7 @@
         ]
     },
     {
+        "id": 172,
         "name": "Dark Dunes",
         "region": "South Dark World",
         "indoors": false,
@@ -1515,6 +1688,7 @@
         ]
     },
     {
+        "id": 173,
         "name": "Dark C Whirlpool",
         "region": "South Dark World",
         "indoors": false,
@@ -1523,6 +1697,7 @@
         ]
     },
     {
+        "id": 174,
         "name": "Hype Cave",
         "region": "South Dark World",
         "indoors": false,
@@ -1531,6 +1706,7 @@
         ]
     },
     {
+        "id": 175,
         "name": "Ice Lake",
         "region": "South Dark World",
         "indoors": false,
@@ -1539,6 +1715,7 @@
         ]
     },
     {
+        "id": 176,
         "name": "Shopping Mall",
         "region": "South Dark World",
         "indoors": false,
@@ -1547,6 +1724,7 @@
         ]
     },
     {
+        "id": 177,
         "name": "Swamp Nook",
         "region": "South Dark World",
         "indoors": false,
@@ -1555,6 +1733,7 @@
         ]
     },
     {
+        "id": 178,
         "name": "Swamp",
         "region": "South Dark World",
         "indoors": false,
@@ -1563,6 +1742,7 @@
         ]
     },
     {
+        "id": 179,
         "name": "Dark South Pass",
         "region": "South Dark World",
         "indoors": false,
@@ -1571,6 +1751,7 @@
         ]
     },
     {
+        "id": 180,
         "name": "Bomber Corner",
         "region": "South Dark World",
         "indoors": false,
@@ -1579,6 +1760,7 @@
         ]
     },
     {
+        "id": 181,
         "name": "Misery Mire",
         "region": "South Dark World",
         "indoors": false,
@@ -1587,6 +1769,7 @@
         ]
     },
     {
+        "id": 182,
         "name": "Swamp thief cave hideout",
         "region": "South Dark World",
         "indoors": true,
@@ -1595,20 +1778,22 @@
         ]
     },
     {
+        "id": 183,
         "name": "Mire big fairy",
         "region": "South Dark World",
         "indoors": true,
+        "address_value": [
+            "0x5E"
+        ],
         "conditions": [
             {
                 "type": "PreviousTile",
                 "name": "Misery Mire"
             }
-        ],
-        "address_value": [
-            "0x5E"
         ]
     },
     {
+        "id": 184,
         "name": "Mire shed",
         "region": "South Dark World",
         "indoors": true,
@@ -1617,6 +1802,7 @@
         ]
     },
     {
+        "id": 185,
         "name": "Dark Lake Hylia shop",
         "region": "South Dark World",
         "indoors": true,
@@ -1631,6 +1817,7 @@
         ]
     },
     {
+        "id": 186,
         "name": "Dark Lake Hylia falls dev cave",
         "region": "South Dark World",
         "indoors": true,
@@ -1639,6 +1826,7 @@
         ]
     },
     {
+        "id": 187,
         "name": "Dark ice rod big fairy",
         "region": "South Dark World",
         "indoors": true,
@@ -1653,6 +1841,7 @@
         ]
     },
     {
+        "id": 188,
         "name": "Watto's cave",
         "region": "Unk",
         "indoors": true,
@@ -1661,6 +1850,7 @@
         ]
     },
     {
+        "id": 189,
         "name": "Broccoli's house",
         "region": "Unk",
         "indoors": true,
@@ -1669,6 +1859,7 @@
         ]
     },
     {
+        "id": 190,
         "name": "Bird hint NPC cave",
         "region": "Unk",
         "indoors": true,
@@ -1677,6 +1868,7 @@
         ]
     },
     {
+        "id": 191,
         "name": "Hamburger Helper's cave",
         "region": "Unk",
         "indoors": true,
@@ -1685,6 +1877,7 @@
         ]
     },
     {
+        "id": 192,
         "name": "Bumpkin residency",
         "region": "Unk",
         "indoors": true,
@@ -1693,6 +1886,7 @@
         ]
     },
     {
+        "id": 193,
         "name": "Hyrule Castle - Lobby",
         "region": "Hyrule Castle",
         "indoors": true,
@@ -1735,6 +1929,7 @@
         ]
     },
     {
+        "id": 194,
         "name": "Hyrule Castle - West Wing South",
         "region": "Hyrule Castle",
         "indoors": true,
@@ -1772,6 +1967,7 @@
         ]
     },
     {
+        "id": 195,
         "name": "Hyrule Castle - West Wing North",
         "region": "Hyrule Castle",
         "indoors": true,
@@ -1799,6 +1995,7 @@
         ]
     },
     {
+        "id": 196,
         "name": "Hyrule Castle - Statue Hallway",
         "region": "Hyrule Castle",
         "indoors": true,
@@ -1831,6 +2028,7 @@
         ]
     },
     {
+        "id": 197,
         "name": "Hyrule Castle - Key Guard 1",
         "region": "Hyrule Castle",
         "indoors": true,
@@ -1858,6 +2056,7 @@
         ]
     },
     {
+        "id": 198,
         "name": "Hyrule Castle - Basement 1",
         "region": "Hyrule Castle",
         "indoors": true,
@@ -1890,6 +2089,7 @@
         ]
     },
     {
+        "id": 199,
         "name": "Hyrule Castle - Basement 2",
         "region": "Hyrule Castle",
         "indoors": true,
@@ -1927,6 +2127,7 @@
         ]
     },
     {
+        "id": 200,
         "name": "Hyrule Castle - Basement 3",
         "region": "Hyrule Castle",
         "indoors": true,
@@ -1959,6 +2160,7 @@
         ]
     },
     {
+        "id": 201,
         "name": "Hyrule Castle - Green Guard Trap",
         "region": "Hyrule Castle",
         "indoors": true,
@@ -1991,6 +2193,7 @@
         ]
     },
     {
+        "id": 202,
         "name": "Hyrule Castle - Key Guard 2",
         "region": "Hyrule Castle",
         "indoors": true,
@@ -2013,6 +2216,7 @@
         ]
     },
     {
+        "id": 203,
         "name": "Hyrule Castle - B7 Q1",
         "region": "Hyrule Castle",
         "indoors": true,
@@ -2040,6 +2244,7 @@
         ]
     },
     {
+        "id": 204,
         "name": "Hyrule Castle - A7",
         "region": "Hyrule Castle",
         "indoors": true,
@@ -2067,6 +2272,7 @@
         ]
     },
     {
+        "id": 205,
         "name": "Hyrule Castle - Zelda's Cell",
         "region": "Hyrule Castle",
         "indoors": true,
@@ -2089,6 +2295,7 @@
         ]
     },
     {
+        "id": 206,
         "name": "Hyrule Castle - Throne Room",
         "region": "Hyrule Castle",
         "indoors": true,
@@ -2111,6 +2318,7 @@
         ]
     },
     {
+        "id": 207,
         "name": "Hyrule Castle - East Wing South",
         "region": "Hyrule Castle",
         "indoors": true,
@@ -2148,6 +2356,7 @@
         ]
     },
     {
+        "id": 208,
         "name": "Hyrule Castle - East Wing North",
         "region": "Hyrule Castle",
         "indoors": true,
@@ -2180,6 +2389,7 @@
         ]
     },
     {
+        "id": 209,
         "name": "Sewers - Cactus",
         "region": "Hyrule Castle",
         "indoors": true,
@@ -2208,6 +2418,7 @@
         ]
     },
     {
+        "id": 210,
         "name": "Sewers - Snake Bend",
         "region": "Hyrule Castle",
         "indoors": true,
@@ -2236,6 +2447,7 @@
         ]
     },
     {
+        "id": 211,
         "name": "Sewers - Dark Cross",
         "region": "Hyrule Castle",
         "indoors": true,
@@ -2264,6 +2476,7 @@
         ]
     },
     {
+        "id": 212,
         "name": "Sewers - Splash Zone 1",
         "region": "Hyrule Castle",
         "indoors": true,
@@ -2292,6 +2505,7 @@
         ]
     },
     {
+        "id": 213,
         "name": "Sewers - Splash Zone 2",
         "region": "Hyrule Castle",
         "indoors": true,
@@ -2320,6 +2534,7 @@
         ]
     },
     {
+        "id": 214,
         "name": "Sewers - Key Snake",
         "region": "Hyrule Castle",
         "indoors": true,
@@ -2348,6 +2563,7 @@
         ]
     },
     {
+        "id": 215,
         "name": "Sewers - Bonk Walls",
         "region": "Hyrule Castle",
         "indoors": true,
@@ -2391,6 +2607,7 @@
         ]
     },
     {
+        "id": 216,
         "name": "Sewers - Secret Room",
         "region": "Hyrule Castle",
         "indoors": true,
@@ -2419,6 +2636,7 @@
         ]
     },
     {
+        "id": 217,
         "name": "Sanctuary - Rat Room",
         "region": "Hyrule Castle",
         "indoors": true,
@@ -2447,6 +2665,7 @@
         ]
     },
     {
+        "id": 218,
         "name": "Sanctuary - Snakes on a Higher Plane (It's a trap!)",
         "region": "Hyrule Castle",
         "indoors": true,
@@ -2475,9 +2694,13 @@
         ]
     },
     {
+        "id": 219,
         "name": "Eastern Palace - Lobby",
         "region": "Eastern Palace",
         "indoors": true,
+        "address_value": [
+            "0x8"
+        ],
         "conditions": [
             {
                 "type": "Coordinates",
@@ -2504,15 +2727,16 @@
                     }
                 ]
             }
-        ],
-        "address_value": [
-            "0x8"
         ]
     },
     {
+        "id": 220,
         "name": "Eastern Palace - Abyss Bridge",
         "region": "Eastern Palace",
         "indoors": true,
+        "address_value": [
+            "0x8"
+        ],
         "conditions": [
             {
                 "type": "Coordinates",
@@ -2529,15 +2753,16 @@
                     }
                 ]
             }
-        ],
-        "address_value": [
-            "0x8"
         ]
     },
     {
+        "id": 221,
         "name": "Eastern Palace - Ball Corridor",
         "region": "Eastern Palace",
         "indoors": true,
+        "address_value": [
+            "0x8"
+        ],
         "conditions": [
             {
                 "type": "Coordinates",
@@ -2564,15 +2789,16 @@
                     }
                 ]
             }
-        ],
-        "address_value": [
-            "0x8"
         ]
     },
     {
+        "id": 222,
         "name": "Eastern Palace - Big Chest Room",
         "region": "Eastern Palace",
         "indoors": true,
+        "address_value": [
+            "0x8"
+        ],
         "conditions": [
             {
                 "type": "Coordinates",
@@ -2619,15 +2845,16 @@
                     }
                 ]
             }
-        ],
-        "address_value": [
-            "0x8"
         ]
     },
     {
+        "id": 223,
         "name": "Eastern Palace - East of Big Chest Room",
         "region": "Eastern Palace",
         "indoors": true,
+        "address_value": [
+            "0x8"
+        ],
         "conditions": [
             {
                 "type": "Coordinates",
@@ -2659,15 +2886,16 @@
                     }
                 ]
             }
-        ],
-        "address_value": [
-            "0x8"
         ]
     },
     {
+        "id": 224,
         "name": "Eastern Palace - Lone Anti Fairy",
         "region": "Eastern Palace",
         "indoors": true,
+        "address_value": [
+            "0x8"
+        ],
         "conditions": [
             {
                 "type": "Coordinates",
@@ -2684,15 +2912,16 @@
                     }
                 ]
             }
-        ],
-        "address_value": [
-            "0x8"
         ]
     },
     {
+        "id": 225,
         "name": "Eastern Palace - East Chest Room",
         "region": "Eastern Palace",
         "indoors": true,
+        "address_value": [
+            "0x8"
+        ],
         "conditions": [
             {
                 "type": "Coordinates",
@@ -2709,15 +2938,16 @@
                     }
                 ]
             }
-        ],
-        "address_value": [
-            "0x8"
         ]
     },
     {
+        "id": 226,
         "name": "Eastern Palace - West of Big Chest Room",
         "region": "Eastern Palace",
         "indoors": true,
+        "address_value": [
+            "0x8"
+        ],
         "conditions": [
             {
                 "type": "Coordinates",
@@ -2749,15 +2979,16 @@
                     }
                 ]
             }
-        ],
-        "address_value": [
-            "0x8"
         ]
     },
     {
+        "id": 227,
         "name": "Eastern Palace - Stalfos Trap",
         "region": "Eastern Palace",
         "indoors": true,
+        "address_value": [
+            "0x8"
+        ],
         "conditions": [
             {
                 "type": "Coordinates",
@@ -2774,15 +3005,16 @@
                     }
                 ]
             }
-        ],
-        "address_value": [
-            "0x8"
         ]
     },
     {
+        "id": 228,
         "name": "Eastern Palace - Compass Chest Room",
         "region": "Eastern Palace",
         "indoors": true,
+        "address_value": [
+            "0x8"
+        ],
         "conditions": [
             {
                 "type": "Coordinates",
@@ -2799,15 +3031,16 @@
                     }
                 ]
             }
-        ],
-        "address_value": [
-            "0x8"
         ]
     },
     {
+        "id": 229,
         "name": "Eastern Palace - Dark Double Anti Fairy",
         "region": "Eastern Palace",
         "indoors": true,
+        "address_value": [
+            "0x8"
+        ],
         "conditions": [
             {
                 "type": "Coordinates",
@@ -2829,15 +3062,16 @@
                     }
                 ]
             }
-        ],
-        "address_value": [
-            "0x8"
         ]
     },
     {
+        "id": 230,
         "name": "Eastern Palace - Dark Key Pot",
         "region": "Eastern Palace",
         "indoors": true,
+        "address_value": [
+            "0x8"
+        ],
         "conditions": [
             {
                 "type": "Coordinates",
@@ -2849,15 +3083,16 @@
                     }
                 ]
             }
-        ],
-        "address_value": [
-            "0x8"
         ]
     },
     {
+        "id": 231,
         "name": "Eastern Palace - Big Key Chest Room",
         "region": "Eastern Palace",
         "indoors": true,
+        "address_value": [
+            "0x8"
+        ],
         "conditions": [
             {
                 "type": "Coordinates",
@@ -2874,15 +3109,16 @@
                     }
                 ]
             }
-        ],
-        "address_value": [
-            "0x8"
         ]
     },
     {
+        "id": 232,
         "name": "Eastern Palace - Fairy Drop",
         "region": "Eastern Palace",
         "indoors": true,
+        "address_value": [
+            "0x8"
+        ],
         "conditions": [
             {
                 "type": "Coordinates",
@@ -2894,15 +3130,16 @@
                     }
                 ]
             }
-        ],
-        "address_value": [
-            "0x8"
         ]
     },
     {
+        "id": 233,
         "name": "Eastern Palace - Dark Bastard Room",
         "region": "Eastern Palace",
         "indoors": true,
+        "address_value": [
+            "0x8"
+        ],
         "conditions": [
             {
                 "type": "Coordinates",
@@ -2929,15 +3166,16 @@
                     }
                 ]
             }
-        ],
-        "address_value": [
-            "0x8"
         ]
     },
     {
+        "id": 234,
         "name": "Eastern Palace - Money",
         "region": "Eastern Palace",
         "indoors": true,
+        "address_value": [
+            "0x8"
+        ],
         "conditions": [
             {
                 "type": "Coordinates",
@@ -2949,15 +3187,16 @@
                     }
                 ]
             }
-        ],
-        "address_value": [
-            "0x8"
         ]
     },
     {
+        "id": 235,
         "name": "Eastern Palace - Double Anti Fairy",
         "region": "Eastern Palace",
         "indoors": true,
+        "address_value": [
+            "0x8"
+        ],
         "conditions": [
             {
                 "type": "Coordinates",
@@ -2974,15 +3213,16 @@
                     }
                 ]
             }
-        ],
-        "address_value": [
-            "0x8"
         ]
     },
     {
+        "id": 236,
         "name": "Eastern Palace - Triple Green Goblin (whatever they're called)",
         "region": "Eastern Palace",
         "indoors": true,
+        "address_value": [
+            "0x8"
+        ],
         "conditions": [
             {
                 "type": "Coordinates",
@@ -2999,15 +3239,16 @@
                     }
                 ]
             }
-        ],
-        "address_value": [
-            "0x8"
         ]
     },
     {
+        "id": 237,
         "name": "Eastern Palace - Ball Room",
         "region": "Eastern Palace",
         "indoors": true,
+        "address_value": [
+            "0x8"
+        ],
         "conditions": [
             {
                 "type": "Coordinates",
@@ -3024,15 +3265,16 @@
                     }
                 ]
             }
-        ],
-        "address_value": [
-            "0x8"
         ]
     },
     {
+        "id": 238,
         "name": "Eastern Palace - Bow Locked Room",
         "region": "Eastern Palace",
         "indoors": true,
+        "address_value": [
+            "0x8"
+        ],
         "conditions": [
             {
                 "type": "Coordinates",
@@ -3049,15 +3291,16 @@
                     }
                 ]
             }
-        ],
-        "address_value": [
-            "0x8"
         ]
     },
     {
+        "id": 239,
         "name": "Eastern Palace - Boss Approach",
         "region": "Eastern Palace",
         "indoors": true,
+        "address_value": [
+            "0x8"
+        ],
         "conditions": [
             {
                 "type": "Coordinates",
@@ -3069,15 +3312,16 @@
                     }
                 ]
             }
-        ],
-        "address_value": [
-            "0x8"
         ]
     },
     {
+        "id": 240,
         "name": "Eastern Palace - Boss",
         "region": "Eastern Palace",
         "indoors": true,
+        "address_value": [
+            "0x8"
+        ],
         "conditions": [
             {
                 "type": "Coordinates",
@@ -3089,12 +3333,10 @@
                     }
                 ]
             }
-        ],
-        "address_value": [
-            "0x8"
         ]
     },
     {
+        "id": 241,
         "name": "Desert Palace - West Lobby",
         "region": "Desert Palace",
         "indoors": true,
@@ -3127,6 +3369,7 @@
         ]
     },
     {
+        "id": 242,
         "name": "Desert Palace - West Wing",
         "region": "Desert Palace",
         "indoors": true,
@@ -3154,6 +3397,7 @@
         ]
     },
     {
+        "id": 243,
         "name": "Desert Palace - Fairy Fountain",
         "region": "Desert Palace",
         "indoors": true,
@@ -3176,6 +3420,7 @@
         ]
     },
     {
+        "id": 244,
         "name": "Desert Palace - West Wing N",
         "region": "Desert Palace",
         "indoors": true,
@@ -3213,6 +3458,7 @@
         ]
     },
     {
+        "id": 245,
         "name": "Desert Palace - Bonk Torch",
         "region": "Desert Palace",
         "indoors": true,
@@ -3235,6 +3481,7 @@
         ]
     },
     {
+        "id": 246,
         "name": "Desert Palace - Circle of Pots",
         "region": "Desert Palace",
         "indoors": true,
@@ -3262,6 +3509,7 @@
         ]
     },
     {
+        "id": 247,
         "name": "Desert Palace - Big Chest Room",
         "region": "Desert Palace",
         "indoors": true,
@@ -3284,6 +3532,7 @@
         ]
     },
     {
+        "id": 248,
         "name": "Desert Palace - North Hall",
         "region": "Desert Palace",
         "indoors": true,
@@ -3336,6 +3585,7 @@
         ]
     },
     {
+        "id": 249,
         "name": "Desert Palace - Map Chest Room",
         "region": "Desert Palace",
         "indoors": true,
@@ -3363,6 +3613,7 @@
         ]
     },
     {
+        "id": 250,
         "name": "Desert Palace - East Wing N",
         "region": "Desert Palace",
         "indoors": true,
@@ -3395,6 +3646,7 @@
         ]
     },
     {
+        "id": 251,
         "name": "Desert Palace - Trap Room",
         "region": "Desert Palace",
         "indoors": true,
@@ -3417,6 +3669,7 @@
         ]
     },
     {
+        "id": 252,
         "name": "Desert Palace - East Wing",
         "region": "Desert Palace",
         "indoors": true,
@@ -3449,6 +3702,7 @@
         ]
     },
     {
+        "id": 253,
         "name": "Desert Palace - East Lobby",
         "region": "Desert Palace",
         "indoors": true,
@@ -3476,6 +3730,7 @@
         ]
     },
     {
+        "id": 254,
         "name": "Desert Palace - Main Lobby",
         "region": "Desert Palace",
         "indoors": true,
@@ -3518,6 +3773,7 @@
         ]
     },
     {
+        "id": 255,
         "name": "Desert Palace - Pre Big Chest Key Room",
         "region": "Desert Palace",
         "indoors": true,
@@ -3545,6 +3801,7 @@
         ]
     },
     {
+        "id": 256,
         "name": "Desert Palace - Big Chest Key Room",
         "region": "Desert Palace",
         "indoors": true,
@@ -3567,6 +3824,7 @@
         ]
     },
     {
+        "id": 257,
         "name": "Desert Palace - North - Lobby",
         "region": "Desert Palace",
         "indoors": true,
@@ -3592,6 +3850,7 @@
         ]
     },
     {
+        "id": 258,
         "name": "Desert Palace - North - Tile Room 1",
         "region": "Desert Palace",
         "indoors": true,
@@ -3617,6 +3876,7 @@
         ]
     },
     {
+        "id": 259,
         "name": "Desert Palace - North - Bridge",
         "region": "Desert Palace",
         "indoors": true,
@@ -3642,6 +3902,7 @@
         ]
     },
     {
+        "id": 260,
         "name": "Desert Palace - North - Worm Pile Trap Room",
         "region": "Desert Palace",
         "indoors": true,
@@ -3667,6 +3928,7 @@
         ]
     },
     {
+        "id": 261,
         "name": "Desert Palace - North - Key Pot Hallway",
         "region": "Desert Palace",
         "indoors": true,
@@ -3692,6 +3954,7 @@
         ]
     },
     {
+        "id": 262,
         "name": "Desert Palace - North - Tile Room 2",
         "region": "Desert Palace",
         "indoors": true,
@@ -3717,6 +3980,7 @@
         ]
     },
     {
+        "id": 263,
         "name": "Desert Palace - North - Boss Approach",
         "region": "Desert Palace",
         "indoors": true,
@@ -3737,6 +4001,7 @@
         ]
     },
     {
+        "id": 264,
         "name": "Desert Palace - North - Boss",
         "region": "Desert Palace",
         "indoors": true,
@@ -3757,6 +4022,7 @@
         ]
     },
     {
+        "id": 265,
         "name": "Agahnim's tower - Lobby",
         "region": "Castle Tower",
         "indoors": true,
@@ -3782,6 +4048,7 @@
         ]
     },
     {
+        "id": 266,
         "name": "Tower of Hera - Lobby",
         "region": "Tower of Hera",
         "indoors": true,
@@ -3802,6 +4069,7 @@
         ]
     },
     {
+        "id": 267,
         "name": "Tower of Hera - Flying Tiles",
         "region": "Tower of Hera",
         "indoors": true,
@@ -3827,6 +4095,7 @@
         ]
     },
     {
+        "id": 268,
         "name": "Tower of Hera - Basement Moldorms",
         "region": "Tower of Hera",
         "indoors": true,
@@ -3852,6 +4121,7 @@
         ]
     },
     {
+        "id": 269,
         "name": "Tower of Hera - Basement Chest",
         "region": "Tower of Hera",
         "indoors": true,
@@ -3872,6 +4142,7 @@
         ]
     },
     {
+        "id": 270,
         "name": "Tower of Hera - Basement Cage Room",
         "region": "Tower of Hera",
         "indoors": true,
@@ -3892,6 +4163,7 @@
         ]
     },
     {
+        "id": 271,
         "name": "Tower of Hera - Floor 2 SE",
         "region": "Tower of Hera",
         "indoors": true,
@@ -3917,6 +4189,7 @@
         ]
     },
     {
+        "id": 272,
         "name": "Tower of Hera - Floor 2 SW",
         "region": "Tower of Hera",
         "indoors": true,
@@ -3942,6 +4215,7 @@
         ]
     },
     {
+        "id": 273,
         "name": "Tower of Hera - Floor 2 N",
         "region": "Tower of Hera",
         "indoors": true,
@@ -3962,6 +4236,7 @@
         ]
     },
     {
+        "id": 274,
         "name": "Tower of Hera - Big Chest Floor",
         "region": "Tower of Hera",
         "indoors": true,
@@ -3982,6 +4257,7 @@
         ]
     },
     {
+        "id": 275,
         "name": "Tower of Hera - Floor 4",
         "region": "Tower of Hera",
         "indoors": true,
@@ -4002,6 +4278,7 @@
         ]
     },
     {
+        "id": 276,
         "name": "Tower of Hera - Moldorm",
         "region": "Tower of Hera",
         "indoors": true,
@@ -4022,6 +4299,7 @@
         ]
     },
     {
+        "id": 277,
         "name": "Agahnim's tower - Twin Flail Guard",
         "region": "Castle Tower",
         "indoors": true,
@@ -4047,6 +4325,7 @@
         ]
     },
     {
+        "id": 278,
         "name": "Agahnim's tower - Twin Dagger Guards",
         "region": "Castle Tower",
         "indoors": true,
@@ -4072,6 +4351,7 @@
         ]
     },
     {
+        "id": 279,
         "name": "Agahnim's tower - First Dark Room",
         "region": "Castle Tower",
         "indoors": true,
@@ -4097,6 +4377,7 @@
         ]
     },
     {
+        "id": 280,
         "name": "Agahnim's tower - Dark Labyrinth",
         "region": "Castle Tower",
         "indoors": true,
@@ -4122,6 +4403,7 @@
         ]
     },
     {
+        "id": 281,
         "name": "Agahnim's tower - Post Dark Labyrinth",
         "region": "Castle Tower",
         "indoors": true,
@@ -4147,6 +4429,7 @@
         ]
     },
     {
+        "id": 282,
         "name": "Agahnim's tower - Pre Dark Abyss",
         "region": "Castle Tower",
         "indoors": true,
@@ -4172,6 +4455,7 @@
         ]
     },
     {
+        "id": 283,
         "name": "Agahnim's tower - Dark Abyss",
         "region": "Castle Tower",
         "indoors": true,
@@ -4197,6 +4481,7 @@
         ]
     },
     {
+        "id": 284,
         "name": "Agahnim's tower - Blue Key Guard",
         "region": "Castle Tower",
         "indoors": true,
@@ -4222,6 +4507,7 @@
         ]
     },
     {
+        "id": 285,
         "name": "Agahnim's tower - Twin Trident Throwers",
         "region": "Castle Tower",
         "indoors": true,
@@ -4247,6 +4533,7 @@
         ]
     },
     {
+        "id": 286,
         "name": "Agahnim's tower - Twin Trident Pokers",
         "region": "Castle Tower",
         "indoors": true,
@@ -4272,6 +4559,7 @@
         ]
     },
     {
+        "id": 287,
         "name": "Agahnim's tower - Circle of Pots",
         "region": "Castle Tower",
         "indoors": true,
@@ -4297,6 +4585,7 @@
         ]
     },
     {
+        "id": 288,
         "name": "Agahnim's tower - Undefeated Trio",
         "region": "Castle Tower",
         "indoors": true,
@@ -4322,6 +4611,7 @@
         ]
     },
     {
+        "id": 289,
         "name": "Agahnim's tower - Statue Blockade",
         "region": "Castle Tower",
         "indoors": true,
@@ -4347,6 +4637,7 @@
         ]
     },
     {
+        "id": 290,
         "name": "Agahnim's tower - Uplit Abyss",
         "region": "Castle Tower",
         "indoors": true,
@@ -4372,6 +4663,7 @@
         ]
     },
     {
+        "id": 291,
         "name": "Agahnim's tower - Top Floor",
         "region": "Castle Tower",
         "indoors": true,
@@ -4392,6 +4684,7 @@
         ]
     },
     {
+        "id": 292,
         "name": "Agahnim's tower - Zelda Disappearing Act",
         "region": "Castle Tower",
         "indoors": true,
@@ -4412,6 +4705,7 @@
         ]
     },
     {
+        "id": 293,
         "name": "Agahnim's tower - Agahnim Boss",
         "region": "Castle Tower",
         "indoors": true,
@@ -4432,6 +4726,7 @@
         ]
     },
     {
+        "id": 294,
         "name": "Palace of Darkness - Lobby S",
         "region": "Palace of Darkness",
         "indoors": true,
@@ -4452,6 +4747,7 @@
         ]
     },
     {
+        "id": 295,
         "name": "Palace of Darkness - Lobby N",
         "region": "Palace of Darkness",
         "indoors": true,
@@ -4472,6 +4768,7 @@
         ]
     },
     {
+        "id": 296,
         "name": "Palace of Darkness - Lobby Basement W",
         "region": "Palace of Darkness",
         "indoors": true,
@@ -4492,6 +4789,7 @@
         ]
     },
     {
+        "id": 297,
         "name": "Palace of Darkness - Fork",
         "region": "Palace of Darkness",
         "indoors": true,
@@ -4512,6 +4810,7 @@
         ]
     },
     {
+        "id": 298,
         "name": "Palace of Darkness - Below Fork",
         "region": "Palace of Darkness",
         "indoors": true,
@@ -4532,6 +4831,7 @@
         ]
     },
     {
+        "id": 299,
         "name": "Palace of Darkness - Lobby Basement E",
         "region": "Palace of Darkness",
         "indoors": true,
@@ -4552,6 +4852,7 @@
         ]
     },
     {
+        "id": 300,
         "name": "Palace of Darkness - Portal Hint",
         "region": "Palace of Darkness",
         "indoors": true,
@@ -4572,6 +4873,7 @@
         ]
     },
     {
+        "id": 301,
         "name": "Palace of Darkness - Blue Jellyfish Hallway",
         "region": "Palace of Darkness",
         "indoors": true,
@@ -4597,6 +4899,7 @@
         ]
     },
     {
+        "id": 302,
         "name": "Palace of Darkness - Mimic Room 1",
         "region": "Palace of Darkness",
         "indoors": true,
@@ -4622,6 +4925,7 @@
         ]
     },
     {
+        "id": 303,
         "name": "Palace of Darkness - Conveyor Hallway",
         "region": "Palace of Darkness",
         "indoors": true,
@@ -4647,6 +4951,7 @@
         ]
     },
     {
+        "id": 304,
         "name": "Palace of Darkness - Statue Switch",
         "region": "Palace of Darkness",
         "indoors": true,
@@ -4667,6 +4972,7 @@
         ]
     },
     {
+        "id": 305,
         "name": "Palace of Darkness - Hub",
         "region": "Palace of Darkness",
         "indoors": true,
@@ -4687,6 +4993,7 @@
         ]
     },
     {
+        "id": 306,
         "name": "Palace of Darkness - Hammer Jump Bridge",
         "region": "Palace of Darkness",
         "indoors": true,
@@ -4707,6 +5014,7 @@
         ]
     },
     {
+        "id": 307,
         "name": "Palace of Darkness - Turtle Squad Chest",
         "region": "Palace of Darkness",
         "indoors": true,
@@ -4727,6 +5035,7 @@
         ]
     },
     {
+        "id": 308,
         "name": "Palace of Darkness - Rupee Room",
         "region": "Palace of Darkness",
         "indoors": true,
@@ -4752,6 +5061,7 @@
         ]
     },
     {
+        "id": 309,
         "name": "Palace of Darkness - Harmless Hallway",
         "region": "Palace of Darkness",
         "indoors": true,
@@ -4772,6 +5082,7 @@
         ]
     },
     {
+        "id": 310,
         "name": "Palace of Darkness - Dark Labyrinth",
         "region": "Palace of Darkness",
         "indoors": true,
@@ -4792,6 +5103,7 @@
         ]
     },
     {
+        "id": 311,
         "name": "Palace of Darkness - Mimic Room 2",
         "region": "Palace of Darkness",
         "indoors": true,
@@ -4817,6 +5129,7 @@
         ]
     },
     {
+        "id": 312,
         "name": "Palace of Darkness - Cutscene Room",
         "region": "Palace of Darkness",
         "indoors": true,
@@ -4842,6 +5155,7 @@
         ]
     },
     {
+        "id": 313,
         "name": "Palace of Darkness - Dark Hammer Tile Room",
         "region": "Palace of Darkness",
         "indoors": true,
@@ -4867,6 +5181,7 @@
         ]
     },
     {
+        "id": 314,
         "name": "Palace of Darkness - Dark Tiny Hallway",
         "region": "Palace of Darkness",
         "indoors": true,
@@ -4892,6 +5207,7 @@
         ]
     },
     {
+        "id": 315,
         "name": "Palace of Darkness - Dark Turtle Trap",
         "region": "Palace of Darkness",
         "indoors": true,
@@ -4917,6 +5233,7 @@
         ]
     },
     {
+        "id": 316,
         "name": "Palace of Darkness - Dark Portal",
         "region": "Palace of Darkness",
         "indoors": true,
@@ -4937,6 +5254,7 @@
         ]
     },
     {
+        "id": 317,
         "name": "Palace of Darkness - Boss Approach",
         "region": "Palace of Darkness",
         "indoors": true,
@@ -4957,6 +5275,7 @@
         ]
     },
     {
+        "id": 318,
         "name": "Palace of Darkness - Helmasaur",
         "region": "Palace of Darkness",
         "indoors": true,
@@ -4977,6 +5296,7 @@
         ]
     },
     {
+        "id": 319,
         "name": "Palace of Darkness - Fairy Fountain",
         "region": "Palace of Darkness",
         "indoors": true,
@@ -4997,6 +5317,7 @@
         ]
     },
     {
+        "id": 320,
         "name": "Swamp Palace - Lobby",
         "region": "Swamp Palace",
         "indoors": true,
@@ -5022,6 +5343,7 @@
         ]
     },
     {
+        "id": 321,
         "name": "Swamp Palace - Below Lobby",
         "region": "Swamp Palace",
         "indoors": true,
@@ -5042,6 +5364,7 @@
         ]
     },
     {
+        "id": 322,
         "name": "Swamp Palace - Bombable Wall Chest",
         "region": "Swamp Palace",
         "indoors": true,
@@ -5062,6 +5385,7 @@
         ]
     },
     {
+        "id": 323,
         "name": "Swamp Palace - East of Hub",
         "region": "Swamp Palace",
         "indoors": true,
@@ -5082,6 +5406,7 @@
         ]
     },
     {
+        "id": 324,
         "name": "Swamp Palace - Water Lever 1",
         "region": "Swamp Palace",
         "indoors": true,
@@ -5107,6 +5432,7 @@
         ]
     },
     {
+        "id": 325,
         "name": "Swamp Palace - Flooded Key Pot 1",
         "region": "Swamp Palace",
         "indoors": true,
@@ -5127,6 +5453,7 @@
         ]
     },
     {
+        "id": 326,
         "name": "Swamp Palace - Hub",
         "region": "Swamp Palace",
         "indoors": true,
@@ -5147,6 +5474,7 @@
         ]
     },
     {
+        "id": 327,
         "name": "Swamp Palace - Merry Go Round N",
         "region": "Swamp Palace",
         "indoors": true,
@@ -5167,6 +5495,7 @@
         ]
     },
     {
+        "id": 328,
         "name": "Swamp Palace - Merry Go Round S",
         "region": "Swamp Palace",
         "indoors": true,
@@ -5192,6 +5521,7 @@
         ]
     },
     {
+        "id": 329,
         "name": "Swamp Palace - Water Lever 2",
         "region": "Swamp Palace",
         "indoors": true,
@@ -5217,6 +5547,7 @@
         ]
     },
     {
+        "id": 330,
         "name": "Swamp Palace - Southwest of Hub",
         "region": "Swamp Palace",
         "indoors": true,
@@ -5237,6 +5568,7 @@
         ]
     },
     {
+        "id": 331,
         "name": "Swamp Palace - Flooded Key Pot 2",
         "region": "Swamp Palace",
         "indoors": true,
@@ -5257,6 +5589,7 @@
         ]
     },
     {
+        "id": 332,
         "name": "Swamp Palace - West Side Bottom",
         "region": "Swamp Palace",
         "indoors": true,
@@ -5282,6 +5615,7 @@
         ]
     },
     {
+        "id": 333,
         "name": "Swamp Palace - West Side Top",
         "region": "Swamp Palace",
         "indoors": true,
@@ -5302,6 +5636,7 @@
         ]
     },
     {
+        "id": 334,
         "name": "Swamp Palace - West Side Ledge W",
         "region": "Swamp Palace",
         "indoors": true,
@@ -5322,6 +5657,7 @@
         ]
     },
     {
+        "id": 335,
         "name": "Swamp Palace - West Side Ledge E",
         "region": "Swamp Palace",
         "indoors": true,
@@ -5342,6 +5678,7 @@
         ]
     },
     {
+        "id": 336,
         "name": "Swamp Palace - Big Key Chest",
         "region": "Swamp Palace",
         "indoors": true,
@@ -5362,6 +5699,7 @@
         ]
     },
     {
+        "id": 337,
         "name": "Swamp Palace - Statue Chest",
         "region": "Swamp Palace",
         "indoors": true,
@@ -5382,6 +5720,7 @@
         ]
     },
     {
+        "id": 338,
         "name": "Swamp Palace - Center Tongue Statue",
         "region": "Swamp Palace",
         "indoors": true,
@@ -5407,6 +5746,7 @@
         ]
     },
     {
+        "id": 339,
         "name": "Swamp Palace - 'P' Room",
         "region": "Swamp Palace",
         "indoors": true,
@@ -5432,6 +5772,7 @@
         ]
     },
     {
+        "id": 340,
         "name": "Swamp Palace - Water Lever 3",
         "region": "Swamp Palace",
         "indoors": true,
@@ -5452,6 +5793,7 @@
         ]
     },
     {
+        "id": 341,
         "name": "Swamp Palace - 'S' Room",
         "region": "Swamp Palace",
         "indoors": true,
@@ -5477,6 +5819,7 @@
         ]
     },
     {
+        "id": 342,
         "name": "Swamp Palace - Flooded Chests",
         "region": "Swamp Palace",
         "indoors": true,
@@ -5502,6 +5845,7 @@
         ]
     },
     {
+        "id": 343,
         "name": "Swamp Palace - Water Hallway",
         "region": "Swamp Palace",
         "indoors": true,
@@ -5522,6 +5866,7 @@
         ]
     },
     {
+        "id": 344,
         "name": "Swamp Palace - Waterfalls",
         "region": "Swamp Palace",
         "indoors": true,
@@ -5542,6 +5887,7 @@
         ]
     },
     {
+        "id": 345,
         "name": "Swamp Palace - 6 Pot Storage Room",
         "region": "Swamp Palace",
         "indoors": true,
@@ -5562,6 +5908,7 @@
         ]
     },
     {
+        "id": 346,
         "name": "Swamp Palace - Behind Waterfall",
         "region": "Swamp Palace",
         "indoors": true,
@@ -5587,6 +5934,7 @@
         ]
     },
     {
+        "id": 347,
         "name": "Swamp Palace - Phone Shaped Hall",
         "region": "Swamp Palace",
         "indoors": true,
@@ -5612,6 +5960,7 @@
         ]
     },
     {
+        "id": 348,
         "name": "Swamp Palace - Swimming Pool",
         "region": "Swamp Palace",
         "indoors": true,
@@ -5632,6 +5981,7 @@
         ]
     },
     {
+        "id": 349,
         "name": "Swamp Palace - 8 Pot Storage Room",
         "region": "Swamp Palace",
         "indoors": true,
@@ -5652,6 +6002,7 @@
         ]
     },
     {
+        "id": 350,
         "name": "Swamp Palace - Boss Approach",
         "region": "Swamp Palace",
         "indoors": true,
@@ -5672,6 +6023,7 @@
         ]
     },
     {
+        "id": 351,
         "name": "Swamp Palace - Boss Arrghus",
         "region": "Swamp Palace",
         "indoors": true,
@@ -5692,6 +6044,7 @@
         ]
     },
     {
+        "id": 352,
         "name": "Skull Woods - Big Chest",
         "region": "Skull Woods",
         "indoors": true,
@@ -5716,6 +6069,7 @@
         ]
     },
     {
+        "id": 353,
         "name": "Skull Woods - East of Big Chest",
         "region": "Skull Woods",
         "indoors": true,
@@ -5740,6 +6094,7 @@
         ]
     },
     {
+        "id": 354,
         "name": "Skull Woods - Bumper Drop",
         "region": "Skull Woods",
         "indoors": true,
@@ -5764,6 +6119,7 @@
         ]
     },
     {
+        "id": 355,
         "name": "Skull Woods - Chest trigger floor change Room",
         "region": "Skull Woods",
         "indoors": true,
@@ -5788,6 +6144,7 @@
         ]
     },
     {
+        "id": 356,
         "name": "Skull Woods - West of Big Chest",
         "region": "Skull Woods",
         "indoors": true,
@@ -5812,6 +6169,7 @@
         ]
     },
     {
+        "id": 357,
         "name": "Skull Woods - Soft Lock Room",
         "region": "Skull Woods",
         "indoors": true,
@@ -5836,6 +6194,7 @@
         ]
     },
     {
+        "id": 358,
         "name": "Skull Woods - Mummy Statue",
         "region": "Skull Woods",
         "indoors": true,
@@ -5858,6 +6217,7 @@
         ]
     },
     {
+        "id": 359,
         "name": "Skull Woods - Behind Mummy Statue",
         "region": "Skull Woods",
         "indoors": true,
@@ -5885,6 +6245,7 @@
         ]
     },
     {
+        "id": 360,
         "name": "Skull Woods - Mid Bumper Drop",
         "region": "Skull Woods",
         "indoors": true,
@@ -5907,6 +6268,7 @@
         ]
     },
     {
+        "id": 361,
         "name": "Skull Woods - Magic Refill Secret",
         "region": "Skull Woods",
         "indoors": true,
@@ -5929,6 +6291,7 @@
         ]
     },
     {
+        "id": 362,
         "name": "Skull Woods - You just wasted a key, you fool!",
         "region": "Skull Woods",
         "indoors": true,
@@ -5951,6 +6314,7 @@
         ]
     },
     {
+        "id": 363,
         "name": "Skull Woods - Mid West",
         "region": "Skull Woods",
         "indoors": true,
@@ -5973,6 +6337,7 @@
         ]
     },
     {
+        "id": 364,
         "name": "Skull Woods Back - Lobby",
         "region": "Skull Woods",
         "indoors": true,
@@ -6003,6 +6368,7 @@
         ]
     },
     {
+        "id": 365,
         "name": "Skull Woods Back - Mummy Bumper Room",
         "region": "Skull Woods",
         "indoors": true,
@@ -6028,6 +6394,7 @@
         ]
     },
     {
+        "id": 366,
         "name": "Skull Woods Back - Lobby Chest Corner",
         "region": "Skull Woods",
         "indoors": true,
@@ -6048,6 +6415,7 @@
         ]
     },
     {
+        "id": 367,
         "name": "Skull Woods Back - Jellyfish Floor Switch Room",
         "region": "Skull Woods",
         "indoors": true,
@@ -6073,6 +6441,7 @@
         ]
     },
     {
+        "id": 368,
         "name": "Skull Woods Back - Timed Torches Room",
         "region": "Skull Woods",
         "indoors": true,
@@ -6098,6 +6467,7 @@
         ]
     },
     {
+        "id": 369,
         "name": "Skull Woods Back - Drape Vine",
         "region": "Skull Woods",
         "indoors": true,
@@ -6118,6 +6488,7 @@
         ]
     },
     {
+        "id": 370,
         "name": "Skull Woods Back - Key Mummy",
         "region": "Skull Woods",
         "indoors": true,
@@ -6143,6 +6514,7 @@
         ]
     },
     {
+        "id": 371,
         "name": "Skull Woods Back - Boss Approach",
         "region": "Skull Woods",
         "indoors": true,
@@ -6163,6 +6535,7 @@
         ]
     },
     {
+        "id": 372,
         "name": "Skull Woods Back - Boss",
         "region": "Skull Woods",
         "indoors": true,
@@ -6183,6 +6556,7 @@
         ]
     },
     {
+        "id": 373,
         "name": "Thieves' Town - Lobby",
         "region": "Thieves Town",
         "indoors": true,
@@ -6203,6 +6577,7 @@
         ]
     },
     {
+        "id": 374,
         "name": "Thieves' Town - Front NW",
         "region": "Thieves Town",
         "indoors": true,
@@ -6223,6 +6598,7 @@
         ]
     },
     {
+        "id": 375,
         "name": "Thieves' Town - Front NE",
         "region": "Thieves Town",
         "indoors": true,
@@ -6243,6 +6619,7 @@
         ]
     },
     {
+        "id": 376,
         "name": "Thieves' Town - Front SE",
         "region": "Thieves Town",
         "indoors": true,
@@ -6263,6 +6640,7 @@
         ]
     },
     {
+        "id": 377,
         "name": "Thieves' Town - Boss Approach",
         "region": "Thieves Town",
         "indoors": true,
@@ -6283,6 +6661,7 @@
         ]
     },
     {
+        "id": 378,
         "name": "Thieves' Town - Southwest of Boss Approach",
         "region": "Thieves Town",
         "indoors": true,
@@ -6303,6 +6682,7 @@
         ]
     },
     {
+        "id": 379,
         "name": "Thieves' Town - Pre Hellway",
         "region": "Thieves Town",
         "indoors": true,
@@ -6323,6 +6703,7 @@
         ]
     },
     {
+        "id": 380,
         "name": "Thieves' Town - Hellway",
         "region": "Thieves Town",
         "indoors": true,
@@ -6343,6 +6724,7 @@
         ]
     },
     {
+        "id": 381,
         "name": "Thieves' Town - Spike Switch",
         "region": "Thieves Town",
         "indoors": true,
@@ -6368,6 +6750,7 @@
         ]
     },
     {
+        "id": 382,
         "name": "Thieves' Town - Hint Room",
         "region": "Thieves Town",
         "indoors": true,
@@ -6393,6 +6776,7 @@
         ]
     },
     {
+        "id": 383,
         "name": "Thieves' Town - Long Hallway W",
         "region": "Thieves Town",
         "indoors": true,
@@ -6413,6 +6797,7 @@
         ]
     },
     {
+        "id": 384,
         "name": "Thieves' Town - Long Hallway E",
         "region": "Thieves Town",
         "indoors": true,
@@ -6433,6 +6818,7 @@
         ]
     },
     {
+        "id": 385,
         "name": "Thieves' Town - Bombable Floor",
         "region": "Thieves Town",
         "indoors": true,
@@ -6453,6 +6839,7 @@
         ]
     },
     {
+        "id": 386,
         "name": "Thieves' Town - Post Hellway",
         "region": "Thieves Town",
         "indoors": true,
@@ -6473,6 +6860,7 @@
         ]
     },
     {
+        "id": 387,
         "name": "Thieves' Town - Conveyor Mayhem",
         "region": "Thieves Town",
         "indoors": true,
@@ -6493,6 +6881,7 @@
         ]
     },
     {
+        "id": 388,
         "name": "Thieves' Town - Giant Rock",
         "region": "Thieves Town",
         "indoors": true,
@@ -6513,6 +6902,7 @@
         ]
     },
     {
+        "id": 389,
         "name": "Thieves' Town - Conveyor Hallway",
         "region": "Thieves Town",
         "indoors": true,
@@ -6533,6 +6923,7 @@
         ]
     },
     {
+        "id": 390,
         "name": "Thieves' Town - Conveyor Bumper Trap",
         "region": "Thieves Town",
         "indoors": true,
@@ -6553,6 +6944,7 @@
         ]
     },
     {
+        "id": 391,
         "name": "Thieves' Town - Big Chest Room",
         "region": "Thieves Town",
         "indoors": true,
@@ -6573,6 +6965,7 @@
         ]
     },
     {
+        "id": 392,
         "name": "Thieves' Town - Cell Approach",
         "region": "Thieves Town",
         "indoors": true,
@@ -6593,6 +6986,7 @@
         ]
     },
     {
+        "id": 393,
         "name": "Thieves' Town - Cell",
         "region": "Thieves Town",
         "indoors": true,
@@ -6613,6 +7007,7 @@
         ]
     },
     {
+        "id": 394,
         "name": "Thieves' Town - Boss",
         "region": "Thieves Town",
         "indoors": true,
@@ -6633,6 +7028,7 @@
         ]
     },
     {
+        "id": 395,
         "name": "Ice Palace - Lobby",
         "region": "Ice Palace",
         "indoors": true,
@@ -6658,6 +7054,7 @@
         ]
     },
     {
+        "id": 396,
         "name": "Ice Palace - Jellyfish Key",
         "region": "Ice Palace",
         "indoors": true,
@@ -6683,6 +7080,7 @@
         ]
     },
     {
+        "id": 397,
         "name": "Ice Palace - Floor Tile Switch",
         "region": "Ice Palace",
         "indoors": true,
@@ -6708,6 +7106,7 @@
         ]
     },
     {
+        "id": 398,
         "name": "Ice Palace - Movable Block Cross",
         "region": "Ice Palace",
         "indoors": true,
@@ -6728,6 +7127,7 @@
         ]
     },
     {
+        "id": 399,
         "name": "Ice Palace - Penguin Pot Switch",
         "region": "Ice Palace",
         "indoors": true,
@@ -6753,6 +7153,7 @@
         ]
     },
     {
+        "id": 400,
         "name": "Ice Palace - Somaria Trick",
         "region": "Ice Palace",
         "indoors": true,
@@ -6778,6 +7179,7 @@
         ]
     },
     {
+        "id": 401,
         "name": "Ice Palace - Penguin Chest",
         "region": "Ice Palace",
         "indoors": true,
@@ -6798,6 +7200,7 @@
         ]
     },
     {
+        "id": 402,
         "name": "Ice Palace - Bombable Floor",
         "region": "Ice Palace",
         "indoors": true,
@@ -6818,6 +7221,7 @@
         ]
     },
     {
+        "id": 403,
         "name": "Ice Palace - Pre Conveyor Hallway",
         "region": "Ice Palace",
         "indoors": true,
@@ -6838,6 +7242,7 @@
         ]
     },
     {
+        "id": 404,
         "name": "Ice Palace - Conveyor Hallway",
         "region": "Ice Palace",
         "indoors": true,
@@ -6863,6 +7268,7 @@
         ]
     },
     {
+        "id": 405,
         "name": "Ice Palace - Bomb Jump Room",
         "region": "Ice Palace",
         "indoors": true,
@@ -6888,6 +7294,7 @@
         ]
     },
     {
+        "id": 406,
         "name": "Ice Palace - Post Bomb Jump Room",
         "region": "Ice Palace",
         "indoors": true,
@@ -6913,6 +7320,7 @@
         ]
     },
     {
+        "id": 407,
         "name": "Ice Palace - One Spin Penguin Clear Room",
         "region": "Ice Palace",
         "indoors": true,
@@ -6938,6 +7346,7 @@
         ]
     },
     {
+        "id": 408,
         "name": "Ice Palace - Big Spike Cross",
         "region": "Ice Palace",
         "indoors": true,
@@ -6958,6 +7367,7 @@
         ]
     },
     {
+        "id": 409,
         "name": "Ice Palace - Spike Chest",
         "region": "Ice Palace",
         "indoors": true,
@@ -6978,6 +7388,7 @@
         ]
     },
     {
+        "id": 410,
         "name": "Ice Palace - 'H' Room",
         "region": "Ice Palace",
         "indoors": true,
@@ -7003,6 +7414,7 @@
         ]
     },
     {
+        "id": 411,
         "name": "Ice Palace - 'P' Room",
         "region": "Ice Palace",
         "indoors": true,
@@ -7028,6 +7440,7 @@
         ]
     },
     {
+        "id": 412,
         "name": "Ice Palace - Quad Big Spike",
         "region": "Ice Palace",
         "indoors": true,
@@ -7048,6 +7461,7 @@
         ]
     },
     {
+        "id": 413,
         "name": "Ice Palace - Hookshot Abyss",
         "region": "Ice Palace",
         "indoors": true,
@@ -7068,6 +7482,7 @@
         ]
     },
     {
+        "id": 414,
         "name": "Ice Palace - Disappering Floor Room",
         "region": "Ice Palace",
         "indoors": true,
@@ -7088,6 +7503,7 @@
         ]
     },
     {
+        "id": 415,
         "name": "Ice Palace - Ice Rink",
         "region": "Ice Palace",
         "indoors": true,
@@ -7108,6 +7524,7 @@
         ]
     },
     {
+        "id": 416,
         "name": "Ice Palace - South of Ice Rink",
         "region": "Ice Palace",
         "indoors": true,
@@ -7133,6 +7550,7 @@
         ]
     },
     {
+        "id": 417,
         "name": "Ice Palace - Ice T",
         "region": "Ice Palace",
         "indoors": true,
@@ -7158,6 +7576,7 @@
         ]
     },
     {
+        "id": 418,
         "name": "Ice Palace - Fire Spinner Ice Bridge",
         "region": "Ice Palace",
         "indoors": true,
@@ -7183,6 +7602,7 @@
         ]
     },
     {
+        "id": 419,
         "name": "Ice Palace - Key Pot Room",
         "region": "Ice Palace",
         "indoors": true,
@@ -7208,6 +7628,7 @@
         ]
     },
     {
+        "id": 420,
         "name": "Ice Palace - Falling Block Drop Room",
         "region": "Ice Palace",
         "indoors": true,
@@ -7228,6 +7649,7 @@
         ]
     },
     {
+        "id": 421,
         "name": "Ice Palace - Stock & Switch Room",
         "region": "Ice Palace",
         "indoors": true,
@@ -7248,6 +7670,7 @@
         ]
     },
     {
+        "id": 422,
         "name": "Ice Palace - Fairy Drop Room",
         "region": "Ice Palace",
         "indoors": true,
@@ -7273,6 +7696,7 @@
         ]
     },
     {
+        "id": 423,
         "name": "Ice Palace - Fairy Room",
         "region": "Ice Palace",
         "indoors": true,
@@ -7293,6 +7717,7 @@
         ]
     },
     {
+        "id": 424,
         "name": "Ice Palace - Fairy Pot Room",
         "region": "Ice Palace",
         "indoors": true,
@@ -7313,6 +7738,7 @@
         ]
     },
     {
+        "id": 425,
         "name": "Ice Palace - Fallen Block Switch Room",
         "region": "Ice Palace",
         "indoors": true,
@@ -7333,6 +7759,7 @@
         ]
     },
     {
+        "id": 426,
         "name": "Ice Palace - Slippery Stairs",
         "region": "Ice Palace",
         "indoors": true,
@@ -7358,6 +7785,7 @@
         ]
     },
     {
+        "id": 427,
         "name": "Ice Palace - Above Big Chest Room",
         "region": "Ice Palace",
         "indoors": true,
@@ -7383,6 +7811,7 @@
         ]
     },
     {
+        "id": 428,
         "name": "Ice Palace - Big Chest Room",
         "region": "Ice Palace",
         "indoors": true,
@@ -7403,6 +7832,7 @@
         ]
     },
     {
+        "id": 429,
         "name": "Ice Palace - Boss Approach",
         "region": "Ice Palace",
         "indoors": true,
@@ -7423,6 +7853,7 @@
         ]
     },
     {
+        "id": 430,
         "name": "Ice Palace - Boss",
         "region": "Ice Palace",
         "indoors": true,
@@ -7443,6 +7874,7 @@
         ]
     },
     {
+        "id": 431,
         "name": "Misery Mire - Lobby",
         "region": "Misery Mire",
         "indoors": true,
@@ -7468,6 +7900,7 @@
         ]
     },
     {
+        "id": 432,
         "name": "Misery Mire - Post Gap Down Stairs",
         "region": "Misery Mire",
         "indoors": true,
@@ -7493,6 +7926,7 @@
         ]
     },
     {
+        "id": 433,
         "name": "Misery Mire - Hub",
         "region": "Misery Mire",
         "indoors": true,
@@ -7513,6 +7947,7 @@
         ]
     },
     {
+        "id": 434,
         "name": "Misery Mire - Switch Room",
         "region": "Misery Mire",
         "indoors": true,
@@ -7543,6 +7978,7 @@
         ]
     },
     {
+        "id": 435,
         "name": "Misery Mire - South of Switch Room",
         "region": "Misery Mire",
         "indoors": true,
@@ -7568,6 +8004,7 @@
         ]
     },
     {
+        "id": 436,
         "name": "Misery Mire - Tile Room",
         "region": "Misery Mire",
         "indoors": true,
@@ -7588,6 +8025,7 @@
         ]
     },
     {
+        "id": 437,
         "name": "Misery Mire - North of Tile Room",
         "region": "Misery Mire",
         "indoors": true,
@@ -7602,6 +8040,7 @@
         ]
     },
     {
+        "id": 438,
         "name": "Misery Mire - Why are you here room #1",
         "region": "Misery Mire",
         "indoors": true,
@@ -7622,6 +8061,7 @@
         ]
     },
     {
+        "id": 439,
         "name": "Misery Mire - Hour Glass",
         "region": "Misery Mire",
         "indoors": true,
@@ -7642,6 +8082,7 @@
         ]
     },
     {
+        "id": 440,
         "name": "Misery Mire - Portal in Front of Big Key Door",
         "region": "Misery Mire",
         "indoors": true,
@@ -7662,6 +8103,7 @@
         ]
     },
     {
+        "id": 441,
         "name": "Misery Mire - Conveyor Snails",
         "region": "Misery Mire",
         "indoors": true,
@@ -7692,6 +8134,7 @@
         ]
     },
     {
+        "id": 442,
         "name": "Misery Mire - Wizrobe Torches N",
         "region": "Misery Mire",
         "indoors": true,
@@ -7717,6 +8160,7 @@
         ]
     },
     {
+        "id": 443,
         "name": "Misery Mire - Wizrobe Torches S",
         "region": "Misery Mire",
         "indoors": true,
@@ -7742,6 +8186,7 @@
         ]
     },
     {
+        "id": 444,
         "name": "Misery Mire - Hint Room",
         "region": "Misery Mire",
         "indoors": true,
@@ -7762,6 +8207,7 @@
         ]
     },
     {
+        "id": 445,
         "name": "Misery Mire - Big Key Chest Room",
         "region": "Misery Mire",
         "indoors": true,
@@ -7782,6 +8228,7 @@
         ]
     },
     {
+        "id": 446,
         "name": "Misery Mire - Pool Portal",
         "region": "Misery Mire",
         "indoors": true,
@@ -7802,6 +8249,7 @@
         ]
     },
     {
+        "id": 447,
         "name": "Misery Mire - Portal Behind Big Key Door",
         "region": "Misery Mire",
         "indoors": true,
@@ -7822,6 +8270,7 @@
         ]
     },
     {
+        "id": 448,
         "name": "Misery Mire - South of Bridges",
         "region": "Misery Mire",
         "indoors": true,
@@ -7842,6 +8291,7 @@
         ]
     },
     {
+        "id": 449,
         "name": "Misery Mire - Bridges",
         "region": "Misery Mire",
         "indoors": true,
@@ -7862,6 +8312,7 @@
         ]
     },
     {
+        "id": 450,
         "name": "Misery Mire - Dark Somaria",
         "region": "Misery Mire",
         "indoors": true,
@@ -7882,6 +8333,7 @@
         ]
     },
     {
+        "id": 451,
         "name": "Misery Mire - Past Dark Somaria",
         "region": "Misery Mire",
         "indoors": true,
@@ -7907,6 +8359,7 @@
         ]
     },
     {
+        "id": 452,
         "name": "Misery Mire - Dark Conveyor Switch",
         "region": "Misery Mire",
         "indoors": true,
@@ -7927,6 +8380,7 @@
         ]
     },
     {
+        "id": 453,
         "name": "Misery Mire - Spooky action room",
         "region": "Misery Mire",
         "indoors": true,
@@ -7947,6 +8401,7 @@
         ]
     },
     {
+        "id": 454,
         "name": "Misery Mire - Rupee Switch Room",
         "region": "Misery Mire",
         "indoors": true,
@@ -7967,6 +8422,7 @@
         ]
     },
     {
+        "id": 455,
         "name": "Misery Mire - Slimy Ceiling",
         "region": "Misery Mire",
         "indoors": true,
@@ -7987,6 +8443,7 @@
         ]
     },
     {
+        "id": 456,
         "name": "Misery Mire - Boss Apprach",
         "region": "Misery Mire",
         "indoors": true,
@@ -8007,6 +8464,7 @@
         ]
     },
     {
+        "id": 457,
         "name": "Misery Mire - Boss",
         "region": "Misery Mire",
         "indoors": true,
@@ -8027,6 +8485,7 @@
         ]
     },
     {
+        "id": 458,
         "name": "Misery Mire - Rupee Room",
         "region": "Misery Mire",
         "indoors": true,
@@ -8047,6 +8506,7 @@
         ]
     },
     {
+        "id": 459,
         "name": "Misery Mire - Fish Bone",
         "region": "Misery Mire",
         "indoors": true,
@@ -8067,6 +8527,7 @@
         ]
     },
     {
+        "id": 460,
         "name": "Misery Mire - Tentacle Torches",
         "region": "Misery Mire",
         "indoors": true,
@@ -8087,6 +8548,7 @@
         ]
     },
     {
+        "id": 461,
         "name": "Misery Mire - Spike Chest Room",
         "region": "Misery Mire",
         "indoors": true,
@@ -8107,6 +8569,7 @@
         ]
     },
     {
+        "id": 462,
         "name": "Misery Mire - Map Chest Room",
         "region": "Misery Mire",
         "indoors": true,
@@ -8127,6 +8590,7 @@
         ]
     },
     {
+        "id": 463,
         "name": "Misery Mire - Big Chest Room",
         "region": "Misery Mire",
         "indoors": true,
@@ -8147,6 +8611,7 @@
         ]
     },
     {
+        "id": 464,
         "name": "Misery Mire - Southeast of Bridges",
         "region": "Misery Mire",
         "indoors": true,
@@ -8167,6 +8632,7 @@
         ]
     },
     {
+        "id": 465,
         "name": "Misery Mire - East of Bridges",
         "region": "Misery Mire",
         "indoors": true,
@@ -8192,6 +8658,7 @@
         ]
     },
     {
+        "id": 466,
         "name": "Misery Mire - Why are you here room #2",
         "region": "Misery Mire",
         "indoors": true,
@@ -8212,6 +8679,7 @@
         ]
     },
     {
+        "id": 467,
         "name": "Turtle Rock - Lobby",
         "region": "Turtle Rock",
         "indoors": true,
@@ -8240,6 +8708,7 @@
         ]
     },
     {
+        "id": 468,
         "name": "Turtle Rock - Hub",
         "region": "Turtle Rock",
         "indoors": true,
@@ -8263,6 +8732,7 @@
         ]
     },
     {
+        "id": 469,
         "name": "Turtle Rock - Quad Torch Ride",
         "region": "Turtle Rock",
         "indoors": true,
@@ -8291,6 +8761,7 @@
         ]
     },
     {
+        "id": 470,
         "name": "Turtle Rock - Rolling Pins Chests",
         "region": "Turtle Rock",
         "indoors": true,
@@ -8314,6 +8785,7 @@
         ]
     },
     {
+        "id": 471,
         "name": "Turtle Rock - Lazer Trap Chest",
         "region": "Turtle Rock",
         "indoors": true,
@@ -8337,6 +8809,7 @@
         ]
     },
     {
+        "id": 472,
         "name": "Turtle Rock - 'I do not remember flying tiles in TR'-Room",
         "region": "Turtle Rock",
         "indoors": true,
@@ -8365,6 +8838,7 @@
         ]
     },
     {
+        "id": 473,
         "name": "Turtle Rock - Lone Fairy Room",
         "region": "Turtle Rock",
         "indoors": true,
@@ -8388,6 +8862,7 @@
         ]
     },
     {
+        "id": 474,
         "name": "Turtle Rock - Cheese Ball Key Drop",
         "region": "Turtle Rock",
         "indoors": true,
@@ -8416,6 +8891,7 @@
         ]
     },
     {
+        "id": 475,
         "name": "Turtle Rock - Chain Chomp Room",
         "region": "Turtle Rock",
         "indoors": true,
@@ -8439,6 +8915,7 @@
         ]
     },
     {
+        "id": 476,
         "name": "Turtle Rock - Below Chain Chomp Room",
         "region": "Turtle Rock",
         "indoors": true,
@@ -8462,6 +8939,7 @@
         ]
     },
     {
+        "id": 477,
         "name": "Turtle Rock - Lava Chest Room",
         "region": "Turtle Rock",
         "indoors": true,
@@ -8485,6 +8963,7 @@
         ]
     },
     {
+        "id": 478,
         "name": "Turtle Rock - Quad Anti Fairy Room",
         "region": "Turtle Rock",
         "indoors": true,
@@ -8513,6 +8992,7 @@
         ]
     },
     {
+        "id": 479,
         "name": "Turtle Rock - Cheese Ball Trap Room",
         "region": "Turtle Rock",
         "indoors": true,
@@ -8536,6 +9016,7 @@
         ]
     },
     {
+        "id": 480,
         "name": "Turtle Rock - 3 Door Hallway",
         "region": "Turtle Rock",
         "indoors": true,
@@ -8559,6 +9040,7 @@
         ]
     },
     {
+        "id": 481,
         "name": "Turtle Rock - Big Chest Room",
         "region": "Turtle Rock",
         "indoors": true,
@@ -8582,6 +9064,7 @@
         ]
     },
     {
+        "id": 482,
         "name": "Turtle Rock - Big Key Door",
         "region": "Turtle Rock",
         "indoors": true,
@@ -8605,6 +9088,7 @@
         ]
     },
     {
+        "id": 483,
         "name": "Turtle Rock - Laser Pots",
         "region": "Turtle Rock",
         "indoors": true,
@@ -8633,6 +9117,7 @@
         ]
     },
     {
+        "id": 484,
         "name": "Turtle Rock - Bonk Wall Room",
         "region": "Turtle Rock",
         "indoors": true,
@@ -8656,6 +9141,7 @@
         ]
     },
     {
+        "id": 485,
         "name": "Turtle Rock - East of Bonk Wall",
         "region": "Turtle Rock",
         "indoors": true,
@@ -8684,6 +9170,7 @@
         ]
     },
     {
+        "id": 486,
         "name": "Turtle Rock - Rupee Room",
         "region": "Turtle Rock",
         "indoors": true,
@@ -8707,6 +9194,7 @@
         ]
     },
     {
+        "id": 487,
         "name": "Turtle Rock - Lone Roller Chest",
         "region": "Turtle Rock",
         "indoors": true,
@@ -8735,6 +9223,7 @@
         ]
     },
     {
+        "id": 488,
         "name": "Turtle Rock - Dark Rail Labyrinth",
         "region": "Turtle Rock",
         "indoors": true,
@@ -8763,6 +9252,7 @@
         ]
     },
     {
+        "id": 489,
         "name": "Turtle Rock - Minihelma Bridge",
         "region": "Turtle Rock",
         "indoors": true,
@@ -8786,6 +9276,7 @@
         ]
     },
     {
+        "id": 490,
         "name": "Turtle Rock - Crystal Switch Grid Room",
         "region": "Turtle Rock",
         "indoors": true,
@@ -8814,6 +9305,7 @@
         ]
     },
     {
+        "id": 491,
         "name": "Turtle Rock - Boss Approach",
         "region": "Turtle Rock",
         "indoors": true,
@@ -8837,6 +9329,7 @@
         ]
     },
     {
+        "id": 492,
         "name": "Turtle Rock - Boss",
         "region": "Turtle Rock",
         "indoors": true,
@@ -8860,6 +9353,7 @@
         ]
     },
     {
+        "id": 493,
         "name": "Turtle Rock - Lazer Bridge",
         "region": "Turtle Rock",
         "indoors": true,
@@ -8888,6 +9382,7 @@
         ]
     },
     {
+        "id": 494,
         "name": "Ganon's Tower - Lobby",
         "region": "Ganon's Tower",
         "indoors": true,
@@ -8908,6 +9403,7 @@
         ]
     },
     {
+        "id": 495,
         "name": "Ganon's Tower - Bob's Torch Room",
         "region": "Ganon's Tower",
         "indoors": true,
@@ -8928,6 +9424,7 @@
         ]
     },
     {
+        "id": 496,
         "name": "Ganon's Tower - Hammer Lock Room",
         "region": "Ganon's Tower",
         "indoors": true,
@@ -8953,6 +9450,7 @@
         ]
     },
     {
+        "id": 497,
         "name": "Ganon's Tower - Hook Shot Room",
         "region": "Ganon's Tower",
         "indoors": true,
@@ -8973,6 +9471,7 @@
         ]
     },
     {
+        "id": 498,
         "name": "Ganon's Tower - Triple Stalfos Treasure Room",
         "region": "Ganon's Tower",
         "indoors": true,
@@ -8993,6 +9492,7 @@
         ]
     },
     {
+        "id": 499,
         "name": "Ganon's Tower - Twin Fire Bar Chest Room",
         "region": "Ganon's Tower",
         "indoors": true,
@@ -9013,6 +9513,7 @@
         ]
     },
     {
+        "id": 500,
         "name": "Ganon's Tower - Hook Extend Room",
         "region": "Ganon's Tower",
         "indoors": true,
@@ -9038,6 +9539,7 @@
         ]
     },
     {
+        "id": 501,
         "name": "Ganon's Tower - Spike Switch Room",
         "region": "Ganon's Tower",
         "indoors": true,
@@ -9058,6 +9560,7 @@
         ]
     },
     {
+        "id": 502,
         "name": "Ganon's Tower - Quad Fire Snake Room",
         "region": "Ganon's Tower",
         "indoors": true,
@@ -9083,6 +9586,7 @@
         ]
     },
     {
+        "id": 503,
         "name": "Ganon's Tower - Portal Labyrinth 1",
         "region": "Ganon's Tower",
         "indoors": true,
@@ -9103,6 +9607,7 @@
         ]
     },
     {
+        "id": 504,
         "name": "Ganon's Tower - Portal Labyrinth 2",
         "region": "Ganon's Tower",
         "indoors": true,
@@ -9123,6 +9628,7 @@
         ]
     },
     {
+        "id": 505,
         "name": "Ganon's Tower - Bombable Treasure Room",
         "region": "Ganon's Tower",
         "indoors": true,
@@ -9143,6 +9649,7 @@
         ]
     },
     {
+        "id": 506,
         "name": "Ganon's Tower - Basement Invisible Bridge",
         "region": "Ganon's Tower",
         "indoors": true,
@@ -9163,6 +9670,7 @@
         ]
     },
     {
+        "id": 507,
         "name": "Ganon's Tower - Armos Approach",
         "region": "Ganon's Tower",
         "indoors": true,
@@ -9183,6 +9691,7 @@
         ]
     },
     {
+        "id": 508,
         "name": "Ganon's Tower - Armos on Ice",
         "region": "Ganon's Tower",
         "indoors": true,
@@ -9203,6 +9712,7 @@
         ]
     },
     {
+        "id": 509,
         "name": "Ganon's Tower - Big Chest Key Room",
         "region": "Ganon's Tower",
         "indoors": true,
@@ -9223,6 +9733,7 @@
         ]
     },
     {
+        "id": 510,
         "name": "Ganon's Tower - Below Big Chest Room",
         "region": "Ganon's Tower",
         "indoors": true,
@@ -9243,6 +9754,7 @@
         ]
     },
     {
+        "id": 511,
         "name": "Ganon's Tower - Basement Fairies",
         "region": "Ganon's Tower",
         "indoors": true,
@@ -9263,6 +9775,7 @@
         ]
     },
     {
+        "id": 512,
         "name": "Ganon's Tower - Big Chest Room",
         "region": "Ganon's Tower",
         "indoors": true,
@@ -9283,6 +9796,7 @@
         ]
     },
     {
+        "id": 513,
         "name": "Ganon's Tower - Hope Room",
         "region": "Ganon's Tower",
         "indoors": true,
@@ -9303,6 +9817,7 @@
         ]
     },
     {
+        "id": 514,
         "name": "Ganon's Tower - Tile Room",
         "region": "Ganon's Tower",
         "indoors": true,
@@ -9328,6 +9843,7 @@
         ]
     },
     {
+        "id": 515,
         "name": "Ganon's Tower - Basement Timed Torches",
         "region": "Ganon's Tower",
         "indoors": true,
@@ -9348,6 +9864,7 @@
         ]
     },
     {
+        "id": 516,
         "name": "Ganon's Tower - Caged Foes Room",
         "region": "Ganon's Tower",
         "indoors": true,
@@ -9368,6 +9885,7 @@
         ]
     },
     {
+        "id": 517,
         "name": "Ganon's Tower - Checkered Tile Pattern Room",
         "region": "Ganon's Tower",
         "indoors": true,
@@ -9388,6 +9906,7 @@
         ]
     },
     {
+        "id": 518,
         "name": "Ganon's Tower - Mummy Conveyor Room",
         "region": "Ganon's Tower",
         "indoors": true,
@@ -9413,6 +9932,7 @@
         ]
     },
     {
+        "id": 519,
         "name": "Ganon's Tower - Bumper Portal Treasure Room",
         "region": "Ganon's Tower",
         "indoors": true,
@@ -9433,6 +9953,7 @@
         ]
     },
     {
+        "id": 520,
         "name": "Ganon's Tower - Conveyor Key Pot Room",
         "region": "Ganon's Tower",
         "indoors": true,
@@ -9458,6 +9979,7 @@
         ]
     },
     {
+        "id": 521,
         "name": "Ganon's Tower - Basement Falling Bridge",
         "region": "Ganon's Tower",
         "indoors": true,
@@ -9483,6 +10005,7 @@
         ]
     },
     {
+        "id": 522,
         "name": "Ganon's Tower - Switch Under Statue Room",
         "region": "Ganon's Tower",
         "indoors": true,
@@ -9503,6 +10026,7 @@
         ]
     },
     {
+        "id": 523,
         "name": "Ganon's Tower - Basement Straight Invisible Bridge",
         "region": "Ganon's Tower",
         "indoors": true,
@@ -9523,6 +10047,7 @@
         ]
     },
     {
+        "id": 524,
         "name": "Ganon's Tower - Spike Floor Switch Room",
         "region": "Ganon's Tower",
         "indoors": true,
@@ -9548,6 +10073,7 @@
         ]
     },
     {
+        "id": 525,
         "name": "Ganon's Tower - Mimic Trap Room 1",
         "region": "Ganon's Tower",
         "indoors": true,
@@ -9573,6 +10099,7 @@
         ]
     },
     {
+        "id": 526,
         "name": "Ganon's Tower - Mimic Trap Room 2",
         "region": "Ganon's Tower",
         "indoors": true,
@@ -9598,6 +10125,7 @@
         ]
     },
     {
+        "id": 527,
         "name": "Ganon's Tower - Big Key Door",
         "region": "Ganon's Tower",
         "indoors": true,
@@ -9623,6 +10151,7 @@
         ]
     },
     {
+        "id": 528,
         "name": "Ganon's Tower - Past Big Key Door",
         "region": "Ganon's Tower",
         "indoors": true,
@@ -9648,6 +10177,7 @@
         ]
     },
     {
+        "id": 529,
         "name": "Ganon's Tower - Cannon Bridge",
         "region": "Ganon's Tower",
         "indoors": true,
@@ -9673,6 +10203,7 @@
         ]
     },
     {
+        "id": 530,
         "name": "Ganon's Tower - Fairy Secret",
         "region": "Ganon's Tower",
         "indoors": true,
@@ -9693,6 +10224,7 @@
         ]
     },
     {
+        "id": 531,
         "name": "Ganon's Tower - Gauntlet Room 1",
         "region": "Ganon's Tower",
         "indoors": true,
@@ -9718,6 +10250,7 @@
         ]
     },
     {
+        "id": 532,
         "name": "Ganon's Tower - Gauntlet Room 2",
         "region": "Ganon's Tower",
         "indoors": true,
@@ -9743,6 +10276,7 @@
         ]
     },
     {
+        "id": 533,
         "name": "Ganon's Tower - Gauntlet Room 3",
         "region": "Ganon's Tower",
         "indoors": true,
@@ -9768,6 +10302,7 @@
         ]
     },
     {
+        "id": 534,
         "name": "Ganon's Tower - Gauntlet Room 4",
         "region": "Ganon's Tower",
         "indoors": true,
@@ -9793,6 +10328,7 @@
         ]
     },
     {
+        "id": 535,
         "name": "Ganon's Tower - Gauntlet Room 5",
         "region": "Ganon's Tower",
         "indoors": true,
@@ -9818,6 +10354,7 @@
         ]
     },
     {
+        "id": 536,
         "name": "Ganon's Tower - Lanmolas Approach",
         "region": "Ganon's Tower",
         "indoors": true,
@@ -9843,6 +10380,7 @@
         ]
     },
     {
+        "id": 537,
         "name": "Ganon's Tower - Lanmolas",
         "region": "Ganon's Tower",
         "indoors": true,
@@ -9863,6 +10401,7 @@
         ]
     },
     {
+        "id": 538,
         "name": "Ganon's Tower - Past Lanmolas",
         "region": "Ganon's Tower",
         "indoors": true,
@@ -9888,6 +10427,7 @@
         ]
     },
     {
+        "id": 539,
         "name": "Ganon's Tower - Wizrobe Invisible Path",
         "region": "Ganon's Tower",
         "indoors": true,
@@ -9913,6 +10453,7 @@
         ]
     },
     {
+        "id": 540,
         "name": "Ganon's Tower - Lazer Bridge",
         "region": "Ganon's Tower",
         "indoors": true,
@@ -9933,6 +10474,7 @@
         ]
     },
     {
+        "id": 541,
         "name": "Ganon's Tower - Conveyor Wizrobes",
         "region": "Ganon's Tower",
         "indoors": true,
@@ -9958,6 +10500,7 @@
         ]
     },
     {
+        "id": 542,
         "name": "Ganon's Tower - Falling Conveyor Bridge",
         "region": "Ganon's Tower",
         "indoors": true,
@@ -9983,6 +10526,7 @@
         ]
     },
     {
+        "id": 543,
         "name": "Ganon's Tower - Timed Torches Climb 1",
         "region": "Ganon's Tower",
         "indoors": true,
@@ -10008,6 +10552,7 @@
         ]
     },
     {
+        "id": 544,
         "name": "Ganon's Tower - Lazer Stairs",
         "region": "Ganon's Tower",
         "indoors": true,
@@ -10033,6 +10578,7 @@
         ]
     },
     {
+        "id": 545,
         "name": "Ganon's Tower - Timed Torches Climb 2",
         "region": "Ganon's Tower",
         "indoors": true,
@@ -10058,6 +10604,7 @@
         ]
     },
     {
+        "id": 546,
         "name": "Ganon's Tower - Key Minihelma",
         "region": "Ganon's Tower",
         "indoors": true,
@@ -10083,6 +10630,7 @@
         ]
     },
     {
+        "id": 547,
         "name": "Ganon's Tower - Spike Conveyor Bomb Wall",
         "region": "Ganon's Tower",
         "indoors": true,
@@ -10108,6 +10656,7 @@
         ]
     },
     {
+        "id": 548,
         "name": "Ganon's Tower - Moldorm Approach",
         "region": "Ganon's Tower",
         "indoors": true,
@@ -10133,6 +10682,7 @@
         ]
     },
     {
+        "id": 549,
         "name": "Ganon's Tower - Moldorm",
         "region": "Ganon's Tower",
         "indoors": true,
@@ -10153,7 +10703,8 @@
         ]
     },
     {
-        "name": "Ganon's Tower - Trolldorm's Gonna Troll ¯\\_(ツ)_/¯",
+        "id": 550,
+        "name": "Ganon's Tower - Trolldorm's Gonna Troll \u00af\\_(\u30c4)_/\u00af",
         "region": "Ganon's Tower",
         "indoors": true,
         "address_value": [
@@ -10173,6 +10724,7 @@
         ]
     },
     {
+        "id": 551,
         "name": "Ganon's Tower - Conveyor Helma Hallway",
         "region": "Ganon's Tower",
         "indoors": true,
@@ -10198,6 +10750,7 @@
         ]
     },
     {
+        "id": 552,
         "name": "Ganon's Tower - Boss Approach",
         "region": "Ganon's Tower",
         "indoors": true,
@@ -10218,6 +10771,7 @@
         ]
     },
     {
+        "id": 553,
         "name": "Ganon's Tower - Boss Agahnim 2",
         "region": "Ganon's Tower",
         "indoors": true,
@@ -10238,6 +10792,7 @@
         ]
     },
     {
+        "id": 554,
         "name": "Pyramid drop",
         "region": "Ganon",
         "indoors": true,
@@ -10246,6 +10801,7 @@
         ]
     },
     {
+        "id": 555,
         "name": "Ganon Drop",
         "region": "Ganon",
         "indoors": true,
@@ -10254,6 +10810,7 @@
         ]
     },
     {
+        "id": 556,
         "name": "Triforce Room",
         "region": "Goal",
         "indoors": false,

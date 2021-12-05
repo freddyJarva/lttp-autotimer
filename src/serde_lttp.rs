@@ -121,6 +121,7 @@ mod tests {
         let json_val = json!({
             "name": "Hyrule Castle - Key Guard 1",
             "indoors": true,
+            "region": "Hyrule Castle",
             "address_value": [
                 "0x3",
                 "0x4",

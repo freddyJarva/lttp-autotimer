@@ -97,6 +97,7 @@ impl EventTracker {
                 timestamp: Some(Utc::now()),
                 indoors: false,
                 conditions: None,
+                region: "START".to_string(),
             })],
         }
     }
@@ -133,7 +134,7 @@ impl From<&Tile> for Event {
                 .timestamp
                 .expect("Found transition missing timestamp when serializing"),
             indoors: Some(transition.indoors),
-            region: Some(transition.region()),
+            region: Some(transition.region.clone()),
             to: Some(transition.name.to_string()),
             location_id: None,
             item_id: None,
@@ -148,7 +149,7 @@ impl From<&mut Tile> for Event {
                 .timestamp
                 .expect("Found transition missing timestamp when serializing"),
             indoors: Some(transition.indoors),
-            region: Some(transition.region()),
+            region: Some(transition.region.clone()),
             to: Some(transition.name.to_string()),
             location_id: None,
             item_id: None,
@@ -288,6 +289,7 @@ mod tests {
         from_transition: (
             Tile {
                 name: "Lala".to_string(),
+                region: "A great region".to_string(),
                 timestamp: Some(Utc.timestamp_millis(200)),
                 ..Default::default()
             },
@@ -295,7 +297,7 @@ mod tests {
                 to: Some("Lala".to_string()),
                 timestamp: Utc.timestamp_millis(200),
                 indoors: Some(false),
-                region: Some("Overworld".to_string()),
+                region: Some("A great region".to_string()),
                 ..Default::default()
             }
         ),

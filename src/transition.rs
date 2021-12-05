@@ -18,6 +18,7 @@ pub struct Tile {
     pub timestamp: Option<DateTime<Utc>>,
     pub indoors: bool,
     pub conditions: Option<Vec<Conditions>>,
+    pub region: String,
 }
 
 impl Tile {
@@ -100,6 +101,7 @@ impl Default for Tile {
             address_value: vec![0],
             conditions: Default::default(),
             name: Default::default(),
+            region: Default::default(),
         }
     }
 }
@@ -127,6 +129,7 @@ mod tests {
             hobo,
             Tile {
                 name: "Hobo".to_string(),
+                region: "East Hyrule".to_string(),
                 indoors: false,
                 address_value: vec![0x80],
                 conditions: Some(vec![Conditions::PreviousTile(ConditionTransition {

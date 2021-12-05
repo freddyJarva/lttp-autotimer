@@ -452,8 +452,7 @@ fn check_for_game_start(ram: &SnesRam, events: &EventTracker) -> anyhow::Result<
     match events.latest_transition() {
         Some(previous_transition) => {
             if let Ok(current_tile) = Tile::try_from_ram(ram, &previous_transition) {
-                let spawn_tiles = vec![20, 21, 61, 118, 205, 209]; //ids correspond to those in transitions.json
-                return Ok(spawn_tiles.contains(&current_tile.id));
+                return Ok(current_tile.indoors || &current_tile.id == &118); // id correspond to Pyramid in transitions.json
             }
         }
         None => {

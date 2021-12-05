@@ -262,32 +262,68 @@
     {
         "name": "Desert Palace - Big Chest",
         "sram_offset": "0x0",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "conditions": [
+            {
+                "type": "PreviousTile",
+                "name": "Desert Palace - Big Chest Room"
+            }
+        ]
     },
     {
         "name": "Desert Palace - Torch",
         "sram_offset": "0x0",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "conditions": [
+            {
+                "type": "PreviousTile",
+                "name": "Desert Palace - Bonk Torch"
+            }
+        ]
     },
     {
         "name": "Desert Palace - Map Chest",
         "sram_offset": "0x0",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "conditions": [
+            {
+                "type": "PreviousTile",
+                "name": "Desert Palace - Map Chest Room"
+            }
+        ]
     },
     {
         "name": "Desert Palace - Compass Chest",
         "sram_offset": "0x0",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "conditions": [
+            {
+                "type": "PreviousTile",
+                "name": "Desert Palace - Compass Chest Room"
+            }
+        ]
     },
     {
         "name": "Desert Palace - Big Key Chest",
         "sram_offset": "0x0",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "conditions": [
+            {
+                "type": "PreviousTile",
+                "name": "Desert Palace - Big Key Chest Room"
+            }
+        ]
     },
     {
         "name": "Desert Palace - Boss",
         "sram_offset": "0x0",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "conditions": [
+            {
+                "type": "PreviousTile",
+                "name": "Desert Palace - North - Boss"
+            }
+        ]
     },
     {
         "name": "Eastern Palace - Compass Chest",
@@ -369,14 +405,20 @@
             },
             {
                 "type": "PreviousTile",
-                "name": "Eastern Palace - East Chest Room"
+                "name": "Eastern Palace - Map Chest Room"
             }
         ]
     },
     {
         "name": "Eastern Palace - Boss",
         "sram_offset": "0x0",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "conditions": [
+            {
+                "type": "PreviousTile",
+                "name": "Easter Palace - Boss"
+            }
+        ]
     },
     {
         "name": "Master Sword Pedestal",
@@ -426,12 +468,24 @@
     {
         "name": "Castle Tower - Room 03",
         "sram_offset": "0xf1c0",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "conditions": [
+            {
+                "type": "PreviousTile",
+                "name": "Agahnim's Tower - Room 03"
+            }
+        ]
     },
     {
         "name": "Castle Tower - Dark Maze",
         "sram_offset": "0xf1a0",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "conditions": [
+            {
+                "type": "PreviousTile",
+                "name": "Agahnim's Tower - Dark Maze"
+            }
+        ]
     },
     {
         "name": "Old Man",
@@ -597,7 +651,7 @@
             },
             {
                 "type": "PreviousTile",
-                "name": "Tower of Hera - Moldorm"
+                "name": "Tower of Hera - Boss"
             }
         ]
     },
@@ -744,172 +798,409 @@
     {
         "name": "Swamp Palace - Entrance",
         "sram_offset": "0x0",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "conditions": [
+            {
+                "type": "PreviousTile",
+                "name": "Swamp Palace - Lobby"
+            }
+        ]
     },
     {
         "name": "Swamp Palace - Map Chest",
         "sram_offset": "0x0",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "conditions": [
+            {
+                "type": "PreviousTile",
+                "name": "Swamp Palace - Map Chest Ledge"
+            }
+        ]
     },
     {
         "name": "Swamp Palace - Big Chest",
         "sram_offset": "0x0",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "conditions": [
+            {
+                "type": "PreviousTile",
+                "name": "Swamp Palace - Hub"
+            }
+        ]
     },
     {
         "name": "Swamp Palace - Compass Chest",
         "sram_offset": "0x0",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "conditions": [
+            {
+                "type": "PreviousTile",
+                "name": "Swamp Palace - Merry Go Round N"
+            }
+        ]
     },
     {
         "name": "Swamp Palace - Big Key Chest",
         "sram_offset": "0x0",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "conditions": [
+            {
+                "type": "PreviousTile",
+                "name": "Swamp Palace - Big Key Chest Room"
+            }
+        ]
     },
     {
         "name": "Swamp Palace - West Chest",
         "sram_offset": "0x0",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "conditions": [
+            {
+                "type": "PreviousTile",
+                "name": "Swamp Palace - West Side Ledge W"
+            }
+        ]
     },
     {
         "name": "Swamp Palace - Flooded Room - Left",
         "sram_offset": "0x0",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Chest",
+                        "x": "3456",
+                        "y": "3928"
+                    }
+                ]
+            },
+            {
+                "type": "Underworld"
+            }
+        ]
     },
     {
         "name": "Swamp Palace - Flooded Room - Right",
         "sram_offset": "0x0",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Chest",
+                        "x": "3408",
+                        "y": "3928"
+                    }
+                ]
+            },
+            {
+                "type": "Underworld"
+            }
+        ]
     },
     {
         "name": "Swamp Palace - Waterfall Room",
         "sram_offset": "0x0",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "conditions": [
+            {
+                "type": "PreviousTile",
+                "name": "Swamp Palace - Waterfall Room"
+            }
+        ]
     },
     {
         "name": "Swamp Palace - Boss",
         "sram_offset": "0x0",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "conditions": [
+            {
+                "type": "PreviousTile",
+                "name": "Swamp Palace - Boss"
+            }
+        ]
     },
     {
         "name": "Thieves' Town - Big Key Chest",
         "sram_offset": "0x0",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Chest",
+                        "x": "6024",
+                        "y": "7016"
+                    }
+                ]
+            }
+        ]
     },
     {
         "name": "Thieves' Town - Map Chest",
         "sram_offset": "0x0",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Chest",
+                        "x": "5760",
+                        "y": "6824"
+                    }
+                ]
+            },
+            {
+                "type": "Underworld"
+            }
+        ]
     },
     {
         "name": "Thieves' Town - Compass Chest",
         "sram_offset": "0x0",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "conditions": [
+            {
+                "type": "PreviousTile",
+                "name": "Thieves' Town - Front SE"
+            }
+        ]
     },
     {
         "name": "Thieves' Town - Ambush Chest",
         "sram_offset": "0x0",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "conditions": [
+            {
+                "type": "PreviousTile",
+                "name": "Thieves' Town - Front NW"
+            }
+        ]
     },
     {
         "name": "Thieves' Town - Attic",
         "sram_offset": "0x0",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "conditions": [
+            {
+                "type": "PreviousTile",
+                "name": "Thieves' Town - Attic"
+            }
+        ]
     },
     {
         "name": "Thieves' Town - Big Chest",
         "sram_offset": "0x0",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "conditions": [
+            {
+                "type": "PreviousTile",
+                "name": "Thieves' Town - Big Chest Room"
+            }
+        ]
     },
     {
         "name": "Thieves' Town - Blind's Cell",
         "sram_offset": "0x0",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "conditions": [
+            {
+                "type": "PreviousTile",
+                "name": "Thieves' Town - Blind's Cell"
+            }
+        ]
     },
     {
         "name": "Thieves' Town - Boss",
         "sram_offset": "0x0",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "conditions": [
+            {
+                "type": "PreviousTile",
+                "name": "Thieves' Town - Boss"
+            }
+        ]
     },
     {
         "name": "Skull Woods - Compass Chest",
         "sram_offset": "0x0",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "conditions": [
+            {
+                "type": "PreviousTile",
+                "name": "Skull Woods - Compass Chest Room"
+            }
+        ]
     },
     {
         "name": "Skull Woods - Map Chest",
         "sram_offset": "0x0",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "conditions": [
+            {
+                "type": "PreviousTile",
+                "name": "Skull Woods - Map Chest Room"
+            }
+        ]
     },
     {
         "name": "Skull Woods - Big Chest",
         "sram_offset": "0x0",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "conditions": [
+            {
+                "type": "PreviousTile",
+                "name": "Skull Woods - Big Chest Room"
+            }
+        ]
     },
     {
         "name": "Skull Woods - Pot Prison",
         "sram_offset": "0x0",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "conditions": [
+            {
+                "type": "PreviousTile",
+                "name": "Skull Woods - Pot Prison"
+            }
+        ]
     },
     {
         "name": "Skull Woods - Pinball Room",
         "sram_offset": "0x0",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "conditions": [
+            {
+                "type": "PreviousTile",
+                "name": "Skull Woods - Pinball Room"
+            }
+        ]
     },
     {
         "name": "Skull Woods - Big Key Chest",
         "sram_offset": "0x0",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "conditions": [
+            {
+                "type": "PreviousTile",
+                "name": "Skull Woods - Big Key Chest Room"
+            }
+        ]
     },
     {
         "name": "Skull Woods - Bridge Room",
         "sram_offset": "0x0",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "conditions": [
+            {
+                "type": "PreviousTile",
+                "name": "Skull Woods Back - Bridge Room"
+            }
+        ]
     },
     {
         "name": "Skull Woods - Boss",
         "sram_offset": "0x0",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "conditions": [
+            {
+                "type": "PreviousTile",
+                "name": "Skull Woods Back - Boss"
+            }
+        ]
     },
     {
         "name": "Ice Palace - Compass Chest",
         "sram_offset": "0x0",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "conditions": [
+            {
+                "type": "PreviousTile",
+                "name": "Ice Palace - Compass Chest Room"
+            }
+        ]
     },
     {
         "name": "Ice Palace - Freezor Chest",
         "sram_offset": "0x0",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "conditions": [
+            {
+                "type": "PreviousTile",
+                "name": "Ice Palace - Freezor Chest Room"
+            }
+        ]
     },
     {
         "name": "Ice Palace - Big Chest",
         "sram_offset": "0x0",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "conditions": [
+            {
+                "type": "PreviousTile",
+                "name": "Ice Palace - Big Chest Room"
+            }
+        ]
     },
     {
         "name": "Ice Palace - Iced T Room",
         "sram_offset": "0x0",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "conditions": [
+            {
+                "type": "PreviousTile",
+                "name": "Ice Palace - Iced T Room"
+            }
+        ]
     },
     {
         "name": "Ice Palace - Spike Room",
         "sram_offset": "0x0",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "conditions": [
+            {
+                "type": "PreviousTile",
+                "name": "Ice Palace - Spike Room"
+            }
+        ]
     },
     {
         "name": "Ice Palace - Big Key Chest",
         "sram_offset": "0x0",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "conditions": [
+            {
+                "type": "PreviousTile",
+                "name": "Ice Palace - Big Key Chest Room"
+            }
+        ]
     },
     {
         "name": "Ice Palace - Map Chest",
         "sram_offset": "0x0",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "conditions": [
+            {
+                "type": "PreviousTile",
+                "name": "Ice Palace - Map Chest Room"
+            }
+        ]
     },
     {
         "name": "Ice Palace - Boss",
         "sram_offset": "0x0",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "conditions": [
+            {
+                "type": "PreviousTile",
+                "name": "Ice Palace - Boss"
+            }
+        ]
     },
     {
         "name": "Misery Mire - Big Chest",
@@ -993,7 +1284,7 @@
         "conditions": [
             {
                 "type": "PreviousTile",
-                "name": "Misery Mire - North of Tile Room"
+                "name": "Misery Mire - Compass Chest Room"
             },
             {
                 "type": "DungeonCounterIncreased",
@@ -1023,7 +1314,7 @@
         "conditions": [
             {
                 "type": "PreviousTile",
-                "name": "Misery Mire - Vitreous"
+                "name": "Misery Mire - Boss"
             },
             {
                 "type": "DungeonCounterIncreased",
@@ -1034,132 +1325,396 @@
     {
         "name": "Turtle Rock - Compass Chest",
         "sram_offset": "0x0",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "conditions": [
+            {
+                "type": "PreviousTile",
+                "name": "Compass Chest Room"
+            }
+        ]
     },
     {
         "name": "Turtle Rock - Roller Room - Left",
         "sram_offset": "0x0",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "conditions": [
+            {
+                "type": "Underworld"
+            },
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Chest",
+                        "x": "3680",
+                        "y": "5720"
+                    }
+                ]
+            }
+        ]
     },
     {
         "name": "Turtle Rock - Roller Room - Right",
         "sram_offset": "0x0",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "conditions": [
+            {
+                "type": "Underworld"
+            },
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Chest",
+                        "x": "3728",
+                        "y": "5720"
+                    }
+                ]
+            }
+        ]
     },
     {
         "name": "Turtle Rock - Chain Chomps",
         "sram_offset": "0x0",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "conditions": [
+            {
+                "type": "PreviousTile",
+                "name": "Turtle Rock - Chain Chomp Room"
+            }
+        ]
     },
     {
         "name": "Turtle Rock - Big Key Chest",
         "sram_offset": "0x0",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "conditions": [
+            {
+                "type": "PreviousTile",
+                "name": "Turtle Rock - Lava Chest Room"
+            }
+        ]
     },
     {
         "name": "Turtle Rock - Big Chest",
         "sram_offset": "0x0",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "conditions": [
+            {
+                "type": "PreviousTile",
+                "name": "Turtle Rock - Big Chest Room"
+            }
+        ]
     },
     {
         "name": "Turtle Rock - Crystaroller Room",
         "sram_offset": "0x0",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "conditions": [
+            {
+                "type": "PreviousTile",
+                "name": "Turtle Rock - Crystaroller Room"
+            }
+        ]
     },
     {
         "name": "Turtle Rock - Eye Bridge - Bottom Left",
         "sram_offset": "0x0",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Chest",
+                        "x": "2608",
+                        "y": "6968"
+                    }
+                ]
+            },
+            {
+                "type": "Underworld"
+            }
+        ]
     },
     {
         "name": "Turtle Rock - Eye Bridge - Bottom Right",
         "sram_offset": "0x0",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Chest",
+                        "x": "2752",
+                        "y": "6904"
+                    }
+                ]
+            },
+            {
+                "type": "Underworld"
+            }
+        ]
     },
     {
         "name": "Turtle Rock - Eye Bridge - Top Left",
         "sram_offset": "0x0",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Chest",
+                        "x": "2608",
+                        "y": "6840"
+                    }
+                ]
+            },
+            {
+                "type": "Underworld"
+            }
+        ]
     },
     {
         "name": "Turtle Rock - Eye Bridge - Top Right",
         "sram_offset": "0x0",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Chest",
+                        "x": "2752",
+                        "y": "6776"
+                    }
+                ]
+            },
+            {
+                "type": "Underworld"
+            }
+        ]
     },
     {
         "name": "Turtle Rock - Boss",
         "sram_offset": "0x0",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "conditions": [
+            {
+                "type": "PreviousTile",
+                "name": "Turtle Rock - Boss"
+            }
+        ]
     },
     {
         "name": "Palace of Darkness - Shooter Room",
         "sram_offset": "0x0",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "conditions": [
+            {
+                "type": "PreviousTile",
+                "name": "Palace of Darkness - Shooter Room"
+            }
+        ]
     },
     {
         "name": "Palace of Darkness - The Arena - Bridge",
         "sram_offset": "0x0",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Chest",
+                        "x": "5488",
+                        "y": "1384"
+                    }
+                ]
+            },
+            {
+                "type": "Underworld"
+            }
+        ]
     },
     {
         "name": "Palace of Darkness - Stalfos Basement",
         "sram_offset": "0x0",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "conditions": [
+            {
+                "type": "PreviousTile",
+                "name": "Palace of Darkness - Stalfos Basement"
+            }
+        ]
     },
     {
         "name": "Palace of Darkness - Big Key Chest",
         "sram_offset": "0x0",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "conditions": [
+            {
+                "type": "PreviousTile",
+                "name": "Palace of Darkness - Fork"
+            }
+        ]
     },
     {
         "name": "Palace of Darkness - The Arena - Ledge",
         "sram_offset": "0x0",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Chest",
+                        "x": "5568",
+                        "y": "1392"
+                    }
+                ]
+            },
+            {
+                "type": "Underworld"
+            }
+        ]
     },
     {
         "name": "Palace of Darkness - Map Chest",
         "sram_offset": "0x0",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "conditions": [
+            {
+                "type": "PreviousTile",
+                "name": "Palace of Darkness - Statue Switch"
+            }
+        ]
     },
     {
         "name": "Palace of Darkness - Compass Chest",
         "sram_offset": "0x0",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "conditions": [
+            {
+                "type": "PreviousTile",
+                "name": "Palace of Darkness - Compass Chest Room"
+            }
+        ]
     },
     {
         "name": "Palace of Darkness - Dark Basement - Left",
         "sram_offset": "0x0",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Chest",
+                        "x": "5424",
+                        "y": "3448"
+                    }
+                ]
+            },
+            {
+                "type": "Underworld"
+            }
+        ]
     },
     {
         "name": "Palace of Darkness - Dark Basement - Right",
         "sram_offset": "0x0",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Chest",
+                        "x": "5568",
+                        "y": "3448"
+                    }
+                ]
+            },
+            {
+                "type": "Underworld"
+            }
+        ]
     },
     {
         "name": "Palace of Darkness - Dark Maze - Top",
         "sram_offset": "0x0",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Chest",
+                        "x": "4872",
+                        "y": "592"
+                    }
+                ]
+            },
+            {
+                "type": "Underworld"
+            }
+        ]
     },
     {
         "name": "Palace of Darkness - Dark Maze - Bottom",
         "sram_offset": "0x0",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Chest",
+                        "x": "5056",
+                        "y": "944"
+                    }
+                ]
+            },
+            {
+                "type": "Underworld"
+            }
+        ]
     },
     {
         "name": "Palace of Darkness - Big Chest",
         "sram_offset": "0x0",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "conditions": [
+            {
+                "type": "PreviousTile",
+                "name": "Palace of Darkness - Hammer Jump Bridge"
+            }
+        ]
     },
     {
         "name": "Palace of Darkness - Harmless Hellway",
         "sram_offset": "0x0",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "conditions": [
+            {
+                "type": "PreviousTile",
+                "name": "Palace of Darkness - Harmless Hellway"
+            }
+        ]
     },
     {
         "name": "Palace of Darkness - Boss",
         "sram_offset": "0x0",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "conditions": [
+            {
+                "type": "PreviousTile",
+                "name": "Palace of Darkness - Boss"
+            }
+        ]
     },
     {
         "name": "Ganons Tower - Bob's Torch",

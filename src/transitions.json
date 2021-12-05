@@ -2916,7 +2916,7 @@
     },
     {
         "id": 225,
-        "name": "Eastern Palace - East Chest Room",
+        "name": "Eastern Palace - Map Chest Room",
         "region": "Eastern Palace",
         "indoors": true,
         "address_value": [
@@ -3802,7 +3802,7 @@
     },
     {
         "id": 256,
-        "name": "Desert Palace - Big Chest Key Room",
+        "name": "Desert Palace - Big Key Chest Room",
         "region": "Desert Palace",
         "indoors": true,
         "address_value": [
@@ -4279,7 +4279,7 @@
     },
     {
         "id": 276,
-        "name": "Tower of Hera - Moldorm",
+        "name": "Tower of Hera - Boss",
         "region": "Tower of Hera",
         "indoors": true,
         "address_value": [
@@ -4326,7 +4326,7 @@
     },
     {
         "id": 278,
-        "name": "Agahnim's tower - Twin Dagger Guards",
+        "name": "Agahnim's tower - Room 03",
         "region": "Castle Tower",
         "indoors": true,
         "address_value": [
@@ -4378,7 +4378,7 @@
     },
     {
         "id": 280,
-        "name": "Agahnim's tower - Dark Labyrinth",
+        "name": "Agahnim's tower - Dark Maze",
         "region": "Castle Tower",
         "indoors": true,
         "address_value": [
@@ -4769,7 +4769,7 @@
     },
     {
         "id": 296,
-        "name": "Palace of Darkness - Lobby Basement W",
+        "name": "Palace of Darkness - Shooter Room",
         "region": "Palace of Darkness",
         "indoors": true,
         "address_value": [
@@ -4811,7 +4811,7 @@
     },
     {
         "id": 298,
-        "name": "Palace of Darkness - Below Fork",
+        "name": "Palace of Darkness - Stalfos Basement",
         "region": "Palace of Darkness",
         "indoors": true,
         "address_value": [
@@ -4823,8 +4823,8 @@
                 "coordinates": [
                     {
                         "type": "Range",
-                        "x": "5232",
-                        "y": "24-248"
+                        "x": "5232-5552",
+                        "y": "24-272"
                     }
                 ]
             }
@@ -4973,7 +4973,7 @@
     },
     {
         "id": 305,
-        "name": "Palace of Darkness - Hub",
+        "name": "Palace of Darkness - The Arena",
         "region": "Palace of Darkness",
         "indoors": true,
         "address_value": [
@@ -5015,7 +5015,7 @@
     },
     {
         "id": 307,
-        "name": "Palace of Darkness - Turtle Squad Chest",
+        "name": "Palace of Darkness - Compass Chest Room",
         "region": "Palace of Darkness",
         "indoors": true,
         "address_value": [
@@ -5036,7 +5036,7 @@
     },
     {
         "id": 308,
-        "name": "Palace of Darkness - Rupee Room",
+        "name": "Palace of Darkness - Dark Basement",
         "region": "Palace of Darkness",
         "indoors": true,
         "address_value": [
@@ -5062,7 +5062,7 @@
     },
     {
         "id": 309,
-        "name": "Palace of Darkness - Harmless Hallway",
+        "name": "Palace of Darkness - Harmless Hellway",
         "region": "Palace of Darkness",
         "indoors": true,
         "address_value": [
@@ -5365,7 +5365,7 @@
     },
     {
         "id": 322,
-        "name": "Swamp Palace - Bombable Wall Chest",
+        "name": "Swamp Palace - Map Chest Ledge",
         "region": "Swamp Palace",
         "indoors": true,
         "address_value": [
@@ -5679,7 +5679,7 @@
     },
     {
         "id": 336,
-        "name": "Swamp Palace - Big Key Chest",
+        "name": "Swamp Palace - Big Key Chest Room",
         "region": "Swamp Palace",
         "indoors": true,
         "address_value": [
@@ -5700,7 +5700,7 @@
     },
     {
         "id": 337,
-        "name": "Swamp Palace - Statue Chest",
+        "name": "Swamp Palace - Statue Switch",
         "region": "Swamp Palace",
         "indoors": true,
         "address_value": [
@@ -5820,7 +5820,7 @@
     },
     {
         "id": 342,
-        "name": "Swamp Palace - Flooded Chests",
+        "name": "Swamp Palace - Flooded Room",
         "region": "Swamp Palace",
         "indoors": true,
         "address_value": [
@@ -5867,7 +5867,7 @@
     },
     {
         "id": 344,
-        "name": "Swamp Palace - Waterfalls",
+        "name": "Swamp Palace - Waterfall Room",
         "region": "Swamp Palace",
         "indoors": true,
         "address_value": [
@@ -6024,7 +6024,7 @@
     },
     {
         "id": 351,
-        "name": "Swamp Palace - Boss Arrghus",
+        "name": "Swamp Palace - Boss",
         "region": "Swamp Palace",
         "indoors": true,
         "address_value": [
@@ -6045,7 +6045,7 @@
     },
     {
         "id": 352,
-        "name": "Skull Woods - Big Chest",
+        "name": "Skull Woods - Big Chest Room",
         "region": "Skull Woods",
         "indoors": true,
         "address_value": [
@@ -6070,7 +6070,7 @@
     },
     {
         "id": 353,
-        "name": "Skull Woods - East of Big Chest",
+        "name": "Skull Woods - Map Chest Room",
         "region": "Skull Woods",
         "indoors": true,
         "address_value": [
@@ -6120,7 +6120,7 @@
     },
     {
         "id": 355,
-        "name": "Skull Woods - Chest trigger floor change Room",
+        "name": "Skull Woods - Compass Chest Room",
         "region": "Skull Woods",
         "indoors": true,
         "address_value": [
@@ -6145,7 +6145,7 @@
     },
     {
         "id": 356,
-        "name": "Skull Woods - West of Big Chest",
+        "name": "Skull Woods - Pot Prison",
         "region": "Skull Woods",
         "indoors": true,
         "address_value": [
@@ -6170,7 +6170,7 @@
     },
     {
         "id": 357,
-        "name": "Skull Woods - Soft Lock Room",
+        "name": "Skull Woods - Pinball Room",
         "region": "Skull Woods",
         "indoors": true,
         "address_value": [
@@ -6218,7 +6218,7 @@
     },
     {
         "id": 359,
-        "name": "Skull Woods - Behind Mummy Statue",
+        "name": "Skull Woods - Big Key Chest Room",
         "region": "Skull Woods",
         "indoors": true,
         "address_value": [
@@ -6338,7 +6338,7 @@
     },
     {
         "id": 364,
-        "name": "Skull Woods Back - Lobby",
+        "name": "Skull Woods Back - Bridge Room",
         "region": "Skull Woods",
         "indoors": true,
         "address_value": [
@@ -6819,7 +6819,7 @@
     },
     {
         "id": 385,
-        "name": "Thieves' Town - Bombable Floor",
+        "name": "Thieves' Town - Attic",
         "region": "Thieves Town",
         "indoors": true,
         "address_value": [
@@ -6987,7 +6987,7 @@
     },
     {
         "id": 393,
-        "name": "Thieves' Town - Cell",
+        "name": "Thieves' Town - Blind's Cell",
         "region": "Thieves Town",
         "indoors": true,
         "address_value": [
@@ -7154,7 +7154,7 @@
     },
     {
         "id": 400,
-        "name": "Ice Palace - Somaria Trick",
+        "name": "Ice Palace - Big Key Chest Room",
         "region": "Ice Palace",
         "indoors": true,
         "address_value": [
@@ -7180,7 +7180,7 @@
     },
     {
         "id": 401,
-        "name": "Ice Palace - Penguin Chest",
+        "name": "Ice Palace - Compass Chest Room",
         "region": "Ice Palace",
         "indoors": true,
         "address_value": [
@@ -7368,7 +7368,7 @@
     },
     {
         "id": 409,
-        "name": "Ice Palace - Spike Chest",
+        "name": "Ice Palace - Spike Room",
         "region": "Ice Palace",
         "indoors": true,
         "address_value": [
@@ -7389,7 +7389,7 @@
     },
     {
         "id": 410,
-        "name": "Ice Palace - 'H' Room",
+        "name": "Ice Palace - Map Chest Room",
         "region": "Ice Palace",
         "indoors": true,
         "address_value": [
@@ -7551,7 +7551,7 @@
     },
     {
         "id": 417,
-        "name": "Ice Palace - Ice T",
+        "name": "Ice Palace - Iced T Room",
         "region": "Ice Palace",
         "indoors": true,
         "address_value": [
@@ -7786,7 +7786,7 @@
     },
     {
         "id": 427,
-        "name": "Ice Palace - Above Big Chest Room",
+        "name": "Ice Palace - Freezor Chest Room",
         "region": "Ice Palace",
         "indoors": true,
         "address_value": [
@@ -8026,7 +8026,7 @@
     },
     {
         "id": 437,
-        "name": "Misery Mire - North of Tile Room",
+        "name": "Misery Mire - Compass Chest Room",
         "region": "Misery Mire",
         "indoors": true,
         "address_value": [
@@ -8762,7 +8762,7 @@
     },
     {
         "id": 470,
-        "name": "Turtle Rock - Rolling Pins Chests",
+        "name": "Turtle Rock - Roller Room",
         "region": "Turtle Rock",
         "indoors": true,
         "address_value": [
@@ -8786,7 +8786,7 @@
     },
     {
         "id": 471,
-        "name": "Turtle Rock - Lazer Trap Chest",
+        "name": "Turtle Rock - Compass Chest Room",
         "region": "Turtle Rock",
         "indoors": true,
         "address_value": [
@@ -9195,7 +9195,7 @@
     },
     {
         "id": 487,
-        "name": "Turtle Rock - Lone Roller Chest",
+        "name": "Turtle Rock - Crystaroller Room",
         "region": "Turtle Rock",
         "indoors": true,
         "address_value": [

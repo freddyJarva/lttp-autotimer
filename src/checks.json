@@ -1983,136 +1983,520 @@
     {
         "name": "Ganons Tower - Bob's Torch",
         "sram_offset": "0x0",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "conditions": [
+            {
+                "type": "PreviousTile",
+                "name": "Ganon's Tower - Bob's Torch Room"
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf436"
+            }
+        ]
     },
     {
         "name": "Ganons Tower - Hope Room - Left",
         "sram_offset": "0x0",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Chest",
+                        "x": "6448",
+                        "y": "4168"
+                    }
+                ]
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf436"
+            }
+        ]
     },
     {
         "name": "Ganons Tower - Hope Room - Right",
         "sram_offset": "0x0",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Chest",
+                        "x": "6592",
+                        "y": "4168"
+                    }
+                ]
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf436"
+            }
+        ]
     },
     {
         "name": "Ganons Tower - Tile Room",
         "sram_offset": "0x0",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "conditions": [
+            {
+                "type": "PreviousTile",
+                "name": "Ganon's Tower - Tile Room"
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf436"
+            }
+        ]
     },
     {
         "name": "Ganons Tower - Compass Room - Top Left",
         "sram_offset": "0x0",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Chest",
+                        "x": "6752",
+                        "y": "4712"
+                    }
+                ]
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf436"
+            }
+        ]
     },
     {
         "name": "Ganons Tower - Compass Room - Top Right",
         "sram_offset": "0x0",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Chest",
+                        "x": "6800",
+                        "y": "4712"
+                    }
+                ]
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf436"
+            }
+        ]
     },
     {
         "name": "Ganons Tower - Compass Room - Bottom Left",
         "sram_offset": "0x0",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Chest",
+                        "x": "6752",
+                        "y": "4776"
+                    }
+                ]
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf436"
+            }
+        ]
     },
     {
         "name": "Ganons Tower - Compass Room - Bottom Right",
         "sram_offset": "0x0",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Chest",
+                        "x": "6800",
+                        "y": "4776"
+                    }
+                ]
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf436"
+            }
+        ]
     },
     {
         "name": "Ganons Tower - DMs Room - Top Left",
         "sram_offset": "0x0",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Chest",
+                        "x": "5680",
+                        "y": "3912"
+                    }
+                ]
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf436"
+            }
+        ]
     },
     {
         "name": "Ganons Tower - DMs Room - Top Right",
         "sram_offset": "0x0",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Chest",
+                        "x": "5824",
+                        "y": "3912"
+                    }
+                ]
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf436"
+            }
+        ]
     },
     {
         "name": "Ganons Tower - DMs Room - Bottom Left",
         "sram_offset": "0x0",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Chest",
+                        "x": "5680",
+                        "y": "3976"
+                    }
+                ]
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf436"
+            }
+        ]
     },
     {
         "name": "Ganons Tower - DMs Room - Bottom Right",
         "sram_offset": "0x0",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Chest",
+                        "x": "5824",
+                        "y": "3976"
+                    }
+                ]
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf436"
+            }
+        ]
     },
     {
         "name": "Ganons Tower - Map Chest",
         "sram_offset": "0x0",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "conditions": [
+            {
+                "type": "PreviousTile",
+                "name": "Ganon's Tower - Map Chest Room"
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf436"
+            }
+        ]
     },
     {
         "name": "Ganons Tower - Firesnake Room",
         "sram_offset": "0x0",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "conditions": [
+            {
+                "type": "PreviousTile",
+                "name": "Ganon's Tower - Firesnake Room"
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf436"
+            }
+        ]
     },
     {
         "name": "Ganons Tower - Randomizer Room - Top Left",
         "sram_offset": "0x0",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Chest",
+                        "x": "6496",
+                        "y": "3720"
+                    }
+                ]
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf436"
+            }
+        ]
     },
     {
         "name": "Ganons Tower - Randomizer Room - Top Right",
         "sram_offset": "0x0",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Chest",
+                        "x": "6544",
+                        "y": "3720"
+                    }
+                ]
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf436"
+            }
+        ]
     },
     {
         "name": "Ganons Tower - Randomizer Room - Bottom Left",
         "sram_offset": "0x0",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Chest",
+                        "x": "6496",
+                        "y": "3768"
+                    }
+                ]
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf436"
+            }
+        ]
     },
     {
         "name": "Ganons Tower - Randomizer Room - Bottom Right",
         "sram_offset": "0x0",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Chest",
+                        "x": "6544",
+                        "y": "3768"
+                    }
+                ]
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf436"
+            }
+        ]
     },
     {
         "name": "Ganons Tower - Bob's Chest",
         "sram_offset": "0x0",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "conditions": [
+            {
+                "type": "PreviousTile",
+                "name": "Ganon's Tower - Armos Approach"
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf436"
+            }
+        ]
     },
     {
         "name": "Ganons Tower - Big Chest",
         "sram_offset": "0x0",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "conditions": [
+            {
+                "type": "PreviousTile",
+                "name": "Ganon's Tower - Big Chest Room"
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf436"
+            }
+        ]
     },
     {
         "name": "Ganons Tower - Big Key Room - Left",
         "sram_offset": "0x0",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Chest",
+                        "x": "6496",
+                        "y": "584"
+                    }
+                ]
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf436"
+            }
+        ]
     },
     {
         "name": "Ganons Tower - Big Key Room - Right",
         "sram_offset": "0x0",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Chest",
+                        "x": "6544",
+                        "y": "584"
+                    }
+                ]
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf436"
+            }
+        ]
     },
     {
         "name": "Ganons Tower - Big Key Chest",
         "sram_offset": "0x0",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Chest",
+                        "x": "6520",
+                        "y": "616"
+                    }
+                ]
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf436"
+            }
+        ]
     },
     {
         "name": "Ganons Tower - Mini Helmasaur Room - Left",
         "sram_offset": "0x0",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Chest",
+                        "x": "7014",
+                        "y": "1608"
+                    }
+                ]
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf436"
+            }
+        ]
     },
     {
         "name": "Ganons Tower - Mini Helmasaur Room - Right",
         "sram_offset": "0x0",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Chest",
+                        "x": "6960",
+                        "y": "1608"
+                    }
+                ]
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf436"
+            }
+        ]
     },
     {
         "name": "Ganons Tower - Pre-Moldorm Chest",
         "sram_offset": "0x0",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "conditions": [
+            {
+                "type": "PreviousTile",
+                "name": "Ganon's Tower - Moldorm Approach"
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf436"
+            }
+        ]
     },
     {
         "name": "Ganons Tower - Validation Chest",
         "sram_offset": "0x0",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "conditions": [
+            {
+                "type": "PreviousTile",
+                "name": "Ganon's Tower - Moldorm"
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf436"
+            }
+        ]
     }
 ]

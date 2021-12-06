@@ -9472,7 +9472,7 @@
     },
     {
         "id": 498,
-        "name": "Ganon's Tower - Triple Stalfos Treasure Room",
+        "name": "Ganon's Tower - DMs Room",
         "region": "Ganon's Tower",
         "indoors": true,
         "address_value": [
@@ -9493,7 +9493,7 @@
     },
     {
         "id": 499,
-        "name": "Ganon's Tower - Twin Fire Bar Chest Room",
+        "name": "Ganon's Tower - Map Chest Room",
         "region": "Ganon's Tower",
         "indoors": true,
         "address_value": [
@@ -9561,7 +9561,7 @@
     },
     {
         "id": 502,
-        "name": "Ganon's Tower - Quad Fire Snake Room",
+        "name": "Ganon's Tower - Firesnake Room",
         "region": "Ganon's Tower",
         "indoors": true,
         "address_value": [
@@ -9629,7 +9629,7 @@
     },
     {
         "id": 505,
-        "name": "Ganon's Tower - Bombable Treasure Room",
+        "name": "Ganon's Tower - Randomizer Room",
         "region": "Ganon's Tower",
         "indoors": true,
         "address_value": [
@@ -9713,7 +9713,7 @@
     },
     {
         "id": 509,
-        "name": "Ganon's Tower - Big Chest Key Room",
+        "name": "Ganon's Tower - Big Key Chest Room",
         "region": "Ganon's Tower",
         "indoors": true,
         "address_value": [
@@ -9933,7 +9933,7 @@
     },
     {
         "id": 519,
-        "name": "Ganon's Tower - Bumper Portal Treasure Room",
+        "name": "Ganon's Tower - Compass Room",
         "region": "Ganon's Tower",
         "indoors": true,
         "address_value": [
@@ -10605,7 +10605,7 @@
     },
     {
         "id": 546,
-        "name": "Ganon's Tower - Key Minihelma",
+        "name": "Ganon's Tower - Mini Helmasaur Room",
         "region": "Ganon's Tower",
         "indoors": true,
         "address_value": [
@@ -10716,7 +10716,7 @@
                 "coordinates": [
                     {
                         "type": "Range",
-                        "x": "3112-3270",
+                        "x": "3112-3528",
                         "y": "5160-5568"
                     }
                 ]

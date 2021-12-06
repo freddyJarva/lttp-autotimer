@@ -1,0 +1,43 @@
+[
+    {
+        "name": "Save & Quit",
+        "is_progressive": true,
+        "sram_offset": "0xf42D",
+        "sram_mask": "0xff",
+        "id": 0
+    },
+    {
+        "name": "Death",
+        "is_progressive": true,
+        "sram_offset": "0xf449",
+        "sram_mask": "0xff",
+        "id": 1
+    },
+    {
+        "name": "Overworld Mirror",
+        "is_progressive": true,
+        "sram_offset": "0xf43A",
+        "sram_mask": "0xff",
+        "id": 2
+    },
+    {
+        "name": "Dungeon Mirror",
+        "is_progressive": true,
+        "sram_offset": "0xf43B",
+        "sram_mask": "0xff",
+        "id": 3
+    },
+    {
+        "name": "Duck Pickup",
+        "is_progressive": true,
+        "sram_offset": "0xf44B",
+        "sram_mask": "0xff",
+        "id": 4
+    },
+    {
+        "name": "Triforce",
+        "sram_offset": "0xf443",
+        "sram_mask": "0x01",
+        "id": 5
+    }
+]

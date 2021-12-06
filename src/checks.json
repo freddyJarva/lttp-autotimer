@@ -2,262 +2,314 @@
     {
         "name": "Mushroom",
         "sram_offset": "0xf411",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "id": 0
     },
     {
         "name": "Bottle Merchant",
         "sram_offset": "0xf3c9",
-        "sram_mask": "0x02"
+        "sram_mask": "0x02",
+        "id": 1
     },
     {
         "name": "Flute Spot",
         "sram_offset": "0xf2aa",
-        "sram_mask": "0x40"
+        "sram_mask": "0x40",
+        "id": 2
     },
     {
         "name": "Sunken Treasure",
         "sram_offset": "0xf2bb",
-        "sram_mask": "0x40"
+        "sram_mask": "0x40",
+        "id": 3
     },
     {
         "name": "Purple Chest",
         "sram_offset": "0xf3c9",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "id": 4
     },
     {
         "name": "Blind's Hideout - Top",
         "sram_offset": "0xf23a",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "id": 5
     },
     {
         "name": "Blind's Hideout - Left",
         "sram_offset": "0xf23a",
-        "sram_mask": "0x20"
+        "sram_mask": "0x20",
+        "id": 6
     },
     {
         "name": "Blind's Hideout - Right",
         "sram_offset": "0xf23a",
-        "sram_mask": "0x40"
+        "sram_mask": "0x40",
+        "id": 7
     },
     {
         "name": "Blind's Hideout - Far Left",
         "sram_offset": "0xf23a",
-        "sram_mask": "0x80"
+        "sram_mask": "0x80",
+        "id": 8
     },
     {
         "name": "Blind's Hideout - Far Right",
         "sram_offset": "0xf23b",
-        "sram_mask": "0x01"
+        "sram_mask": "0x01",
+        "id": 9
     },
     {
         "name": "Link's Uncle",
         "sram_offset": "0xf3c6",
-        "sram_mask": "0x01"
+        "sram_mask": "0x01",
+        "id": 10
     },
     {
         "name": "Secret Passage",
         "sram_offset": "0xf0aa",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "id": 11
     },
     {
         "name": "King Zora",
         "sram_offset": "0xf410",
-        "sram_mask": "0x02"
+        "sram_mask": "0x02",
+        "id": 12
     },
     {
         "name": "Zora's Ledge",
         "sram_offset": "0xf301",
-        "sram_mask": "0x40"
+        "sram_mask": "0x40",
+        "id": 13
     },
     {
         "name": "Waterfall Fairy - Left",
         "sram_offset": "0xf228",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "id": 14
     },
     {
         "name": "Waterfall Fairy - Right",
         "sram_offset": "0xf228",
-        "sram_mask": "0x20"
+        "sram_mask": "0x20",
+        "id": 15
     },
     {
         "name": "King's Tomb",
         "sram_offset": "0xf226",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "id": 16
     },
     {
         "name": "Floodgate Chest",
         "sram_offset": "0xf216",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "id": 17
     },
     {
         "name": "Link's House",
         "sram_offset": "0xf208",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "id": 18
     },
     {
         "name": "Kakariko Tavern",
         "sram_offset": "0xf206",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "id": 19
     },
     {
         "name": "Chicken House",
         "sram_offset": "0xf210",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "id": 20
     },
     {
         "name": "Aginah's Cave",
         "sram_offset": "0xf214",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "id": 21
     },
     {
         "name": "Sahasrahla's Hut - Left",
         "sram_offset": "0xf20a",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "id": 22
     },
     {
         "name": "Sahasrahla's Hut - Middle",
         "sram_offset": "0xf20a",
-        "sram_mask": "0x20"
+        "sram_mask": "0x20",
+        "id": 23
     },
     {
         "name": "Sahasrahla's Hut - Right",
         "sram_offset": "0xf20a",
-        "sram_mask": "0x40"
+        "sram_mask": "0x40",
+        "id": 24
     },
     {
         "name": "Sahasrahla",
         "sram_offset": "0xf410",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "id": 25
     },
     {
         "name": "Kakariko Well - Top",
         "sram_offset": "0xf05e",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "id": 26
     },
     {
         "name": "Kakariko Well - Left",
         "sram_offset": "0xf05e",
-        "sram_mask": "0x20"
+        "sram_mask": "0x20",
+        "id": 27
     },
     {
         "name": "Kakariko Well - Middle",
         "sram_offset": "0xf05e",
-        "sram_mask": "0x40"
+        "sram_mask": "0x40",
+        "id": 28
     },
     {
         "name": "Kakariko Well - Right",
         "sram_offset": "0xf05e",
-        "sram_mask": "0x80"
+        "sram_mask": "0x80",
+        "id": 29
     },
     {
         "name": "Kakariko Well - Bottom",
         "sram_offset": "0xf05f",
-        "sram_mask": "0x01"
+        "sram_mask": "0x01",
+        "id": 30
     },
     {
         "name": "Blacksmith",
         "sram_offset": "0xf411",
-        "sram_mask": "0x04"
+        "sram_mask": "0x04",
+        "id": 31
     },
     {
         "name": "Magic Bat",
         "sram_offset": "0xf411",
-        "sram_mask": "0x80"
+        "sram_mask": "0x80",
+        "id": 32
     },
     {
         "name": "Sick Kid",
         "sram_offset": "0xf410",
-        "sram_mask": "0x04"
+        "sram_mask": "0x04",
+        "id": 33
     },
     {
         "name": "Hobo",
         "sram_offset": "0xf3c9",
-        "sram_mask": "0x01"
+        "sram_mask": "0x01",
+        "id": 34
     },
     {
         "name": "Lost Woods Hideout",
         "sram_offset": "0xf1c3",
-        "sram_mask": "0x02"
+        "sram_mask": "0x02",
+        "id": 35
     },
     {
         "name": "Lumberjack Tree",
         "sram_offset": "0xf1c5",
-        "sram_mask": "0x02"
+        "sram_mask": "0x02",
+        "id": 36
     },
     {
         "name": "Cave 45",
         "sram_offset": "0xf237",
-        "sram_mask": "0x04"
+        "sram_mask": "0x04",
+        "id": 37
     },
     {
         "name": "Graveyard Cave",
         "sram_offset": "0xf237",
-        "sram_mask": "0x02"
+        "sram_mask": "0x02",
+        "id": 38
     },
     {
         "name": "Checkerboard Cave",
         "sram_offset": "0xf24d",
-        "sram_mask": "0x02"
+        "sram_mask": "0x02",
+        "id": 39
     },
     {
         "name": "Mini Moldorm Cave - Far Left",
         "sram_offset": "0xf246",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "id": 40
     },
     {
         "name": "Mini Moldorm Cave - Left",
         "sram_offset": "0xf246",
-        "sram_mask": "0x20"
+        "sram_mask": "0x20",
+        "id": 41
     },
     {
         "name": "Mini Moldorm Cave - Right",
         "sram_offset": "0xf246",
-        "sram_mask": "0x40"
+        "sram_mask": "0x40",
+        "id": 42
     },
     {
         "name": "Mini Moldorm Cave - Far Right",
         "sram_offset": "0xf246",
-        "sram_mask": "0x80"
+        "sram_mask": "0x80",
+        "id": 43
     },
     {
         "name": "Mini Moldorm Cave - Generous Guy",
         "sram_offset": "0xf247",
-        "sram_mask": "0x04"
+        "sram_mask": "0x04",
+        "id": 44
     },
     {
         "name": "Ice Rod Cave",
         "sram_offset": "0xf240",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "id": 45
     },
     {
         "name": "Bonk Rock Cave",
         "sram_offset": "0xf248",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "id": 46
     },
     {
         "name": "Library",
         "sram_offset": "0xf410",
-        "sram_mask": "0x80"
+        "sram_mask": "0x80",
+        "id": 47
     },
     {
         "name": "Potion Shop",
         "sram_offset": "0xf411",
-        "sram_mask": "0x20"
+        "sram_mask": "0x20",
+        "id": 48
     },
     {
         "name": "Lake Hylia Island",
         "sram_offset": "0xf2b5",
-        "sram_mask": "0x40"
+        "sram_mask": "0x40",
+        "id": 49
     },
     {
         "name": "Maze Race",
         "sram_offset": "0xf2a8",
-        "sram_mask": "0x40"
+        "sram_mask": "0x40",
+        "id": 50
     },
     {
         "name": "Desert Ledge",
         "sram_offset": "0xf2b0",
-        "sram_mask": "0x40"
+        "sram_mask": "0x40",
+        "id": 51
     },
     {
         "name": "Desert Palace - Big Chest",
@@ -272,7 +324,8 @@
                 "type": "DungeonCounterIncreased",
                 "sram_offset": "0xf435"
             }
-        ]
+        ],
+        "id": 52
     },
     {
         "name": "Desert Palace - Torch",
@@ -287,7 +340,8 @@
                 "type": "DungeonCounterIncreased",
                 "sram_offset": "0xf435"
             }
-        ]
+        ],
+        "id": 53
     },
     {
         "name": "Desert Palace - Map Chest",
@@ -302,7 +356,8 @@
                 "type": "DungeonCounterIncreased",
                 "sram_offset": "0xf435"
             }
-        ]
+        ],
+        "id": 54
     },
     {
         "name": "Desert Palace - Compass Chest",
@@ -317,7 +372,8 @@
                 "type": "DungeonCounterIncreased",
                 "sram_offset": "0xf435"
             }
-        ]
+        ],
+        "id": 55
     },
     {
         "name": "Desert Palace - Big Key Chest",
@@ -332,7 +388,8 @@
                 "type": "DungeonCounterIncreased",
                 "sram_offset": "0xf435"
             }
-        ]
+        ],
+        "id": 56
     },
     {
         "name": "Desert Palace - Boss",
@@ -347,7 +404,8 @@
                 "type": "DungeonCounterIncreased",
                 "sram_offset": "0xf435"
             }
-        ]
+        ],
+        "id": 57
     },
     {
         "name": "Eastern Palace - Compass Chest",
@@ -362,7 +420,8 @@
                 "type": "PreviousTile",
                 "name": "Eastern Palace - Compass Chest Room"
             }
-        ]
+        ],
+        "id": 58
     },
     {
         "name": "Eastern Palace - Big Chest",
@@ -377,7 +436,8 @@
                 "type": "PreviousTile",
                 "name": "Eastern Palace - Big Chest Room"
             }
-        ]
+        ],
+        "id": 59
     },
     {
         "name": "Eastern Palace - Cannonball Chest",
@@ -401,7 +461,8 @@
                     }
                 ]
             }
-        ]
+        ],
+        "id": 60
     },
     {
         "name": "Eastern Palace - Big Key Chest",
@@ -416,7 +477,8 @@
                 "type": "PreviousTile",
                 "name": "Eastern Palace - Big Key Chest Room"
             }
-        ]
+        ],
+        "id": 61
     },
     {
         "name": "Eastern Palace - Map Chest",
@@ -431,7 +493,8 @@
                 "type": "PreviousTile",
                 "name": "Eastern Palace - Map Chest Room"
             }
-        ]
+        ],
+        "id": 62
     },
     {
         "name": "Eastern Palace - Boss",
@@ -442,52 +505,62 @@
                 "type": "PreviousTile",
                 "name": "Easter Palace - Boss"
             }
-        ]
+        ],
+        "id": 63
     },
     {
         "name": "Master Sword Pedestal",
         "sram_offset": "0xf300",
-        "sram_mask": "0x40"
+        "sram_mask": "0x40",
+        "id": 64
     },
     {
         "name": "Hyrule Castle - Boomerang Chest",
         "sram_offset": "0xf0e2",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "id": 65
     },
     {
         "name": "Hyrule Castle - Map Chest",
         "sram_offset": "0xf0e4",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "id": 66
     },
     {
         "name": "Hyrule Castle - Zelda's Chest",
         "sram_offset": "0xf100",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "id": 67
     },
     {
         "name": "Sewers - Dark Cross",
         "sram_offset": "0xf064",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "id": 68
     },
     {
         "name": "Sewers - Secret Room - Left",
         "sram_offset": "0xf022",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "id": 69
     },
     {
         "name": "Sewers - Secret Room - Middle",
         "sram_offset": "0xf022",
-        "sram_mask": "0x20"
+        "sram_mask": "0x20",
+        "id": 70
     },
     {
         "name": "Sewers - Secret Room - Right",
         "sram_offset": "0xf022",
-        "sram_mask": "0x40"
+        "sram_mask": "0x40",
+        "id": 71
     },
     {
         "name": "Sanctuary",
         "sram_offset": "0xf024",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "id": 72
     },
     {
         "name": "Castle Tower - Room 03",
@@ -498,7 +571,8 @@
                 "type": "PreviousTile",
                 "name": "Agahnim's Tower - Room 03"
             }
-        ]
+        ],
+        "id": 73
     },
     {
         "name": "Castle Tower - Dark Maze",
@@ -509,67 +583,80 @@
                 "type": "PreviousTile",
                 "name": "Agahnim's Tower - Dark Maze"
             }
-        ]
+        ],
+        "id": 74
     },
     {
         "name": "Old Man",
         "sram_offset": "0xf410",
-        "sram_mask": "0x01"
+        "sram_mask": "0x01",
+        "id": 75
     },
     {
         "name": "Spectacle Rock Cave",
         "sram_offset": "0xf1d5",
-        "sram_mask": "0x04"
+        "sram_mask": "0x04",
+        "id": 76
     },
     {
         "name": "Paradox Cave Lower - Far Left",
         "sram_offset": "0xf1de",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "id": 77
     },
     {
         "name": "Paradox Cave Lower - Left",
         "sram_offset": "0xf1de",
-        "sram_mask": "0x20"
+        "sram_mask": "0x20",
+        "id": 78
     },
     {
         "name": "Paradox Cave Lower - Right",
         "sram_offset": "0xf1de",
-        "sram_mask": "0x40"
+        "sram_mask": "0x40",
+        "id": 79
     },
     {
         "name": "Paradox Cave Lower - Far Right",
         "sram_offset": "0xf1de",
-        "sram_mask": "0x80"
+        "sram_mask": "0x80",
+        "id": 80
     },
     {
         "name": "Paradox Cave Lower - Middle",
         "sram_offset": "0xf1df",
-        "sram_mask": "0x01"
+        "sram_mask": "0x01",
+        "id": 81
     },
     {
         "name": "Paradox Cave Upper - Left",
         "sram_offset": "0xf1fe",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "id": 82
     },
     {
         "name": "Paradox Cave Upper - Right",
         "sram_offset": "0xf1fe",
-        "sram_mask": "0x20"
+        "sram_mask": "0x20",
+        "id": 83
     },
     {
         "name": "Spiral Cave",
         "sram_offset": "0xf1fc",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "id": 84
     },
     {
         "name": "Ether Tablet",
         "sram_offset": "0xf411",
-        "sram_mask": "0x01"
+        "sram_mask": "0x01",
+        "id": 85
     },
     {
         "name": "Spectacle Rock",
         "sram_offset": "0xf283",
-        "sram_mask": "0x40"
+        "sram_mask": "0x40",
+        "id": 86
     },
     {
         "name": "Tower of Hera - Basement Cage",
@@ -584,7 +671,8 @@
                 "type": "PreviousTile",
                 "name": "Tower of Hera - Basement Cage Room"
             }
-        ]
+        ],
+        "id": 87
     },
     {
         "name": "Tower of Hera - Map Chest",
@@ -599,7 +687,8 @@
                 "type": "PreviousTile",
                 "name": "Tower of Hera - Lobby"
             }
-        ]
+        ],
+        "id": 88
     },
     {
         "name": "Tower of Hera - Big Key Chest",
@@ -614,7 +703,8 @@
                 "type": "PreviousTile",
                 "name": "Tower of Hera - Basement Chest"
             }
-        ]
+        ],
+        "id": 89
     },
     {
         "name": "Tower of Hera - Compass Chest",
@@ -638,7 +728,8 @@
                     }
                 ]
             }
-        ]
+        ],
+        "id": 90
     },
     {
         "name": "Tower of Hera - Big Chest",
@@ -662,7 +753,8 @@
                     }
                 ]
             }
-        ]
+        ],
+        "id": 91
     },
     {
         "name": "Tower of Hera - Boss",
@@ -677,147 +769,176 @@
                 "type": "PreviousTile",
                 "name": "Tower of Hera - Boss"
             }
-        ]
+        ],
+        "id": 92
     },
     {
         "name": "Pyramid",
         "sram_offset": "0xf2db",
-        "sram_mask": "0x40"
+        "sram_mask": "0x40",
+        "id": 93
     },
     {
         "name": "Catfish",
         "sram_offset": "0xf410",
-        "sram_mask": "0x20"
+        "sram_mask": "0x20",
+        "id": 94
     },
     {
         "name": "Stumpy",
         "sram_offset": "0xf410",
-        "sram_mask": "0x08"
+        "sram_mask": "0x08",
+        "id": 95
     },
     {
         "name": "Digging Game",
         "sram_offset": "0xf2e8",
-        "sram_mask": "0x40"
+        "sram_mask": "0x40",
+        "id": 96
     },
     {
         "name": "Bombos Tablet",
         "sram_offset": "0xf411",
-        "sram_mask": "0x02"
+        "sram_mask": "0x02",
+        "id": 97
     },
     {
         "name": "Hype Cave - Top",
         "sram_offset": "0xf23c",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "id": 98
     },
     {
         "name": "Hype Cave - Middle Left",
         "sram_offset": "0xf23c",
-        "sram_mask": "0x20"
+        "sram_mask": "0x20",
+        "id": 99
     },
     {
         "name": "Hype Cave - Middle Right",
         "sram_offset": "0xf23c",
-        "sram_mask": "0x40"
+        "sram_mask": "0x40",
+        "id": 100
     },
     {
         "name": "Hype Cave - Bottom",
         "sram_offset": "0xf23c",
-        "sram_mask": "0x80"
+        "sram_mask": "0x80",
+        "id": 101
     },
     {
         "name": "Hype Cave - Generous Guy",
         "sram_offset": "0xf23d",
-        "sram_mask": "0x04"
+        "sram_mask": "0x04",
+        "id": 102
     },
     {
         "name": "Peg Cave",
         "sram_offset": "0xf24f",
-        "sram_mask": "0x04"
+        "sram_mask": "0x04",
+        "id": 103
     },
     {
         "name": "Pyramid Fairy - Left",
         "sram_offset": "0xf22c",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "id": 104
     },
     {
         "name": "Pyramid Fairy - Right",
         "sram_offset": "0xf22c",
-        "sram_mask": "0x20"
+        "sram_mask": "0x20",
+        "id": 105
     },
     {
         "name": "Brewery",
         "sram_offset": "0xf20c",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "id": 106
     },
     {
         "name": "C-Shaped House",
         "sram_offset": "0xf238",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "id": 107
     },
     {
         "name": "Chest Game",
         "sram_offset": "0xf20d",
-        "sram_mask": "0x04"
+        "sram_mask": "0x04",
+        "id": 108
     },
     {
         "name": "Bumper Cave Ledge",
         "sram_offset": "0xf2ca",
-        "sram_mask": "0x40"
+        "sram_mask": "0x40",
+        "id": 109
     },
     {
         "name": "Mire Shed - Left",
         "sram_offset": "0xf21a",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "id": 110
     },
     {
         "name": "Mire Shed - Right",
         "sram_offset": "0xf21a",
-        "sram_mask": "0x20"
+        "sram_mask": "0x20",
+        "id": 111
     },
     {
         "name": "Superbunny Cave - Top",
         "sram_offset": "0xf1f0",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "id": 112
     },
     {
         "name": "Superbunny Cave - Bottom",
         "sram_offset": "0xf1f0",
-        "sram_mask": "0x20"
+        "sram_mask": "0x20",
+        "id": 113
     },
     {
         "name": "Spike Cave",
         "sram_offset": "0xf22e",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "id": 114
     },
     {
         "name": "Hookshot Cave - Top Right",
         "sram_offset": "0xf078",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "id": 115
     },
     {
         "name": "Hookshot Cave - Top Left",
         "sram_offset": "0xf078",
-        "sram_mask": "0x20"
+        "sram_mask": "0x20",
+        "id": 116
     },
     {
         "name": "Hookshot Cave - Bottom Left",
         "sram_offset": "0xf078",
-        "sram_mask": "0x40"
+        "sram_mask": "0x40",
+        "id": 117
     },
     {
         "name": "Hookshot Cave - Bottom Right",
         "sram_offset": "0xf078",
-        "sram_mask": "0x80"
+        "sram_mask": "0x80",
+        "id": 118
     },
     {
         "name": "Floating Island",
         "sram_offset": "0xf285",
-        "sram_mask": "0x40"
+        "sram_mask": "0x40",
+        "id": 119
     },
     {
         "name": "Mimic Cave",
         "sram_offset": "0xf218",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "id": 120
     },
     {
         "name": "Swamp Palace - Entrance",
@@ -832,7 +953,8 @@
                 "type": "DungeonCounterIncreased",
                 "sram_offset": "0xf439"
             }
-        ]
+        ],
+        "id": 121
     },
     {
         "name": "Swamp Palace - Map Chest",
@@ -847,7 +969,8 @@
                 "type": "DungeonCounterIncreased",
                 "sram_offset": "0xf439"
             }
-        ]
+        ],
+        "id": 122
     },
     {
         "name": "Swamp Palace - Big Chest",
@@ -862,7 +985,8 @@
                 "type": "DungeonCounterIncreased",
                 "sram_offset": "0xf439"
             }
-        ]
+        ],
+        "id": 123
     },
     {
         "name": "Swamp Palace - Compass Chest",
@@ -877,7 +1001,8 @@
                 "type": "DungeonCounterIncreased",
                 "sram_offset": "0xf439"
             }
-        ]
+        ],
+        "id": 124
     },
     {
         "name": "Swamp Palace - Big Key Chest",
@@ -892,7 +1017,8 @@
                 "type": "DungeonCounterIncreased",
                 "sram_offset": "0xf439"
             }
-        ]
+        ],
+        "id": 125
     },
     {
         "name": "Swamp Palace - West Chest",
@@ -907,7 +1033,8 @@
                 "type": "DungeonCounterIncreased",
                 "sram_offset": "0xf439"
             }
-        ]
+        ],
+        "id": 126
     },
     {
         "name": "Swamp Palace - Flooded Room - Left",
@@ -931,7 +1058,8 @@
                 "type": "DungeonCounterIncreased",
                 "sram_offset": "0xf439"
             }
-        ]
+        ],
+        "id": 127
     },
     {
         "name": "Swamp Palace - Flooded Room - Right",
@@ -955,7 +1083,8 @@
                 "type": "DungeonCounterIncreased",
                 "sram_offset": "0xf439"
             }
-        ]
+        ],
+        "id": 128
     },
     {
         "name": "Swamp Palace - Waterfall Room",
@@ -970,7 +1099,8 @@
                 "type": "DungeonCounterIncreased",
                 "sram_offset": "0xf439"
             }
-        ]
+        ],
+        "id": 129
     },
     {
         "name": "Swamp Palace - Boss",
@@ -985,7 +1115,8 @@
                 "type": "DungeonCounterIncreased",
                 "sram_offset": "0xf439"
             }
-        ]
+        ],
+        "id": 130
     },
     {
         "name": "Thieves' Town - Big Key Chest",
@@ -1006,7 +1137,8 @@
                 "type": "DungeonCounterIncreased",
                 "sram_offset": "0xf437"
             }
-        ]
+        ],
+        "id": 131
     },
     {
         "name": "Thieves' Town - Map Chest",
@@ -1030,7 +1162,8 @@
                 "type": "DungeonCounterIncreased",
                 "sram_offset": "0xf437"
             }
-        ]
+        ],
+        "id": 132
     },
     {
         "name": "Thieves' Town - Compass Chest",
@@ -1045,7 +1178,8 @@
                 "type": "DungeonCounterIncreased",
                 "sram_offset": "0xf437"
             }
-        ]
+        ],
+        "id": 133
     },
     {
         "name": "Thieves' Town - Ambush Chest",
@@ -1060,7 +1194,8 @@
                 "type": "DungeonCounterIncreased",
                 "sram_offset": "0xf437"
             }
-        ]
+        ],
+        "id": 134
     },
     {
         "name": "Thieves' Town - Attic",
@@ -1075,7 +1210,8 @@
                 "type": "DungeonCounterIncreased",
                 "sram_offset": "0xf437"
             }
-        ]
+        ],
+        "id": 135
     },
     {
         "name": "Thieves' Town - Big Chest",
@@ -1090,7 +1226,8 @@
                 "type": "DungeonCounterIncreased",
                 "sram_offset": "0xf437"
             }
-        ]
+        ],
+        "id": 136
     },
     {
         "name": "Thieves' Town - Blind's Cell",
@@ -1105,7 +1242,8 @@
                 "type": "DungeonCounterIncreased",
                 "sram_offset": "0xf437"
             }
-        ]
+        ],
+        "id": 137
     },
     {
         "name": "Thieves' Town - Boss",
@@ -1120,7 +1258,8 @@
                 "type": "DungeonCounterIncreased",
                 "sram_offset": "0xf437"
             }
-        ]
+        ],
+        "id": 138
     },
     {
         "name": "Skull Woods - Compass Chest",
@@ -1135,7 +1274,8 @@
                 "type": "DungeonCounterIncreased",
                 "sram_offset": "0xf437"
             }
-        ]
+        ],
+        "id": 139
     },
     {
         "name": "Skull Woods - Map Chest",
@@ -1150,7 +1290,8 @@
                 "type": "DungeonCounterIncreased",
                 "sram_offset": "0xf437"
             }
-        ]
+        ],
+        "id": 140
     },
     {
         "name": "Skull Woods - Big Chest",
@@ -1165,7 +1306,8 @@
                 "type": "DungeonCounterIncreased",
                 "sram_offset": "0xf437"
             }
-        ]
+        ],
+        "id": 141
     },
     {
         "name": "Skull Woods - Pot Prison",
@@ -1180,7 +1322,8 @@
                 "type": "DungeonCounterIncreased",
                 "sram_offset": "0xf437"
             }
-        ]
+        ],
+        "id": 142
     },
     {
         "name": "Skull Woods - Pinball Room",
@@ -1195,7 +1338,8 @@
                 "type": "DungeonCounterIncreased",
                 "sram_offset": "0xf437"
             }
-        ]
+        ],
+        "id": 143
     },
     {
         "name": "Skull Woods - Big Key Chest",
@@ -1210,7 +1354,8 @@
                 "type": "DungeonCounterIncreased",
                 "sram_offset": "0xf437"
             }
-        ]
+        ],
+        "id": 144
     },
     {
         "name": "Skull Woods - Bridge Room",
@@ -1225,7 +1370,8 @@
                 "type": "DungeonCounterIncreased",
                 "sram_offset": "0xf437"
             }
-        ]
+        ],
+        "id": 145
     },
     {
         "name": "Skull Woods - Boss",
@@ -1240,7 +1386,8 @@
                 "type": "DungeonCounterIncreased",
                 "sram_offset": "0xf437"
             }
-        ]
+        ],
+        "id": 146
     },
     {
         "name": "Ice Palace - Compass Chest",
@@ -1255,7 +1402,8 @@
                 "type": "DungeonCounterIncreased",
                 "sram_offset": "0xf438"
             }
-        ]
+        ],
+        "id": 147
     },
     {
         "name": "Ice Palace - Freezor Chest",
@@ -1270,7 +1418,8 @@
                 "type": "DungeonCounterIncreased",
                 "sram_offset": "0xf438"
             }
-        ]
+        ],
+        "id": 148
     },
     {
         "name": "Ice Palace - Big Chest",
@@ -1285,7 +1434,8 @@
                 "type": "DungeonCounterIncreased",
                 "sram_offset": "0xf438"
             }
-        ]
+        ],
+        "id": 149
     },
     {
         "name": "Ice Palace - Iced T Room",
@@ -1300,7 +1450,8 @@
                 "type": "DungeonCounterIncreased",
                 "sram_offset": "0xf438"
             }
-        ]
+        ],
+        "id": 150
     },
     {
         "name": "Ice Palace - Spike Room",
@@ -1315,7 +1466,8 @@
                 "type": "DungeonCounterIncreased",
                 "sram_offset": "0xf438"
             }
-        ]
+        ],
+        "id": 151
     },
     {
         "name": "Ice Palace - Big Key Chest",
@@ -1330,7 +1482,8 @@
                 "type": "DungeonCounterIncreased",
                 "sram_offset": "0xf438"
             }
-        ]
+        ],
+        "id": 152
     },
     {
         "name": "Ice Palace - Map Chest",
@@ -1345,7 +1498,8 @@
                 "type": "DungeonCounterIncreased",
                 "sram_offset": "0xf438"
             }
-        ]
+        ],
+        "id": 153
     },
     {
         "name": "Ice Palace - Boss",
@@ -1360,7 +1514,8 @@
                 "type": "DungeonCounterIncreased",
                 "sram_offset": "0xf438"
             }
-        ]
+        ],
+        "id": 154
     },
     {
         "name": "Misery Mire - Big Chest",
@@ -1375,7 +1530,8 @@
                 "type": "DungeonCounterIncreased",
                 "sram_offset": "0xf438"
             }
-        ]
+        ],
+        "id": 155
     },
     {
         "name": "Misery Mire - Map Chest",
@@ -1390,7 +1546,8 @@
                 "type": "DungeonCounterIncreased",
                 "sram_offset": "0xf438"
             }
-        ]
+        ],
+        "id": 156
     },
     {
         "name": "Misery Mire - Main Lobby",
@@ -1405,7 +1562,8 @@
                 "type": "DungeonCounterIncreased",
                 "sram_offset": "0xf438"
             }
-        ]
+        ],
+        "id": 157
     },
     {
         "name": "Misery Mire - Bridge Chest",
@@ -1420,7 +1578,8 @@
                 "type": "DungeonCounterIncreased",
                 "sram_offset": "0xf438"
             }
-        ]
+        ],
+        "id": 158
     },
     {
         "name": "Misery Mire - Spike Chest",
@@ -1435,7 +1594,8 @@
                 "type": "DungeonCounterIncreased",
                 "sram_offset": "0xf438"
             }
-        ]
+        ],
+        "id": 159
     },
     {
         "name": "Misery Mire - Compass Chest",
@@ -1450,7 +1610,8 @@
                 "type": "DungeonCounterIncreased",
                 "sram_offset": "0xf438"
             }
-        ]
+        ],
+        "id": 160
     },
     {
         "name": "Misery Mire - Big Key Chest",
@@ -1465,7 +1626,8 @@
                 "type": "DungeonCounterIncreased",
                 "sram_offset": "0xf438"
             }
-        ]
+        ],
+        "id": 161
     },
     {
         "name": "Misery Mire - Boss",
@@ -1480,7 +1642,8 @@
                 "type": "DungeonCounterIncreased",
                 "sram_offset": "0xf438"
             }
-        ]
+        ],
+        "id": 162
     },
     {
         "name": "Turtle Rock - Compass Chest",
@@ -1495,7 +1658,8 @@
                 "type": "DungeonCounterIncreased",
                 "sram_offset": "0xf439"
             }
-        ]
+        ],
+        "id": 163
     },
     {
         "name": "Turtle Rock - Roller Room - Left",
@@ -1519,7 +1683,8 @@
                 "type": "DungeonCounterIncreased",
                 "sram_offset": "0xf439"
             }
-        ]
+        ],
+        "id": 164
     },
     {
         "name": "Turtle Rock - Roller Room - Right",
@@ -1543,7 +1708,8 @@
                 "type": "DungeonCounterIncreased",
                 "sram_offset": "0xf439"
             }
-        ]
+        ],
+        "id": 165
     },
     {
         "name": "Turtle Rock - Chain Chomps",
@@ -1558,7 +1724,8 @@
                 "type": "DungeonCounterIncreased",
                 "sram_offset": "0xf439"
             }
-        ]
+        ],
+        "id": 166
     },
     {
         "name": "Turtle Rock - Big Key Chest",
@@ -1573,7 +1740,8 @@
                 "type": "DungeonCounterIncreased",
                 "sram_offset": "0xf439"
             }
-        ]
+        ],
+        "id": 167
     },
     {
         "name": "Turtle Rock - Big Chest",
@@ -1588,7 +1756,8 @@
                 "type": "DungeonCounterIncreased",
                 "sram_offset": "0xf439"
             }
-        ]
+        ],
+        "id": 168
     },
     {
         "name": "Turtle Rock - Crystaroller Room",
@@ -1603,7 +1772,8 @@
                 "type": "DungeonCounterIncreased",
                 "sram_offset": "0xf439"
             }
-        ]
+        ],
+        "id": 169
     },
     {
         "name": "Turtle Rock - Eye Bridge - Bottom Left",
@@ -1627,7 +1797,8 @@
                 "type": "DungeonCounterIncreased",
                 "sram_offset": "0xf439"
             }
-        ]
+        ],
+        "id": 170
     },
     {
         "name": "Turtle Rock - Eye Bridge - Bottom Right",
@@ -1651,7 +1822,8 @@
                 "type": "DungeonCounterIncreased",
                 "sram_offset": "0xf439"
             }
-        ]
+        ],
+        "id": 171
     },
     {
         "name": "Turtle Rock - Eye Bridge - Top Left",
@@ -1675,7 +1847,8 @@
                 "type": "DungeonCounterIncreased",
                 "sram_offset": "0xf439"
             }
-        ]
+        ],
+        "id": 172
     },
     {
         "name": "Turtle Rock - Eye Bridge - Top Right",
@@ -1699,7 +1872,8 @@
                 "type": "DungeonCounterIncreased",
                 "sram_offset": "0xf439"
             }
-        ]
+        ],
+        "id": 173
     },
     {
         "name": "Turtle Rock - Boss",
@@ -1714,7 +1888,8 @@
                 "type": "DungeonCounterIncreased",
                 "sram_offset": "0xf439"
             }
-        ]
+        ],
+        "id": 174
     },
     {
         "name": "Palace of Darkness - Shooter Room",
@@ -1729,7 +1904,8 @@
                 "type": "DungeonCounterIncreased",
                 "sram_offset": "0xf434"
             }
-        ]
+        ],
+        "id": 175
     },
     {
         "name": "Palace of Darkness - The Arena - Bridge",
@@ -1753,7 +1929,8 @@
                 "type": "DungeonCounterIncreased",
                 "sram_offset": "0xf434"
             }
-        ]
+        ],
+        "id": 176
     },
     {
         "name": "Palace of Darkness - Stalfos Basement",
@@ -1768,7 +1945,8 @@
                 "type": "DungeonCounterIncreased",
                 "sram_offset": "0xf434"
             }
-        ]
+        ],
+        "id": 177
     },
     {
         "name": "Palace of Darkness - Big Key Chest",
@@ -1783,7 +1961,8 @@
                 "type": "DungeonCounterIncreased",
                 "sram_offset": "0xf434"
             }
-        ]
+        ],
+        "id": 178
     },
     {
         "name": "Palace of Darkness - The Arena - Ledge",
@@ -1807,7 +1986,8 @@
                 "type": "DungeonCounterIncreased",
                 "sram_offset": "0xf434"
             }
-        ]
+        ],
+        "id": 179
     },
     {
         "name": "Palace of Darkness - Map Chest",
@@ -1822,7 +2002,8 @@
                 "type": "DungeonCounterIncreased",
                 "sram_offset": "0xf434"
             }
-        ]
+        ],
+        "id": 180
     },
     {
         "name": "Palace of Darkness - Compass Chest",
@@ -1837,7 +2018,8 @@
                 "type": "DungeonCounterIncreased",
                 "sram_offset": "0xf434"
             }
-        ]
+        ],
+        "id": 181
     },
     {
         "name": "Palace of Darkness - Dark Basement - Left",
@@ -1861,7 +2043,8 @@
                 "type": "DungeonCounterIncreased",
                 "sram_offset": "0xf434"
             }
-        ]
+        ],
+        "id": 182
     },
     {
         "name": "Palace of Darkness - Dark Basement - Right",
@@ -1885,7 +2068,8 @@
                 "type": "DungeonCounterIncreased",
                 "sram_offset": "0xf434"
             }
-        ]
+        ],
+        "id": 183
     },
     {
         "name": "Palace of Darkness - Dark Maze - Top",
@@ -1909,7 +2093,8 @@
                 "type": "DungeonCounterIncreased",
                 "sram_offset": "0xf434"
             }
-        ]
+        ],
+        "id": 184
     },
     {
         "name": "Palace of Darkness - Dark Maze - Bottom",
@@ -1933,7 +2118,8 @@
                 "type": "DungeonCounterIncreased",
                 "sram_offset": "0xf434"
             }
-        ]
+        ],
+        "id": 185
     },
     {
         "name": "Palace of Darkness - Big Chest",
@@ -1948,7 +2134,8 @@
                 "type": "DungeonCounterIncreased",
                 "sram_offset": "0xf434"
             }
-        ]
+        ],
+        "id": 186
     },
     {
         "name": "Palace of Darkness - Harmless Hellway",
@@ -1963,7 +2150,8 @@
                 "type": "DungeonCounterIncreased",
                 "sram_offset": "0xf434"
             }
-        ]
+        ],
+        "id": 187
     },
     {
         "name": "Palace of Darkness - Boss",
@@ -1978,7 +2166,8 @@
                 "type": "DungeonCounterIncreased",
                 "sram_offset": "0xf434"
             }
-        ]
+        ],
+        "id": 188
     },
     {
         "name": "Ganons Tower - Bob's Torch",
@@ -1993,7 +2182,8 @@
                 "type": "DungeonCounterIncreased",
                 "sram_offset": "0xf436"
             }
-        ]
+        ],
+        "id": 189
     },
     {
         "name": "Ganons Tower - Hope Room - Left",
@@ -2014,7 +2204,8 @@
                 "type": "DungeonCounterIncreased",
                 "sram_offset": "0xf436"
             }
-        ]
+        ],
+        "id": 190
     },
     {
         "name": "Ganons Tower - Hope Room - Right",
@@ -2035,7 +2226,8 @@
                 "type": "DungeonCounterIncreased",
                 "sram_offset": "0xf436"
             }
-        ]
+        ],
+        "id": 191
     },
     {
         "name": "Ganons Tower - Tile Room",
@@ -2050,7 +2242,8 @@
                 "type": "DungeonCounterIncreased",
                 "sram_offset": "0xf436"
             }
-        ]
+        ],
+        "id": 192
     },
     {
         "name": "Ganons Tower - Compass Room - Top Left",
@@ -2071,7 +2264,8 @@
                 "type": "DungeonCounterIncreased",
                 "sram_offset": "0xf436"
             }
-        ]
+        ],
+        "id": 193
     },
     {
         "name": "Ganons Tower - Compass Room - Top Right",
@@ -2092,7 +2286,8 @@
                 "type": "DungeonCounterIncreased",
                 "sram_offset": "0xf436"
             }
-        ]
+        ],
+        "id": 194
     },
     {
         "name": "Ganons Tower - Compass Room - Bottom Left",
@@ -2113,7 +2308,8 @@
                 "type": "DungeonCounterIncreased",
                 "sram_offset": "0xf436"
             }
-        ]
+        ],
+        "id": 195
     },
     {
         "name": "Ganons Tower - Compass Room - Bottom Right",
@@ -2134,7 +2330,8 @@
                 "type": "DungeonCounterIncreased",
                 "sram_offset": "0xf436"
             }
-        ]
+        ],
+        "id": 196
     },
     {
         "name": "Ganons Tower - DMs Room - Top Left",
@@ -2155,7 +2352,8 @@
                 "type": "DungeonCounterIncreased",
                 "sram_offset": "0xf436"
             }
-        ]
+        ],
+        "id": 197
     },
     {
         "name": "Ganons Tower - DMs Room - Top Right",
@@ -2176,7 +2374,8 @@
                 "type": "DungeonCounterIncreased",
                 "sram_offset": "0xf436"
             }
-        ]
+        ],
+        "id": 198
     },
     {
         "name": "Ganons Tower - DMs Room - Bottom Left",
@@ -2197,7 +2396,8 @@
                 "type": "DungeonCounterIncreased",
                 "sram_offset": "0xf436"
             }
-        ]
+        ],
+        "id": 199
     },
     {
         "name": "Ganons Tower - DMs Room - Bottom Right",
@@ -2218,7 +2418,8 @@
                 "type": "DungeonCounterIncreased",
                 "sram_offset": "0xf436"
             }
-        ]
+        ],
+        "id": 200
     },
     {
         "name": "Ganons Tower - Map Chest",
@@ -2233,7 +2434,8 @@
                 "type": "DungeonCounterIncreased",
                 "sram_offset": "0xf436"
             }
-        ]
+        ],
+        "id": 201
     },
     {
         "name": "Ganons Tower - Firesnake Room",
@@ -2248,7 +2450,8 @@
                 "type": "DungeonCounterIncreased",
                 "sram_offset": "0xf436"
             }
-        ]
+        ],
+        "id": 202
     },
     {
         "name": "Ganons Tower - Randomizer Room - Top Left",
@@ -2269,7 +2472,8 @@
                 "type": "DungeonCounterIncreased",
                 "sram_offset": "0xf436"
             }
-        ]
+        ],
+        "id": 203
     },
     {
         "name": "Ganons Tower - Randomizer Room - Top Right",
@@ -2290,7 +2494,8 @@
                 "type": "DungeonCounterIncreased",
                 "sram_offset": "0xf436"
             }
-        ]
+        ],
+        "id": 204
     },
     {
         "name": "Ganons Tower - Randomizer Room - Bottom Left",
@@ -2311,7 +2516,8 @@
                 "type": "DungeonCounterIncreased",
                 "sram_offset": "0xf436"
             }
-        ]
+        ],
+        "id": 205
     },
     {
         "name": "Ganons Tower - Randomizer Room - Bottom Right",
@@ -2332,7 +2538,8 @@
                 "type": "DungeonCounterIncreased",
                 "sram_offset": "0xf436"
             }
-        ]
+        ],
+        "id": 206
     },
     {
         "name": "Ganons Tower - Bob's Chest",
@@ -2347,7 +2554,8 @@
                 "type": "DungeonCounterIncreased",
                 "sram_offset": "0xf436"
             }
-        ]
+        ],
+        "id": 207
     },
     {
         "name": "Ganons Tower - Big Chest",
@@ -2362,7 +2570,8 @@
                 "type": "DungeonCounterIncreased",
                 "sram_offset": "0xf436"
             }
-        ]
+        ],
+        "id": 208
     },
     {
         "name": "Ganons Tower - Big Key Room - Left",
@@ -2383,7 +2592,8 @@
                 "type": "DungeonCounterIncreased",
                 "sram_offset": "0xf436"
             }
-        ]
+        ],
+        "id": 209
     },
     {
         "name": "Ganons Tower - Big Key Room - Right",
@@ -2404,7 +2614,8 @@
                 "type": "DungeonCounterIncreased",
                 "sram_offset": "0xf436"
             }
-        ]
+        ],
+        "id": 210
     },
     {
         "name": "Ganons Tower - Big Key Chest",
@@ -2425,7 +2636,8 @@
                 "type": "DungeonCounterIncreased",
                 "sram_offset": "0xf436"
             }
-        ]
+        ],
+        "id": 211
     },
     {
         "name": "Ganons Tower - Mini Helmasaur Room - Left",
@@ -2446,7 +2658,8 @@
                 "type": "DungeonCounterIncreased",
                 "sram_offset": "0xf436"
             }
-        ]
+        ],
+        "id": 212
     },
     {
         "name": "Ganons Tower - Mini Helmasaur Room - Right",
@@ -2467,7 +2680,8 @@
                 "type": "DungeonCounterIncreased",
                 "sram_offset": "0xf436"
             }
-        ]
+        ],
+        "id": 213
     },
     {
         "name": "Ganons Tower - Pre-Moldorm Chest",
@@ -2482,7 +2696,8 @@
                 "type": "DungeonCounterIncreased",
                 "sram_offset": "0xf436"
             }
-        ]
+        ],
+        "id": 214
     },
     {
         "name": "Ganons Tower - Validation Chest",
@@ -2497,6 +2712,7 @@
                 "type": "DungeonCounterIncreased",
                 "sram_offset": "0xf436"
             }
-        ]
+        ],
+        "id": 215
     }
 ]

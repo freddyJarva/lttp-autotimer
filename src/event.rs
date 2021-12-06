@@ -1,5 +1,6 @@
 use chrono::serde::ts_milliseconds;
-use std::borrow::Borrow;
+use csv::Writer;
+use std::{borrow::Borrow, fs::File};
 
 use chrono::{DateTime, TimeZone, Utc};
 use serde::Serialize;
@@ -78,6 +79,7 @@ pub enum EventEnum {
     Transition(Tile),
     LocationCheck(Check),
     ItemGet(Check),
+    Other(Check),
 }
 
 pub struct EventTracker {
@@ -201,9 +203,14 @@ where
     }
 }
 
-impl From<EventEnum> for Event {
-    fn from(_: EventEnum) -> Self {
-        todo!()
+impl From<&EventEnum> for Event {
+    fn from(event: &EventEnum) -> Self {
+        match event {
+            EventEnum::Transition(t) => Event::from(t),
+            EventEnum::LocationCheck(check)
+            | EventEnum::ItemGet(check)
+            | EventEnum::Other(check) => Event::from(check),
+        }
     }
 }
 

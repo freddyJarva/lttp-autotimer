@@ -125,7 +125,7 @@ mod tests {
         let hobo = deserialize_transitions()
             .unwrap()
             .into_iter()
-            .find(|transition| transition.name == "Hobo")
+            .find(|transition| transition.id == 89)
             .unwrap();
         assert_eq!(
             hobo,
@@ -197,11 +197,11 @@ mod tests {
             $(
                 #[test]
                 fn $name() {
-                    let (tile_name, expected) = $values;
+                    let (tile_id, expected) = $values;
                     let tile  = deserialize_transitions()
                         .unwrap()
                         .into_iter()
-                        .find(|t| t.name == tile_name.to_string())
+                        .find(|t| t.id == tile_id)
                         .unwrap();
                     assert_eq!(tile.region(), expected.to_string())
                 }
@@ -210,8 +210,8 @@ mod tests {
     }
 
     test_region! {
-        skull_woods_front: ("Skull Woods - Big Chest", "Skull Woods"),
-        links_house_ow: ("Link's House OW", "Overworld"),
-        links_house_uw: ("Link's House UW", "Underworld"),
+        skull_woods_front: (352, "Skull Woods"),
+        links_house_ow: (17, "Overworld"),
+        links_house_uw: (20, "Underworld"),
     }
 }

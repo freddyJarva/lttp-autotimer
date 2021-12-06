@@ -2,302 +2,319 @@
     {
         "name": "Bow",
         "sram_offset": "0xf38e",
-        "sram_mask": "0x80"
+        "sram_mask": "0x80",
+        "id": 0
     },
     {
         "name": "Silver Arrows",
         "sram_offset": "0xf38e",
-        "sram_mask": "0x40"
+        "sram_mask": "0x40",
+        "id": 1
     },
     {
         "name": "Blue Boomerang",
         "sram_offset": "0xf38c",
-        "sram_mask": "0x80"
+        "sram_mask": "0x80",
+        "id": 2
     },
     {
         "name": "Red Boomerang",
         "sram_offset": "0xf38c",
-        "sram_mask": "0x40"
+        "sram_mask": "0x40",
+        "id": 3
     },
     {
         "name": "Hookshot",
         "sram_offset": "0xf342",
-        "sram_mask": "0x01"
+        "sram_mask": "0x01",
+        "id": 4
     },
     {
         "name": "Magic Powder",
         "sram_offset": "0xf38c",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "id": 5
     },
     {
         "name": "Mushroom",
         "sram_offset": "0xf38c",
-        "sram_mask": "0x20"
+        "sram_mask": "0x20",
+        "id": 6
     },
     {
         "name": "Fire Rod",
         "sram_offset": "0xf345",
-        "sram_mask": "0x01"
+        "sram_mask": "0x01",
+        "id": 7
     },
     {
         "name": "Ice Rod",
         "sram_offset": "0xf346",
-        "sram_mask": "0x01"
+        "sram_mask": "0x01",
+        "id": 8
     },
     {
         "name": "Bombos Medallion",
         "sram_offset": "0xf347",
-        "sram_mask": "0x01"
+        "sram_mask": "0x01",
+        "id": 9
     },
     {
         "name": "Ether Medallion",
         "sram_offset": "0xf348",
-        "sram_mask": "0x01"
+        "sram_mask": "0x01",
+        "id": 10
     },
     {
         "name": "Quake Medallion",
         "sram_offset": "0xf349",
-        "sram_mask": "0x01"
+        "sram_mask": "0x01",
+        "id": 11
     },
     {
         "name": "Lantern",
         "sram_offset": "0xf34a",
-        "sram_mask": "0x01"
+        "sram_mask": "0x01",
+        "id": 12
     },
     {
         "name": "Hammer",
         "sram_offset": "0xf34b",
-        "sram_mask": "0x01"
+        "sram_mask": "0x01",
+        "id": 13
     },
     {
         "name": "Shovel",
         "sram_offset": "0xf38c",
-        "sram_mask": "0x04"
+        "sram_mask": "0x04",
+        "id": 14
     },
     {
         "name": "Flute (Inactive)",
         "sram_offset": "0xf38c",
-        "sram_mask": "0x03"
+        "sram_mask": "0x03",
+        "id": 15
     },
     {
         "name": "Flute (Activated)",
         "sram_offset": "0xf38c",
-        "sram_mask": "0x01"
+        "sram_mask": "0x01",
+        "id": 16
     },
     {
         "name": "Bug-Catching Net",
         "sram_offset": "0xf34d",
-        "sram_mask": "0x01"
+        "sram_mask": "0x01",
+        "id": 17
     },
     {
         "name": "Book of Mudora",
         "sram_offset": "0xf34e",
-        "sram_mask": "0x01"
+        "sram_mask": "0x01",
+        "id": 18
     },
     {
         "name": "Bottle",
         "is_progressive": true,
         "sram_offset": "0xf34f",
-        "sram_mask": "0xff"
+        "sram_mask": "0xff",
+        "id": 19
     },
     {
         "name": "Cane of Somaria",
         "sram_offset": "0xf350",
-        "sram_mask": "0x01"
+        "sram_mask": "0x01",
+        "id": 20
     },
     {
         "name": "Cane of Byrna",
         "sram_offset": "0xf351",
-        "sram_mask": "0x01"
+        "sram_mask": "0x01",
+        "id": 21
     },
     {
         "name": "Magic Mirror",
         "sram_offset": "0xf353",
-        "sram_mask": "0x02"
+        "sram_mask": "0x02",
+        "id": 22
     },
     {
         "name": "Boots",
         "sram_offset": "0xf355",
-        "sram_mask": "0x01"
+        "sram_mask": "0x01",
+        "id": 23
     },
     {
         "name": "Progressive Glove",
         "is_progressive": true,
         "sram_offset": "0xf354",
-        "sram_mask": "0xff"
+        "sram_mask": "0xff",
+        "id": 24
     },
     {
         "name": "Flippers",
         "sram_offset": "0xf356",
-        "sram_mask": "0x01"
+        "sram_mask": "0x01",
+        "id": 25
     },
     {
         "name": "Moon Pearl",
         "sram_offset": "0xf357",
-        "sram_mask": "0x01"
+        "sram_mask": "0x01",
+        "id": 26
     },
     {
         "name": "Progressive Sword",
         "is_progressive": true,
         "sram_offset": "0xf359",
-        "sram_mask": "0xff"
+        "sram_mask": "0xff",
+        "id": 27
     },
     {
         "name": "Shield",
         "is_progressive": true,
         "sram_offset": "0xf35a",
-        "sram_mask": "0xff"
+        "sram_mask": "0xff",
+        "id": 28
     },
     {
         "name": "Armor",
         "is_progressive": true,
         "sram_offset": "0xf35b",
-        "sram_mask": "0xff"
+        "sram_mask": "0xff",
+        "id": 29
     },
     {
         "name": "Magic Upgrade",
         "is_progressive": true,
         "sram_offset": "0xf37B",
-        "sram_mask": "0xff"
+        "sram_mask": "0xff",
+        "id": 30
     },
     {
         "name": "Big Key - Hyrule Castle",
         "sram_offset": "0xf367",
-        "sram_mask": "0xc0"
+        "sram_mask": "0xc0",
+        "id": 31
     },
     {
         "name": "Big Key - Eastern Palace",
         "sram_offset": "0xf367",
-        "sram_mask": "0x20"
+        "sram_mask": "0x20",
+        "id": 32
     },
     {
         "name": "Big Key - Desert Palace",
         "sram_offset": "0xf367",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "id": 33
     },
     {
         "name": "Big Key - Tower of Hera",
         "sram_offset": "0xf366",
-        "sram_mask": "0x20"
+        "sram_mask": "0x20",
+        "id": 34
     },
     {
         "name": "Big Key - Palace of Darkness",
         "sram_offset": "0xf367",
-        "sram_mask": "0x02"
+        "sram_mask": "0x02",
+        "id": 35
     },
     {
         "name": "Big Key - Swamp Palace",
         "sram_offset": "0xf367",
-        "sram_mask": "0x04"
+        "sram_mask": "0x04",
+        "id": 36
     },
     {
         "name": "Big Key - Thieves' Town",
         "sram_offset": "0xf366",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "id": 37
     },
     {
         "name": "Big Key - Ice Palace",
         "sram_offset": "0xf366",
-        "sram_mask": "0x40"
+        "sram_mask": "0x40",
+        "id": 38
     },
     {
         "name": "Big Key - Misery Mire",
         "sram_offset": "0xf367",
-        "sram_mask": "0x01"
+        "sram_mask": "0x01",
+        "id": 39
     },
     {
         "name": "Big Key - Turtle Rock",
         "sram_offset": "0xf366",
-        "sram_mask": "0x08"
+        "sram_mask": "0x08",
+        "id": 40
     },
     {
         "name": "Big Key - Ganon's Tower",
         "sram_offset": "0xf366",
-        "sram_mask": "0x04"
+        "sram_mask": "0x04",
+        "id": 41
     },
     {
         "name": "Pendant of Courage",
         "sram_offset": "0xf374",
-        "sram_mask": "0x01"
+        "sram_mask": "0x01",
+        "id": 42
     },
     {
         "name": "Pendant of Wisdom",
         "sram_offset": "0xf374",
-        "sram_mask": "0x02"
+        "sram_mask": "0x02",
+        "id": 43
     },
     {
         "name": "Pendant of Power",
         "sram_offset": "0xf374",
-        "sram_mask": "0x04"
+        "sram_mask": "0x04",
+        "id": 44
     },
     {
         "name": "Crystal 1",
         "sram_offset": "0xf37A",
-        "sram_mask": "0x02"
+        "sram_mask": "0x02",
+        "id": 45
     },
     {
         "name": "Crystal 2",
         "sram_offset": "0xf37A",
-        "sram_mask": "0x10"
+        "sram_mask": "0x10",
+        "id": 46
     },
     {
         "name": "Crystal 3",
         "sram_offset": "0xf37A",
-        "sram_mask": "0x40"
+        "sram_mask": "0x40",
+        "id": 47
     },
     {
         "name": "Crystal 4",
         "sram_offset": "0xf37A",
-        "sram_mask": "0x20"
+        "sram_mask": "0x20",
+        "id": 48
     },
     {
         "name": "Crystal 5",
         "sram_offset": "0xf37A",
-        "sram_mask": "0x04"
+        "sram_mask": "0x04",
+        "id": 49
     },
     {
         "name": "Crystal 6",
         "sram_offset": "0xf37A",
-        "sram_mask": "0x01"
+        "sram_mask": "0x01",
+        "id": 50
     },
     {
         "name": "Crystal 7",
         "sram_offset": "0xf37A",
-        "sram_mask": "0x08"
-    },
-    {
-        "name": "Save & Quit",
-        "is_progressive": true,
-        "sram_offset": "0xf42D",
-        "sram_mask": "0xff"
-    },
-    {
-        "name": "Death",
-        "is_progressive": true,
-        "sram_offset": "0xf449",
-        "sram_mask": "0xff"
-    },
-    {
-        "name": "Overworld Mirror",
-        "is_progressive": true,
-        "sram_offset": "0xf43A",
-        "sram_mask": "0xff"
-    },
-    {
-        "name": "Dungeon Mirror",
-        "is_progressive": true,
-        "sram_offset": "0xf43B",
-        "sram_mask": "0xff"
-    },
-    {
-        "name": "Duck Pickup",
-        "is_progressive": true,
-        "sram_offset": "0xf44B",
-        "sram_mask": "0xff"
-    },
-    {
-        "name": "Triforce",
-        "sram_offset": "0xf443",
-        "sram_mask": "0x01"
+        "sram_mask": "0x08",
+        "id": 51
     }
 ]

@@ -6,6 +6,7 @@ use serde::Deserialize;
 
 #[derive(Debug, Deserialize, PartialEq, Default, Clone)]
 pub struct Check {
+    pub id: usize,
     pub name: String,
     #[serde(deserialize_with = "hex_deserialize")]
     pub sram_offset: u32,
@@ -29,6 +30,7 @@ pub struct Check {
 
 static CHECKS_JSON: &'static str = include_str!("checks.json");
 static ITEMS_JSON: &'static str = include_str!("items.json");
+static EVENTS_JSON: &'static str = include_str!("events.json");
 
 /// Reads src/checks.json and returns deserialized content
 pub fn deserialize_location_checks() -> Result<Vec<Check>, serde_json::Error> {
@@ -46,6 +48,11 @@ pub fn deserialize_item_checks() -> Result<Vec<Check>, serde_json::Error> {
             })
             .collect()
     })
+}
+
+/// Reads src/events.json and returns deserialized content
+pub fn deserialize_event_checks() -> Result<Vec<Check>, serde_json::Error> {
+    serde_json::from_str(EVENTS_JSON)
 }
 
 impl Check {
@@ -86,6 +93,20 @@ mod tests {
                 sram_offset: 0xf38e,
                 sram_mask: 0x80,
                 is_item: true,
+                ..Default::default()
+            }
+        )
+    }
+
+    #[test]
+    fn test_deserialize_event_checks() {
+        assert_eq!(
+            deserialize_event_checks().unwrap()[0],
+            Check {
+                name: "Save & Quit".to_string(),
+                is_progressive: true,
+                sram_offset: 0xf42d,
+                sram_mask: 0xff,
                 ..Default::default()
             }
         )

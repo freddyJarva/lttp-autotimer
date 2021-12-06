@@ -16,8 +16,10 @@ use websocket::{ClientBuilder, Message, OwnedMessage};
 use core::time;
 use std::io::stdin;
 
-use crate::check::{deserialize_item_checks, deserialize_location_checks};
-use crate::output::{print_flags_toggled, print_transition, print_verbose_diff};
+use crate::check::{
+    deserialize_event_checks, deserialize_item_checks, deserialize_location_checks,
+};
+use crate::output::print_transition;
 use crate::qusb::{attempt_qusb_connection, QusbRequestMessage};
 use crate::snes::NamedAddresses;
 
@@ -116,6 +118,7 @@ pub fn connect_to_qusb(args: &ArgMatches) -> anyhow::Result<()> {
     // This is to ensure it only checks for events - especially transitions - while in-game.
     let mut game_started = args.is_present("game started");
 
+    let mut subscribed_events: Vec<Check> = deserialize_event_checks()?;
     let mut locations: Vec<Check> = deserialize_location_checks()?
         .into_iter()
         // 0 offset checks without conditions hasn't been given a proper value in checks.json yet
@@ -132,7 +135,15 @@ pub fn connect_to_qusb(args: &ArgMatches) -> anyhow::Result<()> {
                 if !game_started {
                     game_started = check_for_game_start(&snes_ram, &mut events)?;
                 } else {
-                    check_for_transitions(&snes_ram, &mut ram_history, &mut writer, &mut events)?;
+                    check_for_events(
+                        &snes_ram,
+                        &mut ram_history,
+                        &mut subscribed_events,
+                        &mut writer,
+                        &mut events,
+                        &mut game_started,
+                    )?;
+                    check_for_transitions(&snes_ram, &mut writer, &mut events)?;
                     check_for_location_checks(
                         &snes_ram,
                         &mut ram_history,
@@ -146,7 +157,6 @@ pub fn connect_to_qusb(args: &ArgMatches) -> anyhow::Result<()> {
                         &mut items,
                         &mut writer,
                         &mut events,
-                        &mut game_started,
                     )?;
                     ram_history.push_back(snes_ram);
                 }
@@ -323,7 +333,6 @@ fn check_for_item_checks(
     checks: &mut Vec<Check>,
     writer: &mut Writer<File>,
     events: &mut EventTracker,
-    game_started: &mut bool,
 ) -> anyhow::Result<()> {
     for check in checks {
         let current_check_value = ram.get_byte(check.sram_offset as usize);
@@ -332,8 +341,6 @@ fn check_for_item_checks(
             && (previous_values[previous_values.len() - 1].get_byte(check.sram_offset as usize)
                 != current_check_value)
         {
-            let previous_state = &previous_values[previous_values.len() - 1];
-            let previous_check_value = previous_state.get_byte(check.sram_offset as usize);
             if !check.is_progressive
                 && current_check_value & check.sram_mask != 0
                 && !check.is_checked
@@ -353,7 +360,6 @@ fn check_for_item_checks(
                     check.time_of_check,
                     format!("{} - {}", check.name, check.progressive_level).on_green(),
                 );
-                *game_started = check.name != "Save & Quit";
                 events.push(EventEnum::ItemGet(check.clone()));
                 writer.serialize(Event::from(check))?;
             }
@@ -365,7 +371,6 @@ fn check_for_item_checks(
 
 fn check_for_transitions(
     ram: &SnesRam,
-    ram_history: &mut VecDeque<SnesRam>,
     writer: &mut Writer<File>,
     events: &mut EventTracker,
 ) -> anyhow::Result<()> {
@@ -401,4 +406,48 @@ fn check_for_game_start(ram: &SnesRam, events: &EventTracker) -> anyhow::Result<
         }
     }
     Ok(false)
+}
+
+fn check_for_events(
+    ram: &SnesRam,
+    previous_values: &mut VecDeque<SnesRam>,
+    subscribed_events: &mut Vec<Check>,
+    writer: &mut Writer<File>,
+    events: &mut EventTracker,
+    game_started: &mut bool,
+) -> anyhow::Result<()> {
+    for event in subscribed_events {
+        let current_event_value = ram.get_byte(event.sram_offset as usize);
+
+        if previous_values.len() > 0
+            && (previous_values[previous_values.len() - 1].get_byte(event.sram_offset as usize)
+                != current_event_value)
+        {
+            if !event.is_progressive
+                && current_event_value & event.sram_mask != 0
+                && !event.is_checked
+            {
+                event.mark_as_checked();
+                println!(
+                    "Event! time: {:?}, item: {}",
+                    event.time_of_check,
+                    event.name.on_green(),
+                );
+                events.push(EventEnum::ItemGet(event.clone()));
+                writer.serialize(Event::from(event))?;
+            } else if event.is_progressive && current_event_value > event.snes_value {
+                event.progress_item(current_event_value);
+                println!(
+                    "Event! time: {:?}, event: {}",
+                    event.time_of_check,
+                    format!("{} - {}", event.name, event.progressive_level).on_yellow(),
+                );
+                *game_started = event.name != "Save & Quit";
+                events.push(EventEnum::Other(event.clone()));
+                writer.serialize(Event::from(event))?;
+            }
+        }
+    }
+
+    Ok(())
 }

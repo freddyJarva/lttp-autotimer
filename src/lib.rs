@@ -156,34 +156,35 @@ pub fn connect_to_qusb(args: &ArgMatches) -> anyhow::Result<()> {
         match get_chunka_chungus(&mut client) {
             Ok(snes_ram) => {
                 if !game_started {
-                    game_started = check_for_game_start(&snes_ram, &mut events)?;
+                    game_started = game_has_started(&snes_ram);
                 } else {
-                    check_for_events(
+                    game_started = check_for_events(
                         &snes_ram,
                         &mut ram_history,
                         &mut subscribed_events,
                         &mut writer,
                         &mut events,
-                        &mut game_started,
                         &print,
                     )?;
-                    check_for_transitions(&snes_ram, &mut writer, &mut events, &print)?;
-                    check_for_location_checks(
-                        &snes_ram,
-                        &mut ram_history,
-                        &mut locations,
-                        &mut writer,
-                        &mut events,
-                        &print,
-                    )?;
-                    check_for_item_checks(
-                        &snes_ram,
-                        &mut ram_history,
-                        &mut items,
-                        &mut writer,
-                        &mut events,
-                        &print,
-                    )?;
+                    if game_started {
+                        check_for_transitions(&snes_ram, &mut writer, &mut events, &print)?;
+                        check_for_location_checks(
+                            &snes_ram,
+                            &mut ram_history,
+                            &mut locations,
+                            &mut writer,
+                            &mut events,
+                            &print,
+                        )?;
+                        check_for_item_checks(
+                            &snes_ram,
+                            &mut ram_history,
+                            &mut items,
+                            &mut writer,
+                            &mut events,
+                            &print,
+                        )?;
+                    }
                     ram_history.push_back(snes_ram);
                 }
             }
@@ -430,18 +431,41 @@ fn check_for_transitions(
     Ok(())
 }
 
-fn check_for_game_start(ram: &SnesRam, events: &EventTracker) -> anyhow::Result<bool> {
-    match events.latest_transition() {
-        Some(previous_transition) => {
-            if let Ok(current_tile) = Tile::try_from_ram(ram, &previous_transition) {
-                return Ok(current_tile.indoors || &current_tile.id == &118); // id correspond to Pyramid in transitions.json
-            }
-        }
-        None => {
-            panic!("You've reached the unreachable, as EventTracker should always contain a transition when using ::new");
-        }
+/// Reads the ram value to see if has started since boot/reset/S&Q
+///
+/// Reads the value at 0x7e0010, which can be any of these:
+///
+/// * 00 - Intro
+/// * 01 - File Select
+/// * 02 - Copy File
+/// * 03 - Delete File
+/// * 04 - Name File
+/// * 05 - Load File
+/// * 06 - UnderworldLoad
+/// * 07 - Underworld
+/// * 08 - OverworldLoad
+/// * 0A - OverworldSpecialLoad
+/// * 0B - OverworldSpecial
+/// * 0C/0D - Unused
+/// * 0E - Interface
+/// * 0F - SpotlightClose
+/// * 10 - SpotlightOpen
+/// * 11 - UnderworldFallingEntrance
+/// * 12 - GameOver
+/// * 13 - BossVictory_Pendant
+/// * 14 - Attract
+/// * 15 - MirrorWarpFromAge
+/// * 16 - BossVictory_Crystal
+/// * 17 - SaveAndQuit
+/// * 18 - GanonEmerges
+/// * 19 - TriforceRoom
+/// * 1A - Credits
+/// * 1B - SpawnSelect
+fn game_has_started(ram: &SnesRam) -> bool {
+    match ram.get_byte(0x10) {
+        0x06..=0x0b => true,
+        _ => false,
     }
-    Ok(false)
 }
 
 fn check_for_events(
@@ -450,9 +474,8 @@ fn check_for_events(
     subscribed_events: &mut Vec<Check>,
     writer: &mut Writer<File>,
     events: &mut EventTracker,
-    game_started: &mut bool,
     print: &StdoutPrinter,
-) -> anyhow::Result<()> {
+) -> anyhow::Result<bool> {
     for event in subscribed_events {
         let current_event_value = ram.get_byte(event.sram_offset as usize);
 
@@ -472,12 +495,12 @@ fn check_for_events(
             } else if event.is_progressive && current_event_value > event.snes_value {
                 event.progress_item(current_event_value);
                 print.event(event);
-                *game_started = event.name != "Save & Quit";
                 let occurred_event = EventEnum::Other(event.clone());
                 writer.serialize(Event::from(&occurred_event))?;
                 events.push(occurred_event);
+                return Ok(event.name != "Save & Quit");
             }
         }
     }
-    Ok(())
+    Ok(true)
 }

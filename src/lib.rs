@@ -299,8 +299,9 @@ fn check_for_location_checks(
                         check.time_of_check,
                         check.name.on_blue(),
                     );
-                    events.push(EventEnum::LocationCheck(check.clone()));
-                    writer.serialize(Event::from(check))?;
+                    let location_check_event = EventEnum::LocationCheck(check.clone());
+                    writer.serialize(Event::from(&location_check_event))?;
+                    events.push(location_check_event);
                 }
             }
             None => {
@@ -316,8 +317,9 @@ fn check_for_location_checks(
                             check.time_of_check,
                             check.name.on_blue(),
                         );
-                        events.push(EventEnum::LocationCheck(check.clone()));
-                        writer.serialize(Event::from(check))?;
+                        let location_check_event = EventEnum::LocationCheck(check.clone());
+                        writer.serialize(Event::from(&location_check_event))?;
+                        events.push(location_check_event);
                     }
                 }
             }
@@ -351,8 +353,10 @@ fn check_for_item_checks(
                     check.time_of_check,
                     check.name.on_green(),
                 );
-                events.push(EventEnum::ItemGet(check.clone()));
-                writer.serialize(Event::from(check))?;
+
+                let item_event = EventEnum::ItemGet(check.clone());
+                writer.serialize(Event::from(&item_event))?;
+                events.push(item_event);
             } else if check.is_progressive && current_check_value > check.snes_value {
                 check.progress_item(current_check_value);
                 println!(
@@ -360,8 +364,10 @@ fn check_for_item_checks(
                     check.time_of_check,
                     format!("{} - {}", check.name, check.progressive_level).on_green(),
                 );
-                events.push(EventEnum::ItemGet(check.clone()));
-                writer.serialize(Event::from(check))?;
+
+                let item_event = EventEnum::ItemGet(check.clone());
+                writer.serialize(Event::from(&item_event))?;
+                events.push(item_event);
             }
         }
     }
@@ -380,9 +386,10 @@ fn check_for_transitions(
             if let Ok(mut current_tile) = Tile::try_from_ram(ram, &previous_transition) {
                 if current_tile.name != previous_transition.name {
                     current_tile.time_transit();
-                    writer.serialize(Event::from(&current_tile))?;
                     print_transition(&current_tile);
-                    events.push(EventEnum::Transition(current_tile));
+                    let transition_event = EventEnum::Transition(current_tile);
+                    writer.serialize(Event::from(&transition_event))?;
+                    events.push(transition_event);
                 }
             }
         }
@@ -433,8 +440,9 @@ fn check_for_events(
                     event.time_of_check,
                     event.name.on_green(),
                 );
-                events.push(EventEnum::ItemGet(event.clone()));
-                writer.serialize(Event::from(event))?;
+                let occurred_event = EventEnum::Other(event.clone());
+                writer.serialize(Event::from(&occurred_event))?;
+                events.push(occurred_event);
             } else if event.is_progressive && current_event_value > event.snes_value {
                 event.progress_item(current_event_value);
                 println!(
@@ -443,11 +451,11 @@ fn check_for_events(
                     format!("{} - {}", event.name, event.progressive_level).on_yellow(),
                 );
                 *game_started = event.name != "Save & Quit";
-                events.push(EventEnum::Other(event.clone()));
-                writer.serialize(Event::from(event))?;
+                let occurred_event = EventEnum::Other(event.clone());
+                writer.serialize(Event::from(&occurred_event))?;
+                events.push(occurred_event);
             }
         }
     }
-
     Ok(())
 }

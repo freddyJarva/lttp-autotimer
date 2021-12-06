@@ -1,6 +1,5 @@
 use chrono::serde::ts_milliseconds;
-use csv::Writer;
-use std::{borrow::Borrow, fs::File};
+use std::borrow::Borrow;
 
 use chrono::{DateTime, TimeZone, Utc};
 use serde::Serialize;
@@ -75,6 +74,7 @@ impl EventLog for EventTracker {
     }
 }
 
+#[derive(Debug, Clone)]
 pub enum EventEnum {
     Transition(Tile),
     LocationCheck(Check),
@@ -124,10 +124,10 @@ pub struct Event {
     timestamp: DateTime<Utc>,
     #[serde(skip_serializing)]
     indoors: Option<bool>,
-    region: Option<String>,
-    to: Option<String>,
-    location_id: Option<String>,
-    item_id: Option<String>,
+    transition_id: Option<usize>,
+    location_id: Option<usize>,
+    item_id: Option<usize>,
+    event_id: Option<usize>,
 }
 
 impl From<&Tile> for Event {
@@ -137,10 +137,10 @@ impl From<&Tile> for Event {
                 .timestamp
                 .expect("Found transition missing timestamp when serializing"),
             indoors: Some(transition.indoors),
-            region: Some(transition.region.clone()),
-            to: Some(transition.name.to_string()),
+            transition_id: Some(transition.id),
             location_id: None,
             item_id: None,
+            ..Default::default()
         }
     }
 }
@@ -152,10 +152,10 @@ impl From<&mut Tile> for Event {
                 .timestamp
                 .expect("Found transition missing timestamp when serializing"),
             indoors: Some(transition.indoors),
-            region: Some(transition.region.clone()),
-            to: Some(transition.name.to_string()),
+            transition_id: Some(transition.id),
             location_id: None,
             item_id: None,
+            ..Default::default()
         }
     }
 }
@@ -169,35 +169,17 @@ where
         let timestamp = check
             .time_of_check
             .expect("Found check missing timestamp when serializing");
-        if check.is_item && !check.is_progressive {
+        if check.is_item {
             Event {
                 timestamp,
-                region: None,
-                indoors: None,
-                to: None,
-                location_id: None,
-                item_id: Some(check.name.to_string()),
-            }
-        } else if check.is_item && check.is_progressive {
-            Event {
-                timestamp,
-                region: None,
-                indoors: None,
-                to: None,
-                location_id: None,
-                item_id: Some(format!("{} - {}", check.name, check.progressive_level)),
+                item_id: Some(check.id),
+                ..Default::default()
             }
         } else {
             Event {
                 timestamp,
-                indoors: None,
-                region: None,
-                to: None,
-                location_id: Some(check.name.to_string()),
-                item_id: match &check.item {
-                    Some(item) => Some(item.to_string()),
-                    None => None,
-                },
+                location_id: Some(check.id),
+                ..Default::default()
             }
         }
     }
@@ -207,9 +189,21 @@ impl From<&EventEnum> for Event {
     fn from(event: &EventEnum) -> Self {
         match event {
             EventEnum::Transition(t) => Event::from(t),
-            EventEnum::LocationCheck(check)
-            | EventEnum::ItemGet(check)
-            | EventEnum::Other(check) => Event::from(check),
+            EventEnum::LocationCheck(check) => Event {
+                timestamp: check.time_of_check.unwrap(),
+                location_id: Some(check.id),
+                ..Default::default()
+            },
+            EventEnum::ItemGet(check) => Event {
+                timestamp: check.time_of_check.unwrap(),
+                item_id: Some(check.id),
+                ..Default::default()
+            },
+            EventEnum::Other(check) => Event {
+                timestamp: check.time_of_check.unwrap(),
+                event_id: Some(check.id),
+                ..Default::default()
+            },
         }
     }
 }
@@ -219,10 +213,10 @@ impl Default for Event {
         Self {
             timestamp: chrono::Utc.timestamp_millis(0),
             indoors: Default::default(),
-            region: Default::default(),
-            to: Default::default(),
+            transition_id: Default::default(),
             location_id: Default::default(),
             item_id: Default::default(),
+            event_id: Default::default(),
         }
     }
 }
@@ -250,6 +244,7 @@ mod tests {
     convert_to_event! {
         from_location_check: (
             Check {
+                id: 0,
                 name: "Mushroom".to_string(),
                 sram_offset: 0x411,
                 sram_mask: 0x10,
@@ -257,13 +252,14 @@ mod tests {
                 ..Default::default()
             },
             Event {
-                location_id: Some("Mushroom".to_string()),
+                location_id: Some(0),
                 timestamp: Utc.timestamp_millis(200),
                 ..Default::default()
             }
         ),
         from_normal_item_check: (
             Check {
+                id: 4,
                 name: "Hookshot".to_string(),
                 sram_offset: 0x342,
                 sram_mask: 0x01,
@@ -272,13 +268,14 @@ mod tests {
                 ..Default::default()
             },
             Event {
-                item_id: Some("Hookshot".to_string()),
+                item_id: Some(4),
                 timestamp: Utc.timestamp_millis(200),
                 ..Default::default()
             }
         ),
         from_progressive_item_check: (
             Check {
+                id: 27,
                 name: "Progressive Sword".to_string(),
                 sram_offset: 0x342,
                 sram_mask: 0x01,
@@ -289,23 +286,22 @@ mod tests {
                 ..Default::default()
             },
             Event {
-                item_id: Some("Progressive Sword - 3".to_string()),
+                item_id: Some(27),
                 timestamp: Utc.timestamp_millis(200),
                 ..Default::default()
             }
         ),
         from_transition: (
             Tile {
-                name: "Lala".to_string(),
+                id: 1337,
                 region: "A great region".to_string(),
                 timestamp: Some(Utc.timestamp_millis(200)),
                 ..Default::default()
             },
             Event {
-                to: Some("Lala".to_string()),
+                transition_id: Some(1337),
                 timestamp: Utc.timestamp_millis(200),
                 indoors: Some(false),
-                region: Some("A great region".to_string()),
                 ..Default::default()
             }
         ),

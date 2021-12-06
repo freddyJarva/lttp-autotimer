@@ -1004,7 +1004,7 @@
     },
     {
         "id": 104,
-        "name": "Dam",
+        "name": "Dam OW",
         "region": "South Hyrule",
         "indoors": false,
         "address_value": [
@@ -1040,7 +1040,7 @@
     },
     {
         "id": 108,
-        "name": "Dam",
+        "name": "Dam UW",
         "region": "South Hyrule",
         "indoors": true,
         "address_value": [

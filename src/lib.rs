@@ -19,7 +19,7 @@ use std::io::stdin;
 use crate::check::{
     deserialize_event_checks, deserialize_item_checks, deserialize_location_checks,
 };
-use crate::output::print_transition;
+use crate::output::StdoutPrinter;
 use crate::qusb::{attempt_qusb_connection, QusbRequestMessage};
 use crate::snes::NamedAddresses;
 
@@ -104,6 +104,29 @@ pub fn connect_to_qusb(args: &ArgMatches) -> anyhow::Result<()> {
         sleep(time::Duration::from_millis(2000));
     }
 
+    let allow_output = match is_race_rom(&mut client) {
+        Ok(race_rom) => {
+            if race_rom {
+                false
+            } else {
+                args.is_present("Non race mode")
+            }
+        }
+        Err(_) => {
+            println!(
+                "Wasn't able to tell if race rom or not, defaulting to not allowing any event output"
+            );
+            false
+        }
+    };
+    if !allow_output {
+        println!(
+            "{}: no game info will be output in this window",
+            "Race mode activated".red()
+        )
+    }
+    let print = StdoutPrinter::new(allow_output);
+
     let mut ram_history: VecDeque<SnesRam> = VecDeque::new();
 
     let time_start = Utc::now();
@@ -142,14 +165,16 @@ pub fn connect_to_qusb(args: &ArgMatches) -> anyhow::Result<()> {
                         &mut writer,
                         &mut events,
                         &mut game_started,
+                        &print,
                     )?;
-                    check_for_transitions(&snes_ram, &mut writer, &mut events)?;
+                    check_for_transitions(&snes_ram, &mut writer, &mut events, &print)?;
                     check_for_location_checks(
                         &snes_ram,
                         &mut ram_history,
                         &mut locations,
                         &mut writer,
                         &mut events,
+                        &print,
                     )?;
                     check_for_item_checks(
                         &snes_ram,
@@ -157,6 +182,7 @@ pub fn connect_to_qusb(args: &ArgMatches) -> anyhow::Result<()> {
                         &mut items,
                         &mut writer,
                         &mut events,
+                        &print,
                     )?;
                     ram_history.push_back(snes_ram);
                 }
@@ -193,6 +219,22 @@ pub fn connect_to_qusb(args: &ArgMatches) -> anyhow::Result<()> {
         .ok()
         .expect("Failed to read line");
     Ok(())
+}
+
+fn is_race_rom(client: &mut websocket::sync::Client<std::net::TcpStream>) -> anyhow::Result<bool> {
+    loop {
+        let message = &QusbRequestMessage::get_address(0x308213, 1);
+        let message = Message {
+            opcode: websocket::message::Type::Text,
+            cd_status_code: None,
+            payload: Cow::Owned(serde_json::to_vec(message)?),
+        };
+        client.send_message(&message)?;
+        let response = client.recv_message()?;
+        if let OwnedMessage::Binary(res) = response {
+            return Ok(res[0] == 1 as u8);
+        };
+    }
 }
 
 // since we can't choose multiple addresses in a single request, we instead fetch a larger chunk of data from given address and forward
@@ -269,6 +311,7 @@ fn check_for_location_checks(
     checks: &mut Vec<Check>,
     writer: &mut Writer<File>,
     events: &mut EventTracker,
+    print: &StdoutPrinter,
 ) -> anyhow::Result<()> {
     for check in checks {
         match &check.conditions {
@@ -294,11 +337,7 @@ fn check_for_location_checks(
                     }
                 }) {
                     check.mark_as_checked();
-                    println!(
-                        "Check made! time: {:?}, location: {}",
-                        check.time_of_check,
-                        check.name.on_blue(),
-                    );
+
                     let location_check_event = EventEnum::LocationCheck(check.clone());
                     writer.serialize(Event::from(&location_check_event))?;
                     events.push(location_check_event);
@@ -312,11 +351,7 @@ fn check_for_location_checks(
                 {
                     if current_check_value & check.sram_mask != 0 && !check.is_checked {
                         check.mark_as_checked();
-                        println!(
-                            "Check made! time: {:?}, location: {}",
-                            check.time_of_check,
-                            check.name.on_blue(),
-                        );
+                        print.location_check(check);
                         let location_check_event = EventEnum::LocationCheck(check.clone());
                         writer.serialize(Event::from(&location_check_event))?;
                         events.push(location_check_event);
@@ -335,6 +370,7 @@ fn check_for_item_checks(
     checks: &mut Vec<Check>,
     writer: &mut Writer<File>,
     events: &mut EventTracker,
+    print: &StdoutPrinter,
 ) -> anyhow::Result<()> {
     for check in checks {
         let current_check_value = ram.get_byte(check.sram_offset as usize);
@@ -348,22 +384,14 @@ fn check_for_item_checks(
                 && !check.is_checked
             {
                 check.mark_as_checked();
-                println!(
-                    "Item get! time: {:?}, item: {}",
-                    check.time_of_check,
-                    check.name.on_green(),
-                );
+                print.item_check(check);
 
                 let item_event = EventEnum::ItemGet(check.clone());
                 writer.serialize(Event::from(&item_event))?;
                 events.push(item_event);
             } else if check.is_progressive && current_check_value > check.snes_value {
                 check.progress_item(current_check_value);
-                println!(
-                    "Item get! time: {:?}, item: {}",
-                    check.time_of_check,
-                    format!("{} - {}", check.name, check.progressive_level).on_green(),
-                );
+                print.item_check(check);
 
                 let item_event = EventEnum::ItemGet(check.clone());
                 writer.serialize(Event::from(&item_event))?;
@@ -379,6 +407,7 @@ fn check_for_transitions(
     ram: &SnesRam,
     writer: &mut Writer<File>,
     events: &mut EventTracker,
+    print: &StdoutPrinter,
 ) -> anyhow::Result<()> {
     // Use events if one transition has been triggered.
     match events.latest_transition() {
@@ -386,7 +415,7 @@ fn check_for_transitions(
             if let Ok(mut current_tile) = Tile::try_from_ram(ram, &previous_transition) {
                 if current_tile.name != previous_transition.name {
                     current_tile.time_transit();
-                    print_transition(&current_tile);
+                    print.transition(&current_tile);
                     let transition_event = EventEnum::Transition(current_tile);
                     writer.serialize(Event::from(&transition_event))?;
                     events.push(transition_event);
@@ -422,6 +451,7 @@ fn check_for_events(
     writer: &mut Writer<File>,
     events: &mut EventTracker,
     game_started: &mut bool,
+    print: &StdoutPrinter,
 ) -> anyhow::Result<()> {
     for event in subscribed_events {
         let current_event_value = ram.get_byte(event.sram_offset as usize);
@@ -435,21 +465,13 @@ fn check_for_events(
                 && !event.is_checked
             {
                 event.mark_as_checked();
-                println!(
-                    "Event! time: {:?}, item: {}",
-                    event.time_of_check,
-                    event.name.on_green(),
-                );
+                print.event(event);
                 let occurred_event = EventEnum::Other(event.clone());
                 writer.serialize(Event::from(&occurred_event))?;
                 events.push(occurred_event);
             } else if event.is_progressive && current_event_value > event.snes_value {
                 event.progress_item(current_event_value);
-                println!(
-                    "Event! time: {:?}, event: {}",
-                    event.time_of_check,
-                    format!("{} - {}", event.name, event.progressive_level).on_yellow(),
-                );
+                print.event(event);
                 *game_started = event.name != "Save & Quit";
                 let occurred_event = EventEnum::Other(event.clone());
                 writer.serialize(Event::from(&occurred_event))?;

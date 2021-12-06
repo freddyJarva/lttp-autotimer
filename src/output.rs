@@ -1,7 +1,41 @@
 use colored::Colorize;
 use termcolor::{ColorChoice, StandardStream};
 
-use crate::transition::Tile;
+use crate::{check::Check, transition::Tile};
+
+pub struct StdoutPrinter {
+    allow_output: bool,
+}
+
+impl StdoutPrinter {
+    pub fn new(allow_output: bool) -> Self {
+        Self { allow_output }
+    }
+
+    pub fn transition(&self, tile: &Tile) {
+        if self.allow_output {
+            print_transition(tile)
+        }
+    }
+
+    pub fn location_check(&self, check: &Check) {
+        if self.allow_output {
+            print_location_check(check)
+        }
+    }
+
+    pub fn item_check(&self, check: &Check) {
+        if self.allow_output {
+            print_item_check(check)
+        }
+    }
+
+    pub fn event(&self, event: &Check) {
+        if self.allow_output {
+            print_event(event)
+        }
+    }
+}
 
 /// Hack to make cmd.exe output colors instead of broken color escape codes
 /// Not sure why it works since I use another crate for  coloring, but it does!
@@ -54,4 +88,44 @@ pub fn print_transition(transition: &Tile) {
         transition.indoors,
         format!("{}", transition.name).on_purple()
     );
+}
+
+pub fn print_location_check(check: &Check) {
+    println!(
+        "Check made! time: {:?}, location: {}",
+        check.time_of_check,
+        check.name.on_blue(),
+    );
+}
+
+pub fn print_item_check(check: &Check) {
+    if check.is_progressive {
+        println!(
+            "Item get! time: {:?}, item: {}",
+            check.time_of_check,
+            format!("{} - {}", check.name, check.progressive_level).on_green(),
+        );
+    } else {
+        println!(
+            "Item get! time: {:?}, item: {}",
+            check.time_of_check,
+            check.name.on_green(),
+        );
+    }
+}
+
+pub fn print_event(event: &Check) {
+    if event.is_progressive {
+        println!(
+            "Event! time: {:?}, event: {}",
+            event.time_of_check,
+            format!("{} - {}", event.name, event.progressive_level).on_yellow(),
+        );
+    } else {
+        println!(
+            "Event! time: {:?}, item: {}",
+            event.time_of_check,
+            event.name.on_green(),
+        );
+    }
 }

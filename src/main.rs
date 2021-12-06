@@ -41,6 +41,10 @@ fn main() -> anyhow::Result<()> {
             Arg::new("game started")
                 .long("--game-started")
                 .about("Set this if you've already begun playing (i.e. spawned Link), as otherwise it might not start checking transitions for awhile")
+        ).arg(
+            Arg::new("Non race mode")
+                .long("--non-race")
+                .about("Show output on game events in app window. NOTE: This flag will have no effect when playing a race rom.")
         )
         .get_matches();
 

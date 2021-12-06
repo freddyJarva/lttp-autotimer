@@ -223,7 +223,7 @@ pub fn connect_to_qusb(args: &ArgMatches) -> anyhow::Result<()> {
 
 fn is_race_rom(client: &mut websocket::sync::Client<std::net::TcpStream>) -> anyhow::Result<bool> {
     loop {
-        let message = &QusbRequestMessage::get_address(0x308213, 1);
+        let message = &QusbRequestMessage::get_address(0x180213, 1);
         let message = Message {
             opcode: websocket::message::Type::Text,
             cd_status_code: None,

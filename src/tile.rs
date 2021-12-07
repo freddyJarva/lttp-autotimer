@@ -8,7 +8,7 @@ use serde::Deserialize;
 
 use crate::snes::NamedAddresses;
 
-static TRANSITIONS_JSON: &'static str = include_str!("transitions.json");
+static TRANSITIONS_JSON: &'static str = include_str!("tiles.json");
 
 #[derive(Debug, Deserialize, PartialEq, Clone)]
 pub struct Tile {

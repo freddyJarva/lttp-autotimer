@@ -113,7 +113,7 @@ mod tests {
     use crate::{
         assert_attrs,
         condition::{Conditions, Coordinate},
-        transition::Tile,
+        tile::Tile,
     };
 
     #[test]

@@ -1,7 +1,7 @@
 use colored::Colorize;
 use termcolor::{ColorChoice, StandardStream};
 
-use crate::{check::Check, transition::Tile};
+use crate::{check::Check, tile::Tile};
 
 pub struct StdoutPrinter {
     allow_output: bool,

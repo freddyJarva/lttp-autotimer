@@ -198,10 +198,16 @@ pub fn connect_to_qusb(args: &ArgMatches) -> anyhow::Result<()> {
 
         writer.flush()?;
 
-        if let Some(latest_item) = events.latest_item_get() {
-            if latest_item.name == "Triforce" {
-                game_finished = true;
-            }
+        if events
+            .latest_other_event()
+            .map(|event| event.id == 5)
+            .unwrap_or(false)
+            || events
+                .latest_transition()
+                .map(|tile| tile.id == 556)
+                .unwrap_or(false)
+        {
+            game_finished = true
         }
         if manual_update {
             println!("Press enter to update...");

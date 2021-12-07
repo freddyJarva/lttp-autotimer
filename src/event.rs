@@ -10,6 +10,7 @@ pub trait EventLog {
     fn latest_transition(&self) -> Option<Tile>;
     fn latest_location_check(&self) -> Option<Check>;
     fn latest_item_get(&self) -> Option<Check>;
+    fn latest_other_event(&self) -> Option<Check>;
 }
 
 impl EventLog for EventTracker {
@@ -66,6 +67,26 @@ impl EventLog for EventTracker {
             })
             .map(|event| {
                 if let EventEnum::ItemGet(t) = event {
+                    t.clone()
+                } else {
+                    panic!("This should never happen")
+                }
+            })
+    }
+
+    fn latest_other_event(&self) -> Option<Check> {
+        self.log
+            .iter()
+            .rev()
+            .find(|event| {
+                if let EventEnum::Other(_) = event {
+                    true
+                } else {
+                    false
+                }
+            })
+            .map(|event| {
+                if let EventEnum::Other(t) = event {
                     t.clone()
                 } else {
                     panic!("This should never happen")

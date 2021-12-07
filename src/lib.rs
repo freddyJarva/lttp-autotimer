@@ -121,8 +121,8 @@ pub fn connect_to_qusb(args: &ArgMatches) -> anyhow::Result<()> {
     };
     if !allow_output {
         println!(
-            "{}: no game info will be output in this window",
-            "Race mode activated".red()
+            "{}: no game info will be output in this window.\nNOTE: THIS TOOL IS NOT RACE LEGAL DESPITE VISUAL OUTPUT BEING TURNED OFF.",
+            "Race mode activated".red(),
         )
     }
     let print = StdoutPrinter::new(allow_output);

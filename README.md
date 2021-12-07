@@ -1,5 +1,28 @@
 # ALttPR Autotimer
 
+
+## How to use
+
+Grab the  [latest release](https://github.com/freddyJarva/lttp-autotimer/releases) for your Operating System. If an executable doesn't exists for your os, you'll have to build it from source yourself
+
+### Building from source
+1. Install [Rust](https://www.rust-lang.org/tools/install)
+2. Clone this repo
+3. In the repo folder on your computer, open a terminal and run `cargo build --release`
+4. You should find an executable in `path/to/repo/target/release`
+
+
+## Is this race legal?
+No.
+
+This reads a lot of information from the game, including but not limited to:
+- All item checks (even dungeons)
+- Current Tile (ish)
+- Link's current coordinates
+- Item acquisition
+
+... And more. The tool will not output information if the rom being used is a race rom, but you should still not consider it race legal. This tool is intended for post-game analysis, NOT for giving racers an advantage in-game.
+
 ## Adding new triggers
 If there's content missing (i.e. not being written out in the app or to the csv file) that you'd like to add, here are some tips to find the correct values. I'll be using snes9x for finding values, but feel free to use any other emulator/tool that allows you to read the snes.
 

@@ -3,7 +3,7 @@ use crate::serde_lttp::coordinate_range_deserialize;
 use crate::serde_lttp::hex_16bit_option_deserialize;
 use crate::serde_lttp::hex_usize_deserialize;
 use crate::snes::NamedAddresses;
-use crate::transition::Tile;
+use crate::tile::Tile;
 use crate::SnesRam;
 use serde::Deserialize;
 

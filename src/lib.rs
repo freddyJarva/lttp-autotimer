@@ -10,7 +10,7 @@ use clap::ArgMatches;
 
 use condition::{coordinate_condition_met, current_tile_condition_met};
 use snes::SnesRam;
-use transition::Tile;
+use tile::Tile;
 use websocket::{ClientBuilder, Message, OwnedMessage};
 
 use core::time;
@@ -43,7 +43,7 @@ mod snes;
 mod test_macros;
 
 mod condition;
-mod transition;
+mod tile;
 
 /// Snes memory address
 pub const VRAM_START: u32 = 0xf50000;

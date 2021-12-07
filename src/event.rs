@@ -4,7 +4,7 @@ use std::borrow::Borrow;
 use chrono::{DateTime, TimeZone, Utc};
 use serde::Serialize;
 
-use crate::{check::Check, transition::Tile};
+use crate::{check::Check, tile::Tile};
 
 pub trait EventLog {
     fn latest_transition(&self) -> Option<Tile>;
@@ -145,7 +145,7 @@ pub struct Event {
     timestamp: DateTime<Utc>,
     #[serde(skip_serializing)]
     indoors: Option<bool>,
-    transition_id: Option<usize>,
+    tile_id: Option<usize>,
     location_id: Option<usize>,
     item_id: Option<usize>,
     event_id: Option<usize>,
@@ -158,7 +158,7 @@ impl From<&Tile> for Event {
                 .timestamp
                 .expect("Found transition missing timestamp when serializing"),
             indoors: Some(transition.indoors),
-            transition_id: Some(transition.id),
+            tile_id: Some(transition.id),
             location_id: None,
             item_id: None,
             ..Default::default()
@@ -173,7 +173,7 @@ impl From<&mut Tile> for Event {
                 .timestamp
                 .expect("Found transition missing timestamp when serializing"),
             indoors: Some(transition.indoors),
-            transition_id: Some(transition.id),
+            tile_id: Some(transition.id),
             location_id: None,
             item_id: None,
             ..Default::default()
@@ -234,7 +234,7 @@ impl Default for Event {
         Self {
             timestamp: chrono::Utc.timestamp_millis(0),
             indoors: Default::default(),
-            transition_id: Default::default(),
+            tile_id: Default::default(),
             location_id: Default::default(),
             item_id: Default::default(),
             event_id: Default::default(),
@@ -320,7 +320,7 @@ mod tests {
                 ..Default::default()
             },
             Event {
-                transition_id: Some(1337),
+                tile_id: Some(1337),
                 timestamp: Utc.timestamp_millis(200),
                 indoors: Some(false),
                 ..Default::default()

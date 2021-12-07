@@ -4270,6 +4270,27 @@
         ]
     },
     {
+        "id": 557,
+        "name": "Tower of Hera - Fairy Drop",
+        "region": "Tower of Hera",
+        "indoors": true,
+        "address_value": [
+            "0x33"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Range",
+                        "x": "3640-3784",
+                        "y": "5168-5312"
+                    }
+                ]
+            }
+        ]
+    },
+    {
         "id": 276,
         "name": "Tower of Hera - Boss",
         "region": "Tower of Hera",

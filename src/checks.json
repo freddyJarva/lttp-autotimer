@@ -502,6 +502,10 @@
         "sram_mask": "0x10",
         "conditions": [
             {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf436"
+            },
+            {
                 "type": "PreviousTile",
                 "id": 240
             }
@@ -568,6 +572,10 @@
         "sram_mask": "0x10",
         "conditions": [
             {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf435"
+            },
+            {
                 "type": "PreviousTile",
                 "id": 278
             }
@@ -579,6 +587,10 @@
         "sram_offset": "0xf1a0",
         "sram_mask": "0x10",
         "conditions": [
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf435"
+            },
             {
                 "type": "PreviousTile",
                 "id": 280

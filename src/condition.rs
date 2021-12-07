@@ -9,7 +9,7 @@ use serde::Deserialize;
 
 #[derive(Debug, Deserialize, PartialEq, Clone, Hash, Eq, Default)]
 pub struct ConditionTransition {
-    pub name: String,
+    pub id: usize,
     #[serde(default)]
     #[serde(deserialize_with = "hex_16bit_option_deserialize")]
     pub address_value: Option<u16>,
@@ -143,8 +143,8 @@ pub fn previous_tile_condition_met(
     previous_tile: &Tile,
     tile: &Tile,
 ) -> bool {
-    condition.name == previous_tile.name || tile.name == previous_tile.name
+    condition.id == previous_tile.id || tile.id == previous_tile.id
 }
 pub fn current_tile_condition_met(condition: &ConditionTransition, tile: &Tile) -> bool {
-    condition.name == tile.name
+    condition.id == tile.id
 }

@@ -318,7 +318,7 @@
         "conditions": [
             {
                 "type": "PreviousTile",
-                "name": "Desert Palace - Big Chest Room"
+                "id": 247
             },
             {
                 "type": "DungeonCounterIncreased",
@@ -334,7 +334,7 @@
         "conditions": [
             {
                 "type": "PreviousTile",
-                "name": "Desert Palace - Bonk Torch"
+                "id": 245
             },
             {
                 "type": "DungeonCounterIncreased",
@@ -350,7 +350,7 @@
         "conditions": [
             {
                 "type": "PreviousTile",
-                "name": "Desert Palace - Map Chest Room"
+                "id": 249
             },
             {
                 "type": "DungeonCounterIncreased",
@@ -366,7 +366,7 @@
         "conditions": [
             {
                 "type": "PreviousTile",
-                "name": "Desert Palace - Compass Chest Room"
+                "id": 255
             },
             {
                 "type": "DungeonCounterIncreased",
@@ -382,7 +382,7 @@
         "conditions": [
             {
                 "type": "PreviousTile",
-                "name": "Desert Palace - Big Key Chest Room"
+                "id": 256
             },
             {
                 "type": "DungeonCounterIncreased",
@@ -398,7 +398,7 @@
         "conditions": [
             {
                 "type": "PreviousTile",
-                "name": "Desert Palace - North - Boss"
+                "id": 264
             },
             {
                 "type": "DungeonCounterIncreased",
@@ -418,7 +418,7 @@
             },
             {
                 "type": "PreviousTile",
-                "name": "Eastern Palace - Compass Chest Room"
+                "id": 228
             }
         ],
         "id": 58
@@ -434,7 +434,7 @@
             },
             {
                 "type": "PreviousTile",
-                "name": "Eastern Palace - Big Chest Room"
+                "id": 222
             }
         ],
         "id": 59
@@ -475,7 +475,7 @@
             },
             {
                 "type": "PreviousTile",
-                "name": "Eastern Palace - Big Key Chest Room"
+                "id": 231
             }
         ],
         "id": 61
@@ -491,7 +491,7 @@
             },
             {
                 "type": "PreviousTile",
-                "name": "Eastern Palace - Map Chest Room"
+                "id": 225
             }
         ],
         "id": 62
@@ -503,7 +503,7 @@
         "conditions": [
             {
                 "type": "PreviousTile",
-                "name": "Easter Palace - Boss"
+                "id": 240
             }
         ],
         "id": 63
@@ -569,7 +569,7 @@
         "conditions": [
             {
                 "type": "PreviousTile",
-                "name": "Agahnim's Tower - Room 03"
+                "id": 278
             }
         ],
         "id": 73
@@ -581,7 +581,7 @@
         "conditions": [
             {
                 "type": "PreviousTile",
-                "name": "Agahnim's Tower - Dark Maze"
+                "id": 280
             }
         ],
         "id": 74
@@ -669,7 +669,7 @@
             },
             {
                 "type": "PreviousTile",
-                "name": "Tower of Hera - Basement Cage Room"
+                "id": 270
             }
         ],
         "id": 87
@@ -685,7 +685,7 @@
             },
             {
                 "type": "PreviousTile",
-                "name": "Tower of Hera - Lobby"
+                "id": 266
             }
         ],
         "id": 88
@@ -701,7 +701,7 @@
             },
             {
                 "type": "PreviousTile",
-                "name": "Tower of Hera - Basement Chest"
+                "id": 269
             }
         ],
         "id": 89
@@ -767,7 +767,7 @@
             },
             {
                 "type": "PreviousTile",
-                "name": "Tower of Hera - Boss"
+                "id": 276
             }
         ],
         "id": 92
@@ -947,7 +947,7 @@
         "conditions": [
             {
                 "type": "PreviousTile",
-                "name": "Swamp Palace - Lobby"
+                "id": 320
             },
             {
                 "type": "DungeonCounterIncreased",
@@ -963,7 +963,7 @@
         "conditions": [
             {
                 "type": "PreviousTile",
-                "name": "Swamp Palace - Map Chest Ledge"
+                "id": 322
             },
             {
                 "type": "DungeonCounterIncreased",
@@ -979,7 +979,7 @@
         "conditions": [
             {
                 "type": "PreviousTile",
-                "name": "Swamp Palace - Hub"
+                "id": 326
             },
             {
                 "type": "DungeonCounterIncreased",
@@ -995,7 +995,7 @@
         "conditions": [
             {
                 "type": "PreviousTile",
-                "name": "Swamp Palace - Merry Go Round N"
+                "id": 327
             },
             {
                 "type": "DungeonCounterIncreased",
@@ -1011,7 +1011,7 @@
         "conditions": [
             {
                 "type": "PreviousTile",
-                "name": "Swamp Palace - Big Key Chest Room"
+                "id": 336
             },
             {
                 "type": "DungeonCounterIncreased",
@@ -1027,7 +1027,7 @@
         "conditions": [
             {
                 "type": "PreviousTile",
-                "name": "Swamp Palace - West Side Ledge W"
+                "id": 334
             },
             {
                 "type": "DungeonCounterIncreased",
@@ -1093,7 +1093,7 @@
         "conditions": [
             {
                 "type": "PreviousTile",
-                "name": "Swamp Palace - Waterfall Room"
+                "id": 344
             },
             {
                 "type": "DungeonCounterIncreased",
@@ -1109,7 +1109,7 @@
         "conditions": [
             {
                 "type": "PreviousTile",
-                "name": "Swamp Palace - Boss"
+                "id": 351
             },
             {
                 "type": "DungeonCounterIncreased",
@@ -1172,7 +1172,7 @@
         "conditions": [
             {
                 "type": "PreviousTile",
-                "name": "Thieves' Town - Front SE"
+                "id": 376
             },
             {
                 "type": "DungeonCounterIncreased",
@@ -1188,7 +1188,7 @@
         "conditions": [
             {
                 "type": "PreviousTile",
-                "name": "Thieves' Town - Front NW"
+                "id": 374
             },
             {
                 "type": "DungeonCounterIncreased",
@@ -1204,7 +1204,7 @@
         "conditions": [
             {
                 "type": "PreviousTile",
-                "name": "Thieves' Town - Attic"
+                "id": 385
             },
             {
                 "type": "DungeonCounterIncreased",
@@ -1220,7 +1220,7 @@
         "conditions": [
             {
                 "type": "PreviousTile",
-                "name": "Thieves' Town - Big Chest Room"
+                "id": 391
             },
             {
                 "type": "DungeonCounterIncreased",
@@ -1236,7 +1236,7 @@
         "conditions": [
             {
                 "type": "PreviousTile",
-                "name": "Thieves' Town - Blind's Cell"
+                "id": 393
             },
             {
                 "type": "DungeonCounterIncreased",
@@ -1252,7 +1252,7 @@
         "conditions": [
             {
                 "type": "PreviousTile",
-                "name": "Thieves' Town - Boss"
+                "id": 394
             },
             {
                 "type": "DungeonCounterIncreased",
@@ -1268,7 +1268,7 @@
         "conditions": [
             {
                 "type": "PreviousTile",
-                "name": "Skull Woods - Compass Chest Room"
+                "id": 355
             },
             {
                 "type": "DungeonCounterIncreased",
@@ -1284,7 +1284,7 @@
         "conditions": [
             {
                 "type": "PreviousTile",
-                "name": "Skull Woods - Map Chest Room"
+                "id": 353
             },
             {
                 "type": "DungeonCounterIncreased",
@@ -1300,7 +1300,7 @@
         "conditions": [
             {
                 "type": "PreviousTile",
-                "name": "Skull Woods - Big Chest Room"
+                "id": 352
             },
             {
                 "type": "DungeonCounterIncreased",
@@ -1316,7 +1316,7 @@
         "conditions": [
             {
                 "type": "PreviousTile",
-                "name": "Skull Woods - Pot Prison"
+                "id": 356
             },
             {
                 "type": "DungeonCounterIncreased",
@@ -1332,7 +1332,7 @@
         "conditions": [
             {
                 "type": "PreviousTile",
-                "name": "Skull Woods - Pinball Room"
+                "id": 357
             },
             {
                 "type": "DungeonCounterIncreased",
@@ -1348,7 +1348,7 @@
         "conditions": [
             {
                 "type": "PreviousTile",
-                "name": "Skull Woods - Big Key Chest Room"
+                "id": 359
             },
             {
                 "type": "DungeonCounterIncreased",
@@ -1364,7 +1364,7 @@
         "conditions": [
             {
                 "type": "PreviousTile",
-                "name": "Skull Woods Back - Bridge Room"
+                "id": 364
             },
             {
                 "type": "DungeonCounterIncreased",
@@ -1380,7 +1380,7 @@
         "conditions": [
             {
                 "type": "PreviousTile",
-                "name": "Skull Woods Back - Boss"
+                "id": 372
             },
             {
                 "type": "DungeonCounterIncreased",
@@ -1396,7 +1396,7 @@
         "conditions": [
             {
                 "type": "PreviousTile",
-                "name": "Ice Palace - Compass Chest Room"
+                "id": 401
             },
             {
                 "type": "DungeonCounterIncreased",
@@ -1412,7 +1412,7 @@
         "conditions": [
             {
                 "type": "PreviousTile",
-                "name": "Ice Palace - Freezor Chest Room"
+                "id": 427
             },
             {
                 "type": "DungeonCounterIncreased",
@@ -1428,7 +1428,7 @@
         "conditions": [
             {
                 "type": "PreviousTile",
-                "name": "Ice Palace - Big Chest Room"
+                "id": 428
             },
             {
                 "type": "DungeonCounterIncreased",
@@ -1444,7 +1444,7 @@
         "conditions": [
             {
                 "type": "PreviousTile",
-                "name": "Ice Palace - Iced T Room"
+                "id": 417
             },
             {
                 "type": "DungeonCounterIncreased",
@@ -1460,7 +1460,7 @@
         "conditions": [
             {
                 "type": "PreviousTile",
-                "name": "Ice Palace - Spike Room"
+                "id": 409
             },
             {
                 "type": "DungeonCounterIncreased",
@@ -1476,7 +1476,7 @@
         "conditions": [
             {
                 "type": "PreviousTile",
-                "name": "Ice Palace - Big Key Chest Room"
+                "id": 400
             },
             {
                 "type": "DungeonCounterIncreased",
@@ -1492,7 +1492,7 @@
         "conditions": [
             {
                 "type": "PreviousTile",
-                "name": "Ice Palace - Map Chest Room"
+                "id": 410
             },
             {
                 "type": "DungeonCounterIncreased",
@@ -1508,7 +1508,7 @@
         "conditions": [
             {
                 "type": "PreviousTile",
-                "name": "Ice Palace - Boss"
+                "id": 430
             },
             {
                 "type": "DungeonCounterIncreased",
@@ -1524,7 +1524,7 @@
         "conditions": [
             {
                 "type": "PreviousTile",
-                "name": "Misery Mire - Big Chest Room"
+                "id": 463
             },
             {
                 "type": "DungeonCounterIncreased",
@@ -1540,7 +1540,7 @@
         "conditions": [
             {
                 "type": "PreviousTile",
-                "name": "Misery Mire - Map Chest Room"
+                "id": 462
             },
             {
                 "type": "DungeonCounterIncreased",
@@ -1556,7 +1556,7 @@
         "conditions": [
             {
                 "type": "PreviousTile",
-                "name": "Misery Mire - Hub"
+                "id": 433
             },
             {
                 "type": "DungeonCounterIncreased",
@@ -1572,7 +1572,7 @@
         "conditions": [
             {
                 "type": "PreviousTile",
-                "name": "Misery Mire - Bridges"
+                "id": 449
             },
             {
                 "type": "DungeonCounterIncreased",
@@ -1588,7 +1588,7 @@
         "conditions": [
             {
                 "type": "PreviousTile",
-                "name": "Misery Mire - Spike Chest Room"
+                "id": 461
             },
             {
                 "type": "DungeonCounterIncreased",
@@ -1604,7 +1604,7 @@
         "conditions": [
             {
                 "type": "PreviousTile",
-                "name": "Misery Mire - Compass Chest Room"
+                "id": 437
             },
             {
                 "type": "DungeonCounterIncreased",
@@ -1620,7 +1620,7 @@
         "conditions": [
             {
                 "type": "PreviousTile",
-                "name": "Misery Mire - Big Key Chest Room"
+                "id": 445
             },
             {
                 "type": "DungeonCounterIncreased",
@@ -1636,7 +1636,7 @@
         "conditions": [
             {
                 "type": "PreviousTile",
-                "name": "Misery Mire - Boss"
+                "id": 457
             },
             {
                 "type": "DungeonCounterIncreased",
@@ -1652,7 +1652,7 @@
         "conditions": [
             {
                 "type": "PreviousTile",
-                "name": "Compass Chest Room"
+                "id": 471
             },
             {
                 "type": "DungeonCounterIncreased",
@@ -1718,7 +1718,7 @@
         "conditions": [
             {
                 "type": "PreviousTile",
-                "name": "Turtle Rock - Chain Chomp Room"
+                "id": 475
             },
             {
                 "type": "DungeonCounterIncreased",
@@ -1734,7 +1734,7 @@
         "conditions": [
             {
                 "type": "PreviousTile",
-                "name": "Turtle Rock - Lava Chest Room"
+                "id": 477
             },
             {
                 "type": "DungeonCounterIncreased",
@@ -1750,7 +1750,7 @@
         "conditions": [
             {
                 "type": "PreviousTile",
-                "name": "Turtle Rock - Big Chest Room"
+                "id": 481
             },
             {
                 "type": "DungeonCounterIncreased",
@@ -1766,7 +1766,7 @@
         "conditions": [
             {
                 "type": "PreviousTile",
-                "name": "Turtle Rock - Crystaroller Room"
+                "id": 487
             },
             {
                 "type": "DungeonCounterIncreased",
@@ -1882,7 +1882,7 @@
         "conditions": [
             {
                 "type": "PreviousTile",
-                "name": "Turtle Rock - Boss"
+                "id": 492
             },
             {
                 "type": "DungeonCounterIncreased",
@@ -1898,7 +1898,7 @@
         "conditions": [
             {
                 "type": "PreviousTile",
-                "name": "Palace of Darkness - Shooter Room"
+                "id": 296
             },
             {
                 "type": "DungeonCounterIncreased",
@@ -1939,7 +1939,7 @@
         "conditions": [
             {
                 "type": "PreviousTile",
-                "name": "Palace of Darkness - Stalfos Basement"
+                "id": 298
             },
             {
                 "type": "DungeonCounterIncreased",
@@ -1955,7 +1955,7 @@
         "conditions": [
             {
                 "type": "PreviousTile",
-                "name": "Palace of Darkness - Fork"
+                "id": 297
             },
             {
                 "type": "DungeonCounterIncreased",
@@ -1996,7 +1996,7 @@
         "conditions": [
             {
                 "type": "PreviousTile",
-                "name": "Palace of Darkness - Statue Switch"
+                "id": 304
             },
             {
                 "type": "DungeonCounterIncreased",
@@ -2012,7 +2012,7 @@
         "conditions": [
             {
                 "type": "PreviousTile",
-                "name": "Palace of Darkness - Compass Chest Room"
+                "id": 307
             },
             {
                 "type": "DungeonCounterIncreased",
@@ -2128,7 +2128,7 @@
         "conditions": [
             {
                 "type": "PreviousTile",
-                "name": "Palace of Darkness - Hammer Jump Bridge"
+                "id": 306
             },
             {
                 "type": "DungeonCounterIncreased",
@@ -2144,7 +2144,7 @@
         "conditions": [
             {
                 "type": "PreviousTile",
-                "name": "Palace of Darkness - Harmless Hellway"
+                "id": 309
             },
             {
                 "type": "DungeonCounterIncreased",
@@ -2160,7 +2160,7 @@
         "conditions": [
             {
                 "type": "PreviousTile",
-                "name": "Palace of Darkness - Boss"
+                "id": 318
             },
             {
                 "type": "DungeonCounterIncreased",
@@ -2176,7 +2176,7 @@
         "conditions": [
             {
                 "type": "PreviousTile",
-                "name": "Ganon's Tower - Bob's Torch Room"
+                "id": 495
             },
             {
                 "type": "DungeonCounterIncreased",
@@ -2236,7 +2236,7 @@
         "conditions": [
             {
                 "type": "PreviousTile",
-                "name": "Ganon's Tower - Tile Room"
+                "id": 514
             },
             {
                 "type": "DungeonCounterIncreased",
@@ -2428,7 +2428,7 @@
         "conditions": [
             {
                 "type": "PreviousTile",
-                "name": "Ganon's Tower - Map Chest Room"
+                "id": 499
             },
             {
                 "type": "DungeonCounterIncreased",
@@ -2444,7 +2444,7 @@
         "conditions": [
             {
                 "type": "PreviousTile",
-                "name": "Ganon's Tower - Firesnake Room"
+                "id": 502
             },
             {
                 "type": "DungeonCounterIncreased",
@@ -2548,7 +2548,7 @@
         "conditions": [
             {
                 "type": "PreviousTile",
-                "name": "Ganon's Tower - Armos Approach"
+                "id": 507
             },
             {
                 "type": "DungeonCounterIncreased",
@@ -2564,7 +2564,7 @@
         "conditions": [
             {
                 "type": "PreviousTile",
-                "name": "Ganon's Tower - Big Chest Room"
+                "id": 512
             },
             {
                 "type": "DungeonCounterIncreased",
@@ -2690,7 +2690,7 @@
         "conditions": [
             {
                 "type": "PreviousTile",
-                "name": "Ganon's Tower - Moldorm Approach"
+                "id": 548
             },
             {
                 "type": "DungeonCounterIncreased",
@@ -2706,7 +2706,7 @@
         "conditions": [
             {
                 "type": "PreviousTile",
-                "name": "Ganon's Tower - Moldorm"
+                "id": 549
             },
             {
                 "type": "DungeonCounterIncreased",

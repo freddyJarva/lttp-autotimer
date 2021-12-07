@@ -136,9 +136,8 @@ mod tests {
                 indoors: false,
                 address_value: vec![0x80],
                 conditions: Some(vec![Conditions::PreviousTile(ConditionTransition {
-                    name: "Stone Bridge".to_string(),
-                    address_value: Some(45),
-                    indoors: Some(false),
+                    id: 85,
+                    ..Default::default()
                 })]),
                 ..Default::default()
             }
@@ -151,7 +150,7 @@ mod tests {
                 #[test]
                 fn $name() {
                     let (current_ram, previous_tile , expected) = $values;
-                    assert_eq!(Tile::try_from_ram(&current_ram, &previous_tile).unwrap().name, expected.to_string())
+                    assert_eq!(Tile::try_from_ram(&current_ram, &previous_tile).unwrap().id, expected)
                 }
             )*
         };
@@ -161,35 +160,35 @@ mod tests {
         GIVEN_ram_points_to_links_house_ow_THEN_return_links_house_ow_tile: (
             SnesRamInitializer {overworld_tile: Some(0x2c), ..Default::default()}.build(),
             Tile {..Default::default()},
-            "Link's House OW"),
+            17),
         GIVEN_ram_points_to_links_house_uw_THEN_return_links_house_uw_tile: (
             SnesRamInitializer {entrance_id: Some(0x1), indoors: Some(1), ..Default::default()}.build(),
             Tile {..Default::default()},
-            "Link's House UW"),
+            20),
         GIVEN_ram_points_to_hobo_meadow_AND_previous_tile_stone_bridge_THEN_return_hobo_tile: (
             SnesRamInitializer {overworld_tile: Some(0x80), ..Default::default()}.build(),
-            Tile {name: "Stone Bridge".to_string(), ..Default::default()},
-            "Hobo"),
+            Tile {id: 85, ..Default::default()},
+            89),
         GIVEN_ram_points_to_hobo_meadow_AND_previous_tile_lost_woods_THEN_return_meadow: (
             SnesRamInitializer {overworld_tile: Some(0x80), ..Default::default()}.build(),
-            Tile {name: "Lost Woods".to_string(), ..Default::default()},
-            "Mastersword Meadow"),
+            Tile {id: 3, ..Default::default()},
+            19),
         GIVEN_ram_points_to_big_fairy_AND_previous_tile_misery_mire_ow_THEN_return_mire_big_fairy: (
             SnesRamInitializer {entrance_id: Some(0x5e), indoors: Some(1), ..Default::default()}.build(),
-            Tile {name: "Misery Mire".to_string(), ..Default::default()},
-            "Mire big fairy"),
+            Tile {id: 181, ..Default::default()},
+            183),
         GIVEN_ram_points_to_hobo_meadow_AND_previous_tile_meadow_THEN_return_meadow: (
             SnesRamInitializer {overworld_tile: Some(0x80), ..Default::default()}.build(),
-            Tile {name: "Mastersword Meadow".to_string(), ..Default::default()},
-            "Mastersword Meadow"),
+            Tile {id: 19, ..Default::default()},
+            19),
         GIVEN_ram_points_to_ep_uw_AND_xy_points_to_abyss_bridge_THEN_return_abyss_bridge: (
             SnesRamInitializer {entrance_id: Some(0x8), indoors: Some(1), transition_x: Some(4856), transition_y: Some(6336), ..Default::default()}.build(),
             Tile {..Default::default()},
-            "Eastern Palace - Abyss Bridge"),
+            220),
         GIVEN_ram_points_to_hc_uw_AND_xy_is_in_bounds_for_basement_1_range_THEN_return_basement_1: (
             SnesRamInitializer {entrance_id: Some(0x4), indoors: Some(1), transition_x: Some(1192), transition_y: Some(4052), ..Default::default()}.build(),
             Tile {..Default::default()},
-            "Hyrule Castle - Basement 1"),
+            198),
     }
 
     macro_rules! test_region {

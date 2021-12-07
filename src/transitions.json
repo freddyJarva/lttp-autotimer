@@ -181,9 +181,7 @@
         "conditions": [
             {
                 "type": "PreviousTile",
-                "name": "Lost Woods",
-                "indoors": false,
-                "address_value": "0x0"
+                "id": 3
             }
         ]
     },
@@ -459,7 +457,7 @@
         "conditions": [
             {
                 "type": "PreviousTile",
-                "name": "Kakariko Fortune"
+                "id": 6
             }
         ]
     },
@@ -483,7 +481,7 @@
         "conditions": [
             {
                 "type": "PreviousTile",
-                "name": "Lake Hylia"
+                "id": 101
             }
         ]
     },
@@ -498,7 +496,7 @@
         "conditions": [
             {
                 "type": "PreviousTile",
-                "name": "Central Bonk Rocks"
+                "id": 16
             }
         ]
     },
@@ -864,9 +862,7 @@
         "conditions": [
             {
                 "type": "PreviousTile",
-                "name": "Stone Bridge",
-                "indoors": false,
-                "address_value": "0x2D"
+                "id": 85
             }
         ]
     },
@@ -935,7 +931,7 @@
         "conditions": [
             {
                 "type": "PreviousTile",
-                "name": "Tree Line"
+                "id": 86
             }
         ]
     },
@@ -1058,7 +1054,7 @@
         "conditions": [
             {
                 "type": "PreviousTile",
-                "name": "Lake Hylia"
+                "id": 101
             }
         ]
     },
@@ -1091,9 +1087,7 @@
         "conditions": [
             {
                 "type": "PreviousTile",
-                "name": "South Pass",
-                "indoors": false,
-                "address_value": "0x3C"
+                "id": 105
             }
         ]
     },
@@ -1108,7 +1102,7 @@
         "conditions": [
             {
                 "type": "PreviousTile",
-                "name": "Desert Pass"
+                "id": 103
             }
         ]
     },
@@ -1375,7 +1369,7 @@
         "conditions": [
             {
                 "type": "PreviousTile",
-                "name": "Dark Lumberjack"
+                "id": 120
             }
         ]
     },
@@ -1408,7 +1402,7 @@
         "conditions": [
             {
                 "type": "PreviousTile",
-                "name": "Village of Outcasts"
+                "id": 127
             }
         ]
     },
@@ -1441,7 +1435,7 @@
         "conditions": [
             {
                 "type": "PreviousTile",
-                "name": "Dark Bonk Rocks"
+                "id": 133
             }
         ]
     },
@@ -1537,7 +1531,7 @@
         "conditions": [
             {
                 "type": "PreviousTile",
-                "name": "East Dark Death Mountain"
+                "id": 151
             }
         ]
     },
@@ -1552,9 +1546,7 @@
         "conditions": [
             {
                 "type": "PreviousTile",
-                "name": "West Dark Death Mountain",
-                "indoors": false,
-                "address_value": "0x43"
+                "id": 150
             }
         ]
     },
@@ -1659,7 +1651,7 @@
         "conditions": [
             {
                 "type": "PreviousTile",
-                "name": "Dark Tree Line"
+                "id": 167
             }
         ]
     },
@@ -1674,7 +1666,7 @@
         "conditions": [
             {
                 "type": "PreviousTile",
-                "name": "Dark Witch"
+                "id": 162
             }
         ]
     },
@@ -1788,7 +1780,7 @@
         "conditions": [
             {
                 "type": "PreviousTile",
-                "name": "Misery Mire"
+                "id": 181
             }
         ]
     },
@@ -1812,7 +1804,7 @@
         "conditions": [
             {
                 "type": "PreviousTile",
-                "name": "Ice Lake"
+                "id": 175
             }
         ]
     },
@@ -1836,7 +1828,7 @@
         "conditions": [
             {
                 "type": "PreviousTile",
-                "name": "Ice Cave"
+                "id": 102
             }
         ]
     },
@@ -5276,7 +5268,7 @@
     },
     {
         "id": 318,
-        "name": "Palace of Darkness - Helmasaur",
+        "name": "Palace of Darkness - Boss",
         "region": "Palace of Darkness",
         "indoors": true,
         "address_value": [

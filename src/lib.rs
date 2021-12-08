@@ -8,7 +8,9 @@ extern crate lazy_static;
 use chrono::Utc;
 use clap::ArgMatches;
 
-use condition::{coordinate_condition_met, current_tile_condition_met};
+use condition::{
+    coordinate_condition_met, current_tile_condition_met, dungeon_counter_condition_met,
+};
 use snes::SnesRam;
 use tile::Tile;
 use websocket::{ClientBuilder, Message, OwnedMessage};
@@ -324,7 +326,7 @@ fn check_for_location_checks(
         match &check.conditions {
             Some(conditions) => {
                 if conditions.iter().all(|c| match c {
-                    Conditions::PreviousTile(condition) => {
+                    Conditions::CurrentTile(condition) => {
                         let previous_tile = &events
                             .latest_transition()
                             .expect("Transition should always exist");
@@ -335,16 +337,12 @@ fn check_for_location_checks(
                     }
                     Conditions::Underworld => ram.indoors() == 1,
                     Conditions::DungeonCounterIncreased { sram_offset } => {
-                        if ram_history.len() > 0 {
-                            ram.get_byte(*sram_offset)
-                                > ram_history[ram_history.len() - 1].get_byte(*sram_offset)
-                        } else {
-                            false
-                        }
+                        dungeon_counter_condition_met(&ram_history, ram, sram_offset)
                     }
                     _ => todo!(),
                 }) {
                     check.mark_as_checked();
+                    print.location_check(check);
 
                     let location_check_event = EventEnum::LocationCheck(check.clone());
                     writer.serialize(Event::from(&location_check_event))?;
@@ -487,31 +485,10 @@ fn check_for_events(
         let current_event_value = ram.get_byte(event.sram_offset as usize);
         match &event.conditions {
             Some(conditions) => {
-                if conditions.iter().all(|c| match c {
-                    Conditions::PreviousTile(condition) => {
-                        let previous_tile = &events
-                            .latest_transition()
-                            .expect("Transition should always exist");
-                        current_tile_condition_met(condition, previous_tile)
-                    }
-                    Conditions::Coordinates { coordinates } => {
-                        coordinate_condition_met(&coordinates, ram)
-                    }
-                    Conditions::Underworld => ram.indoors() == 1,
-                    Conditions::DungeonCounterIncreased { sram_offset } => {
-                        match_dungeon_counter_increased(previous_values, ram, sram_offset)
-                    }
-                    Conditions::ValueChanged { sram_offset } => {
-                        match_ram_value_changed(previous_values, ram, sram_offset)
-                    }
-                    Conditions::CurrentTile(condition) => {
-                        let current_tile = &events
-                            .latest_transition()
-                            .expect("Transition should always exist");
-                        current_tile_condition_met(condition, current_tile)
-                    }
-                    _ => todo!(),
-                }) {
+                if conditions
+                    .iter()
+                    .all(|condition| match_condition(condition, events, ram, previous_values))
+                {
                     if !event.is_progressive {
                         event.mark_as_checked()
                     } else {
@@ -546,6 +523,40 @@ fn check_for_events(
     }
 
     Ok(true)
+}
+
+fn match_condition(
+    condition: &Conditions,
+    events: &EventTracker,
+    ram: &SnesRam,
+    previous_values: &mut VecDeque<SnesRam>,
+) -> bool {
+    match condition {
+        Conditions::PreviousTile(condition) => {
+            let previous_tile = &events
+                .latest_transition()
+                .expect("Transition should always exist");
+            current_tile_condition_met(condition, previous_tile)
+        }
+        Conditions::Coordinates { coordinates } => coordinate_condition_met(&coordinates, ram),
+        Conditions::Underworld => ram.indoors() == 1,
+        Conditions::DungeonCounterIncreased { sram_offset } => {
+            match_dungeon_counter_increased(previous_values, ram, sram_offset)
+        }
+        Conditions::ValueChanged { sram_offset } => {
+            match_ram_value_changed(previous_values, ram, sram_offset)
+        }
+        Conditions::CurrentTile(condition) => {
+            let current_tile = &events
+                .latest_transition()
+                .expect("Transition should always exist");
+            current_tile_condition_met(condition, current_tile)
+        }
+        Conditions::Any { subconditions } => subconditions
+            .iter()
+            .any(|subcondition| match_condition(subcondition, events, ram, previous_values)),
+        _ => todo!(),
+    }
 }
 
 fn match_dungeon_counter_increased(

@@ -317,7 +317,7 @@
         "sram_mask": "0x10",
         "conditions": [
             {
-                "type": "PreviousTile",
+                "type": "CurrentTile",
                 "id": 247
             },
             {
@@ -333,7 +333,7 @@
         "sram_mask": "0x10",
         "conditions": [
             {
-                "type": "PreviousTile",
+                "type": "CurrentTile",
                 "id": 245
             },
             {
@@ -349,7 +349,7 @@
         "sram_mask": "0x10",
         "conditions": [
             {
-                "type": "PreviousTile",
+                "type": "CurrentTile",
                 "id": 249
             },
             {
@@ -365,7 +365,7 @@
         "sram_mask": "0x10",
         "conditions": [
             {
-                "type": "PreviousTile",
+                "type": "CurrentTile",
                 "id": 255
             },
             {
@@ -381,7 +381,7 @@
         "sram_mask": "0x10",
         "conditions": [
             {
-                "type": "PreviousTile",
+                "type": "CurrentTile",
                 "id": 256
             },
             {
@@ -397,7 +397,7 @@
         "sram_mask": "0x10",
         "conditions": [
             {
-                "type": "PreviousTile",
+                "type": "CurrentTile",
                 "id": 264
             },
             {
@@ -417,7 +417,7 @@
                 "sram_offset": "0xf436"
             },
             {
-                "type": "PreviousTile",
+                "type": "CurrentTile",
                 "id": 228
             }
         ],
@@ -433,7 +433,7 @@
                 "sram_offset": "0xf436"
             },
             {
-                "type": "PreviousTile",
+                "type": "CurrentTile",
                 "id": 222
             }
         ],
@@ -474,7 +474,7 @@
                 "sram_offset": "0xf436"
             },
             {
-                "type": "PreviousTile",
+                "type": "CurrentTile",
                 "id": 231
             }
         ],
@@ -490,7 +490,7 @@
                 "sram_offset": "0xf436"
             },
             {
-                "type": "PreviousTile",
+                "type": "CurrentTile",
                 "id": 225
             }
         ],
@@ -506,7 +506,7 @@
                 "sram_offset": "0xf436"
             },
             {
-                "type": "PreviousTile",
+                "type": "CurrentTile",
                 "id": 240
             }
         ],
@@ -576,7 +576,7 @@
                 "sram_offset": "0xf435"
             },
             {
-                "type": "PreviousTile",
+                "type": "CurrentTile",
                 "id": 278
             }
         ],
@@ -592,7 +592,7 @@
                 "sram_offset": "0xf435"
             },
             {
-                "type": "PreviousTile",
+                "type": "CurrentTile",
                 "id": 280
             }
         ],
@@ -680,7 +680,7 @@
                 "sram_offset": "0xf435"
             },
             {
-                "type": "PreviousTile",
+                "type": "CurrentTile",
                 "id": 270
             }
         ],
@@ -696,7 +696,7 @@
                 "sram_offset": "0xf435"
             },
             {
-                "type": "PreviousTile",
+                "type": "CurrentTile",
                 "id": 266
             }
         ],
@@ -712,7 +712,7 @@
                 "sram_offset": "0xf435"
             },
             {
-                "type": "PreviousTile",
+                "type": "CurrentTile",
                 "id": 269
             }
         ],
@@ -726,9 +726,6 @@
             {
                 "type": "DungeonCounterIncreased",
                 "sram_offset": "0xf435"
-            },
-            {
-                "type": "Underworld"
             },
             {
                 "type": "Coordinates",
@@ -778,7 +775,7 @@
                 "sram_offset": "0xf435"
             },
             {
-                "type": "PreviousTile",
+                "type": "CurrentTile",
                 "id": 276
             }
         ],
@@ -958,7 +955,7 @@
         "sram_mask": "0x10",
         "conditions": [
             {
-                "type": "PreviousTile",
+                "type": "CurrentTile",
                 "id": 320
             },
             {
@@ -974,7 +971,7 @@
         "sram_mask": "0x10",
         "conditions": [
             {
-                "type": "PreviousTile",
+                "type": "CurrentTile",
                 "id": 322
             },
             {
@@ -990,7 +987,7 @@
         "sram_mask": "0x10",
         "conditions": [
             {
-                "type": "PreviousTile",
+                "type": "CurrentTile",
                 "id": 326
             },
             {
@@ -1006,7 +1003,7 @@
         "sram_mask": "0x10",
         "conditions": [
             {
-                "type": "PreviousTile",
+                "type": "CurrentTile",
                 "id": 327
             },
             {
@@ -1022,7 +1019,7 @@
         "sram_mask": "0x10",
         "conditions": [
             {
-                "type": "PreviousTile",
+                "type": "CurrentTile",
                 "id": 336
             },
             {
@@ -1038,7 +1035,7 @@
         "sram_mask": "0x10",
         "conditions": [
             {
-                "type": "PreviousTile",
+                "type": "CurrentTile",
                 "id": 334
             },
             {
@@ -1104,7 +1101,7 @@
         "sram_mask": "0x10",
         "conditions": [
             {
-                "type": "PreviousTile",
+                "type": "CurrentTile",
                 "id": 344
             },
             {
@@ -1120,7 +1117,7 @@
         "sram_mask": "0x10",
         "conditions": [
             {
-                "type": "PreviousTile",
+                "type": "CurrentTile",
                 "id": 351
             },
             {
@@ -1168,9 +1165,6 @@
                 ]
             },
             {
-                "type": "Underworld"
-            },
-            {
                 "type": "DungeonCounterIncreased",
                 "sram_offset": "0xf437"
             }
@@ -1183,7 +1177,7 @@
         "sram_mask": "0x10",
         "conditions": [
             {
-                "type": "PreviousTile",
+                "type": "CurrentTile",
                 "id": 376
             },
             {
@@ -1199,7 +1193,7 @@
         "sram_mask": "0x10",
         "conditions": [
             {
-                "type": "PreviousTile",
+                "type": "CurrentTile",
                 "id": 374
             },
             {
@@ -1215,7 +1209,7 @@
         "sram_mask": "0x10",
         "conditions": [
             {
-                "type": "PreviousTile",
+                "type": "CurrentTile",
                 "id": 385
             },
             {
@@ -1231,7 +1225,7 @@
         "sram_mask": "0x10",
         "conditions": [
             {
-                "type": "PreviousTile",
+                "type": "CurrentTile",
                 "id": 391
             },
             {
@@ -1247,7 +1241,7 @@
         "sram_mask": "0x10",
         "conditions": [
             {
-                "type": "PreviousTile",
+                "type": "CurrentTile",
                 "id": 393
             },
             {
@@ -1263,7 +1257,7 @@
         "sram_mask": "0x10",
         "conditions": [
             {
-                "type": "PreviousTile",
+                "type": "CurrentTile",
                 "id": 394
             },
             {
@@ -1279,7 +1273,7 @@
         "sram_mask": "0x10",
         "conditions": [
             {
-                "type": "PreviousTile",
+                "type": "CurrentTile",
                 "id": 355
             },
             {
@@ -1295,7 +1289,7 @@
         "sram_mask": "0x10",
         "conditions": [
             {
-                "type": "PreviousTile",
+                "type": "CurrentTile",
                 "id": 353
             },
             {
@@ -1311,7 +1305,7 @@
         "sram_mask": "0x10",
         "conditions": [
             {
-                "type": "PreviousTile",
+                "type": "CurrentTile",
                 "id": 352
             },
             {
@@ -1327,7 +1321,7 @@
         "sram_mask": "0x10",
         "conditions": [
             {
-                "type": "PreviousTile",
+                "type": "CurrentTile",
                 "id": 356
             },
             {
@@ -1343,7 +1337,7 @@
         "sram_mask": "0x10",
         "conditions": [
             {
-                "type": "PreviousTile",
+                "type": "CurrentTile",
                 "id": 357
             },
             {
@@ -1359,7 +1353,7 @@
         "sram_mask": "0x10",
         "conditions": [
             {
-                "type": "PreviousTile",
+                "type": "CurrentTile",
                 "id": 359
             },
             {
@@ -1375,7 +1369,7 @@
         "sram_mask": "0x10",
         "conditions": [
             {
-                "type": "PreviousTile",
+                "type": "CurrentTile",
                 "id": 364
             },
             {
@@ -1391,7 +1385,7 @@
         "sram_mask": "0x10",
         "conditions": [
             {
-                "type": "PreviousTile",
+                "type": "CurrentTile",
                 "id": 372
             },
             {
@@ -1407,7 +1401,7 @@
         "sram_mask": "0x10",
         "conditions": [
             {
-                "type": "PreviousTile",
+                "type": "CurrentTile",
                 "id": 401
             },
             {
@@ -1423,7 +1417,7 @@
         "sram_mask": "0x10",
         "conditions": [
             {
-                "type": "PreviousTile",
+                "type": "CurrentTile",
                 "id": 427
             },
             {
@@ -1439,7 +1433,7 @@
         "sram_mask": "0x10",
         "conditions": [
             {
-                "type": "PreviousTile",
+                "type": "CurrentTile",
                 "id": 428
             },
             {
@@ -1455,7 +1449,7 @@
         "sram_mask": "0x10",
         "conditions": [
             {
-                "type": "PreviousTile",
+                "type": "CurrentTile",
                 "id": 417
             },
             {
@@ -1471,7 +1465,7 @@
         "sram_mask": "0x10",
         "conditions": [
             {
-                "type": "PreviousTile",
+                "type": "CurrentTile",
                 "id": 409
             },
             {
@@ -1487,7 +1481,7 @@
         "sram_mask": "0x10",
         "conditions": [
             {
-                "type": "PreviousTile",
+                "type": "CurrentTile",
                 "id": 400
             },
             {
@@ -1503,7 +1497,7 @@
         "sram_mask": "0x10",
         "conditions": [
             {
-                "type": "PreviousTile",
+                "type": "CurrentTile",
                 "id": 410
             },
             {
@@ -1519,7 +1513,7 @@
         "sram_mask": "0x10",
         "conditions": [
             {
-                "type": "PreviousTile",
+                "type": "CurrentTile",
                 "id": 430
             },
             {
@@ -1535,7 +1529,7 @@
         "sram_mask": "0x10",
         "conditions": [
             {
-                "type": "PreviousTile",
+                "type": "CurrentTile",
                 "id": 463
             },
             {
@@ -1551,7 +1545,7 @@
         "sram_mask": "0x10",
         "conditions": [
             {
-                "type": "PreviousTile",
+                "type": "CurrentTile",
                 "id": 462
             },
             {
@@ -1567,7 +1561,7 @@
         "sram_mask": "0x10",
         "conditions": [
             {
-                "type": "PreviousTile",
+                "type": "CurrentTile",
                 "id": 433
             },
             {
@@ -1583,7 +1577,7 @@
         "sram_mask": "0x10",
         "conditions": [
             {
-                "type": "PreviousTile",
+                "type": "CurrentTile",
                 "id": 449
             },
             {
@@ -1599,7 +1593,7 @@
         "sram_mask": "0x10",
         "conditions": [
             {
-                "type": "PreviousTile",
+                "type": "CurrentTile",
                 "id": 461
             },
             {
@@ -1615,7 +1609,7 @@
         "sram_mask": "0x10",
         "conditions": [
             {
-                "type": "PreviousTile",
+                "type": "CurrentTile",
                 "id": 437
             },
             {
@@ -1631,7 +1625,7 @@
         "sram_mask": "0x10",
         "conditions": [
             {
-                "type": "PreviousTile",
+                "type": "CurrentTile",
                 "id": 445
             },
             {
@@ -1647,7 +1641,7 @@
         "sram_mask": "0x10",
         "conditions": [
             {
-                "type": "PreviousTile",
+                "type": "CurrentTile",
                 "id": 457
             },
             {
@@ -1663,7 +1657,7 @@
         "sram_mask": "0x10",
         "conditions": [
             {
-                "type": "PreviousTile",
+                "type": "CurrentTile",
                 "id": 471
             },
             {
@@ -1729,7 +1723,7 @@
         "sram_mask": "0x10",
         "conditions": [
             {
-                "type": "PreviousTile",
+                "type": "CurrentTile",
                 "id": 475
             },
             {
@@ -1745,7 +1739,7 @@
         "sram_mask": "0x10",
         "conditions": [
             {
-                "type": "PreviousTile",
+                "type": "CurrentTile",
                 "id": 477
             },
             {
@@ -1761,7 +1755,7 @@
         "sram_mask": "0x10",
         "conditions": [
             {
-                "type": "PreviousTile",
+                "type": "CurrentTile",
                 "id": 481
             },
             {
@@ -1777,7 +1771,7 @@
         "sram_mask": "0x10",
         "conditions": [
             {
-                "type": "PreviousTile",
+                "type": "CurrentTile",
                 "id": 487
             },
             {
@@ -1893,7 +1887,7 @@
         "sram_mask": "0x10",
         "conditions": [
             {
-                "type": "PreviousTile",
+                "type": "CurrentTile",
                 "id": 492
             },
             {
@@ -1909,7 +1903,7 @@
         "sram_mask": "0x10",
         "conditions": [
             {
-                "type": "PreviousTile",
+                "type": "CurrentTile",
                 "id": 296
             },
             {
@@ -1950,7 +1944,7 @@
         "sram_mask": "0x10",
         "conditions": [
             {
-                "type": "PreviousTile",
+                "type": "CurrentTile",
                 "id": 298
             },
             {
@@ -1966,7 +1960,7 @@
         "sram_mask": "0x10",
         "conditions": [
             {
-                "type": "PreviousTile",
+                "type": "CurrentTile",
                 "id": 297
             },
             {
@@ -2007,7 +2001,7 @@
         "sram_mask": "0x10",
         "conditions": [
             {
-                "type": "PreviousTile",
+                "type": "CurrentTile",
                 "id": 304
             },
             {
@@ -2023,7 +2017,7 @@
         "sram_mask": "0x10",
         "conditions": [
             {
-                "type": "PreviousTile",
+                "type": "CurrentTile",
                 "id": 307
             },
             {
@@ -2139,7 +2133,7 @@
         "sram_mask": "0x10",
         "conditions": [
             {
-                "type": "PreviousTile",
+                "type": "CurrentTile",
                 "id": 306
             },
             {
@@ -2155,7 +2149,7 @@
         "sram_mask": "0x10",
         "conditions": [
             {
-                "type": "PreviousTile",
+                "type": "CurrentTile",
                 "id": 309
             },
             {
@@ -2171,7 +2165,7 @@
         "sram_mask": "0x10",
         "conditions": [
             {
-                "type": "PreviousTile",
+                "type": "CurrentTile",
                 "id": 318
             },
             {
@@ -2187,7 +2181,7 @@
         "sram_mask": "0x10",
         "conditions": [
             {
-                "type": "PreviousTile",
+                "type": "CurrentTile",
                 "id": 495
             },
             {
@@ -2247,7 +2241,7 @@
         "sram_mask": "0x10",
         "conditions": [
             {
-                "type": "PreviousTile",
+                "type": "CurrentTile",
                 "id": 514
             },
             {
@@ -2439,7 +2433,7 @@
         "sram_mask": "0x10",
         "conditions": [
             {
-                "type": "PreviousTile",
+                "type": "CurrentTile",
                 "id": 499
             },
             {
@@ -2455,7 +2449,7 @@
         "sram_mask": "0x10",
         "conditions": [
             {
-                "type": "PreviousTile",
+                "type": "CurrentTile",
                 "id": 502
             },
             {
@@ -2559,7 +2553,7 @@
         "sram_mask": "0x10",
         "conditions": [
             {
-                "type": "PreviousTile",
+                "type": "CurrentTile",
                 "id": 507
             },
             {
@@ -2575,7 +2569,7 @@
         "sram_mask": "0x10",
         "conditions": [
             {
-                "type": "PreviousTile",
+                "type": "CurrentTile",
                 "id": 512
             },
             {
@@ -2701,7 +2695,7 @@
         "sram_mask": "0x10",
         "conditions": [
             {
-                "type": "PreviousTile",
+                "type": "CurrentTile",
                 "id": 548
             },
             {
@@ -2717,7 +2711,7 @@
         "sram_mask": "0x10",
         "conditions": [
             {
-                "type": "PreviousTile",
+                "type": "CurrentTile",
                 "id": 549
             },
             {

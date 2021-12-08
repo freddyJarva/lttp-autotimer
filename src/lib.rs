@@ -158,7 +158,7 @@ pub fn connect_to_qusb(args: &ArgMatches) -> anyhow::Result<()> {
         match get_chunka_chungus(&mut client) {
             Ok(snes_ram) => {
                 if !game_started {
-                    game_started = game_has_started(&snes_ram);
+                    game_started = snes_ram.game_has_started();
                 } else {
                     game_started = check_for_events(
                         &snes_ram,
@@ -434,43 +434,6 @@ fn check_for_transitions(
     }
 
     Ok(())
-}
-
-/// Reads the ram value to see if has started since boot/reset/S&Q
-///
-/// Reads the value at 0x7e0010, which can be any of these:
-///
-/// * 00 - Intro
-/// * 01 - File Select
-/// * 02 - Copy File
-/// * 03 - Delete File
-/// * 04 - Name File
-/// * 05 - Load File
-/// * 06 - UnderworldLoad
-/// * 07 - Underworld
-/// * 08 - OverworldLoad
-/// * 0A - OverworldSpecialLoad
-/// * 0B - OverworldSpecial
-/// * 0C/0D - Unused
-/// * 0E - Interface
-/// * 0F - SpotlightClose
-/// * 10 - SpotlightOpen
-/// * 11 - UnderworldFallingEntrance
-/// * 12 - GameOver
-/// * 13 - BossVictory_Pendant
-/// * 14 - Attract
-/// * 15 - MirrorWarpFromAge
-/// * 16 - BossVictory_Crystal
-/// * 17 - SaveAndQuit
-/// * 18 - GanonEmerges
-/// * 19 - TriforceRoom
-/// * 1A - Credits
-/// * 1B - SpawnSelect
-fn game_has_started(ram: &SnesRam) -> bool {
-    match ram.get_byte(0x10) {
-        0x06..=0x0b => true,
-        _ => false,
-    }
 }
 
 fn check_for_events(

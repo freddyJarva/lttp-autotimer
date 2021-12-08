@@ -28,6 +28,20 @@ where
     u32::from_str_radix(&s[2..], 16).map_err(D::Error::custom)
 }
 
+#[allow(unused)]
+pub fn hex_deserialize_option<'de, D>(d: D) -> Result<Option<u32>, D::Error>
+where
+    D: Deserializer<'de>,
+{
+    let so: Option<&str> = Deserialize::deserialize(d)?;
+    match so {
+        Some(s) => Ok(Some(
+            u32::from_str_radix(&s[2..], 16).map_err(D::Error::custom)?,
+        )),
+        None => Ok(None),
+    }
+}
+
 /// Terrible deserializer of hex values. But hey, it works. I guess.
 #[allow(unused)]
 pub fn hex_16bit_deserialize<'de, D>(d: D) -> Result<u16, D::Error>

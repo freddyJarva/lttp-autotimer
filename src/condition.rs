@@ -1,3 +1,5 @@
+use std::collections::VecDeque;
+
 use crate::serde_lttp::coordinate_deserialize;
 use crate::serde_lttp::coordinate_range_deserialize;
 use crate::serde_lttp::hex_16bit_option_deserialize;
@@ -44,6 +46,9 @@ pub enum Conditions {
     ValueChanged {
         #[serde(deserialize_with = "hex_usize_deserialize")]
         sram_offset: usize,
+    },
+    Any {
+        subconditions: Vec<Conditions>,
     },
 }
 
@@ -111,7 +116,7 @@ impl Coordinate {
                 Coordinate::Stairs {
                     x: x_stairs,
                     y: y_stairs,
-                } => x == x_stairs && y >= &(y_stairs - 2) && y <= &(y_stairs + 2),
+                } => x == x_stairs && y >= &(y_stairs - 3) && y <= &(y_stairs + 3),
                 Coordinate::BigChest {
                     x: x_chest,
                     y: y_chest,
@@ -157,6 +162,19 @@ pub fn previous_tile_condition_met(
 ) -> bool {
     condition.id == previous_tile.id || tile.id == previous_tile.id
 }
+
 pub fn current_tile_condition_met(condition: &ConditionTransition, tile: &Tile) -> bool {
     condition.id == tile.id
+}
+
+pub fn dungeon_counter_condition_met(
+    ram_history: &VecDeque<SnesRam>,
+    ram: &SnesRam,
+    sram_offset: &usize,
+) -> bool {
+    if ram_history.len() > 0 {
+        ram.get_byte(*sram_offset) > ram_history[ram_history.len() - 1].get_byte(*sram_offset)
+    } else {
+        false
+    }
 }

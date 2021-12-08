@@ -41,14 +41,198 @@
         "id": 5
     },
     {
-        "name": "Ice Palace - Dungeon Clear",
-        "sram_offset": "0xf422",
-        "sram_mask": "0x0",
+        "name": "Eastern Palace - Dungeon Clear",
         "id": 6,
+        "sram_offset": "0x0",
+        "sram_mask": "0x0",
         "conditions": [
             {
-                "type": "ValueChanged",
-                "sram_offset": "0x0"
+                "type": "CurrentTile",
+                "id": 240
+            },
+            {
+                "type": "Any",
+                "subconditions": [
+                    {
+                        "type": "ValueChanged",
+                        "sram_offset": "0xf422"
+                    },
+                    {
+                        "type": "ValueChanged",
+                        "sram_offset": "0xf374"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Desert Palace - Dungeon Clear",
+        "id": 7,
+        "sram_offset": "0x0",
+        "sram_mask": "0x0",
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 264
+            },
+            {
+                "type": "Any",
+                "subconditions": [
+                    {
+                        "type": "ValueChanged",
+                        "sram_offset": "0xf422"
+                    },
+                    {
+                        "type": "ValueChanged",
+                        "sram_offset": "0xf374"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Tower of Hera - Dungeon Clear",
+        "id": 8,
+        "sram_offset": "0x0",
+        "sram_mask": "0x0",
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 276
+            },
+            {
+                "type": "Any",
+                "subconditions": [
+                    {
+                        "type": "ValueChanged",
+                        "sram_offset": "0xf422"
+                    },
+                    {
+                        "type": "ValueChanged",
+                        "sram_offset": "0xf374"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Palace of Darkness - Dungeon Clear",
+        "id": 9,
+        "sram_offset": "0x0",
+        "sram_mask": "0x0",
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 318
+            },
+            {
+                "type": "Any",
+                "subconditions": [
+                    {
+                        "type": "ValueChanged",
+                        "sram_offset": "0xf422"
+                    },
+                    {
+                        "type": "ValueChanged",
+                        "sram_offset": "0xf374"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Swamp Palace - Dungeon Clear",
+        "id": 10,
+        "sram_offset": "0x0",
+        "sram_mask": "0x0",
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 351
+            },
+            {
+                "type": "Any",
+                "subconditions": [
+                    {
+                        "type": "ValueChanged",
+                        "sram_offset": "0xf422"
+                    },
+                    {
+                        "type": "ValueChanged",
+                        "sram_offset": "0xf374"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Thieves' Town - Dungeon Clear",
+        "id": 11,
+        "sram_offset": "0x0",
+        "sram_mask": "0x0",
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 394
+            },
+            {
+                "type": "Any",
+                "subconditions": [
+                    {
+                        "type": "ValueChanged",
+                        "sram_offset": "0xf422"
+                    },
+                    {
+                        "type": "ValueChanged",
+                        "sram_offset": "0xf374"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Skull Woods - Dungeon Clear",
+        "id": 11,
+        "sram_offset": "0x0",
+        "sram_mask": "0x0",
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 372
+            },
+            {
+                "type": "Any",
+                "subconditions": [
+                    {
+                        "type": "ValueChanged",
+                        "sram_offset": "0xf422"
+                    },
+                    {
+                        "type": "ValueChanged",
+                        "sram_offset": "0xf374"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Ice Palace - Dungeon Clear",
+        "id": 12,
+        "sram_offset": "0x0",
+        "sram_mask": "0x0",
+        "conditions": [
+            {
+                "type": "Any",
+                "subconditions": [
+                    {
+                        "type": "ValueChanged",
+                        "sram_offset": "0xf422"
+                    },
+                    {
+                        "type": "ValueChanged",
+                        "sram_offset": "0xf374"
+                    }
+                ]
             },
             {
                 "type": "CurrentTile",
@@ -57,18 +241,52 @@
         ]
     },
     {
-        "name": "Eastern Palace - Dungeon Clear",
+        "name": "Misery Mire - Dungeon Clear",
+        "id": 13,
         "sram_offset": "0x0",
         "sram_mask": "0x0",
-        "id": 7,
         "conditions": [
             {
                 "type": "CurrentTile",
-                "id": 240
+                "id": 457
             },
             {
-                "type": "ValueChanged",
-                "sram_offset": "0xf422"
+                "type": "Any",
+                "subconditions": [
+                    {
+                        "type": "ValueChanged",
+                        "sram_offset": "0xf422"
+                    },
+                    {
+                        "type": "ValueChanged",
+                        "sram_offset": "0xf374"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Turtle Rock - Dungeon Clear",
+        "id": 14,
+        "sram_offset": "0x0",
+        "sram_mask": "0x0",
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 492
+            },
+            {
+                "type": "Any",
+                "subconditions": [
+                    {
+                        "type": "ValueChanged",
+                        "sram_offset": "0xf422"
+                    },
+                    {
+                        "type": "ValueChanged",
+                        "sram_offset": "0xf374"
+                    }
+                ]
             }
         ]
     }

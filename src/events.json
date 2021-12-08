@@ -39,5 +39,37 @@
         "sram_offset": "0xf443",
         "sram_mask": "0x01",
         "id": 5
+    },
+    {
+        "name": "Ice Palace - Dungeon Clear",
+        "sram_offset": "0xf422",
+        "sram_mask": "0x0",
+        "id": 6,
+        "conditions": [
+            {
+                "type": "ValueChanged",
+                "sram_offset": "0x0"
+            },
+            {
+                "type": "CurrentTile",
+                "id": 430
+            }
+        ]
+    },
+    {
+        "name": "Eastern Palace - Dungeon Clear",
+        "sram_offset": "0x0",
+        "sram_mask": "0x0",
+        "id": 7,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 240
+            },
+            {
+                "type": "ValueChanged",
+                "sram_offset": "0xf422"
+            }
+        ]
     }
 ]

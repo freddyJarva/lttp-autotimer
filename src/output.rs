@@ -125,7 +125,7 @@ pub fn print_event(event: &Check) {
         println!(
             "Event! time: {:?}, item: {}",
             event.time_of_check,
-            event.name.on_green(),
+            event.name.on_yellow(),
         );
     }
 }

@@ -1,6 +1,7 @@
 use crate::serde_lttp::coordinate_deserialize;
 use crate::serde_lttp::coordinate_range_deserialize;
 use crate::serde_lttp::hex_16bit_option_deserialize;
+use crate::serde_lttp::hex_byte_deserialize;
 use crate::serde_lttp::hex_usize_deserialize;
 use crate::snes::NamedAddresses;
 use crate::tile::Tile;
@@ -25,11 +26,22 @@ pub struct ConditionTransition {
 #[serde(tag = "type")]
 pub enum Conditions {
     PreviousTile(ConditionTransition),
+    CurrentTile(ConditionTransition),
     Coordinates {
         coordinates: Vec<Coordinate>,
     },
     Underworld,
     DungeonCounterIncreased {
+        #[serde(deserialize_with = "hex_usize_deserialize")]
+        sram_offset: usize,
+    },
+    BitWiseTrue {
+        #[serde(deserialize_with = "hex_usize_deserialize")]
+        sram_offset: usize,
+        #[serde(deserialize_with = "hex_byte_deserialize")]
+        sram_mask: u8,
+    },
+    ValueChanged {
         #[serde(deserialize_with = "hex_usize_deserialize")]
         sram_offset: usize,
     },

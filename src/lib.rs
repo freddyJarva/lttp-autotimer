@@ -62,8 +62,8 @@ const COORDINATE_CHUNK_SIZE: usize = 0x4;
 
 const TILE_INFO_CHUNK_SIZE: usize = 0x40B;
 
-const GAME_STATS_OFFSET: usize = 0xf42d;
-const GAME_STATS_SIZE: usize = 0x1f;
+const GAME_STATS_OFFSET: usize = 0xf422;
+const GAME_STATS_SIZE: usize = 0x2f;
 
 /// Hashable id for map lookups
 #[derive(Default, PartialEq, Hash, Eq, Debug)]
@@ -342,6 +342,7 @@ fn check_for_location_checks(
                             false
                         }
                     }
+                    _ => todo!(),
                 }) {
                     check.mark_as_checked();
 
@@ -484,29 +485,91 @@ fn check_for_events(
 ) -> anyhow::Result<bool> {
     for event in subscribed_events {
         let current_event_value = ram.get_byte(event.sram_offset as usize);
-
-        if previous_values.len() > 0
-            && (previous_values[previous_values.len() - 1].get_byte(event.sram_offset as usize)
-                != current_event_value)
-        {
-            if !event.is_progressive
-                && current_event_value & event.sram_mask != 0
-                && !event.is_checked
-            {
-                event.mark_as_checked();
-                print.event(event);
-                let occurred_event = EventEnum::Other(event.clone());
-                writer.serialize(Event::from(&occurred_event))?;
-                events.push(occurred_event);
-            } else if event.is_progressive && current_event_value > event.snes_value {
-                event.progress_item(current_event_value);
-                print.event(event);
-                let occurred_event = EventEnum::Other(event.clone());
-                writer.serialize(Event::from(&occurred_event))?;
-                events.push(occurred_event);
-                return Ok(event.name != "Save & Quit");
+        match &event.conditions {
+            Some(conditions) => {
+                if conditions.iter().all(|c| match c {
+                    Conditions::PreviousTile(condition) => {
+                        let previous_tile = &events
+                            .latest_transition()
+                            .expect("Transition should always exist");
+                        current_tile_condition_met(condition, previous_tile)
+                    }
+                    Conditions::Coordinates { coordinates } => {
+                        coordinate_condition_met(&coordinates, ram)
+                    }
+                    Conditions::Underworld => ram.indoors() == 1,
+                    Conditions::DungeonCounterIncreased { sram_offset } => {
+                        match_dungeon_counter_increased(previous_values, ram, sram_offset)
+                    }
+                    Conditions::ValueChanged { sram_offset } => {
+                        match_ram_value_changed(previous_values, ram, sram_offset)
+                    }
+                    Conditions::CurrentTile(condition) => {
+                        let current_tile = &events
+                            .latest_transition()
+                            .expect("Transition should always exist");
+                        current_tile_condition_met(condition, current_tile)
+                    }
+                    _ => todo!(),
+                }) {
+                    if !event.is_progressive {
+                        event.mark_as_checked()
+                    } else {
+                        event.progress_item(current_event_value)
+                    }
+                    let occurred_event = EventEnum::Other(event.clone());
+                    writer.serialize(Event::from(&occurred_event))?;
+                    events.push(occurred_event);
+                    print.event(event);
+                }
+            }
+            None => {
+                if !event.is_progressive
+                    && current_event_value & event.sram_mask != 0
+                    && !event.is_checked
+                {
+                    event.mark_as_checked();
+                    print.event(event);
+                    let occurred_event = EventEnum::Other(event.clone());
+                    writer.serialize(Event::from(&occurred_event))?;
+                    events.push(occurred_event);
+                } else if event.is_progressive && current_event_value > event.snes_value {
+                    event.progress_item(current_event_value);
+                    print.event(event);
+                    let occurred_event = EventEnum::Other(event.clone());
+                    writer.serialize(Event::from(&occurred_event))?;
+                    events.push(occurred_event);
+                    return Ok(event.name != "Save & Quit");
+                }
             }
         }
     }
+
     Ok(true)
+}
+
+fn match_dungeon_counter_increased(
+    previous_values: &mut VecDeque<SnesRam>,
+    ram: &SnesRam,
+    sram_offset: &usize,
+) -> bool {
+    if previous_values.len() > 0 {
+        ram.get_byte(*sram_offset)
+            > previous_values[previous_values.len() - 1].get_byte(*sram_offset)
+    } else {
+        false
+    }
+}
+
+fn match_ram_value_changed(
+    previous_values: &mut VecDeque<SnesRam>,
+    ram: &SnesRam,
+    sram_offset: &usize,
+) -> bool {
+    if previous_values.len() > 0 {
+        ram.get_byte(*sram_offset)
+            != previous_values[previous_values.len() - 1].get_byte(*sram_offset)
+    } else {
+        false
+    }
 }

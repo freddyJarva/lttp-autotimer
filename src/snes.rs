@@ -162,13 +162,41 @@ impl SnesRam {
         }
     }
 
-    /// Previous way to check, on address 0x7e0095 for values 3 or 7, did not work.
-    /// When starting on pyramid, the start screen value (15, or F in hex) remained as Link spawned,
-    /// meaning there was no way to properly discern game start.
+    /// Reads the ram value to see if has started since boot/reset/S&Q
     ///
-    /// Atm let it just return true as things seem to work anyways.
+    /// Reads the value at 0x7e0010, which can be any of these:
+    ///
+    /// * 00 - Intro
+    /// * 01 - File Select
+    /// * 02 - Copy File
+    /// * 03 - Delete File
+    /// * 04 - Name File
+    /// * 05 - Load File
+    /// * 06 - UnderworldLoad
+    /// * 07 - Underworld
+    /// * 08 - OverworldLoad
+    /// * 0A - OverworldSpecialLoad
+    /// * 0B - OverworldSpecial
+    /// * 0C/0D - Unused
+    /// * 0E - Interface
+    /// * 0F - SpotlightClose
+    /// * 10 - SpotlightOpen
+    /// * 11 - UnderworldFallingEntrance
+    /// * 12 - GameOver
+    /// * 13 - BossVictory_Pendant
+    /// * 14 - Attract
+    /// * 15 - MirrorWarpFromAge
+    /// * 16 - BossVictory_Crystal
+    /// * 17 - SaveAndQuit
+    /// * 18 - GanonEmerges
+    /// * 19 - TriforceRoom
+    /// * 1A - Credits
+    /// * 1B - SpawnSelect
     pub fn game_has_started(&self) -> bool {
-        true
+        match self.get_byte(0x10) {
+            0x06..=0x0b => true,
+            _ => false,
+        }
     }
 
     pub fn new() -> Self {

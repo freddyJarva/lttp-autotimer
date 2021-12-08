@@ -325,22 +325,10 @@ fn check_for_location_checks(
     for check in checks {
         match &check.conditions {
             Some(conditions) => {
-                if conditions.iter().all(|c| match c {
-                    Conditions::CurrentTile(condition) => {
-                        let previous_tile = &events
-                            .latest_transition()
-                            .expect("Transition should always exist");
-                        current_tile_condition_met(condition, previous_tile)
-                    }
-                    Conditions::Coordinates { coordinates } => {
-                        coordinate_condition_met(&coordinates, ram)
-                    }
-                    Conditions::Underworld => ram.indoors() == 1,
-                    Conditions::DungeonCounterIncreased { sram_offset } => {
-                        dungeon_counter_condition_met(&ram_history, ram, sram_offset)
-                    }
-                    _ => todo!(),
-                }) {
+                if conditions
+                    .iter()
+                    .all(|c| match_condition(c, events, ram, ram_history))
+                {
                     check.mark_as_checked();
                     print.location_check(check);
 

@@ -65,6 +65,7 @@ impl Tile {
                                     Conditions::Coordinates { coordinates } => coordinate_condition_met(coordinates, current),
                                     Conditions::Underworld => current.indoors() == 1,
                                     Conditions::DungeonCounterIncreased { sram_offset: _ } => todo!(),
+                                    _ => todo!(),
                                 }
                             })
                             {

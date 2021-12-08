@@ -155,7 +155,10 @@ impl SnesRam {
         } else if address >= GAME_STATS_OFFSET && address < GAME_STATS_OFFSET + GAME_STATS_SIZE {
             self.game_stats_chunk[address - GAME_STATS_OFFSET]
         } else {
-            panic!("Tried to read value from address not fetched from qusb!")
+            panic!(
+                "Tried reading address with offset {:X} from ram, but it's not fetched from the game!",
+                address
+            )
         }
     }
 

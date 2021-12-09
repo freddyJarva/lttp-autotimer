@@ -83,33 +83,28 @@ pub fn print_flags_toggled<T: AsRef<[u8]>, U: AsRef<[u8]>>(lhs: T, rhs: U) {
 
 pub fn print_transition(transition: &Tile) {
     println!(
-        "Transition made!: time: {:?}, indoors: {:?}, to: {}",
-        transition.timestamp,
-        transition.indoors,
-        format!("{}", transition.name).on_purple()
+        "{}: {}",
+        format!("{}", transition.name).on_purple(),
+        transition.timestamp.unwrap()
     );
 }
 
 pub fn print_location_check(check: &Check) {
-    println!(
-        "Check made! time: {:?}, location: {}",
-        check.time_of_check,
-        check.name.on_blue(),
-    );
+    println!("{}: {}", check.name.on_blue(), check.time_of_check.unwrap());
 }
 
 pub fn print_item_check(check: &Check) {
     if check.is_progressive {
         println!(
-            "Item get! time: {:?}, item: {}",
-            check.time_of_check,
+            "{}: {}",
             format!("{} - {}", check.name, check.progressive_level).on_green(),
+            check.time_of_check.unwrap(),
         );
     } else {
         println!(
-            "Item get! time: {:?}, item: {}",
-            check.time_of_check,
+            "{}: {}",
             check.name.on_green(),
+            check.time_of_check.unwrap(),
         );
     }
 }
@@ -117,15 +112,15 @@ pub fn print_item_check(check: &Check) {
 pub fn print_event(event: &Check) {
     if event.is_progressive {
         println!(
-            "Event! time: {:?}, event: {}",
-            event.time_of_check,
+            "{}: {}",
             format!("{} - {}", event.name, event.progressive_level).on_yellow(),
+            event.time_of_check.unwrap(),
         );
     } else {
         println!(
-            "Event! time: {:?}, item: {}",
-            event.time_of_check,
+            "{}: {}",
             event.name.on_yellow(),
+            event.time_of_check.unwrap(),
         );
     }
 }

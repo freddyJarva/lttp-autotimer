@@ -394,11 +394,49 @@
     },
     {
         "id": 40,
-        "name": "Chicken hut",
+        "name": "Chicken hut - Front",
         "region": "West Hyrule",
         "indoors": true,
         "address_value": [
             "0x4B"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "4216",
+                        "y": "8664"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "4296",
+                        "y": "8568"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 558,
+        "name": "Chicken hut - Back",
+        "region": "West Hyrule",
+        "indoors": true,
+        "address_value": [
+            "0x4B"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "4392",
+                        "y": "8568"
+                    }
+                ]
+            }
         ]
     },
     {

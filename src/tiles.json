@@ -929,29 +929,179 @@
     },
     {
         "id": 67,
-        "name": "Paradox cave bottom",
+        "name": "Paradox Cave - Bottom",
         "region": "Death Mountain",
         "indoors": true,
         "address_value": [
-            "0x1E"
+            "0x1E",
+            "0x1F",
+            "0x20"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Range",
+                        "x": "7992-8136",
+                        "y": "7984-8040",
+                        "note": "drop from mid + from treasure room + stairs from mid"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "8056",
+                        "y": "8152",
+                        "note": "entrance"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "7800",
+                        "y": "7984",
+                        "note": "from shop"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 564,
+        "name": "Paradox Cave - Bottom Treasure Room",
+        "region": "Death Mountain",
+        "indoors": true,
+        "address_value": [
+            "0x1E",
+            "0x1F",
+            "0x20"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "8056",
+                        "y": "7872"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 565,
+        "name": "Paradox Cave - Shop",
+        "region": "Death Mountain",
+        "indoors": true,
+        "address_value": [
+            "0x1E",
+            "0x1F",
+            "0x20"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "7800",
+                        "y": "7872"
+                    }
+                ]
+            }
         ]
     },
     {
         "id": 68,
-        "name": "Paradox cave middle",
+        "name": "Paradox Cave - Middle",
         "region": "Death Mountain",
         "indoors": true,
         "address_value": [
-            "0x1F"
+            "0x1E",
+            "0x1F",
+            "0x20"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "7928",
+                        "y": "7640",
+                        "note": "entrance"
+                    },
+                    {
+                        "type": "Stairs",
+                        "x": "7801",
+                        "y": "7481",
+                        "note": "from top"
+                    },
+                    {
+                        "type": "Stairs",
+                        "x": "8120",
+                        "y": "7475",
+                        "note": "from bottom"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "8056",
+                        "y": "7456",
+                        "note": "from treasure room"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 566,
+        "name": "Paradox Cave - Middle Treasure Room",
+        "region": "Death Mountain",
+        "indoors": true,
+        "address_value": [
+            "0x1E",
+            "0x1F",
+            "0x20"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "8056",
+                        "y": "7360"
+                    }
+                ]
+            }
         ]
     },
     {
         "id": 69,
-        "name": "Paradox cave top",
+        "name": "Paradox Cave - Top",
         "region": "Death Mountain",
         "indoors": true,
         "address_value": [
+            "0x1E",
+            "0x1F",
             "0x20"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Stairs",
+                        "x": "7800",
+                        "y": "6988",
+                        "note": "from mid"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "7928",
+                        "y": "7128",
+                        "note": "entrance"
+                    }
+                ]
+            }
         ]
     },
     {

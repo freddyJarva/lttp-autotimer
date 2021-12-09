@@ -68,16 +68,6 @@ const TILE_INFO_CHUNK_SIZE: usize = 0x40B;
 const GAME_STATS_OFFSET: usize = 0xf422;
 const GAME_STATS_SIZE: usize = 0x2f;
 
-/// Hashable id for map lookups
-#[derive(Default, PartialEq, Hash, Eq, Debug)]
-pub struct SnesMemoryID {
-    pub address: Option<u32>,
-    pub mask: Option<u8>,
-    pub address_value: Option<u16>,
-    pub indoors: Option<bool>,
-    pub conditions: Option<Conditions>,
-}
-
 pub fn connect_to_qusb(args: &ArgMatches) -> anyhow::Result<()> {
     let host = args.value_of("host").unwrap();
     let port = args.value_of("port").unwrap();

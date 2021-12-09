@@ -254,7 +254,25 @@
         "region": "West Hyrule",
         "indoors": true,
         "address_value": [
-            "0xF"
+            "0xF",
+            "0x10"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "2504",
+                        "y": "8056"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "2424",
+                        "y": "8152"
+                    }
+                ]
+            }
         ]
     },
     {
@@ -263,7 +281,25 @@
         "region": "West Hyrule",
         "indoors": true,
         "address_value": [
+            "0xF",
             "0x10"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "2680",
+                        "y": "8152"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "2600",
+                        "y": "8056"
+                    }
+                ]
+            }
         ]
     },
     {

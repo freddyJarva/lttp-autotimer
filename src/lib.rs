@@ -138,11 +138,11 @@ pub fn connect_to_qusb(args: &ArgMatches) -> anyhow::Result<()> {
     let mut locations: Vec<Check> = deserialize_location_checks()?
         .into_iter()
         // 0 offset checks without conditions hasn't been given a proper value in checks.json yet
-        .filter(|check| check.sram_offset != 0 || check.conditions.is_some())
+        .filter(|check| check.sram_offset.unwrap_or_default() != 0 || check.conditions.is_some())
         .collect();
     let mut items: Vec<Check> = deserialize_item_checks()?
         .into_iter()
-        .filter(|check| check.sram_offset != 0)
+        .filter(|check| check.sram_offset.unwrap_or_default() != 0)
         .collect();
 
     while !game_finished {
@@ -329,12 +329,16 @@ fn check_for_location_checks(
                 }
             }
             None => {
-                let current_check_value = ram.get_byte(check.sram_offset as usize);
+                let current_check_value =
+                    ram.get_byte(check.sram_offset.unwrap_or_default() as usize);
                 if ram_history.len() > 0
-                    && (ram_history[ram_history.len() - 1].get_byte(check.sram_offset as usize)
+                    && (ram_history[ram_history.len() - 1]
+                        .get_byte(check.sram_offset.unwrap_or_default() as usize)
                         != current_check_value)
                 {
-                    if current_check_value & check.sram_mask != 0 && !check.is_checked {
+                    if current_check_value & check.sram_mask.unwrap_or_default() != 0
+                        && !check.is_checked
+                    {
                         check.mark_as_checked();
                         print.location_check(check);
                         let location_check_event = EventEnum::LocationCheck(check.clone());
@@ -358,14 +362,15 @@ fn check_for_item_checks(
     print: &mut StdoutPrinter,
 ) -> anyhow::Result<()> {
     for check in checks {
-        let current_check_value = ram.get_byte(check.sram_offset as usize);
+        let current_check_value = ram.get_byte(check.sram_offset.unwrap_or_default() as usize);
 
         if previous_values.len() > 0
-            && (previous_values[previous_values.len() - 1].get_byte(check.sram_offset as usize)
+            && (previous_values[previous_values.len() - 1]
+                .get_byte(check.sram_offset.unwrap_or_default() as usize)
                 != current_check_value)
         {
             if !check.is_progressive
-                && current_check_value & check.sram_mask != 0
+                && current_check_value & check.sram_mask.unwrap_or_default() != 0
                 && !check.is_checked
             {
                 check.mark_as_checked();
@@ -424,7 +429,7 @@ fn check_for_events(
     print: &mut StdoutPrinter,
 ) -> anyhow::Result<bool> {
     for event in subscribed_events {
-        let current_event_value = ram.get_byte(event.sram_offset as usize);
+        let current_event_value = ram.get_byte(event.sram_offset.unwrap_or_default() as usize);
         match &event.conditions {
             Some(conditions) => {
                 if conditions
@@ -444,7 +449,7 @@ fn check_for_events(
             }
             None => {
                 if !event.is_progressive
-                    && current_event_value & event.sram_mask != 0
+                    && current_event_value & event.sram_mask.unwrap_or_default() != 0
                     && !event.is_checked
                 {
                     event.mark_as_checked();

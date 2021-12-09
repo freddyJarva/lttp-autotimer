@@ -1,5 +1,6 @@
 use crate::condition::Conditions;
-use crate::serde_lttp::{hex_byte_deserialize, hex_deserialize};
+use crate::serde_lttp::hex_byte_deserialize_option;
+use crate::serde_lttp::hex_deserialize_option;
 use chrono::serde::ts_milliseconds_option;
 use chrono::{DateTime, Utc};
 use serde::Deserialize;
@@ -8,10 +9,12 @@ use serde::Deserialize;
 pub struct Check {
     pub id: usize,
     pub name: String,
-    #[serde(deserialize_with = "hex_deserialize")]
-    pub sram_offset: u32,
-    #[serde(deserialize_with = "hex_byte_deserialize")]
-    pub sram_mask: u8,
+    #[serde(default)]
+    #[serde(deserialize_with = "hex_deserialize_option")]
+    pub sram_offset: Option<u32>,
+    #[serde(default)]
+    #[serde(deserialize_with = "hex_byte_deserialize_option")]
+    pub sram_mask: Option<u8>,
     #[serde(default)]
     pub is_checked: bool,
     #[serde(with = "ts_milliseconds_option", default)]
@@ -77,8 +80,8 @@ mod tests {
             deserialize_location_checks().unwrap()[0],
             Check {
                 name: "Mushroom".to_string(),
-                sram_offset: 0xf411,
-                sram_mask: 0x10,
+                sram_offset: Some(0xf411),
+                sram_mask: Some(0x10),
                 ..Default::default()
             }
         )
@@ -90,8 +93,8 @@ mod tests {
             deserialize_item_checks().unwrap()[0],
             Check {
                 name: "Bow".to_string(),
-                sram_offset: 0xf38e,
-                sram_mask: 0x80,
+                sram_offset: Some(0xf38e),
+                sram_mask: Some(0x80),
                 is_item: true,
                 ..Default::default()
             }
@@ -105,8 +108,8 @@ mod tests {
             Check {
                 name: "Save & Quit".to_string(),
                 is_progressive: true,
-                sram_offset: 0xf42d,
-                sram_mask: 0xff,
+                sram_offset: Some(0xf42d),
+                sram_mask: Some(0xff),
                 ..Default::default()
             }
         )

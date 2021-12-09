@@ -268,7 +268,6 @@
     {
         "name": "Turtle Rock - Dungeon Clear",
         "id": 14,
-        "sram_offset": "0x0",
         "sram_mask": "0x0",
         "conditions": [
             {

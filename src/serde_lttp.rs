@@ -20,6 +20,7 @@ where
 }
 
 /// Terrible deserializer of hex values. But hey, it works. I guess.
+#[allow(unused)]
 pub fn hex_deserialize<'de, D>(d: D) -> Result<u32, D::Error>
 where
     D: Deserializer<'de>,
@@ -33,12 +34,12 @@ pub fn hex_deserialize_option<'de, D>(d: D) -> Result<Option<u32>, D::Error>
 where
     D: Deserializer<'de>,
 {
-    let so: Option<&str> = Deserialize::deserialize(d)?;
-    match so {
-        Some(s) => Ok(Some(
+    let res: Result<&str, D::Error> = Deserialize::deserialize(d);
+    match res {
+        Ok(s) => Ok(Some(
             u32::from_str_radix(&s[2..], 16).map_err(D::Error::custom)?,
         )),
-        None => Ok(None),
+        Err(e) => Err(e),
     }
 }
 
@@ -84,6 +85,19 @@ where
 {
     let s: &str = Deserialize::deserialize(d)?;
     u8::from_str_radix(&s[2..], 16).map_err(D::Error::custom)
+}
+
+pub fn hex_byte_deserialize_option<'de, D>(d: D) -> Result<Option<u8>, D::Error>
+where
+    D: Deserializer<'de>,
+{
+    let res: Result<&str, D::Error> = Deserialize::deserialize(d);
+    match res {
+        Ok(s) => Ok(Some(
+            u8::from_str_radix(&s[2..], 16).map_err(D::Error::custom)?,
+        )),
+        Err(e) => Err(e),
+    }
 }
 
 pub fn hex_usize_deserialize<'de, D>(d: D) -> Result<usize, D::Error>

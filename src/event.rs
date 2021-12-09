@@ -267,8 +267,8 @@ mod tests {
             Check {
                 id: 0,
                 name: "Mushroom".to_string(),
-                sram_offset: 0x411,
-                sram_mask: 0x10,
+                sram_offset: Some(0x411),
+                sram_mask: Some(0x10),
                 time_of_check: Some(Utc.timestamp_millis(200)),
                 ..Default::default()
             },
@@ -282,8 +282,8 @@ mod tests {
             Check {
                 id: 4,
                 name: "Hookshot".to_string(),
-                sram_offset: 0x342,
-                sram_mask: 0x01,
+                sram_offset: Some(0x342),
+                sram_mask: Some(0x01),
                 time_of_check: Some(Utc.timestamp_millis(200)),
                 is_item: true,
                 ..Default::default()
@@ -298,8 +298,8 @@ mod tests {
             Check {
                 id: 27,
                 name: "Progressive Sword".to_string(),
-                sram_offset: 0x342,
-                sram_mask: 0x01,
+                sram_offset: Some(0x342),
+                sram_mask: Some(0x01),
                 time_of_check: Some(Utc.timestamp_millis(200)),
                 is_item: true,
                 is_progressive: true,

@@ -468,11 +468,75 @@
     },
     {
         "id": 44,
-        "name": "Blind's hut",
+        "name": "Blind's hut - Top",
         "region": "West Hyrule",
         "indoors": true,
         "address_value": [
             "0x61"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "4856",
+                        "y": "9176"
+                    },
+                    {
+                        "type": "Stairs",
+                        "x": "4808",
+                        "y": "9012"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 560,
+        "name": "Blind's hut - Basement Front",
+        "region": "West Hyrule",
+        "indoors": true,
+        "address_value": [
+            "0x61"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Stairs",
+                        "x": "6857",
+                        "y": "9015"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "6904",
+                        "y": "9008"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 561,
+        "name": "Blind's hut - Basement Back",
+        "region": "West Hyrule",
+        "indoors": true,
+        "address_value": [
+            "0x61"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "6904",
+                        "y": "8896"
+                    }
+                ]
+            }
         ]
     },
     {

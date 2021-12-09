@@ -585,11 +585,49 @@
     },
     {
         "id": 55,
-        "name": "Kakariko Well drop",
+        "name": "Kakariko Well Drop - Front",
         "region": "West Hyrule",
         "indoors": true,
         "address_value": [
             "0x80"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "7777",
+                        "y": "1417"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "7800",
+                        "y": "1328"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 559,
+        "name": "Kakariko Well Drop - Back",
+        "region": "West Hyrule",
+        "indoors": true,
+        "address_value": [
+            "0x80"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "7800",
+                        "y": "1216"
+                    }
+                ]
+            }
         ]
     },
     {

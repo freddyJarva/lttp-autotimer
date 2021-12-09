@@ -43,8 +43,6 @@
     {
         "name": "Eastern Palace - Dungeon Clear",
         "id": 6,
-        "sram_offset": "0x0",
-        "sram_mask": "0x0",
         "conditions": [
             {
                 "type": "CurrentTile",
@@ -68,8 +66,6 @@
     {
         "name": "Desert Palace - Dungeon Clear",
         "id": 7,
-        "sram_offset": "0x0",
-        "sram_mask": "0x0",
         "conditions": [
             {
                 "type": "CurrentTile",
@@ -93,8 +89,6 @@
     {
         "name": "Tower of Hera - Dungeon Clear",
         "id": 8,
-        "sram_offset": "0x0",
-        "sram_mask": "0x0",
         "conditions": [
             {
                 "type": "CurrentTile",
@@ -118,8 +112,6 @@
     {
         "name": "Palace of Darkness - Dungeon Clear",
         "id": 9,
-        "sram_offset": "0x0",
-        "sram_mask": "0x0",
         "conditions": [
             {
                 "type": "CurrentTile",
@@ -143,8 +135,6 @@
     {
         "name": "Swamp Palace - Dungeon Clear",
         "id": 10,
-        "sram_offset": "0x0",
-        "sram_mask": "0x0",
         "conditions": [
             {
                 "type": "CurrentTile",
@@ -168,8 +158,6 @@
     {
         "name": "Thieves' Town - Dungeon Clear",
         "id": 11,
-        "sram_offset": "0x0",
-        "sram_mask": "0x0",
         "conditions": [
             {
                 "type": "CurrentTile",
@@ -193,8 +181,6 @@
     {
         "name": "Skull Woods - Dungeon Clear",
         "id": 11,
-        "sram_offset": "0x0",
-        "sram_mask": "0x0",
         "conditions": [
             {
                 "type": "CurrentTile",
@@ -218,8 +204,6 @@
     {
         "name": "Ice Palace - Dungeon Clear",
         "id": 12,
-        "sram_offset": "0x0",
-        "sram_mask": "0x0",
         "conditions": [
             {
                 "type": "Any",
@@ -243,8 +227,6 @@
     {
         "name": "Misery Mire - Dungeon Clear",
         "id": 13,
-        "sram_offset": "0x0",
-        "sram_mask": "0x0",
         "conditions": [
             {
                 "type": "CurrentTile",
@@ -268,7 +250,6 @@
     {
         "name": "Turtle Rock - Dungeon Clear",
         "id": 14,
-        "sram_mask": "0x0",
         "conditions": [
             {
                 "type": "CurrentTile",

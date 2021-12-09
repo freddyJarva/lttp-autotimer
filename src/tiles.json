@@ -915,7 +915,27 @@
         "region": "Death Mountain",
         "indoors": true,
         "address_value": [
-            "0x1C"
+            "0x1C",
+            "0x1D"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Range",
+                        "x": "7464-7514",
+                        "y": "7848-7880",
+                        "note": "drop from top"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "7544",
+                        "y": "8128",
+                        "note": "entrance"
+                    }
+                ]
+            }
         ]
     },
     {
@@ -925,6 +945,18 @@
         "indoors": true,
         "address_value": [
             "0x1D"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "7544",
+                        "y": "7640"
+                    }
+                ]
+            }
         ]
     },
     {

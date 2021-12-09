@@ -2048,7 +2048,55 @@
         "region": "Dark Death Mountain",
         "indoors": true,
         "address_value": [
-            "0x3A"
+            "0x3A",
+            "0x3B"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "6520",
+                        "y": "2008",
+                        "note": "entrance"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "6520",
+                        "y": "1584"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 566,
+        "name": "Hookshot cave cross",
+        "region": "Dark Death Mountain",
+        "indoors": true,
+        "address_value": [
+            "0x3A",
+            "0x3B"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "6520",
+                        "y": "1472",
+                        "note": "from bottom"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "6440",
+                        "y": "1400",
+                        "note": "from top"
+                    }
+                ]
+            }
         ]
     },
     {
@@ -2057,7 +2105,27 @@
         "region": "Dark Death Mountain",
         "indoors": true,
         "address_value": [
+            "0x3A",
             "0x3B"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "6344",
+                        "y": "1400",
+                        "note": "from cross"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "6264",
+                        "y": "1496",
+                        "note": "entrance"
+                    }
+                ]
+            }
         ]
     },
     {

@@ -2026,20 +2026,161 @@
     },
     {
         "id": 153,
-        "name": "Superbunny bottom",
+        "name": "Superbunny - Bottom",
         "region": "Dark Death Mountain",
         "indoors": true,
         "address_value": [
-            "0x13"
+            "0x13",
+            "0x14"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "4344",
+                        "y": "8152",
+                        "note": "entrance"
+                    },
+                    {
+                        "type": "Stairs",
+                        "x": "4153",
+                        "y": "8039"
+                    },
+                    {
+                        "type": "Range",
+                        "x": "4216-4232",
+                        "y": "7784-7832",
+                        "note": "drop from nabcake HoS South"
+                    },
+                    {
+                        "type": "Range",
+                        "x": "4245-4315",
+                        "y": "7728-7744",
+                        "note": "drop from nabcake HoS East"
+                    },
+                    {
+                        "type": "Stairs",
+                        "x": "4393",
+                        "y": "7734",
+                        "note": "from bumper room"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 569,
+        "name": "Superbunny - Nabcake Hall of Shame",
+        "region": "Dark Death Mountain",
+        "indoors": true,
+        "address_value": [
+            "0x13",
+            "0x14"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "4344",
+                        "y": "8152",
+                        "note": "entrance"
+                    },
+                    {
+                        "type": "Stairs",
+                        "x": "4152",
+                        "y": "7524",
+                        "note": "stairs close to bot entrance"
+                    },
+                    {
+                        "type": "Stairs",
+                        "x": "4168",
+                        "y": "7219",
+                        "note": "stairs close to drops"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 570,
+        "name": "Superbunny - Bumper Room",
+        "region": "Dark Death Mountain",
+        "indoors": true,
+        "address_value": [
+            "0x13",
+            "0x14"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Stairs",
+                        "x": "4392",
+                        "y": "7220",
+                        "note": "from bot"
+                    }
+                ]
+            }
         ]
     },
     {
         "id": 154,
-        "name": "Superbunny top",
+        "name": "Superbunny - Top",
         "region": "Dark Death Mountain",
         "indoors": true,
         "address_value": [
+            "0x13",
             "0x14"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "4472",
+                        "y": "7640"
+                    },
+                    {
+                        "type": "Stairs",
+                        "x": "4344",
+                        "y": "7332"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 568,
+        "name": "Superbunny - Treasure Room",
+        "region": "Dark Death Mountain",
+        "indoors": true,
+        "address_value": [
+            "0x13",
+            "0x14"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Stairs",
+                        "x": "4345",
+                        "y": "7847"
+                    },
+                    {
+                        "type": "Range",
+                        "x": "4504-4552",
+                        "y": "7776-7952",
+                        "note": "drop from bumper"
+                    }
+                ]
+            }
         ]
     },
     {
@@ -2071,7 +2212,7 @@
         ]
     },
     {
-        "id": 566,
+        "id": 567,
         "name": "Hookshot cave cross",
         "region": "Dark Death Mountain",
         "indoors": true,

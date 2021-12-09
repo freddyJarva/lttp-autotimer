@@ -956,29 +956,122 @@
     },
     {
         "id": 70,
-        "name": "Kiki cave west",
+        "name": "Spectacle Rock - Diagonal Hallway",
         "region": "Death Mountain",
         "indoors": true,
         "address_value": [
-            "0x21"
+            "0x21",
+            "0x22",
+            "0x23"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Range",
+                        "x": "5092",
+                        "y": "7728-7744",
+                        "note": "entrance"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "4728",
+                        "y": "8152",
+                        "note": "from mid"
+                    }
+                ]
+            }
         ]
     },
     {
         "id": 71,
-        "name": "Kiki cave east",
+        "name": "Spectacle Rock - Bottom",
         "region": "Death Mountain",
         "indoors": true,
         "address_value": [
-            "0x22"
+            "0x21",
+            "0x22",
+            "0x23"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "5240",
+                        "y": "8128",
+                        "note": "entrance"
+                    },
+                    {
+                        "type": "Stairs",
+                        "x": "5241",
+                        "y": "7734",
+                        "note": "from top"
+                    }
+                ]
+            }
         ]
     },
     {
         "id": 72,
-        "name": "Spectacle rock",
+        "name": "Spectacle Rock - Top",
         "region": "Death Mountain",
         "indoors": true,
         "address_value": [
+            "0x21",
+            "0x22",
             "0x23"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "5240",
+                        "y": "7640",
+                        "note": "entrance"
+                    },
+                    {
+                        "type": "Stairs",
+                        "x": "5240",
+                        "y": "7220",
+                        "note": "from bottom"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 563,
+        "name": "Spectacle Rock - Mid",
+        "region": "Death Mountain",
+        "indoors": true,
+        "address_value": [
+            "0x21",
+            "0x22",
+            "0x23"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Range",
+                        "x": "5132",
+                        "y": "7728-7744",
+                        "note": "from diagonal hallway"
+                    },
+                    {
+                        "type": "Range",
+                        "x": "5200-5320",
+                        "y": "7920-7952",
+                        "note": "drop from top"
+                    }
+                ]
+            }
         ]
     },
     {

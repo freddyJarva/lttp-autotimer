@@ -118,7 +118,7 @@ pub fn connect_to_qusb(args: &ArgMatches) -> anyhow::Result<()> {
             "Race mode activated".red(),
         )
     }
-    let print = StdoutPrinter::new(allow_output);
+    let mut print = StdoutPrinter::new(allow_output);
 
     let mut ram_history: VecDeque<SnesRam> = VecDeque::new();
 
@@ -157,17 +157,17 @@ pub fn connect_to_qusb(args: &ArgMatches) -> anyhow::Result<()> {
                         &mut subscribed_events,
                         &mut writer,
                         &mut events,
-                        &print,
+                        &mut print,
                     )?;
                     if game_started {
-                        check_for_transitions(&snes_ram, &mut writer, &mut events, &print)?;
+                        check_for_transitions(&snes_ram, &mut writer, &mut events, &mut print)?;
                         check_for_location_checks(
                             &snes_ram,
                             &mut ram_history,
                             &mut locations,
                             &mut writer,
                             &mut events,
-                            &print,
+                            &mut print,
                         )?;
                         check_for_item_checks(
                             &snes_ram,
@@ -175,7 +175,7 @@ pub fn connect_to_qusb(args: &ArgMatches) -> anyhow::Result<()> {
                             &mut items,
                             &mut writer,
                             &mut events,
-                            &print,
+                            &mut print,
                         )?;
                     }
                     ram_history.push_back(snes_ram);
@@ -311,7 +311,7 @@ fn check_for_location_checks(
     checks: &mut Vec<Check>,
     writer: &mut Writer<File>,
     events: &mut EventTracker,
-    print: &StdoutPrinter,
+    print: &mut StdoutPrinter,
 ) -> anyhow::Result<()> {
     for check in checks {
         match &check.conditions {
@@ -355,7 +355,7 @@ fn check_for_item_checks(
     checks: &mut Vec<Check>,
     writer: &mut Writer<File>,
     events: &mut EventTracker,
-    print: &StdoutPrinter,
+    print: &mut StdoutPrinter,
 ) -> anyhow::Result<()> {
     for check in checks {
         let current_check_value = ram.get_byte(check.sram_offset as usize);
@@ -392,7 +392,7 @@ fn check_for_transitions(
     ram: &SnesRam,
     writer: &mut Writer<File>,
     events: &mut EventTracker,
-    print: &StdoutPrinter,
+    print: &mut StdoutPrinter,
 ) -> anyhow::Result<()> {
     // Use events if one transition has been triggered.
     match events.latest_transition() {
@@ -421,7 +421,7 @@ fn check_for_events(
     subscribed_events: &mut Vec<Check>,
     writer: &mut Writer<File>,
     events: &mut EventTracker,
-    print: &StdoutPrinter,
+    print: &mut StdoutPrinter,
 ) -> anyhow::Result<bool> {
     for event in subscribed_events {
         let current_event_value = ram.get_byte(event.sram_offset as usize);

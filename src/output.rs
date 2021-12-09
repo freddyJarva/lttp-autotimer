@@ -1,39 +1,48 @@
-use colored::Colorize;
+use chrono::{DateTime, Duration, Utc};
+use colored::{ColoredString, Colorize};
 use termcolor::{ColorChoice, StandardStream};
 
 use crate::{check::Check, tile::Tile};
 
 pub struct StdoutPrinter {
     allow_output: bool,
+    previous_time: DateTime<Utc>,
 }
 
 impl StdoutPrinter {
     pub fn new(allow_output: bool) -> Self {
-        Self { allow_output }
-    }
-
-    pub fn transition(&self, tile: &Tile) {
-        if self.allow_output {
-            print_transition(tile)
+        Self {
+            allow_output,
+            previous_time: Utc::now(),
         }
     }
 
-    pub fn location_check(&self, check: &Check) {
+    pub fn transition(&mut self, tile: &Tile) {
         if self.allow_output {
-            print_location_check(check)
+            print_transition(tile, &self.previous_time)
         }
+        self.previous_time = tile.timestamp.unwrap()
     }
 
-    pub fn item_check(&self, check: &Check) {
+    pub fn location_check(&mut self, check: &Check) {
         if self.allow_output {
-            print_item_check(check)
+            print_location_check(check, &self.previous_time)
         }
+        self.previous_time = check.time_of_check.unwrap()
     }
 
-    pub fn event(&self, event: &Check) {
+    pub fn item_check(&mut self, check: &Check) {
         if self.allow_output {
-            print_event(event)
+            print_item_check(check, &self.previous_time)
         }
+        self.previous_time = check.time_of_check.unwrap()
+    }
+
+    pub fn event(&mut self, event: &Check) {
+        if self.allow_output {
+            print_event(event, &self.previous_time)
+        }
+        self.previous_time = event.time_of_check.unwrap()
     }
 }
 
@@ -81,46 +90,86 @@ pub fn print_flags_toggled<T: AsRef<[u8]>, U: AsRef<[u8]>>(lhs: T, rhs: U) {
     print!("\n");
 }
 
-pub fn print_transition(transition: &Tile) {
-    println!(
-        "{}: {}",
+pub fn print_transition(transition: &Tile, previous_time: &DateTime<Utc>) {
+    print_trigger(
         format!("{}", transition.name).on_purple(),
-        transition.timestamp.unwrap()
+        transition.timestamp.unwrap().time() - previous_time.time(),
     );
 }
 
-pub fn print_location_check(check: &Check) {
-    println!("{}: {}", check.name.on_blue(), check.time_of_check.unwrap());
+pub fn print_location_check(check: &Check, previous_time: &DateTime<Utc>) {
+    print_trigger(
+        check.name.on_blue(),
+        check.time_of_check.unwrap().time() - previous_time.time(),
+    );
 }
 
-pub fn print_item_check(check: &Check) {
+pub fn print_item_check(check: &Check, previous_time: &DateTime<Utc>) {
     if check.is_progressive {
-        println!(
-            "{}: {}",
-            format!("{} - {}", check.name, check.progressive_level).on_green(),
-            check.time_of_check.unwrap(),
+        print_trigger(
+            format!("{} - {}", check.name, check.progressive_level).on_yellow(),
+            check.time_of_check.unwrap().time() - previous_time.time(),
         );
     } else {
-        println!(
-            "{}: {}",
-            check.name.on_green(),
-            check.time_of_check.unwrap(),
+        print_trigger(
+            check.name.on_yellow(),
+            check.time_of_check.unwrap().time() - previous_time.time(),
         );
     }
 }
 
-pub fn print_event(event: &Check) {
-    if event.is_progressive {
-        println!(
-            "{}: {}",
-            format!("{} - {}", event.name, event.progressive_level).on_yellow(),
-            event.time_of_check.unwrap(),
+pub fn print_event(check: &Check, previous_time: &DateTime<Utc>) {
+    if check.is_progressive {
+        print_trigger(
+            format!("{} - {}", check.name, check.progressive_level).on_yellow(),
+            check.time_of_check.unwrap().time() - previous_time.time(),
         );
     } else {
-        println!(
-            "{}: {}",
-            event.name.on_yellow(),
-            event.time_of_check.unwrap(),
+        print_trigger(
+            check.name.on_yellow(),
+            check.time_of_check.unwrap().time() - previous_time.time(),
         );
+    }
+}
+
+fn print_trigger(trigger_text: ColoredString, time: Duration) {
+    println!("{}: delta: {}", trigger_text, format_duration(time))
+}
+
+fn format_duration(time: Duration) -> ColoredString {
+    format!("{:.3}", duration_to_float(time)).cyan()
+}
+
+fn duration_to_float(time: Duration) -> f64 {
+    time.to_string()
+        .strip_prefix("PT")
+        .unwrap_or_default()
+        .strip_suffix("S")
+        .unwrap_or_default()
+        .parse()
+        .unwrap()
+}
+
+#[cfg(test)]
+mod tests {
+    use chrono::NaiveTime;
+
+    use super::*;
+    #[test]
+    fn test_format_duration() {
+        // Given
+        let past = NaiveTime::from_hms_nano(0, 0, 0, 0);
+        let present = NaiveTime::from_hms_nano(0, 0, 20, 133700000);
+        let actual = format_duration(present - past);
+        assert_eq!(actual, "20.134".cyan())
+    }
+
+    #[test]
+    fn test_duration_to_float() {
+        // Given
+        let past = NaiveTime::from_hms_nano(0, 0, 0, 0);
+        let present = NaiveTime::from_hms_nano(0, 0, 20, 133700000);
+        let actual = duration_to_float(present - past);
+        assert_eq!(actual, 20.1337)
     }
 }

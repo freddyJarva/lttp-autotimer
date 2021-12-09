@@ -10,20 +10,60 @@
     },
     {
         "id": 1,
-        "name": "Hyrule Castle secret entrance",
+        "name": "Hyrule Castle Secret Passage - Entrance",
         "region": "Central Hyrule",
         "indoors": true,
         "address_value": [
-            "0x32"
+            "0x32",
+            "0x7D"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "2680",
+                        "y": "3032",
+                        "note": "entrance"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "2680",
+                        "y": "2872",
+                        "note": "from uncle"
+                    }
+                ]
+            }
         ]
     },
     {
         "id": 2,
-        "name": "Castle Secret Passage drop",
+        "name": "Castle Secret Passage - Uncle",
         "region": "Central Hyrule",
         "indoors": true,
         "address_value": [
+            "0x32",
             "0x7D"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "2975",
+                        "y": "2710",
+                        "note": "drop"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "2680",
+                        "y": "2752",
+                        "note": "from entrance"
+                    }
+                ]
+            }
         ]
     },
     {

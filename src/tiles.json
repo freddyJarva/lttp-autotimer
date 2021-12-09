@@ -304,11 +304,29 @@
     },
     {
         "id": 26,
-        "name": "Magic bat",
+        "name": "Magic Bat - Front",
         "region": "West Hyrule",
         "indoors": true,
         "address_value": [
-            "0x11"
+            "0x11",
+            "0x7E"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "1656",
+                        "y": "7640"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "1712",
+                        "y": "7544"
+                    }
+                ]
+            }
         ]
     },
     {
@@ -667,11 +685,51 @@
     },
     {
         "id": 53,
-        "name": "Magic Bat drop",
+        "name": "Magic Bat - Drop Room",
         "region": "West Hyrule",
         "indoors": true,
         "address_value": [
+            "0x11",
             "0x7E"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "1912",
+                        "y": "7549"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "1912",
+                        "y": "7480"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 562,
+        "name": "Magic Bat - Altar",
+        "region": "West Hyrule",
+        "indoors": true,
+        "address_value": [
+            "0x11",
+            "0x7E"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "1912",
+                        "y": "7360"
+                    }
+                ]
+            }
         ]
     },
     {

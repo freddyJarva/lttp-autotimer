@@ -178,3 +178,16 @@ pub fn dungeon_counter_condition_met(
         false
     }
 }
+
+pub fn ram_value_change_condition_met(
+    previous_values: &mut VecDeque<SnesRam>,
+    ram: &SnesRam,
+    sram_offset: &usize,
+) -> bool {
+    if previous_values.len() > 0 {
+        ram.get_byte(*sram_offset)
+            != previous_values[previous_values.len() - 1].get_byte(*sram_offset)
+    } else {
+        false
+    }
+}

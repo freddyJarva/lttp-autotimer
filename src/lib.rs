@@ -10,6 +10,7 @@ use clap::ArgMatches;
 
 use condition::{
     coordinate_condition_met, current_tile_condition_met, dungeon_counter_condition_met,
+    ram_value_change_condition_met,
 };
 use snes::SnesRam;
 use tile::Tile;
@@ -492,10 +493,10 @@ fn match_condition(
         Conditions::Coordinates { coordinates } => coordinate_condition_met(&coordinates, ram),
         Conditions::Underworld => ram.indoors() == 1,
         Conditions::DungeonCounterIncreased { sram_offset } => {
-            match_dungeon_counter_increased(previous_values, ram, sram_offset)
+            dungeon_counter_condition_met(previous_values, ram, sram_offset)
         }
         Conditions::ValueChanged { sram_offset } => {
-            match_ram_value_changed(previous_values, ram, sram_offset)
+            ram_value_change_condition_met(previous_values, ram, sram_offset)
         }
         Conditions::CurrentTile(condition) => {
             let current_tile = &events
@@ -507,31 +508,5 @@ fn match_condition(
             .iter()
             .any(|subcondition| match_condition(subcondition, events, ram, previous_values)),
         _ => todo!(),
-    }
-}
-
-fn match_dungeon_counter_increased(
-    previous_values: &mut VecDeque<SnesRam>,
-    ram: &SnesRam,
-    sram_offset: &usize,
-) -> bool {
-    if previous_values.len() > 0 {
-        ram.get_byte(*sram_offset)
-            > previous_values[previous_values.len() - 1].get_byte(*sram_offset)
-    } else {
-        false
-    }
-}
-
-fn match_ram_value_changed(
-    previous_values: &mut VecDeque<SnesRam>,
-    ram: &SnesRam,
-    sram_offset: &usize,
-) -> bool {
-    if previous_values.len() > 0 {
-        ram.get_byte(*sram_offset)
-            != previous_values[previous_values.len() - 1].get_byte(*sram_offset)
-    } else {
-        false
     }
 }

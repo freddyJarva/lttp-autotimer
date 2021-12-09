@@ -1,4 +1,4 @@
-use chrono::{DateTime, Duration, Utc};
+use chrono::{DateTime, Duration, Timelike, Utc};
 use colored::{ColoredString, Colorize};
 use termcolor::{ColorChoice, StandardStream};
 
@@ -93,14 +93,16 @@ pub fn print_flags_toggled<T: AsRef<[u8]>, U: AsRef<[u8]>>(lhs: T, rhs: U) {
 pub fn print_transition(transition: &Tile, previous_time: &DateTime<Utc>) {
     print_trigger(
         format!("{}", transition.name).on_purple(),
-        transition.timestamp.unwrap().time() - previous_time.time(),
+        &transition.timestamp.unwrap(),
+        previous_time,
     );
 }
 
 pub fn print_location_check(check: &Check, previous_time: &DateTime<Utc>) {
     print_trigger(
         check.name.on_blue(),
-        check.time_of_check.unwrap().time() - previous_time.time(),
+        &check.time_of_check.unwrap(),
+        previous_time,
     );
 }
 
@@ -108,12 +110,14 @@ pub fn print_item_check(check: &Check, previous_time: &DateTime<Utc>) {
     if check.is_progressive {
         print_trigger(
             format!("{} - {}", check.name, check.progressive_level).on_yellow(),
-            check.time_of_check.unwrap().time() - previous_time.time(),
+            &check.time_of_check.unwrap(),
+            previous_time,
         );
     } else {
         print_trigger(
             check.name.on_yellow(),
-            check.time_of_check.unwrap().time() - previous_time.time(),
+            &check.time_of_check.unwrap(),
+            previous_time,
         );
     }
 }
@@ -122,18 +126,31 @@ pub fn print_event(check: &Check, previous_time: &DateTime<Utc>) {
     if check.is_progressive {
         print_trigger(
             format!("{} - {}", check.name, check.progressive_level).on_yellow(),
-            check.time_of_check.unwrap().time() - previous_time.time(),
+            &check.time_of_check.unwrap(),
+            previous_time,
         );
     } else {
         print_trigger(
             check.name.on_yellow(),
-            check.time_of_check.unwrap().time() - previous_time.time(),
+            &check.time_of_check.unwrap(),
+            previous_time,
         );
     }
 }
 
-fn print_trigger(trigger_text: ColoredString, time: Duration) {
-    println!("{}: delta: {}", trigger_text, format_duration(time))
+fn print_trigger(
+    trigger_text: ColoredString,
+    current_time: &DateTime<Utc>,
+    previous_time: &DateTime<Utc>,
+) {
+    println!(
+        "{}, delta: {}, time: {:02}:{:02}:{:02}",
+        trigger_text,
+        format_duration(current_time.time() - previous_time.time()),
+        current_time.hour(),
+        current_time.minute(),
+        current_time.second()
+    )
 }
 
 fn format_duration(time: Duration) -> ColoredString {

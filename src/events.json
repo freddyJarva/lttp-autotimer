@@ -333,5 +333,47 @@
                 "id": 4
             }
         ]
+    },
+    {
+        "id": 18,
+        "name": "Fetch Quest Super Bomb - Begin",
+        "conditions": [
+            {
+                "type": "ValueEq",
+                "sram_offset": "0xf3cc",
+                "sram_value": "0x0d"
+            }
+        ]
+    },
+    {
+        "id": 19,
+        "name": "Fetch Quest Super Bomb - End",
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 169
+            }
+        ]
+    },
+    {
+        "id": 20,
+        "name": "Fetch Quest Old Man - Begin",
+        "conditions": [
+            {
+                "type": "ValueEq",
+                "sram_offset": "0xf3cc",
+                "sram_value": "0x0d"
+            }
+        ]
+    },
+    {
+        "id": 21,
+        "name": "Fetch Quest Old Man - End",
+        "conditions": [
+            {
+                "type": "CheckMade",
+                "id": 75
+            }
+        ]
     }
 ]

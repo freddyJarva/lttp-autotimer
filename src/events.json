@@ -312,5 +312,26 @@
                 "id": 31
             }
         ]
+    },
+    {
+        "id": 16,
+        "name": "Fetch Quest Purple Chest - Begin",
+        "conditions": [
+            {
+                "type": "ValueEq",
+                "sram_offset": "0xf3cc",
+                "sram_value": "0x0c"
+            }
+        ]
+    },
+    {
+        "id": 17,
+        "name": "Fetch Quest Purple Chest - End",
+        "conditions": [
+            {
+                "type": "CheckMade",
+                "id": 4
+            }
+        ]
     }
 ]

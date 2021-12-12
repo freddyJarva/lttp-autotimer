@@ -109,7 +109,7 @@ pub fn print_location_check(check: &Check, previous_time: &DateTime<Utc>) {
 pub fn print_item_check(check: &Check, previous_time: &DateTime<Utc>) {
     if check.is_progressive {
         print_trigger(
-            format!("{} - {}", check.name, check.progressive_level).on_yellow(),
+            format!("{} - {}", check.name, check.progressive_level).on_green(),
             &check.time_of_check.unwrap(),
             previous_time,
         );

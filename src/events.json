@@ -7,6 +7,18 @@
         "id": 0
     },
     {
+        "name": "Reset",
+        "is_progressive": true,
+        "id": 15,
+        "conditions": [
+            {
+                "type": "ValueEq",
+                "sram_offset": "0x10",
+                "sram_value": "0x0"
+            }
+        ]
+    },
+    {
         "name": "Death",
         "is_progressive": true,
         "sram_offset": "0xf449",

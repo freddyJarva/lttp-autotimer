@@ -9,6 +9,7 @@ const OVERWORLD_TILE_ADDRESS: usize = 0x40a;
 const ENTRANCE_ID_ADDRESS: usize = 0x10E;
 const INDOORS_ADDRESS: usize = 0x1b;
 const GAME_MODE_ADDRESS: usize = 0x95;
+const GAME_STATE_ADDRESS: usize = 0x10;
 
 pub trait NamedAddresses {
     fn overworld_tile(&self) -> u8;
@@ -20,6 +21,7 @@ pub trait NamedAddresses {
     fn transition_y(&self) -> u16;
     /// 15 (in decimal base) on start screen, 7 when the game is started (Link is spawned into the world), 3 after flying
     fn game_mode(&self) -> u8;
+    fn game_state(&self) -> u8;
 }
 
 pub trait SetNamedAddresses {
@@ -63,6 +65,10 @@ impl NamedAddresses for SnesRam {
 
     fn y(&self) -> u16 {
         LittleEndian::read_u16(&self.tile_info_chunk[0x20..0x22])
+    }
+
+    fn game_state(&self) -> u8 {
+        self.get_byte(GAME_STATE_ADDRESS)
     }
 }
 
@@ -128,6 +134,10 @@ impl NamedAddresses for &SnesRam {
     fn y(&self) -> u16 {
         todo!()
     }
+
+    fn game_state(&self) -> u8 {
+        self.get_byte(GAME_STATE_ADDRESS)
+    }
 }
 
 /// Handles values read from qusb while maintaining correct address locations relative to VRAM_START
@@ -175,6 +185,7 @@ impl SnesRam {
     /// * 06 - UnderworldLoad
     /// * 07 - Underworld
     /// * 08 - OverworldLoad
+    /// * 09 - Overworld
     /// * 0A - OverworldSpecialLoad
     /// * 0B - OverworldSpecial
     /// * 0C/0D - Unused
@@ -193,7 +204,7 @@ impl SnesRam {
     /// * 1A - Credits
     /// * 1B - SpawnSelect
     pub fn game_has_started(&self) -> bool {
-        match self.get_byte(0x10) {
+        match self.get_byte(GAME_STATE_ADDRESS) {
             0x06..=0x0b => true,
             _ => false,
         }

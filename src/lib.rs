@@ -445,6 +445,7 @@ fn check_for_events(
                     writer.serialize(Event::from(&occurred_event))?;
                     events.push(occurred_event);
                     print.event(event);
+                    return Ok(event.id != 0 && event.id != 15);
                 }
             }
             None => {
@@ -463,7 +464,8 @@ fn check_for_events(
                     let occurred_event = EventEnum::Other(event.clone());
                     writer.serialize(Event::from(&occurred_event))?;
                     events.push(occurred_event);
-                    return Ok(event.name != "Save & Quit");
+                    // Save & Quit and Reset will pause checks from occurring until player has gone in-game once more
+                    return Ok(event.id != 0 && event.id != 15);
                 }
             }
         }
@@ -502,6 +504,20 @@ fn match_condition(
         Conditions::Any { subconditions } => subconditions
             .iter()
             .any(|subcondition| match_condition(subcondition, events, ram, previous_values)),
-        _ => todo!(),
+        Conditions::PreviousEvent { id } => events
+            .latest_other_event()
+            .map(|e| e.id == *id)
+            .unwrap_or(false),
+        Conditions::BitWiseTrue {
+            sram_offset: _,
+            sram_mask: _,
+        } => todo!(),
+        Conditions::Not { subconditions } => subconditions
+            .iter()
+            .all(|subcondition| !match_condition(subcondition, events, ram, previous_values)),
+        Conditions::ValueEq {
+            sram_offset,
+            sram_value,
+        } => ram.get_byte(*sram_offset) == *sram_value,
     }
 }

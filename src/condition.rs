@@ -29,6 +29,9 @@ pub struct ConditionTransition {
 pub enum Conditions {
     PreviousTile(ConditionTransition),
     CurrentTile(ConditionTransition),
+    PreviousEvent {
+        id: usize,
+    },
     Coordinates {
         coordinates: Vec<Coordinate>,
     },
@@ -47,7 +50,16 @@ pub enum Conditions {
         #[serde(deserialize_with = "hex_usize_deserialize")]
         sram_offset: usize,
     },
+    ValueEq {
+        #[serde(deserialize_with = "hex_usize_deserialize")]
+        sram_offset: usize,
+        #[serde(deserialize_with = "hex_byte_deserialize")]
+        sram_value: u8,
+    },
     Any {
+        subconditions: Vec<Conditions>,
+    },
+    Not {
         subconditions: Vec<Conditions>,
     },
 }

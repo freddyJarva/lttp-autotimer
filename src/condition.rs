@@ -62,6 +62,9 @@ pub enum Conditions {
     Not {
         subconditions: Vec<Conditions>,
     },
+    CheckMade {
+        id: usize,
+    },
 }
 
 #[derive(Debug, Deserialize, PartialEq, Clone, Hash, Eq)]

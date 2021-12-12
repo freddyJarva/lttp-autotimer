@@ -432,9 +432,10 @@ fn check_for_events(
         let current_event_value = ram.get_byte(event.sram_offset.unwrap_or_default() as usize);
         match &event.conditions {
             Some(conditions) => {
-                if conditions
-                    .iter()
-                    .all(|condition| match_condition(condition, events, ram, previous_values))
+                if (event.is_progressive || !event.is_checked)
+                    && conditions
+                        .iter()
+                        .all(|condition| match_condition(condition, events, ram, previous_values))
                 {
                     if !event.is_progressive {
                         event.mark_as_checked()
@@ -519,5 +520,6 @@ fn match_condition(
             sram_offset,
             sram_value,
         } => ram.get_byte(*sram_offset) == *sram_value,
+        Conditions::CheckMade { id } => events.find_location_check(*id).is_some(),
     }
 }

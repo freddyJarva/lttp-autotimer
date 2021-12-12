@@ -281,5 +281,36 @@
                 ]
             }
         ]
+    },
+    {
+        "id": 16,
+        "name": "Fetch Quest Blacksmith - Begin",
+        "conditions": [
+            {
+                "type": "Any",
+                "subconditions": [
+                    {
+                        "type": "ValueEq",
+                        "sram_offset": "0xf3cc",
+                        "sram_value": "0x7"
+                    },
+                    {
+                        "type": "ValueEq",
+                        "sram_offset": "0xf3cc",
+                        "sram_value": "0x8"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 17,
+        "name": "Fetch Quest Blacksmith - End",
+        "conditions": [
+            {
+                "type": "CheckMade",
+                "id": 31
+            }
+        ]
     }
 ]

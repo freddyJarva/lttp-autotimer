@@ -133,6 +133,12 @@
         "id": 21
     },
     {
+        "name": "Cape",
+        "sram_offset": "0xf352",
+        "sram_mask": "0x01",
+        "id": 52
+    },
+    {
         "name": "Magic Mirror",
         "sram_offset": "0xf353",
         "sram_mask": "0x02",

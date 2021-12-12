@@ -11,6 +11,8 @@ pub trait EventLog {
     fn latest_location_check(&self) -> Option<Check>;
     fn latest_item_get(&self) -> Option<Check>;
     fn latest_other_event(&self) -> Option<Check>;
+    fn find_other_event(&self, id: usize) -> Option<Check>;
+    fn find_location_check(&self, id: usize) -> Option<Check>;
 }
 
 impl EventLog for EventTracker {
@@ -87,6 +89,44 @@ impl EventLog for EventTracker {
             })
             .map(|event| {
                 if let EventEnum::Other(t) = event {
+                    t.clone()
+                } else {
+                    panic!("This should never happen")
+                }
+            })
+    }
+
+    fn find_other_event(&self, id: usize) -> Option<Check> {
+        self.log
+            .iter()
+            .find(|&check| {
+                if let EventEnum::Other(check) = check {
+                    check.id == id
+                } else {
+                    false
+                }
+            })
+            .map(|check| {
+                if let EventEnum::Other(t) = check {
+                    t.clone()
+                } else {
+                    panic!("This should never happen")
+                }
+            })
+    }
+
+    fn find_location_check(&self, id: usize) -> Option<Check> {
+        self.log
+            .iter()
+            .find(|&check| {
+                if let EventEnum::LocationCheck(check) = check {
+                    check.id == id
+                } else {
+                    false
+                }
+            })
+            .map(|check| {
+                if let EventEnum::LocationCheck(t) = check {
                     t.clone()
                 } else {
                     panic!("This should never happen")
@@ -328,33 +368,37 @@ mod tests {
         ),
     }
 
-    fn event_log() -> Vec<EventEnum> {
-        vec![
+    fn event_log(extra_event: Option<(usize, EventEnum)>) -> Vec<EventEnum> {
+        let mut log = vec![
             EventEnum::ItemGet(Check {
-                name: "nope".to_string(),
+                id: 0,
                 ..Default::default()
             }),
             EventEnum::Transition(Tile {
-                name: "not latest".to_string(),
+                id: 1,
                 ..Default::default()
             }),
             EventEnum::LocationCheck(Check {
-                name: "meh".to_string(),
+                id: 2,
                 ..Default::default()
             }),
             EventEnum::Transition(Tile {
-                name: "latest".to_string(),
+                id: 3,
                 ..Default::default()
             }),
             EventEnum::LocationCheck(Check {
-                name: "latest location check".to_string(),
+                id: 4,
                 ..Default::default()
             }),
             EventEnum::ItemGet(Check {
-                name: "latest item get".to_string(),
+                id: 5,
                 ..Default::default()
             }),
-        ]
+        ];
+        if let Some((idx, event)) = extra_event {
+            log.insert(idx, event)
+        };
+        log
     }
 
     macro_rules! test_eventlog {
@@ -371,21 +415,55 @@ mod tests {
     }
 
     test_eventlog! {
-        latest_transition: latest_transition: (event_log(), Some(Tile {
-            name: "latest".to_string(),
+        latest_transition: latest_transition: (event_log(None), Some(Tile {
+            id: 3,
             ..Default::default()
         })),
-        latest_location_check: latest_location_check: (event_log(), Some(Check {
-            name: "latest location check".to_string(),
-            ..Default::default()
-        })),
-        latest_item_get: latest_item_get: (event_log(), Some(Check {
-            name: "latest item get".to_string(),
-            ..Default::default()
-        })),
+        latest_location_check: latest_location_check: (event_log(None), Some(Check::new(4))),
+        latest_item_get: latest_item_get: (event_log(None), Some(Check::new(5))),
         GIVEN_no_transitions_THEN_return_none: latest_transition: (vec![], None),
         GIVEN_no_location_checks_THEN_return_none: latest_location_check: (vec![], None),
         GIVEN_no_item_get_THEN_return_none: latest_item_get: (vec![], None),
+    }
+
+    macro_rules! test_eventlog_with_param {
+        ($($name:ident: $function:ident: $values:expr,)*) => {
+            $(
+                #[test]
+                fn $name() {
+                    let (event_log, param, expected) = $values;
+                    let event_tracker = EventTracker::from(event_log);
+                    match expected {
+                        Some::<usize>(expected_id) => {
+                            let actual = event_tracker.$function(param).unwrap();
+                            assert_attrs! {
+                                actual: id == expected_id,
+                            }
+                        }
+                        None => assert_eq!(event_tracker.$function(param), None)
+                    }
+
+                    // assert_eq!(event_tracker.$function(param), assert_attrs! {})
+                }
+            )*
+        };
+    }
+
+    test_eventlog_with_param! {
+        find_other_event: find_other_event: (
+            event_log(Some((3, EventEnum::Other(Check::new(16))))),
+            16,
+            Some(16)
+        ),
+        GIVEN_no_events_THEN_return_none: find_other_event: (vec![], 12, None),
+        GIVEN_no_event_of_type_other_with_given_idx_THEN_return_None: find_other_event: (event_log(None), 2, None),
+        find_location_check: find_location_check: (
+            event_log(Some((5, EventEnum::LocationCheck(Check::new(31))))),
+            31,
+            Some(31)
+        ),
+        GIVEN_no_locations_THEN_return_none: find_location_check: (vec![], 12, None),
+        GIVEN_no_event_of_type_location_with_given_idx_THEN_return_None: find_location_check: (event_log(None), 0, None),
     }
 
     #[test]

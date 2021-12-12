@@ -59,6 +59,12 @@ pub fn deserialize_event_checks() -> Result<Vec<Check>, serde_json::Error> {
 }
 
 impl Check {
+    pub fn new(id: usize) -> Self {
+        Check {
+            id,
+            ..Default::default()
+        }
+    }
     pub fn mark_as_checked(&mut self) {
         self.is_checked = true;
         self.time_of_check = Some(Utc::now())

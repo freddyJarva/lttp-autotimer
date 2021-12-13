@@ -115,7 +115,7 @@ pub fn print_item_check(check: &Check, previous_time: &DateTime<Utc>) {
         );
     } else {
         print_trigger(
-            check.name.on_yellow(),
+            check.name.on_green(),
             &check.time_of_check.unwrap(),
             previous_time,
         );

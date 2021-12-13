@@ -272,20 +272,56 @@
     },
     {
         "id": 22,
-        "name": "Sahasrahla's house west",
+        "name": "Sahasrahla's House - West",
         "region": "West Hyrule",
         "indoors": true,
         "address_value": [
-            "0xD"
+            "0xD",
+            "0xE"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "1400",
+                        "y": "8152"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "1496",
+                        "y": "8056"
+                    }
+                ]
+            }
         ]
     },
     {
         "id": 23,
-        "name": "Sahasrahla's house east",
+        "name": "Sahasrahla's House - East",
         "region": "West Hyrule",
         "indoors": true,
         "address_value": [
+            "0xD",
             "0xE"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "1656",
+                        "y": "8152"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "1560",
+                        "y": "8056"
+                    }
+                ]
+            }
         ]
     },
     {
@@ -875,38 +911,180 @@
     },
     {
         "id": 61,
-        "name": "Old man cave west",
+        "name": "Old Man Cave - West",
         "region": "Death Mountain",
         "indoors": true,
         "address_value": [
-            "0x6"
+            "0x6",
+            "0x7"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "120",
+                        "y": "8152",
+                        "note": "entrance"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "448",
+                        "y": "7928",
+                        "note": "from east"
+                    }
+                ]
+            }
         ]
     },
     {
         "id": 62,
-        "name": "Old man cave east",
+        "name": "Old Man Cave - East",
         "region": "Death Mountain",
         "indoors": true,
         "address_value": [
+            "0x6",
             "0x7"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "560",
+                        "y": "7928",
+                        "note": "from west"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "888",
+                        "y": "8128"
+                    }
+                ]
+            }
         ]
     },
     {
         "id": 63,
-        "name": "East Death Mountain useless bottom",
+        "name": "East Death Mountain Useless - Bottom",
         "region": "Death Mountain",
         "indoors": true,
         "address_value": [
-            "0x1A"
+            "0x1A",
+            "0x1B"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Range",
+                        "x": "6968-7112",
+                        "y": "8032-8064"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "6904",
+                        "y": "8128"
+                    },
+                    {
+                        "type": "Stairs",
+                        "x": "6777",
+                        "y": "7734"
+                    },
+                    {
+                        "type": "Range",
+                        "x": "6696-7846",
+                        "y": "7756-7920",
+                        "note": "north dropdowns"
+                    },
+                    {
+                        "type": "Range",
+                        "x": "6792-6928",
+                        "y": "7936-8085",
+                        "note": "south dropdowns"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 572,
+        "name": "East Death Mountain Useless - Top West",
+        "region": "Death Mountain",
+        "indoors": true,
+        "address_value": [
+            "0x1A",
+            "0x1B"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Stairs",
+                        "x": "6776",
+                        "y": "7220"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 573,
+        "name": "East Death Mountain Useless - Fairy Room",
+        "region": "Death Mountain",
+        "indoors": true,
+        "address_value": [
+            "0x1A",
+            "0x1B"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Range",
+                        "x": "6912-6988",
+                        "y": "7752-7824",
+                        "note": "dropdown"
+                    },
+                    {
+                        "type": "Stairs",
+                        "x": "7033",
+                        "y": "7735"
+                    }
+                ]
+            }
         ]
     },
     {
         "id": 64,
-        "name": "East Death Mountain useless top",
+        "name": "East Death Mountain Useless - Top East",
         "region": "Death Mountain",
         "indoors": true,
         "address_value": [
+            "0x1A",
             "0x1B"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "7032",
+                        "y": "7640"
+                    },
+                    {
+                        "type": "Stairs",
+                        "x": "7032",
+                        "y": "7220"
+                    }
+                ]
+            }
         ]
     },
     {
@@ -1258,38 +1436,153 @@
     },
     {
         "id": 73,
-        "name": "Death Mountain exit west",
+        "name": "Death Mountain Exit - West",
         "region": "Death Mountain",
         "indoors": true,
         "address_value": [
-            "0x2E"
+            "0x2E",
+            "0x2F"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "3192",
+                        "y": "7616",
+                        "note": "entrance"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "3520",
+                        "y": "7288",
+                        "note": "from summit side"
+                    }
+                ]
+            }
         ]
     },
     {
         "id": 74,
-        "name": "Death Mountain exit from summit",
+        "name": "Death Mountain Exit - From Summit",
         "region": "Death Mountain",
         "indoors": true,
         "address_value": [
+            "0x2E",
             "0x2F"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "3632",
+                        "y": "7288",
+                        "note": "from west"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "3960",
+                        "y": "7616",
+                        "note": "entrance"
+                    }
+                ]
+            }
         ]
     },
     {
         "id": 75,
-        "name": "Old man home cave west",
+        "name": "Old Man Home Cave - West",
         "region": "Death Mountain",
         "indoors": true,
         "address_value": [
-            "0x30"
+            "0x30",
+            "0x31"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "2168",
+                        "y": "7616",
+                        "note": "entrance"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "2168",
+                        "y": "7576",
+                        "note": "spawn"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "2264",
+                        "y": "7288",
+                        "note": "from mid"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 571,
+        "name": "Old Man Home Cave - Mid",
+        "region": "Death Mountain",
+        "indoors": true,
+        "address_value": [
+            "0x30",
+            "0x31"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "2328",
+                        "y": "7288",
+                        "note": "from west"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "2520",
+                        "y": "7416",
+                        "note": "from east"
+                    }
+                ]
+            }
         ]
     },
     {
         "id": 76,
-        "name": "Old man home cave east",
+        "name": "Old Man Home Cave - East",
         "region": "Death Mountain",
         "indoors": true,
         "address_value": [
+            "0x30",
             "0x31"
+        ],
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "2584",
+                        "y": "7416",
+                        "note": "from mid"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "2808",
+                        "y": "7640",
+                        "note": "entrance"
+                    }
+                ]
+            }
         ]
     },
     {

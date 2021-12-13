@@ -26,7 +26,7 @@ fn main() -> anyhow::Result<()> {
                 .short('f')
                 .about("Interval in milliseconds the timer will check the snes memory for changes. Default is about 60 times per second")
                 .takes_value(true)
-                .default_value("16")
+                .default_value("12")
         ).arg(
             Arg::new("v")
                 .short('v')

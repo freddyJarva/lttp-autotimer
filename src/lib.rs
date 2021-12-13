@@ -534,3 +534,42 @@ fn match_condition(
         }
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use std::collections::HashMap;
+
+    use crate::tile::deserialize_transitions;
+
+    use super::*;
+
+    macro_rules! enforce_unique_ids {
+        ($($name:ident: $checks:expr,)*) => {
+            $(
+                #[test]
+                fn $name() {
+                    let mut id_counter: HashMap<usize, usize> = HashMap::new();
+                    for check in $checks.unwrap() {
+                        *id_counter.entry(check.id).or_default() += 1;
+                    }
+
+                    id_counter.iter().for_each(|(id, occurences)| {
+                        assert!(
+                            *occurences == 1,
+                            "ids have to be unique, yet id {} occurs {} times",
+                            id,
+                            occurences
+                        )
+                    })
+                }
+            )*
+        };
+    }
+
+    enforce_unique_ids! {
+        unique_event_ids: deserialize_event_checks(),
+        unique_item_ids: deserialize_item_checks(),
+        unique_location_ids: deserialize_location_checks(),
+        unique_tile_ids: deserialize_transitions(),
+    }
+}

@@ -521,5 +521,16 @@ fn match_condition(
             sram_value,
         } => ram.get_byte(*sram_offset) == *sram_value,
         Conditions::CheckMade { id } => events.find_location_check(*id).is_some(),
+        Conditions::PreviousValueEq {
+            sram_offset,
+            sram_value,
+        } => {
+            if previous_values.len() > 0 {
+                let previous_ram = &previous_values[previous_values.len() - 1];
+                previous_ram.get_byte(*sram_offset) == *sram_value
+            } else {
+                false
+            }
+        }
     }
 }

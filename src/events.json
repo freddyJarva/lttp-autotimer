@@ -375,5 +375,26 @@
                 "id": 75
             }
         ]
+    },
+    {
+        "id": 22,
+        "name": "Tree Pull",
+        "is_progressive": true,
+        "conditions": [
+            {
+                "type": "PreviousValueEq",
+                "sram_offset": "0x5d",
+                "sram_value": "0x1d"
+            },
+            {
+                "type": "ValueEq",
+                "sram_offset": "0x5d",
+                "sram_value": "0x0"
+            },
+            {
+                "type": "ValueChanged",
+                "sram_offset": "0x20"
+            }
+        ]
     }
 ]

@@ -7287,9 +7287,22 @@
                 "type": "Coordinates",
                 "coordinates": [
                     {
-                        "type": "Range",
-                        "x": "3604-3784",
-                        "y": "3032-2864"
+                        "type": "Pair",
+                        "x": "3608",
+                        "y": "2936",
+                        "note": "from mid"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "3704",
+                        "y": "3032",
+                        "note": "entrance"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "3704",
+                        "y": "2864",
+                        "note": "from bk chest room"
                     }
                 ]
             }

@@ -322,5 +322,137 @@
         "sram_offset": "0xf37A",
         "sram_mask": "0x08",
         "id": 51
+    },
+    {
+        "name": "Compass - Hyrule Castle",
+        "sram_offset": "0xf365",
+        "sram_mask": "0xc0",
+        "id": 53
+    },
+    {
+        "name": "Compass - Eastern Palace",
+        "sram_offset": "0xf365",
+        "sram_mask": "0x20",
+        "id": 54
+    },
+    {
+        "name": "Compass - Desert Palace",
+        "sram_offset": "0xf365",
+        "sram_mask": "0x10",
+        "id": 55
+    },
+    {
+        "name": "Compass - Tower of Hera",
+        "sram_offset": "0xf364",
+        "sram_mask": "0x20",
+        "id": 56
+    },
+    {
+        "name": "Compass - Palace of Darkness",
+        "sram_offset": "0xf365",
+        "sram_mask": "0x02",
+        "id": 57
+    },
+    {
+        "name": "Compass - Swamp Palace",
+        "sram_offset": "0xf365",
+        "sram_mask": "0x04",
+        "id": 58
+    },
+    {
+        "name": "Compass - Thieves' Town",
+        "sram_offset": "0xf364",
+        "sram_mask": "0x10",
+        "id": 59
+    },
+    {
+        "name": "Compass - Ice Palace",
+        "sram_offset": "0xf364",
+        "sram_mask": "0x40",
+        "id": 60
+    },
+    {
+        "name": "Compass - Misery Mire",
+        "sram_offset": "0xf365",
+        "sram_mask": "0x01",
+        "id": 61
+    },
+    {
+        "name": "Compass - Turtle Rock",
+        "sram_offset": "0xf364",
+        "sram_mask": "0x08",
+        "id": 62
+    },
+    {
+        "name": "Compass - Ganon's Tower",
+        "sram_offset": "0xf364",
+        "sram_mask": "0x04",
+        "id": 63
+    },
+    {
+        "name": "Map - Hyrule Castle",
+        "sram_offset": "0xf369",
+        "sram_mask": "0xc0",
+        "id": 64
+    },
+    {
+        "name": "Map - Eastern Palace",
+        "sram_offset": "0xf369",
+        "sram_mask": "0x20",
+        "id": 65
+    },
+    {
+        "name": "Map - Desert Palace",
+        "sram_offset": "0xf369",
+        "sram_mask": "0x10",
+        "id": 66
+    },
+    {
+        "name": "Map - Tower of Hera",
+        "sram_offset": "0xf368",
+        "sram_mask": "0x20",
+        "id": 67
+    },
+    {
+        "name": "Map - Palace of Darkness",
+        "sram_offset": "0xf369",
+        "sram_mask": "0x02",
+        "id": 68
+    },
+    {
+        "name": "Map - Swamp Palace",
+        "sram_offset": "0xf369",
+        "sram_mask": "0x04",
+        "id": 69
+    },
+    {
+        "name": "Map - Thieves' Town",
+        "sram_offset": "0xf368",
+        "sram_mask": "0x10",
+        "id": 70
+    },
+    {
+        "name": "Map - Ice Palace",
+        "sram_offset": "0xf368",
+        "sram_mask": "0x40",
+        "id": 71
+    },
+    {
+        "name": "Map - Misery Mire",
+        "sram_offset": "0xf369",
+        "sram_mask": "0x01",
+        "id": 72
+    },
+    {
+        "name": "Map - Turtle Rock",
+        "sram_offset": "0xf368",
+        "sram_mask": "0x08",
+        "id": 73
+    },
+    {
+        "name": "Map - Ganon's Tower",
+        "sram_offset": "0xf368",
+        "sram_mask": "0x04",
+        "id": 74
     }
 ]

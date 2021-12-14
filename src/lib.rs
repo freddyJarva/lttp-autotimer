@@ -18,6 +18,7 @@ use websocket::{ClientBuilder, Message, OwnedMessage};
 
 use core::time;
 use std::io::stdin;
+use std::sync::{mpsc, Arc, Mutex};
 
 use crate::check::{
     deserialize_event_checks, deserialize_item_checks, deserialize_location_checks,
@@ -32,7 +33,7 @@ use std::collections::VecDeque;
 use std::fs::File;
 
 use csv::Writer;
-use std::thread::sleep;
+use std::thread::{self, sleep};
 
 mod check;
 mod event;
@@ -68,7 +69,19 @@ const TILE_INFO_CHUNK_SIZE: usize = 0x40B;
 const GAME_STATS_OFFSET: usize = 0xf422;
 const GAME_STATS_SIZE: usize = 0x2f;
 
+#[derive(Default)]
+struct CliConfig {
+    host: String,
+    port: String,
+    non_race_mode: bool,
+}
+
 pub fn connect_to_qusb(args: &ArgMatches) -> anyhow::Result<()> {
+    let cli_config = Arc::new(Mutex::new(CliConfig {
+        host: args.value_of("host").unwrap().to_string(),
+        port: args.value_of("port").unwrap().to_string(),
+        non_race_mode: args.is_present("Non race mode"),
+    }));
     let host = args.value_of("host").unwrap();
     let port = args.value_of("port").unwrap();
 
@@ -86,39 +99,47 @@ pub fn connect_to_qusb(args: &ArgMatches) -> anyhow::Result<()> {
         host,
         port
     );
-    let mut client = ClientBuilder::new(&format!("ws://{}:{}", host, port))?.connect_insecure()?;
-    println!("{} to qusb!", "Connected".green().bold());
+    let (tx, rx) = mpsc::channel();
 
-    // As part of completing the connection, we need to find a Snes device to attach to.
-    // We'll just attach to the first one we find, as most use cases will only have one connected snes device.
-    let mut connected = false;
-    while !connected {
-        connected = attempt_qusb_connection(&mut client)?;
-        sleep(time::Duration::from_millis(2000));
-    }
+    let allow_output = Arc::new(Mutex::new(false));
+    let game_finished = Arc::new(Mutex::new(false));
 
-    let allow_output = match is_race_rom(&mut client) {
-        Ok(race_rom) => {
-            if race_rom {
-                false
+    let cli_config_rx = Arc::clone(&cli_config);
+    let allow_output_rx = Arc::clone(&allow_output);
+    let game_finished_rx = Arc::clone(&game_finished);
+
+    init_meta_data(Arc::clone(&cli_config_rx), Arc::clone(&allow_output_rx))?;
+
+    thread::spawn(move || -> anyhow::Result<()> {
+        let mut client = connect(Arc::clone(&cli_config_rx))?;
+
+        while !*game_finished_rx.lock().unwrap() {
+            match get_chunka_chungus(&mut client) {
+                Ok(snes_ram) => tx.send(snes_ram)?,
+                Err(_) => {
+                    println!("Request failed, attempting to reconnect...");
+                    if let Ok(connected_client) = connect(Arc::clone(&cli_config_rx)) {
+                        client = connected_client;
+                    }
+                    sleep(time::Duration::from_secs(1));
+                }
+            }
+
+            if manual_update {
+                println!("Press enter to update...");
+                stdin()
+                    .read_line(&mut String::new())
+                    .ok()
+                    .expect("Failed to read line");
             } else {
-                args.is_present("Non race mode")
+                sleep(time::Duration::from_millis(update_frequency));
             }
         }
-        Err(_) => {
-            println!(
-                "Wasn't able to tell if race rom or not, defaulting to not allowing any event output"
-            );
-            false
-        }
-    };
-    if !allow_output {
-        println!(
-            "{}: no game info will be output in this window.\nNOTE: THIS TOOL IS NOT RACE LEGAL DESPITE VISUAL OUTPUT BEING TURNED OFF.",
-            "Race mode activated".red(),
-        )
-    }
-    let mut print = StdoutPrinter::new(allow_output);
+
+        Ok(())
+    });
+
+    let mut print = StdoutPrinter::new(*allow_output.lock().unwrap());
 
     let mut ram_history: VecDeque<SnesRam> = VecDeque::new();
 
@@ -129,7 +150,6 @@ pub fn connect_to_qusb(args: &ArgMatches) -> anyhow::Result<()> {
 
     let mut events = EventTracker::new();
 
-    let mut game_finished = false;
     // Intro/start screen counts as not started. Having selected a spawn point counts as game started.
     // This is to ensure it only checks for events - especially transitions - while in-game.
     let mut game_started = args.is_present("game started");
@@ -145,43 +165,38 @@ pub fn connect_to_qusb(args: &ArgMatches) -> anyhow::Result<()> {
         .filter(|check| check.sram_offset.unwrap_or_default() != 0)
         .collect();
 
-    while !game_finished {
-        match get_chunka_chungus(&mut client) {
-            Ok(snes_ram) => {
-                if !game_started {
-                    game_started = snes_ram.game_has_started();
-                } else {
-                    game_started = check_for_events(
-                        &snes_ram,
-                        &mut ram_history,
-                        &mut subscribed_events,
-                        &mut writer,
-                        &mut events,
-                        &mut print,
-                    )?;
-                    if game_started {
-                        check_for_transitions(&snes_ram, &mut writer, &mut events, &mut print)?;
-                        check_for_location_checks(
-                            &snes_ram,
-                            &mut ram_history,
-                            &mut locations,
-                            &mut writer,
-                            &mut events,
-                            &mut print,
-                        )?;
-                        check_for_item_checks(
-                            &snes_ram,
-                            &mut ram_history,
-                            &mut items,
-                            &mut writer,
-                            &mut events,
-                            &mut print,
-                        )?;
-                    }
-                    ram_history.push_back(snes_ram);
-                }
+    for snes_ram in rx {
+        if !game_started {
+            game_started = snes_ram.game_has_started();
+        } else {
+            game_started = check_for_events(
+                &snes_ram,
+                &mut ram_history,
+                &mut subscribed_events,
+                &mut writer,
+                &mut events,
+                &mut print,
+            )?;
+            if game_started {
+                check_for_transitions(&snes_ram, &mut writer, &mut events, &mut print)?;
+                check_for_location_checks(
+                    &snes_ram,
+                    &mut ram_history,
+                    &mut locations,
+                    &mut writer,
+                    &mut events,
+                    &mut print,
+                )?;
+                check_for_item_checks(
+                    &snes_ram,
+                    &mut ram_history,
+                    &mut items,
+                    &mut writer,
+                    &mut events,
+                    &mut print,
+                )?;
             }
-            Err(e) => println!("Failed request: {:?}", e),
+            ram_history.push_back(snes_ram);
         }
 
         // Only keep the last few responses to decrease memory usage
@@ -200,25 +215,68 @@ pub fn connect_to_qusb(args: &ArgMatches) -> anyhow::Result<()> {
                 .map(|tile| tile.id == 556)
                 .unwrap_or(false)
         {
-            game_finished = true
-        }
-        if manual_update {
-            println!("Press enter to update...");
-            stdin()
-                .read_line(&mut String::new())
-                .ok()
-                .expect("Failed to read line");
-        } else {
-            sleep(time::Duration::from_millis(update_frequency));
+            *game_finished.lock().unwrap() = true
         }
     }
 
+    // This code should prooobably only execute when game_finished == true
     println!("You defeated Ganon, Hurray! Press enter to exit...");
     stdin()
         .read_line(&mut String::new())
         .ok()
         .expect("Failed to read line");
     Ok(())
+}
+
+fn init_meta_data(
+    cli_config_rx: Arc<Mutex<CliConfig>>,
+    allow_output_rx: Arc<Mutex<bool>>,
+) -> Result<websocket::sync::Client<std::net::TcpStream>, anyhow::Error> {
+    let config = cli_config_rx.lock().unwrap();
+    let mut client =
+        ClientBuilder::new(&format!("ws://{}:{}", config.host, config.port))?.connect_insecure()?;
+    println!("{} to qusb!", "Connected".green().bold());
+    let mut connected = false;
+    while !connected {
+        connected = attempt_qusb_connection(&mut client)?;
+        sleep(time::Duration::from_millis(2000));
+    }
+    *allow_output_rx.lock().unwrap() = match is_race_rom(&mut client) {
+        Ok(race_rom) => {
+            if race_rom {
+                false
+            } else {
+                config.non_race_mode
+            }
+        }
+        Err(_) => {
+            println!(
+                "Wasn't able to tell if race rom or not, defaulting to not allowing any event output"
+            );
+            false
+        }
+    };
+    if !*allow_output_rx.lock().unwrap() {
+        println!(
+            "{}: no game info will be output in this window.\nNOTE: THIS TOOL IS NOT RACE LEGAL DESPITE VISUAL OUTPUT BEING TURNED OFF.",
+            "Race mode activated".red(),
+        )
+    }
+    Ok(client)
+}
+
+fn connect(
+    cli_config_rx: Arc<Mutex<CliConfig>>,
+) -> Result<websocket::sync::Client<std::net::TcpStream>, anyhow::Error> {
+    let config = cli_config_rx.lock().unwrap();
+    let mut client =
+        ClientBuilder::new(&format!("ws://{}:{}", config.host, config.port))?.connect_insecure()?;
+    let mut connected = false;
+    while !connected {
+        connected = attempt_qusb_connection(&mut client)?;
+        sleep(time::Duration::from_millis(2000));
+    }
+    Ok(client)
 }
 
 fn is_race_rom(client: &mut websocket::sync::Client<std::net::TcpStream>) -> anyhow::Result<bool> {

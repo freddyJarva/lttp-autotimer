@@ -396,5 +396,12 @@
                 "sram_offset": "0x20"
             }
         ]
+    },
+    {
+        "id": 25,
+        "name": "Triforce Piece",
+        "is_progressive": true,
+        "sram_offset": "0xf418",
+        "sram_mask": "0xff"
     }
 ]

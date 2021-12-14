@@ -67,8 +67,8 @@ const COORDINATE_CHUNK_SIZE: usize = 0x4;
 
 const TILE_INFO_CHUNK_SIZE: usize = 0x40B;
 
-const GAME_STATS_OFFSET: usize = 0xf422;
-const GAME_STATS_SIZE: usize = 0x2f;
+const GAME_STATS_OFFSET: usize = 0xf418;
+const GAME_STATS_SIZE: usize = 0x39;
 
 #[derive(Default)]
 pub struct CliConfig {

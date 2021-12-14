@@ -76,6 +76,7 @@ pub struct CliConfig {
     non_race_mode: bool,
     manual_update: bool,
     update_frequency: u64,
+    _verbosity: u64,
 }
 
 pub fn connect_to_qusb(args: &ArgMatches) -> anyhow::Result<()> {
@@ -89,9 +90,8 @@ pub fn connect_to_qusb(args: &ArgMatches) -> anyhow::Result<()> {
             .unwrap()
             .parse()
             .expect("specified update frequency (--freq/-f) needs to be a positive integer"),
+        _verbosity: args.occurrences_of("v"),
     }));
-
-    let _verbosity = args.occurrences_of("v");
 
     let (tx, rx) = mpsc::channel();
 
@@ -115,8 +115,7 @@ pub fn connect_to_qusb(args: &ArgMatches) -> anyhow::Result<()> {
 
     let mut ram_history: VecDeque<SnesRam> = VecDeque::new();
 
-    let time_start = Utc::now();
-    let csv_name = time_start.format("%Y%m%d_%H%M%S.csv").to_string();
+    let csv_name = Utc::now().format("%Y%m%d_%H%M%S.csv").to_string();
     File::create(&csv_name)?;
     let mut writer = Writer::from_path(csv_name)?;
 
@@ -217,7 +216,6 @@ pub fn read_snes_ram(
                     if let Ok(connected_client) = connect(Arc::clone(&config)) {
                         client = connected_client;
                     }
-                    sleep(time::Duration::from_secs(1));
                 }
             }
 

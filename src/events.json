@@ -403,5 +403,20 @@
         "is_progressive": true,
         "sram_offset": "0xf418",
         "sram_mask": "0xff"
+    },
+    {
+        "id": 26,
+        "name": "Hammerpegs Entrance Revealed",
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 129
+            },
+            {
+                "type": "ValueEq",
+                "sram_offset": "0x4c8",
+                "sram_value": "0x16"
+            }
+        ]
     }
 ]

@@ -65,15 +65,15 @@ impl Check {
             ..Default::default()
         }
     }
-    pub fn mark_as_checked(&mut self) {
+    pub fn mark_as_checked(&mut self, time_of_check: &DateTime<Utc>) {
         self.is_checked = true;
-        self.time_of_check = Some(Utc::now())
+        self.time_of_check = Some(time_of_check.clone())
     }
 
-    pub fn progress_item(&mut self, snes_value: u8) {
+    pub fn progress_item(&mut self, snes_value: u8, time_of_check: &DateTime<Utc>) {
         self.progressive_level += 1;
         self.snes_value = snes_value;
-        self.time_of_check = Some(Utc::now());
+        self.time_of_check = Some(time_of_check.clone());
     }
 }
 

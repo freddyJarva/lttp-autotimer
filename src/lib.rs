@@ -5,7 +5,7 @@ use check::Check;
 #[macro_use]
 extern crate lazy_static;
 
-use chrono::Utc;
+use chrono::{DateTime, Utc};
 use clap::ArgMatches;
 
 use condition::{
@@ -20,6 +20,7 @@ use websocket::{Message, OwnedMessage};
 use core::time;
 use std::io::stdin;
 use std::sync::{mpsc, Arc, Mutex};
+use std::time::Instant;
 
 use crate::check::{
     deserialize_event_checks, deserialize_item_checks, deserialize_location_checks,
@@ -136,7 +137,7 @@ pub fn connect_to_qusb(args: &ArgMatches) -> anyhow::Result<()> {
         .filter(|check| check.sram_offset.unwrap_or_default() != 0)
         .collect();
 
-    for snes_ram in rx {
+    for (time_of_read, snes_ram) in rx {
         if !game_started {
             game_started = snes_ram.game_has_started();
         } else {
@@ -147,9 +148,16 @@ pub fn connect_to_qusb(args: &ArgMatches) -> anyhow::Result<()> {
                 &mut writer,
                 &mut events,
                 &mut print,
+                &time_of_read,
             )?;
             if game_started {
-                check_for_transitions(&snes_ram, &mut writer, &mut events, &mut print)?;
+                check_for_transitions(
+                    &snes_ram,
+                    &mut writer,
+                    &mut events,
+                    &mut print,
+                    &time_of_read,
+                )?;
                 check_for_location_checks(
                     &snes_ram,
                     &mut ram_history,
@@ -157,6 +165,7 @@ pub fn connect_to_qusb(args: &ArgMatches) -> anyhow::Result<()> {
                     &mut writer,
                     &mut events,
                     &mut print,
+                    &time_of_read,
                 )?;
                 check_for_item_checks(
                     &snes_ram,
@@ -165,6 +174,7 @@ pub fn connect_to_qusb(args: &ArgMatches) -> anyhow::Result<()> {
                     &mut writer,
                     &mut events,
                     &mut print,
+                    &time_of_read,
                 )?;
             }
             ram_history.push_back(snes_ram);
@@ -200,17 +210,19 @@ pub fn connect_to_qusb(args: &ArgMatches) -> anyhow::Result<()> {
 }
 
 pub fn read_snes_ram(
-    tx: mpsc::Sender<SnesRam>,
+    tx: mpsc::Sender<(DateTime<Utc>, SnesRam)>,
     mut client: websocket::sync::Client<std::net::TcpStream>,
     config: Arc<Mutex<CliConfig>>,
     game_finished: Arc<Mutex<bool>>,
 ) {
     thread::spawn(move || -> anyhow::Result<()> {
         let cfg = config.lock().unwrap();
+        let update_freq = time::Duration::from_millis(cfg.update_frequency);
 
         while !*game_finished.lock().unwrap() {
+            let now = Instant::now();
             match get_chunka_chungus(&mut client) {
-                Ok(snes_ram) => tx.send(snes_ram)?,
+                Ok(snes_ram) => tx.send((Utc::now(), snes_ram))?,
                 Err(_) => {
                     println!("Request failed, attempting to reconnect...");
                     if let Ok(connected_client) = connect(Arc::clone(&config)) {
@@ -226,7 +238,13 @@ pub fn read_snes_ram(
                     .ok()
                     .expect("Failed to read line");
             } else {
-                sleep(time::Duration::from_millis(cfg.update_frequency));
+                let elapsed = now.elapsed();
+                if elapsed < update_freq {
+                    sleep(update_freq - elapsed);
+                }
+                if cfg._verbosity > 0 {
+                    println!("delta: {:?}", elapsed);
+                }
             }
         }
 
@@ -309,6 +327,7 @@ fn check_for_location_checks(
     writer: &mut Writer<File>,
     events: &mut EventTracker,
     print: &mut StdoutPrinter,
+    time_of_read: &DateTime<Utc>,
 ) -> anyhow::Result<()> {
     for check in checks {
         match &check.conditions {
@@ -317,7 +336,7 @@ fn check_for_location_checks(
                     .iter()
                     .all(|c| match_condition(c, events, ram, ram_history))
                 {
-                    check.mark_as_checked();
+                    check.mark_as_checked(time_of_read);
                     print.location_check(check);
 
                     let location_check_event = EventEnum::LocationCheck(check.clone());
@@ -336,7 +355,7 @@ fn check_for_location_checks(
                     if current_check_value & check.sram_mask.unwrap_or_default() != 0
                         && !check.is_checked
                     {
-                        check.mark_as_checked();
+                        check.mark_as_checked(time_of_read);
                         print.location_check(check);
                         let location_check_event = EventEnum::LocationCheck(check.clone());
                         writer.serialize(Event::from(&location_check_event))?;
@@ -357,6 +376,7 @@ fn check_for_item_checks(
     writer: &mut Writer<File>,
     events: &mut EventTracker,
     print: &mut StdoutPrinter,
+    time_of_read: &DateTime<Utc>,
 ) -> anyhow::Result<()> {
     for check in checks {
         let current_check_value = ram.get_byte(check.sram_offset.unwrap_or_default() as usize);
@@ -370,14 +390,14 @@ fn check_for_item_checks(
                 && current_check_value & check.sram_mask.unwrap_or_default() != 0
                 && !check.is_checked
             {
-                check.mark_as_checked();
+                check.mark_as_checked(time_of_read);
                 print.item_check(check);
 
                 let item_event = EventEnum::ItemGet(check.clone());
                 writer.serialize(Event::from(&item_event))?;
                 events.push(item_event);
             } else if check.is_progressive && current_check_value > check.snes_value {
-                check.progress_item(current_check_value);
+                check.progress_item(current_check_value, time_of_read);
                 print.item_check(check);
 
                 let item_event = EventEnum::ItemGet(check.clone());
@@ -395,13 +415,14 @@ fn check_for_transitions(
     writer: &mut Writer<File>,
     events: &mut EventTracker,
     print: &mut StdoutPrinter,
+    time_of_read: &DateTime<Utc>,
 ) -> anyhow::Result<()> {
     // Use events if one transition has been triggered.
     match events.latest_transition() {
         Some(previous_transition) => {
             if let Ok(mut current_tile) = Tile::try_from_ram(ram, &previous_transition) {
                 if current_tile.name != previous_transition.name {
-                    current_tile.time_transit();
+                    current_tile.time_transit(time_of_read);
                     print.transition(&current_tile);
                     let transition_event = EventEnum::Transition(current_tile);
                     writer.serialize(Event::from(&transition_event))?;
@@ -424,6 +445,7 @@ fn check_for_events(
     writer: &mut Writer<File>,
     events: &mut EventTracker,
     print: &mut StdoutPrinter,
+    time_of_read: &DateTime<Utc>,
 ) -> anyhow::Result<bool> {
     for event in subscribed_events {
         let current_event_value = ram.get_byte(event.sram_offset.unwrap_or_default() as usize);
@@ -435,9 +457,9 @@ fn check_for_events(
                         .all(|condition| match_condition(condition, events, ram, previous_values))
                 {
                     if !event.is_progressive {
-                        event.mark_as_checked()
+                        event.mark_as_checked(time_of_read)
                     } else {
-                        event.progress_item(current_event_value)
+                        event.progress_item(current_event_value, time_of_read)
                     }
                     let occurred_event = EventEnum::Other(event.clone());
                     writer.serialize(Event::from(&occurred_event))?;
@@ -451,13 +473,13 @@ fn check_for_events(
                     && current_event_value & event.sram_mask.unwrap_or_default() != 0
                     && !event.is_checked
                 {
-                    event.mark_as_checked();
+                    event.mark_as_checked(time_of_read);
                     print.event(event);
                     let occurred_event = EventEnum::Other(event.clone());
                     writer.serialize(Event::from(&occurred_event))?;
                     events.push(occurred_event);
                 } else if event.is_progressive && current_event_value > event.snes_value {
-                    event.progress_item(current_event_value);
+                    event.progress_item(current_event_value, time_of_read);
                     print.event(event);
                     let occurred_event = EventEnum::Other(event.clone());
                     writer.serialize(Event::from(&occurred_event))?;

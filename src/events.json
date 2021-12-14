@@ -418,5 +418,11 @@
                 "sram_value": "0x16"
             }
         ]
+    },
+    {
+        "id": 27,
+        "name": "Standard Start",
+        "sram_offset": "0x37c",
+        "sram_mask": "0x01"
     }
 ]

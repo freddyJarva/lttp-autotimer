@@ -1,10 +1,16 @@
-use std::borrow::Cow;
+use core::time;
+
+use std::{
+    borrow::Cow,
+    sync::{Arc, Mutex},
+    thread::sleep,
+};
 
 use colored::Colorize;
 use serde::{Deserialize, Serialize};
-use websocket::{Message, OwnedMessage};
+use websocket::{ClientBuilder, Message, OwnedMessage};
 
-use crate::qusb;
+use crate::{qusb, CliConfig};
 
 #[derive(Deserialize, Debug)]
 pub struct QusbResponseMessage {
@@ -114,4 +120,79 @@ pub fn attempt_qusb_connection(
     }
 
     Ok(connected)
+}
+
+pub fn init_meta_data(
+    cli_config_rx: Arc<Mutex<CliConfig>>,
+    allow_output_rx: Arc<Mutex<bool>>,
+) -> Result<websocket::sync::Client<std::net::TcpStream>, anyhow::Error> {
+    let config = cli_config_rx.lock().unwrap();
+    println!(
+        "{} to connect to {}:{}",
+        "Attempting".green().bold(),
+        config.host,
+        config.port
+    );
+    let mut client =
+        ClientBuilder::new(&format!("ws://{}:{}", config.host, config.port))?.connect_insecure()?;
+    println!("{} to qusb!", "Connected".green().bold());
+    let mut connected = false;
+    while !connected {
+        connected = attempt_qusb_connection(&mut client)?;
+        sleep(time::Duration::from_millis(2000));
+    }
+    *allow_output_rx.lock().unwrap() = match is_race_rom(&mut client) {
+        Ok(race_rom) => {
+            if race_rom {
+                false
+            } else {
+                config.non_race_mode
+            }
+        }
+        Err(_) => {
+            println!(
+                "Wasn't able to tell if race rom or not, defaulting to not allowing any event output"
+            );
+            false
+        }
+    };
+    if !*allow_output_rx.lock().unwrap() {
+        println!(
+            "{}: no game info will be output in this window.\nNOTE: THIS TOOL IS NOT RACE LEGAL DESPITE VISUAL OUTPUT BEING TURNED OFF.",
+            "Race mode activated".red(),
+        )
+    }
+    Ok(client)
+}
+
+pub fn connect(
+    cli_config: Arc<Mutex<CliConfig>>,
+) -> Result<websocket::sync::Client<std::net::TcpStream>, anyhow::Error> {
+    let config = cli_config.lock().unwrap();
+    let mut client =
+        ClientBuilder::new(&format!("ws://{}:{}", config.host, config.port))?.connect_insecure()?;
+    let mut connected = false;
+    while !connected {
+        connected = attempt_qusb_connection(&mut client)?;
+        sleep(time::Duration::from_millis(2000));
+    }
+    Ok(client)
+}
+
+pub fn is_race_rom(
+    client: &mut websocket::sync::Client<std::net::TcpStream>,
+) -> anyhow::Result<bool> {
+    loop {
+        let message = &QusbRequestMessage::get_address(0x180213, 1);
+        let message = Message {
+            opcode: websocket::message::Type::Text,
+            cd_status_code: None,
+            payload: Cow::Owned(serde_json::to_vec(message)?),
+        };
+        client.send_message(&message)?;
+        let response = client.recv_message()?;
+        if let OwnedMessage::Binary(res) = response {
+            return Ok(res[0] == 1 as u8);
+        };
+    }
 }

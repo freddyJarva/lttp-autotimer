@@ -12,9 +12,10 @@ use condition::{
     coordinate_condition_met, current_tile_condition_met, dungeon_counter_condition_met,
     ram_value_change_condition_met,
 };
+use qusb::connect;
 use snes::SnesRam;
 use tile::Tile;
-use websocket::{ClientBuilder, Message, OwnedMessage};
+use websocket::{Message, OwnedMessage};
 
 use core::time;
 use std::io::stdin;
@@ -24,10 +25,9 @@ use crate::check::{
     deserialize_event_checks, deserialize_item_checks, deserialize_location_checks,
 };
 use crate::output::StdoutPrinter;
-use crate::qusb::{attempt_qusb_connection, QusbRequestMessage};
+use crate::qusb::{init_meta_data, QusbRequestMessage};
 use crate::snes::NamedAddresses;
 
-use colored::*;
 use std::borrow::Cow;
 use std::collections::VecDeque;
 use std::fs::File;
@@ -70,7 +70,7 @@ const GAME_STATS_OFFSET: usize = 0xf422;
 const GAME_STATS_SIZE: usize = 0x2f;
 
 #[derive(Default)]
-struct CliConfig {
+pub struct CliConfig {
     host: String,
     port: String,
     non_race_mode: bool,
@@ -190,7 +190,7 @@ pub fn connect_to_qusb(args: &ArgMatches) -> anyhow::Result<()> {
     Ok(())
 }
 
-fn read_snes_ram(
+pub fn read_snes_ram(
     tx: mpsc::Sender<SnesRam>,
     config: Arc<Mutex<CliConfig>>,
     game_finished: Arc<Mutex<bool>>,
@@ -225,79 +225,6 @@ fn read_snes_ram(
 
         Ok(())
     });
-}
-
-fn init_meta_data(
-    cli_config_rx: Arc<Mutex<CliConfig>>,
-    allow_output_rx: Arc<Mutex<bool>>,
-) -> Result<websocket::sync::Client<std::net::TcpStream>, anyhow::Error> {
-    let config = cli_config_rx.lock().unwrap();
-    println!(
-        "{} to connect to {}:{}",
-        "Attempting".green().bold(),
-        config.host,
-        config.port
-    );
-    let mut client =
-        ClientBuilder::new(&format!("ws://{}:{}", config.host, config.port))?.connect_insecure()?;
-    println!("{} to qusb!", "Connected".green().bold());
-    let mut connected = false;
-    while !connected {
-        connected = attempt_qusb_connection(&mut client)?;
-        sleep(time::Duration::from_millis(2000));
-    }
-    *allow_output_rx.lock().unwrap() = match is_race_rom(&mut client) {
-        Ok(race_rom) => {
-            if race_rom {
-                false
-            } else {
-                config.non_race_mode
-            }
-        }
-        Err(_) => {
-            println!(
-                "Wasn't able to tell if race rom or not, defaulting to not allowing any event output"
-            );
-            false
-        }
-    };
-    if !*allow_output_rx.lock().unwrap() {
-        println!(
-            "{}: no game info will be output in this window.\nNOTE: THIS TOOL IS NOT RACE LEGAL DESPITE VISUAL OUTPUT BEING TURNED OFF.",
-            "Race mode activated".red(),
-        )
-    }
-    Ok(client)
-}
-
-fn connect(
-    cli_config: Arc<Mutex<CliConfig>>,
-) -> Result<websocket::sync::Client<std::net::TcpStream>, anyhow::Error> {
-    let config = cli_config.lock().unwrap();
-    let mut client =
-        ClientBuilder::new(&format!("ws://{}:{}", config.host, config.port))?.connect_insecure()?;
-    let mut connected = false;
-    while !connected {
-        connected = attempt_qusb_connection(&mut client)?;
-        sleep(time::Duration::from_millis(2000));
-    }
-    Ok(client)
-}
-
-fn is_race_rom(client: &mut websocket::sync::Client<std::net::TcpStream>) -> anyhow::Result<bool> {
-    loop {
-        let message = &QusbRequestMessage::get_address(0x180213, 1);
-        let message = Message {
-            opcode: websocket::message::Type::Text,
-            cd_status_code: None,
-            payload: Cow::Owned(serde_json::to_vec(message)?),
-        };
-        client.send_message(&message)?;
-        let response = client.recv_message()?;
-        if let OwnedMessage::Binary(res) = response {
-            return Ok(res[0] == 1 as u8);
-        };
-    }
 }
 
 // since we can't choose multiple addresses in a single request, we instead fetch a larger chunk of data from given address and forward

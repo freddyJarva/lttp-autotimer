@@ -98,8 +98,18 @@ pub fn connect_to_qusb(args: &ArgMatches) -> anyhow::Result<()> {
     let allow_output = Arc::new(Mutex::new(false));
     let game_finished = Arc::new(Mutex::new(false));
 
-    init_meta_data(Arc::clone(&cli_config), Arc::clone(&allow_output))?;
-    read_snes_ram(tx, Arc::clone(&cli_config), Arc::clone(&game_finished));
+    let mut client = connect(Arc::clone(&cli_config))?;
+    init_meta_data(
+        &mut client,
+        Arc::clone(&cli_config),
+        Arc::clone(&allow_output),
+    )?;
+    read_snes_ram(
+        tx,
+        client,
+        Arc::clone(&cli_config),
+        Arc::clone(&game_finished),
+    );
 
     let mut print = StdoutPrinter::new(*allow_output.lock().unwrap());
 
@@ -192,12 +202,11 @@ pub fn connect_to_qusb(args: &ArgMatches) -> anyhow::Result<()> {
 
 pub fn read_snes_ram(
     tx: mpsc::Sender<SnesRam>,
+    mut client: websocket::sync::Client<std::net::TcpStream>,
     config: Arc<Mutex<CliConfig>>,
     game_finished: Arc<Mutex<bool>>,
 ) {
     thread::spawn(move || -> anyhow::Result<()> {
-        let mut client = connect(Arc::clone(&config))?;
-
         let cfg = config.lock().unwrap();
 
         while !*game_finished.lock().unwrap() {

@@ -2,13 +2,14 @@ use core::time;
 
 use std::{
     borrow::Cow,
+    net::TcpStream,
     sync::{Arc, Mutex},
     thread::sleep,
 };
 
 use colored::Colorize;
 use serde::{Deserialize, Serialize};
-use websocket::{ClientBuilder, Message, OwnedMessage};
+use websocket::{sync::Client, ClientBuilder, Message, OwnedMessage};
 
 use crate::{qusb, CliConfig};
 
@@ -123,23 +124,17 @@ pub fn attempt_qusb_connection(
 }
 
 pub fn init_meta_data(
-    cli_config_rx: Arc<Mutex<CliConfig>>,
+    client: &mut Client<TcpStream>,
+    cli_config: Arc<Mutex<CliConfig>>,
+
     allow_output_rx: Arc<Mutex<bool>>,
-) -> Result<websocket::sync::Client<std::net::TcpStream>, anyhow::Error> {
-    let config = cli_config_rx.lock().unwrap();
-    println!(
-        "{} to connect to {}:{}",
-        "Attempting".green().bold(),
-        config.host,
-        config.port
-    );
-    let mut client =
-        ClientBuilder::new(&format!("ws://{}:{}", config.host, config.port))?.connect_insecure()?;
-    println!("{} to qusb!", "Connected".green().bold());
-    while !attempt_qusb_connection(&mut client)? {
-        sleep(time::Duration::from_millis(2000));
-    }
-    *allow_output_rx.lock().unwrap() = match is_race_rom(&mut client) {
+) -> Result<(), anyhow::Error> {
+    // println!("{} to qusb!", "Connected".green().bold());
+    // while !attempt_qusb_connection(client)? {
+    //     sleep(time::Duration::from_millis(2000));
+    // }
+    let config = cli_config.lock().unwrap();
+    *allow_output_rx.lock().unwrap() = match is_race_rom(client) {
         Ok(race_rom) => {
             if race_rom {
                 false
@@ -160,7 +155,7 @@ pub fn init_meta_data(
             "Race mode activated".red(),
         )
     }
-    Ok(client)
+    Ok(())
 }
 
 pub fn connect(

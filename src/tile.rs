@@ -32,8 +32,8 @@ impl Tile {
         }
     }
 
-    pub fn time_transit(&mut self) {
-        self.timestamp = Some(Utc::now())
+    pub fn time_transit(&mut self, time_of_transition: &DateTime<Utc>) {
+        self.timestamp = Some(time_of_transition.clone())
     }
 
     pub fn try_from_ram(current: &SnesRam, previous_tile: &Tile) -> Result<Tile> {

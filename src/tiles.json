@@ -9127,7 +9127,14 @@
         "conditions": [
             {
                 "type": "Coordinates",
-                "coordinates": []
+                "coordinates": [
+                    {
+                        "type": "Pair",
+                        "x": "632",
+                        "y": "6360",
+                        "note": "from tile room"
+                    }
+                ]
             }
         ]
     },

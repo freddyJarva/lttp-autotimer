@@ -74,6 +74,8 @@ struct CliConfig {
     host: String,
     port: String,
     non_race_mode: bool,
+    manual_update: bool,
+    update_frequency: u64,
 }
 
 pub fn connect_to_qusb(args: &ArgMatches) -> anyhow::Result<()> {
@@ -81,63 +83,23 @@ pub fn connect_to_qusb(args: &ArgMatches) -> anyhow::Result<()> {
         host: args.value_of("host").unwrap().to_string(),
         port: args.value_of("port").unwrap().to_string(),
         non_race_mode: args.is_present("Non race mode"),
+        manual_update: args.is_present("manual update"),
+        update_frequency: args
+            .value_of("update frequency")
+            .unwrap()
+            .parse()
+            .expect("specified update frequency (--freq/-f) needs to be a positive integer"),
     }));
-    let host = args.value_of("host").unwrap();
-    let port = args.value_of("port").unwrap();
 
-    let update_frequency: u64 = args
-        .value_of("update frequency")
-        .unwrap()
-        .parse()
-        .expect("specified update frequency (--freq/-f) needs to be a positive integer");
     let _verbosity = args.occurrences_of("v");
-    let manual_update = args.is_present("manual update");
 
-    println!(
-        "{} to connect to {}:{}",
-        "Attempting".green().bold(),
-        host,
-        port
-    );
     let (tx, rx) = mpsc::channel();
 
     let allow_output = Arc::new(Mutex::new(false));
     let game_finished = Arc::new(Mutex::new(false));
 
-    let cli_config_rx = Arc::clone(&cli_config);
-    let allow_output_rx = Arc::clone(&allow_output);
-    let game_finished_rx = Arc::clone(&game_finished);
-
-    init_meta_data(Arc::clone(&cli_config_rx), Arc::clone(&allow_output_rx))?;
-
-    thread::spawn(move || -> anyhow::Result<()> {
-        let mut client = connect(Arc::clone(&cli_config_rx))?;
-
-        while !*game_finished_rx.lock().unwrap() {
-            match get_chunka_chungus(&mut client) {
-                Ok(snes_ram) => tx.send(snes_ram)?,
-                Err(_) => {
-                    println!("Request failed, attempting to reconnect...");
-                    if let Ok(connected_client) = connect(Arc::clone(&cli_config_rx)) {
-                        client = connected_client;
-                    }
-                    sleep(time::Duration::from_secs(1));
-                }
-            }
-
-            if manual_update {
-                println!("Press enter to update...");
-                stdin()
-                    .read_line(&mut String::new())
-                    .ok()
-                    .expect("Failed to read line");
-            } else {
-                sleep(time::Duration::from_millis(update_frequency));
-            }
-        }
-
-        Ok(())
-    });
+    init_meta_data(Arc::clone(&cli_config), Arc::clone(&allow_output))?;
+    read_snes_ram(tx, Arc::clone(&cli_config), Arc::clone(&game_finished));
 
     let mut print = StdoutPrinter::new(*allow_output.lock().unwrap());
 
@@ -152,7 +114,7 @@ pub fn connect_to_qusb(args: &ArgMatches) -> anyhow::Result<()> {
 
     // Intro/start screen counts as not started. Having selected a spawn point counts as game started.
     // This is to ensure it only checks for events - especially transitions - while in-game.
-    let mut game_started = args.is_present("game started");
+    let mut game_started = false;
 
     let mut subscribed_events: Vec<Check> = deserialize_event_checks()?;
     let mut locations: Vec<Check> = deserialize_location_checks()?
@@ -228,11 +190,54 @@ pub fn connect_to_qusb(args: &ArgMatches) -> anyhow::Result<()> {
     Ok(())
 }
 
+fn read_snes_ram(
+    tx: mpsc::Sender<SnesRam>,
+    config: Arc<Mutex<CliConfig>>,
+    game_finished: Arc<Mutex<bool>>,
+) {
+    thread::spawn(move || -> anyhow::Result<()> {
+        let mut client = connect(Arc::clone(&config))?;
+
+        let cfg = config.lock().unwrap();
+
+        while !*game_finished.lock().unwrap() {
+            match get_chunka_chungus(&mut client) {
+                Ok(snes_ram) => tx.send(snes_ram)?,
+                Err(_) => {
+                    println!("Request failed, attempting to reconnect...");
+                    if let Ok(connected_client) = connect(Arc::clone(&config)) {
+                        client = connected_client;
+                    }
+                    sleep(time::Duration::from_secs(1));
+                }
+            }
+
+            if cfg.manual_update {
+                println!("Press enter to update...");
+                stdin()
+                    .read_line(&mut String::new())
+                    .ok()
+                    .expect("Failed to read line");
+            } else {
+                sleep(time::Duration::from_millis(cfg.update_frequency));
+            }
+        }
+
+        Ok(())
+    });
+}
+
 fn init_meta_data(
     cli_config_rx: Arc<Mutex<CliConfig>>,
     allow_output_rx: Arc<Mutex<bool>>,
 ) -> Result<websocket::sync::Client<std::net::TcpStream>, anyhow::Error> {
     let config = cli_config_rx.lock().unwrap();
+    println!(
+        "{} to connect to {}:{}",
+        "Attempting".green().bold(),
+        config.host,
+        config.port
+    );
     let mut client =
         ClientBuilder::new(&format!("ws://{}:{}", config.host, config.port))?.connect_insecure()?;
     println!("{} to qusb!", "Connected".green().bold());
@@ -266,9 +271,9 @@ fn init_meta_data(
 }
 
 fn connect(
-    cli_config_rx: Arc<Mutex<CliConfig>>,
+    cli_config: Arc<Mutex<CliConfig>>,
 ) -> Result<websocket::sync::Client<std::net::TcpStream>, anyhow::Error> {
-    let config = cli_config_rx.lock().unwrap();
+    let config = cli_config.lock().unwrap();
     let mut client =
         ClientBuilder::new(&format!("ws://{}:{}", config.host, config.port))?.connect_insecure()?;
     let mut connected = false;

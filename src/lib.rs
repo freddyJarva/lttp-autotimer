@@ -65,7 +65,7 @@ const DUNKA_OFFSET: usize = DUNKA_START - VRAM_START as usize;
 const COORDINATE_OFFSET: usize = 0xc184;
 const COORDINATE_CHUNK_SIZE: usize = 0x4;
 
-const TILE_INFO_CHUNK_SIZE: usize = 0x40B;
+const TILE_INFO_CHUNK_SIZE: usize = 0x4c9;
 
 const GAME_STATS_OFFSET: usize = 0xf418;
 const GAME_STATS_SIZE: usize = 0x39;

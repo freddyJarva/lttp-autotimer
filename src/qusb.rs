@@ -136,9 +136,7 @@ pub fn init_meta_data(
     let mut client =
         ClientBuilder::new(&format!("ws://{}:{}", config.host, config.port))?.connect_insecure()?;
     println!("{} to qusb!", "Connected".green().bold());
-    let mut connected = false;
-    while !connected {
-        connected = attempt_qusb_connection(&mut client)?;
+    while !attempt_qusb_connection(&mut client)? {
         sleep(time::Duration::from_millis(2000));
     }
     *allow_output_rx.lock().unwrap() = match is_race_rom(&mut client) {
@@ -171,9 +169,7 @@ pub fn connect(
     let config = cli_config.lock().unwrap();
     let mut client =
         ClientBuilder::new(&format!("ws://{}:{}", config.host, config.port))?.connect_insecure()?;
-    let mut connected = false;
-    while !connected {
-        connected = attempt_qusb_connection(&mut client)?;
+    while !attempt_qusb_connection(&mut client)? {
         sleep(time::Duration::from_millis(2000));
     }
     Ok(client)

@@ -362,7 +362,7 @@
             {
                 "type": "ValueEq",
                 "sram_offset": "0xf3cc",
-                "sram_value": "0x0d"
+                "sram_value": "0x04"
             }
         ]
     },

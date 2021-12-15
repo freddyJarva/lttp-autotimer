@@ -11,7 +11,11 @@ use colored::Colorize;
 use serde::{Deserialize, Serialize};
 use websocket::{sync::Client, ClientBuilder, Message, OwnedMessage};
 
-use crate::{qusb, CliConfig};
+use crate::{
+    qusb,
+    request::{fetch_metadata_for, MetaData},
+    CliConfig,
+};
 
 #[derive(Deserialize, Debug)]
 pub struct QusbResponseMessage {
@@ -128,12 +132,7 @@ pub fn init_meta_data(
     config: CliConfig,
 
     allow_output_rx: Arc<Mutex<bool>>,
-) -> Result<(), anyhow::Error> {
-    let rom_hash = read_rom_hash(client)?;
-    match rom_hash {
-        Some(rom_hash) => println!("{} seed {}", "Playing".green().bold(), rom_hash.cyan()),
-        None => println!("Failed to read rom hash, skipping requesting metadata"),
-    }
+) -> Result<Option<(String, MetaData)>, anyhow::Error> {
     *allow_output_rx.lock().unwrap() = match is_race_rom(client) {
         Ok(race_rom) => {
             if race_rom {
@@ -155,7 +154,17 @@ pub fn init_meta_data(
             "Race mode activated".red(),
         )
     }
-    Ok(())
+    let rom_hash = read_rom_hash(client)?;
+    match rom_hash {
+        Some(rom_hash) => {
+            println!("{} seed {}", "Playing".green().bold(), rom_hash.cyan());
+            let (permalink, json) = fetch_metadata_for(rom_hash)?;
+            println!("Meta: {:?}", json);
+            return Ok(Some((permalink, json.spoiler.meta)));
+        }
+        None => println!("Failed to read rom hash, skipping requesting metadata"),
+    }
+    Ok(None)
 }
 
 pub fn connect(

@@ -71,7 +71,7 @@ const TILE_INFO_CHUNK_SIZE: usize = 0x4c9;
 const GAME_STATS_OFFSET: usize = 0xf418;
 const GAME_STATS_SIZE: usize = 0xdf;
 
-#[derive(Default)]
+#[derive(Default, Clone)]
 pub struct CliConfig {
     host: String,
     port: String,
@@ -82,7 +82,7 @@ pub struct CliConfig {
 }
 
 pub fn connect_to_qusb(args: &ArgMatches) -> anyhow::Result<()> {
-    let cli_config = Arc::new(Mutex::new(CliConfig {
+    let cli_config = CliConfig {
         host: args.value_of("host").unwrap().to_string(),
         port: args.value_of("port").unwrap().to_string(),
         non_race_mode: args.is_present("Non race mode"),
@@ -93,25 +93,16 @@ pub fn connect_to_qusb(args: &ArgMatches) -> anyhow::Result<()> {
             .parse()
             .expect("specified update frequency (--freq/-f) needs to be a positive integer"),
         _verbosity: args.occurrences_of("v"),
-    }));
+    };
 
     let (tx, rx) = mpsc::channel();
 
     let allow_output = Arc::new(Mutex::new(false));
     let game_finished = Arc::new(Mutex::new(false));
 
-    let mut client = connect(Arc::clone(&cli_config))?;
-    init_meta_data(
-        &mut client,
-        Arc::clone(&cli_config),
-        Arc::clone(&allow_output),
-    )?;
-    read_snes_ram(
-        tx,
-        client,
-        Arc::clone(&cli_config),
-        Arc::clone(&game_finished),
-    );
+    let mut client = connect(cli_config.clone())?;
+    init_meta_data(&mut client, cli_config.clone(), Arc::clone(&allow_output))?;
+    read_snes_ram(tx, client, cli_config.clone(), Arc::clone(&game_finished));
 
     let mut print = StdoutPrinter::new(*allow_output.lock().unwrap());
 
@@ -210,12 +201,11 @@ pub fn connect_to_qusb(args: &ArgMatches) -> anyhow::Result<()> {
 pub fn read_snes_ram(
     tx: mpsc::Sender<(DateTime<Utc>, SnesRam)>,
     mut client: websocket::sync::Client<std::net::TcpStream>,
-    config: Arc<Mutex<CliConfig>>,
+    config: CliConfig,
     game_finished: Arc<Mutex<bool>>,
 ) {
     thread::spawn(move || -> anyhow::Result<()> {
-        let cfg = config.lock().unwrap();
-        let update_freq = time::Duration::from_millis(cfg.update_frequency);
+        let update_freq = time::Duration::from_millis(config.update_frequency);
 
         while !*game_finished.lock().unwrap() {
             let now = Instant::now();
@@ -223,13 +213,16 @@ pub fn read_snes_ram(
                 Ok(snes_ram) => tx.send((Utc::now(), snes_ram))?,
                 Err(_) => {
                     println!("Request failed, attempting to reconnect...");
-                    if let Ok(connected_client) = connect(Arc::clone(&config)) {
+                    client.shutdown()?;
+                    if let Ok(connected_client) = connect(config.clone()) {
                         client = connected_client;
+                    } else {
+                        println!("Failed")
                     }
                 }
             }
 
-            if cfg.manual_update {
+            if config.manual_update {
                 println!("Press enter to update...");
                 stdin()
                     .read_line(&mut String::new())
@@ -240,7 +233,7 @@ pub fn read_snes_ram(
                 if elapsed < update_freq {
                     sleep(update_freq - elapsed);
                 }
-                if cfg._verbosity > 0 {
+                if config._verbosity > 0 {
                     println!("delta: {:?}", elapsed);
                 }
             }

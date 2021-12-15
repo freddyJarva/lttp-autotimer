@@ -125,7 +125,7 @@ pub fn attempt_qusb_connection(
 
 pub fn init_meta_data(
     client: &mut Client<TcpStream>,
-    cli_config: Arc<Mutex<CliConfig>>,
+    config: CliConfig,
 
     allow_output_rx: Arc<Mutex<bool>>,
 ) -> Result<(), anyhow::Error> {
@@ -133,7 +133,6 @@ pub fn init_meta_data(
     // while !attempt_qusb_connection(client)? {
     //     sleep(time::Duration::from_millis(2000));
     // }
-    let config = cli_config.lock().unwrap();
     *allow_output_rx.lock().unwrap() = match is_race_rom(client) {
         Ok(race_rom) => {
             if race_rom {
@@ -159,9 +158,8 @@ pub fn init_meta_data(
 }
 
 pub fn connect(
-    cli_config: Arc<Mutex<CliConfig>>,
+    config: CliConfig,
 ) -> Result<websocket::sync::Client<std::net::TcpStream>, anyhow::Error> {
-    let config = cli_config.lock().unwrap();
     let mut client =
         ClientBuilder::new(&format!("ws://{}:{}", config.host, config.port))?.connect_insecure()?;
     while !attempt_qusb_connection(&mut client)? {

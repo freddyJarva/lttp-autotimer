@@ -424,5 +424,11 @@
         "name": "Standard Start",
         "sram_offset": "0x37c",
         "sram_mask": "0x01"
+    },
+    {
+        "id": 28,
+        "name": "Handed In Mushroom",
+        "sram_offset": "0xf38c",
+        "sram_mask": "0x04"
     }
 ]

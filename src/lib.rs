@@ -19,7 +19,7 @@ use tile::Tile;
 use websocket::{Message, OwnedMessage};
 
 use core::time;
-use std::io::stdin;
+use std::io::{stdin, Write};
 use std::sync::{mpsc, Arc, Mutex};
 use std::time::Instant;
 
@@ -49,6 +49,7 @@ mod snes;
 mod test_macros;
 
 mod condition;
+mod request;
 mod tile;
 
 /// Snes memory address
@@ -101,7 +102,7 @@ pub fn connect_to_qusb(args: &ArgMatches) -> anyhow::Result<()> {
     let game_finished = Arc::new(Mutex::new(false));
 
     let mut client = connect(cli_config.clone())?;
-    init_meta_data(&mut client, cli_config.clone(), Arc::clone(&allow_output))?;
+    let meta_data = init_meta_data(&mut client, cli_config.clone(), Arc::clone(&allow_output))?;
     read_snes_ram(tx, client, cli_config.clone(), Arc::clone(&game_finished));
 
     let mut print = StdoutPrinter::new(*allow_output.lock().unwrap());
@@ -109,8 +110,12 @@ pub fn connect_to_qusb(args: &ArgMatches) -> anyhow::Result<()> {
     let mut ram_history: VecDeque<SnesRam> = VecDeque::new();
 
     let csv_name = Utc::now().format("%Y%m%d_%H%M%S.csv").to_string();
-    File::create(&csv_name)?;
-    let mut writer = Writer::from_path(csv_name)?;
+    let mut f = File::create(&csv_name)?;
+    println!("meta: {:?}", meta_data);
+    if let Some((permalink, meta_data)) = meta_data {
+        write_metadata_to_csv(&mut f, permalink, meta_data)?;
+    }
+    let mut writer = csv::WriterBuilder::new().from_writer(f);
 
     let mut events = EventTracker::new();
 
@@ -195,6 +200,75 @@ pub fn connect_to_qusb(args: &ArgMatches) -> anyhow::Result<()> {
         .read_line(&mut String::new())
         .ok()
         .expect("Failed to read line");
+    Ok(())
+}
+
+/// Metadata that will be written at the top of the csv
+fn write_metadata_to_csv(
+    f: &mut File,
+    permalink: String,
+    meta_data: request::MetaData,
+) -> Result<(), anyhow::Error> {
+    f.write_all(format!("# rom_build {}\n", meta_data.build).as_bytes())?;
+    f.write_all(format!("# permalink {}\n", permalink).as_bytes())?;
+    f.write_all(format!("# goal {}\n", meta_data.goal).as_bytes())?;
+    f.write_all(format!("# mode {}\n", meta_data.mode).as_bytes())?;
+    f.write_all(format!("# rom_mode {}\n", meta_data.rom_mode).as_bytes())?;
+    f.write_all(
+        format!(
+            "# entry_crystals_ganon {}\n",
+            meta_data.entry_crystals_ganon
+        )
+        .as_bytes(),
+    )?;
+    f.write_all(
+        format!(
+            "# entry_crystals_tower {}\n",
+            meta_data.entry_crystals_tower
+        )
+        .as_bytes(),
+    )?;
+    f.write_all(format!("# item_functionality {}\n", meta_data.item_functionality).as_bytes())?;
+    f.write_all(format!("# item_placement {}\n", meta_data.item_placement).as_bytes())?;
+    f.write_all(format!("# item_pool {}\n", meta_data.item_pool).as_bytes())?;
+    f.write_all(format!("# logic {}\n", meta_data.logic).as_bytes())?;
+    f.write_all(format!("# accessibility {}\n", meta_data.accessibility).as_bytes())?;
+    f.write_all(format!("# dungeon_items {}\n", meta_data.dungeon_items).as_bytes())?;
+    f.write_all(
+        format!(
+            "# enemizer_boss_shuffle {}\n",
+            meta_data.enemizer_boss_shuffle
+        )
+        .as_bytes(),
+    )?;
+    f.write_all(
+        format!(
+            "# enemizer_enemy_damage {}\n",
+            meta_data.enemizer_enemy_damage
+        )
+        .as_bytes(),
+    )?;
+    f.write_all(
+        format!(
+            "# enemizer_enemy_health {}\n",
+            meta_data.enemizer_enemy_health
+        )
+        .as_bytes(),
+    )?;
+    f.write_all(
+        format!(
+            "# enemizer_enemy_shuffle {}\n",
+            meta_data.enemizer_enemy_shuffle
+        )
+        .as_bytes(),
+    )?;
+    f.write_all(
+        format!(
+            "# enemizer_pot_shuffle {}\n",
+            meta_data.enemizer_pot_shuffle
+        )
+        .as_bytes(),
+    )?;
     Ok(())
 }
 

@@ -129,6 +129,11 @@ pub fn init_meta_data(
 
     allow_output_rx: Arc<Mutex<bool>>,
 ) -> Result<(), anyhow::Error> {
+    let rom_hash = read_rom_hash(client)?;
+    match rom_hash {
+        Some(rom_hash) => println!("{} seed {}", "Playing".green().bold(), rom_hash.cyan()),
+        None => println!("Failed to read rom hash, skipping requesting metadata"),
+    }
     *allow_output_rx.lock().unwrap() = match is_race_rom(client) {
         Ok(race_rom) => {
             if race_rom {
@@ -162,6 +167,25 @@ pub fn connect(
         sleep(time::Duration::from_millis(2000));
     }
     Ok(client)
+}
+
+pub fn read_rom_hash(
+    client: &mut websocket::sync::Client<std::net::TcpStream>,
+) -> anyhow::Result<Option<String>> {
+    loop {
+        let message = &QusbRequestMessage::get_address(0x7fc0, 0x14);
+        let message = Message {
+            opcode: websocket::message::Type::Text,
+            cd_status_code: None,
+            payload: Cow::Owned(serde_json::to_vec(message)?),
+        };
+        client.send_message(&message)?;
+        let response = client.recv_message()?;
+        if let OwnedMessage::Binary(res) = response {
+            let s = std::str::from_utf8(&res)?;
+            return Ok(s.split_ascii_whitespace().nth(1).map(|s| s.to_string()));
+        };
+    }
 }
 
 pub fn is_race_rom(

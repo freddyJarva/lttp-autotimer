@@ -129,10 +129,6 @@ pub fn init_meta_data(
 
     allow_output_rx: Arc<Mutex<bool>>,
 ) -> Result<(), anyhow::Error> {
-    // println!("{} to qusb!", "Connected".green().bold());
-    // while !attempt_qusb_connection(client)? {
-    //     sleep(time::Duration::from_millis(2000));
-    // }
     *allow_output_rx.lock().unwrap() = match is_race_rom(client) {
         Ok(race_rom) => {
             if race_rom {

@@ -13,6 +13,9 @@ pub trait EventLog {
     fn latest_other_event(&self) -> Option<Check>;
     fn find_other_event(&self, id: usize) -> Option<Check>;
     fn find_location_check(&self, id: usize) -> Option<Check>;
+    fn others_with_id(&self, id: usize) -> Vec<Check>;
+    fn items_with_id(&self, id: usize) -> Vec<Check>;
+    fn location_checks_with_id(&self, id: usize) -> Vec<Check>;
 }
 
 impl EventLog for EventTracker {
@@ -132,6 +135,57 @@ impl EventLog for EventTracker {
                     panic!("This should never happen")
                 }
             })
+    }
+
+    fn others_with_id(&self, id: usize) -> Vec<Check> {
+        self.log
+            .iter()
+            .filter(|&check| match check {
+                EventEnum::Other(check) => check.id == id,
+                _ => false,
+            })
+            .map(|check| {
+                if let EventEnum::Other(t) = check {
+                    t.clone()
+                } else {
+                    panic!("This should never happen")
+                }
+            })
+            .collect()
+    }
+
+    fn items_with_id(&self, id: usize) -> Vec<Check> {
+        self.log
+            .iter()
+            .filter(|&check| match check {
+                EventEnum::ItemGet(check) => check.id == id,
+                _ => false,
+            })
+            .map(|check| {
+                if let EventEnum::ItemGet(t) = check {
+                    t.clone()
+                } else {
+                    panic!("This should never happen")
+                }
+            })
+            .collect()
+    }
+
+    fn location_checks_with_id(&self, id: usize) -> Vec<Check> {
+        self.log
+            .iter()
+            .filter(|&check| match check {
+                EventEnum::LocationCheck(check) => check.id == id,
+                _ => false,
+            })
+            .map(|check| {
+                if let EventEnum::LocationCheck(t) = check {
+                    t.clone()
+                } else {
+                    panic!("This should never happen")
+                }
+            })
+            .collect()
     }
 }
 
@@ -442,8 +496,6 @@ mod tests {
                         }
                         None => assert_eq!(event_tracker.$function(param), None)
                     }
-
-                    // assert_eq!(event_tracker.$function(param), assert_attrs! {})
                 }
             )*
         };
@@ -464,6 +516,42 @@ mod tests {
         ),
         GIVEN_no_locations_THEN_return_none: find_location_check: (vec![], 12, None),
         GIVEN_no_event_of_type_location_with_given_idx_THEN_return_None: find_location_check: (event_log(None), 0, None),
+    }
+
+    macro_rules! test_eventlog_find_alls {
+        ($($name:ident: $function:ident: $values:expr,)*) => {
+            $(
+                #[test]
+                fn $name() {
+                    let (event_log, param, expected_size) = $values;
+                    let event_tracker = EventTracker::from(event_log);
+
+                    let actual_list = event_tracker.$function(param);
+                    assert_eq!(actual_list.len(), expected_size);
+                }
+            )*
+        };
+    }
+
+    test_eventlog_find_alls! {
+        find_all_other_events_with_id: others_with_id: (
+            event_log(Some((3, EventEnum::Other(Check::new(16))))),
+            16,
+            1
+        ),
+        find_all_items_with_id: items_with_id: (
+            event_log(Some((3, EventEnum::ItemGet(Check::new(0))))),
+            0,
+            2
+        ),
+        find_all_checks_with_id: location_checks_with_id: (
+            event_log(Some((3, EventEnum::LocationCheck(Check::new(4))))),
+            4,
+            2
+        ),
+        GIVEN_no_events_with_id_THEN_return_empty_vec: others_with_id: (event_log(None), 999, 0),
+        GIVEN_no_items_with_id_THEN_return_empty_vec: items_with_id: (event_log(None), 999, 0),
+        GIVEN_no_checks_with_id_THEN_return_empty_vec: location_checks_with_id: (event_log(None), 999, 0),
     }
 
     #[test]

@@ -454,5 +454,187 @@
         "sram_offset": "0xf368",
         "sram_mask": "0x04",
         "id": 74
+    },
+    {
+        "name": "Small Key - Hyrule Castle",
+        "id": 75,
+        "is_progressive": true,
+        "conditions": [
+            {
+                "type": "ValueGreaterThan",
+                "sram_offset": "0xf4e1",
+                "other": {
+                    "ItemCount": 75
+                }
+            }
+        ]
+    },
+    {
+        "name": "Small Key - Tower of Hera",
+        "id": 76,
+        "is_progressive": true,
+        "conditions": [
+            {
+                "type": "ValueGreaterThan",
+                "sram_offset": "0xf4e2",
+                "other": {
+                    "ItemCount": 76
+                }
+            }
+        ]
+    },
+    {
+        "name": "Small Key - Desert Palace",
+        "id": 77,
+        "is_progressive": true,
+        "conditions": [
+            {
+                "type": "ValueGreaterThan",
+                "sram_offset": "0xf4e3",
+                "other": {
+                    "ItemCount": 77
+                }
+            }
+        ]
+    },
+    {
+        "name": "Small Key - Tower of Hera",
+        "id": 78,
+        "is_progressive": true,
+        "conditions": [
+            {
+                "type": "ValueGreaterThan",
+                "sram_offset": "0xf4ea",
+                "other": {
+                    "ItemCount": 78
+                }
+            }
+        ]
+    },
+    {
+        "name": "Small Key - Agahnim's Tower",
+        "id": 79,
+        "is_progressive": true,
+        "conditions": [
+            {
+                "type": "ValueGreaterThan",
+                "sram_offset": "0xf4e4",
+                "other": {
+                    "ItemCount": 79
+                }
+            }
+        ]
+    },
+    {
+        "name": "Small Key - Swamp Palace",
+        "id": 80,
+        "is_progressive": true,
+        "conditions": [
+            {
+                "type": "ValueGreaterThan",
+                "sram_offset": "0xf4e5",
+                "other": {
+                    "ItemCount": 80
+                }
+            }
+        ]
+    },
+    {
+        "name": "Small Key - Palace of Darkness",
+        "id": 81,
+        "is_progressive": true,
+        "conditions": [
+            {
+                "type": "ValueGreaterThan",
+                "sram_offset": "0xf4e6",
+                "other": {
+                    "ItemCount": 81
+                }
+            }
+        ]
+    },
+    {
+        "name": "Small Key - Misery Mire",
+        "id": 82,
+        "is_progressive": true,
+        "conditions": [
+            {
+                "type": "ValueGreaterThan",
+                "sram_offset": "0xf4e7",
+                "other": {
+                    "ItemCount": 82
+                }
+            }
+        ]
+    },
+    {
+        "name": "Small Key - Skull Woods",
+        "id": 83,
+        "is_progressive": true,
+        "conditions": [
+            {
+                "type": "ValueGreaterThan",
+                "sram_offset": "0xf4e8",
+                "other": {
+                    "ItemCount": 83
+                }
+            }
+        ]
+    },
+    {
+        "name": "Small Key - Ice Palace",
+        "id": 84,
+        "is_progressive": true,
+        "conditions": [
+            {
+                "type": "ValueGreaterThan",
+                "sram_offset": "0xf4e9",
+                "other": {
+                    "ItemCount": 84
+                }
+            }
+        ]
+    },
+    {
+        "name": "Small Key - Thieves' Town",
+        "id": 85,
+        "is_progressive": true,
+        "conditions": [
+            {
+                "type": "ValueGreaterThan",
+                "sram_offset": "0xf4eb",
+                "other": {
+                    "ItemCount": 85
+                }
+            }
+        ]
+    },
+    {
+        "name": "Small Key - Turtle Rock",
+        "id": 86,
+        "is_progressive": true,
+        "conditions": [
+            {
+                "type": "ValueGreaterThan",
+                "sram_offset": "0xf4ec",
+                "other": {
+                    "ItemCount": 86
+                }
+            }
+        ]
+    },
+    {
+        "name": "Small Key - Ganon's Tower",
+        "id": 87,
+        "is_progressive": true,
+        "conditions": [
+            {
+                "type": "ValueGreaterThan",
+                "sram_offset": "0xf4ed",
+                "other": {
+                    "ItemCount": 87
+                }
+            }
+        ]
     }
 ]

@@ -19,6 +19,14 @@ pub struct ConditionTransition {
     pub indoors: Option<bool>,
 }
 
+#[derive(Debug, Deserialize, PartialEq, Clone, Hash, Eq)]
+pub enum Value {
+    ValueOfAddress(#[serde(deserialize_with = "hex_usize_deserialize")] usize),
+    CheckCount(usize),
+    ItemCount(usize),
+    EventCount(usize),
+}
+
 /// Extra conditions to evaluate to deem that a specific transition has been triggered.
 ///
 /// As an example, some tiles use the same address AND address value.
@@ -55,6 +63,11 @@ pub enum Conditions {
         sram_offset: usize,
         #[serde(deserialize_with = "hex_byte_deserialize")]
         sram_value: u8,
+    },
+    ValueGreaterThan {
+        #[serde(deserialize_with = "hex_usize_deserialize")]
+        sram_offset: usize,
+        other: Value,
     },
     PreviousValueEq {
         #[serde(deserialize_with = "hex_usize_deserialize")]

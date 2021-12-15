@@ -8,6 +8,7 @@ extern crate lazy_static;
 use chrono::{DateTime, Utc};
 use clap::ArgMatches;
 
+use condition::Value::{CheckCount, EventCount, ItemCount, ValueOfAddress};
 use condition::{
     coordinate_condition_met, current_tile_condition_met, dungeon_counter_condition_met,
     ram_value_change_condition_met,
@@ -68,7 +69,7 @@ const COORDINATE_CHUNK_SIZE: usize = 0x4;
 const TILE_INFO_CHUNK_SIZE: usize = 0x4c9;
 
 const GAME_STATS_OFFSET: usize = 0xf418;
-const GAME_STATS_SIZE: usize = 0x39;
+const GAME_STATS_SIZE: usize = 0xdf;
 
 #[derive(Default)]
 pub struct CliConfig {
@@ -132,10 +133,7 @@ pub fn connect_to_qusb(args: &ArgMatches) -> anyhow::Result<()> {
         // 0 offset checks without conditions hasn't been given a proper value in checks.json yet
         .filter(|check| check.sram_offset.unwrap_or_default() != 0 || check.conditions.is_some())
         .collect();
-    let mut items: Vec<Check> = deserialize_item_checks()?
-        .into_iter()
-        .filter(|check| check.sram_offset.unwrap_or_default() != 0)
-        .collect();
+    let mut items: Vec<Check> = deserialize_item_checks()?.into_iter().collect();
 
     for (time_of_read, snes_ram) in rx {
         if !game_started {
@@ -381,28 +379,49 @@ fn check_for_item_checks(
     for check in checks {
         let current_check_value = ram.get_byte(check.sram_offset.unwrap_or_default() as usize);
 
-        if previous_values.len() > 0
-            && (previous_values[previous_values.len() - 1]
-                .get_byte(check.sram_offset.unwrap_or_default() as usize)
-                != current_check_value)
-        {
-            if !check.is_progressive
-                && current_check_value & check.sram_mask.unwrap_or_default() != 0
-                && !check.is_checked
-            {
-                check.mark_as_checked(time_of_read);
-                print.item_check(check);
+        match &check.conditions {
+            Some(conditions) => {
+                if (check.is_progressive || !check.is_checked)
+                    && conditions
+                        .iter()
+                        .all(|condition| match_condition(condition, events, ram, previous_values))
+                {
+                    if !check.is_progressive {
+                        check.mark_as_checked(time_of_read)
+                    } else {
+                        check.progress_item(current_check_value, time_of_read)
+                    }
+                    let occurred_check = EventEnum::ItemGet(check.clone());
+                    writer.serialize(Event::from(&occurred_check))?;
+                    events.push(occurred_check);
+                    print.item_check(check);
+                }
+            }
+            None => {
+                if previous_values.len() > 0
+                    && (previous_values[previous_values.len() - 1]
+                        .get_byte(check.sram_offset.unwrap_or_default() as usize)
+                        != current_check_value)
+                {
+                    if !check.is_progressive
+                        && current_check_value & check.sram_mask.unwrap_or_default() != 0
+                        && !check.is_checked
+                    {
+                        check.mark_as_checked(time_of_read);
+                        print.item_check(check);
 
-                let item_event = EventEnum::ItemGet(check.clone());
-                writer.serialize(Event::from(&item_event))?;
-                events.push(item_event);
-            } else if check.is_progressive && current_check_value > check.snes_value {
-                check.progress_item(current_check_value, time_of_read);
-                print.item_check(check);
+                        let item_event = EventEnum::ItemGet(check.clone());
+                        writer.serialize(Event::from(&item_event))?;
+                        events.push(item_event);
+                    } else if check.is_progressive && current_check_value > check.snes_value {
+                        check.progress_item(current_check_value, time_of_read);
+                        print.item_check(check);
 
-                let item_event = EventEnum::ItemGet(check.clone());
-                writer.serialize(Event::from(&item_event))?;
-                events.push(item_event);
+                        let item_event = EventEnum::ItemGet(check.clone());
+                        writer.serialize(Event::from(&item_event))?;
+                        events.push(item_event);
+                    }
+                }
             }
         }
     }
@@ -551,6 +570,14 @@ fn match_condition(
                 false
             }
         }
+        Conditions::ValueGreaterThan { sram_offset, other } => match other {
+            ValueOfAddress(other_address) => {
+                ram.get_byte(*sram_offset) > ram.get_byte(*other_address)
+            }
+            CheckCount(_) => todo!(),
+            ItemCount(id) => ram.get_byte(*sram_offset) > events.items_with_id(*id).len() as u8,
+            EventCount(id) => ram.get_byte(*sram_offset) > events.others_with_id(*id).len() as u8,
+        },
     }
 }
 

@@ -127,12 +127,12 @@ pub fn attempt_qusb_connection(
     Ok(connected)
 }
 
-pub fn init_meta_data(
+pub fn init_allow_output(
     client: &mut Client<TcpStream>,
     config: CliConfig,
 
     allow_output_rx: Arc<Mutex<bool>>,
-) -> Result<Option<(String, MetaData)>, anyhow::Error> {
+) {
     *allow_output_rx.lock().unwrap() = match is_race_rom(client) {
         Ok(race_rom) => {
             if race_rom {
@@ -154,16 +154,23 @@ pub fn init_meta_data(
             "Race mode activated".red(),
         )
     }
+}
+
+pub fn fetch_metadata(
+    client: &mut Client<TcpStream>,
+) -> Result<Option<(String, MetaData)>, anyhow::Error> {
     let rom_hash = read_rom_hash(client)?;
     match rom_hash {
         Some(rom_hash) => {
             println!("{} seed {}", "Playing".green().bold(), rom_hash.cyan());
             let (permalink, json) = fetch_metadata_for(rom_hash)?;
-            return Ok(Some((permalink, json.spoiler.meta)));
+            Ok(Some((permalink, json.spoiler.meta)))
         }
-        None => println!("Failed to read rom hash, skipping requesting metadata"),
+        None => {
+            println!("Failed to read rom hash, skipping requesting metadata");
+            Ok(None)
+        }
     }
-    Ok(None)
 }
 
 pub fn connect(

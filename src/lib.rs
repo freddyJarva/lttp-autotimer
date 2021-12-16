@@ -28,7 +28,7 @@ use crate::check::{
     deserialize_event_checks, deserialize_item_checks, deserialize_location_checks,
 };
 use crate::output::StdoutPrinter;
-use crate::qusb::{init_meta_data, QusbRequestMessage};
+use crate::qusb::{fetch_metadata, init_allow_output, QusbRequestMessage};
 use crate::snes::NamedAddresses;
 
 use std::borrow::Cow;
@@ -103,7 +103,14 @@ pub fn connect_to_qusb(args: &ArgMatches) -> anyhow::Result<()> {
     let game_finished = Arc::new(Mutex::new(false));
 
     let mut client = connect(cli_config.clone())?;
-    let meta_data = init_meta_data(&mut client, cli_config.clone(), Arc::clone(&allow_output))?;
+    init_allow_output(&mut client, cli_config.clone(), Arc::clone(&allow_output));
+    let meta_data = match fetch_metadata(&mut client) {
+        Ok(meta_data) => meta_data,
+        Err(e) => {
+            println!("Request for metadata failed, skipping. Cause: {:?}", e);
+            None
+        }
+    };
     let mut print = StdoutPrinter::new(*allow_output.lock().unwrap());
     print.debug(format!(
         "{} metadata: {:?}",
@@ -295,7 +302,13 @@ fn write_metadata_to_csv(
     f.write_all(format!("# allow_quickswap {}\n", meta_data.tournament).as_bytes())?;
     f.write_all(format!("# worlds {}\n", meta_data.worlds).as_bytes())?;
     f.write_all(format!("# world_id {}\n", meta_data.world_id).as_bytes())?;
-    f.write_all(format!("# notes {}\n", meta_data.notes.unwrap_or(NONE_STR.to_string())).as_bytes())?;
+    f.write_all(
+        format!(
+            "# notes {}\n",
+            meta_data.notes.unwrap_or(NONE_STR.to_string())
+        )
+        .as_bytes(),
+    )?;
     Ok(())
 }
 

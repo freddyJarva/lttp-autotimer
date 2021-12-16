@@ -46,6 +46,8 @@ pub enum Address {
     GameStatsSize = 0xdf,
     Coordinates = 0xf5c184,
     CoordinatesSize = 0x4,
+    CoordinateX = 0xf5c186,
+    CoordinateY = 0xf5c184,
 }
 
 impl Address {

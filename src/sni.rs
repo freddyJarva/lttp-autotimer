@@ -32,8 +32,10 @@ pub enum Address {
     DunkaChunka = 0xf5f021,
     DunkaChunkaSize = 0x4d7,
     GameStatsSize = 0xdf,
-    Coordinates = 0xf5c184,
-    CoordinatesSize = 0x4,
+    Coordinates = 0xf5c172,
+    CoordinatesSize = 0x18,
+    CoordinateX = 0xf5c186,
+    CoordinateY = 0xf5c184,
 }
 
 impl Address {

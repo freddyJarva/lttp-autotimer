@@ -49,23 +49,23 @@ impl NamedAddresses for SnesRam {
     }
 
     fn transition_x(&self) -> u16 {
-        LittleEndian::read_u16(&self.coordinate_chunk[2..])
+        self.get_word(0xc186)
     }
 
     fn transition_y(&self) -> u16 {
-        LittleEndian::read_u16(&self.coordinate_chunk[..2])
+        self.get_word(0xc184)
     }
 
     fn game_mode(&self) -> u8 {
-        self.tile_info_chunk[GAME_MODE_ADDRESS]
+        self.get_byte(GAME_MODE_ADDRESS)
     }
 
     fn x(&self) -> u16 {
-        LittleEndian::read_u16(&self.tile_info_chunk[0x22..0x24])
+        self.get_word(0x22)
     }
 
     fn y(&self) -> u16 {
-        LittleEndian::read_u16(&self.tile_info_chunk[0x20..0x22])
+        self.get_word(0x20)
     }
 
     fn game_state(&self) -> u8 {
@@ -87,11 +87,13 @@ impl SetNamedAddresses for SnesRam {
     }
 
     fn set_transition_x(&mut self, word: u16) {
-        LittleEndian::write_u16(&mut self.coordinate_chunk[2..], word)
+        let x_start = Address::CoordinateX.address() - Address::Coordinates.address();
+        LittleEndian::write_u16(&mut self.coordinate_chunk[x_start..x_start + 2], word)
     }
 
     fn set_transition_y(&mut self, word: u16) {
-        LittleEndian::write_u16(&mut self.coordinate_chunk[..2], word)
+        let y_start = Address::CoordinateY.address() - Address::Coordinates.address();
+        LittleEndian::write_u16(&mut self.coordinate_chunk[y_start..y_start + 2], word)
     }
 
     fn set_x(&mut self, word: u16) {
@@ -211,6 +213,67 @@ impl SnesRam {
             && address < Address::GameStats.offset() + Address::GameStatsSize as usize
         {
             self.game_stats_chunk[address - Address::GameStats.offset()]
+        } else {
+            panic!(
+                "Tried reading address with offset {:X} from ram, but it's not fetched from the game!",
+                address
+            )
+        }
+    }
+
+    #[cfg(feature = "sni")]
+    /// A word is a 16-bit address
+    pub fn get_word(&self, address: usize) -> u16 {
+        if address < (Address::TileInfoSize as usize) - 1 {
+            LittleEndian::read_u16(&self.tile_info_chunk[address..address + 2])
+        } else if address >= (Address::DunkaChunka.offset())
+            && address < (Address::DunkaChunka.offset()) + (Address::DunkaChunkaSize as usize) - 1
+        {
+            LittleEndian::read_u16(
+                &self.dunka_chunka[address - (Address::DunkaChunka.offset())
+                    ..address + 2 - (Address::DunkaChunka.offset())],
+            )
+        } else if address >= Address::Coordinates.offset()
+            && address < Address::Coordinates.offset() + (Address::CoordinatesSize as usize) - 1
+        {
+            LittleEndian::read_u16(
+                &self.coordinate_chunk[address - Address::Coordinates.offset()
+                    ..address + 2 - Address::Coordinates.offset()],
+            )
+        } else {
+            panic!(
+                "Tried reading address with offset {:X} from ram, but it's not fetched from the game!",
+                address
+            )
+        }
+    }
+
+    #[cfg(feature = "qusb")]
+    /// A word is a 16-bit address
+    pub fn get_word(&self, address: usize) -> u16 {
+        if address < (Address::TileInfoSize as usize) - 1 {
+            LittleEndian::read_u16(&self.tile_info_chunk[address..address + 2])
+        } else if address >= (Address::DunkaChunka.offset())
+            && address < (Address::DunkaChunka.offset()) + (Address::DunkaChunkaSize as usize) - 1
+        {
+            LittleEndian::read_u16(
+                &self.dunka_chunka[address - (Address::DunkaChunka.offset())
+                    ..address + 2 - (Address::DunkaChunka.offset())],
+            )
+        } else if address >= Address::Coordinates.offset()
+            && address < Address::Coordinates.offset() + (Address::CoordinatesSize as usize) - 1
+        {
+            LittleEndian::read_u16(
+                &self.coordinate_chunk[address - Address::Coordinates.offset()
+                    ..address + 2 - Address::Coordinates.offset()],
+            )
+        } else if address >= Address::GameStats.offset()
+            && address < Address::GameStats.offset() + (Address::GameStatsSize as usize) - 1
+        {
+            LittleEndian::read_u16(
+                &self.game_stats_chunk[address - Address::GameStats.offset()
+                    ..address + 2 - Address::GameStats.offset()],
+            )
         } else {
             panic!(
                 "Tried reading address with offset {:X} from ram, but it's not fetched from the game!",

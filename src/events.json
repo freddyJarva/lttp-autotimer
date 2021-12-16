@@ -429,5 +429,14 @@
         "name": "Flute (Activated)",
         "sram_offset": "0xf38c",
         "sram_mask": "0x01"
+    },
+    {
+        "id": 31,
+        "name": "Crystal Switch",
+        "sram_offset": "0xc172",
+        "toggle": {
+            "on": "Blue",
+            "off": "Red"
+        }
     }
 ]

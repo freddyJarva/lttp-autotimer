@@ -26,6 +26,7 @@ pub struct Spoiler {
 
 #[derive(Deserialize, Debug)]
 pub struct MetaData {
+    pub name: Option<String>,
     pub goal: String,
     pub mode: String,
     pub build: String,
@@ -54,6 +55,7 @@ pub struct MetaData {
     pub enemizer_enemy_shuffle: String,
     pub entry_crystals_ganon: String,
     pub entry_crystals_tower: String,
+    pub notes: Option<String>,
 }
 
 pub fn fetch_metadata_for<S: AsRef<str>>(seed: S) -> anyhow::Result<(String, SeedJson)> {

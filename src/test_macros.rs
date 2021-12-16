@@ -13,7 +13,7 @@
 macro_rules! assert_attrs {
     ($object:ident: $($attr:ident $op:tt $value:expr,)*) => {
         $(
-            assert!($object.$attr == $value, "expected {:?} == {:?}, but was {:?}", stringify!($object.$attr), $object.$attr, $value);
+            assert!($object.$attr == $value, "expected {:?} == {:?}, but was {:?}", stringify!($object.$attr), $value, $object.$attr);
         )*
     };
 }

@@ -17,6 +17,12 @@ impl StdoutPrinter {
         }
     }
 
+    pub fn debug<S: AsRef<str>>(&self, s: S) {
+        if self.allow_output {
+            println!("{}", s.as_ref());
+        }
+    }
+
     pub fn transition(&mut self, tile: &Tile) {
         if self.allow_output {
             print_transition(tile, &self.previous_time)

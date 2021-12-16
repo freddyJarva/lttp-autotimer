@@ -8,6 +8,7 @@ extern crate lazy_static;
 use chrono::{DateTime, Utc};
 use clap::ArgMatches;
 
+use colored::Colorize;
 use condition::Value::{CheckCount, EventCount, ItemCount, ValueOfAddress};
 use condition::{
     coordinate_condition_met, current_tile_condition_met, dungeon_counter_condition_met,
@@ -103,17 +104,28 @@ pub fn connect_to_qusb(args: &ArgMatches) -> anyhow::Result<()> {
 
     let mut client = connect(cli_config.clone())?;
     let meta_data = init_meta_data(&mut client, cli_config.clone(), Arc::clone(&allow_output))?;
-    read_snes_ram(tx, client, cli_config.clone(), Arc::clone(&game_finished));
-
     let mut print = StdoutPrinter::new(*allow_output.lock().unwrap());
+    print.debug(format!(
+        "{} metadata: {:?}",
+        "Retrieved".green().bold(),
+        meta_data
+    ));
+    read_snes_ram(tx, client, cli_config.clone(), Arc::clone(&game_finished));
 
     let mut ram_history: VecDeque<SnesRam> = VecDeque::new();
 
     let csv_name = Utc::now().format("%Y%m%d_%H%M%S.csv").to_string();
     let mut f = File::create(&csv_name)?;
-    println!("meta: {:?}", meta_data);
+
     if let Some((permalink, meta_data)) = meta_data {
-        write_metadata_to_csv(&mut f, permalink, meta_data)?;
+        match write_metadata_to_csv(&mut f, permalink, meta_data) {
+            Ok(_) => print.debug(format!(
+                "{} metadata to {}",
+                "Wrote".green().bold(),
+                csv_name
+            )),
+            Err(e) => println!("Failed fetching and/or writing metadata: {:?}", e),
+        };
     }
     let mut writer = csv::WriterBuilder::new().from_writer(f);
 

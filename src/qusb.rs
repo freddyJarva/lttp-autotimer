@@ -159,7 +159,6 @@ pub fn init_meta_data(
         Some(rom_hash) => {
             println!("{} seed {}", "Playing".green().bold(), rom_hash.cyan());
             let (permalink, json) = fetch_metadata_for(rom_hash)?;
-            println!("Meta: {:?}", json);
             return Ok(Some((permalink, json.spoiler.meta)));
         }
         None => println!("Failed to read rom hash, skipping requesting metadata"),

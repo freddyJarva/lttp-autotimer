@@ -432,11 +432,36 @@
     },
     {
         "id": 31,
-        "name": "Crystal Switch",
-        "sram_offset": "0xc172",
-        "toggle": {
-            "on": "Blue",
-            "off": "Red"
-        }
+        "name": "Crystal Switch - Red",
+        "is_progressive": true,
+        "conditions": [
+            {
+                "type": "ValueEq",
+                "sram_offset": "0xc172",
+                "sram_value": "0x0"
+            },
+            {
+                "type": "PreviousValueEq",
+                "sram_offset": "0xc172",
+                "sram_value": "0x01"
+            }
+        ]
+    },
+    {
+        "id": 32,
+        "name": "Crystal Switch - Blue",
+        "is_progressive": true,
+        "conditions": [
+            {
+                "type": "ValueEq",
+                "sram_offset": "0xc172",
+                "sram_value": "0x01"
+            },
+            {
+                "type": "PreviousValueEq",
+                "sram_offset": "0xc172",
+                "sram_value": "0x0"
+            }
+        ]
     }
 ]

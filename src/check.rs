@@ -5,28 +5,6 @@ use chrono::serde::ts_milliseconds_option;
 use chrono::{DateTime, Utc};
 use serde::Deserialize;
 
-#[derive(Deserialize, Debug, PartialEq, Default, Clone)]
-pub struct Toggle {
-    pub on: String,
-    pub off: String,
-    #[serde(default)]
-    pub is_on: bool,
-}
-
-impl Toggle {
-    pub fn toggle(&mut self) {
-        self.is_on = !self.is_on
-    }
-
-    pub fn state(&self) -> &str {
-        if self.is_on {
-            &self.on
-        } else {
-            &self.off
-        }
-    }
-}
-
 #[derive(Debug, Deserialize, PartialEq, Default, Clone)]
 pub struct Check {
     pub id: usize,
@@ -50,7 +28,6 @@ pub struct Check {
     pub snes_value: u8,
     #[serde(default)]
     pub is_item: bool,
-    pub toggle: Option<Toggle>,
     pub conditions: Option<Vec<Conditions>>,
 }
 
@@ -91,9 +68,7 @@ impl Check {
 
     /// Handle updating values of the check
     pub fn update_check(&mut self, time_of_check: &DateTime<Utc>) {
-        if let Some(toggle) = &mut self.toggle {
-            toggle.toggle()
-        } else if self.is_progressive {
+        if self.is_progressive {
             self.progressive_level += 1
         } else {
             self.is_checked = true;
@@ -185,26 +160,5 @@ mod tests {
         check.update_check(time_of_check);
         // Then
         assert_attrs! {check: is_checked == false, progressive_level == 1, time_of_check == Some(*time_of_check),}
-    }
-
-    #[test]
-    fn GIVEN_toggle_WHEN_update_check_THEN_set_state_to_opposite_of_previous() {
-        // Given
-        let mut check = Check {
-            toggle: Some(Toggle {
-                ..Default::default()
-            }),
-            ..Default::default()
-        };
-        let time_of_check = &Utc::now();
-        // When
-        check.update_check(time_of_check);
-        // Then
-        assert_attrs! {check:
-            is_checked == false,
-            progressive_level == 0,
-            toggle == Some(Toggle {is_on: true, ..Default::default()}),
-            time_of_check == Some(*time_of_check),
-        }
     }
 }

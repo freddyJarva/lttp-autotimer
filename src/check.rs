@@ -5,6 +5,12 @@ use chrono::serde::ts_milliseconds_option;
 use chrono::{DateTime, Utc};
 use serde::Deserialize;
 
+#[derive(Deserialize, Debug, PartialEq, Default, Clone)]
+pub struct Toggle {
+    pub on: String,
+    pub off: String,
+}
+
 #[derive(Debug, Deserialize, PartialEq, Default, Clone)]
 pub struct Check {
     pub id: usize,
@@ -28,6 +34,7 @@ pub struct Check {
     pub snes_value: u8,
     #[serde(default)]
     pub is_item: bool,
+    pub toggle: Option<Toggle>,
     pub conditions: Option<Vec<Conditions>>,
 }
 

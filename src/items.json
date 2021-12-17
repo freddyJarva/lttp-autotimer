@@ -246,6 +246,12 @@
         "id": 38
     },
     {
+        "name": "Big Key - Skull Woods",
+        "sram_offset": "0xf366",
+        "sram_mask": "0x80",
+        "id": 90
+    },
+    {
         "name": "Big Key - Misery Mire",
         "sram_offset": "0xf367",
         "sram_mask": "0x01",
@@ -372,6 +378,12 @@
         "id": 60
     },
     {
+        "name": "Compass - Skull Woods",
+        "sram_offset": "0xf364",
+        "sram_mask": "0x80",
+        "id": 88
+    },
+    {
         "name": "Compass - Misery Mire",
         "sram_offset": "0xf365",
         "sram_mask": "0x01",
@@ -436,6 +448,12 @@
         "sram_offset": "0xf368",
         "sram_mask": "0x40",
         "id": 71
+    },
+    {
+        "name": "Map - Skull Woods",
+        "sram_offset": "0xf368",
+        "sram_mask": "0x80",
+        "id": 89
     },
     {
         "name": "Map - Misery Mire",
@@ -512,7 +530,7 @@
         ]
     },
     {
-        "name": "Small Key - Agahnim's Tower",
+        "name": "Small Key - Castle Tower",
         "id": 79,
         "is_progressive": true,
         "conditions": [

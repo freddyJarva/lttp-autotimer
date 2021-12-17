@@ -1,10 +1,14 @@
 use clap::Arg;
+#[cfg(feature = "qusb")]
 use lttp_autotimer::connect_to_qusb;
 
 use lttp_autotimer::output::force_cmd_colored_output;
 
+#[cfg(feature = "sni")]
+use lttp_autotimer::connect_to_sni;
+
 fn main() -> anyhow::Result<()> {
-    let matches = clap::App::new("Rando Auto Timer")
+    let app = clap::App::new("Rando Auto Timer")
         .arg(
             Arg::new("host")
                 .long("host")
@@ -14,13 +18,6 @@ fn main() -> anyhow::Result<()> {
                 .default_value("127.0.0.1"),
         )
         .arg(
-            Arg::new("port")
-                .long("port")
-                .short('p')
-                .about("port that websocket server is listening on. For qusb it's most likely 8080")
-                .takes_value(true)
-                .default_value("8080"),
-        ).arg(
             Arg::new("update frequency")
                 .long("freq")
                 .short('f')
@@ -41,10 +38,35 @@ fn main() -> anyhow::Result<()> {
             Arg::new("Non race mode")
                 .long("--non-race")
                 .about("Show output on game events in app window. NOTE: This flag will have no effect when playing a race rom.")
-        )
-        .get_matches();
+        );
+
+    let matches;
 
     force_cmd_colored_output();
-    connect_to_qusb(&matches)?;
+
+    // Hacky way to ensure correct default port depending on which feature flag is set
+    #[cfg(feature = "qusb")]
+    {
+        matches = app.arg(
+            Arg::new("port")
+                .long("port")
+                .short('p')
+                .about("port that websocket server is listening on. For qusb it's most likely 8080")
+                .takes_value(true)
+                .default_value("8080"),
+        ).get_matches();
+    }
+    #[cfg(feature = "sni")]
+    {
+        matches = app.arg(
+            Arg::new("port")
+                .long("port")
+                .short('p')
+                .about("port that websocket server is listening on. For qusb it's most likely 8080")
+                .takes_value(true)
+                .default_value("8191"),
+        ).get_matches();
+    }
+    connect_to_sni(&matches)?;
     Ok(())
 }

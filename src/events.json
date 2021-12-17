@@ -283,6 +283,20 @@
         ]
     },
     {
+        "name": "Agahnim's Tower - Dungeon Clear",
+        "id": 14,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 293
+            },
+            {
+                "type": "ValueChanged",
+                "sram_offset": "0x9b"
+            }
+        ]
+    },
+    {
         "id": 16,
         "name": "Fetch Quest Blacksmith - Begin",
         "conditions": [

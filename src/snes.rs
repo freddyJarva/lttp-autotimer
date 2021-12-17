@@ -148,8 +148,8 @@ impl From<&Vec<ReadMemoryResponse>> for SnesRam {
             match idx {
                 0 => snes_ram.tile_info_chunk = response.data.clone(),
                 1 => snes_ram.dunka_chunka = response.data.clone(),
-                2 => snes_ram.coordinate_chunk = response.data.clone(),
-                3 => snes_ram.game_stats_chunk = response.data.clone(),
+                2 => snes_ram.game_stats_chunk = response.data.clone(),
+                3 => snes_ram.coordinate_chunk = response.data.clone(),
                 _ => (),
             }
         }
@@ -221,6 +221,7 @@ impl SnesRam {
     /// * 1A - Credits
     /// * 1B - SpawnSelect
     pub fn game_has_started(&self) -> bool {
+        println!("Game has started: {}", self.get_byte(GAME_STATE_ADDRESS));
         match self.get_byte(GAME_STATE_ADDRESS) {
             0x06..=0x0b => true,
             _ => false,

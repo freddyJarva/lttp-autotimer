@@ -1,6 +1,6 @@
 use crate::{
-    COORDINATE_CHUNK_SIZE, COORDINATE_OFFSET, DUNKA_CHUNK_SIZE, DUNKA_OFFSET, GAME_STATS_OFFSET,
-    GAME_STATS_SIZE, TILE_INFO_CHUNK_SIZE,
+    sni::api::ReadMemoryResponse, COORDINATE_CHUNK_SIZE, COORDINATE_OFFSET, DUNKA_CHUNK_SIZE,
+    DUNKA_OFFSET, GAME_STATS_OFFSET, GAME_STATS_SIZE, TILE_INFO_CHUNK_SIZE,
 };
 
 use byteorder::{ByteOrder, LittleEndian};
@@ -137,6 +137,23 @@ impl NamedAddresses for &SnesRam {
 
     fn game_state(&self) -> u8 {
         self.get_byte(GAME_STATE_ADDRESS)
+    }
+}
+
+/// This assumed a vec with the correct order
+impl From<&Vec<ReadMemoryResponse>> for SnesRam {
+    fn from(responses: &Vec<ReadMemoryResponse>) -> Self {
+        let mut snes_ram = SnesRam::new();
+        for (idx, response) in responses.iter().enumerate() {
+            match idx {
+                0 => snes_ram.tile_info_chunk = response.data.clone(),
+                1 => snes_ram.dunka_chunka = response.data.clone(),
+                2 => snes_ram.coordinate_chunk = response.data.clone(),
+                3 => snes_ram.game_stats_chunk = response.data.clone(),
+                _ => (),
+            }
+        }
+        snes_ram
     }
 }
 

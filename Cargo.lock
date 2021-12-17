@@ -781,6 +781,7 @@ dependencies = [
  "serde",
  "serde_json",
  "termcolor",
+ "tokio",
  "tonic",
  "tonic-build",
  "websocket",

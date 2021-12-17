@@ -3206,6 +3206,7 @@
         "id": 201,
         "name": "Hyrule Castle - Green Guard Trap",
         "region": "Hyrule Castle",
+        "killroom": true,
         "indoors": true,
         "address_value": [
             "0x3",
@@ -3239,6 +3240,7 @@
         "id": 202,
         "name": "Hyrule Castle - Key Guard 2",
         "region": "Hyrule Castle",
+        "killroom": true,
         "indoors": true,
         "address_value": [
             "0x3",
@@ -7650,7 +7652,7 @@
     {
         "id": 373,
         "name": "Thieves' Town - Lobby",
-        "region": "Thieves Town",
+        "region": "Thieves' Town",
         "indoors": true,
         "address_value": [
             "0x34"
@@ -7671,7 +7673,7 @@
     {
         "id": 374,
         "name": "Thieves' Town - Front NW",
-        "region": "Thieves Town",
+        "region": "Thieves' Town",
         "indoors": true,
         "address_value": [
             "0x34"
@@ -7692,7 +7694,7 @@
     {
         "id": 375,
         "name": "Thieves' Town - Front NE",
-        "region": "Thieves Town",
+        "region": "Thieves' Town",
         "indoors": true,
         "address_value": [
             "0x34"
@@ -7713,7 +7715,7 @@
     {
         "id": 376,
         "name": "Thieves' Town - Front SE",
-        "region": "Thieves Town",
+        "region": "Thieves' Town",
         "indoors": true,
         "address_value": [
             "0x34"
@@ -7734,7 +7736,7 @@
     {
         "id": 377,
         "name": "Thieves' Town - Boss Approach",
-        "region": "Thieves Town",
+        "region": "Thieves' Town",
         "indoors": true,
         "address_value": [
             "0x34"
@@ -7755,7 +7757,7 @@
     {
         "id": 378,
         "name": "Thieves' Town - Southwest of Boss Approach",
-        "region": "Thieves Town",
+        "region": "Thieves' Town",
         "indoors": true,
         "address_value": [
             "0x34"
@@ -7776,7 +7778,7 @@
     {
         "id": 379,
         "name": "Thieves' Town - Pre Hellway",
-        "region": "Thieves Town",
+        "region": "Thieves' Town",
         "indoors": true,
         "address_value": [
             "0x34"
@@ -7797,7 +7799,7 @@
     {
         "id": 380,
         "name": "Thieves' Town - Hellway",
-        "region": "Thieves Town",
+        "region": "Thieves' Town",
         "indoors": true,
         "address_value": [
             "0x34"
@@ -7818,7 +7820,7 @@
     {
         "id": 381,
         "name": "Thieves' Town - Spike Switch",
-        "region": "Thieves Town",
+        "region": "Thieves' Town",
         "indoors": true,
         "address_value": [
             "0x34"
@@ -7844,7 +7846,7 @@
     {
         "id": 382,
         "name": "Thieves' Town - Hint Room",
-        "region": "Thieves Town",
+        "region": "Thieves' Town",
         "indoors": true,
         "address_value": [
             "0x34"
@@ -7870,7 +7872,7 @@
     {
         "id": 383,
         "name": "Thieves' Town - Long Hallway W",
-        "region": "Thieves Town",
+        "region": "Thieves' Town",
         "indoors": true,
         "address_value": [
             "0x34"
@@ -7891,7 +7893,7 @@
     {
         "id": 384,
         "name": "Thieves' Town - Long Hallway E",
-        "region": "Thieves Town",
+        "region": "Thieves' Town",
         "indoors": true,
         "address_value": [
             "0x34"
@@ -7912,7 +7914,7 @@
     {
         "id": 385,
         "name": "Thieves' Town - Attic",
-        "region": "Thieves Town",
+        "region": "Thieves' Town",
         "indoors": true,
         "address_value": [
             "0x34"
@@ -7933,7 +7935,7 @@
     {
         "id": 386,
         "name": "Thieves' Town - Post Hellway",
-        "region": "Thieves Town",
+        "region": "Thieves' Town",
         "indoors": true,
         "address_value": [
             "0x34"
@@ -7954,7 +7956,7 @@
     {
         "id": 387,
         "name": "Thieves' Town - Conveyor Mayhem",
-        "region": "Thieves Town",
+        "region": "Thieves' Town",
         "indoors": true,
         "address_value": [
             "0x34"
@@ -7975,7 +7977,7 @@
     {
         "id": 388,
         "name": "Thieves' Town - Giant Rock",
-        "region": "Thieves Town",
+        "region": "Thieves' Town",
         "indoors": true,
         "address_value": [
             "0x34"
@@ -7996,7 +7998,7 @@
     {
         "id": 389,
         "name": "Thieves' Town - Conveyor Hallway",
-        "region": "Thieves Town",
+        "region": "Thieves' Town",
         "indoors": true,
         "address_value": [
             "0x34"
@@ -8017,7 +8019,7 @@
     {
         "id": 390,
         "name": "Thieves' Town - Conveyor Bumper Trap",
-        "region": "Thieves Town",
+        "region": "Thieves' Town",
         "indoors": true,
         "address_value": [
             "0x34"
@@ -8038,7 +8040,7 @@
     {
         "id": 391,
         "name": "Thieves' Town - Big Chest Room",
-        "region": "Thieves Town",
+        "region": "Thieves' Town",
         "indoors": true,
         "address_value": [
             "0x34"
@@ -8059,7 +8061,7 @@
     {
         "id": 392,
         "name": "Thieves' Town - Cell Approach",
-        "region": "Thieves Town",
+        "region": "Thieves' Town",
         "indoors": true,
         "address_value": [
             "0x34"
@@ -8080,7 +8082,7 @@
     {
         "id": 393,
         "name": "Thieves' Town - Blind's Cell",
-        "region": "Thieves Town",
+        "region": "Thieves' Town",
         "indoors": true,
         "address_value": [
             "0x34"
@@ -8101,7 +8103,7 @@
     {
         "id": 394,
         "name": "Thieves' Town - Boss",
-        "region": "Thieves Town",
+        "region": "Thieves' Town",
         "indoors": true,
         "address_value": [
             "0x34"

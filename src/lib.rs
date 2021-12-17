@@ -232,13 +232,7 @@ pub fn connect_to_qusb(args: &ArgMatches) -> anyhow::Result<()> {
 pub async fn connect_to_sni(args: &ArgMatches) -> anyhow::Result<()> {
     use crate::{
         request::fetch_metadata_for,
-        sni::{
-            api::{
-                device_memory_client::DeviceMemoryClient, devices_response::Device, AddressSpace,
-                DevicesRequest,
-            },
-            get_device, is_race_rom, read_rom_hash, read_snes_ram,
-        },
+        sni::{api::device_memory_client::DeviceMemoryClient, get_device, read_snes_ram},
     };
 
     let cli_config = CliConfig {

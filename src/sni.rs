@@ -2,7 +2,7 @@ use chrono::{DateTime, Utc};
 use colored::Colorize;
 use core::time;
 use std::io::stdin;
-use std::sync::{Arc, Mutex};
+
 use std::thread;
 use std::time::Instant;
 use tokio::sync::mpsc;
@@ -16,11 +16,10 @@ use tonic::Response;
 use self::api::device_memory_client::DeviceMemoryClient;
 use self::api::devices_response::Device;
 use self::api::{
-    AddressSpace, MemoryMapping, MultiReadMemoryRequest, ReadMemoryRequest, ReadMemoryResponse,
-    SingleReadMemoryRequest,
+    AddressSpace, MemoryMapping, MultiReadMemoryRequest, ReadMemoryRequest, SingleReadMemoryRequest,
 };
 
-use crate::snes::{NamedAddresses, SnesRam};
+use crate::snes::SnesRam;
 use crate::CliConfig;
 
 enum Address {

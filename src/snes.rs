@@ -150,7 +150,6 @@ impl From<&Vec<ReadMemoryResponse>> for SnesRam {
             match idx {
                 0 => snes_ram.tile_info_chunk = response.data.clone(),
                 1 => snes_ram.dunka_chunka = response.data.clone(),
-                // 2 => snes_ram.game_stats_chunk = response.data.clone(),
                 2 => snes_ram.coordinate_chunk = response.data.clone(),
                 _ => println!(
                     "Read an extra chunk (idx {}) that's not mapped to naything",
@@ -187,15 +186,6 @@ impl SnesRam {
             && address < Address::Coordinates.offset() + Address::CoordinatesSize as usize
         {
             self.coordinate_chunk[address - Address::Coordinates.offset()]
-        // } else if address >= GAME_STATS_OFFSET && address < GAME_STATS_OFFSET + GAME_STATS_SIZE {
-        //     // self.game_stats_chunk[address - GAME_STATS_OFFSET]
-        //     if address == 0xf42d {
-        //         println!(
-        //             "Reading S&Q from dunka_chunka idx {}",
-        //             address - DUNKA_OFFSET
-        //         );
-        //     }
-        //     self.dunka_chunka[address - DUNKA_OFFSET]
         } else {
             panic!(
                 "Tried reading address with offset {:X} from ram, but it's not fetched from the game!",

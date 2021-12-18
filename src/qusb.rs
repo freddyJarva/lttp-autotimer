@@ -30,9 +30,10 @@ use crate::{
     qusb,
     request::{fetch_metadata_for, MetaData},
     snes::SnesRam,
-    write_metadata_to_csv, CliConfig,
+    write_metadata_to_csv, CliConfig, VRAM_START,
 };
 
+#[derive(Copy, Clone)]
 pub enum Address {
     RaceRom = 0x180213,
     RomHash = 0x7fc0,
@@ -45,6 +46,21 @@ pub enum Address {
     GameStatsSize = 0xdf,
     Coordinates = 0xf5c184,
     CoordinatesSize = 0x4,
+}
+
+impl Address {
+    pub fn address(&self) -> usize {
+        *self as usize
+    }
+
+    pub fn offset(&self) -> usize {
+        let address = self.address();
+        if address <= VRAM_START as usize {
+            0
+        } else {
+            *self as usize - VRAM_START as usize
+        }
+    }
 }
 
 #[derive(Deserialize, Debug)]

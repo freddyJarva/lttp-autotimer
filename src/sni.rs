@@ -1,7 +1,7 @@
 use chrono::{DateTime, Utc};
 use colored::Colorize;
-use core::time;
 use std::io::stdin;
+use tokio::time;
 
 use std::thread;
 use std::time::Instant;
@@ -56,8 +56,8 @@ pub mod api {
     tonic::include_proto!("_");
 }
 
-pub async fn list_devices(url: &str) -> Result<Response<DevicesResponse>> {
-    let mut client = DevicesClient::connect(url.to_string()).await?;
+pub async fn list_devices<S: AsRef<str>>(url: S) -> Result<Response<DevicesResponse>> {
+    let mut client = DevicesClient::connect(url.as_ref().to_string()).await?;
     let devices = client
         .list_devices(DevicesRequest {
             ..Default::default()
@@ -66,9 +66,9 @@ pub async fn list_devices(url: &str) -> Result<Response<DevicesResponse>> {
     Ok(devices)
 }
 
-pub async fn get_device(url: &str) -> Result<Device> {
+pub async fn get_device<S: AsRef<str>>(url: S) -> Result<Device> {
     loop {
-        let devices = list_devices(url).await?;
+        let devices = list_devices(&url).await?;
         println!("Devices: {:?}", devices.get_ref().devices);
         if devices.get_ref().devices.len() > 0 {
             let device = devices.get_ref().devices[0].clone();
@@ -81,6 +81,18 @@ pub async fn get_device(url: &str) -> Result<Device> {
         } else {
             thread::sleep(time::Duration::from_secs(2))
         }
+    }
+}
+
+pub async fn get_device_memory_client<S: AsRef<str>>(
+    url: S,
+) -> Result<(DeviceMemoryClient<Channel>, Device)> {
+    loop {
+        let device = get_device(&url).await?;
+        let mut client = DeviceMemoryClient::connect(url.as_ref().to_string()).await?;
+        // Just attempt a request to ensure the connection is working
+        is_race_rom(&device, &mut client).await?;
+        return Ok((client, device));
     }
 }
 
@@ -143,7 +155,7 @@ pub async fn read_rom_hash(
 pub async fn read_snes_ram(
     tx: mpsc::Sender<(DateTime<Utc>, SnesRam)>,
     mut client: DeviceMemoryClient<Channel>,
-    device: Device,
+    mut device: Device,
     config: CliConfig,
 ) {
     tokio::spawn(async move {
@@ -154,17 +166,22 @@ pub async fn read_snes_ram(
             match get_chunka_chungus(&device, &mut client).await {
                 Ok(snes_ram) => match tx.send((Utc::now(), snes_ram)).await {
                     Ok(_) => (),
-                    Err(_) => (),
+                    Err(e) => println!("Error occurred when sending snes_ram to parser: {:?}", e),
                 },
                 Err(_) => {
-
-                    // println!("Request failed, attempting to reconnect...");
-                    // client.shutdown()?;
-                    // if let Ok(connected_client) = connect(config.clone()) {
-                    //     client = connected_client;
-                    // } else {
-                    //     println!("Failed")
-                    // }
+                    println!("{} failed", "Request".red().bold());
+                    loop {
+                        println!("{} reconnect...", "Attempting".yellow().bold());
+                        match get_device_memory_client(config.sni_url()).await {
+                            Ok((cli, dev)) => {
+                                client = cli;
+                                device = dev;
+                                println!("{}", "Connected!".green().bold());
+                                break;
+                            }
+                            Err(_) => time::sleep(time::Duration::from_millis(2000)).await,
+                        }
+                    }
                 }
             }
 
@@ -177,7 +194,7 @@ pub async fn read_snes_ram(
             } else {
                 let elapsed = now.elapsed();
                 if elapsed < update_freq {
-                    thread::sleep(update_freq - elapsed);
+                    time::sleep(update_freq - elapsed).await;
                 }
                 if config._verbosity > 0 {
                     println!("delta: {:?}", elapsed);

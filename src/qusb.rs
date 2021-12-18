@@ -143,6 +143,7 @@ pub fn start(args: &ArgMatches) -> anyhow::Result<()> {
             None
         }
     };
+    let read_times = check_read_times(&mut client)?;
     let mut print = StdoutPrinter::new(*allow_output.lock().unwrap());
     print.debug(format!(
         "{} metadata: {:?}",
@@ -157,7 +158,7 @@ pub fn start(args: &ArgMatches) -> anyhow::Result<()> {
     let mut f = File::create(&csv_name)?;
 
     if let Some((permalink, meta_data)) = meta_data {
-        match write_metadata_to_csv(&mut f, permalink, meta_data) {
+        match write_metadata_to_csv(&mut f, permalink, meta_data, read_times) {
             Ok(_) => print.debug(format!(
                 "{} metadata to {}",
                 "Wrote".green().bold(),
@@ -530,4 +531,17 @@ pub fn get_chunka_chungus(
     };
 
     Ok(snes_ram)
+}
+
+/// Does 100 reads of all the data the logger requires and returns the read times
+pub fn check_read_times(
+    client: &mut websocket::sync::Client<std::net::TcpStream>,
+) -> anyhow::Result<Vec<u128>> {
+    let mut read_times: Vec<u128> = vec![];
+    for _ in 0..100 {
+        let now = Instant::now();
+        let _ = get_chunka_chungus(client)?;
+        read_times.push(now.elapsed().as_millis());
+    }
+    Ok(read_times)
 }

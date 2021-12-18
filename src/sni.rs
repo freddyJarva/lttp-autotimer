@@ -238,3 +238,17 @@ pub async fn get_chunka_chungus(
 
     Ok(snes_ram)
 }
+
+/// Does 100 reads of all the data the logger requires and returns the read times
+pub async fn check_read_times(
+    client: &mut DeviceMemoryClient<Channel>,
+    device: &Device,
+) -> Result<Vec<u128>> {
+    let mut read_times: Vec<u128> = vec![];
+    for _ in 0..100 {
+        let now = Instant::now();
+        let _ = get_chunka_chungus(device, client).await?;
+        read_times.push(now.elapsed().as_millis());
+    }
+    Ok(read_times)
+}

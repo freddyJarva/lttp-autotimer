@@ -45,11 +45,6 @@ mod parse_ram;
 
 /// Snes memory address
 pub const VRAM_START: u32 = 0xf50000;
-pub const SAVE_DATA_OFFSET: usize = 0xF000;
-pub const SAVEDATA_START: u32 = VRAM_START + SAVE_DATA_OFFSET as u32;
-/// I'm too lazy to manually translate dunka's values, so I'll just use this instead to read from the correct memory address
-pub const DUNKA_VRAM_READ_OFFSET: u32 = SAVEDATA_START + 0x280;
-pub const DUNKA_VRAM_READ_SIZE: u32 = 0x280;
 
 #[derive(Default, Clone)]
 pub struct CliConfig {
@@ -101,8 +96,9 @@ pub async fn connect_to_sni(args: &ArgMatches) -> anyhow::Result<()> {
 
     println!("Connecting to sni");
     let connected_device = get_device(&cli_config.sni_url()).await?;
-
     let mut client = DeviceMemoryClient::connect(cli_config.sni_url()).await?;
+    let read_times = sni::check_read_times(&mut client, &connected_device).await?;
+
     let allow_output = match sni::is_race_rom(&connected_device, &mut client).await {
         Ok(is_race_rom) => !is_race_rom && cli_config.non_race_mode,
         Err(_) => {
@@ -148,7 +144,7 @@ pub async fn connect_to_sni(args: &ArgMatches) -> anyhow::Result<()> {
     let mut f = File::create(&csv_name)?;
 
     if let Some((permalink, meta_data)) = meta_data {
-        match write_metadata_to_csv(&mut f, permalink, meta_data) {
+        match write_metadata_to_csv(&mut f, permalink, meta_data, read_times) {
             Ok(_) => print.debug(format!(
                 "{} metadata to {}",
                 "Wrote".green().bold(),
@@ -250,6 +246,7 @@ fn write_metadata_to_csv(
     f: &mut File,
     permalink: String,
     meta_data: request::MetaData,
+    mut read_times: Vec<u128>,
 ) -> Result<(), anyhow::Error> {
     const NONE_STR: &'static str = "None";
     f.write_all(format!("# rom_build {}\n", meta_data.build).as_bytes())?;
@@ -332,6 +329,15 @@ fn write_metadata_to_csv(
         )
         .as_bytes(),
     )?;
+    f.write_all(
+        format!(
+            "# read_time_ms_avg {}\n",
+            read_times.iter().sum::<u128>() as usize / read_times.len()
+        )
+        .as_bytes(),
+    )?;
+    read_times.sort();
+    f.write_all(format!("# read_time_ms_mean {}\n", read_times[read_times.len() / 2]).as_bytes())?;
     Ok(())
 }
 

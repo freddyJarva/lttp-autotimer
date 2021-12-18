@@ -132,7 +132,6 @@ pub async fn connect_to_sni(args: &ArgMatches) -> anyhow::Result<()> {
             None
         }
     };
-    println!("{:?}", meta_data);
     let mut print = StdoutPrinter::new(allow_output);
     print.debug(format!(
         "{} metadata: {:?}",

@@ -179,14 +179,14 @@ impl SnesRam {
     pub fn get_byte(&self, address: usize) -> u8 {
         if address < Address::TileInfoSize as usize {
             self.tile_info_chunk[address]
-        } else if address >= Address::DunkaChunka as usize
-            && address < Address::DunkaChunka as usize + Address::DunkaChunkaSize as usize
+        } else if address >= Address::DunkaChunka.offset()
+            && address < Address::DunkaChunka.offset() + Address::DunkaChunkaSize as usize
         {
-            self.dunka_chunka[address - Address::DunkaChunka as usize]
-        } else if address >= Address::Coordinates as usize
-            && address < Address::Coordinates as usize + Address::CoordinatesSize as usize
+            self.dunka_chunka[address - Address::DunkaChunka.offset()]
+        } else if address >= Address::Coordinates.offset()
+            && address < Address::Coordinates.offset() + Address::CoordinatesSize as usize
         {
-            self.coordinate_chunk[address - Address::Coordinates as usize]
+            self.coordinate_chunk[address - Address::Coordinates.offset()]
         // } else if address >= GAME_STATS_OFFSET && address < GAME_STATS_OFFSET + GAME_STATS_SIZE {
         //     // self.game_stats_chunk[address - GAME_STATS_OFFSET]
         //     if address == 0xf42d {

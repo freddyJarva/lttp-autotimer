@@ -22,16 +22,17 @@ use self::api::{
 use crate::snes::SnesRam;
 use crate::CliConfig;
 
-enum Address {
+pub enum Address {
     RaceRom = 0x180213,
     RomHash = 0x007fc0,
     RomHashSize = 0x14,
     TileInfoChunk = 0xf50000,
     TileInfoSize = 0x4c9,
     DunkaChunka = 0xf5f021,
-    DunkaChunkaSize = 0x3f1,
-    GameStats = 0xf5f418,
-    GameStatsSize = 0xdf,
+    // DunkaChunkaSize = 0x3f1,
+    DunkaChunkaSize = 0x4f7,
+    // GameStats = 0xf5f418,
+    // GameStatsSize = 0xdf,
     Coordinates = 0xf5c184,
     CoordinatesSize = 0x4,
 }
@@ -190,12 +191,12 @@ pub async fn get_chunka_chungus(
                 request_memory_mapping: MemoryMapping::LoRom as i32,
                 size: Address::DunkaChunkaSize as u32,
             },
-            ReadMemoryRequest {
-                request_address: Address::GameStats as u32,
-                request_address_space: AddressSpace::FxPakPro as i32,
-                request_memory_mapping: MemoryMapping::LoRom as i32,
-                size: Address::GameStatsSize as u32,
-            },
+            // ReadMemoryRequest {
+            //     request_address: Address::GameStats as u32,
+            //     request_address_space: AddressSpace::FxPakPro as i32,
+            //     request_memory_mapping: MemoryMapping::LoRom as i32,
+            //     size: Address::GameStatsSize as u32,
+            // },
             ReadMemoryRequest {
                 request_address: Address::Coordinates as u32,
                 request_address_space: AddressSpace::FxPakPro as i32,
@@ -205,9 +206,9 @@ pub async fn get_chunka_chungus(
         ],
     };
 
-    // let now = Instant::now();
+    let now = Instant::now();
     let mut response = client.multi_read(multi_message).await?;
-    // println!("{:?}", now.elapsed());
+    println!("{:?}", now.elapsed());
 
     let snes_ram = SnesRam::from(&response.get_mut().responses);
 

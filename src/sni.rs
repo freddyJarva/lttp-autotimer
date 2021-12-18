@@ -223,12 +223,6 @@ pub async fn get_chunka_chungus(
                 request_memory_mapping: MemoryMapping::LoRom as i32,
                 size: Address::DunkaChunkaSize as u32,
             },
-            // ReadMemoryRequest {
-            //     request_address: Address::GameStats as u32,
-            //     request_address_space: AddressSpace::FxPakPro as i32,
-            //     request_memory_mapping: MemoryMapping::LoRom as i32,
-            //     size: Address::GameStatsSize as u32,
-            // },
             ReadMemoryRequest {
                 request_address: Address::Coordinates as u32,
                 request_address_space: AddressSpace::FxPakPro as i32,

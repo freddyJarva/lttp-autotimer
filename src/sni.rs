@@ -20,8 +20,9 @@ use self::api::{
 };
 
 use crate::snes::SnesRam;
-use crate::CliConfig;
+use crate::{CliConfig, VRAM_START};
 
+#[derive(Clone, Copy)]
 pub enum Address {
     RaceRom = 0x180213,
     RomHash = 0x007fc0,
@@ -35,6 +36,22 @@ pub enum Address {
     CoordinatesSize = 0x4,
 }
 
+impl Address {
+    pub fn address(&self) -> usize {
+        *self as usize
+    }
+
+    pub fn offset(&self) -> usize {
+        let address = self.address();
+        if address <= VRAM_START as usize {
+            0
+        } else {
+            *self as usize - VRAM_START as usize
+        }
+    }
+}
+
+/// This reads in the auto generated client code for the grpc api
 pub mod api {
     tonic::include_proto!("_");
 }

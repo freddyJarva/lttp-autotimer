@@ -51,18 +51,6 @@ pub const SAVEDATA_START: u32 = VRAM_START + SAVE_DATA_OFFSET as u32;
 pub const DUNKA_VRAM_READ_OFFSET: u32 = SAVEDATA_START + 0x280;
 pub const DUNKA_VRAM_READ_SIZE: u32 = 0x280;
 
-const DUNKA_START: usize = SAVEDATA_START as usize + 0x21;
-const DUNKA_CHUNK_SIZE: usize = 0x3f1;
-const DUNKA_OFFSET: usize = DUNKA_START - VRAM_START as usize;
-
-const COORDINATE_OFFSET: usize = 0xc184;
-const COORDINATE_CHUNK_SIZE: usize = 0x4;
-
-const TILE_INFO_CHUNK_SIZE: usize = 0x4c9;
-
-const GAME_STATS_OFFSET: usize = 0xf418;
-const GAME_STATS_SIZE: usize = 0xdf;
-
 #[derive(Default, Clone)]
 pub struct CliConfig {
     host: String,
@@ -147,7 +135,7 @@ pub async fn connect_to_sni(args: &ArgMatches) -> anyhow::Result<()> {
         meta_data
     ));
 
-    let (tx, mut rx) = mpsc::channel(100);
+    let (tx, mut rx) = mpsc::channel(200);
     read_snes_ram(tx, client, connected_device, cli_config.clone()).await;
 
     let mut ram_history: VecDeque<SnesRam> = VecDeque::new();

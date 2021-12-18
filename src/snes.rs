@@ -1,8 +1,3 @@
-use crate::{
-    COORDINATE_CHUNK_SIZE, COORDINATE_OFFSET, DUNKA_CHUNK_SIZE, DUNKA_OFFSET, GAME_STATS_OFFSET,
-    GAME_STATS_SIZE, TILE_INFO_CHUNK_SIZE,
-};
-
 #[cfg(feature = "sni")]
 use crate::sni::{api::ReadMemoryResponse, Address};
 
@@ -157,7 +152,10 @@ impl From<&Vec<ReadMemoryResponse>> for SnesRam {
                 1 => snes_ram.dunka_chunka = response.data.clone(),
                 // 2 => snes_ram.game_stats_chunk = response.data.clone(),
                 2 => snes_ram.coordinate_chunk = response.data.clone(),
-                _ => (),
+                _ => println!(
+                    "Read an extra chunk (idx {}) that's not mapped to naything",
+                    idx
+                ),
             }
         }
         snes_ram
@@ -179,17 +177,25 @@ impl SnesRam {
     #[cfg(feature = "sni")]
     /// addresses are relative to `VRAM_START` (`0xf50000`)
     pub fn get_byte(&self, address: usize) -> u8 {
-        if address < TILE_INFO_CHUNK_SIZE {
+        if address < Address::TileInfoSize as usize {
             self.tile_info_chunk[address]
-        } else if address >= DUNKA_OFFSET && address < DUNKA_OFFSET + DUNKA_CHUNK_SIZE {
-            self.dunka_chunka[address - DUNKA_OFFSET]
-        } else if address >= COORDINATE_OFFSET
-            && address < COORDINATE_OFFSET + COORDINATE_CHUNK_SIZE
+        } else if address >= Address::DunkaChunka as usize
+            && address < Address::DunkaChunka as usize + Address::DunkaChunkaSize as usize
         {
-            self.coordinate_chunk[address - COORDINATE_OFFSET]
-        } else if address >= GAME_STATS_OFFSET && address < GAME_STATS_OFFSET + GAME_STATS_SIZE {
-            // self.game_stats_chunk[address - GAME_STATS_OFFSET]
-            self.dunka_chunka[address - DUNKA_OFFSET]
+            self.dunka_chunka[address - Address::DunkaChunka as usize]
+        } else if address >= Address::Coordinates as usize
+            && address < Address::Coordinates as usize + Address::CoordinatesSize as usize
+        {
+            self.coordinate_chunk[address - Address::Coordinates as usize]
+        // } else if address >= GAME_STATS_OFFSET && address < GAME_STATS_OFFSET + GAME_STATS_SIZE {
+        //     // self.game_stats_chunk[address - GAME_STATS_OFFSET]
+        //     if address == 0xf42d {
+        //         println!(
+        //             "Reading S&Q from dunka_chunka idx {}",
+        //             address - DUNKA_OFFSET
+        //         );
+        //     }
+        //     self.dunka_chunka[address - DUNKA_OFFSET]
         } else {
             panic!(
                 "Tried reading address with offset {:X} from ram, but it's not fetched from the game!",
@@ -201,17 +207,20 @@ impl SnesRam {
     #[cfg(feature = "qusb")]
     /// addresses are relative to `VRAM_START` (`0xf50000`)
     pub fn get_byte(&self, address: usize) -> u8 {
-        if address < TILE_INFO_CHUNK_SIZE {
+        if address < Address::TileInfoSize as usize {
             self.tile_info_chunk[address]
-        } else if address >= DUNKA_OFFSET && address < DUNKA_OFFSET + DUNKA_CHUNK_SIZE {
-            self.dunka_chunka[address - DUNKA_OFFSET]
-        } else if address >= COORDINATE_OFFSET
-            && address < COORDINATE_OFFSET + COORDINATE_CHUNK_SIZE
+        } else if address >= Address::DunkaChunka.offset()
+            && address < Address::DunkaChunka.offset() + Address::DunkaChunkaSize as usize
         {
-            self.coordinate_chunk[address - COORDINATE_OFFSET]
-        } else if address >= GAME_STATS_OFFSET && address < GAME_STATS_OFFSET + GAME_STATS_SIZE {
-            // self.game_stats_chunk[address - GAME_STATS_OFFSET]
-            self.dunka_chunka[address - GAME_STATS_OFFSET]
+            self.dunka_chunka[address - Address::DunkaChunka.offset()]
+        } else if address >= Address::Coordinates.offset()
+            && address < Address::Coordinates.offset() + Address::CoordinatesSize as usize
+        {
+            self.coordinate_chunk[address - Address::Coordinates.offset()]
+        } else if address >= Address::GameStats.offset()
+            && address < Address::GameStats.offset() + Address::GameStatsSize as usize
+        {
+            self.game_stats_chunk[address - Address::GameStats.offset()]
         } else {
             panic!(
                 "Tried reading address with offset {:X} from ram, but it's not fetched from the game!",
@@ -260,10 +269,10 @@ impl SnesRam {
 
     pub fn new() -> Self {
         Self {
-            tile_info_chunk: vec![0; TILE_INFO_CHUNK_SIZE],
+            tile_info_chunk: vec![0; Address::TileInfoSize as usize],
             dunka_chunka: vec![0; Address::DunkaChunkaSize as usize],
-            coordinate_chunk: vec![0; COORDINATE_CHUNK_SIZE],
-            game_stats_chunk: vec![0; GAME_STATS_SIZE],
+            coordinate_chunk: vec![0; Address::CoordinatesSize as usize],
+            game_stats_chunk: vec![0; Address::GameStatsSize as usize],
         }
     }
 }

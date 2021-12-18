@@ -55,18 +55,24 @@ fn main() -> anyhow::Result<()> {
                 .takes_value(true)
                 .default_value("8080"),
         ).get_matches();
+        println!("Running in QUSB comatibility mode");
         connect_to_qusb(&matches)?;
     }
     #[cfg(feature = "sni")]
     {
-        matches = app.arg(
-            Arg::new("port")
-                .long("port")
-                .short('p')
-                .about("port that websocket server is listening on. For qusb it's most likely 8080")
-                .takes_value(true)
-                .default_value("8191"),
-        ).get_matches();
+        matches = app
+            .arg(
+                Arg::new("port")
+                    .long("port")
+                    .short('p')
+                    .about(
+                        "port that websocket server is listening on. For sni it's most likely 8191",
+                    )
+                    .takes_value(true)
+                    .default_value("8191"),
+            )
+            .get_matches();
+        println!("Running in SNI performance mode");
         connect_to_sni(&matches)?;
     }
     Ok(())

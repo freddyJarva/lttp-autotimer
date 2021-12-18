@@ -29,10 +29,8 @@ pub enum Address {
     TileInfoChunk = 0xf50000,
     TileInfoSize = 0x4c9,
     DunkaChunka = 0xf5f021,
-    // DunkaChunkaSize = 0x3f1,
-    DunkaChunkaSize = 0x4f7,
-    // GameStats = 0xf5f418,
-    // GameStatsSize = 0xdf,
+    DunkaChunkaSize = 0x4d7,
+    GameStatsSize = 0xdf,
     Coordinates = 0xf5c184,
     CoordinatesSize = 0x4,
 }
@@ -206,9 +204,7 @@ pub async fn get_chunka_chungus(
         ],
     };
 
-    let now = Instant::now();
     let mut response = client.multi_read(multi_message).await?;
-    println!("{:?}", now.elapsed());
 
     let snes_ram = SnesRam::from(&response.get_mut().responses);
 

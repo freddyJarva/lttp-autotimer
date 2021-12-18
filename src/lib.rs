@@ -61,6 +61,12 @@ pub struct CliConfig {
     _verbosity: u64,
 }
 
+impl CliConfig {
+    pub fn sni_url(&self) -> String {
+        format!("ws://{}:{}", self.host, self.port)
+    }
+}
+
 #[cfg(feature = "qusb")]
 pub fn connect_to_qusb(args: &ArgMatches) -> anyhow::Result<()> {
     qusb::start(args)
@@ -94,10 +100,9 @@ pub async fn connect_to_sni(args: &ArgMatches) -> anyhow::Result<()> {
     let game_finished = Arc::new(Mutex::new(false));
 
     println!("Connecting to sni");
-    let sni_url = format!("ws://{}:{}", cli_config.host, cli_config.port);
-    let connected_device = get_device(&sni_url).await?;
+    let connected_device = get_device(&cli_config.sni_url()).await?;
 
-    let mut client = DeviceMemoryClient::connect(sni_url.to_string()).await?;
+    let mut client = DeviceMemoryClient::connect(cli_config.sni_url()).await?;
     let allow_output = match sni::is_race_rom(&connected_device, &mut client).await {
         Ok(is_race_rom) => !is_race_rom && cli_config.non_race_mode,
         Err(_) => {

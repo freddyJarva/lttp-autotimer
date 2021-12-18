@@ -55,6 +55,7 @@ fn main() -> anyhow::Result<()> {
                 .takes_value(true)
                 .default_value("8080"),
         ).get_matches();
+        connect_to_qusb(&matches)?;
     }
     #[cfg(feature = "sni")]
     {
@@ -66,7 +67,7 @@ fn main() -> anyhow::Result<()> {
                 .takes_value(true)
                 .default_value("8191"),
         ).get_matches();
+        connect_to_sni(&matches)?;
     }
-    connect_to_sni(&matches)?;
     Ok(())
 }

@@ -1,6 +1,7 @@
 use crate::{
-    sni::api::ReadMemoryResponse, COORDINATE_CHUNK_SIZE, COORDINATE_OFFSET, DUNKA_CHUNK_SIZE,
-    DUNKA_OFFSET, GAME_STATS_OFFSET, GAME_STATS_SIZE, TILE_INFO_CHUNK_SIZE,
+    sni::{api::ReadMemoryResponse, Address},
+    COORDINATE_CHUNK_SIZE, COORDINATE_OFFSET, DUNKA_CHUNK_SIZE, DUNKA_OFFSET, GAME_STATS_OFFSET,
+    GAME_STATS_SIZE, TILE_INFO_CHUNK_SIZE,
 };
 
 use byteorder::{ByteOrder, LittleEndian};
@@ -148,8 +149,8 @@ impl From<&Vec<ReadMemoryResponse>> for SnesRam {
             match idx {
                 0 => snes_ram.tile_info_chunk = response.data.clone(),
                 1 => snes_ram.dunka_chunka = response.data.clone(),
-                2 => snes_ram.game_stats_chunk = response.data.clone(),
-                3 => snes_ram.coordinate_chunk = response.data.clone(),
+                // 2 => snes_ram.game_stats_chunk = response.data.clone(),
+                2 => snes_ram.coordinate_chunk = response.data.clone(),
                 _ => (),
             }
         }
@@ -180,7 +181,8 @@ impl SnesRam {
         {
             self.coordinate_chunk[address - COORDINATE_OFFSET]
         } else if address >= GAME_STATS_OFFSET && address < GAME_STATS_OFFSET + GAME_STATS_SIZE {
-            self.game_stats_chunk[address - GAME_STATS_OFFSET]
+            // self.game_stats_chunk[address - GAME_STATS_OFFSET]
+            self.dunka_chunka[address - DUNKA_OFFSET]
         } else {
             panic!(
                 "Tried reading address with offset {:X} from ram, but it's not fetched from the game!",
@@ -221,7 +223,6 @@ impl SnesRam {
     /// * 1A - Credits
     /// * 1B - SpawnSelect
     pub fn game_has_started(&self) -> bool {
-        println!("Game has started: {}", self.get_byte(GAME_STATE_ADDRESS));
         match self.get_byte(GAME_STATE_ADDRESS) {
             0x06..=0x0b => true,
             _ => false,
@@ -231,7 +232,7 @@ impl SnesRam {
     pub fn new() -> Self {
         Self {
             tile_info_chunk: vec![0; TILE_INFO_CHUNK_SIZE],
-            dunka_chunka: vec![0; DUNKA_CHUNK_SIZE],
+            dunka_chunka: vec![0; Address::DunkaChunkaSize as usize],
             coordinate_chunk: vec![0; COORDINATE_CHUNK_SIZE],
             game_stats_chunk: vec![0; GAME_STATS_SIZE],
         }

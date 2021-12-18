@@ -1,8 +1,13 @@
 use crate::{
-    sni::{api::ReadMemoryResponse, Address},
     COORDINATE_CHUNK_SIZE, COORDINATE_OFFSET, DUNKA_CHUNK_SIZE, DUNKA_OFFSET, GAME_STATS_OFFSET,
     GAME_STATS_SIZE, TILE_INFO_CHUNK_SIZE,
 };
+
+#[cfg(feature = "sni")]
+use crate::sni::{api::ReadMemoryResponse, Address};
+
+#[cfg(feature = "qusb")]
+use crate::qusb::Address;
 
 use byteorder::{ByteOrder, LittleEndian};
 
@@ -141,6 +146,7 @@ impl NamedAddresses for &SnesRam {
     }
 }
 
+#[cfg(feature = "sni")]
 /// This assumed a vec with the correct order
 impl From<&Vec<ReadMemoryResponse>> for SnesRam {
     fn from(responses: &Vec<ReadMemoryResponse>) -> Self {
@@ -170,6 +176,7 @@ pub struct SnesRam {
 }
 
 impl SnesRam {
+    #[cfg(feature = "sni")]
     /// addresses are relative to `VRAM_START` (`0xf50000`)
     pub fn get_byte(&self, address: usize) -> u8 {
         if address < TILE_INFO_CHUNK_SIZE {
@@ -183,6 +190,28 @@ impl SnesRam {
         } else if address >= GAME_STATS_OFFSET && address < GAME_STATS_OFFSET + GAME_STATS_SIZE {
             // self.game_stats_chunk[address - GAME_STATS_OFFSET]
             self.dunka_chunka[address - DUNKA_OFFSET]
+        } else {
+            panic!(
+                "Tried reading address with offset {:X} from ram, but it's not fetched from the game!",
+                address
+            )
+        }
+    }
+
+    #[cfg(feature = "qusb")]
+    /// addresses are relative to `VRAM_START` (`0xf50000`)
+    pub fn get_byte(&self, address: usize) -> u8 {
+        if address < TILE_INFO_CHUNK_SIZE {
+            self.tile_info_chunk[address]
+        } else if address >= DUNKA_OFFSET && address < DUNKA_OFFSET + DUNKA_CHUNK_SIZE {
+            self.dunka_chunka[address - DUNKA_OFFSET]
+        } else if address >= COORDINATE_OFFSET
+            && address < COORDINATE_OFFSET + COORDINATE_CHUNK_SIZE
+        {
+            self.coordinate_chunk[address - COORDINATE_OFFSET]
+        } else if address >= GAME_STATS_OFFSET && address < GAME_STATS_OFFSET + GAME_STATS_SIZE {
+            // self.game_stats_chunk[address - GAME_STATS_OFFSET]
+            self.dunka_chunka[address - GAME_STATS_OFFSET]
         } else {
             panic!(
                 "Tried reading address with offset {:X} from ram, but it's not fetched from the game!",

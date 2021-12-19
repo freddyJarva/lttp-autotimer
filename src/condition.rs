@@ -81,6 +81,9 @@ pub enum Conditions {
     Not {
         subconditions: Vec<Conditions>,
     },
+    All {
+        subconditions: Vec<Conditions>,
+    },
     CheckMade {
         id: usize,
     },

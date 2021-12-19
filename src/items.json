@@ -650,8 +650,8 @@
         ]
     },
     {
-        "id": 88,
         "name": "Triforce Piece",
+        "id": 91,
         "is_progressive": true,
         "sram_offset": "0xf418",
         "sram_mask": "0xff"

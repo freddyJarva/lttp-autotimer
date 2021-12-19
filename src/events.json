@@ -425,9 +425,9 @@
         "sram_mask": "0x04"
     },
     {
+        "id": 30,
         "name": "Flute (Activated)",
         "sram_offset": "0xf38c",
-        "sram_mask": "0x01",
-        "id": 30
+        "sram_mask": "0x01"
     }
 ]

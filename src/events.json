@@ -2,9 +2,42 @@
     {
         "name": "Save & Quit",
         "is_progressive": true,
-        "sram_offset": "0xf42D",
-        "sram_mask": "0xff",
-        "id": 0
+        "id": 0,
+        "conditions": [
+            {
+                "type": "Any",
+                "subconditions": [
+                    {
+                        "type": "ValueEq",
+                        "sram_offset": "0x10",
+                        "sram_value": "0x17"
+                    },
+                    {
+                        "note": "Given on death menu When I select S&Q Then return true",
+                        "type": "All",
+                        "subconditions": [
+                            {
+                                "type": "PreviousEvent",
+                                "id": 1,
+                                "note": "Latest event is Link dying"
+                            },
+                            {
+                                "type": "ValueEq",
+                                "sram_offset": "0x10a",
+                                "sram_value": "0x1",
+                                "note": "Marked option is selected"
+                            },
+                            {
+                                "type": "ValueEq",
+                                "sram_offset": "0xb0",
+                                "sram_value": "0x1",
+                                "note": "Marker is on S&Q"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
     },
     {
         "name": "Reset",
@@ -21,8 +54,23 @@
     {
         "name": "Death",
         "is_progressive": true,
-        "sram_offset": "0xf449",
-        "sram_mask": "0xff",
+        "conditions": [
+            {
+                "type": "ValueEq",
+                "sram_offset": "0x10",
+                "sram_value": "0x12"
+            },
+            {
+                "type": "Not",
+                "subconditions": [
+                    {
+                        "type": "PreviousValueEq",
+                        "sram_offset": "0x10",
+                        "sram_value": "0x12"
+                    }
+                ]
+            }
+        ],
         "id": 1
     },
     {
@@ -283,20 +331,6 @@
         ]
     },
     {
-        "name": "Agahnim's Tower - Dungeon Clear",
-        "id": 14,
-        "conditions": [
-            {
-                "type": "CurrentTile",
-                "id": 293
-            },
-            {
-                "type": "ValueChanged",
-                "sram_offset": "0x9b"
-            }
-        ]
-    },
-    {
         "id": 16,
         "name": "Fetch Quest Blacksmith - Begin",
         "conditions": [
@@ -475,6 +509,20 @@
                 "type": "PreviousValueEq",
                 "sram_offset": "0xc172",
                 "sram_value": "0x0"
+            }
+        ]
+    },
+    {
+        "name": "Agahnim's Tower - Dungeon Clear",
+        "id": 33,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 293
+            },
+            {
+                "type": "ValueChanged",
+                "sram_offset": "0x9b"
             }
         ]
     }

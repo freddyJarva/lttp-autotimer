@@ -276,5 +276,8 @@ pub fn match_condition(
             ItemCount(id) => ram.get_byte(*sram_offset) > events.items_with_id(*id).len() as u8,
             EventCount(id) => ram.get_byte(*sram_offset) > events.others_with_id(*id).len() as u8,
         },
+        Conditions::All { subconditions } => subconditions
+            .iter()
+            .all(|subcondition| match_condition(subcondition, events, ram, previous_values)),
     }
 }

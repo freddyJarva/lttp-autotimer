@@ -124,11 +124,12 @@ mod tests {
     #[test]
     fn test_deserialize_event_checks() {
         assert_eq!(
-            deserialize_event_checks().unwrap()[0],
+            deserialize_event_checks().unwrap()[3],
             Check {
-                name: "Save & Quit".to_string(),
+                id: 2,
+                name: "Overworld Mirror".to_string(),
                 is_progressive: true,
-                sram_offset: Some(0xf42d),
+                sram_offset: Some(0xf43a),
                 sram_mask: Some(0xff),
                 ..Default::default()
             }

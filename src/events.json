@@ -398,13 +398,6 @@
         ]
     },
     {
-        "id": 26,
-        "name": "Triforce Piece",
-        "is_progressive": true,
-        "sram_offset": "0xf418",
-        "sram_mask": "0xff"
-    },
-    {
         "id": 27,
         "name": "Hammerpegs Entrance Revealed",
         "conditions": [
@@ -430,5 +423,11 @@
         "name": "Handed In Mushroom",
         "sram_offset": "0xf38c",
         "sram_mask": "0x04"
+    },
+    {
+        "name": "Flute (Activated)",
+        "sram_offset": "0xf38c",
+        "sram_mask": "0x01",
+        "id": 30
     }
 ]

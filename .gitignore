@@ -2,3 +2,4 @@
 /data
 /RUNS
 *.csv
+/postprocess/*.ipynb

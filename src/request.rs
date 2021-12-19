@@ -3,7 +3,7 @@ use std::io::prelude::*;
 use flate2::bufread::GzDecoder;
 use serde::Deserialize;
 
-fn permalink_for<S: AsRef<str>>(seed: S) -> String {
+pub fn permalink_for<S: AsRef<str>>(seed: S) -> String {
     format!("https://alttpr.com/en/h/{}", seed.as_ref())
 }
 
@@ -70,12 +70,12 @@ pub fn fetch_metadata_for<S: AsRef<str>>(seed: S) -> anyhow::Result<(String, See
 }
 
 #[cfg(feature = "sni")]
-pub async fn fetch_metadata_for<S: AsRef<str>>(seed: S) -> anyhow::Result<(String, SeedJson)> {
+pub async fn fetch_metadata_for<S: AsRef<str>>(seed: S) -> anyhow::Result<SeedJson> {
     let response = reqwest::get(meta_json_uri_for(&seed)).await?;
     let r = &response.bytes().await?.to_vec()[..];
     let mut d = GzDecoder::new(r);
     let mut s = String::new();
     d.read_to_string(&mut s)?;
 
-    Ok((permalink_for(seed), serde_json::from_str(&s)?))
+    Ok(serde_json::from_str(&s)?)
 }

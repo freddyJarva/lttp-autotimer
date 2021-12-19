@@ -115,16 +115,12 @@ pub async fn connect_to_sni(args: &ArgMatches) -> anyhow::Result<()> {
         )
     };
 
-    let meta_data = match sni::read_rom_hash(&connected_device, &mut client).await {
-        Ok(hash) => match fetch_metadata_for(hash).await {
-            Ok((permalink, meta)) => Some((permalink, meta.spoiler.meta)),
-            Err(e) => {
-                println!("Request for metadata failed, skipping. Cause: {:?}", e);
-                None
-            }
-        },
+    let rom_hash = sni::read_rom_hash(&connected_device, &mut client).await?;
+    let permalink = request::permalink_for(&rom_hash);
+    let meta_data = match fetch_metadata_for(rom_hash).await {
+        Ok(meta) => Some(meta.spoiler.meta),
         Err(e) => {
-            println!("Reading rom hash failed. Cause: {:?}", e);
+            println!("Request for metadata failed, skipping. Cause: {:?}", e);
             None
         }
     };
@@ -143,16 +139,15 @@ pub async fn connect_to_sni(args: &ArgMatches) -> anyhow::Result<()> {
     let csv_name = Utc::now().format("%Y%m%d_%H%M%S.csv").to_string();
     let mut f = File::create(&csv_name)?;
 
-    if let Some((permalink, meta_data)) = meta_data {
-        match write_metadata_to_csv(&mut f, permalink, meta_data, read_times) {
-            Ok(_) => print.debug(format!(
-                "{} metadata to {}",
-                "Wrote".green().bold(),
-                csv_name
-            )),
-            Err(e) => println!("Failed fetching and/or writing metadata: {:?}", e),
-        };
-    }
+    match write_metadata_to_csv(&mut f, permalink, meta_data, read_times) {
+        Ok(_) => print.debug(format!(
+            "{} metadata to {}",
+            "Wrote".green().bold(),
+            csv_name
+        )),
+        Err(e) => println!("Failed fetching and/or writing metadata: {:?}", e),
+    };
+
     let mut writer = csv::WriterBuilder::new().from_writer(f);
 
     let mut events = EventTracker::new();
@@ -245,90 +240,11 @@ pub async fn connect_to_sni(args: &ArgMatches) -> anyhow::Result<()> {
 fn write_metadata_to_csv(
     f: &mut File,
     permalink: String,
-    meta_data: request::MetaData,
+    meta_data: Option<request::MetaData>,
     mut read_times: Vec<u128>,
 ) -> Result<(), anyhow::Error> {
     const NONE_STR: &'static str = "None";
-    f.write_all(format!("# rom_build {}\n", meta_data.build).as_bytes())?;
     f.write_all(format!("# permalink {}\n", permalink).as_bytes())?;
-    f.write_all(
-        format!(
-            "# name {}\n",
-            meta_data.name.unwrap_or(NONE_STR.to_string())
-        )
-        .as_bytes(),
-    )?;
-    f.write_all(format!("# goal {}\n", meta_data.goal).as_bytes())?;
-    f.write_all(format!("# mode {}\n", meta_data.mode).as_bytes())?;
-    f.write_all(format!("# rom_mode {}\n", meta_data.rom_mode).as_bytes())?;
-    f.write_all(format!("# logic {}\n", meta_data.logic).as_bytes())?;
-    f.write_all(format!("# accessibility {}\n", meta_data.accessibility).as_bytes())?;
-    f.write_all(format!("# weapons {}\n", meta_data.weapons).as_bytes())?;
-    f.write_all(format!("# spoilers {}\n", meta_data.spoilers).as_bytes())?;
-    f.write_all(format!("# tournament {}\n", meta_data.tournament).as_bytes())?;
-    f.write_all(format!("# dungeon_items {}\n", meta_data.dungeon_items).as_bytes())?;
-    f.write_all(format!("# item_pool {}\n", meta_data.item_pool).as_bytes())?;
-    f.write_all(format!("# item_placement {}\n", meta_data.item_placement).as_bytes())?;
-    f.write_all(format!("# item_functionality {}\n", meta_data.item_functionality).as_bytes())?;
-    f.write_all(
-        format!(
-            "# enemizer_boss_shuffle {}\n",
-            meta_data.enemizer_boss_shuffle
-        )
-        .as_bytes(),
-    )?;
-    f.write_all(
-        format!(
-            "# enemizer_enemy_damage {}\n",
-            meta_data.enemizer_enemy_damage
-        )
-        .as_bytes(),
-    )?;
-    f.write_all(
-        format!(
-            "# enemizer_enemy_health {}\n",
-            meta_data.enemizer_enemy_health
-        )
-        .as_bytes(),
-    )?;
-    f.write_all(
-        format!(
-            "# enemizer_enemy_shuffle {}\n",
-            meta_data.enemizer_enemy_shuffle
-        )
-        .as_bytes(),
-    )?;
-    f.write_all(
-        format!(
-            "# enemizer_pot_shuffle {}\n",
-            meta_data.enemizer_pot_shuffle
-        )
-        .as_bytes(),
-    )?;
-    f.write_all(
-        format!(
-            "# entry_crystals_ganon {}\n",
-            meta_data.entry_crystals_ganon
-        )
-        .as_bytes(),
-    )?;
-    f.write_all(
-        format!(
-            "# entry_crystals_tower {}\n",
-            meta_data.entry_crystals_tower
-        )
-        .as_bytes(),
-    )?;
-    f.write_all(format!("# allow_quickswap {}\n", meta_data.tournament).as_bytes())?;
-    f.write_all(format!("# worlds {}\n", meta_data.worlds).as_bytes())?;
-    f.write_all(format!("# world_id {}\n", meta_data.world_id).as_bytes())?;
-    f.write_all(
-        format!(
-            "# notes {}\n",
-            meta_data.notes.unwrap_or(NONE_STR.to_string())
-        )
-        .as_bytes(),
-    )?;
     f.write_all(
         format!(
             "# read_time_ms_avg {}\n",
@@ -338,6 +254,88 @@ fn write_metadata_to_csv(
     )?;
     read_times.sort();
     f.write_all(format!("# read_time_ms_mean {}\n", read_times[read_times.len() / 2]).as_bytes())?;
+
+    if let Some(meta_data) = meta_data {
+        f.write_all(format!("# rom_build {}\n", meta_data.build).as_bytes())?;
+        f.write_all(
+            format!(
+                "# name {}\n",
+                meta_data.name.unwrap_or(NONE_STR.to_string())
+            )
+            .as_bytes(),
+        )?;
+        f.write_all(format!("# goal {}\n", meta_data.goal).as_bytes())?;
+        f.write_all(format!("# mode {}\n", meta_data.mode).as_bytes())?;
+        f.write_all(format!("# rom_mode {}\n", meta_data.rom_mode).as_bytes())?;
+        f.write_all(format!("# logic {}\n", meta_data.logic).as_bytes())?;
+        f.write_all(format!("# accessibility {}\n", meta_data.accessibility).as_bytes())?;
+        f.write_all(format!("# weapons {}\n", meta_data.weapons).as_bytes())?;
+        f.write_all(format!("# spoilers {}\n", meta_data.spoilers).as_bytes())?;
+        f.write_all(format!("# tournament {}\n", meta_data.tournament).as_bytes())?;
+        f.write_all(format!("# dungeon_items {}\n", meta_data.dungeon_items).as_bytes())?;
+        f.write_all(format!("# item_pool {}\n", meta_data.item_pool).as_bytes())?;
+        f.write_all(format!("# item_placement {}\n", meta_data.item_placement).as_bytes())?;
+        f.write_all(format!("# item_functionality {}\n", meta_data.item_functionality).as_bytes())?;
+        f.write_all(
+            format!(
+                "# enemizer_boss_shuffle {}\n",
+                meta_data.enemizer_boss_shuffle
+            )
+            .as_bytes(),
+        )?;
+        f.write_all(
+            format!(
+                "# enemizer_enemy_damage {}\n",
+                meta_data.enemizer_enemy_damage
+            )
+            .as_bytes(),
+        )?;
+        f.write_all(
+            format!(
+                "# enemizer_enemy_health {}\n",
+                meta_data.enemizer_enemy_health
+            )
+            .as_bytes(),
+        )?;
+        f.write_all(
+            format!(
+                "# enemizer_enemy_shuffle {}\n",
+                meta_data.enemizer_enemy_shuffle
+            )
+            .as_bytes(),
+        )?;
+        f.write_all(
+            format!(
+                "# enemizer_pot_shuffle {}\n",
+                meta_data.enemizer_pot_shuffle
+            )
+            .as_bytes(),
+        )?;
+        f.write_all(
+            format!(
+                "# entry_crystals_ganon {}\n",
+                meta_data.entry_crystals_ganon
+            )
+            .as_bytes(),
+        )?;
+        f.write_all(
+            format!(
+                "# entry_crystals_tower {}\n",
+                meta_data.entry_crystals_tower
+            )
+            .as_bytes(),
+        )?;
+        f.write_all(format!("# allow_quickswap {}\n", meta_data.tournament).as_bytes())?;
+        f.write_all(format!("# worlds {}\n", meta_data.worlds).as_bytes())?;
+        f.write_all(format!("# world_id {}\n", meta_data.world_id).as_bytes())?;
+        f.write_all(
+            format!(
+                "# notes {}\n",
+                meta_data.notes.unwrap_or(NONE_STR.to_string())
+            )
+            .as_bytes(),
+        )?;
+    }
     Ok(())
 }
 

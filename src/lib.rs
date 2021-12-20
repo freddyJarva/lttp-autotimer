@@ -260,7 +260,10 @@ fn write_metadata_to_csv(
         f.write_all(
             format!(
                 "# name {}\n",
-                meta_data.name.unwrap_or(NONE_STR.to_string())
+                meta_data
+                    .name
+                    .unwrap_or(NONE_STR.to_string())
+                    .replace("\n", " ")
             )
             .as_bytes(),
         )?;
@@ -331,7 +334,10 @@ fn write_metadata_to_csv(
         f.write_all(
             format!(
                 "# notes {}\n",
-                meta_data.notes.unwrap_or(NONE_STR.to_string())
+                meta_data
+                    .notes
+                    .unwrap_or(NONE_STR.to_string())
+                    .replace("\n", " ")
             )
             .as_bytes(),
         )?;

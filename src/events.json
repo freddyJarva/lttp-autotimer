@@ -521,8 +521,25 @@
                 "id": 293
             },
             {
-                "type": "ValueChanged",
-                "sram_offset": "0x9b"
+                "type": "ValueEq",
+                "sram_offset": "0x10",
+                "sram_value": "0x15"
+            }
+        ]
+    },
+    {
+        "name": "Ganon's Tower - Dungeon Clear",
+        "id": 34,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 553
+            },
+            {
+                "type": "ValueEq",
+                "sram_offset": "0x10",
+                "sram_value": "0x18",
+                "note": "GanonEmerges"
             }
         ]
     }

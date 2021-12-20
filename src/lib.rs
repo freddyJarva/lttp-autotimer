@@ -244,6 +244,7 @@ fn write_metadata_to_csv(
     mut read_times: Vec<u128>,
 ) -> Result<(), anyhow::Error> {
     const NONE_STR: &'static str = "None";
+    f.write_all(format!("# logger_version {}\n", env!("CARGO_PKG_VERSION")).as_bytes())?;
     f.write_all(format!("# permalink {}\n", permalink).as_bytes())?;
     f.write_all(
         format!(

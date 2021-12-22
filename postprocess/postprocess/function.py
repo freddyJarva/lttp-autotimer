@@ -477,6 +477,23 @@ def named_route(route: List[int]) -> List[tuple]:
     return [(id_, id_to_name[id_]) for id_ in route]
 
 
+def add_check_ocurred_on_tile(dfs: Iterable[DataFrame]) -> Iterator[DataFrame]:
+    for df in dfs:
+        df["check_ocurred"] = 0
+        previous_row_idx = None
+        tile_rows = df[(df["tile_id"].notnull())]
+        for idx, row in tile_rows.iterrows():
+            # print(row)
+            if previous_row_idx is not None:
+                check_ocurred = df[previous_row_idx:idx].location_id.notnull().any()
+                df.loc[
+                    df.index == previous_row_idx,
+                    "check_ocurred",
+                ] = int(check_ocurred)
+            previous_row_idx = idx
+        yield df
+
+
 def hashed_playthrough(path) -> List[LogicTile]:
     df = read_run(path)
     dfs = all_eq_logic([df])

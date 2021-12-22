@@ -14,6 +14,8 @@ from itertools import takewhile
 
 from pandas.core.series import Series
 
+PACKAGE_ROOT = Path(__file__).parent
+DATA_DIR = PACKAGE_ROOT / "data"
 
 ITEM_NEVER_FOUND = 100_000_000
 
@@ -40,42 +42,42 @@ ITEM_IDS = {
 
 
 def open_checks():
-    with open("../src/checks.json") as f:
+    with open(DATA_DIR / "checks.json") as f:
         return json.load(f)
 
 
 def save_checks(checks: dict):
-    with open("../src/checks.json", "w") as f:
+    with open(DATA_DIR / "checks.json", "w") as f:
         return json.dump(checks, f, indent=4)
 
 
 def open_items():
-    with open("../src/items.json") as f:
+    with open(DATA_DIR / "items.json") as f:
         return json.load(f)
 
 
 def save_items(items: dict):
-    with open("../src/items.json", "w") as f:
+    with open(DATA_DIR / "items.json", "w") as f:
         return json.dump(items, f, indent=4)
 
 
 def open_tiles():
-    with open("../src/tiles.json") as f:
+    with open(DATA_DIR / "tiles.json") as f:
         return json.load(f)
 
 
 def save_tiles(tiles: dict):
-    with open("../src/tiles.json", "w") as f:
+    with open(DATA_DIR / "tiles.json", "w") as f:
         return json.dump(tiles, f, indent=4)
 
 
 def open_events():
-    with open("../src/events.json") as f:
+    with open(DATA_DIR / "events.json") as f:
         return json.load(f)
 
 
 def save_events(checks: dict):
-    with open("../src/events.json", "w") as f:
+    with open(DATA_DIR / "events.json", "w") as f:
         return json.dump(checks, f, indent=4)
 
 
@@ -295,20 +297,36 @@ def add_time_to_next(dfs: Iterable[DataFrame]) -> Iterator[DataFrame]:
         yield df
 
 
-json_tiles = open_tiles()
+_id_to_name = None
 
-id_to_name = {tile["id"]: tile["name"] for tile in json_tiles}
-# Names for special logic tiles that only exist in post processing
-id_to_name[RUN_START] = "RUN_START"
-id_to_name[RUN_END] = "RUN_END"
-id_to_name[RESET_TILE_ID] = "RESET"
-id_to_name[SQ_TILE_ID] = "S&Q"
 
-name_to_id = {tile["name"]: tile["id"] for tile in json_tiles}
-name_to_id["RUN_START"] = RUN_START
-name_to_id["RUN_END"] = RUN_END
-name_to_id["RESET"] = RESET_TILE_ID
-name_to_id["S&Q"] = SQ_TILE_ID
+def id_to_name():
+    global _id_to_name
+    if not _id_to_name:
+        json_tiles = open_tiles()
+        id_to_name = {tile["id"]: tile["name"] for tile in json_tiles}
+        # Names for special logic tiles that only exist in post processing
+        id_to_name[RUN_START] = "RUN_START"
+        id_to_name[RUN_END] = "RUN_END"
+        id_to_name[RESET_TILE_ID] = "RESET"
+        _id_to_name = id_to_name[SQ_TILE_ID] = "S&Q"
+    return id_to_name
+
+
+_name_to_id = None
+
+
+def name_to_id():
+    global _name_to_id
+    if not _name_to_id:
+        json_tiles = open_tiles()
+        name_to_id = {tile["name"]: tile["id"] for tile in json_tiles}
+        name_to_id["RUN_START"] = RUN_START
+        name_to_id["RUN_END"] = RUN_END
+        name_to_id["RESET"] = RESET_TILE_ID
+        name_to_id["S&Q"] = SQ_TILE_ID
+        _name_to_id = name_to_id
+    return _name_to_id
 
 
 @dataclass
@@ -369,7 +387,7 @@ link's abilities: {self.link_abilities()}
 
     @property
     def tile_name(self):
-        return id_to_name[self._row["tile_id"]]
+        return id_to_name()[self._row["tile_id"]]
 
     @property
     def weight(self):
@@ -463,18 +481,18 @@ def tile_id_to_name(tile_id: float | int) -> str:
     """Maps tile_id to its human readable name.
 
     Handles 'special tiles' as well that are just logic tiles created in postprocessing"""
-    return id_to_name[int(tile_id)]
+    return id_to_name()[int(tile_id)]
 
 
 def tile_name_to_id(name: str) -> int:
     """Maps tile name to tile_id.
 
     Handles 'special tiles' as well that are just logic tiles created in postprocessing"""
-    return name_to_id[name]
+    return name_to_id()[name]
 
 
 def named_route(route: List[int]) -> List[tuple]:
-    return [(id_, id_to_name[id_]) for id_ in route]
+    return [(id_, id_to_name()[id_]) for id_ in route]
 
 
 def add_check_ocurred_on_tile(dfs: Iterable[DataFrame]) -> Iterator[DataFrame]:
@@ -528,4 +546,4 @@ class GraphWrapper:
         ):
             for edge in path:
                 self.g.edges[edge]["weight"]
-            yield [id_to_name[p] for p in path]
+            yield [id_to_name()[p] for p in path]

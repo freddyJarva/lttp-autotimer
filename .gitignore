@@ -2,6 +2,12 @@
 /data
 /RUNS
 *.csv
+
+# Python
 *.ipynb
 __pycache__
 *.pyc
+*.egg-info/
+
+#vscode
+.vscode/

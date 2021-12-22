@@ -309,8 +309,9 @@ def id_to_name():
         id_to_name[RUN_START] = "RUN_START"
         id_to_name[RUN_END] = "RUN_END"
         id_to_name[RESET_TILE_ID] = "RESET"
-        _id_to_name = id_to_name[SQ_TILE_ID] = "S&Q"
-    return id_to_name
+        id_to_name[SQ_TILE_ID] = "S&Q"
+        _id_to_name = id_to_name
+    return _id_to_name
 
 
 _name_to_id = None
@@ -327,6 +328,9 @@ def name_to_id():
         name_to_id["S&Q"] = SQ_TILE_ID
         _name_to_id = name_to_id
     return _name_to_id
+
+
+from datetime import datetime as dt
 
 
 @dataclass
@@ -392,6 +396,10 @@ link's abilities: {self.link_abilities()}
     @property
     def weight(self):
         return self._row["time_delta"]
+
+    @property
+    def dt(self):
+        return dt.fromtimestamp(self._row["timestamp"] / 1000)
 
     def link_abilities(self):
         return ", ".join(
@@ -515,6 +523,7 @@ def add_check_ocurred_on_tile(dfs: Iterable[DataFrame]) -> Iterator[DataFrame]:
 def hashed_playthrough(path) -> List[LogicTile]:
     df = read_run(path)
     dfs = all_eq_logic([df])
+    dfs = add_check_ocurred_on_tile(dfs)
     dfs = add_special_tiles(dfs)
     dfs = add_previous_and_future_tiles(dfs)
     df = next(add_time_to_next(dfs))
@@ -529,12 +538,12 @@ class GraphWrapper:
         """returns the shortest path in time between `source` and `target`
 
         `source` and `target` can be either a `tile_id: int`, or a `name: str`. the method will convert the values correctly"""
-        # try:
-        time = nx.dijkstra_path_length(self.g, source, target, weight=weight) / 1000
-        # except NetworkXNoPath:
-        #     raise NetworkXNoPath(
-        #         f"Node {self.g.nodes[target]['attrs']} not reachable from {self.g.nodes[source]['attrs']}"
-        #     )
+        try:
+            time = nx.dijkstra_path_length(self.g, source, target, weight=weight) / 1000
+        except NetworkXNoPath:
+            raise NetworkXNoPath(
+                f"Node {self.g.nodes[target]['attrs']} not reachable from {self.g.nodes[source]['attrs']}"
+            )
         route = nx.dijkstra_path(self.g, source, target, weight=weight)
         return (route, time)
 

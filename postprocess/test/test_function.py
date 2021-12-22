@@ -92,6 +92,7 @@ timestamp,tile_id,location_id,item_id,event_id
 7,,,,20
 8,,,20,
 9,,55,,
+9,55,,,
 """
     df_path = tmp_path / "test.csv"
     # Let pandas read from file so it more closely matches code functionality
@@ -114,4 +115,10 @@ timestamp,tile_id,location_id,item_id,event_id
     print("ACTUAL:\n", actual)
     print("EXPECTED:\n", expected)
 
-    assert actual.to_dict() == expected.to_dict()
+    # assertions does not find nan == nan to be true
+    df.fillna(-1, inplace=True)
+    expected.fillna(-1, inplace=True)
+    for (actual_item, expected_item) in zip(
+        actual.to_dict("records"), expected.to_dict("records")
+    ):
+        assert actual_item == expected_item

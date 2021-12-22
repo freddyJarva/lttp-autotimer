@@ -1,5 +1,5 @@
 /target
-/data
+data/
 /RUNS
 *.csv
 

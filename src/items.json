@@ -488,7 +488,7 @@
         "conditions": [
             {
                 "type": "DungeonCounterIncreased",
-                "sram_offset": "0x37d"
+                "sram_offset": "0xf37d"
             },
             {
                 "type": "Not",
@@ -598,7 +598,7 @@
         "conditions": [
             {
                 "type": "DungeonCounterIncreased",
-                "sram_offset": "0x380"
+                "sram_offset": "0xf380"
             },
             {
                 "type": "Not",
@@ -632,7 +632,7 @@
         "conditions": [
             {
                 "type": "DungeonCounterIncreased",
-                "sram_offset": "0x381"
+                "sram_offset": "0xf381"
             },
             {
                 "type": "Not",
@@ -680,7 +680,7 @@
         "conditions": [
             {
                 "type": "DungeonCounterIncreased",
-                "sram_offset": "0x383"
+                "sram_offset": "0xf383"
             },
             {
                 "type": "Not",
@@ -714,7 +714,7 @@
         "conditions": [
             {
                 "type": "DungeonCounterIncreased",
-                "sram_offset": "0x384"
+                "sram_offset": "0xf384"
             },
             {
                 "type": "Not",
@@ -748,7 +748,7 @@
         "conditions": [
             {
                 "type": "DungeonCounterIncreased",
-                "sram_offset": "0x385"
+                "sram_offset": "0xf385"
             },
             {
                 "type": "Not",
@@ -816,7 +816,7 @@
         "conditions": [
             {
                 "type": "DungeonCounterIncreased",
-                "sram_offset": "0x388"
+                "sram_offset": "0xf388"
             },
             {
                 "type": "Not",
@@ -850,7 +850,7 @@
         "conditions": [
             {
                 "type": "DungeonCounterIncreased",
-                "sram_offset": "0x389"
+                "sram_offset": "0xf389"
             },
             {
                 "type": "Not",

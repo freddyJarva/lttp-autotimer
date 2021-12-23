@@ -92,8 +92,6 @@ pub async fn connect_to_sni(args: &ArgMatches) -> anyhow::Result<()> {
         _verbosity: args.occurrences_of("v"),
     };
 
-    let game_finished = Arc::new(Mutex::new(false));
-
     println!("Connecting to sni");
     let connected_device = get_device(&cli_config.sni_url()).await?;
     let mut client = DeviceMemoryClient::connect(cli_config.sni_url()).await?;
@@ -223,7 +221,8 @@ pub async fn connect_to_sni(args: &ArgMatches) -> anyhow::Result<()> {
                 .map(|tile| tile.id == 556)
                 .unwrap_or(false)
         {
-            *game_finished.lock().unwrap() = true
+            // Game is finished
+            break;
         }
     }
 

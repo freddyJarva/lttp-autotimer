@@ -41,6 +41,7 @@ mod sni;
 #[macro_use]
 mod test_macros;
 mod parse_ram;
+mod write;
 
 /// Snes memory address
 pub const VRAM_START: u32 = 0xf50000;

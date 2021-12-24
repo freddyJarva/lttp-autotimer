@@ -237,13 +237,6 @@ mod tests {
     #[test]
     fn test_laser_pots_condition_met() {
         // Given
-        let snes_ram = SnesRamInitializer {
-            transition_x: Some(2008),
-            transition_y: Some(1400),
-            entrance_id: Some(0x15),
-            ..Default::default()
-        }
-        .build();
         let laser_pots_conditions = deserialize_transitions()
             .unwrap()
             .into_iter()
@@ -252,7 +245,16 @@ mod tests {
             .unwrap()
             .conditions
             .unwrap();
+        // When
+        let snes_ram = SnesRamInitializer {
+            transition_x: Some(2008),
+            transition_y: Some(1400),
+            entrance_id: Some(0x15),
+            ..Default::default()
+        }
+        .build();
 
+        // Then
         for condition in laser_pots_conditions {
             match condition {
                 Conditions::Coordinates { coordinates } => {

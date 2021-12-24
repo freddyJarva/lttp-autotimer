@@ -50,6 +50,12 @@ impl StdoutPrinter {
         }
         self.previous_time = event.time_of_check.unwrap()
     }
+
+    pub fn action(&mut self, event: &Check) {
+        if self.allow_output {
+            print_action(event)
+        }
+    }
 }
 
 /// Hack to make cmd.exe output colors instead of broken color escape codes
@@ -142,6 +148,13 @@ pub fn print_event(check: &Check, previous_time: &DateTime<Utc>) {
             previous_time,
         );
     }
+}
+
+pub fn print_action(check: &Check) {
+    println!(
+        "{}",
+        format!("{} - {}", check.name, check.progressive_level).dimmed()
+    );
 }
 
 fn print_trigger(

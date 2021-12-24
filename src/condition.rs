@@ -57,12 +57,27 @@ pub enum Conditions {
     ValueChanged {
         #[serde(deserialize_with = "hex_usize_deserialize")]
         sram_offset: usize,
+        #[serde(deserialize_with = "hex_byte_deserialize")]
+        #[serde(default = "default_bitmask")]
+        sram_mask: u8,
+    },
+    ValueChangedTo {
+        #[serde(deserialize_with = "hex_usize_deserialize")]
+        sram_offset: usize,
+        #[serde(deserialize_with = "hex_byte_deserialize")]
+        sram_value: u8,
+        #[serde(deserialize_with = "hex_byte_deserialize")]
+        #[serde(default = "default_bitmask")]
+        sram_mask: u8,
     },
     ValueEq {
         #[serde(deserialize_with = "hex_usize_deserialize")]
         sram_offset: usize,
         #[serde(deserialize_with = "hex_byte_deserialize")]
         sram_value: u8,
+        #[serde(deserialize_with = "hex_byte_deserialize")]
+        #[serde(default = "default_bitmask")]
+        sram_mask: u8,
     },
     ValueGreaterThan {
         #[serde(deserialize_with = "hex_usize_deserialize")]
@@ -74,6 +89,9 @@ pub enum Conditions {
         sram_offset: usize,
         #[serde(deserialize_with = "hex_byte_deserialize")]
         sram_value: u8,
+        #[serde(deserialize_with = "hex_byte_deserialize")]
+        #[serde(default = "default_bitmask")]
+        sram_mask: u8,
     },
     Any {
         subconditions: Vec<Conditions>,
@@ -87,6 +105,10 @@ pub enum Conditions {
     CheckMade {
         id: usize,
     },
+}
+
+fn default_bitmask() -> u8 {
+    0xff
 }
 
 #[derive(Debug, Deserialize, PartialEq, Clone, Hash, Eq)]
@@ -220,10 +242,11 @@ pub fn ram_value_change_condition_met(
     previous_values: &mut VecDeque<SnesRam>,
     ram: &SnesRam,
     sram_offset: &usize,
+    sram_mask: &u8,
 ) -> bool {
     if previous_values.len() > 0 {
-        ram.get_byte(*sram_offset)
-            != previous_values[previous_values.len() - 1].get_byte(*sram_offset)
+        ram.get_byte(*sram_offset) & sram_mask
+            != previous_values[previous_values.len() - 1].get_byte(*sram_offset) & sram_mask
     } else {
         false
     }

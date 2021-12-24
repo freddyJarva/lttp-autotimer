@@ -64,8 +64,9 @@ impl CliConfig {
 #[tokio::main]
 pub async fn connect_to_sni(args: &ArgMatches) -> anyhow::Result<()> {
     use crate::{
+        check::deserialize_actions,
         parse_ram::{
-            check_for_events, check_for_item_checks, check_for_location_checks,
+            check_for_actions, check_for_events, check_for_item_checks, check_for_location_checks,
             check_for_transitions,
         },
         request::fetch_metadata_for,
@@ -154,6 +155,7 @@ pub async fn connect_to_sni(args: &ArgMatches) -> anyhow::Result<()> {
         .filter(|check| check.sram_offset.unwrap_or_default() != 0 || check.conditions.is_some())
         .collect();
     let mut items: Vec<Check> = deserialize_item_checks()?.into_iter().collect();
+    let mut actions: Vec<Check> = deserialize_actions()?.into_iter().collect();
 
     while let Some((time_of_read, snes_ram)) = rx.recv().await {
         if !game_started {
@@ -169,6 +171,15 @@ pub async fn connect_to_sni(args: &ArgMatches) -> anyhow::Result<()> {
                 &time_of_read,
             )?;
             if game_started {
+                check_for_actions(
+                    &snes_ram,
+                    &mut ram_history,
+                    &mut actions,
+                    &mut writer,
+                    &mut events,
+                    &mut print,
+                    &time_of_read,
+                )?;
                 check_for_transitions(
                     &snes_ram,
                     &mut writer,
@@ -342,7 +353,7 @@ fn write_metadata_to_csv(
 mod tests {
     use std::collections::HashMap;
 
-    use crate::tile::deserialize_transitions;
+    use crate::{check::deserialize_actions, tile::deserialize_transitions};
 
     use super::*;
 
@@ -374,5 +385,6 @@ mod tests {
         unique_item_ids: deserialize_item_checks(),
         unique_location_ids: deserialize_location_checks(),
         unique_tile_ids: deserialize_transitions(),
+        unique_action_ids: deserialize_actions(),
     }
 }

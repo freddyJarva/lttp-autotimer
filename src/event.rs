@@ -195,6 +195,7 @@ pub enum EventEnum {
     LocationCheck(Check),
     ItemGet(Check),
     Other(Check),
+    Action(Check),
 }
 
 pub struct EventTracker {
@@ -243,6 +244,7 @@ pub struct Event {
     location_id: Option<usize>,
     item_id: Option<usize>,
     event_id: Option<usize>,
+    action_id: Option<usize>,
 }
 
 impl From<&Tile> for Event {
@@ -319,6 +321,11 @@ impl From<&EventEnum> for Event {
                 event_id: Some(check.id),
                 ..Default::default()
             },
+            EventEnum::Action(check) => Event {
+                timestamp: check.time_of_check.unwrap(),
+                action_id: Some(check.id),
+                ..Default::default()
+            },
         }
     }
 }
@@ -332,6 +339,7 @@ impl Default for Event {
             location_id: Default::default(),
             item_id: Default::default(),
             event_id: Default::default(),
+            action_id: Default::default(),
         }
     }
 }

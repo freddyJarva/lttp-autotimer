@@ -1,11 +1,10 @@
 [
     {
         "name": "Sword",
-        "is_progressive": true,
         "id": 0,
         "conditions": [
             {
-                "type": "ValueEq",
+                "type": "ValueChangedTo",
                 "sram_offset": "0x354",
                 "sram_value": "0x27"
             }
@@ -13,23 +12,21 @@
     },
     {
         "name": "Hookshot",
-        "is_progressive": true,
         "id": 1,
         "conditions": [
             {
-                "type": "ValueEq",
+                "type": "ValueChangedTo",
                 "sram_offset": "0x354",
-                "sram_value": "0x27"
+                "sram_value": "0x20"
             }
         ]
     },
     {
         "name": "Fire rod",
-        "is_progressive": true,
         "id": 2,
         "conditions": [
             {
-                "type": "ValueEq",
+                "type": "ValueChangedTo",
                 "sram_offset": "0x354",
                 "sram_value": "0x06"
             }
@@ -37,11 +34,10 @@
     },
     {
         "name": "Boomerang",
-        "is_progressive": true,
-        "id": 2,
+        "id": 3,
         "conditions": [
             {
-                "type": "ValueEq",
+                "type": "ValueChangedTo",
                 "sram_offset": "0x354",
                 "sram_value": "0x09"
             }
@@ -49,11 +45,10 @@
     },
     {
         "name": "Bombos",
-        "is_progressive": true,
-        "id": 2,
+        "id": 4,
         "conditions": [
             {
-                "type": "ValueEq",
+                "type": "ValueChangedTo",
                 "sram_offset": "0x354",
                 "sram_value": "0x15",
                 "note": "link action state(ish?)"
@@ -63,6 +58,44 @@
                 "sram_offset": "0x303",
                 "sram_value": "0x0f",
                 "note": "equipped item"
+            }
+        ]
+    },
+    {
+        "name": "Lantern",
+        "id": 5,
+        "conditions": [
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0xf0",
+                "sram_value": "0x40",
+                "sram_mask": "0x40"
+            }
+        ]
+    },
+    {
+        "name": "Spin Speed activated",
+        "id": 6,
+        "conditions": [
+            {
+                "type": "Any",
+                "subconditions": [
+                    {
+                        "type": "ValueChangedTo",
+                        "sram_offset": "0x354",
+                        "sram_value": "0x0f"
+                    },
+                    {
+                        "type": "ValueChangedTo",
+                        "sram_offset": "0x354",
+                        "sram_value": "0x20"
+                    }
+                ]
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x372",
+                "sram_value": "0x1"
             }
         ]
     }

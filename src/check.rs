@@ -34,6 +34,7 @@ pub struct Check {
 static CHECKS_JSON: &'static str = include_str!("checks.json");
 static ITEMS_JSON: &'static str = include_str!("items.json");
 static EVENTS_JSON: &'static str = include_str!("events.json");
+static ACTIONS_JSON: &'static str = include_str!("actions.json");
 
 /// Reads src/checks.json and returns deserialized content
 pub fn deserialize_location_checks() -> Result<Vec<Check>, serde_json::Error> {
@@ -56,6 +57,11 @@ pub fn deserialize_item_checks() -> Result<Vec<Check>, serde_json::Error> {
 /// Reads src/events.json and returns deserialized content
 pub fn deserialize_event_checks() -> Result<Vec<Check>, serde_json::Error> {
     serde_json::from_str(EVENTS_JSON)
+}
+
+/// Reads src/actions.json and returns deserialized content
+pub fn deserialize_actions() -> Result<Vec<Check>, serde_json::Error> {
+    serde_json::from_str(ACTIONS_JSON)
 }
 
 impl Check {

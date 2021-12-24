@@ -223,6 +223,41 @@ where
     Ok(true)
 }
 
+pub fn check_for_actions<W>(
+    ram: &SnesRam,
+    previous_values: &mut VecDeque<SnesRam>,
+    actions: &mut Vec<Check>,
+    writer: &mut W,
+    events: &mut EventTracker,
+    print: &mut StdoutPrinter,
+    time_of_read: &DateTime<Utc>,
+) -> anyhow::Result<()>
+where
+    W: CsvWriter,
+{
+    for event in actions {
+        let current_event_value = ram.get_byte(event.sram_offset.unwrap_or_default() as usize);
+        match &event.conditions {
+            Some(conditions) => {
+                if conditions
+                    .iter()
+                    .all(|condition| match_condition(condition, events, ram, previous_values))
+                {
+                    // All actions are considered progressive in essence
+                    event.progress_item(current_event_value, time_of_read);
+
+                    let occurred_event = EventEnum::Action(event.clone());
+                    writer.write_event(Event::from(&occurred_event))?;
+                    events.push(occurred_event);
+                    print.action(event);
+                }
+            }
+            None => {}
+        }
+    }
+    Ok(())
+}
+
 pub fn match_condition(
     condition: &Conditions,
     events: &EventTracker,
@@ -241,8 +276,17 @@ pub fn match_condition(
         Conditions::DungeonCounterIncreased { sram_offset } => {
             dungeon_counter_condition_met(previous_values, ram, sram_offset)
         }
-        Conditions::ValueChanged { sram_offset } => {
-            ram_value_change_condition_met(previous_values, ram, sram_offset)
+        Conditions::ValueChanged {
+            sram_offset,
+            sram_mask,
+        } => ram_value_change_condition_met(previous_values, ram, sram_offset, sram_mask),
+        Conditions::ValueChangedTo {
+            sram_offset,
+            sram_value,
+            sram_mask,
+        } => {
+            ram.get_byte(*sram_offset) & sram_mask == *sram_value & sram_mask
+                && ram_value_change_condition_met(previous_values, ram, sram_offset, sram_mask)
         }
         Conditions::CurrentTile(condition) => {
             let current_tile = &events
@@ -267,15 +311,17 @@ pub fn match_condition(
         Conditions::ValueEq {
             sram_offset,
             sram_value,
-        } => ram.get_byte(*sram_offset) == *sram_value,
+            sram_mask,
+        } => ram.get_byte(*sram_offset) & sram_mask == *sram_value & sram_mask,
         Conditions::CheckMade { id } => events.find_location_check(*id).is_some(),
         Conditions::PreviousValueEq {
             sram_offset,
             sram_value,
+            sram_mask,
         } => {
             if previous_values.len() > 0 {
                 let previous_ram = &previous_values[previous_values.len() - 1];
-                previous_ram.get_byte(*sram_offset) == *sram_value
+                (previous_ram.get_byte(*sram_offset) & sram_mask) == *sram_value & sram_mask
             } else {
                 false
             }

@@ -219,5 +219,23 @@
                 "sram_value": "0x01"
             }
         ]
+    },
+    {
+        "name": "Bomb",
+        "id": 14,
+        "conditions": [
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0xf0",
+                "sram_value": "0x40",
+                "sram_mask": "0x40"
+            },
+            {
+                "type": "ValueEq",
+                "sram_offset": "0x303",
+                "sram_value": "0x01",
+                "note": "equipped item"
+            }
+        ]
     }
 ]

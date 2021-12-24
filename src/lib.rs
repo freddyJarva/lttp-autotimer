@@ -32,8 +32,6 @@ mod serde_lttp;
 mod snes;
 mod tile;
 
-#[cfg(feature = "qusb")]
-mod qusb;
 #[cfg(feature = "sni")]
 mod sni;
 
@@ -60,11 +58,6 @@ impl CliConfig {
     pub fn sni_url(&self) -> String {
         format!("ws://{}:{}", self.host, self.port)
     }
-}
-
-#[cfg(feature = "qusb")]
-pub fn connect_to_qusb(args: &ArgMatches) -> anyhow::Result<()> {
-    qusb::start(args)
 }
 
 #[cfg(feature = "sni")]

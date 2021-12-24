@@ -12,7 +12,6 @@ anyhow = "1"
 byteorder = "1.4"
 chrono = {version = "0.4", features = ["serde"]}
 csv = "1.1"
-websocket = { version = "0.26", optional = true}
 clap = "3.0.0-beta.5"
 colored = "2.0.0"
 termcolor = "1.1"
@@ -28,5 +27,4 @@ tonic-build = {version = "0.6", optional = true}
 
 [features]
 default = ["sni"]
-qusb = ["websocket", "reqwest/blocking"]
 sni = ["tonic", "prost", "tonic-build", "tokio"]

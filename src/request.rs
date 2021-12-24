@@ -58,17 +58,6 @@ pub struct MetaData {
     pub notes: Option<String>,
 }
 
-#[cfg(feature = "qusb")]
-pub fn fetch_metadata_for<S: AsRef<str>>(seed: S) -> anyhow::Result<(String, SeedJson)> {
-    let response = reqwest::blocking::get(meta_json_uri_for(&seed))?;
-    let r = &response.bytes()?.to_vec()[..];
-    let mut d = GzDecoder::new(r);
-    let mut s = String::new();
-    d.read_to_string(&mut s)?;
-
-    Ok((permalink_for(seed), serde_json::from_str(&s)?))
-}
-
 #[cfg(feature = "sni")]
 pub async fn fetch_metadata_for<S: AsRef<str>>(seed: S) -> anyhow::Result<SeedJson> {
     let response = reqwest::get(meta_json_uri_for(&seed)).await?;

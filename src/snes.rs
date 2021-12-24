@@ -1,9 +1,6 @@
 #[cfg(feature = "sni")]
 use crate::sni::{api::ReadMemoryResponse, Address};
 
-#[cfg(feature = "qusb")]
-use crate::qusb::Address;
-
 use byteorder::{ByteOrder, LittleEndian};
 
 const OVERWORLD_TILE_ADDRESS: usize = 0x40a;
@@ -163,9 +160,9 @@ impl From<&Vec<ReadMemoryResponse>> for SnesRam {
     }
 }
 
-/// Handles values read from qusb while maintaining correct address locations relative to VRAM_START
+/// Handles values read from sni while maintaining correct address locations relative to VRAM_START
 ///
-/// This allows us to load only the parts we want from qusb while not having to handle tons of different offset values in a myriad of places
+/// This allows us to load only the parts we want from sni while not having to handle tons of different offset values in a myriad of places
 #[derive(Default, Debug)]
 pub struct SnesRam {
     pub tile_info_chunk: Vec<u8>,
@@ -196,31 +193,6 @@ impl SnesRam {
         }
     }
 
-    #[cfg(feature = "qusb")]
-    /// addresses are relative to `VRAM_START` (`0xf50000`)
-    pub fn get_byte(&self, address: usize) -> u8 {
-        if address < Address::TileInfoSize as usize {
-            self.tile_info_chunk[address]
-        } else if address >= Address::DunkaChunka.offset()
-            && address < Address::DunkaChunka.offset() + Address::DunkaChunkaSize as usize
-        {
-            self.dunka_chunka[address - Address::DunkaChunka.offset()]
-        } else if address >= Address::Coordinates.offset()
-            && address < Address::Coordinates.offset() + Address::CoordinatesSize as usize
-        {
-            self.coordinate_chunk[address - Address::Coordinates.offset()]
-        } else if address >= Address::GameStats.offset()
-            && address < Address::GameStats.offset() + Address::GameStatsSize as usize
-        {
-            self.game_stats_chunk[address - Address::GameStats.offset()]
-        } else {
-            panic!(
-                "Tried reading address with offset {:X} from ram, but it's not fetched from the game!",
-                address
-            )
-        }
-    }
-
     #[cfg(feature = "sni")]
     /// A word is a 16-bit address
     pub fn get_word(&self, address: usize) -> u16 {
@@ -239,40 +211,6 @@ impl SnesRam {
             LittleEndian::read_u16(
                 &self.coordinate_chunk[address - Address::Coordinates.offset()
                     ..address + 2 - Address::Coordinates.offset()],
-            )
-        } else {
-            panic!(
-                "Tried reading address with offset {:X} from ram, but it's not fetched from the game!",
-                address
-            )
-        }
-    }
-
-    #[cfg(feature = "qusb")]
-    /// A word is a 16-bit address
-    pub fn get_word(&self, address: usize) -> u16 {
-        if address < (Address::TileInfoSize as usize) - 1 {
-            LittleEndian::read_u16(&self.tile_info_chunk[address..address + 2])
-        } else if address >= (Address::DunkaChunka.offset())
-            && address < (Address::DunkaChunka.offset()) + (Address::DunkaChunkaSize as usize) - 1
-        {
-            LittleEndian::read_u16(
-                &self.dunka_chunka[address - (Address::DunkaChunka.offset())
-                    ..address + 2 - (Address::DunkaChunka.offset())],
-            )
-        } else if address >= Address::Coordinates.offset()
-            && address < Address::Coordinates.offset() + (Address::CoordinatesSize as usize) - 1
-        {
-            LittleEndian::read_u16(
-                &self.coordinate_chunk[address - Address::Coordinates.offset()
-                    ..address + 2 - Address::Coordinates.offset()],
-            )
-        } else if address >= Address::GameStats.offset()
-            && address < Address::GameStats.offset() + (Address::GameStatsSize as usize) - 1
-        {
-            LittleEndian::read_u16(
-                &self.game_stats_chunk[address - Address::GameStats.offset()
-                    ..address + 2 - Address::GameStats.offset()],
             )
         } else {
             panic!(

@@ -46,19 +46,9 @@ def open_checks():
         return json.load(f)
 
 
-def save_checks(checks: dict):
-    with open(DATA_DIR / "checks.json", "w") as f:
-        return json.dump(checks, f, indent=4)
-
-
 def open_items():
     with open(DATA_DIR / "items.json") as f:
         return json.load(f)
-
-
-def save_items(items: dict):
-    with open(DATA_DIR / "items.json", "w") as f:
-        return json.dump(items, f, indent=4)
 
 
 def open_tiles():
@@ -66,19 +56,19 @@ def open_tiles():
         return json.load(f)
 
 
-def save_tiles(tiles: dict):
-    with open(DATA_DIR / "tiles.json", "w") as f:
-        return json.dump(tiles, f, indent=4)
-
-
 def open_events():
     with open(DATA_DIR / "events.json") as f:
         return json.load(f)
 
 
-def save_events(checks: dict):
-    with open(DATA_DIR / "events.json", "w") as f:
-        return json.dump(checks, f, indent=4)
+def open_actions():
+    with open(DATA_DIR / "actions.json") as f:
+        return json.load(f)
+
+
+def save_json(path: str | Path, data: dict):
+    with open(path, "w") as f:
+        json.dump(data, f, indent=4)
 
 
 def find_tiles(pattern: str):

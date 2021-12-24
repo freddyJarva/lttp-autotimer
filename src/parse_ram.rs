@@ -1,7 +1,6 @@
-use std::{collections::VecDeque, fs::File};
+use std::collections::VecDeque;
 
 use chrono::{DateTime, Utc};
-use csv::Writer;
 
 use crate::{
     check::Check,
@@ -14,17 +13,21 @@ use crate::{
     output::StdoutPrinter,
     snes::{NamedAddresses, SnesRam},
     tile::Tile,
+    write::CsvWriter,
 };
 
-pub fn check_for_location_checks(
+pub fn check_for_location_checks<W>(
     ram: &SnesRam,
     ram_history: &mut VecDeque<SnesRam>,
     checks: &mut Vec<Check>,
-    writer: &mut Writer<File>,
+    writer: &mut W,
     events: &mut EventTracker,
     print: &mut StdoutPrinter,
     time_of_read: &DateTime<Utc>,
-) -> anyhow::Result<()> {
+) -> anyhow::Result<()>
+where
+    W: CsvWriter,
+{
     for check in checks {
         match &check.conditions {
             Some(conditions) => {
@@ -36,7 +39,7 @@ pub fn check_for_location_checks(
                     print.location_check(check);
 
                     let location_check_event = EventEnum::LocationCheck(check.clone());
-                    writer.serialize(Event::from(&location_check_event))?;
+                    writer.write_event(Event::from(&location_check_event))?;
                     events.push(location_check_event);
                 }
             }
@@ -54,7 +57,7 @@ pub fn check_for_location_checks(
                         check.mark_as_checked(time_of_read);
                         print.location_check(check);
                         let location_check_event = EventEnum::LocationCheck(check.clone());
-                        writer.serialize(Event::from(&location_check_event))?;
+                        writer.write_event(Event::from(&location_check_event))?;
                         events.push(location_check_event);
                     }
                 }
@@ -65,15 +68,18 @@ pub fn check_for_location_checks(
     Ok(())
 }
 
-pub fn check_for_item_checks(
+pub fn check_for_item_checks<W>(
     ram: &SnesRam,
     previous_values: &mut VecDeque<SnesRam>,
     checks: &mut Vec<Check>,
-    writer: &mut Writer<File>,
+    writer: &mut W,
     events: &mut EventTracker,
     print: &mut StdoutPrinter,
     time_of_read: &DateTime<Utc>,
-) -> anyhow::Result<()> {
+) -> anyhow::Result<()>
+where
+    W: CsvWriter,
+{
     for check in checks {
         let current_check_value = ram.get_byte(check.sram_offset.unwrap_or_default() as usize);
 
@@ -90,7 +96,7 @@ pub fn check_for_item_checks(
                         check.progress_item(current_check_value, time_of_read)
                     }
                     let occurred_check = EventEnum::ItemGet(check.clone());
-                    writer.serialize(Event::from(&occurred_check))?;
+                    writer.write_event(Event::from(&occurred_check))?;
                     events.push(occurred_check);
                     print.item_check(check);
                 }
@@ -109,14 +115,14 @@ pub fn check_for_item_checks(
                         print.item_check(check);
 
                         let item_event = EventEnum::ItemGet(check.clone());
-                        writer.serialize(Event::from(&item_event))?;
+                        writer.write_event(Event::from(&item_event))?;
                         events.push(item_event);
                     } else if check.is_progressive && current_check_value > check.snes_value {
                         check.progress_item(current_check_value, time_of_read);
                         print.item_check(check);
 
                         let item_event = EventEnum::ItemGet(check.clone());
-                        writer.serialize(Event::from(&item_event))?;
+                        writer.write_event(Event::from(&item_event))?;
                         events.push(item_event);
                     }
                 }
@@ -127,13 +133,16 @@ pub fn check_for_item_checks(
     Ok(())
 }
 
-pub fn check_for_transitions(
+pub fn check_for_transitions<W>(
     ram: &SnesRam,
-    writer: &mut Writer<File>,
+    writer: &mut W,
     events: &mut EventTracker,
     print: &mut StdoutPrinter,
     time_of_read: &DateTime<Utc>,
-) -> anyhow::Result<()> {
+) -> anyhow::Result<()>
+where
+    W: CsvWriter,
+{
     // Use events if one transition has been triggered.
     match events.latest_transition() {
         Some(previous_transition) => {
@@ -142,7 +151,7 @@ pub fn check_for_transitions(
                     current_tile.time_transit(time_of_read);
                     print.transition(&current_tile);
                     let transition_event = EventEnum::Transition(current_tile);
-                    writer.serialize(Event::from(&transition_event))?;
+                    writer.write_event(Event::from(&transition_event))?;
                     events.push(transition_event);
                 }
             }
@@ -155,15 +164,18 @@ pub fn check_for_transitions(
     Ok(())
 }
 
-pub fn check_for_events(
+pub fn check_for_events<W>(
     ram: &SnesRam,
     previous_values: &mut VecDeque<SnesRam>,
     subscribed_events: &mut Vec<Check>,
-    writer: &mut Writer<File>,
+    writer: &mut W,
     events: &mut EventTracker,
     print: &mut StdoutPrinter,
     time_of_read: &DateTime<Utc>,
-) -> anyhow::Result<bool> {
+) -> anyhow::Result<bool>
+where
+    W: CsvWriter,
+{
     for event in subscribed_events {
         let current_event_value = ram.get_byte(event.sram_offset.unwrap_or_default() as usize);
         match &event.conditions {
@@ -179,7 +191,7 @@ pub fn check_for_events(
                         event.progress_item(current_event_value, time_of_read)
                     }
                     let occurred_event = EventEnum::Other(event.clone());
-                    writer.serialize(Event::from(&occurred_event))?;
+                    writer.write_event(Event::from(&occurred_event))?;
                     events.push(occurred_event);
                     print.event(event);
                     return Ok(event.id != 0 && event.id != 15);
@@ -193,13 +205,13 @@ pub fn check_for_events(
                     event.mark_as_checked(time_of_read);
                     print.event(event);
                     let occurred_event = EventEnum::Other(event.clone());
-                    writer.serialize(Event::from(&occurred_event))?;
+                    writer.write_event(Event::from(&occurred_event))?;
                     events.push(occurred_event);
                 } else if event.is_progressive && current_event_value > event.snes_value {
                     event.progress_item(current_event_value, time_of_read);
                     print.event(event);
                     let occurred_event = EventEnum::Other(event.clone());
-                    writer.serialize(Event::from(&occurred_event))?;
+                    writer.write_event(Event::from(&occurred_event))?;
                     events.push(occurred_event);
                     // Save & Quit and Reset will pause checks from occurring until player has gone in-game once more
                     return Ok(event.id != 0 && event.id != 15);

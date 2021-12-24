@@ -29,6 +29,12 @@
                 "type": "ValueChangedTo",
                 "sram_offset": "0x354",
                 "sram_value": "0x06"
+            },
+            {
+                "type": "ValueEq",
+                "sram_offset": "0x303",
+                "sram_value": "0x05",
+                "note": "equipped item"
             }
         ]
     },
@@ -62,20 +68,62 @@
         ]
     },
     {
-        "name": "Lantern",
+        "name": "Ether",
         "id": 5,
+        "conditions": [
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x354",
+                "sram_value": "0x15",
+                "note": "link action state(ish?)"
+            },
+            {
+                "type": "ValueEq",
+                "sram_offset": "0x303",
+                "sram_value": "0x10",
+                "note": "equipped item"
+            }
+        ]
+    },
+    {
+        "name": "Quake",
+        "id": 6,
+        "conditions": [
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x354",
+                "sram_value": "0x15",
+                "note": "link action state(ish?)"
+            },
+            {
+                "type": "ValueEq",
+                "sram_offset": "0x303",
+                "sram_value": "0x11",
+                "note": "equipped item"
+            }
+        ]
+    },
+    {
+        "name": "Lantern",
+        "id": 7,
         "conditions": [
             {
                 "type": "ValueChangedTo",
                 "sram_offset": "0xf0",
                 "sram_value": "0x40",
                 "sram_mask": "0x40"
+            },
+            {
+                "type": "ValueEq",
+                "sram_offset": "0x303",
+                "sram_value": "0x09",
+                "note": "equipped item"
             }
         ]
     },
     {
         "name": "Spin Speed activated",
-        "id": 6,
+        "id": 8,
         "conditions": [
             {
                 "type": "Any",
@@ -96,6 +144,79 @@
                 "type": "ValueChangedTo",
                 "sram_offset": "0x372",
                 "sram_value": "0x1"
+            }
+        ]
+    },
+    {
+        "name": "Hammer",
+        "id": 9,
+        "conditions": [
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x354",
+                "sram_value": "0x06"
+            },
+            {
+                "type": "ValueEq",
+                "sram_offset": "0x303",
+                "sram_value": "0x04",
+                "note": "equipped item"
+            }
+        ]
+    },
+    {
+        "name": "Cane of Somaria",
+        "id": 10,
+        "conditions": [
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x354",
+                "sram_value": "0x22"
+            },
+            {
+                "type": "ValueEq",
+                "sram_offset": "0x303",
+                "sram_value": "0x12",
+                "note": "equipped item"
+            }
+        ]
+    },
+    {
+        "name": "Cane of Byrna",
+        "id": 11,
+        "conditions": [
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x354",
+                "sram_value": "0x22"
+            },
+            {
+                "type": "ValueEq",
+                "sram_offset": "0x303",
+                "sram_value": "0x0d",
+                "note": "equipped item"
+            }
+        ]
+    },
+    {
+        "name": "Bow",
+        "id": 12,
+        "conditions": [
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x354",
+                "sram_value": "0x07"
+            }
+        ]
+    },
+    {
+        "name": "Dash",
+        "id": 13,
+        "conditions": [
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x372",
+                "sram_value": "0x01"
             }
         ]
     }

@@ -2377,12 +2377,6 @@
                 "type": "Coordinates",
                 "coordinates": [
                     {
-                        "type": "Pair",
-                        "x": "4344",
-                        "y": "8152",
-                        "note": "entrance"
-                    },
-                    {
                         "type": "Stairs",
                         "x": "4152",
                         "y": "7524",
@@ -10133,7 +10127,7 @@
                 "coordinates": [
                     {
                         "type": "Range",
-                        "x": "1400-2264",
+                        "x": "2072-2264",
                         "y": "1312-1416"
                     }
                 ]

@@ -293,3 +293,96 @@ pub fn match_condition(
             .all(|subcondition| match_condition(subcondition, events, ram, previous_values)),
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use crate::{snes::SnesRamInitializer, tile::deserialize_transitions};
+
+    struct MockCsvWriter;
+
+    impl CsvWriter for MockCsvWriter {
+        fn write_event<S>(&mut self, _: S) -> anyhow::Result<()>
+        where
+            S: serde::Serialize,
+        {
+            Ok(())
+        }
+    }
+
+    fn get_coordinate_condition(tile: &Tile) -> Option<Conditions> {
+        match &tile.conditions {
+            Some(conditions) => conditions
+                .iter()
+                .filter(|&c| match c {
+                    Conditions::Coordinates { coordinates: _ } => true,
+                    _ => false,
+                })
+                .map(|c| c.clone())
+                .next()
+                .clone(),
+            None => None,
+        }
+    }
+
+    fn point_from_coordinate_condition(condition: Conditions) -> Vec<(u16, u16)> {
+        match condition {
+            Conditions::Coordinates { coordinates } => {
+                let mut points: Vec<(u16, u16)> = vec![];
+                for coordinate in coordinates {
+                    match coordinate {
+                        crate::condition::Coordinate::Pair { x, y } => points.push((x, y)),
+                        crate::condition::Coordinate::Range { x, y } => points.push((x.0, y.0)),
+                        crate::condition::Coordinate::Chest { x, y } => points.push((x, y)),
+                        crate::condition::Coordinate::BigChest { x, y } => points.push((x, y)),
+                        crate::condition::Coordinate::Stairs { x, y } => points.push((x, y)),
+                    };
+                }
+                points
+            }
+            _ => panic!("Filter out non-coordinate conditions before calling this!"),
+        }
+    }
+
+    #[test]
+    fn test_tile_coordinate_conditions() {
+        // If there's overlap in coordinate conditions,
+        // i.e. 2 or more transitions could be triggered from the same snes ram values,
+        // then this test should fail
+
+        // Given
+        let mut mock_writer = MockCsvWriter {};
+        let mut printer = StdoutPrinter::new(false);
+        for tile in deserialize_transitions().unwrap() {
+            if let Some(coordinate_condition) = get_coordinate_condition(&tile) {
+                let points = point_from_coordinate_condition(coordinate_condition);
+                let address_values = tile.address_value;
+                for address in address_values {
+                    for point in &points {
+                        let ram = SnesRamInitializer {
+                            transition_x: Some(point.0),
+                            transition_y: Some(point.1),
+                            entrance_id: Some(address as u8),
+                            indoors: Some(if tile.indoors { 1 } else { 0 }),
+                            ..Default::default()
+                        }
+                        .build();
+                        let mut events = EventTracker::new();
+                        // When
+                        check_for_transitions(
+                            &ram,
+                            &mut mock_writer,
+                            &mut events,
+                            &mut printer,
+                            &Utc::now(),
+                        )
+                        .unwrap();
+                        // Then
+                        let latest_event = events.latest_transition().unwrap();
+                        assert_attrs! {latest_event: id == tile.id,}
+                    }
+                }
+            }
+        }
+    }
+}

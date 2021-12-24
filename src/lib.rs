@@ -11,7 +11,6 @@ use colored::Colorize;
 use snes::SnesRam;
 
 use std::io::{stdin, Write};
-use std::sync::{Arc, Mutex};
 
 #[cfg(feature = "sni")]
 use tokio::sync::mpsc;

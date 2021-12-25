@@ -394,12 +394,14 @@
         ]
     },
     {
-        "id": 21,
         "name": "Fetch Quest Super Bomb - End",
+        "id": 21,
         "conditions": [
             {
-                "type": "CurrentTile",
-                "id": 169
+                "type": "ValueChangedTo",
+                "sram_offset": "0xf2db",
+                "sram_mask": "0x02",
+                "sram_value": "0x02"
             }
         ]
     },

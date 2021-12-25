@@ -1875,5 +1875,69 @@
                 ]
             }
         ]
+    },
+    {
+        "name": "Desert Palace - East Wing <-> Pre Big Chest Key - Door Opened",
+        "id": 94,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 252
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_mask": "0x40",
+                "sram_value": "0x40"
+            }
+        ]
+    },
+    {
+        "name": "Desert Palace - Tile Room 1 <-> Bridge - Door Opened",
+        "id": 95,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 258
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_mask": "0x80",
+                "sram_value": "0x80"
+            }
+        ]
+    },
+    {
+        "name": "Desert Palace - Key Pot Hallway <-> Tile Room 2 - Door Opened",
+        "id": 96,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 261
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_mask": "0x20",
+                "sram_value": "0x20"
+            }
+        ]
+    },
+    {
+        "name": "Desert Palace - Tie Room 2 <-> Boss Approach - Door Opened",
+        "id": 97,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 262
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_mask": "0x20",
+                "sram_value": "0x20"
+            }
+        ]
     }
 ]

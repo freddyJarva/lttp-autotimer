@@ -211,9 +211,19 @@
     },
     {
         "name": "Lost Woods Hideout",
-        "sram_offset": "0xf1c3",
-        "sram_mask": "0x02",
-        "id": 35
+        "id": 35,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 51
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x403",
+                "sram_mask": "0x20",
+                "sram_value": "0x20"
+            }
+        ]
     },
     {
         "name": "Lumberjack Tree",
@@ -265,9 +275,19 @@
     },
     {
         "name": "Mini Moldorm Cave - Generous Guy",
-        "sram_offset": "0xf247",
-        "sram_mask": "0x04",
-        "id": 44
+        "id": 44,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 116
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x403",
+                "sram_mask": "0x20",
+                "sram_value": "0x20"
+            }
+        ]
     },
     {
         "name": "Ice Rod Cave",

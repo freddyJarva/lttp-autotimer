@@ -284,8 +284,8 @@
             {
                 "type": "ValueChangedTo",
                 "sram_offset": "0x403",
-                "sram_mask": "0x20",
-                "sram_value": "0x20"
+                "sram_mask": "0x40",
+                "sram_value": "0x40"
             }
         ]
     },

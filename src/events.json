@@ -1211,5 +1211,618 @@
                 "sram_value": "0x0"
             }
         ]
+    },
+    {
+        "name": "Hype Cave - Bombed Open",
+        "id": 67,
+        "conditions": [
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0xf2f4",
+                "sram_mask": "0x02",
+                "sram_value": "0x02"
+            }
+        ]
+    },
+    {
+        "name": "Palace of Darkness - Lobby N <-> Fork - Door Opened",
+        "id": 68,
+        "conditions": [
+            {
+                "type": "Any",
+                "subconditions": [
+                    {
+                        "type": "All",
+                        "subconditions": [
+                            {
+                                "type": "CurrentTile",
+                                "id": 295
+                            },
+                            {
+                                "type": "ValueChangedTo",
+                                "sram_offset": "0x401",
+                                "sram_mask": "0x20",
+                                "sram_value": "0x20"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "All",
+                        "subconditions": [
+                            {
+                                "type": "CurrentTile",
+                                "id": 297
+                            },
+                            {
+                                "type": "ValueChangedTo",
+                                "sram_offset": "0x401",
+                                "sram_mask": "0x80",
+                                "sram_value": "0x80"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Palace of Darkness - Arena Ledge - Wall Destroyed",
+        "id": 69,
+        "conditions": [
+            {
+                "type": "Any",
+                "subconditions": [
+                    {
+                        "type": "All",
+                        "note": "Bombed from arena side",
+                        "subconditions": [
+                            {
+                                "type": "CurrentTile",
+                                "id": 305
+                            },
+                            {
+                                "type": "ValueChangedTo",
+                                "sram_offset": "0x401",
+                                "sram_mask": "0x20",
+                                "sram_value": "0x20"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "All",
+                        "note": "Bombed from statue switch room side",
+                        "subconditions": [
+                            {
+                                "type": "CurrentTile",
+                                "id": 304
+                            },
+                            {
+                                "type": "ValueChangedTo",
+                                "sram_offset": "0x401",
+                                "sram_mask": "0x40",
+                                "sram_value": "0x40"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Palace of Darkness - Stalfos Basement - Door Opened",
+        "id": 70,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 298
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_mask": "0x80",
+                "sram_value": "0x80"
+            }
+        ]
+    },
+    {
+        "name": "Palace of Darkness - Arena <-> Hammer Bridge - Door Opened",
+        "id": 71,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 305
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_mask": "0x40",
+                "sram_value": "0x40"
+            }
+        ]
+    },
+    {
+        "name": "Palace of Darkness - Dark Maze <-> Hammer Bridge - Wall Destroyed",
+        "id": 72,
+        "conditions": [
+            {
+                "type": "Any",
+                "subconditions": [
+                    {
+                        "type": "All",
+                        "note": "Bombed from maze side",
+                        "subconditions": [
+                            {
+                                "type": "CurrentTile",
+                                "id": 310
+                            },
+                            {
+                                "type": "ValueChangedTo",
+                                "sram_offset": "0x401",
+                                "sram_mask": "0x80",
+                                "sram_value": "0x80"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "All",
+                        "note": "Bombed from bridge side",
+                        "subconditions": [
+                            {
+                                "type": "CurrentTile",
+                                "id": 306
+                            },
+                            {
+                                "type": "ValueChangedTo",
+                                "sram_offset": "0x401",
+                                "sram_mask": "0x20",
+                                "sram_value": "0x20"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Palace of Darkness - Dark Maze <-> Hammer Bridge - Door Opened",
+        "id": 73,
+        "conditions": [
+            {
+                "type": "Any",
+                "subconditions": [
+                    {
+                        "type": "All",
+                        "note": "Opened from maze side",
+                        "subconditions": [
+                            {
+                                "type": "CurrentTile",
+                                "id": 310
+                            },
+                            {
+                                "type": "ValueChangedTo",
+                                "sram_offset": "0x401",
+                                "sram_mask": "0x40",
+                                "sram_value": "0x40"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "All",
+                        "note": "Opened from bridge side",
+                        "subconditions": [
+                            {
+                                "type": "CurrentTile",
+                                "id": 306
+                            },
+                            {
+                                "type": "ValueChangedTo",
+                                "sram_offset": "0x401",
+                                "sram_mask": "0x40",
+                                "sram_value": "0x40"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Palace of Darkness - Compass Chest <-> Harmless Hellway - Door Opened",
+        "id": 74,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 307
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_mask": "0x80",
+                "sram_value": "0x80"
+            }
+        ]
+    },
+    {
+        "name": "Palace of Darkness - Dark Hammer Tile <-> Dark Tiny Hallway - Door Opened",
+        "id": 74,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 313
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_mask": "0x20",
+                "sram_value": "0x20"
+            }
+        ]
+    },
+    {
+        "name": "Read Ether Tablet",
+        "id": 75,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 57
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x354",
+                "sram_value": "0x25"
+            }
+        ]
+    },
+    {
+        "name": "Read Bombos Tablet",
+        "id": 76,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 99
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x354",
+                "sram_value": "0x25"
+            }
+        ]
+    },
+    {
+        "name": "Tower of Hera - Lobby <-> Tile Room - Door Opened",
+        "id": 77,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 267
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_mask": "0x80",
+                "sram_value": "0x80"
+            }
+        ]
+    },
+    {
+        "name": "Tower of Hera - Floor 2 SW <-> NW - Door Opened",
+        "id": 78,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 272
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_mask": "0x80",
+                "sram_value": "0x80"
+            }
+        ]
+    },
+    {
+        "name": "Hookshot Cave - Bottom <-> Cross - Wall Destroyed",
+        "id": 79,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 156
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_mask": "0x80",
+                "sram_value": "0x80"
+            }
+        ]
+    },
+    {
+        "name": "Hookshot Cave - Cross <-> Top - Wall Destroyed",
+        "id": 80,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 567
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_mask": "0x20",
+                "sram_value": "0x20"
+            }
+        ]
+    },
+    {
+        "name": "Paradox Cave - Bottom <-> Bottom Treasure Room - Wall Destroyed",
+        "id": 81,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 67
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_mask": "0x40",
+                "sram_value": "0x40"
+            }
+        ]
+    },
+    {
+        "name": "Swamp Palace - Lobby - Door Opened",
+        "id": 82,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 320
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_mask": "0x80",
+                "sram_value": "0x80"
+            }
+        ]
+    },
+    {
+        "name": "Swamp Palace - Below Lobby - Wall Destroyed",
+        "id": 82,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 321
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_mask": "0x80",
+                "sram_value": "0x80"
+            }
+        ]
+    },
+    {
+        "name": "Swamp Palace - Below Lobby - Door Opened",
+        "id": 83,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 321
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_mask": "0x40",
+                "sram_value": "0x40"
+            }
+        ]
+    },
+    {
+        "name": "Swamp Palace - East of Hub <->  Water Lever 1 - Door opened",
+        "id": 84,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 322
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_mask": "0x20",
+                "sram_value": "0x20"
+            }
+        ]
+    },
+    {
+        "name": "Swamp Palace - Hub <-> Water Lever 2 - Door Opened",
+        "id": 85,
+        "conditions": [
+            {
+                "type": "Any",
+                "subconditions": [
+                    {
+                        "type": "All",
+                        "note": "Opened from lever side",
+                        "subconditions": [
+                            {
+                                "type": "CurrentTile",
+                                "id": 329
+                            },
+                            {
+                                "type": "ValueChangedTo",
+                                "sram_offset": "0x401",
+                                "sram_mask": "0x80",
+                                "sram_value": "0x80"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "All",
+                        "note": "Opened from hub side",
+                        "subconditions": [
+                            {
+                                "type": "CurrentTile",
+                                "id": 326
+                            },
+                            {
+                                "type": "ValueChangedTo",
+                                "sram_offset": "0x401",
+                                "sram_mask": "0x20",
+                                "sram_value": "0x20"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Ice Palace - Jellyfish Key - Door opened",
+        "id": 86,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 396
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_mask": "0x80",
+                "sram_value": "0x80"
+            }
+        ]
+    },
+    {
+        "name": "Ice Palacw - Big Spike Cross <-> Spike Room - Door Opened",
+        "id": 87,
+        "conditions": [
+            {
+                "type": "Any",
+                "subconditions": [
+                    {
+                        "type": "All",
+                        "note": "Opened from big spike side",
+                        "subconditions": [
+                            {
+                                "type": "CurrentTile",
+                                "id": 408
+                            },
+                            {
+                                "type": "ValueChangedTo",
+                                "sram_offset": "0x401",
+                                "sram_mask": "0x80",
+                                "sram_value": "0x80"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "All",
+                        "note": "Opened from hub side",
+                        "subconditions": [
+                            {
+                                "type": "CurrentTile",
+                                "id": 409
+                            },
+                            {
+                                "type": "ValueChangedTo",
+                                "sram_offset": "0x401",
+                                "sram_mask": "0x80",
+                                "sram_value": "0x80"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Ice Palacw - Ice Rink <-> South of Ice Rink - Door Opened",
+        "id": 88,
+        "conditions": [
+            {
+                "type": "Any",
+                "subconditions": [
+                    {
+                        "type": "All",
+                        "note": "Opened from ice rink",
+                        "subconditions": [
+                            {
+                                "type": "CurrentTile",
+                                "id": 415
+                            },
+                            {
+                                "type": "ValueChangedTo",
+                                "sram_offset": "0x401",
+                                "sram_mask": "0x80",
+                                "sram_value": "0x80"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "All",
+                        "note": "Opened from hub side",
+                        "subconditions": [
+                            {
+                                "type": "CurrentTile",
+                                "id": 416
+                            },
+                            {
+                                "type": "ValueChangedTo",
+                                "sram_offset": "0x401",
+                                "sram_mask": "0x80",
+                                "sram_value": "0x80"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Ice Palace - Fallen Block <-> Stock & Switch - Door opened",
+        "id": 89,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 425
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_mask": "0x40",
+                "sram_value": "0x40"
+            }
+        ]
+    },
+    {
+        "name": "Ice Palace - Block Drop <-> Fairy Drop - Door opened",
+        "id": 90,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 420
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_mask": "0x40",
+                "sram_value": "0x40"
+            }
+        ]
+    },
+    {
+        "name": "Ice Palace - Fairy Drop <-> Fairy Pot Room - Door opened",
+        "id": 91,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 422
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_mask": "0x80",
+                "sram_value": "0x80"
+            }
+        ]
     }
 ]

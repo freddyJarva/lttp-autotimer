@@ -827,9 +827,19 @@
     },
     {
         "name": "Hype Cave - Generous Guy",
-        "sram_offset": "0xf23d",
-        "sram_mask": "0x04",
-        "id": 102
+        "id": 102,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 182
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x403",
+                "sram_mask": "0x40",
+                "sram_value": "0x40"
+            }
+        ]
     },
     {
         "name": "Peg Cave",

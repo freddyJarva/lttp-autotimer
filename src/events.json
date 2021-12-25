@@ -430,18 +430,9 @@
         "is_progressive": true,
         "conditions": [
             {
-                "type": "PreviousValueEq",
-                "sram_offset": "0x5d",
-                "sram_value": "0x1d"
-            },
-            {
-                "type": "ValueEq",
-                "sram_offset": "0x5d",
-                "sram_value": "0x0"
-            },
-            {
-                "type": "ValueChanged",
-                "sram_offset": "0x20"
+                "type": "ValueChangedTo",
+                "sram_offset": "0x354",
+                "sram_value": "0x26"
             },
             {
                 "type": "Not",
@@ -480,7 +471,16 @@
         "id": 29,
         "name": "Handed In Mushroom",
         "sram_offset": "0xf38c",
-        "sram_mask": "0x08"
+        "sram_mask": "0x08",
+        "conditions": [
+            {
+                "type": "ValueEq",
+                "sram_offset": "0xf38c",
+                "sram_mask": "0x28",
+                "sram_value": "0x08",
+                "note": "When carrying shroom, bit 4 and 6 is on. When handed in, bit 6 is toggled off"
+            }
+        ]
     },
     {
         "id": 30,

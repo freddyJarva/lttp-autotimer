@@ -855,18 +855,144 @@
         ]
     },
     {
-        "name": "Kakariko bombable hut - Wall Destroyed",
+        "name": "Kakariko bombable hut - Bombed Open",
         "id": 52,
         "conditions": [
             {
                 "type": "CurrentTile",
-                "id": 39
+                "id": 10
             },
             {
                 "type": "ValueChangedTo",
                 "sram_offset": "0xf298",
                 "sram_mask": "0x02",
                 "sram_value": "0x02"
+            }
+        ]
+    },
+    {
+        "name": "Angry Bro - Wall Destroyed",
+        "id": 53,
+        "conditions": [
+            {
+                "type": "Any",
+                "subconditions": [
+                    {
+                        "type": "CurrentTile",
+                        "id": 24
+                    },
+                    {
+                        "type": "CurrentTile",
+                        "id": 25
+                    }
+                ]
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_mask": "0x80",
+                "sram_value": "0x80"
+            }
+        ]
+    },
+    {
+        "name": "Moldorm Cave - Bombed Open",
+        "id": 54,
+        "conditions": [
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0xf2b5",
+                "sram_mask": "0x02",
+                "sram_value": "0x02"
+            }
+        ]
+    },
+    {
+        "name": "Ice Rod Cave - Bombed Open",
+        "id": 55,
+        "conditions": [
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0xf2b7",
+                "sram_mask": "0x02",
+                "sram_value": "0x02"
+            }
+        ]
+    },
+    {
+        "name": "Sahasrahla's Hideout - Wall Destroyed",
+        "id": 56,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 92
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_value": "0x80"
+            }
+        ]
+    },
+    {
+        "name": "Eastern Palace - Dark Double Anti Fairy - Door Unlocked",
+        "id": 56,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 229
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_value": "0x80"
+            }
+        ]
+    },
+    {
+        "name": "Eastern Palace - Big Key Chest Room - Door Unlocked",
+        "id": 56,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 231
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_value": "0x80"
+            }
+        ]
+    },
+    {
+        "name": "Eastern Palace - Big Chest Room - Door Unlocked",
+        "id": 56,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 222
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_mask": "0x20",
+                "sram_value": "0x20"
+            }
+        ]
+    },
+    {
+        "name": "Eastern Palace - Dark Bastard Room - Door Unlocked",
+        "id": 56,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 233
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_mask": "0x80",
+                "sram_value": "0x80"
             }
         ]
     }

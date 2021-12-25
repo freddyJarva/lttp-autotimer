@@ -480,7 +480,7 @@
         "id": 29,
         "name": "Handed In Mushroom",
         "sram_offset": "0xf38c",
-        "sram_mask": "0x04"
+        "sram_mask": "0x08"
     },
     {
         "id": 30,

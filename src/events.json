@@ -643,5 +643,231 @@
                 "sram_mask": "0x20"
             }
         ]
+    },
+    {
+        "name": "Hyrule Castle - Key Guard #1 - Door unlocked",
+        "id": 41,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 197
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_value": "0x80"
+            }
+        ]
+    },
+    {
+        "name": "Hyrule Castle - Green Guard Trap - Door unlocked",
+        "id": 42,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 201
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_value": "0x80"
+            }
+        ]
+    },
+    {
+        "name": "Hyrule Castle - Zelda's Cell - Unlocked",
+        "id": 43,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 205
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x403",
+                "sram_mask": "0x2",
+                "sram_value": "0x2"
+            }
+        ]
+    },
+    {
+        "name": "Sewers - Dark Cross - Unlocked door",
+        "id": 44,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 211
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_value": "0x80"
+            }
+        ]
+    },
+    {
+        "name": "Sewers - Bonk Walls - Unlocked door",
+        "id": 45,
+        "conditions": [
+            {
+                "type": "Any",
+                "subconditions": [
+                    {
+                        "note": "Unlock from key snake room",
+                        "type": "All",
+                        "subconditions": [
+                            {
+                                "type": "CurrentTile",
+                                "id": 214
+                            },
+                            {
+                                "type": "ValueChangedTo",
+                                "sram_offset": "0x401",
+                                "sram_value": "0x80"
+                            }
+                        ]
+                    },
+                    {
+                        "note": "Unlock from bonk walls room",
+                        "type": "All",
+                        "subconditions": [
+                            {
+                                "type": "CurrentTile",
+                                "id": 215
+                            },
+                            {
+                                "type": "ValueChangedTo",
+                                "sram_offset": "0x401",
+                                "sram_mask": "0x20",
+                                "sram_value": "0x20"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Sewers - Bonk Walls - Bottom Wall Destroyed",
+        "id": 46,
+        "conditions": [
+            {
+                "type": "Any",
+                "subconditions": [
+                    {
+                        "type": "CurrentTile",
+                        "id": 215
+                    },
+                    {
+                        "type": "CurrentTile",
+                        "id": 216
+                    }
+                ]
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_mask": "0x40",
+                "sram_value": "0x40"
+            }
+        ]
+    },
+    {
+        "name": "Sewers - Bonk Walls - Top Wall Destroyed",
+        "id": 47,
+        "conditions": [
+            {
+                "type": "Any",
+                "subconditions": [
+                    {
+                        "type": "CurrentTile",
+                        "id": 215
+                    },
+                    {
+                        "type": "CurrentTile",
+                        "id": 216
+                    }
+                ]
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_mask": "0x80",
+                "sram_value": "0x80"
+            }
+        ]
+    },
+    {
+        "name": "Bonk Rocks - Bonked",
+        "id": 48,
+        "conditions": [
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0xf293",
+                "sram_mask": "0x20",
+                "sram_value": "0x20"
+            }
+        ]
+    },
+    {
+        "name": "Blind's Hut - Wall Destroyed",
+        "id": 49,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 560
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_value": "0x80"
+            }
+        ]
+    },
+    {
+        "name": "Kak Well - Wall Destroyed",
+        "id": 50,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 55
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_value": "0x80"
+            }
+        ]
+    },
+    {
+        "name": "Chicken Hut - Wall Destroyed",
+        "id": 51,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 40
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_value": "0x80"
+            }
+        ]
+    },
+    {
+        "name": "Kakariko bombable hut - Wall Destroyed",
+        "id": 52,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 39
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0xf298",
+                "sram_mask": "0x02",
+                "sram_value": "0x02"
+            }
+        ]
     }
 ]

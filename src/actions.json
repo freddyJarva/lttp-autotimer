@@ -237,5 +237,16 @@
                 "note": "equipped item"
             }
         ]
+    },
+    {
+        "name": "Shovel",
+        "id": 15,
+        "conditions": [
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x354",
+                "sram_value": "0x0c"
+            }
+        ]
     }
 ]

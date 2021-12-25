@@ -1181,5 +1181,35 @@
                 "sram_value": "0x40"
             }
         ]
+    },
+    {
+        "name": "Dig Game - Start",
+        "id": 65,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 130
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x3fc",
+                "sram_value": "0x1"
+            }
+        ]
+    },
+    {
+        "name": "Dig Game - End",
+        "id": 66,
+        "conditions": [
+            {
+                "type": "PreviousEvent",
+                "id": 65
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x3fc",
+                "sram_value": "0x0"
+            }
+        ]
     }
 ]

@@ -248,5 +248,36 @@
                 "sram_value": "0x0c"
             }
         ]
+    },
+    {
+        "name": "\"How much does a polar bear weigh?\"",
+        "alts": [
+            "\"If you could combine two animals to be your main mode of transportation for the next six months, what two animals would you choose and why?\"",
+            "\"Have you heard the goods news?\"",
+            "\"Did it hurt?\"",
+            "\"Ya like jazz?\""
+        ],
+        "id": 16,
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "CRange",
+                        "x": "7980-8000",
+                        "y": "888"
+                    }
+                ]
+            },
+            {
+                "type": "Not",
+                "subconditions": [
+                    {
+                        "type": "PreviousAction",
+                        "id": 16
+                    }
+                ]
+            }
+        ]
     }
 ]

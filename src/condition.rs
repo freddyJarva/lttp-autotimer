@@ -40,6 +40,9 @@ pub enum Conditions {
     PreviousEvent {
         id: usize,
     },
+    PreviousAction {
+        id: usize,
+    },
     Coordinates {
         coordinates: Vec<Coordinate>,
     },
@@ -126,6 +129,13 @@ pub enum Coordinate {
         #[serde(deserialize_with = "coordinate_range_deserialize")]
         y: (u16, u16),
     },
+    /// Same as range but uses the continually updated coordinate pair for matching instead
+    CRange {
+        #[serde(deserialize_with = "coordinate_range_deserialize")]
+        x: (u16, u16),
+        #[serde(deserialize_with = "coordinate_range_deserialize")]
+        y: (u16, u16),
+    },
     Chest {
         #[serde(deserialize_with = "coordinate_deserialize")]
         x: u16,
@@ -158,6 +168,10 @@ impl Coordinate {
             Coordinate::Pair { x, y } => match other {
                 Coordinate::Pair { x: _, y: _ } => self == other,
                 Coordinate::Range {
+                    x: x_range,
+                    y: y_range,
+                } => x >= &x_range.0 && x <= &x_range.1 && y >= &y_range.0 && y <= &y_range.1,
+                Coordinate::CRange {
                     x: x_range,
                     y: y_range,
                 } => x >= &x_range.0 && x <= &x_range.1 && y >= &y_range.0 && y <= &y_range.1,
@@ -209,7 +223,9 @@ impl From<&SnesRam> for Coordinate {
 
 pub fn coordinate_condition_met(conditions: &[Coordinate], current: &SnesRam) -> bool {
     conditions.iter().any(|c| match c {
-        Coordinate::Chest { x: _, y: _ } => Coordinate::from_continuous_coords(current).matches(c),
+        Coordinate::Chest { x: _, y: _ } | Coordinate::CRange { x: _, y: _ } => {
+            Coordinate::from_continuous_coords(current).matches(c)
+        }
         _ => Coordinate::from(current).matches(c),
     })
 }

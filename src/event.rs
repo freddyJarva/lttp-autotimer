@@ -11,6 +11,7 @@ pub trait EventLog {
     fn latest_location_check(&self) -> Option<Check>;
     fn latest_item_get(&self) -> Option<Check>;
     fn latest_other_event(&self) -> Option<Check>;
+    fn latest_action(&self) -> Option<Check>;
     fn find_other_event(&self, id: usize) -> Option<Check>;
     fn find_location_check(&self, id: usize) -> Option<Check>;
     fn others_with_id(&self, id: usize) -> Vec<Check>;
@@ -92,6 +93,26 @@ impl EventLog for EventTracker {
             })
             .map(|event| {
                 if let EventEnum::Other(t) = event {
+                    t.clone()
+                } else {
+                    panic!("This should never happen")
+                }
+            })
+    }
+
+    fn latest_action(&self) -> Option<Check> {
+        self.log
+            .iter()
+            .rev()
+            .find(|event| {
+                if let EventEnum::Action(_) = event {
+                    true
+                } else {
+                    false
+                }
+            })
+            .map(|event| {
+                if let EventEnum::Action(t) = event {
                     t.clone()
                 } else {
                     panic!("This should never happen")
@@ -456,6 +477,10 @@ mod tests {
                 id: 5,
                 ..Default::default()
             }),
+            EventEnum::Action(Check {
+                id: 6,
+                ..Default::default()
+            }),
         ];
         if let Some((idx, event)) = extra_event {
             log.insert(idx, event)
@@ -483,9 +508,11 @@ mod tests {
         })),
         latest_location_check: latest_location_check: (event_log(None), Some(Check::new(4))),
         latest_item_get: latest_item_get: (event_log(None), Some(Check::new(5))),
+        latest_action: latest_action: (event_log(None), Some(Check::new(6))),
         GIVEN_no_transitions_THEN_return_none: latest_transition: (vec![], None),
         GIVEN_no_location_checks_THEN_return_none: latest_location_check: (vec![], None),
         GIVEN_no_item_get_THEN_return_none: latest_item_get: (vec![], None),
+        GIVEN_no_action_THEN_return_none: latest_item_get: (vec![], None),
     }
 
     macro_rules! test_eventlog_with_param {

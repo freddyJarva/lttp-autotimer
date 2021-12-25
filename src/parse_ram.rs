@@ -301,6 +301,9 @@ pub fn match_condition(
             .latest_other_event()
             .map(|e| e.id == *id)
             .unwrap_or(false),
+        Conditions::PreviousAction { id } => {
+            events.latest_action().map(|e| e.id == *id).unwrap_or(false)
+        }
         Conditions::BitWiseTrue {
             sram_offset: _,
             sram_mask: _,
@@ -379,6 +382,7 @@ mod tests {
                     match coordinate {
                         crate::condition::Coordinate::Pair { x, y } => points.push((x, y)),
                         crate::condition::Coordinate::Range { x, y } => points.push((x.0, y.0)),
+                        crate::condition::Coordinate::CRange { x, y } => points.push((x.0, y.0)),
                         crate::condition::Coordinate::Chest { x, y } => points.push((x, y)),
                         crate::condition::Coordinate::BigChest { x, y } => points.push((x, y)),
                         crate::condition::Coordinate::Stairs { x, y } => points.push((x, y)),

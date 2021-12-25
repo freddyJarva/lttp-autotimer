@@ -995,5 +995,191 @@
                 "sram_value": "0x80"
             }
         ]
+    },
+    {
+        "name": "King's Grave - Bonked",
+        "id": 57,
+        "conditions": [
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0xf294",
+                "sram_mask": "0x20",
+                "sram_value": "0x20"
+            }
+        ]
+    },
+    {
+        "name": "Skull Woods - Pinball <-> Map Chest Room - Door Opened",
+        "id": 58,
+        "conditions": [
+            {
+                "type": "Any",
+                "subconditions": [
+                    {
+                        "type": "All",
+                        "subconditions": [
+                            {
+                                "type": "CurrentTile",
+                                "id": 353
+                            },
+                            {
+                                "type": "ValueChangedTo",
+                                "sram_offset": "0x401",
+                                "sram_mask": "0x20",
+                                "sram_value": "0x20"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "All",
+                        "subconditions": [
+                            {
+                                "type": "CurrentTile",
+                                "id": 357
+                            },
+                            {
+                                "type": "ValueChangedTo",
+                                "sram_offset": "0x401",
+                                "sram_mask": "0x40",
+                                "sram_value": "0x40"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Skull Woods - Pot Prison <-> Big Chest Room - Door Opened",
+        "id": 59,
+        "conditions": [
+            {
+                "type": "Any",
+                "subconditions": [
+                    {
+                        "type": "All",
+                        "subconditions": [
+                            {
+                                "type": "CurrentTile",
+                                "id": 352
+                            },
+                            {
+                                "type": "ValueChangedTo",
+                                "sram_offset": "0x401",
+                                "sram_mask": "0x40",
+                                "sram_value": "0x40"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "All",
+                        "subconditions": [
+                            {
+                                "type": "CurrentTile",
+                                "id": 356
+                            },
+                            {
+                                "type": "ValueChangedTo",
+                                "sram_offset": "0x401",
+                                "sram_mask": "0x20",
+                                "sram_value": "0x20"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Village of Outcasts Bombable Hut - Bombed Open",
+        "id": 60,
+        "conditions": [
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0xf2d8",
+                "sram_mask": "0x02",
+                "sram_value": "0x02"
+            }
+        ]
+    },
+    {
+        "name": "Thieves' Town - Front NE - Door Unlocked",
+        "id": 61,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 375
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_mask": "0x80",
+                "sram_value": "0x80"
+            }
+        ]
+    },
+    {
+        "name": "Thieves' Town - Front NE - Door Unlocked",
+        "id": 61,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 377
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_mask": "0x80",
+                "sram_value": "0x80"
+            }
+        ]
+    },
+    {
+        "name": "Thieves' Town - Spike Switch - Door Unlocked",
+        "id": 62,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 381
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_mask": "0x80",
+                "sram_value": "0x80"
+            }
+        ]
+    },
+    {
+        "name": "Thieves' Town - Attic - Bombed Floor",
+        "id": 63,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 385
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x403",
+                "sram_mask": "0x10",
+                "sram_value": "0x10"
+            }
+        ]
+    },
+    {
+        "name": "Thieves' Town - Conveyor Hallway - Door Unlocked",
+        "id": 64,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 389
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_mask": "0x40",
+                "sram_value": "0x40"
+            }
+        ]
     }
 ]

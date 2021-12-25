@@ -687,7 +687,7 @@
                 "subconditions": [
                     {
                         "type": "DungeonCounterIncreased",
-                        "sram_offset": "0xfe7"
+                        "sram_offset": "0xf4e7"
                     }
                 ]
             }

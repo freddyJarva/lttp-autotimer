@@ -442,6 +442,16 @@
             {
                 "type": "ValueChanged",
                 "sram_offset": "0x20"
+            },
+            {
+                "type": "Not",
+                "subconditions": [
+                    {
+                        "type": "CurrentTile",
+                        "id": 127,
+                        "note": "Opening Thieves' Town should not trigger tree pull"
+                    }
+                ]
             }
         ]
     },
@@ -540,6 +550,97 @@
                 "sram_offset": "0x10",
                 "sram_value": "0x18",
                 "note": "GanonEmerges"
+            }
+        ]
+    },
+    {
+        "name": "Misery Mire - Opened",
+        "id": 35,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 181
+            },
+            {
+                "type": "ValueEq",
+                "sram_offset": "0xf2f0",
+                "sram_value": "0x20"
+            }
+        ]
+    },
+    {
+        "name": "Turtle Rock - Opened",
+        "id": 36,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 152
+            },
+            {
+                "type": "ValueEq",
+                "sram_offset": "0xf2c7",
+                "sram_value": "0x20"
+            }
+        ]
+    },
+    {
+        "name": "Palace of Darkness - Opened",
+        "id": 37,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 165
+            },
+            {
+                "type": "ValueEq",
+                "sram_offset": "0xf2de",
+                "sram_value": "0x20"
+            }
+        ]
+    },
+    {
+        "name": "Skull Woods - Opened",
+        "id": 38,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 119
+            },
+            {
+                "type": "ValueEq",
+                "sram_offset": "0xf2c0",
+                "sram_value": "0x20"
+            }
+        ]
+    },
+    {
+        "name": "Ganon's Tower - Opened",
+        "id": 39,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 150
+            },
+            {
+                "type": "ValueEq",
+                "sram_offset": "0xf2c3",
+                "sram_value": "0x20"
+            }
+        ]
+    },
+    {
+        "name": "Thieves' Town - Opened",
+        "id": 40,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 127
+            },
+            {
+                "type": "ValueEq",
+                "sram_offset": "0xf2d8",
+                "sram_value": "0x20",
+                "sram_mask": "0x20"
             }
         ]
     }

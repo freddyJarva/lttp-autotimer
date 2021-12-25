@@ -233,9 +233,19 @@
     },
     {
         "name": "Cave 45",
-        "sram_offset": "0xf237",
-        "sram_mask": "0x04",
-        "id": 37
+        "id": 37,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 41
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x403",
+                "sram_mask": "0x40",
+                "sram_value": "0x40"
+            }
+        ]
     },
     {
         "name": "Graveyard Cave",

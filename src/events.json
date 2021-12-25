@@ -1485,6 +1485,17 @@
                 "type": "ValueChangedTo",
                 "sram_offset": "0x354",
                 "sram_value": "0x25"
+            },
+            {
+                "note": "Ensures event doesn't trigger on opening DP",
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "CRange",
+                        "x": "816-916",
+                        "y": "3688-3840"
+                    }
+                ]
             }
         ]
     },
@@ -1822,6 +1833,46 @@
                 "sram_offset": "0x401",
                 "sram_mask": "0x80",
                 "sram_value": "0x80"
+            }
+        ]
+    },
+    {
+        "name": "Saw Zora Ledge",
+        "id": 92,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 90
+            },
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "CRange",
+                        "x": "814-900",
+                        "y": "581-813"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Saw Desert Ledge",
+        "id": 93,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 99
+            },
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "CRange",
+                        "x": "100-235",
+                        "y": "3623-3839"
+                    }
+                ]
             }
         ]
     }

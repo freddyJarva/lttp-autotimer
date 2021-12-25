@@ -249,9 +249,19 @@
     },
     {
         "name": "Graveyard Cave",
-        "sram_offset": "0xf237",
-        "sram_mask": "0x02",
-        "id": 38
+        "id": 38,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 42
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x403",
+                "sram_mask": "0x20",
+                "sram_value": "0x20"
+            }
+        ]
     },
     {
         "name": "Checkerboard Cave",

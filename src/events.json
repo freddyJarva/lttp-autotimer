@@ -1502,6 +1502,21 @@
         ]
     },
     {
+        "name": "Read The Ped",
+        "id": 98,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 19
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x354",
+                "sram_value": "0x25"
+            }
+        ]
+    },
+    {
         "name": "Tower of Hera - Lobby <-> Tile Room - Door Opened",
         "id": 77,
         "conditions": [
@@ -1873,6 +1888,66 @@
                         "type": "CRange",
                         "x": "100-235",
                         "y": "3623-3839"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Saw Lost Woods Mushroom Spot",
+        "id": 99,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 3
+            },
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "CRange",
+                        "x": "330-612",
+                        "y": "210-460"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Saw Bumper Ledge",
+        "id": 100,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 121
+            },
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "CRange",
+                        "x": "1269-1500",
+                        "y": "520-744"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Saw Lumberjack Item",
+        "id": 101,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 27
+            },
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "CRange",
+                        "x": "1424-1440",
+                        "y": "7494-7544"
                     }
                 ]
             }

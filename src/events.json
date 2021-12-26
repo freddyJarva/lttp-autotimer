@@ -2066,6 +2066,26 @@
         ]
     },
     {
+        "name": "Saw Misery Mire Medallion",
+        "id": 112,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 181
+            },
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "CRange",
+                        "x": "176-437",
+                        "y": "3196-3430"
+                    }
+                ]
+            }
+        ]
+    },
+    {
         "name": "Desert Palace - East Wing <-> Pre Big Chest Key - Door Opened",
         "id": 94,
         "conditions": [
@@ -2126,6 +2146,54 @@
                 "sram_offset": "0x401",
                 "sram_mask": "0x20",
                 "sram_value": "0x20"
+            }
+        ]
+    },
+    {
+        "name": "Skull Woods - Bridge <-> Jellyfish Floor Switch Room - Door opened",
+        "id": 110,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 367
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_mask": "0x80",
+                "sram_value": "0x80"
+            }
+        ]
+    },
+    {
+        "name": "Skull Woods - Drape Vine <-> Key Mummy - Vine Slashed",
+        "id": 110,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 369
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_mask": "0x80",
+                "sram_value": "0x80"
+            }
+        ]
+    },
+    {
+        "name": "Skull Woods - Key Mummy <-> Boss Approach - Door opened",
+        "id": 111,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 370
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_mask": "0x40",
+                "sram_value": "0x40"
             }
         ]
     }

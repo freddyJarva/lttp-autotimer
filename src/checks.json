@@ -618,9 +618,19 @@
     },
     {
         "name": "Spectacle Rock Cave",
-        "sram_offset": "0xf1d5",
-        "sram_mask": "0x04",
-        "id": 76
+        "id": 76,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 72
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x403",
+                "sram_mask": "0x40",
+                "sram_value": "0x40"
+            }
+        ]
     },
     {
         "name": "Paradox Cave Lower - Far Left",

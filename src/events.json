@@ -2411,5 +2411,412 @@
                 "sram_value": "0x40"
             }
         ]
+    },
+    {
+        "name": "Turtle Rock - Hub <-> Cheese Ball Key Room - Door opened",
+        "id": 132,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 468
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_mask": "0x80",
+                "sram_value": "0x80"
+            }
+        ]
+    },
+    {
+        "name": "Turtle Rock - Cheese Ball Key <-> Chain Chomp Room - Door opened",
+        "id": 133,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 474
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_mask": "0x10",
+                "sram_value": "0x10"
+            }
+        ]
+    },
+    {
+        "name": "Turtle Rock - Chain Chomp <-> Below Chain Chomp Room - Door opened",
+        "id": 134,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 475
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_mask": "0x80",
+                "sram_value": "0x80"
+            }
+        ]
+    },
+    {
+        "name": "Turtle Rock - Quad Anti Fairy <-> Lava Chest Room - Door opened",
+        "id": 135,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 478
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_mask": "0x80",
+                "sram_value": "0x80"
+            }
+        ]
+    },
+    {
+        "name": "Turtle Rock - Laser Pots <-> OW balcony - Wall destroyed",
+        "id": 136,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 483
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_mask": "0x80",
+                "sram_value": "0x80"
+            }
+        ]
+    },
+    {
+        "name": "Turtle Rock - Big Key Door <-> Lava Chest Room - Door opened",
+        "id": 137,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 482
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_mask": "0x80",
+                "sram_value": "0x80"
+            }
+        ]
+    },
+    {
+        "name": "Turtle Rock - Bonk Wall <-> Crystaroller Room - Wall Destroyed",
+        "id": 138,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 484
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_mask": "0x40",
+                "sram_value": "0x40"
+            }
+        ]
+    },
+    {
+        "name": "Turtle Rock - Crystaroller <-> Dark Rail Labyrinth - Door opened",
+        "id": 139,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 488
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_mask": "0x80",
+                "sram_value": "0x80"
+            }
+        ]
+    },
+    {
+        "name": "Turtle Rock - Laser Bridge <-> OW - Door opened",
+        "id": 140,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 493
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_mask": "0x80",
+                "sram_value": "0x80"
+            }
+        ]
+    },
+    {
+        "name": "Turtle Rock - Minihelma Bridge <-> Crystal Switch Grid Room - Door opened",
+        "id": 141,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 489
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_mask": "0x80",
+                "sram_value": "0x80"
+            }
+        ]
+    },
+    {
+        "name": "Turtle Rock - Boss Approach <-> Boss - Door opened",
+        "id": 142,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 491
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_mask": "0x80",
+                "sram_value": "0x80"
+            }
+        ]
+    },
+    {
+        "name": "Ganon's Tower - Hook Shot <-> Map Chest Room - Door opened",
+        "id": 143,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 497
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_mask": "0x40",
+                "sram_value": "0x40"
+            }
+        ]
+    },
+    {
+        "name": "Ganon's Tower - Hook Extend <-> Spike Switch Room - Door opened",
+        "id": 144,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 500
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_mask": "0x80",
+                "sram_value": "0x80"
+            }
+        ]
+    },
+    {
+        "name": "Ganon's Tower - Firesnake <-> Portal Labyrinth - Door opened",
+        "id": 145,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 502
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_mask": "0x20",
+                "sram_value": "0x20"
+            }
+        ]
+    },
+    {
+        "name": "Ganon's Tower - Portal Labyrinth <-> Randomizer Room - Wall Destroyed",
+        "id": 146,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 503
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_mask": "0x40",
+                "sram_value": "0x40"
+            }
+        ]
+    },
+    {
+        "name": "Ganon's Tower - Bob's Torch <-> Hope Room - Do keys hold no value to you?",
+        "id": 147,
+        "conditions": [
+            {
+                "type": "Any",
+                "subconditions": [
+                    {
+                        "type": "All",
+                        "note": "Opened from bob's torch side",
+                        "subconditions": [
+                            {
+                                "type": "CurrentTile",
+                                "id": 495
+                            },
+                            {
+                                "type": "ValueChangedTo",
+                                "sram_offset": "0x401",
+                                "sram_mask": "0x20",
+                                "sram_value": "0x20"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "All",
+                        "note": "Opened from hope side",
+                        "subconditions": [
+                            {
+                                "type": "CurrentTile",
+                                "id": 513
+                            },
+                            {
+                                "type": "ValueChangedTo",
+                                "sram_offset": "0x401",
+                                "sram_mask": "0x20",
+                                "sram_value": "0x20"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Ganon's Tower - Tile Room <-> Basement Timed Torches - Door opened",
+        "id": 148,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 514
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_mask": "0x40",
+                "sram_value": "0x40"
+            }
+        ]
+    },
+    {
+        "name": "Ganon's Tower - Conveyor Key Pot <-> Basement Falling Bridge - Door opened",
+        "id": 149,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 521
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_mask": "0x40",
+                "sram_value": "0x40"
+            }
+        ]
+    },
+    {
+        "name": "Ganon's Tower - Big Key Door - Door opened",
+        "id": 150,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 529
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_mask": "0x80",
+                "sram_value": "0x80"
+            }
+        ]
+    },
+    {
+        "name": "Ganon's Tower - Minihelma <-> Spike Conveyor Bomb Wall - Door opened",
+        "id": 151,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 546
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_mask": "0x40",
+                "sram_value": "0x40"
+            }
+        ]
+    },
+    {
+        "name": "Ganon's Tower - Spike Conveyor Bomb Wall <-> Moldorm Approach - Wall Destroyed",
+        "id": 152,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 547
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_mask": "0x10",
+                "sram_value": "0x10"
+            }
+        ]
+    },
+    {
+        "name": "Ganon's Tower - Moldorm Approach <-> Moldorm - Door opened",
+        "id": 153,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 547
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_mask": "0x20",
+                "sram_value": "0x20"
+            }
+        ]
+    },
+    {
+        "name": "Ganon's Tower - Boss Approach <-> Boss - Door opened",
+        "id": 154,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 552
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_mask": "0x80",
+                "sram_value": "0x80"
+            }
+        ]
+    },
+    {
+        "name": "Pyramid - Ganon Drop Opened",
+        "id": 155,
+        "conditions": [
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0xf2db",
+                "sram_mask": "0x20",
+                "sram_value": "0x20"
+            }
+        ]
     }
 ]

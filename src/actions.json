@@ -1,12 +1,38 @@
 [
     {
-        "name": "Sword",
+        "name": "Slash",
         "id": 0,
         "conditions": [
             {
                 "type": "ValueChangedTo",
                 "sram_offset": "0x354",
                 "sram_value": "0x27"
+            },
+            {
+                "type": "HasItem",
+                "id": 27,
+                "note": "has any sword"
+            }
+        ]
+    },
+    {
+        "name": "Jab",
+        "id": 17,
+        "conditions": [
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x354",
+                "sram_value": "0x27"
+            },
+            {
+                "type": "Not",
+                "note": "has no sword",
+                "subconditions": [
+                    {
+                        "type": "HasItem",
+                        "id": 27
+                    }
+                ]
             }
         ]
     },

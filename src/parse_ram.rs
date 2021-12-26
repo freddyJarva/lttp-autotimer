@@ -317,6 +317,7 @@ pub fn match_condition(
             sram_mask,
         } => ram.get_byte(*sram_offset) & sram_mask == *sram_value & sram_mask,
         Conditions::CheckMade { id } => events.find_location_check(*id).is_some(),
+        Conditions::HasItem { id } => !events.items_with_id(*id).is_empty(),
         Conditions::PreviousValueEq {
             sram_offset,
             sram_value,

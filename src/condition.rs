@@ -108,6 +108,9 @@ pub enum Conditions {
     CheckMade {
         id: usize,
     },
+    HasItem {
+        id: usize,
+    },
 }
 
 fn default_bitmask() -> u8 {

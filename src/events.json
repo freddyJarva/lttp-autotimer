@@ -938,7 +938,7 @@
     },
     {
         "name": "Eastern Palace - Dark Double Anti Fairy - Door Unlocked",
-        "id": 56,
+        "id": 157,
         "conditions": [
             {
                 "type": "CurrentTile",
@@ -953,7 +953,7 @@
     },
     {
         "name": "Eastern Palace - Big Key Chest Room - Door Unlocked",
-        "id": 56,
+        "id": 158,
         "conditions": [
             {
                 "type": "CurrentTile",
@@ -968,7 +968,7 @@
     },
     {
         "name": "Eastern Palace - Big Chest Room - Door Unlocked",
-        "id": 56,
+        "id": 159,
         "conditions": [
             {
                 "type": "CurrentTile",
@@ -984,7 +984,7 @@
     },
     {
         "name": "Eastern Palace - Dark Bastard Room - Door Unlocked",
-        "id": 56,
+        "id": 160,
         "conditions": [
             {
                 "type": "CurrentTile",
@@ -1122,7 +1122,7 @@
     },
     {
         "name": "Thieves' Town - Front NE - Door Unlocked",
-        "id": 61,
+        "id": 163,
         "conditions": [
             {
                 "type": "CurrentTile",
@@ -1446,7 +1446,7 @@
     },
     {
         "name": "Palace of Darkness - Dark Hammer Tile <-> Dark Tiny Hallway - Door Opened",
-        "id": 74,
+        "id": 162,
         "conditions": [
             {
                 "type": "CurrentTile",
@@ -1614,7 +1614,7 @@
     },
     {
         "name": "Swamp Palace - Below Lobby - Wall Destroyed",
-        "id": 82,
+        "id": 161,
         "conditions": [
             {
                 "type": "CurrentTile",
@@ -2207,7 +2207,7 @@
     },
     {
         "name": "Skull Woods - Drape Vine <-> Key Mummy - Vine Slashed",
-        "id": 110,
+        "id": 156,
         "conditions": [
             {
                 "type": "CurrentTile",

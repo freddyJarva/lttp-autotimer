@@ -2196,5 +2196,180 @@
                 "sram_value": "0x40"
             }
         ]
+    },
+    {
+        "name": "Misery Mire - Hub <-> Switch Room - Door opened",
+        "id": 113,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 433
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_mask": "0x40",
+                "sram_value": "0x40"
+            }
+        ]
+    },
+    {
+        "name": "Misery Mire - Switch <-> Tile Room - Door opened",
+        "id": 114,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 434
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_mask": "0x80",
+                "sram_value": "0x80"
+            }
+        ]
+    },
+    {
+        "name": "Misery Mire - Wizrobe Torches - Cutscene",
+        "id": 115,
+        "conditions": [
+            {
+                "type": "Any",
+                "subconditions": [
+                    {
+                        "type": "CurrentTile",
+                        "id": 442
+                    },
+                    {
+                        "type": "CurrentTile",
+                        "id": 443
+                    }
+                ]
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x403",
+                "sram_mask": "0x10",
+                "sram_value": "0x10"
+            }
+        ]
+    },
+    {
+        "name": "Misery Mire - Portal in Front of Big Key Door - Door opened",
+        "id": 116,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 440
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_mask": "0x80",
+                "sram_value": "0x80"
+            }
+        ]
+    },
+    {
+        "name": "Misery Mire - Hub <-> Map Chest Room - Door Opened",
+        "id": 117,
+        "conditions": [
+            {
+                "type": "Any",
+                "subconditions": [
+                    {
+                        "type": "All",
+                        "note": "Opened from hub",
+                        "subconditions": [
+                            {
+                                "type": "CurrentTile",
+                                "id": 433
+                            },
+                            {
+                                "type": "ValueChangedTo",
+                                "sram_offset": "0x401",
+                                "sram_mask": "0x80",
+                                "sram_value": "0x80"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "All",
+                        "note": "Opened from map chest side",
+                        "subconditions": [
+                            {
+                                "type": "CurrentTile",
+                                "id": 462
+                            },
+                            {
+                                "type": "ValueChangedTo",
+                                "sram_offset": "0x401",
+                                "sram_mask": "0x80",
+                                "sram_value": "0x80"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Misery Mire - Spike Chest <-> Southeast of Bridges - Door Opened",
+        "id": 118,
+        "conditions": [
+            {
+                "type": "Any",
+                "subconditions": [
+                    {
+                        "type": "All",
+                        "note": "Opened from spike side",
+                        "subconditions": [
+                            {
+                                "type": "CurrentTile",
+                                "id": 461
+                            },
+                            {
+                                "type": "ValueChangedTo",
+                                "sram_offset": "0x401",
+                                "sram_mask": "0x80",
+                                "sram_value": "0x80"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "All",
+                        "note": "Opened from SE of bridge side",
+                        "subconditions": [
+                            {
+                                "type": "CurrentTile",
+                                "id": 464
+                            },
+                            {
+                                "type": "ValueChangedTo",
+                                "sram_offset": "0x401",
+                                "sram_mask": "0x80",
+                                "sram_value": "0x80"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Misery Mire - Spooky Action Room - Wall Destroyed",
+        "id": 119,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 453
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_mask": "0x40",
+                "sram_value": "0x40"
+            }
+        ]
     }
 ]

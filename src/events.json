@@ -1954,6 +1954,86 @@
         ]
     },
     {
+        "name": "Saw Spectacle Rock Item",
+        "id": 102,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 57
+            },
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "CRange",
+                        "x": "1944-2193",
+                        "y": "264-458"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Saw Spectacle Rock Cave Item",
+        "id": 103,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 72
+            },
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "CRange",
+                        "x": "5190-5500",
+                        "y": "7000-7466"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Saw Floating Isle Item",
+        "id": 104,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 58
+            },
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "CRange",
+                        "x": "3242-3441",
+                        "y": "1-163"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Saw Turtle Rock Medallion",
+        "id": 105,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 152
+            },
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "CRange",
+                        "x": "3712-3977",
+                        "y": "143-351"
+                    }
+                ]
+            }
+        ]
+    },
+    {
         "name": "Desert Palace - East Wing <-> Pre Big Chest Key - Door Opened",
         "id": 94,
         "conditions": [

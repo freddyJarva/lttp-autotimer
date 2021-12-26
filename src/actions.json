@@ -65,6 +65,23 @@
         ]
     },
     {
+        "name": "Ice rod",
+        "id": 18,
+        "conditions": [
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x354",
+                "sram_value": "0x06"
+            },
+            {
+                "type": "ValueEq",
+                "sram_offset": "0x303",
+                "sram_value": "0x06",
+                "note": "equipped item"
+            }
+        ]
+    },
+    {
         "name": "Boomerang",
         "id": 3,
         "conditions": [

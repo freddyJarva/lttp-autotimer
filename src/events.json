@@ -2086,6 +2086,46 @@
         ]
     },
     {
+        "name": "Saw Race Game Item",
+        "id": 130,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 13
+            },
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "CRange",
+                        "x": "0-245",
+                        "y": "2744-3000"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Saw Hylia Isle Item",
+        "id": 131,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 101
+            },
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "CRange",
+                        "x": "2856-3096",
+                        "y": "3260-3472"
+                    }
+                ]
+            }
+        ]
+    },
+    {
         "name": "Desert Palace - East Wing <-> Pre Big Chest Key - Door Opened",
         "id": 94,
         "conditions": [

@@ -352,7 +352,7 @@ link's abilities: {self.link_abilities()}
             self._id = create_row_hash(
                 self._row,
                 cols=["previous_tile", "tile_id", "next_tile"]
-                + sorted([c for c in self._row if c.startswith("can_")]),
+                # + sorted([c for c in self._row if c.startswith("can_")]),
             )
         return self._id
 
@@ -371,7 +371,7 @@ link's abilities: {self.link_abilities()}
             self._next_logical_tile = create_row_hash(
                 self._row,
                 cols=["tile_id", "next_tile", "next_next_tile"]
-                + sorted([c for c in self._row if c.startswith("can_")]),
+                # + sorted([c for c in self._row if c.startswith("can_")]),
             )
         return self._next_logical_tile
 
@@ -414,13 +414,13 @@ class EdgeAttributes:
     weight: float
 
 
-def adjacent_tiles_map(tiles: Iterable[LogicTile]) -> Dict[str, List[EdgeAttributes]]:
+def adjacent_tiles_map(tiles: Iterable[LogicTile]) -> Dict[int, List[EdgeAttributes]]:
     """tiles: tiles taken from 1..n playthroughs of randomizer"""
     adjacents = defaultdict(dict)
+
     for tile in tiles:
         # Build up all edges for tiles
         tile_adjacents = adjacents[tile.id]
-
         # Keep the lowest time_delta on duplicate
         if existing_edge := tile_adjacents.get(tile.next_logical_tile):
             existing_edge.weight = min(existing_edge.weight, tile.weight)

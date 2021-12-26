@@ -1704,6 +1704,38 @@
         ]
     },
     {
+        "name": "Swamp Palace - Hub <-> Statue Switch - Door opened",
+        "id": 106,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 326
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_mask": "0x40",
+                "sram_value": "0x40"
+            }
+        ]
+    },
+    {
+        "name": "Swamp Palace - Swimming Pool <->  Boss Approach - Door opened",
+        "id": 107,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 322
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_mask": "0x40",
+                "sram_value": "0x40"
+            }
+        ]
+    },
+    {
         "name": "Ice Palace - Jellyfish Key - Door opened",
         "id": 86,
         "conditions": [

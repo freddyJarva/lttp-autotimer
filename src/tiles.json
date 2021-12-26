@@ -11284,9 +11284,15 @@
                 "type": "Coordinates",
                 "coordinates": [
                     {
-                        "type": "Range",
-                        "x": "6168-6560",
-                        "y": "-2752"
+                        "type": "Pair",
+                        "x": "6168",
+                        "y": "2680"
+                    },
+                    {
+                        "type": "Pair",
+                        "x": "6520",
+                        "y": "2752",
+                        "note": "From fairy room"
                     },
                     {
                         "type": "Stairs",

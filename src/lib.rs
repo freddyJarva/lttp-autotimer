@@ -95,9 +95,9 @@ pub async fn connect_to_sni(args: &ArgMatches) -> anyhow::Result<()> {
         Ok(is_race_rom) => !is_race_rom && cli_config.non_race_mode,
         Err(_) => {
             println!(
-                "Wasn't able to tell if race rom or not, defaulting to not allowing any event output"
+                "Wasn't able to tell if race rom or not, defaulting to showing output"
             );
-            false
+            true
         }
     };
     if !allow_output {

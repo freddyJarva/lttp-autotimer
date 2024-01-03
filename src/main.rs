@@ -36,6 +36,18 @@ fn main() -> anyhow::Result<()> {
             Arg::new("Non race mode")
                 .long("--non-race")
                 .about("Show output on game events in app window. NOTE: This flag will have no effect when playing a race rom.")
+        ).arg(
+            Arg::new("Start Transition")
+                .long("start-transition")
+                .short('s')
+                .about("Where to start the timer for segments")
+                .takes_value(true)
+        ).arg(
+            Arg::new("End Transition")
+                .long("end-transition")
+                .short('e')
+                .about("Where to end the timer for segments")
+                .takes_value(true)
         );
 
     let matches;

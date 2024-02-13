@@ -2,7 +2,7 @@ use chrono::{DateTime, Duration, Timelike, Utc};
 use colored::{ColoredString, Colorize};
 use termcolor::{ColorChoice, StandardStream};
 
-use crate::{check::Check, tile::Tile};
+use crate::{check::Check, tile::Tile, event::EventEnum};
 
 pub struct StdoutPrinter {
     allow_output: bool,
@@ -54,6 +54,18 @@ impl StdoutPrinter {
     pub fn action(&mut self, event: &Check) {
         if self.allow_output {
             print_action(event)
+        }
+    }
+
+    pub fn command(&mut self, event: &Check) {
+        if self.allow_output {
+            print_command(event)
+        }
+    }
+
+    pub fn segment_finish(&mut self, objectives: &[(EventEnum, DateTime<Utc>)]) {
+        if self.allow_output {
+            print_segment_finish(objectives)
         }
     }
 }
@@ -154,6 +166,22 @@ pub fn print_action(check: &Check) {
     println!(
         "{}",
         format!("{} - {}", check.name, check.progressive_level).dimmed()
+    );
+}
+
+pub fn print_command(check: &Check) {
+    println!(
+        "{}",
+        format!("{} - {}", check.name, check.progressive_level).yellow()
+    );
+}
+
+pub fn print_segment_finish(objectives: &[(EventEnum, DateTime<Utc>)]) {
+    let start = &objectives[0];
+    let end = &objectives[objectives.len() - 1];
+    println!(
+        "{}",
+        format!("Segment Time - {}", format_duration(end.1 - start.1)).green()
     );
 }
 

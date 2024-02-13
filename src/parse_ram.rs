@@ -24,6 +24,7 @@ pub fn check_for_location_checks<W>(
     events: &mut EventTracker,
     print: &mut StdoutPrinter,
     time_of_read: &DateTime<Utc>,
+    trigger_even_if_checked: bool
 ) -> anyhow::Result<()>
 where
     W: CsvWriter,
@@ -52,7 +53,7 @@ where
                         != current_check_value)
                 {
                     if current_check_value & check.sram_mask.unwrap_or_default() != 0
-                        && !check.is_checked
+                        && (trigger_even_if_checked || !check.is_checked)
                     {
                         check.mark_as_checked(time_of_read);
                         print.location_check(check);
@@ -76,6 +77,7 @@ pub fn check_for_item_checks<W>(
     events: &mut EventTracker,
     print: &mut StdoutPrinter,
     time_of_read: &DateTime<Utc>,
+    trigger_even_if_checked: bool
 ) -> anyhow::Result<()>
 where
     W: CsvWriter,
@@ -85,7 +87,7 @@ where
 
         match &check.conditions {
             Some(conditions) => {
-                if (check.is_progressive || !check.is_checked)
+                if (check.is_progressive || (trigger_even_if_checked || !check.is_checked))
                     && conditions
                         .iter()
                         .all(|condition| match_condition(condition, events, ram, previous_values))
@@ -109,7 +111,7 @@ where
                 {
                     if !check.is_progressive
                         && current_check_value & check.sram_mask.unwrap_or_default() != 0
-                        && !check.is_checked
+                        && (trigger_even_if_checked || !check.is_checked)
                     {
                         check.mark_as_checked(time_of_read);
                         print.item_check(check);
@@ -164,6 +166,7 @@ where
     Ok(())
 }
 
+
 pub fn check_for_events<W>(
     ram: &SnesRam,
     previous_values: &mut VecDeque<SnesRam>,
@@ -172,6 +175,7 @@ pub fn check_for_events<W>(
     events: &mut EventTracker,
     print: &mut StdoutPrinter,
     time_of_read: &DateTime<Utc>,
+    trigger_even_if_checked: bool,
 ) -> anyhow::Result<bool>
 where
     W: CsvWriter,
@@ -180,7 +184,7 @@ where
         let current_event_value = ram.get_byte(event.sram_offset.unwrap_or_default() as usize);
         match &event.conditions {
             Some(conditions) => {
-                if (event.is_progressive || !event.is_checked)
+                if (event.is_progressive || (trigger_even_if_checked || !event.is_checked))
                     && conditions
                         .iter()
                         .all(|condition| match_condition(condition, events, ram, previous_values))
@@ -200,7 +204,7 @@ where
             None => {
                 if !event.is_progressive
                     && current_event_value & event.sram_mask.unwrap_or_default() != 0
-                    && !event.is_checked
+                    && (trigger_even_if_checked || !event.is_checked)
                 {
                     event.mark_as_checked(time_of_read);
                     print.event(event);
@@ -257,6 +261,111 @@ where
     }
     Ok(())
 }
+
+pub fn check_for_commands<W>(
+    ram: &SnesRam,
+    previous_values: &mut VecDeque<SnesRam>,
+    subscribed_commands: &mut Vec<Check>,
+    writer: &mut W,
+    commands: &mut EventTracker,
+    print: &mut StdoutPrinter,
+    time_of_read: &DateTime<Utc>,
+) -> anyhow::Result<Option<Check>>
+where
+    W: CsvWriter,
+{
+    for command in subscribed_commands {
+        let current_command_value = ram.get_byte(command.sram_offset.unwrap_or_default() as usize);
+        match &command.conditions {
+            Some(conditions) => {
+                if conditions
+                    .iter()
+                    .all(|condition| match_condition(condition, commands, ram, previous_values))
+                {
+                    // All commands are considered progressive in essence
+                    command.progress_item(current_command_value, time_of_read);
+
+                    let occurred_command = EventEnum::Command(command.clone());
+                    writer.write_event(Event::from(&occurred_command))?;
+                    commands.push(occurred_command);
+                    print.command(command);
+                    return Ok(Some(command.to_owned()));
+                }
+            }
+            None => {}
+        }
+    }
+    Ok(None)
+}
+
+pub fn check_for_segment_run_start(
+    ram: &SnesRam,
+    ram_history: &mut VecDeque<SnesRam>,
+    start_event: &EventEnum,
+    events: &mut EventTracker
+) -> anyhow::Result<bool>
+{
+    match start_event {
+        EventEnum::Transition(tile) => {
+            match events.latest_transition() {
+                Some(previous_transition) => {
+                    if let Ok(current_tile) = Tile::try_from_ram(ram, &previous_transition) {
+                        if current_tile.name != previous_transition.name && current_tile.name == tile.name {
+                            return Ok(true)
+                        }
+                    }
+                }
+                None => {
+                    panic!("You've reached the unreachable, as EventTracker should always contain a transition when using ::new");
+                }
+            }
+        }
+        EventEnum::LocationCheck(check) => {
+            if let Some(ref conditions) = check.conditions {
+                if conditions.iter().all(|condition| match_condition(condition, events, ram, ram_history)) {
+                    return Ok(true)
+                }
+            } else {
+                let current_check_value =
+                    ram.get_byte(check.sram_offset.unwrap_or_default() as usize);
+                if ram_history.len() > 0
+                    && (ram_history[ram_history.len() - 1]
+                        .get_byte(check.sram_offset.unwrap_or_default() as usize)
+                        != current_check_value)
+                {
+                    if current_check_value & check.sram_mask.unwrap_or_default() != 0
+                    {
+                        return Ok(true);
+                    }
+                }
+            }
+        },
+        EventEnum::ItemGet(check) => {
+            if let Some(ref conditions) = check.conditions {
+                if conditions.iter().all(|condition| match_condition(condition, events, ram, ram_history)) {
+                    return Ok(true)
+                }
+            }
+        },
+        EventEnum::Other(check) => {
+            if let Some(ref conditions) = check.conditions {
+                if conditions.iter().all(|condition| match_condition(condition, events, ram, ram_history)) {
+                    return Ok(true)
+                }
+            }
+        },
+        EventEnum::Action(check) => {
+            if let Some(ref conditions) = check.conditions {
+                if conditions.iter().all(|condition| match_condition(condition, events, ram, ram_history)) {
+                    return Ok(true)
+                }
+            }
+        },
+        EventEnum::Command(_) => panic!("EventEnum command should not be able to be part of segment objectives"),
+    }
+    Ok(false)
+}
+
 
 pub fn match_condition(
     condition: &Conditions,

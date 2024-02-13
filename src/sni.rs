@@ -198,7 +198,7 @@ pub async fn read_snes_ram(
                 if elapsed < update_freq {
                     time::sleep(update_freq - elapsed).await;
                 }
-                if config._verbosity > 0 {
+                if config._verbosity > 1 {
                     println!("delta: {:?}", elapsed);
                 }
             }

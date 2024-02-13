@@ -1,0 +1,38 @@
+[
+    {
+        "name": "Recording segment objective - Last objective before pressing L+SELECT will be segment end",
+        "id": 1,
+        "conditions": [
+            {
+                "type": "ValueEq",
+                "sram_offset": "0xf2",
+                "sram_value": "0x10",
+                "sram_mask": "0x10"
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0xf0",
+                "sram_value": "0x20",
+                "sram_mask": "0x20"
+            }
+        ]
+    },
+    {
+        "name": "Segment recorded, setting previous objective as end. Trigger start objective to start a lap",
+        "id": 2,
+        "conditions": [
+            {
+                "type": "ValueEq",
+                "sram_offset": "0xf2",
+                "sram_value": "0x20",
+                "sram_mask": "0x20"
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0xf0",
+                "sram_value": "0x20",
+                "sram_mask": "0x20"
+            }
+        ]
+    }
+]

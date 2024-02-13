@@ -52,6 +52,7 @@ pub struct CliConfig {
     manual_update: bool,
     update_frequency: u64,
     _verbosity: u64,
+    segment_run_mode: bool,
 }
 
 impl CliConfig {
@@ -60,17 +61,21 @@ impl CliConfig {
     }
 }
 
+
 #[cfg(feature = "sni")]
 #[tokio::main]
 pub async fn connect_to_sni(args: &ArgMatches) -> anyhow::Result<()> {
+    use chrono::DateTime;
+    use event::EventEnum::Command;
+
     use crate::{
-        check::deserialize_actions,
+        check::{deserialize_actions, deserialize_commands},
         parse_ram::{
             check_for_actions, check_for_events, check_for_item_checks, check_for_location_checks,
-            check_for_transitions,
+            check_for_transitions, check_for_commands, check_for_segment_run_start,
         },
         request::fetch_metadata_for,
-        sni::{api::device_memory_client::DeviceMemoryClient, get_device, read_snes_ram},
+        sni::{api::device_memory_client::DeviceMemoryClient, get_device, read_snes_ram}, event::{EventEnum, CommandState},
     };
 
     let cli_config = CliConfig {
@@ -84,6 +89,7 @@ pub async fn connect_to_sni(args: &ArgMatches) -> anyhow::Result<()> {
             .parse()
             .expect("specified update frequency (--freq/-f) needs to be a positive integer"),
         _verbosity: args.occurrences_of("v"),
+        segment_run_mode: args.is_present("Segment run mode")
     };
 
     println!("Connecting to sni");
@@ -109,13 +115,18 @@ pub async fn connect_to_sni(args: &ArgMatches) -> anyhow::Result<()> {
 
     let rom_hash = sni::read_rom_hash(&connected_device, &mut client).await?;
     let permalink = request::permalink_for(&rom_hash);
-    let meta_data = match fetch_metadata_for(rom_hash).await {
-        Ok(meta) => Some(meta.spoiler.meta),
-        Err(e) => {
-            println!("Request for metadata failed, skipping. Cause: {:?}", e);
-            None
-        }
-    };
+    let meta_data: Option<request::MetaData>;
+    if cli_config.segment_run_mode {
+        meta_data = None;
+    } else {
+        meta_data = match fetch_metadata_for(rom_hash).await {
+            Ok(meta) => Some(meta.spoiler.meta),
+            Err(e) => {
+                println!("Request for metadata failed, skipping. Cause: {:?}", e);
+                None
+            }
+        };
+    }
     let mut print = StdoutPrinter::new(allow_output);
     print.debug(format!(
         "{} metadata: {:?}",
@@ -148,6 +159,11 @@ pub async fn connect_to_sni(args: &ArgMatches) -> anyhow::Result<()> {
     // This is to ensure it only checks for events - especially transitions - while in-game.
     let mut game_started = false;
 
+    // segment recorder states
+    let mut command_state: CommandState = CommandState::None;
+    let mut segment_objectives: Vec<EventEnum> = vec![];
+    let mut finished_objectives: Vec<(EventEnum, DateTime<Utc>)> = vec![];
+
     let mut subscribed_events: Vec<Check> = deserialize_event_checks()?;
     let mut locations: Vec<Check> = deserialize_location_checks()?
         .into_iter()
@@ -156,11 +172,108 @@ pub async fn connect_to_sni(args: &ArgMatches) -> anyhow::Result<()> {
         .collect();
     let mut items: Vec<Check> = deserialize_item_checks()?.into_iter().collect();
     let mut actions: Vec<Check> = deserialize_actions()?.into_iter().collect();
+    let mut commands: Vec<Check> = deserialize_commands()?.into_iter().collect();
 
     while let Some((time_of_read, snes_ram)) = rx.recv().await {
         if !game_started {
             game_started = snes_ram.game_has_started();
         } else {
+            // command mode
+            if cli_config.segment_run_mode {
+                let input_command = check_for_commands(
+                    &snes_ram,
+                    &mut ram_history,
+                    &mut commands,
+                    &mut writer,
+                    &mut events,
+                    &mut print,
+                    &time_of_read,
+                )?;
+                let input_cmd = input_command.unwrap_or(Check::new(0));
+                match command_state {
+                    CommandState::None => {
+                        match &input_cmd.id {
+                            1 => {
+                                command_state = CommandState::RecordingInProgress(input_cmd);
+                            },
+                            _ => ()
+                        }
+                    },
+                    CommandState::RecordingInProgress(ref start_check) => {
+                        match &input_cmd.id {
+                            1 => {
+                                command_state = CommandState::RecordingInProgress(input_cmd);
+                            },
+                            2 => {
+                                if start_check.id == 1 {
+                                    segment_objectives = events.objectives_between(Command(start_check.clone()), Some(Command(input_cmd)));
+                                    println!("Segments: {:?}", segment_objectives);
+                                    command_state = CommandState::SegmentRecorded;
+                                }
+                            },
+                            _ => ()
+                        }
+                    },
+                    CommandState::SegmentRecorded if segment_objectives.len() > 0 => {
+                        match &input_cmd.id {
+                            1 => {
+                                command_state = CommandState::RecordingInProgress(input_cmd);
+                            },
+                            _ => {
+                                let objective = segment_objectives.first().expect("Length should be > 0 here").clone().to_owned();
+
+                                if check_for_segment_run_start(
+                                    &snes_ram,
+                                    &mut ram_history,
+                                    &objective,
+                                    &mut events
+                                )? {
+                                    finished_objectives.push((objective, time_of_read.clone()));
+                                    println!("Run start");
+                                    command_state = CommandState::RunStarted(1)
+                                }
+                            }
+                        }
+                    },
+                    CommandState::RunStarted(current_objective_idx) => {
+                        match &input_cmd.id {
+                            1 => {
+                                finished_objectives = vec![];
+                                command_state = CommandState::RecordingInProgress(input_cmd);
+                            },
+                            _ => {
+                                if segment_objectives.len() <= current_objective_idx {
+                                    // Run finished
+                                    command_state = CommandState::RunFinished;
+                                } else {
+                                    let objective = &segment_objectives[current_objective_idx];
+                                    if check_for_segment_run_start(
+                                        &snes_ram,
+                                        &mut ram_history,
+                                        &objective,
+                                        &mut events
+                                    )? {
+                                        println!("Finished objective {} of {}", current_objective_idx, segment_objectives.len());
+                                        finished_objectives.push((objective.clone(), time_of_read.clone()));
+                                        command_state = CommandState::RunStarted(current_objective_idx + 1)
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    CommandState::SegmentRecorded => {
+                        command_state = CommandState::None;
+                    },
+                    CommandState::RunFinished => {
+                        print.segment_finish(&finished_objectives);
+                        // TODO: print to csv, calculate averages etc.
+                        finished_objectives = vec![];
+                        command_state = CommandState::SegmentRecorded;
+                        events = EventTracker::new();
+                    }
+                }
+            }
+            // checks
             game_started = check_for_events(
                 &snes_ram,
                 &mut ram_history,
@@ -169,17 +282,20 @@ pub async fn connect_to_sni(args: &ArgMatches) -> anyhow::Result<()> {
                 &mut events,
                 &mut print,
                 &time_of_read,
+                false,
             )?;
             if game_started {
-                check_for_actions(
-                    &snes_ram,
-                    &mut ram_history,
-                    &mut actions,
-                    &mut writer,
-                    &mut events,
-                    &mut print,
-                    &time_of_read,
-                )?;
+                if cli_config._verbosity > 0 {
+                    check_for_actions(
+                        &snes_ram,
+                        &mut ram_history,
+                        &mut actions,
+                        &mut writer,
+                        &mut events,
+                        &mut print,
+                        &time_of_read,
+                    )?;
+                }
                 check_for_transitions(
                     &snes_ram,
                     &mut writer,
@@ -195,6 +311,7 @@ pub async fn connect_to_sni(args: &ArgMatches) -> anyhow::Result<()> {
                     &mut events,
                     &mut print,
                     &time_of_read,
+                    false,
                 )?;
                 check_for_item_checks(
                     &snes_ram,
@@ -204,6 +321,7 @@ pub async fn connect_to_sni(args: &ArgMatches) -> anyhow::Result<()> {
                     &mut events,
                     &mut print,
                     &time_of_read,
+                    false,
                 )?;
             }
             ram_history.push_back(snes_ram);
@@ -215,6 +333,8 @@ pub async fn connect_to_sni(args: &ArgMatches) -> anyhow::Result<()> {
         }
 
         writer.flush()?;
+
+        // check if recording segment
 
         if events
             .latest_other_event()
@@ -353,7 +473,7 @@ fn write_metadata_to_csv(
 mod tests {
     use std::collections::HashMap;
 
-    use crate::{check::deserialize_actions, tile::deserialize_transitions};
+    use crate::{check::deserialize_actions, tile::deserialize_transitions, check::deserialize_commands};
 
     use super::*;
 
@@ -386,5 +506,6 @@ mod tests {
         unique_location_ids: deserialize_location_checks(),
         unique_tile_ids: deserialize_transitions(),
         unique_action_ids: deserialize_actions(),
+        unique_commands_ids: deserialize_commands(),
     }
 }

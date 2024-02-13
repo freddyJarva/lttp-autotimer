@@ -322,5 +322,159 @@
                 ]
             }
         ]
+    },
+    {
+        "name": "Practice Hack - Load State",
+        "id": 19,
+        "conditions": [
+            {
+                "type": "ValueChanged",
+                "sram_offset": "0x131"
+            }
+        ]
+    },
+    {
+        "name": ">",
+        "id": 20,
+        "conditions": [
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0xf0",
+                "sram_value": "0x01",
+                "sram_mask": "0x01"
+            }
+        ]
+    },
+    {
+        "name": "<",
+        "id": 21,
+        "conditions": [
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0xf0",
+                "sram_value": "0x02",
+                "sram_mask": "0x02"
+            }
+        ]
+    },
+    {
+        "name": "v",
+        "id": 22,
+        "conditions": [
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0xf0",
+                "sram_value": "0x04",
+                "sram_mask": "0x04"
+            }
+        ]
+    },
+    {
+        "name": "^",
+        "id": 23,
+        "conditions": [
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0xf0",
+                "sram_value": "0x08",
+                "sram_mask": "0x08"
+            }
+        ]
+    },
+    {
+        "name": "START",
+        "id": 24,
+        "conditions": [
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0xf0",
+                "sram_value": "0x10",
+                "sram_mask": "0x10"
+            }
+        ]
+    },
+    {
+        "name": "SELECT",
+        "id": 25,
+        "conditions": [
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0xf0",
+                "sram_value": "0x20",
+                "sram_mask": "0x20"
+            }
+        ]
+    },
+    {
+        "name": "Y",
+        "id": 26,
+        "conditions": [
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0xf0",
+                "sram_value": "0x40",
+                "sram_mask": "0x40"
+            }
+        ]
+    },
+    {
+        "name": "B",
+        "id": 27,
+        "conditions": [
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0xf0",
+                "sram_value": "0x80",
+                "sram_mask": "0x80"
+            }
+        ]
+    },
+    {
+        "name": "R",
+        "id": 28,
+        "conditions": [
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0xf2",
+                "sram_value": "0x10",
+                "sram_mask": "0x10"
+            }
+        ]
+    },
+    {
+        "name": "L",
+        "id": 29,
+        "conditions": [
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0xf2",
+                "sram_value": "0x20",
+                "sram_mask": "0x20"
+            }
+        ]
+    },
+    {
+        "name": "X",
+        "id": 30,
+        "conditions": [
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0xf2",
+                "sram_value": "0x40",
+                "sram_mask": "0x40"
+            }
+        ]
+    },
+    {
+        "name": "A",
+        "id": 31,
+        "conditions": [
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0xf2",
+                "sram_value": "0x80",
+                "sram_mask": "0x80"
+            }
+        ]
     }
 ]

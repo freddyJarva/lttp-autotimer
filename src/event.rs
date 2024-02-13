@@ -12,8 +12,11 @@ pub trait EventLog {
     fn latest_item_get(&self) -> Option<Check>;
     fn latest_other_event(&self) -> Option<Check>;
     fn latest_action(&self) -> Option<Check>;
+    fn latest_objective(&self) -> Option<EventEnum>;
+    fn objectives_between(&self, start: EventEnum, end: Option<EventEnum>) -> Vec<EventEnum>;
     fn find_other_event(&self, id: usize) -> Option<Check>;
     fn find_location_check(&self, id: usize) -> Option<Check>;
+    fn find_latest_command_by(&self, id: usize) -> Option<Check>;
     fn others_with_id(&self, id: usize) -> Vec<Check>;
     fn items_with_id(&self, id: usize) -> Vec<Check>;
     fn location_checks_with_id(&self, id: usize) -> Vec<Check>;
@@ -120,6 +123,22 @@ impl EventLog for EventTracker {
             })
     }
 
+    fn latest_objective(&self) -> Option<EventEnum> {
+        self.log
+            .iter()
+            .rev()
+            .find(|event| {
+                match event {
+                    EventEnum::Transition(_) => true,
+                    EventEnum::LocationCheck(_) => true,
+                    EventEnum::ItemGet(_) => true,
+                    EventEnum::Other(_) => true,
+                    EventEnum::Action(_) => false,
+                    EventEnum::Command(_) => false,
+                }
+            }).cloned()
+    }
+
     fn find_other_event(&self, id: usize) -> Option<Check> {
         self.log
             .iter()
@@ -157,6 +176,27 @@ impl EventLog for EventTracker {
                 }
             })
     }
+
+    fn find_latest_command_by(&self, id: usize) -> Option<Check> {
+        self.log
+            .iter()
+            .rev()
+            .find(|&check| {
+                if let EventEnum::Command(check) = check {
+                    check.id == id
+                } else {
+                    false
+                }
+            })
+            .map(|check| {
+                if let EventEnum::Command(t) = check {
+                    t.clone()
+                } else {
+                    panic!("This should never happen")
+                }
+            })
+    }
+
 
     fn others_with_id(&self, id: usize) -> Vec<Check> {
         self.log
@@ -208,15 +248,43 @@ impl EventLog for EventTracker {
             })
             .collect()
     }
+
+    fn objectives_between(&self, start: EventEnum, end: Option<EventEnum>) -> Vec<EventEnum> {
+        let event_iter = self.log
+                .iter()
+                .skip_while(|&event| !event.eq(&start))
+                .filter(|&event| match event {
+                    EventEnum::Action(_) => false,
+                    EventEnum::Command(_) => false,
+                    EventEnum::ItemGet(_) => false,
+                    _ => true
+                });
+        if let Some(end) = end {
+            return event_iter
+                .take_while(|&event| !event.eq(&end))
+                .cloned().collect()
+        }
+        event_iter.cloned().collect()
+    }
 }
 
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, PartialEq)]
 pub enum EventEnum {
     Transition(Tile),
     LocationCheck(Check),
     ItemGet(Check),
     Other(Check),
     Action(Check),
+    Command(Check),
+}
+
+#[derive(Debug, Clone, PartialEq)]
+pub enum CommandState {
+    RecordingInProgress(Check),
+    RunStarted(usize),
+    SegmentRecorded,
+    RunFinished,
+    None
 }
 
 pub struct EventTracker {
@@ -266,6 +334,7 @@ pub struct Event {
     item_id: Option<usize>,
     event_id: Option<usize>,
     action_id: Option<usize>,
+    command_id: Option<usize>,
 }
 
 impl From<&Tile> for Event {
@@ -347,6 +416,11 @@ impl From<&EventEnum> for Event {
                 action_id: Some(check.id),
                 ..Default::default()
             },
+            EventEnum::Command(check) => Event {
+                timestamp: check.time_of_check.unwrap(),
+                command_id: Some(check.id),
+                ..Default::default()
+            },
         }
     }
 }
@@ -361,6 +435,7 @@ impl Default for Event {
             item_id: Default::default(),
             event_id: Default::default(),
             action_id: Default::default(),
+            command_id: Default::default(),
         }
     }
 }

@@ -1,6 +1,6 @@
 use chrono::{Duration, DateTime, Utc};
 
-use crate::{event::EventEnum, output};
+use crate::event::EventEnum;
 
 pub trait RunStatistics {
     fn objective_time_min(&self, objective_idx: usize) -> Option<Duration>;
@@ -106,32 +106,5 @@ pub enum TimeVerdict {
     Bad(Duration),
     Ok(Duration),
     Best(Duration)
-}
-
-pub trait TimeFormat {
-    fn fmt_avg(&self) -> String;
-    fn fmt_rolling_avg(&self, n: usize) -> String;
-    fn fmt_new_time(&self, new_time: &Duration) -> String;
-}
-
-impl <T>TimeFormat for T
-where 
-    T: RunStatistics 
-{
-    fn fmt_avg(&self) -> String {
-        format!("avg: {}", output::format_duration(self.avg()))
-    }
-
-    fn fmt_rolling_avg(&self, n: usize) -> String {
-        format!("rolling_avg ({}): {}", n, output::format_duration(self.rolling_avg(n)))
-    }
-
-    fn fmt_new_time(&self, new_time: &Duration) -> String {
-        match self.run_time_verdict(new_time) {
-            TimeVerdict::Bad(diff) => format!("Finished in {} (+ {})", output::format_red_duration(*new_time), output::format_red_duration(diff)),
-            TimeVerdict::Ok(skew) => format!("Finished in {} (± {})", output::format_duration(*new_time), output::format_duration(skew)),
-            TimeVerdict::Best(diff) => format!("Finished in {} (- {})", output::format_gold_duration(*new_time), output::format_gold_duration(diff)),
-        }
-    }
 }
 

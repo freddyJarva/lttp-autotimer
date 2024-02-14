@@ -76,7 +76,7 @@ pub async fn connect_to_sni(args: &ArgMatches) -> anyhow::Result<()> {
             check_for_transitions, check_for_commands, check_for_segment_run_start,
         },
         request::fetch_metadata_for,
-        sni::{api::device_memory_client::DeviceMemoryClient, get_device, read_snes_ram}, event::{EventEnum, CommandState}, time::{SingleRunStats, RunStatistics, TimeFormat}, output::{format_duration, format_gold_duration, format_red_duration},
+        sni::{api::device_memory_client::DeviceMemoryClient, get_device, read_snes_ram}, event::{EventEnum, CommandState}, time::{SingleRunStats, RunStatistics}, output::{format_duration, format_gold_duration, format_red_duration, TimeFormat},
     };
 
     let cli_config = CliConfig {

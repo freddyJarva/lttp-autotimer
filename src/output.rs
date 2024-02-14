@@ -2,7 +2,34 @@ use chrono::{DateTime, Duration, Timelike, Utc};
 use colored::{ColoredString, Colorize};
 use termcolor::{ColorChoice, StandardStream};
 
-use crate::{check::Check, tile::Tile, event::EventEnum};
+use crate::{check::Check, tile::Tile, event::EventEnum, time::{TimeVerdict, RunStatistics}};
+
+pub trait TimeFormat {
+    fn fmt_avg(&self) -> String;
+    fn fmt_rolling_avg(&self, n: usize) -> String;
+    fn fmt_new_time(&self, new_time: &Duration) -> String;
+}
+
+impl <T>TimeFormat for T
+where 
+    T: RunStatistics 
+{
+    fn fmt_avg(&self) -> String {
+        format!("avg: {}", format_duration(self.avg()))
+    }
+
+    fn fmt_rolling_avg(&self, n: usize) -> String {
+        format!("rolling_avg ({}): {}", n, format_duration(self.rolling_avg(n)))
+    }
+
+    fn fmt_new_time(&self, new_time: &Duration) -> String {
+        match self.run_time_verdict(new_time) {
+            TimeVerdict::Bad(diff) => format!("Finished in {} (+ {})", format_red_duration(*new_time), format_red_duration(diff)),
+            TimeVerdict::Ok(skew) => format!("Finished in {} (± {})", format_duration(*new_time), format_duration(skew)),
+            TimeVerdict::Best(diff) => format!("Finished in {} (- {})", format_gold_duration(*new_time), format_gold_duration(diff)),
+        }
+    }
+}
 
 pub struct StdoutPrinter {
     allow_output: bool,

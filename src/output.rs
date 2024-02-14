@@ -200,8 +200,17 @@ fn print_trigger(
     )
 }
 
+
 pub fn format_duration(time: Duration) -> ColoredString {
     format!("{:.3}", duration_to_float(time)).cyan()
+}
+
+pub fn format_gold_duration(time: Duration) -> ColoredString {
+    format!("{:.3}", duration_to_float(time)).bright_yellow()
+}
+
+pub fn format_red_duration(time: Duration) -> ColoredString {
+    format!("{:.3}", duration_to_float(time)).red()
 }
 
 fn duration_to_float(time: Duration) -> f64 {

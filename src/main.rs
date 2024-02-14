@@ -19,9 +19,9 @@ fn main() -> anyhow::Result<()> {
             Arg::new("update frequency")
                 .long("freq")
                 .short('f')
-                .about("Interval in milliseconds the timer will check the snes memory for changes. Default is about 60 times per second")
+                .about("Interval in milliseconds the timer will check the snes memory for changes. Anything below ~15 will in practice be the same, as sni becomes the limiting rate factor.")
                 .takes_value(true)
-                .default_value("16")
+                .default_value("12")
         ).arg(
             Arg::new("v")
                 .short('v')

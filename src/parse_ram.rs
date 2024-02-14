@@ -24,7 +24,7 @@ pub fn check_for_location_checks<W>(
     events: &mut EventTracker,
     print: &mut StdoutPrinter,
     time_of_read: &DateTime<Utc>,
-    trigger_even_if_checked: bool
+    should_print: bool
 ) -> anyhow::Result<()>
 where
     W: CsvWriter,
@@ -37,7 +37,9 @@ where
                     .all(|c| match_condition(c, events, ram, ram_history))
                 {
                     check.mark_as_checked(time_of_read);
-                    print.location_check(check);
+                    if should_print {
+                        print.location_check(check);
+                    }
 
                     let location_check_event = EventEnum::LocationCheck(check.clone());
                     writer.write_event(Event::from(&location_check_event))?;
@@ -53,10 +55,12 @@ where
                         != current_check_value)
                 {
                     if current_check_value & check.sram_mask.unwrap_or_default() != 0
-                        && (trigger_even_if_checked || !check.is_checked)
+                        && !check.is_checked
                     {
                         check.mark_as_checked(time_of_read);
-                        print.location_check(check);
+                        if should_print {
+                            print.location_check(check);
+                        }
                         let location_check_event = EventEnum::LocationCheck(check.clone());
                         writer.write_event(Event::from(&location_check_event))?;
                         events.push(location_check_event);
@@ -77,7 +81,7 @@ pub fn check_for_item_checks<W>(
     events: &mut EventTracker,
     print: &mut StdoutPrinter,
     time_of_read: &DateTime<Utc>,
-    trigger_even_if_checked: bool
+    should_print: bool
 ) -> anyhow::Result<()>
 where
     W: CsvWriter,
@@ -87,7 +91,7 @@ where
 
         match &check.conditions {
             Some(conditions) => {
-                if (check.is_progressive || (trigger_even_if_checked || !check.is_checked))
+                if (check.is_progressive || !check.is_checked)
                     && conditions
                         .iter()
                         .all(|condition| match_condition(condition, events, ram, previous_values))
@@ -100,7 +104,9 @@ where
                     let occurred_check = EventEnum::ItemGet(check.clone());
                     writer.write_event(Event::from(&occurred_check))?;
                     events.push(occurred_check);
-                    print.item_check(check);
+                    if should_print {
+                        print.item_check(check);
+                    }
                 }
             }
             None => {
@@ -111,17 +117,21 @@ where
                 {
                     if !check.is_progressive
                         && current_check_value & check.sram_mask.unwrap_or_default() != 0
-                        && (trigger_even_if_checked || !check.is_checked)
+                        && !check.is_checked
                     {
                         check.mark_as_checked(time_of_read);
-                        print.item_check(check);
+                        if should_print {
+                            print.item_check(check);
+                        }
 
                         let item_event = EventEnum::ItemGet(check.clone());
                         writer.write_event(Event::from(&item_event))?;
                         events.push(item_event);
                     } else if check.is_progressive && current_check_value > check.snes_value {
                         check.progress_item(current_check_value, time_of_read);
-                        print.item_check(check);
+                        if should_print {
+                            print.item_check(check);
+                        }
 
                         let item_event = EventEnum::ItemGet(check.clone());
                         writer.write_event(Event::from(&item_event))?;
@@ -141,6 +151,7 @@ pub fn check_for_transitions<W>(
     events: &mut EventTracker,
     print: &mut StdoutPrinter,
     time_of_read: &DateTime<Utc>,
+    should_print: bool,
 ) -> anyhow::Result<()>
 where
     W: CsvWriter,
@@ -151,7 +162,9 @@ where
             if let Ok(mut current_tile) = Tile::try_from_ram(ram, &previous_transition) {
                 if current_tile.name != previous_transition.name {
                     current_tile.time_transit(time_of_read);
-                    print.transition(&current_tile);
+                    if should_print {
+                        print.transition(&current_tile);
+                    }
                     let transition_event = EventEnum::Transition(current_tile);
                     writer.write_event(Event::from(&transition_event))?;
                     events.push(transition_event);
@@ -175,7 +188,7 @@ pub fn check_for_events<W>(
     events: &mut EventTracker,
     print: &mut StdoutPrinter,
     time_of_read: &DateTime<Utc>,
-    trigger_even_if_checked: bool,
+    should_print: bool,
 ) -> anyhow::Result<bool>
 where
     W: CsvWriter,
@@ -184,7 +197,7 @@ where
         let current_event_value = ram.get_byte(event.sram_offset.unwrap_or_default() as usize);
         match &event.conditions {
             Some(conditions) => {
-                if (event.is_progressive || (trigger_even_if_checked || !event.is_checked))
+                if (event.is_progressive || !event.is_checked)
                     && conditions
                         .iter()
                         .all(|condition| match_condition(condition, events, ram, previous_values))
@@ -197,23 +210,29 @@ where
                     let occurred_event = EventEnum::Other(event.clone());
                     writer.write_event(Event::from(&occurred_event))?;
                     events.push(occurred_event);
-                    print.event(event);
+                    if should_print {
+                        print.event(event);
+                    }
                     return Ok(event.id != 0 && event.id != 15);
                 }
             }
             None => {
                 if !event.is_progressive
                     && current_event_value & event.sram_mask.unwrap_or_default() != 0
-                    && (trigger_even_if_checked || !event.is_checked)
+                    && !event.is_checked
                 {
                     event.mark_as_checked(time_of_read);
-                    print.event(event);
+                    if should_print {
+                        print.event(event);
+                    }
                     let occurred_event = EventEnum::Other(event.clone());
                     writer.write_event(Event::from(&occurred_event))?;
                     events.push(occurred_event);
                 } else if event.is_progressive && current_event_value > event.snes_value {
                     event.progress_item(current_event_value, time_of_read);
-                    print.event(event);
+                    if should_print {
+                        print.event(event);
+                    }
                     let occurred_event = EventEnum::Other(event.clone());
                     writer.write_event(Event::from(&occurred_event))?;
                     events.push(occurred_event);
@@ -235,6 +254,7 @@ pub fn check_for_actions<W>(
     events: &mut EventTracker,
     print: &mut StdoutPrinter,
     time_of_read: &DateTime<Utc>,
+    should_print: bool
 ) -> anyhow::Result<()>
 where
     W: CsvWriter,
@@ -253,7 +273,9 @@ where
                     let occurred_event = EventEnum::Action(event.clone());
                     writer.write_event(Event::from(&occurred_event))?;
                     events.push(occurred_event);
-                    print.action(event);
+                    if should_print {
+                        print.action(event);
+                    }
                 }
             }
             None => {}
@@ -270,6 +292,7 @@ pub fn check_for_commands<W>(
     commands: &mut EventTracker,
     print: &mut StdoutPrinter,
     time_of_read: &DateTime<Utc>,
+    should_print: bool,
 ) -> anyhow::Result<Option<Check>>
 where
     W: CsvWriter,
@@ -288,7 +311,9 @@ where
                     let occurred_command = EventEnum::Command(command.clone());
                     writer.write_event(Event::from(&occurred_command))?;
                     commands.push(occurred_command);
-                    print.command(command);
+                    if should_print {
+                        print.command(command);
+                    }
                     return Ok(Some(command.to_owned()));
                 }
             }
@@ -535,6 +560,7 @@ mod tests {
                             &mut events,
                             &mut printer,
                             &Utc::now(),
+                            true
                         )
                         .unwrap();
                         // Then

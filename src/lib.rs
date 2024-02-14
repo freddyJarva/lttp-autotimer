@@ -66,7 +66,7 @@ impl CliConfig {
 #[cfg(feature = "sni")]
 #[tokio::main]
 pub async fn connect_to_sni(args: &ArgMatches) -> anyhow::Result<()> {
-    use chrono::{DateTime, Duration};
+    use chrono::DateTime;
     use event::EventEnum::Command;
 
     use crate::{
@@ -76,7 +76,7 @@ pub async fn connect_to_sni(args: &ArgMatches) -> anyhow::Result<()> {
             check_for_transitions, check_for_commands, check_for_segment_run_start,
         },
         request::fetch_metadata_for,
-        sni::{api::device_memory_client::DeviceMemoryClient, get_device, read_snes_ram}, event::{EventEnum, CommandState}, time::{SequenceStatistics, SingleRunStats, RunStatistics}, output::{format_duration, format_gold_duration, format_red_duration},
+        sni::{api::device_memory_client::DeviceMemoryClient, get_device, read_snes_ram}, event::{EventEnum, CommandState}, time::{SingleRunStats, RunStatistics, TimeFormat}, output::{format_duration, format_gold_duration, format_red_duration},
     };
 
     let cli_config = CliConfig {
@@ -165,7 +165,6 @@ pub async fn connect_to_sni(args: &ArgMatches) -> anyhow::Result<()> {
     let mut segment_objectives: Vec<EventEnum> = vec![];
     let mut finished_objectives: Vec<(EventEnum, DateTime<Utc>)> = vec![];
     let mut finished_runs: Vec<Vec<(EventEnum, DateTime<Utc>)>> = vec![];
-    let mut segment_times: Vec<Duration> = vec![];
 
     let mut subscribed_events: Vec<Check> = deserialize_event_checks()?;
     let mut locations: Vec<Check> = deserialize_location_checks()?
@@ -191,6 +190,7 @@ pub async fn connect_to_sni(args: &ArgMatches) -> anyhow::Result<()> {
                     &mut events,
                     &mut print,
                     &time_of_read,
+                    true
                 )?;
                 let input_cmd = input_command.unwrap_or(Check::new(0));
                 match command_state {
@@ -264,9 +264,9 @@ pub async fn connect_to_sni(args: &ArgMatches) -> anyhow::Result<()> {
                                         finished_objectives.push((objective.clone(), time_of_read.clone()));
                                         let otime = finished_objectives.objective_duration(current_objective_idx).unwrap();
                                         match finished_runs.objective_time_verdict(current_objective_idx, &otime) {
-                                            time::TimeVerdict::Bad => println!("{}/{} - {}: {}",current_objective_idx, segment_objectives.len() - 1, objective.name(), format_red_duration(otime)),
-                                            time::TimeVerdict::Ok => println!("{}/{} - {}: {}",current_objective_idx, segment_objectives.len() - 1, objective.name(), format_duration(otime)),
-                                            time::TimeVerdict::Best => println!("{}/{} - {}: {}",current_objective_idx, segment_objectives.len() - 1, objective.name(), format_gold_duration(otime)),
+                                            time::TimeVerdict::Bad(diff) => println!("{}/{} - {}: {} (+ {})", current_objective_idx, segment_objectives.len() - 1, objective.name(), format_red_duration(otime), format_red_duration(diff)),
+                                            time::TimeVerdict::Ok(skew) => println!("{}/{} - {}: {} (± {})", current_objective_idx, segment_objectives.len() - 1, objective.name(), format_duration(otime), format_duration(skew)),
+                                            time::TimeVerdict::Best(diff) => println!("{}/{} - {}: {} (- {})", current_objective_idx, segment_objectives.len() - 1, objective.name(), format_gold_duration(otime), format_gold_duration(diff)),
                                         }
                                         command_state = CommandState::RunStarted(current_objective_idx + 1)
                                     }
@@ -278,76 +278,72 @@ pub async fn connect_to_sni(args: &ArgMatches) -> anyhow::Result<()> {
                         command_state = CommandState::None;
                     },
                     CommandState::RunFinished => {
-                        print.segment_finish(&finished_objectives);
-                        // TODO: print to csv, calculate averages etc.
-                        let start = finished_objectives[0].1.clone();
-                        let end = finished_objectives[finished_objectives.len() - 1].1.clone();
-                        let time = end - start;
-                        segment_times.push(time);
-                        println!("avg: {}", output::format_duration(segment_times.avg()));
-                        let n_avg = 5;
-                        println!("rolling_avg ({}): {}", n_avg, output::format_duration(segment_times.rolling_avg(n_avg)));
-
+                        // TODO: print to csv/persist runs
+                        let time = finished_objectives.to_duration();
+                        println!("{}", finished_runs.fmt_new_time(&time));
                         finished_runs.push(finished_objectives);
+                        println!("{}", finished_runs.fmt_avg());
+                        println!("{}", finished_runs.fmt_rolling_avg(5));
                         finished_objectives = vec![];
                         command_state = CommandState::SegmentRecorded;
                         events = EventTracker::new();
                     }
                 }
             }
-            if !(matches!(command_state, CommandState::RunStarted(_))
-                 || matches!(command_state, CommandState::RunFinished)) {
-                // checks
-                game_started = check_for_events(
+            let should_print = !(matches!(command_state, CommandState::RunStarted(_))
+                 || matches!(command_state, CommandState::RunFinished));
+            // checks
+            game_started = check_for_events(
+                &snes_ram,
+                &mut ram_history,
+                &mut subscribed_events,
+                &mut writer,
+                &mut events,
+                &mut print,
+                &time_of_read,
+                should_print
+            )?;
+            if game_started {
+                if cli_config._verbosity > 0 {
+                    check_for_actions(
+                        &snes_ram,
+                        &mut ram_history,
+                        &mut actions,
+                        &mut writer,
+                        &mut events,
+                        &mut print,
+                        &time_of_read,
+                        should_print
+                    )?;
+                }
+                check_for_transitions(
                     &snes_ram,
-                    &mut ram_history,
-                    &mut subscribed_events,
                     &mut writer,
                     &mut events,
                     &mut print,
                     &time_of_read,
-                    false,
+                    should_print
                 )?;
-                if game_started {
-                    if cli_config._verbosity > 0 {
-                        check_for_actions(
-                            &snes_ram,
-                            &mut ram_history,
-                            &mut actions,
-                            &mut writer,
-                            &mut events,
-                            &mut print,
-                            &time_of_read,
-                        )?;
-                    }
-                    check_for_transitions(
-                        &snes_ram,
-                        &mut writer,
-                        &mut events,
-                        &mut print,
-                        &time_of_read,
-                    )?;
-                    check_for_location_checks(
-                        &snes_ram,
-                        &mut ram_history,
-                        &mut locations,
-                        &mut writer,
-                        &mut events,
-                        &mut print,
-                        &time_of_read,
-                        false,
-                    )?;
-                    check_for_item_checks(
-                        &snes_ram,
-                        &mut ram_history,
-                        &mut items,
-                        &mut writer,
-                        &mut events,
-                        &mut print,
-                        &time_of_read,
-                        false,
-                    )?;
-                }
+                check_for_location_checks(
+                    &snes_ram,
+                    &mut ram_history,
+                    &mut locations,
+                    &mut writer,
+                    &mut events,
+                    &mut print,
+                    &time_of_read,
+                    should_print,
+                )?;
+                check_for_item_checks(
+                    &snes_ram,
+                    &mut ram_history,
+                    &mut items,
+                    &mut writer,
+                    &mut events,
+                    &mut print,
+                    &time_of_read,
+                    should_print,
+                )?;
             }
             ram_history.push_back(snes_ram);
         }

@@ -200,7 +200,7 @@ fn print_trigger(
     )
 }
 
-fn format_duration(time: Duration) -> ColoredString {
+pub fn format_duration(time: Duration) -> ColoredString {
     format!("{:.3}", duration_to_float(time)).cyan()
 }
 

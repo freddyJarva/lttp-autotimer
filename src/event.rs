@@ -278,6 +278,19 @@ pub enum EventEnum {
     Command(Check),
 }
 
+impl EventEnum {
+    pub fn name(&self) -> &str {
+        match self {
+            EventEnum::Transition(t) => &t.name,
+            EventEnum::LocationCheck(c) => &c.name,
+            EventEnum::ItemGet(c) => &c.name,
+            EventEnum::Other(c) => &c.name,
+            EventEnum::Action(c) => &c.name,
+            EventEnum::Command(c) => &c.name,
+        }
+    }
+}
+
 #[derive(Debug, Clone, PartialEq)]
 pub enum CommandState {
     RecordingInProgress(Check),

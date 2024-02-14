@@ -40,6 +40,7 @@ mod sni;
 mod test_macros;
 mod parse_ram;
 mod write;
+mod time;
 
 /// Snes memory address
 pub const VRAM_START: u32 = 0xf50000;
@@ -65,7 +66,7 @@ impl CliConfig {
 #[cfg(feature = "sni")]
 #[tokio::main]
 pub async fn connect_to_sni(args: &ArgMatches) -> anyhow::Result<()> {
-    use chrono::DateTime;
+    use chrono::{DateTime, Duration};
     use event::EventEnum::Command;
 
     use crate::{
@@ -75,7 +76,7 @@ pub async fn connect_to_sni(args: &ArgMatches) -> anyhow::Result<()> {
             check_for_transitions, check_for_commands, check_for_segment_run_start,
         },
         request::fetch_metadata_for,
-        sni::{api::device_memory_client::DeviceMemoryClient, get_device, read_snes_ram}, event::{EventEnum, CommandState},
+        sni::{api::device_memory_client::DeviceMemoryClient, get_device, read_snes_ram}, event::{EventEnum, CommandState}, time::SequenceStatistics,
     };
 
     let cli_config = CliConfig {
@@ -163,6 +164,7 @@ pub async fn connect_to_sni(args: &ArgMatches) -> anyhow::Result<()> {
     let mut command_state: CommandState = CommandState::None;
     let mut segment_objectives: Vec<EventEnum> = vec![];
     let mut finished_objectives: Vec<(EventEnum, DateTime<Utc>)> = vec![];
+    let mut segment_times: Vec<Duration> = vec![];
 
     let mut subscribed_events: Vec<Check> = deserialize_event_checks()?;
     let mut locations: Vec<Check> = deserialize_location_checks()?
@@ -241,6 +243,11 @@ pub async fn connect_to_sni(args: &ArgMatches) -> anyhow::Result<()> {
                                 finished_objectives = vec![];
                                 command_state = CommandState::RecordingInProgress(input_cmd);
                             },
+                            2 => {
+                                println!("Stopped current run");
+                                finished_objectives = vec![];
+                                command_state = CommandState::SegmentRecorded;
+                            },
                             _ => {
                                 if segment_objectives.len() <= current_objective_idx {
                                     // Run finished
@@ -253,7 +260,7 @@ pub async fn connect_to_sni(args: &ArgMatches) -> anyhow::Result<()> {
                                         &objective,
                                         &mut events
                                     )? {
-                                        println!("Finished objective {} of {}", current_objective_idx, segment_objectives.len());
+                                        println!("{} - {}/{}", objective.name(), current_objective_idx, segment_objectives.len() - 1);
                                         finished_objectives.push((objective.clone(), time_of_read.clone()));
                                         command_state = CommandState::RunStarted(current_objective_idx + 1)
                                     }
@@ -267,6 +274,14 @@ pub async fn connect_to_sni(args: &ArgMatches) -> anyhow::Result<()> {
                     CommandState::RunFinished => {
                         print.segment_finish(&finished_objectives);
                         // TODO: print to csv, calculate averages etc.
+                        let start = finished_objectives[0].1.clone();
+                        let end = finished_objectives[finished_objectives.len() - 1].1.clone();
+                        let time = end - start;
+                        segment_times.push(time);
+                        println!("avg: {}", output::format_duration(segment_times.avg()));
+                        let n_avg = 5;
+                        println!("rolling_avg ({}): {}", n_avg, output::format_duration(segment_times.rolling_avg(n_avg)));
+
                         finished_objectives = vec![];
                         command_state = CommandState::SegmentRecorded;
                         events = EventTracker::new();

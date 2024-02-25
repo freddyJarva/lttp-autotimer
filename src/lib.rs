@@ -54,6 +54,7 @@ pub struct CliConfig {
     update_frequency: u64,
     _verbosity: u64,
     segment_run_mode: bool,
+    round_times: bool,
 }
 
 impl CliConfig {
@@ -73,10 +74,10 @@ pub async fn connect_to_sni(args: &ArgMatches) -> anyhow::Result<()> {
         check::{deserialize_actions, deserialize_commands},
         parse_ram::{
             check_for_actions, check_for_events, check_for_item_checks, check_for_location_checks,
-            check_for_transitions, check_for_commands, check_for_segment_run_start,
+            check_for_transitions, check_for_commands, check_for_segment_objective,
         },
         request::fetch_metadata_for,
-        sni::{api::device_memory_client::DeviceMemoryClient, get_device, read_snes_ram}, event::{EventEnum, CommandState}, time::{SingleRunStats, RunStatistics}, output::{format_duration, format_gold_duration, format_red_duration, TimeFormat},
+        sni::{api::device_memory_client::DeviceMemoryClient, get_device, read_snes_ram}, event::{EventEnum, CommandState, EventCompactor}, time::{SingleRunStats, RunStatistics}, output::{format_duration, format_gold_duration, format_red_duration, TimeFormat},
     };
 
     let cli_config = CliConfig {
@@ -90,7 +91,8 @@ pub async fn connect_to_sni(args: &ArgMatches) -> anyhow::Result<()> {
             .parse()
             .expect("specified update frequency (--freq/-f) needs to be a positive integer"),
         _verbosity: args.occurrences_of("v"),
-        segment_run_mode: args.is_present("Segment run mode")
+        segment_run_mode: args.is_present("Segment run mode"),
+        round_times: args.is_present("Round times"),
     };
 
     println!("Connecting to sni");
@@ -209,7 +211,9 @@ pub async fn connect_to_sni(args: &ArgMatches) -> anyhow::Result<()> {
                             },
                             2 => {
                                 if start_check.id == 1 {
-                                    segment_objectives = events.objectives_between(Command(start_check.clone()), Some(Command(input_cmd)));
+                                    segment_objectives = events
+                                        .objectives_between(Command(start_check.clone()), Some(Command(input_cmd)))
+                                        .compact();
                                     println!("Segments: {:?}", segment_objectives);
                                     command_state = CommandState::SegmentRecorded;
                                 }
@@ -225,12 +229,21 @@ pub async fn connect_to_sni(args: &ArgMatches) -> anyhow::Result<()> {
                             _ => {
                                 let objective = segment_objectives.first().expect("Length should be > 0 here").clone().to_owned();
 
-                                if check_for_segment_run_start(
+                                if check_for_segment_objective(
                                     &snes_ram,
                                     &mut ram_history,
                                     &objective,
                                     &mut events
                                 )? {
+                                    // TODO: reset ram_history and item checks
+                                    ram_history = VecDeque::new();
+                                    items = deserialize_item_checks()?.into_iter().collect();
+                                    locations = deserialize_location_checks()?
+                                        .into_iter()
+                                        // 0 offset checks without conditions hasn't been given a proper value in checks.json yet
+                                        .filter(|check| check.sram_offset.unwrap_or_default() != 0 || check.conditions.is_some())
+                                        .collect();
+
                                     finished_objectives.push((objective, time_of_read.clone()));
                                     println!("Run start");
                                     command_state = CommandState::RunStarted(1)
@@ -255,7 +268,7 @@ pub async fn connect_to_sni(args: &ArgMatches) -> anyhow::Result<()> {
                                     command_state = CommandState::RunFinished;
                                 } else {
                                     let objective = &segment_objectives[current_objective_idx];
-                                    if check_for_segment_run_start(
+                                    if check_for_segment_objective(
                                         &snes_ram,
                                         &mut ram_history,
                                         &objective,
@@ -301,10 +314,10 @@ pub async fn connect_to_sni(args: &ArgMatches) -> anyhow::Result<()> {
                 &mut events,
                 &mut print,
                 &time_of_read,
-                should_print
+                should_print || cli_config._verbosity > 0
             )?;
             if game_started {
-                if cli_config._verbosity > 0 {
+                if cli_config._verbosity > 1 {
                     check_for_actions(
                         &snes_ram,
                         &mut ram_history,
@@ -322,7 +335,7 @@ pub async fn connect_to_sni(args: &ArgMatches) -> anyhow::Result<()> {
                     &mut events,
                     &mut print,
                     &time_of_read,
-                    should_print
+                    should_print || cli_config._verbosity > 0
                 )?;
                 check_for_location_checks(
                     &snes_ram,
@@ -332,7 +345,7 @@ pub async fn connect_to_sni(args: &ArgMatches) -> anyhow::Result<()> {
                     &mut events,
                     &mut print,
                     &time_of_read,
-                    should_print,
+                    should_print || cli_config._verbosity > 0
                 )?;
                 check_for_item_checks(
                     &snes_ram,
@@ -342,7 +355,7 @@ pub async fn connect_to_sni(args: &ArgMatches) -> anyhow::Result<()> {
                     &mut events,
                     &mut print,
                     &time_of_read,
-                    should_print,
+                    should_print || cli_config._verbosity > 0
                 )?;
             }
             ram_history.push_back(snes_ram);

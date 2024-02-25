@@ -37,6 +37,10 @@ fn main() -> anyhow::Result<()> {
                 .long("--non-race")
                 .about("Show output on game events in app window. NOTE: This flag will have no effect when playing a race rom.")
         ).arg(
+            Arg::new("Round times")
+                .long("--round-times")
+                .about("Show output on game events in app window. NOTE: This flag will have no effect when playing a race rom.")
+        ).arg(
             Arg::new("Segment run mode")
                 .long("--segment-mode")
                 .short('s')

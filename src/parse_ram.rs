@@ -110,8 +110,8 @@ where
                 }
             }
             None => {
-                if previous_values.len() > 0
-                    && (previous_values[previous_values.len() - 1]
+                if previous_values.len() == 0 // check through current state on first read
+                    || (previous_values[previous_values.len() - 1]
                         .get_byte(check.sram_offset.unwrap_or_default() as usize)
                         != current_check_value)
                 {
@@ -323,7 +323,7 @@ where
     Ok(None)
 }
 
-pub fn check_for_segment_run_start(
+pub fn check_for_segment_objective(
     ram: &SnesRam,
     ram_history: &mut VecDeque<SnesRam>,
     start_event: &EventEnum,
@@ -366,31 +366,32 @@ pub fn check_for_segment_run_start(
             }
         },
         EventEnum::ItemGet(check) => {
-            if let Some(ref conditions) = check.conditions {
-                if conditions.iter().all(|condition| match_condition(condition, events, ram, ram_history)) {
-                    return Ok(true)
-                }
-            }
+            return Ok(is_checked(check, events, ram, ram_history))
         },
         EventEnum::Other(check) => {
-            if let Some(ref conditions) = check.conditions {
-                if conditions.iter().all(|condition| match_condition(condition, events, ram, ram_history)) {
-                    return Ok(true)
-                }
-            }
+            return Ok(is_checked(check, events, ram, ram_history))
         },
         EventEnum::Action(check) => {
-            if let Some(ref conditions) = check.conditions {
-                if conditions.iter().all(|condition| match_condition(condition, events, ram, ram_history)) {
-                    return Ok(true)
-                }
-            }
+            return Ok(is_checked(check, events, ram, ram_history))
+        },
+        EventEnum::Composite((_, c1, c2)) => {
+            // composite checks are considered to be the same trigger, so if either check is true
+            // then it's checked
+            return Ok(is_checked(c1, events, ram, ram_history) || is_checked(c2, events, ram, ram_history))
         },
         EventEnum::Command(_) => panic!("EventEnum command should not be able to be part of segment objectives"),
     }
     Ok(false)
 }
 
+fn is_checked(check: &Check, events: &mut EventTracker, ram: &SnesRam, ram_history: &mut VecDeque<SnesRam>) -> bool {
+    if let Some(ref conditions) = check.conditions {
+        if conditions.iter().all(|condition| match_condition(condition, events, ram, ram_history)) {
+            return true
+        }
+    }
+    false
+}
 
 pub fn match_condition(
     condition: &Conditions,

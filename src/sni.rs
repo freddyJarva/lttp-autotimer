@@ -1,4 +1,4 @@
-use chrono::{DateTime, Utc};
+use chrono::{DateTime, Utc, DurationRound, Duration};
 use colored::Colorize;
 use std::io::stdin;
 use tokio::time;
@@ -162,11 +162,17 @@ pub async fn read_snes_ram(
 ) {
     tokio::spawn(async move {
         let update_freq = time::Duration::from_millis(config.update_frequency);
+        let dtrunc;
+        if config.round_times {
+            dtrunc = Some(Duration::milliseconds(50))
+        } else {
+            dtrunc = None
+        };
 
         loop {
             let now = Instant::now();
             match get_chunka_chungus(&device, &mut client).await {
-                Ok(snes_ram) => match tx.send((Utc::now(), snes_ram)).await {
+                Ok(snes_ram) => match tx.send((dt_now(dtrunc), snes_ram)).await {
                     Ok(_) => (),
                     Err(e) => println!("Error occurred when sending snes_ram to parser: {:?}", e),
                 },
@@ -204,6 +210,14 @@ pub async fn read_snes_ram(
             }
         }
     });
+}
+
+fn dt_now(truncate: Option<Duration>) -> DateTime<Utc> {
+    if let Some(truncate) = truncate {
+        Utc::now().duration_trunc(truncate).expect("should always return a proper datetime")
+    } else {
+        Utc::now()
+    }
 }
 
 pub async fn get_chunka_chungus(

@@ -143,7 +143,7 @@ pub fn print_flags_toggled<T: AsRef<[u8]>, U: AsRef<[u8]>>(lhs: T, rhs: U) {
 
 pub fn print_transition(transition: &Tile, previous_time: &DateTime<Utc>) {
     print_trigger(
-        format!("{}", transition.name).on_purple(),
+        format!("{}", transition.name).purple(),
         &transition.timestamp.unwrap(),
         previous_time,
     );
@@ -151,7 +151,7 @@ pub fn print_transition(transition: &Tile, previous_time: &DateTime<Utc>) {
 
 pub fn print_location_check(check: &Check, previous_time: &DateTime<Utc>) {
     print_trigger(
-        check.name.on_blue(),
+        check.name.on_bright_blue().black(),
         &check.time_of_check.unwrap(),
         previous_time,
     );
@@ -160,13 +160,13 @@ pub fn print_location_check(check: &Check, previous_time: &DateTime<Utc>) {
 pub fn print_item_check(check: &Check, previous_time: &DateTime<Utc>) {
     if check.is_progressive {
         print_trigger(
-            format!("{} - {}", check.name, check.progressive_level).on_green(),
+            format!("{} - {}", check.name, check.progressive_level).on_green().black(),
             &check.time_of_check.unwrap(),
             previous_time,
         );
     } else {
         print_trigger(
-            check.name.on_green(),
+            check.name.on_green().black(),
             &check.time_of_check.unwrap(),
             previous_time,
         );
@@ -176,13 +176,13 @@ pub fn print_item_check(check: &Check, previous_time: &DateTime<Utc>) {
 pub fn print_event(check: &Check, previous_time: &DateTime<Utc>) {
     if check.is_progressive {
         print_trigger(
-            format!("{} - {}", check.name, check.progressive_level).on_yellow(),
+            format!("{} - {}", check.name, check.progressive_level).on_yellow().black(),
             &check.time_of_check.unwrap(),
             previous_time,
         );
     } else {
         print_trigger(
-            check.name.on_yellow(),
+            check.name.on_yellow().black(),
             &check.time_of_check.unwrap(),
             previous_time,
         );
@@ -241,9 +241,14 @@ pub fn format_red_duration(time: Duration) -> ColoredString {
 }
 
 fn duration_to_float(time: Duration) -> f64 {
-    time.to_string()
-        .strip_prefix("PT")
-        .unwrap_or_default()
+    let time = time.to_string();
+    let sans_prefix;
+    if time.starts_with("-PT") {
+        sans_prefix = time.strip_prefix("-PT").unwrap_or_default()
+    } else {
+        sans_prefix = time.strip_prefix("PT").unwrap_or_default()
+    }
+    sans_prefix
         .strip_suffix("S")
         .unwrap_or_default()
         .parse()

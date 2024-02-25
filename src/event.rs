@@ -135,6 +135,7 @@ impl EventLog for EventTracker {
                     EventEnum::Other(_) => true,
                     EventEnum::Action(_) => false,
                     EventEnum::Command(_) => false,
+                    EventEnum::Composite(_) => panic!("Composites shouldn't exist in EventLog"),
                 }
             }).cloned()
     }
@@ -254,9 +255,7 @@ impl EventLog for EventTracker {
                 .iter()
                 .skip_while(|&event| !event.eq(&start))
                 .filter(|&event| match event {
-                    EventEnum::Action(_) => false,
-                    EventEnum::Command(_) => false,
-                    EventEnum::ItemGet(_) => false,
+                    EventEnum::Action(_) | EventEnum::Command(_) => false,
                     _ => true
                 });
         if let Some(end) = end {
@@ -268,6 +267,45 @@ impl EventLog for EventTracker {
     }
 }
 
+pub trait EventCompactor {
+    fn compact(self) -> Self;
+}
+
+impl EventCompactor for Vec<EventEnum> {
+    fn compact(self) -> Self {
+        if self.len() == 0 {
+            return self
+        }
+        let mut previous_val: Option<Check> = None;
+        let mut new: Vec<EventEnum> = Vec::new();
+        for event in self {
+            match event {
+                EventEnum::Command(_) => (),
+                EventEnum::LocationCheck(ref check) | EventEnum::ItemGet(ref check) | EventEnum::Other(ref check) => {
+                    if let Some(previous_check) = previous_val {
+                        let previous_time = previous_check.time_of_check.expect("previous should have a timestamp when running compact");
+                        if previous_time == check.time_of_check.expect("check should have a timestamp when running compact") {
+                            new.pop();
+                            new.push(EventEnum::Composite((format!("{} & {}", previous_check.name, check.name), previous_check, check.clone())));
+                        } else {
+                            new.push(event.clone());
+                        }
+                    } else {
+                        println!("Pushing {} - not a composite", event.name());
+                        new.push(event.clone())
+                    }
+                    previous_val = Some(check.clone());
+                },
+                EventEnum::Action(_) | EventEnum::Transition(_) | EventEnum::Composite(_) => {
+                    new.push(event);
+                    previous_val = None;
+                },
+            }
+        }
+        new
+    }
+}
+
 #[derive(Debug, Clone, PartialEq)]
 pub enum EventEnum {
     Transition(Tile),
@@ -276,6 +314,7 @@ pub enum EventEnum {
     Other(Check),
     Action(Check),
     Command(Check),
+    Composite((String, Check, Check))
 }
 
 impl EventEnum {
@@ -287,6 +326,7 @@ impl EventEnum {
             EventEnum::Other(c) => &c.name,
             EventEnum::Action(c) => &c.name,
             EventEnum::Command(c) => &c.name,
+            EventEnum::Composite(c) => &c.1.name,
         }
     }
 }
@@ -434,6 +474,7 @@ impl From<&EventEnum> for Event {
                 command_id: Some(check.id),
                 ..Default::default()
             },
+            EventEnum::Composite(_) => panic!("Composite EventEnum shouldn't be turned into Event for writing"),
         }
     }
 }

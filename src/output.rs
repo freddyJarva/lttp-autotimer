@@ -241,18 +241,28 @@ pub fn format_red_duration(time: Duration) -> ColoredString {
 }
 
 fn duration_to_float(time: Duration) -> f64 {
-    let time = time.to_string();
-    let sans_prefix;
-    if time.starts_with("-PT") {
-        sans_prefix = time.strip_prefix("-PT").unwrap_or_default()
-    } else {
-        sans_prefix = time.strip_prefix("PT").unwrap_or_default()
+    if time.is_zero() {
+        return 0.0;
     }
-    sans_prefix
-        .strip_suffix("S")
-        .unwrap_or_default()
-        .parse()
-        .unwrap()
+    let delta_f = time.num_milliseconds() as f64 / 1000.0;
+    if time.lt(&Duration::zero()) {
+        return 0.0 - delta_f;
+    }
+    delta_f
+    // (time.num_milliseconds())
+    // let time = time.to_string();
+    // println!("duration_to_float: {}", time);
+    // let sans_prefix;
+    // if time.starts_with("-PT") {
+    //     sans_prefix = time.strip_prefix("-PT").unwrap_or_default()
+    // } else {
+    //     sans_prefix = time.strip_prefix("PT").unwrap_or_default()
+    // }
+    // sans_prefix
+    //     .strip_suffix("S")
+    //     .unwrap_or_default()
+    //     .parse()
+    //     .expect("duration should always have the same format")
 }
 
 #[cfg(test)]
@@ -263,18 +273,27 @@ mod tests {
     #[test]
     fn test_format_duration() {
         // Given
-        let past = NaiveTime::from_hms_nano(0, 0, 0, 0);
-        let present = NaiveTime::from_hms_nano(0, 0, 20, 133700000);
+        let past = NaiveTime::from_hms_nano_opt(0, 0, 0, 0).unwrap();
+        let present = NaiveTime::from_hms_nano_opt(0, 0, 20, 133700000).unwrap();
         let actual = format_duration(present - past);
-        assert_eq!(actual, "20.134".cyan())
+        assert_eq!(actual, "20.133".cyan())
+    }
+
+    #[test]
+    fn test_format_duration_when_0_diff() {
+        // Given
+        let past = NaiveTime::from_hms_nano_opt(0, 0, 20, 133700000).unwrap();
+        let present = NaiveTime::from_hms_nano_opt(0, 0, 20, 133700000).unwrap();
+        let actual = format_duration(present - past);
+        assert_eq!(actual, "0.000".cyan())
     }
 
     #[test]
     fn test_duration_to_float() {
         // Given
-        let past = NaiveTime::from_hms_nano(0, 0, 0, 0);
-        let present = NaiveTime::from_hms_nano(0, 0, 20, 133700000);
+        let past = NaiveTime::from_hms_nano_opt(0, 0, 0, 0).unwrap();
+        let present = NaiveTime::from_hms_nano_opt(0, 0, 20, 133700000).unwrap();
         let actual = duration_to_float(present - past);
-        assert_eq!(actual, 20.1337)
+        assert_eq!(actual, 20.133)
     }
 }

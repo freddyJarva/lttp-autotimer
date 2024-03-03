@@ -47,14 +47,14 @@ pub const VRAM_START: u32 = 0xf50000;
 
 #[derive(Default, Clone)]
 pub struct CliConfig {
-    host: String,
-    port: String,
-    non_race_mode: bool,
-    manual_update: bool,
-    update_frequency: u64,
-    _verbosity: u64,
-    segment_run_mode: bool,
-    round_times: bool,
+    pub host: String,
+    pub port: String,
+    pub non_race_mode: bool,
+    pub manual_update: bool,
+    pub update_frequency: u64,
+    pub _verbosity: u64,
+    pub segment_run_mode: bool,
+    pub round_times: bool,
 }
 
 impl CliConfig {
@@ -66,7 +66,7 @@ impl CliConfig {
 
 #[cfg(feature = "sni")]
 #[tokio::main]
-pub async fn connect_to_sni(args: &ArgMatches) -> anyhow::Result<()> {
+pub async fn connect_to_sni(cli_config: CliConfig) -> anyhow::Result<()> {
     use chrono::DateTime;
     use event::EventEnum::Command;
 
@@ -78,21 +78,6 @@ pub async fn connect_to_sni(args: &ArgMatches) -> anyhow::Result<()> {
         },
         request::fetch_metadata_for,
         sni::{api::device_memory_client::DeviceMemoryClient, get_device, read_snes_ram}, event::{EventEnum, CommandState, EventCompactor}, time::{SingleRunStats, RunStatistics}, output::{format_duration, format_gold_duration, format_red_duration, TimeFormat},
-    };
-
-    let cli_config = CliConfig {
-        host: args.value_of("host").unwrap().to_string(),
-        port: args.value_of("port").unwrap().to_string(),
-        non_race_mode: args.is_present("Non race mode"),
-        manual_update: args.is_present("manual update"),
-        update_frequency: args
-            .value_of("update frequency")
-            .unwrap()
-            .parse()
-            .expect("specified update frequency (--freq/-f) needs to be a positive integer"),
-        _verbosity: args.occurrences_of("v"),
-        segment_run_mode: args.is_present("Segment run mode"),
-        round_times: args.is_present("Round times"),
     };
 
     println!("Connecting to sni");

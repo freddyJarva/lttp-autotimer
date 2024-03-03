@@ -74,6 +74,7 @@ dependencies = [
  "csv",
  "flate2",
  "lazy_static",
+ "lttp-autotimer",
  "prost",
  "reqwest",
  "serde",
@@ -1714,6 +1715,28 @@ dependencies = [
  "serde_json",
  "tracing",
  "tracing-subscriber",
+]
+
+[[package]]
+name = "lttp-autotimer"
+version = "0.4.0"
+dependencies = [
+ "anyhow",
+ "byteorder",
+ "chrono",
+ "clap",
+ "colored",
+ "csv",
+ "flate2",
+ "lazy_static",
+ "prost",
+ "reqwest",
+ "serde",
+ "serde_json",
+ "termcolor",
+ "tokio",
+ "tonic",
+ "tonic-build",
 ]
 
 [[package]]

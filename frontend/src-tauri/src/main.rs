@@ -1,6 +1,8 @@
 // Prevents additional console window on Windows in release, DO NOT REMOVE!!
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
 
+use std::time::Duration;
+
 use tauri::Manager;
 use tokio::sync::{mpsc, Mutex};
 
@@ -22,7 +24,7 @@ async fn async_process_model(
 
 #[tauri::command]
 fn rs2js<R: tauri::Runtime>(message: String, manager: &impl Manager<R>) {
-    println!("rs2js {}", message);
+    println!("THIS IS RUST rs2js {}", message);
     manager
         .emit_all("rs2js", format!("rs: {}", message))
         .unwrap();
@@ -34,7 +36,7 @@ async fn js2rs(
     message: String,
     state: tauri::State<'_, InputTx>,
 ) -> Result<(), String> {
-    println!("{:?}", message);
+    println!("THIS IS RUST js2rs {:?}", message);
     let in_tx = state.inner.lock().await;
     in_tx.send(message).await.map_err(|e| e.to_string())
 }
@@ -67,6 +69,16 @@ async fn main() {
                 if let Some(output) = out_rx.recv().await {
                     rs2js(output, &app_handle);
                 }
+            }
+        });
+
+        let snes_reader_handle = app.app_handle();
+        tauri::async_runtime::spawn(async move {
+            let mut interval = tokio::time::interval(Duration::from_secs(1));
+            loop {
+                interval.tick().await;
+                snes_reader_handle.emit_all("snes_event", "hello world!")
+                    .expect("Should never fail to send message");
             }
         });
 

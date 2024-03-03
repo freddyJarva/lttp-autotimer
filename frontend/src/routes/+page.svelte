@@ -9,7 +9,8 @@
      * @property {string} message
      */
 
-    let unlisten;
+    let unlisten_rs2js
+    let unlisten_snes_events
 
     let output = ''
     /** @type {Message[]} outputs */
@@ -27,11 +28,14 @@
     }
 
     onMount(async () => {
-        unlisten = await listen('rs2js', (event) => {
+        unlisten_rs2js = await listen('rs2js', (event) => {
             console.log("THIS IS SVELTE rs2js: " + event.payload)
             let input = event.payload
             inputs = [...inputs, {timestamp: Date.now(), message: input}]
         })
+        unlisten_snes_events = await listen('snes_event', (event) => {
+            console.log(event.payload)
+        });
     })
 
     async function greet() {

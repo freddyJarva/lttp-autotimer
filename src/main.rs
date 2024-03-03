@@ -2,7 +2,6 @@ use clap::Arg;
 
 use lttp_autotimer::{output::force_cmd_colored_output, CliConfig};
 
-#[cfg(feature = "sni")]
 use lttp_autotimer::connect_to_sni;
 
 fn main() -> anyhow::Result<()> {

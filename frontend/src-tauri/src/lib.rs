@@ -1,81 +1,36 @@
-use crate::event::{EventLog, EventTracker};
-use check::Check;
-
-#[macro_use]
-extern crate lazy_static;
-
-use chrono::Utc;
-
-use colored::Colorize;
-use snes::SnesRam;
-
-use std::io::{stdin, Write};
-
-use tokio::sync::mpsc;
-
-use crate::check::{
-    deserialize_event_checks, deserialize_item_checks, deserialize_location_checks,
-};
-use crate::output::StdoutPrinter;
+pub mod write;
 
 use std::collections::VecDeque;
 use std::fs::File;
+use std::io::{stdin, Write};
 
-pub mod check;
-pub mod condition;
-pub mod event;
-pub mod output;
-pub mod request;
-pub mod serde_lttp;
-pub mod snes;
-pub mod tile;
+use colored::Colorize;
+use lttp_autotimer::check::{Check, deserialize_event_checks, deserialize_location_checks, deserialize_item_checks};
+use lttp_autotimer::event::{EventTracker, EventLog};
+use lttp_autotimer::output::StdoutPrinter;
+use lttp_autotimer::snes::SnesRam;
+use lttp_autotimer::{sni, time};
+use chrono::{DateTime, Utc};
+use lttp_autotimer::event::EventEnum::Command;
 
-pub mod sni;
+use lttp_autotimer::{
+    check::{deserialize_actions, deserialize_commands},
+    parse_ram::{
+        check_for_actions, check_for_events, check_for_item_checks, check_for_location_checks,
+        check_for_transitions, check_for_commands, check_for_segment_objective,
+    },
+    request,
+    sni::{api::device_memory_client::DeviceMemoryClient, get_device, read_snes_ram}, event::{EventEnum, CommandState, EventCompactor}, time::{SingleRunStats, RunStatistics}, output::{format_duration, format_gold_duration, format_red_duration, TimeFormat},
+};
+use tauri::AppHandle;
+use tokio::sync::mpsc;
 
-#[cfg(test)]
-#[macro_use]
-mod test_macros;
-pub mod parse_ram;
-pub mod write;
-pub mod time;
-
-/// Snes memory address
-pub const VRAM_START: u32 = 0xf50000;
-
-#[derive(Default, Clone)]
-pub struct CliConfig {
-    pub host: String,
-    pub port: String,
-    pub non_race_mode: bool,
-    pub manual_update: bool,
-    pub update_frequency: u64,
-    pub _verbosity: u64,
-    pub segment_run_mode: bool,
-    pub round_times: bool,
-}
-
-impl CliConfig {
-    pub fn sni_url(&self) -> String {
-        format!("ws://{}:{}", self.host, self.port)
-    }
-}
+use crate::write::AppHandleWrapper;
 
 
-#[tokio::main]
-pub async fn connect_to_sni(cli_config: CliConfig) -> anyhow::Result<()> {
-    use chrono::DateTime;
-    use event::EventEnum::Command;
+pub async fn connect_to_sni(cli_config: lttp_autotimer::CliConfig, handle: AppHandle) -> anyhow::Result<()> {
 
-    use crate::{
-        check::{deserialize_actions, deserialize_commands},
-        parse_ram::{
-            check_for_actions, check_for_events, check_for_item_checks, check_for_location_checks,
-            check_for_transitions, check_for_commands, check_for_segment_objective,
-        },
-        request::fetch_metadata_for,
-        sni::{api::device_memory_client::DeviceMemoryClient, get_device, read_snes_ram}, event::{EventEnum, CommandState, EventCompactor}, time::{SingleRunStats, RunStatistics}, output::{format_duration, format_gold_duration, format_red_duration, TimeFormat},
-    };
-
+    let snes_handle = AppHandleWrapper::new(handle);
     println!("Connecting to sni");
     let connected_device = get_device(&cli_config.sni_url()).await?;
     let mut client = DeviceMemoryClient::connect(cli_config.sni_url()).await?;
@@ -103,7 +58,7 @@ pub async fn connect_to_sni(cli_config: CliConfig) -> anyhow::Result<()> {
     if cli_config.segment_run_mode {
         meta_data = None;
     } else {
-        meta_data = match fetch_metadata_for(rom_hash).await {
+        meta_data = match request::fetch_metadata_for(rom_hash).await {
             Ok(meta) => Some(meta.spoiler.meta),
             Err(e) => {
                 println!("Request for metadata failed, skipping. Cause: {:?}", e);
@@ -135,7 +90,8 @@ pub async fn connect_to_sni(cli_config: CliConfig) -> anyhow::Result<()> {
         Err(e) => println!("Failed fetching and/or writing metadata: {:?}", e),
     };
 
-    let mut writer = csv::WriterBuilder::new().from_writer(f);
+    // let mut writer = csv::WriterBuilder::new().from_writer(f);
+    let mut writer = snes_handle;
 
     let mut events = EventTracker::new();
 
@@ -347,8 +303,6 @@ pub async fn connect_to_sni(cli_config: CliConfig) -> anyhow::Result<()> {
             ram_history.pop_front();
         }
 
-        writer.flush()?;
-
         // check if recording segment
 
         if events
@@ -482,45 +436,4 @@ fn write_metadata_to_csv(
         )?;
     }
     Ok(())
-}
-
-#[cfg(test)]
-mod tests {
-    use std::collections::HashMap;
-
-    use crate::{check::deserialize_actions, tile::deserialize_transitions, check::deserialize_commands};
-
-    use super::*;
-
-    macro_rules! enforce_unique_ids {
-        ($($name:ident: $checks:expr,)*) => {
-            $(
-                #[test]
-                fn $name() {
-                    let mut id_counter: HashMap<usize, usize> = HashMap::new();
-                    for check in $checks.unwrap() {
-                        *id_counter.entry(check.id).or_default() += 1;
-                    }
-
-                    id_counter.iter().for_each(|(id, occurences)| {
-                        assert!(
-                            *occurences == 1,
-                            "ids have to be unique, yet id {} occurs {} times",
-                            id,
-                            occurences
-                        )
-                    })
-                }
-            )*
-        };
-    }
-
-    enforce_unique_ids! {
-        unique_event_ids: deserialize_event_checks(),
-        unique_item_ids: deserialize_item_checks(),
-        unique_location_ids: deserialize_location_checks(),
-        unique_tile_ids: deserialize_transitions(),
-        unique_action_ids: deserialize_actions(),
-        unique_commands_ids: deserialize_commands(),
-    }
 }

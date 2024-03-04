@@ -1,0 +1,480 @@
+[
+    {
+        "name": "Slash",
+        "id": 0,
+        "conditions": [
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x354",
+                "sram_value": "0x27"
+            },
+            {
+                "type": "HasItem",
+                "id": 27,
+                "note": "has any sword"
+            }
+        ]
+    },
+    {
+        "name": "Jab",
+        "id": 17,
+        "conditions": [
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x354",
+                "sram_value": "0x27"
+            },
+            {
+                "type": "Not",
+                "note": "has no sword",
+                "subconditions": [
+                    {
+                        "type": "HasItem",
+                        "id": 27
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Hookshot",
+        "id": 1,
+        "conditions": [
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x354",
+                "sram_value": "0x20"
+            }
+        ]
+    },
+    {
+        "name": "Fire rod",
+        "id": 2,
+        "conditions": [
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x354",
+                "sram_value": "0x06"
+            },
+            {
+                "type": "ValueEq",
+                "sram_offset": "0x303",
+                "sram_value": "0x05",
+                "note": "equipped item"
+            }
+        ]
+    },
+    {
+        "name": "Ice rod",
+        "id": 18,
+        "conditions": [
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x354",
+                "sram_value": "0x06"
+            },
+            {
+                "type": "ValueEq",
+                "sram_offset": "0x303",
+                "sram_value": "0x06",
+                "note": "equipped item"
+            }
+        ]
+    },
+    {
+        "name": "Boomerang",
+        "id": 3,
+        "conditions": [
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x354",
+                "sram_value": "0x09"
+            }
+        ]
+    },
+    {
+        "name": "Bombos",
+        "id": 4,
+        "conditions": [
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x354",
+                "sram_value": "0x15",
+                "note": "link action state(ish?)"
+            },
+            {
+                "type": "ValueEq",
+                "sram_offset": "0x303",
+                "sram_value": "0x0f",
+                "note": "equipped item"
+            }
+        ]
+    },
+    {
+        "name": "Ether",
+        "id": 5,
+        "conditions": [
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x354",
+                "sram_value": "0x15",
+                "note": "link action state(ish?)"
+            },
+            {
+                "type": "ValueEq",
+                "sram_offset": "0x303",
+                "sram_value": "0x10",
+                "note": "equipped item"
+            }
+        ]
+    },
+    {
+        "name": "Quake",
+        "id": 6,
+        "conditions": [
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x354",
+                "sram_value": "0x15",
+                "note": "link action state(ish?)"
+            },
+            {
+                "type": "ValueEq",
+                "sram_offset": "0x303",
+                "sram_value": "0x11",
+                "note": "equipped item"
+            }
+        ]
+    },
+    {
+        "name": "Lantern",
+        "id": 7,
+        "conditions": [
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0xf0",
+                "sram_value": "0x40",
+                "sram_mask": "0x40"
+            },
+            {
+                "type": "ValueEq",
+                "sram_offset": "0x303",
+                "sram_value": "0x09",
+                "note": "equipped item"
+            }
+        ]
+    },
+    {
+        "name": "Spin Speed activated",
+        "id": 8,
+        "conditions": [
+            {
+                "type": "Any",
+                "subconditions": [
+                    {
+                        "type": "ValueChangedTo",
+                        "sram_offset": "0x354",
+                        "sram_value": "0x0f"
+                    },
+                    {
+                        "type": "ValueChangedTo",
+                        "sram_offset": "0x354",
+                        "sram_value": "0x20"
+                    }
+                ]
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x372",
+                "sram_value": "0x1"
+            }
+        ]
+    },
+    {
+        "name": "Hammer",
+        "id": 9,
+        "conditions": [
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x354",
+                "sram_value": "0x06"
+            },
+            {
+                "type": "ValueEq",
+                "sram_offset": "0x303",
+                "sram_value": "0x04",
+                "note": "equipped item"
+            }
+        ]
+    },
+    {
+        "name": "Cane of Somaria",
+        "id": 10,
+        "conditions": [
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x354",
+                "sram_value": "0x22"
+            },
+            {
+                "type": "ValueEq",
+                "sram_offset": "0x303",
+                "sram_value": "0x12",
+                "note": "equipped item"
+            }
+        ]
+    },
+    {
+        "name": "Cane of Byrna",
+        "id": 11,
+        "conditions": [
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x354",
+                "sram_value": "0x22"
+            },
+            {
+                "type": "ValueEq",
+                "sram_offset": "0x303",
+                "sram_value": "0x0d",
+                "note": "equipped item"
+            }
+        ]
+    },
+    {
+        "name": "Bow",
+        "id": 12,
+        "conditions": [
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x354",
+                "sram_value": "0x07"
+            }
+        ]
+    },
+    {
+        "name": "Dash",
+        "id": 13,
+        "conditions": [
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x372",
+                "sram_value": "0x01"
+            }
+        ]
+    },
+    {
+        "name": "Bomb",
+        "id": 14,
+        "conditions": [
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0xf0",
+                "sram_value": "0x40",
+                "sram_mask": "0x40"
+            },
+            {
+                "type": "ValueEq",
+                "sram_offset": "0x303",
+                "sram_value": "0x01",
+                "note": "equipped item"
+            }
+        ]
+    },
+    {
+        "name": "Shovel",
+        "id": 15,
+        "conditions": [
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x354",
+                "sram_value": "0x0c"
+            }
+        ]
+    },
+    {
+        "name": "\"How much does a polar bear weigh?\"",
+        "alts": [
+            "\"If you could combine two animals to be your main mode of transportation for the next six months, what two animals would you choose and why?\"",
+            "\"Have you heard the goods news?\"",
+            "\"Did it hurt?\"",
+            "\"Ya like jazz?\""
+        ],
+        "id": 16,
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "CRange",
+                        "x": "7980-8000",
+                        "y": "888"
+                    }
+                ]
+            },
+            {
+                "type": "Not",
+                "subconditions": [
+                    {
+                        "type": "PreviousAction",
+                        "id": 16
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Practice Hack - Load State",
+        "id": 19,
+        "conditions": [
+            {
+                "type": "ValueChanged",
+                "sram_offset": "0x131"
+            }
+        ]
+    },
+    {
+        "name": ">",
+        "id": 20,
+        "conditions": [
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0xf0",
+                "sram_value": "0x01",
+                "sram_mask": "0x01"
+            }
+        ]
+    },
+    {
+        "name": "<",
+        "id": 21,
+        "conditions": [
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0xf0",
+                "sram_value": "0x02",
+                "sram_mask": "0x02"
+            }
+        ]
+    },
+    {
+        "name": "v",
+        "id": 22,
+        "conditions": [
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0xf0",
+                "sram_value": "0x04",
+                "sram_mask": "0x04"
+            }
+        ]
+    },
+    {
+        "name": "^",
+        "id": 23,
+        "conditions": [
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0xf0",
+                "sram_value": "0x08",
+                "sram_mask": "0x08"
+            }
+        ]
+    },
+    {
+        "name": "START",
+        "id": 24,
+        "conditions": [
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0xf0",
+                "sram_value": "0x10",
+                "sram_mask": "0x10"
+            }
+        ]
+    },
+    {
+        "name": "SELECT",
+        "id": 25,
+        "conditions": [
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0xf0",
+                "sram_value": "0x20",
+                "sram_mask": "0x20"
+            }
+        ]
+    },
+    {
+        "name": "Y",
+        "id": 26,
+        "conditions": [
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0xf0",
+                "sram_value": "0x40",
+                "sram_mask": "0x40"
+            }
+        ]
+    },
+    {
+        "name": "B",
+        "id": 27,
+        "conditions": [
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0xf0",
+                "sram_value": "0x80",
+                "sram_mask": "0x80"
+            }
+        ]
+    },
+    {
+        "name": "R",
+        "id": 28,
+        "conditions": [
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0xf2",
+                "sram_value": "0x10",
+                "sram_mask": "0x10"
+            }
+        ]
+    },
+    {
+        "name": "L",
+        "id": 29,
+        "conditions": [
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0xf2",
+                "sram_value": "0x20",
+                "sram_mask": "0x20"
+            }
+        ]
+    },
+    {
+        "name": "X",
+        "id": 30,
+        "conditions": [
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0xf2",
+                "sram_value": "0x40",
+                "sram_mask": "0x40"
+            }
+        ]
+    },
+    {
+        "name": "A",
+        "id": 31,
+        "conditions": [
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0xf2",
+                "sram_value": "0x80",
+                "sram_mask": "0x80"
+            }
+        ]
+    }
+]

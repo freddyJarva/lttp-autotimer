@@ -1,0 +1,873 @@
+[
+    {
+        "name": "Bow",
+        "sram_offset": "0xf38e",
+        "sram_mask": "0x80",
+        "id": 0
+    },
+    {
+        "name": "Silver Arrows",
+        "sram_offset": "0xf38e",
+        "sram_mask": "0x40",
+        "id": 1
+    },
+    {
+        "name": "Blue Boomerang",
+        "sram_offset": "0xf38c",
+        "sram_mask": "0x80",
+        "id": 2
+    },
+    {
+        "name": "Red Boomerang",
+        "sram_offset": "0xf38c",
+        "sram_mask": "0x40",
+        "id": 3
+    },
+    {
+        "name": "Hookshot",
+        "sram_offset": "0xf342",
+        "sram_mask": "0x01",
+        "id": 4
+    },
+    {
+        "name": "Magic Powder",
+        "sram_offset": "0xf38c",
+        "sram_mask": "0x10",
+        "id": 5
+    },
+    {
+        "name": "Mushroom",
+        "sram_offset": "0xf38c",
+        "sram_mask": "0x20",
+        "id": 6
+    },
+    {
+        "name": "Fire Rod",
+        "sram_offset": "0xf345",
+        "sram_mask": "0x01",
+        "id": 7
+    },
+    {
+        "name": "Ice Rod",
+        "sram_offset": "0xf346",
+        "sram_mask": "0x01",
+        "id": 8
+    },
+    {
+        "name": "Bombos Medallion",
+        "sram_offset": "0xf347",
+        "sram_mask": "0x01",
+        "id": 9
+    },
+    {
+        "name": "Ether Medallion",
+        "sram_offset": "0xf348",
+        "sram_mask": "0x01",
+        "id": 10
+    },
+    {
+        "name": "Quake Medallion",
+        "sram_offset": "0xf349",
+        "sram_mask": "0x01",
+        "id": 11
+    },
+    {
+        "name": "Lantern",
+        "sram_offset": "0xf34a",
+        "sram_mask": "0x01",
+        "id": 12
+    },
+    {
+        "name": "Hammer",
+        "sram_offset": "0xf34b",
+        "sram_mask": "0x01",
+        "id": 13
+    },
+    {
+        "name": "Shovel",
+        "sram_offset": "0xf38c",
+        "sram_mask": "0x04",
+        "id": 14
+    },
+    {
+        "name": "Flute",
+        "sram_offset": "0xf38c",
+        "sram_mask": "0x03",
+        "id": 15
+    },
+    {
+        "name": "Bug-Catching Net",
+        "sram_offset": "0xf34d",
+        "sram_mask": "0x01",
+        "id": 17
+    },
+    {
+        "name": "Book of Mudora",
+        "sram_offset": "0xf34e",
+        "sram_mask": "0x01",
+        "id": 18
+    },
+    {
+        "name": "Bottle",
+        "is_progressive": true,
+        "sram_offset": "0xf34f",
+        "sram_mask": "0xff",
+        "id": 19
+    },
+    {
+        "name": "Cane of Somaria",
+        "sram_offset": "0xf350",
+        "sram_mask": "0x01",
+        "id": 20
+    },
+    {
+        "name": "Cane of Byrna",
+        "sram_offset": "0xf351",
+        "sram_mask": "0x01",
+        "id": 21
+    },
+    {
+        "name": "Cape",
+        "sram_offset": "0xf352",
+        "sram_mask": "0x01",
+        "id": 52
+    },
+    {
+        "name": "Magic Mirror",
+        "sram_offset": "0xf353",
+        "sram_mask": "0x02",
+        "id": 22
+    },
+    {
+        "name": "Boots",
+        "sram_offset": "0xf355",
+        "sram_mask": "0x01",
+        "id": 23
+    },
+    {
+        "name": "Progressive Glove",
+        "is_progressive": true,
+        "sram_offset": "0xf354",
+        "sram_mask": "0xff",
+        "id": 24
+    },
+    {
+        "name": "Flippers",
+        "sram_offset": "0xf356",
+        "sram_mask": "0x01",
+        "id": 25
+    },
+    {
+        "name": "Moon Pearl",
+        "sram_offset": "0xf357",
+        "sram_mask": "0x01",
+        "id": 26
+    },
+    {
+        "name": "Progressive Sword",
+        "is_progressive": true,
+        "sram_offset": "0xf359",
+        "sram_mask": "0xff",
+        "id": 27
+    },
+    {
+        "name": "Shield",
+        "is_progressive": true,
+        "sram_offset": "0xf35a",
+        "sram_mask": "0xff",
+        "id": 28
+    },
+    {
+        "name": "Armor",
+        "is_progressive": true,
+        "sram_offset": "0xf35b",
+        "sram_mask": "0xff",
+        "id": 29
+    },
+    {
+        "name": "Magic Upgrade",
+        "is_progressive": true,
+        "sram_offset": "0xf37B",
+        "sram_mask": "0xff",
+        "id": 30
+    },
+    {
+        "name": "Big Key - Hyrule Castle",
+        "sram_offset": "0xf367",
+        "sram_mask": "0xc0",
+        "id": 31
+    },
+    {
+        "name": "Big Key - Eastern Palace",
+        "sram_offset": "0xf367",
+        "sram_mask": "0x20",
+        "id": 32
+    },
+    {
+        "name": "Big Key - Desert Palace",
+        "sram_offset": "0xf367",
+        "sram_mask": "0x10",
+        "id": 33
+    },
+    {
+        "name": "Big Key - Tower of Hera",
+        "sram_offset": "0xf366",
+        "sram_mask": "0x20",
+        "id": 34
+    },
+    {
+        "name": "Big Key - Palace of Darkness",
+        "sram_offset": "0xf367",
+        "sram_mask": "0x02",
+        "id": 35
+    },
+    {
+        "name": "Big Key - Swamp Palace",
+        "sram_offset": "0xf367",
+        "sram_mask": "0x04",
+        "id": 36
+    },
+    {
+        "name": "Big Key - Thieves' Town",
+        "sram_offset": "0xf366",
+        "sram_mask": "0x10",
+        "id": 37
+    },
+    {
+        "name": "Big Key - Ice Palace",
+        "sram_offset": "0xf366",
+        "sram_mask": "0x40",
+        "id": 38
+    },
+    {
+        "name": "Big Key - Skull Woods",
+        "sram_offset": "0xf366",
+        "sram_mask": "0x80",
+        "id": 90
+    },
+    {
+        "name": "Big Key - Misery Mire",
+        "sram_offset": "0xf367",
+        "sram_mask": "0x01",
+        "id": 39
+    },
+    {
+        "name": "Big Key - Turtle Rock",
+        "sram_offset": "0xf366",
+        "sram_mask": "0x08",
+        "id": 40
+    },
+    {
+        "name": "Big Key - Ganon's Tower",
+        "sram_offset": "0xf366",
+        "sram_mask": "0x04",
+        "id": 41
+    },
+    {
+        "name": "Pendant of Courage",
+        "sram_offset": "0xf374",
+        "sram_mask": "0x01",
+        "id": 42
+    },
+    {
+        "name": "Pendant of Wisdom",
+        "sram_offset": "0xf374",
+        "sram_mask": "0x02",
+        "id": 43
+    },
+    {
+        "name": "Pendant of Power",
+        "sram_offset": "0xf374",
+        "sram_mask": "0x04",
+        "id": 44
+    },
+    {
+        "name": "Crystal 1",
+        "sram_offset": "0xf37A",
+        "sram_mask": "0x02",
+        "id": 45
+    },
+    {
+        "name": "Crystal 2",
+        "sram_offset": "0xf37A",
+        "sram_mask": "0x10",
+        "id": 46
+    },
+    {
+        "name": "Crystal 3",
+        "sram_offset": "0xf37A",
+        "sram_mask": "0x40",
+        "id": 47
+    },
+    {
+        "name": "Crystal 4",
+        "sram_offset": "0xf37A",
+        "sram_mask": "0x20",
+        "id": 48
+    },
+    {
+        "name": "Crystal 5",
+        "sram_offset": "0xf37A",
+        "sram_mask": "0x04",
+        "id": 49
+    },
+    {
+        "name": "Crystal 6",
+        "sram_offset": "0xf37A",
+        "sram_mask": "0x01",
+        "id": 50
+    },
+    {
+        "name": "Crystal 7",
+        "sram_offset": "0xf37A",
+        "sram_mask": "0x08",
+        "id": 51
+    },
+    {
+        "name": "Compass - Hyrule Castle",
+        "sram_offset": "0xf365",
+        "sram_mask": "0xc0",
+        "id": 53
+    },
+    {
+        "name": "Compass - Eastern Palace",
+        "sram_offset": "0xf365",
+        "sram_mask": "0x20",
+        "id": 54
+    },
+    {
+        "name": "Compass - Desert Palace",
+        "sram_offset": "0xf365",
+        "sram_mask": "0x10",
+        "id": 55
+    },
+    {
+        "name": "Compass - Tower of Hera",
+        "sram_offset": "0xf364",
+        "sram_mask": "0x20",
+        "id": 56
+    },
+    {
+        "name": "Compass - Palace of Darkness",
+        "sram_offset": "0xf365",
+        "sram_mask": "0x02",
+        "id": 57
+    },
+    {
+        "name": "Compass - Swamp Palace",
+        "sram_offset": "0xf365",
+        "sram_mask": "0x04",
+        "id": 58
+    },
+    {
+        "name": "Compass - Thieves' Town",
+        "sram_offset": "0xf364",
+        "sram_mask": "0x10",
+        "id": 59
+    },
+    {
+        "name": "Compass - Ice Palace",
+        "sram_offset": "0xf364",
+        "sram_mask": "0x40",
+        "id": 60
+    },
+    {
+        "name": "Compass - Skull Woods",
+        "sram_offset": "0xf364",
+        "sram_mask": "0x80",
+        "id": 88
+    },
+    {
+        "name": "Compass - Misery Mire",
+        "sram_offset": "0xf365",
+        "sram_mask": "0x01",
+        "id": 61
+    },
+    {
+        "name": "Compass - Turtle Rock",
+        "sram_offset": "0xf364",
+        "sram_mask": "0x08",
+        "id": 62
+    },
+    {
+        "name": "Compass - Ganon's Tower",
+        "sram_offset": "0xf364",
+        "sram_mask": "0x04",
+        "id": 63
+    },
+    {
+        "name": "Map - Hyrule Castle",
+        "sram_offset": "0xf369",
+        "sram_mask": "0xc0",
+        "id": 64
+    },
+    {
+        "name": "Map - Eastern Palace",
+        "sram_offset": "0xf369",
+        "sram_mask": "0x20",
+        "id": 65
+    },
+    {
+        "name": "Map - Desert Palace",
+        "sram_offset": "0xf369",
+        "sram_mask": "0x10",
+        "id": 66
+    },
+    {
+        "name": "Map - Tower of Hera",
+        "sram_offset": "0xf368",
+        "sram_mask": "0x20",
+        "id": 67
+    },
+    {
+        "name": "Map - Palace of Darkness",
+        "sram_offset": "0xf369",
+        "sram_mask": "0x02",
+        "id": 68
+    },
+    {
+        "name": "Map - Swamp Palace",
+        "sram_offset": "0xf369",
+        "sram_mask": "0x04",
+        "id": 69
+    },
+    {
+        "name": "Map - Thieves' Town",
+        "sram_offset": "0xf368",
+        "sram_mask": "0x10",
+        "id": 70
+    },
+    {
+        "name": "Map - Ice Palace",
+        "sram_offset": "0xf368",
+        "sram_mask": "0x40",
+        "id": 71
+    },
+    {
+        "name": "Map - Skull Woods",
+        "sram_offset": "0xf368",
+        "sram_mask": "0x80",
+        "id": 89
+    },
+    {
+        "name": "Map - Misery Mire",
+        "sram_offset": "0xf369",
+        "sram_mask": "0x01",
+        "id": 72
+    },
+    {
+        "name": "Map - Turtle Rock",
+        "sram_offset": "0xf368",
+        "sram_mask": "0x08",
+        "id": 73
+    },
+    {
+        "name": "Map - Ganon's Tower",
+        "sram_offset": "0xf368",
+        "sram_mask": "0x04",
+        "id": 74
+    },
+    {
+        "name": "Small Key - Hyrule Castle",
+        "id": 75,
+        "is_progressive": true,
+        "conditions": [
+            {
+                "type": "ValueGreaterThan",
+                "sram_offset": "0xf4e1",
+                "other": {
+                    "ItemCount": 75
+                }
+            }
+        ]
+    },
+    {
+        "name": "Small Key Drop - Hyrule Castle",
+        "id": 95,
+        "is_progressive": true,
+        "conditions": [
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf37d"
+            },
+            {
+                "type": "Not",
+                "subconditions": [
+                    {
+                        "type": "DungeonCounterIncreased",
+                        "sram_offset": "0xf4e0"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Small Key Drop - Eastern Palace",
+        "id": 92,
+        "is_progressive": true,
+        "conditions": [
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf37e",
+                "other": {
+                    "ItemCount": 92
+                }
+            }
+        ]
+    },
+    {
+        "name": "Small Key - Eastern Palace",
+        "id": 76,
+        "is_progressive": true,
+        "conditions": [
+            {
+                "type": "ValueGreaterThan",
+                "sram_offset": "0xf4e2",
+                "other": {
+                    "ItemCount": 76
+                }
+            }
+        ]
+    },
+    {
+        "name": "Small Key - Desert Palace",
+        "id": 77,
+        "is_progressive": true,
+        "conditions": [
+            {
+                "type": "ValueGreaterThan",
+                "sram_offset": "0xf4e3",
+                "other": {
+                    "ItemCount": 77
+                }
+            }
+        ]
+    },
+    {
+        "name": "Small Key Drop - Desert Palace",
+        "id": 93,
+        "is_progressive": true,
+        "conditions": [
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf37f"
+            },
+            {
+                "type": "Not",
+                "subconditions": [
+                    {
+                        "type": "DungeonCounterIncreased",
+                        "sram_offset": "0xf4e3"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Small Key - Tower of Hera",
+        "id": 78,
+        "is_progressive": true,
+        "conditions": [
+            {
+                "type": "ValueGreaterThan",
+                "sram_offset": "0xf4ea",
+                "other": {
+                    "ItemCount": 78
+                }
+            }
+        ]
+    },
+    {
+        "name": "Small Key - Castle Tower",
+        "id": 79,
+        "is_progressive": true,
+        "conditions": [
+            {
+                "type": "ValueGreaterThan",
+                "sram_offset": "0xf4e4",
+                "other": {
+                    "ItemCount": 79
+                }
+            }
+        ]
+    },
+    {
+        "name": "Small Key Drop - Castle Tower",
+        "id": 102,
+        "is_progressive": true,
+        "conditions": [
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf380"
+            },
+            {
+                "type": "Not",
+                "subconditions": [
+                    {
+                        "type": "DungeonCounterIncreased",
+                        "sram_offset": "0xf4e4"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Small Key - Swamp Palace",
+        "id": 80,
+        "is_progressive": true,
+        "conditions": [
+            {
+                "type": "ValueGreaterThan",
+                "sram_offset": "0xf4e5",
+                "other": {
+                    "ItemCount": 80
+                }
+            }
+        ]
+    },
+    {
+        "name": "Small Key Drop - Swamp Palace",
+        "id": 96,
+        "is_progressive": true,
+        "conditions": [
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf381"
+            },
+            {
+                "type": "Not",
+                "subconditions": [
+                    {
+                        "type": "DungeonCounterIncreased",
+                        "sram_offset": "0xf4e5"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Small Key - Palace of Darkness",
+        "id": 81,
+        "is_progressive": true,
+        "conditions": [
+            {
+                "type": "ValueGreaterThan",
+                "sram_offset": "0xf4e6",
+                "other": {
+                    "ItemCount": 81
+                }
+            }
+        ]
+    },
+    {
+        "name": "Small Key - Misery Mire",
+        "id": 82,
+        "is_progressive": true,
+        "conditions": [
+            {
+                "type": "ValueGreaterThan",
+                "sram_offset": "0xf4e7",
+                "other": {
+                    "ItemCount": 82
+                }
+            }
+        ]
+    },
+    {
+        "name": "Small Key Drop - Misery Mire",
+        "id": 97,
+        "is_progressive": true,
+        "conditions": [
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf383"
+            },
+            {
+                "type": "Not",
+                "subconditions": [
+                    {
+                        "type": "DungeonCounterIncreased",
+                        "sram_offset": "0xf4e7"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Small Key - Skull Woods",
+        "id": 83,
+        "is_progressive": true,
+        "conditions": [
+            {
+                "type": "ValueGreaterThan",
+                "sram_offset": "0xf4e8",
+                "other": {
+                    "ItemCount": 83
+                }
+            }
+        ]
+    },
+    {
+        "name": "Small Key Drop - Skull Woods",
+        "id": 98,
+        "is_progressive": true,
+        "conditions": [
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf384"
+            },
+            {
+                "type": "Not",
+                "subconditions": [
+                    {
+                        "type": "DungeonCounterIncreased",
+                        "sram_offset": "0xf4e8"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Small Key - Ice Palace",
+        "id": 84,
+        "is_progressive": true,
+        "conditions": [
+            {
+                "type": "ValueGreaterThan",
+                "sram_offset": "0xf4e9",
+                "other": {
+                    "ItemCount": 84
+                }
+            }
+        ]
+    },
+    {
+        "name": "Small Key Drop - Ice Palace",
+        "id": 99,
+        "is_progressive": true,
+        "conditions": [
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf385"
+            },
+            {
+                "type": "Not",
+                "subconditions": [
+                    {
+                        "type": "DungeonCounterIncreased",
+                        "sram_offset": "0xf4e9"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Small Key - Thieves' Town",
+        "id": 85,
+        "is_progressive": true,
+        "conditions": [
+            {
+                "type": "ValueGreaterThan",
+                "sram_offset": "0xf4eb",
+                "other": {
+                    "ItemCount": 85
+                }
+            }
+        ]
+    },
+    {
+        "name": "Small Key Drop - Thieves' Town",
+        "id": 94,
+        "is_progressive": true,
+        "conditions": [
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "7ef387"
+            },
+            {
+                "type": "Not",
+                "subconditions": [
+                    {
+                        "type": "DungeonCounterIncreased",
+                        "sram_offset": "0xf4eb"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Small Key - Turtle Rock",
+        "id": 86,
+        "is_progressive": true,
+        "conditions": [
+            {
+                "type": "ValueGreaterThan",
+                "sram_offset": "0xf4ec",
+                "other": {
+                    "ItemCount": 86
+                }
+            }
+        ]
+    },
+    {
+        "name": "Small Key Drop - Turtle Rock",
+        "id": 100,
+        "is_progressive": true,
+        "conditions": [
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf388"
+            },
+            {
+                "type": "Not",
+                "subconditions": [
+                    {
+                        "type": "DungeonCounterIncreased",
+                        "sram_offset": "0xf4ec"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Small Key - Ganon's Tower",
+        "id": 87,
+        "is_progressive": true,
+        "conditions": [
+            {
+                "type": "ValueGreaterThan",
+                "sram_offset": "0xf4ed",
+                "other": {
+                    "ItemCount": 87
+                }
+            }
+        ]
+    },
+    {
+        "name": "Small Key Drop - Ganon's Tower",
+        "id": 101,
+        "is_progressive": true,
+        "conditions": [
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf389"
+            },
+            {
+                "type": "Not",
+                "subconditions": [
+                    {
+                        "type": "DungeonCounterIncreased",
+                        "sram_offset": "0xf4ed"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Triforce Piece",
+        "id": 91,
+        "is_progressive": true,
+        "sram_offset": "0xf418",
+        "sram_mask": "0xff"
+    }
+]

@@ -1,0 +1,233 @@
+[
+    {
+        "name": "Hyrule Castle - Map Guard Key Drop",
+        "address": "0x140036",
+        "player_address": "0x140037",
+        "crystal": "in Hyrule Castle",
+        "hint_text": "Small Key (Escape)"
+    },
+    {
+        "name": "Hyrule Castle - Boomerang Guard Key Drop",
+        "address": "0x140033",
+        "player_address": "0x140034",
+        "crystal": "in Hyrule Castle",
+        "hint_text": "Small Key (Escape)"
+    },
+    {
+        "name": "Hyrule Castle - Key Rat Key Drop",
+        "address": "0x14000c",
+        "player_address": "0x14000d",
+        "crystal": "in Hyrule Castle",
+        "hint_text": "Small Key (Escape)"
+    },
+    {
+        "name": "Hyrule Castle - Big Key Drop",
+        "address": "0x14003c",
+        "player_address": "0x14003d",
+        "crystal": "in Hyrule Castle",
+        "hint_text": "Big Key (Escape)"
+    },
+    {
+        "name": "Eastern Palace - Dark Square Pot Key",
+        "address": "0x14005a",
+        "player_address": "0x14005b",
+        "crystal": "in Eastern Palace",
+        "hint_text": "Small Key (Eastern Palace)"
+    },
+    {
+        "name": "Eastern Palace - Dark Eyegore Key Drop",
+        "address": "0x140048",
+        "player_address": "0x140049",
+        "crystal": "in Eastern Palace",
+        "hint_text": "Small Key (Eastern Palace)"
+    },
+    {
+        "name": "Desert Palace - Desert Tiles 1 Pot Key",
+        "address": "0x140030",
+        "player_address": "0x140031",
+        "crystal": "in Desert Palace",
+        "hint_text": "Small Key (Desert Palace)"
+    },
+    {
+        "name": "Desert Palace - Beamos Hall Pot Key",
+        "address": "0x14002a",
+        "player_address": "0x14002b",
+        "crystal": "in Desert Palace",
+        "hint_text": "Small Key (Desert Palace)"
+    },
+    {
+        "name": "Desert Palace - Desert Tiles 2 Pot Key",
+        "address": "0x140027",
+        "player_address": "0x140028",
+        "crystal": "in Desert Palace",
+        "hint_text": "Small Key (Desert Palace)"
+    },
+    {
+        "name": "Castle Tower - Dark Archer Key Drop",
+        "address": "0x140060",
+        "player_address": "0x140061",
+        "crystal": "in Castle Tower",
+        "hint_text": "Small Key (Agahnims Tower)"
+    },
+    {
+        "name": "Castle Tower - Circle of Pots Key Drop",
+        "address": "0x140051",
+        "player_address": "0x140052",
+        "crystal": "in Castle Tower",
+        "hint_text": "Small Key (Agahnims Tower)"
+    },
+    {
+        "name": "Swamp Palace - Pot Row Pot Key",
+        "address": "0x140018",
+        "player_address": "0x140019",
+        "crystal": "in Swamp Palace",
+        "hint_text": "Small Key (Swamp Palace)"
+    },
+    {
+        "name": "Swamp Palace - Trench 1 Pot Key",
+        "address": "0x140015",
+        "player_address": "0x140016",
+        "crystal": "in Swamp Palace",
+        "hint_text": "Small Key (Swamp Palace)"
+    },
+    {
+        "name": "Swamp Palace - Hookshot Pot Key",
+        "address": "0x140012",
+        "player_address": "0x140013",
+        "crystal": "in Swamp Palace",
+        "hint_text": "Small Key (Swamp Palace)"
+    },
+    {
+        "name": "Swamp Palace - Trench 2 Pot Key",
+        "address": "0x14000f",
+        "player_address": "0x140010",
+        "crystal": "in Swamp Palace",
+        "hint_text": "Small Key (Swamp Palace)"
+    },
+    {
+        "name": "Swamp Palace - Waterway Pot Key",
+        "address": "0x140009",
+        "player_address": "0x14000a",
+        "crystal": "in Swamp Palace",
+        "hint_text": "Small Key (Swamp Palace)"
+    },
+    {
+        "name": "Skull Woods - West Lobby Pot Key",
+        "address": "0x14002d",
+        "player_address": "0x14002e",
+        "crystal": "in Skull Woods",
+        "hint_text": "Small Key (Skull Woods)"
+    },
+    {
+        "name": "Skull Woods - Spike Corner Key Drop",
+        "address": "0x14001b",
+        "player_address": "0x14001c",
+        "crystal": "near Mothula",
+        "hint_text": "Small Key (Skull Woods)"
+    },
+    {
+        "name": "Thieves' Town - Hallway Pot Key",
+        "address": "0x14005d",
+        "player_address": "0x14005e",
+        "crystal": "in Thieves' Town",
+        "hint_text": "Small Key (Thieves Town)"
+    },
+    {
+        "name": "Thieves' Town - Spike Switch Pot Key",
+        "address": "0x14004e",
+        "player_address": "0x14004f",
+        "crystal": "in Thieves' Town",
+        "hint_text": "Small Key (Thieves Town)"
+    },
+    {
+        "name": "Ice Palace - Jelly Key Drop",
+        "address": "0x140003",
+        "player_address": "0x140004",
+        "crystal": "in Ice Palace",
+        "hint_text": "Small Key (Ice Palace)"
+    },
+    {
+        "name": "Ice Palace - Conveyor Key Drop",
+        "address": "0x140021",
+        "player_address": "0x140022",
+        "crystal": "in Ice Palace",
+        "hint_text": "Small Key (Ice Palace)"
+    },
+    {
+        "name": "Ice Palace - Hammer Block Key Drop",
+        "address": "0x140024",
+        "player_address": "0x140025",
+        "crystal": "in Ice Palace",
+        "hint_text": "Small Key (Ice Palace)"
+    },
+    {
+        "name": "Ice Palace - Many Pots Pot Key",
+        "address": "0x140045",
+        "player_address": "0x140046",
+        "crystal": "in Ice Palace",
+        "hint_text": "Small Key (Ice Palace)"
+    },
+    {
+        "name": "Misery Mire - Spikes Pot Key",
+        "address": "0x140054",
+        "player_address": "0x140055",
+        "crystal": "in Misery Mire",
+        "hint_text": "Small Key (Misery Mire)"
+    },
+    {
+        "name": "Misery Mire - Fishbone Pot Key",
+        "address": "0x14004b",
+        "player_address": "0x14004c",
+        "crystal": "in forgotten Mire",
+        "hint_text": "Small Key (Misery Mire)"
+    },
+    {
+        "name": "Misery Mire - Conveyor Crystal Key Drop",
+        "address": "0x140063",
+        "player_address": "0x140064",
+        "crystal": "in Misery Mire",
+        "hint_text": "Small Key (Misery Mire)"
+    },
+    {
+        "name": "Turtle Rock - Pokey 1 Key Drop",
+        "address": "0x140057",
+        "player_address": "0x140058",
+        "crystal": "in Turtle Rock",
+        "hint_text": "Small Key (Turtle Rock)"
+    },
+    {
+        "name": "Turtle Rock - Pokey 2 Key Drop",
+        "address": "0x140006",
+        "player_address": "0x140007",
+        "crystal": "in Turtle Rock",
+        "hint_text": "Small Key (Turtle Rock)"
+    },
+    {
+        "name": "Ganons Tower - Conveyor Cross Pot Key",
+        "address": "0x14003f",
+        "player_address": "0x140040",
+        "crystal": "in Ganon's Tower",
+        "hint_text": "Small Key (Ganons Tower)"
+    },
+    {
+        "name": "Ganons Tower - Double Switch Pot Key",
+        "address": "0x140042",
+        "player_address": "0x140043",
+        "crystal": "in Ganon's Tower",
+        "hint_text": "Small Key (Ganons Tower)"
+    },
+    {
+        "name": "Ganons Tower - Conveyor Star Pits Pot Key",
+        "address": "0x140039",
+        "player_address": "0x14003a",
+        "crystal": "in Ganon's Tower",
+        "hint_text": "Small Key (Ganons Tower)"
+    },
+    {
+        "name": "Ganons Tower - Mini Helmasaur Key Drop",
+        "address": "0x14001e",
+        "player_address": "0x14001f",
+        "crystal": "atop Ganon's Tower",
+        "hint_text": "Small Key (Ganons Tower)"
+    }
+]

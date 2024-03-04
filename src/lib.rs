@@ -185,6 +185,9 @@ pub async fn connect_to_sni(cli_config: CliConfig) -> anyhow::Result<()> {
                             _ => ()
                         }
                     },
+                    CommandState::StartRecording => {
+
+                    },
                     CommandState::RecordingInProgress(ref start_check) => {
                         match &input_cmd.id {
                             1 => {
@@ -281,7 +284,8 @@ pub async fn connect_to_sni(cli_config: CliConfig) -> anyhow::Result<()> {
                         finished_objectives = vec![];
                         command_state = CommandState::SegmentRecorded;
                         events = EventTracker::new();
-                    }
+                    },
+                    CommandState::ClearEventLog => ()
                 }
             }
             let should_print = !(matches!(command_state, CommandState::RunStarted(_))

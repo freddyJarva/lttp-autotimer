@@ -1,0 +1,67 @@
+@font-face {
+  font-family: "Press Start 2P";
+  src: url("/fonts/lttp-font.ttf");
+}
+
+body {
+  color: whitesmoke;
+  margin: 0;
+  padding: 8px;
+  font-family: "Press Start 2P";
+  user-select: none;
+  background-color: black;
+  cursor: default;
+}
+
+/* button { */
+/*   margin: 4px; */
+/*   color: whitesmoke; */
+/*   background-color: #282828; */
+/*   border-color: #e6a800; */
+/*   border-bottom: 1px solid hsl(43, 74%, 49%); */
+/*   border-right: 1px solid goldenrod; */
+/*   font-family: "Press Start 2P"; */
+/*   font-size: 12px; */
+/*   margin: -4px 8px 10px 10px; */
+/* } */
+
+button {
+    margin: 4px;
+    color: whitesmoke;
+    background-color: black;
+    border-color: hsl(44, 100, 45);
+    border-bottom: 1px solid hsl(43, 74%, 49%);
+    border-right: 1px solid goldenrod;
+    font-family: 'Press Start 2P';
+    font-size: 32px;
+    margin: -4px 8px 10px 10px;
+}
+
+
+button:focus {
+  outline: none;
+}
+
+button:disabled {
+  color: grey;
+  border-color: grey;
+}
+
+button:focus {
+  outline: none;
+}
+
+button:disabled {
+  color: grey;
+  border-color: grey;
+}
+
+@keyframes blink-animation {
+  from {
+    visibility: visible;
+    filter: brightness(250%);
+  }
+  to {
+    visibility: hidden;
+  }
+}

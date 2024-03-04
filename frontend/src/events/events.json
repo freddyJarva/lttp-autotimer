@@ -1,0 +1,2822 @@
+[
+    {
+        "name": "Save & Quit",
+        "is_progressive": true,
+        "id": 0,
+        "conditions": [
+            {
+                "type": "Any",
+                "subconditions": [
+                    {
+                        "type": "ValueEq",
+                        "sram_offset": "0x10",
+                        "sram_value": "0x17"
+                    },
+                    {
+                        "note": "Given on death menu When I select S&Q Then return true",
+                        "type": "All",
+                        "subconditions": [
+                            {
+                                "type": "PreviousEvent",
+                                "id": 1,
+                                "note": "Latest event is Link dying"
+                            },
+                            {
+                                "type": "ValueEq",
+                                "sram_offset": "0x10a",
+                                "sram_value": "0x1",
+                                "note": "Marked option is selected"
+                            },
+                            {
+                                "type": "ValueEq",
+                                "sram_offset": "0xb0",
+                                "sram_value": "0x1",
+                                "note": "Marker is on S&Q"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Reset",
+        "is_progressive": true,
+        "id": 15,
+        "conditions": [
+            {
+                "type": "ValueEq",
+                "sram_offset": "0x10",
+                "sram_value": "0x0"
+            }
+        ]
+    },
+    {
+        "name": "Death",
+        "is_progressive": true,
+        "conditions": [
+            {
+                "type": "ValueEq",
+                "sram_offset": "0x10",
+                "sram_value": "0x12"
+            },
+            {
+                "type": "Not",
+                "subconditions": [
+                    {
+                        "type": "PreviousValueEq",
+                        "sram_offset": "0x10",
+                        "sram_value": "0x12"
+                    }
+                ]
+            }
+        ],
+        "id": 1
+    },
+    {
+        "name": "Overworld Mirror",
+        "is_progressive": true,
+        "sram_offset": "0xf43A",
+        "sram_mask": "0xff",
+        "id": 2
+    },
+    {
+        "name": "Dungeon Mirror",
+        "is_progressive": true,
+        "sram_offset": "0xf43B",
+        "sram_mask": "0xff",
+        "id": 3
+    },
+    {
+        "name": "Duck Pickup",
+        "is_progressive": true,
+        "sram_offset": "0xf44B",
+        "sram_mask": "0xff",
+        "id": 4
+    },
+    {
+        "name": "Triforce",
+        "sram_offset": "0xf443",
+        "sram_mask": "0x01",
+        "id": 5
+    },
+    {
+        "name": "Eastern Palace - Dungeon Clear",
+        "id": 6,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 240
+            },
+            {
+                "type": "Any",
+                "subconditions": [
+                    {
+                        "type": "ValueChanged",
+                        "sram_offset": "0xf422"
+                    },
+                    {
+                        "type": "ValueChanged",
+                        "sram_offset": "0xf374"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Desert Palace - Dungeon Clear",
+        "id": 7,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 264
+            },
+            {
+                "type": "Any",
+                "subconditions": [
+                    {
+                        "type": "ValueChanged",
+                        "sram_offset": "0xf422"
+                    },
+                    {
+                        "type": "ValueChanged",
+                        "sram_offset": "0xf374"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Tower of Hera - Dungeon Clear",
+        "id": 8,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 276
+            },
+            {
+                "type": "Any",
+                "subconditions": [
+                    {
+                        "type": "ValueChanged",
+                        "sram_offset": "0xf422"
+                    },
+                    {
+                        "type": "ValueChanged",
+                        "sram_offset": "0xf374"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Palace of Darkness - Dungeon Clear",
+        "id": 9,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 318
+            },
+            {
+                "type": "Any",
+                "subconditions": [
+                    {
+                        "type": "ValueChanged",
+                        "sram_offset": "0xf422"
+                    },
+                    {
+                        "type": "ValueChanged",
+                        "sram_offset": "0xf374"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Swamp Palace - Dungeon Clear",
+        "id": 10,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 351
+            },
+            {
+                "type": "Any",
+                "subconditions": [
+                    {
+                        "type": "ValueChanged",
+                        "sram_offset": "0xf422"
+                    },
+                    {
+                        "type": "ValueChanged",
+                        "sram_offset": "0xf374"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Thieves' Town - Dungeon Clear",
+        "id": 11,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 394
+            },
+            {
+                "type": "Any",
+                "subconditions": [
+                    {
+                        "type": "ValueChanged",
+                        "sram_offset": "0xf422"
+                    },
+                    {
+                        "type": "ValueChanged",
+                        "sram_offset": "0xf374"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Skull Woods - Dungeon Clear",
+        "id": 25,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 372
+            },
+            {
+                "type": "Any",
+                "subconditions": [
+                    {
+                        "type": "ValueChanged",
+                        "sram_offset": "0xf422"
+                    },
+                    {
+                        "type": "ValueChanged",
+                        "sram_offset": "0xf374"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Ice Palace - Dungeon Clear",
+        "id": 12,
+        "conditions": [
+            {
+                "type": "Any",
+                "subconditions": [
+                    {
+                        "type": "ValueChanged",
+                        "sram_offset": "0xf422"
+                    },
+                    {
+                        "type": "ValueChanged",
+                        "sram_offset": "0xf374"
+                    }
+                ]
+            },
+            {
+                "type": "CurrentTile",
+                "id": 430
+            }
+        ]
+    },
+    {
+        "name": "Misery Mire - Dungeon Clear",
+        "id": 13,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 457
+            },
+            {
+                "type": "Any",
+                "subconditions": [
+                    {
+                        "type": "ValueChanged",
+                        "sram_offset": "0xf422"
+                    },
+                    {
+                        "type": "ValueChanged",
+                        "sram_offset": "0xf374"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Turtle Rock - Dungeon Clear",
+        "id": 14,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 492
+            },
+            {
+                "type": "Any",
+                "subconditions": [
+                    {
+                        "type": "ValueChanged",
+                        "sram_offset": "0xf422"
+                    },
+                    {
+                        "type": "ValueChanged",
+                        "sram_offset": "0xf374"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 16,
+        "name": "Fetch Quest Blacksmith - Begin",
+        "conditions": [
+            {
+                "type": "Any",
+                "subconditions": [
+                    {
+                        "type": "ValueEq",
+                        "sram_offset": "0xf3cc",
+                        "sram_value": "0x7"
+                    },
+                    {
+                        "type": "ValueEq",
+                        "sram_offset": "0xf3cc",
+                        "sram_value": "0x8"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 17,
+        "name": "Fetch Quest Blacksmith - End",
+        "conditions": [
+            {
+                "type": "CheckMade",
+                "id": 31
+            }
+        ]
+    },
+    {
+        "id": 18,
+        "name": "Fetch Quest Purple Chest - Begin",
+        "conditions": [
+            {
+                "type": "ValueEq",
+                "sram_offset": "0xf3cc",
+                "sram_value": "0x0c"
+            }
+        ]
+    },
+    {
+        "id": 19,
+        "name": "Fetch Quest Purple Chest - End",
+        "conditions": [
+            {
+                "type": "CheckMade",
+                "id": 4
+            }
+        ]
+    },
+    {
+        "id": 20,
+        "name": "Fetch Quest Super Bomb - Begin",
+        "conditions": [
+            {
+                "type": "ValueEq",
+                "sram_offset": "0xf3cc",
+                "sram_value": "0x0d"
+            }
+        ]
+    },
+    {
+        "name": "Fetch Quest Super Bomb - End",
+        "id": 21,
+        "conditions": [
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0xf2db",
+                "sram_mask": "0x02",
+                "sram_value": "0x02"
+            }
+        ]
+    },
+    {
+        "id": 22,
+        "name": "Fetch Quest Old Man - Begin",
+        "conditions": [
+            {
+                "type": "ValueEq",
+                "sram_offset": "0xf3cc",
+                "sram_value": "0x04"
+            }
+        ]
+    },
+    {
+        "id": 23,
+        "name": "Fetch Quest Old Man - End",
+        "conditions": [
+            {
+                "type": "CheckMade",
+                "id": 75
+            }
+        ]
+    },
+    {
+        "id": 24,
+        "name": "Tree Pull",
+        "is_progressive": true,
+        "conditions": [
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x354",
+                "sram_value": "0x26"
+            },
+            {
+                "type": "Not",
+                "subconditions": [
+                    {
+                        "type": "CurrentTile",
+                        "id": 127,
+                        "note": "Opening Thieves' Town should not trigger tree pull"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 27,
+        "name": "Hammerpegs Entrance Revealed",
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 129
+            },
+            {
+                "type": "ValueEq",
+                "sram_offset": "0x4c8",
+                "sram_value": "0x16"
+            }
+        ]
+    },
+    {
+        "id": 28,
+        "name": "Standard Start",
+        "sram_offset": "0x37c",
+        "sram_mask": "0x01"
+    },
+    {
+        "id": 29,
+        "name": "Handed In Mushroom",
+        "sram_offset": "0xf38c",
+        "sram_mask": "0x08",
+        "conditions": [
+            {
+                "type": "ValueEq",
+                "sram_offset": "0xf38c",
+                "sram_mask": "0x28",
+                "sram_value": "0x08",
+                "note": "When carrying shroom, bit 4 and 6 is on. When handed in, bit 6 is toggled off"
+            }
+        ]
+    },
+    {
+        "id": 30,
+        "name": "Flute (Activated)",
+        "sram_offset": "0xf38c",
+        "sram_mask": "0x01"
+    },
+    {
+        "id": 31,
+        "name": "Crystal Switch - Red",
+        "is_progressive": true,
+        "conditions": [
+            {
+                "type": "ValueEq",
+                "sram_offset": "0xc172",
+                "sram_value": "0x0"
+            },
+            {
+                "type": "PreviousValueEq",
+                "sram_offset": "0xc172",
+                "sram_value": "0x01"
+            }
+        ]
+    },
+    {
+        "id": 32,
+        "name": "Crystal Switch - Blue",
+        "is_progressive": true,
+        "conditions": [
+            {
+                "type": "ValueEq",
+                "sram_offset": "0xc172",
+                "sram_value": "0x01"
+            },
+            {
+                "type": "PreviousValueEq",
+                "sram_offset": "0xc172",
+                "sram_value": "0x0"
+            }
+        ]
+    },
+    {
+        "name": "Agahnim's Tower - Dungeon Clear",
+        "id": 33,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 293
+            },
+            {
+                "type": "ValueEq",
+                "sram_offset": "0x10",
+                "sram_value": "0x15"
+            }
+        ]
+    },
+    {
+        "name": "Ganon's Tower - Dungeon Clear",
+        "id": 34,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 553
+            },
+            {
+                "type": "ValueEq",
+                "sram_offset": "0x10",
+                "sram_value": "0x18",
+                "note": "GanonEmerges"
+            }
+        ]
+    },
+    {
+        "name": "Misery Mire - Opened",
+        "id": 35,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 181
+            },
+            {
+                "type": "ValueEq",
+                "sram_offset": "0xf2f0",
+                "sram_value": "0x20"
+            }
+        ]
+    },
+    {
+        "name": "Turtle Rock - Opened",
+        "id": 36,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 152
+            },
+            {
+                "type": "ValueEq",
+                "sram_offset": "0xf2c7",
+                "sram_value": "0x20"
+            }
+        ]
+    },
+    {
+        "name": "Palace of Darkness - Opened",
+        "id": 37,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 165
+            },
+            {
+                "type": "ValueEq",
+                "sram_offset": "0xf2de",
+                "sram_value": "0x20"
+            }
+        ]
+    },
+    {
+        "name": "Skull Woods - Opened",
+        "id": 38,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 119
+            },
+            {
+                "type": "ValueEq",
+                "sram_offset": "0xf2c0",
+                "sram_value": "0x20"
+            }
+        ]
+    },
+    {
+        "name": "Ganon's Tower - Opened",
+        "id": 39,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 150
+            },
+            {
+                "type": "ValueEq",
+                "sram_offset": "0xf2c3",
+                "sram_value": "0x20"
+            }
+        ]
+    },
+    {
+        "name": "Thieves' Town - Opened",
+        "id": 40,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 127
+            },
+            {
+                "type": "ValueEq",
+                "sram_offset": "0xf2d8",
+                "sram_value": "0x20",
+                "sram_mask": "0x20"
+            }
+        ]
+    },
+    {
+        "name": "Hyrule Castle - Key Guard #1 - Door unlocked",
+        "id": 41,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 197
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_value": "0x80"
+            }
+        ]
+    },
+    {
+        "name": "Hyrule Castle - Green Guard Trap - Door unlocked",
+        "id": 42,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 201
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_value": "0x80"
+            }
+        ]
+    },
+    {
+        "name": "Hyrule Castle - Zelda's Cell - Unlocked",
+        "id": 43,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 205
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x403",
+                "sram_mask": "0x2",
+                "sram_value": "0x2"
+            }
+        ]
+    },
+    {
+        "name": "Sewers - Dark Cross - Unlocked door",
+        "id": 44,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 211
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_value": "0x80"
+            }
+        ]
+    },
+    {
+        "name": "Sewers - Bonk Walls - Unlocked door",
+        "id": 45,
+        "conditions": [
+            {
+                "type": "Any",
+                "subconditions": [
+                    {
+                        "note": "Unlock from key snake room",
+                        "type": "All",
+                        "subconditions": [
+                            {
+                                "type": "CurrentTile",
+                                "id": 214
+                            },
+                            {
+                                "type": "ValueChangedTo",
+                                "sram_offset": "0x401",
+                                "sram_value": "0x80"
+                            }
+                        ]
+                    },
+                    {
+                        "note": "Unlock from bonk walls room",
+                        "type": "All",
+                        "subconditions": [
+                            {
+                                "type": "CurrentTile",
+                                "id": 215
+                            },
+                            {
+                                "type": "ValueChangedTo",
+                                "sram_offset": "0x401",
+                                "sram_mask": "0x20",
+                                "sram_value": "0x20"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Sewers - Bonk Walls - Bottom Wall Destroyed",
+        "id": 46,
+        "conditions": [
+            {
+                "type": "Any",
+                "subconditions": [
+                    {
+                        "type": "CurrentTile",
+                        "id": 215
+                    },
+                    {
+                        "type": "CurrentTile",
+                        "id": 216
+                    }
+                ]
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_mask": "0x40",
+                "sram_value": "0x40"
+            }
+        ]
+    },
+    {
+        "name": "Sewers - Bonk Walls - Top Wall Destroyed",
+        "id": 47,
+        "conditions": [
+            {
+                "type": "Any",
+                "subconditions": [
+                    {
+                        "type": "CurrentTile",
+                        "id": 215
+                    },
+                    {
+                        "type": "CurrentTile",
+                        "id": 216
+                    }
+                ]
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_mask": "0x80",
+                "sram_value": "0x80"
+            }
+        ]
+    },
+    {
+        "name": "Bonk Rocks - Bonked",
+        "id": 48,
+        "conditions": [
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0xf293",
+                "sram_mask": "0x20",
+                "sram_value": "0x20"
+            }
+        ]
+    },
+    {
+        "name": "Blind's Hut - Wall Destroyed",
+        "id": 49,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 560
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_value": "0x80"
+            }
+        ]
+    },
+    {
+        "name": "Kak Well - Wall Destroyed",
+        "id": 50,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 55
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_value": "0x80"
+            }
+        ]
+    },
+    {
+        "name": "Chicken Hut - Wall Destroyed",
+        "id": 51,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 40
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_value": "0x80"
+            }
+        ]
+    },
+    {
+        "name": "Kakariko bombable hut - Bombed Open",
+        "id": 52,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 10
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0xf298",
+                "sram_mask": "0x02",
+                "sram_value": "0x02"
+            }
+        ]
+    },
+    {
+        "name": "Angry Bro - Wall Destroyed",
+        "id": 53,
+        "conditions": [
+            {
+                "type": "Any",
+                "subconditions": [
+                    {
+                        "type": "CurrentTile",
+                        "id": 24
+                    },
+                    {
+                        "type": "CurrentTile",
+                        "id": 25
+                    }
+                ]
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_mask": "0x80",
+                "sram_value": "0x80"
+            }
+        ]
+    },
+    {
+        "name": "Moldorm Cave - Bombed Open",
+        "id": 54,
+        "conditions": [
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0xf2b5",
+                "sram_mask": "0x02",
+                "sram_value": "0x02"
+            }
+        ]
+    },
+    {
+        "name": "Ice Rod Cave - Bombed Open",
+        "id": 55,
+        "conditions": [
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0xf2b7",
+                "sram_mask": "0x02",
+                "sram_value": "0x02"
+            }
+        ]
+    },
+    {
+        "name": "Sahasrahla's Hideout - Wall Destroyed",
+        "id": 56,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 92
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_value": "0x80"
+            }
+        ]
+    },
+    {
+        "name": "Eastern Palace - Dark Double Anti Fairy - Door Unlocked",
+        "id": 157,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 229
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_value": "0x80"
+            }
+        ]
+    },
+    {
+        "name": "Eastern Palace - Big Key Chest Room - Door Unlocked",
+        "id": 158,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 231
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_value": "0x80"
+            }
+        ]
+    },
+    {
+        "name": "Eastern Palace - Big Chest Room - Door Unlocked",
+        "id": 159,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 222
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_mask": "0x20",
+                "sram_value": "0x20"
+            }
+        ]
+    },
+    {
+        "name": "Eastern Palace - Dark Bastard Room - Door Unlocked",
+        "id": 160,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 233
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_mask": "0x80",
+                "sram_value": "0x80"
+            }
+        ]
+    },
+    {
+        "name": "King's Grave - Bonked",
+        "id": 57,
+        "conditions": [
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0xf294",
+                "sram_mask": "0x20",
+                "sram_value": "0x20"
+            }
+        ]
+    },
+    {
+        "name": "Skull Woods - Pinball <-> Map Chest Room - Door Opened",
+        "id": 58,
+        "conditions": [
+            {
+                "type": "Any",
+                "subconditions": [
+                    {
+                        "type": "All",
+                        "subconditions": [
+                            {
+                                "type": "CurrentTile",
+                                "id": 353
+                            },
+                            {
+                                "type": "ValueChangedTo",
+                                "sram_offset": "0x401",
+                                "sram_mask": "0x20",
+                                "sram_value": "0x20"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "All",
+                        "subconditions": [
+                            {
+                                "type": "CurrentTile",
+                                "id": 357
+                            },
+                            {
+                                "type": "ValueChangedTo",
+                                "sram_offset": "0x401",
+                                "sram_mask": "0x40",
+                                "sram_value": "0x40"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Skull Woods - Pot Prison <-> Big Chest Room - Door Opened",
+        "id": 59,
+        "conditions": [
+            {
+                "type": "Any",
+                "subconditions": [
+                    {
+                        "type": "All",
+                        "subconditions": [
+                            {
+                                "type": "CurrentTile",
+                                "id": 352
+                            },
+                            {
+                                "type": "ValueChangedTo",
+                                "sram_offset": "0x401",
+                                "sram_mask": "0x40",
+                                "sram_value": "0x40"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "All",
+                        "subconditions": [
+                            {
+                                "type": "CurrentTile",
+                                "id": 356
+                            },
+                            {
+                                "type": "ValueChangedTo",
+                                "sram_offset": "0x401",
+                                "sram_mask": "0x20",
+                                "sram_value": "0x20"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Village of Outcasts Bombable Hut - Bombed Open",
+        "id": 60,
+        "conditions": [
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0xf2d8",
+                "sram_mask": "0x02",
+                "sram_value": "0x02"
+            }
+        ]
+    },
+    {
+        "name": "Thieves' Town - Front NE - Door Unlocked",
+        "id": 61,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 375
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_mask": "0x80",
+                "sram_value": "0x80"
+            }
+        ]
+    },
+    {
+        "name": "Thieves' Town - Front NE - Door Unlocked",
+        "id": 163,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 377
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_mask": "0x80",
+                "sram_value": "0x80"
+            }
+        ]
+    },
+    {
+        "name": "Thieves' Town - Spike Switch - Door Unlocked",
+        "id": 62,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 381
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_mask": "0x80",
+                "sram_value": "0x80"
+            }
+        ]
+    },
+    {
+        "name": "Thieves' Town - Attic - Bombed Floor",
+        "id": 63,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 385
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x403",
+                "sram_mask": "0x10",
+                "sram_value": "0x10"
+            }
+        ]
+    },
+    {
+        "name": "Thieves' Town - Conveyor Hallway - Door Unlocked",
+        "id": 64,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 389
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_mask": "0x40",
+                "sram_value": "0x40"
+            }
+        ]
+    },
+    {
+        "name": "Dig Game - Start",
+        "id": 65,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 130
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x3fc",
+                "sram_value": "0x1"
+            }
+        ]
+    },
+    {
+        "name": "Dig Game - End",
+        "id": 66,
+        "conditions": [
+            {
+                "type": "PreviousEvent",
+                "id": 65
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x3fc",
+                "sram_value": "0x0"
+            }
+        ]
+    },
+    {
+        "name": "Hype Cave - Bombed Open",
+        "id": 67,
+        "conditions": [
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0xf2f4",
+                "sram_mask": "0x02",
+                "sram_value": "0x02"
+            }
+        ]
+    },
+    {
+        "name": "Palace of Darkness - Lobby N <-> Fork - Door Opened",
+        "id": 68,
+        "conditions": [
+            {
+                "type": "Any",
+                "subconditions": [
+                    {
+                        "type": "All",
+                        "subconditions": [
+                            {
+                                "type": "CurrentTile",
+                                "id": 295
+                            },
+                            {
+                                "type": "ValueChangedTo",
+                                "sram_offset": "0x401",
+                                "sram_mask": "0x20",
+                                "sram_value": "0x20"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "All",
+                        "subconditions": [
+                            {
+                                "type": "CurrentTile",
+                                "id": 297
+                            },
+                            {
+                                "type": "ValueChangedTo",
+                                "sram_offset": "0x401",
+                                "sram_mask": "0x80",
+                                "sram_value": "0x80"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Palace of Darkness - Arena Ledge - Wall Destroyed",
+        "id": 69,
+        "conditions": [
+            {
+                "type": "Any",
+                "subconditions": [
+                    {
+                        "type": "All",
+                        "note": "Bombed from arena side",
+                        "subconditions": [
+                            {
+                                "type": "CurrentTile",
+                                "id": 305
+                            },
+                            {
+                                "type": "ValueChangedTo",
+                                "sram_offset": "0x401",
+                                "sram_mask": "0x20",
+                                "sram_value": "0x20"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "All",
+                        "note": "Bombed from statue switch room side",
+                        "subconditions": [
+                            {
+                                "type": "CurrentTile",
+                                "id": 304
+                            },
+                            {
+                                "type": "ValueChangedTo",
+                                "sram_offset": "0x401",
+                                "sram_mask": "0x40",
+                                "sram_value": "0x40"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Palace of Darkness - Stalfos Basement - Door Opened",
+        "id": 70,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 298
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_mask": "0x80",
+                "sram_value": "0x80"
+            }
+        ]
+    },
+    {
+        "name": "Palace of Darkness - Arena <-> Hammer Bridge - Door Opened",
+        "id": 71,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 305
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_mask": "0x40",
+                "sram_value": "0x40"
+            }
+        ]
+    },
+    {
+        "name": "Palace of Darkness - Dark Maze <-> Hammer Bridge - Wall Destroyed",
+        "id": 72,
+        "conditions": [
+            {
+                "type": "Any",
+                "subconditions": [
+                    {
+                        "type": "All",
+                        "note": "Bombed from maze side",
+                        "subconditions": [
+                            {
+                                "type": "CurrentTile",
+                                "id": 310
+                            },
+                            {
+                                "type": "ValueChangedTo",
+                                "sram_offset": "0x401",
+                                "sram_mask": "0x80",
+                                "sram_value": "0x80"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "All",
+                        "note": "Bombed from bridge side",
+                        "subconditions": [
+                            {
+                                "type": "CurrentTile",
+                                "id": 306
+                            },
+                            {
+                                "type": "ValueChangedTo",
+                                "sram_offset": "0x401",
+                                "sram_mask": "0x20",
+                                "sram_value": "0x20"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Palace of Darkness - Dark Maze <-> Hammer Bridge - Door Opened",
+        "id": 73,
+        "conditions": [
+            {
+                "type": "Any",
+                "subconditions": [
+                    {
+                        "type": "All",
+                        "note": "Opened from maze side",
+                        "subconditions": [
+                            {
+                                "type": "CurrentTile",
+                                "id": 310
+                            },
+                            {
+                                "type": "ValueChangedTo",
+                                "sram_offset": "0x401",
+                                "sram_mask": "0x40",
+                                "sram_value": "0x40"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "All",
+                        "note": "Opened from bridge side",
+                        "subconditions": [
+                            {
+                                "type": "CurrentTile",
+                                "id": 306
+                            },
+                            {
+                                "type": "ValueChangedTo",
+                                "sram_offset": "0x401",
+                                "sram_mask": "0x40",
+                                "sram_value": "0x40"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Palace of Darkness - Compass Chest <-> Harmless Hellway - Door Opened",
+        "id": 74,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 307
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_mask": "0x80",
+                "sram_value": "0x80"
+            }
+        ]
+    },
+    {
+        "name": "Palace of Darkness - Dark Hammer Tile <-> Dark Tiny Hallway - Door Opened",
+        "id": 162,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 313
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_mask": "0x20",
+                "sram_value": "0x20"
+            }
+        ]
+    },
+    {
+        "name": "Read Ether Tablet",
+        "id": 75,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 57
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x354",
+                "sram_value": "0x25"
+            }
+        ]
+    },
+    {
+        "name": "Read Bombos Tablet",
+        "id": 76,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 99
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x354",
+                "sram_value": "0x25"
+            },
+            {
+                "note": "Ensures event doesn't trigger on opening DP",
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "CRange",
+                        "x": "816-916",
+                        "y": "3688-3840"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Read The Ped",
+        "id": 98,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 19
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x354",
+                "sram_value": "0x25"
+            }
+        ]
+    },
+    {
+        "name": "Tower of Hera - Lobby <-> Tile Room - Door Opened",
+        "id": 77,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 267
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_mask": "0x80",
+                "sram_value": "0x80"
+            }
+        ]
+    },
+    {
+        "name": "Tower of Hera - Floor 2 SW <-> NW - Door Opened",
+        "id": 78,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 272
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_mask": "0x80",
+                "sram_value": "0x80"
+            }
+        ]
+    },
+    {
+        "name": "Hookshot Cave - Bottom <-> Cross - Wall Destroyed",
+        "id": 79,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 156
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_mask": "0x80",
+                "sram_value": "0x80"
+            }
+        ]
+    },
+    {
+        "name": "Hookshot Cave - Cross <-> Top - Wall Destroyed",
+        "id": 80,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 567
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_mask": "0x20",
+                "sram_value": "0x20"
+            }
+        ]
+    },
+    {
+        "name": "Paradox Cave - Bottom <-> Bottom Treasure Room - Wall Destroyed",
+        "id": 81,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 67
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_mask": "0x40",
+                "sram_value": "0x40"
+            }
+        ]
+    },
+    {
+        "name": "Swamp Palace - Lobby - Door Opened",
+        "id": 82,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 320
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_mask": "0x80",
+                "sram_value": "0x80"
+            }
+        ]
+    },
+    {
+        "name": "Swamp Palace - Below Lobby - Wall Destroyed",
+        "id": 161,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 321
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_mask": "0x80",
+                "sram_value": "0x80"
+            }
+        ]
+    },
+    {
+        "name": "Swamp Palace - Below Lobby - Door Opened",
+        "id": 83,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 321
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_mask": "0x40",
+                "sram_value": "0x40"
+            }
+        ]
+    },
+    {
+        "name": "Swamp Palace - East of Hub <->  Water Lever 1 - Door opened",
+        "id": 84,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 322
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_mask": "0x20",
+                "sram_value": "0x20"
+            }
+        ]
+    },
+    {
+        "name": "Swamp Palace - Hub <-> Water Lever 2 - Door Opened",
+        "id": 85,
+        "conditions": [
+            {
+                "type": "Any",
+                "subconditions": [
+                    {
+                        "type": "All",
+                        "note": "Opened from lever side",
+                        "subconditions": [
+                            {
+                                "type": "CurrentTile",
+                                "id": 329
+                            },
+                            {
+                                "type": "ValueChangedTo",
+                                "sram_offset": "0x401",
+                                "sram_mask": "0x80",
+                                "sram_value": "0x80"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "All",
+                        "note": "Opened from hub side",
+                        "subconditions": [
+                            {
+                                "type": "CurrentTile",
+                                "id": 326
+                            },
+                            {
+                                "type": "ValueChangedTo",
+                                "sram_offset": "0x401",
+                                "sram_mask": "0x20",
+                                "sram_value": "0x20"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Swamp Palace - Hub <-> Statue Switch - Door opened",
+        "id": 106,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 326
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_mask": "0x40",
+                "sram_value": "0x40"
+            }
+        ]
+    },
+    {
+        "name": "Swamp Palace - Swimming Pool <->  Boss Approach - Door opened",
+        "id": 107,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 322
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_mask": "0x40",
+                "sram_value": "0x40"
+            }
+        ]
+    },
+    {
+        "name": "Ice Palace - Jellyfish Key - Door opened",
+        "id": 86,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 396
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_mask": "0x80",
+                "sram_value": "0x80"
+            }
+        ]
+    },
+    {
+        "name": "Ice Palacw - Big Spike Cross <-> Spike Room - Door Opened",
+        "id": 87,
+        "conditions": [
+            {
+                "type": "Any",
+                "subconditions": [
+                    {
+                        "type": "All",
+                        "note": "Opened from big spike side",
+                        "subconditions": [
+                            {
+                                "type": "CurrentTile",
+                                "id": 408
+                            },
+                            {
+                                "type": "ValueChangedTo",
+                                "sram_offset": "0x401",
+                                "sram_mask": "0x80",
+                                "sram_value": "0x80"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "All",
+                        "note": "Opened from hub side",
+                        "subconditions": [
+                            {
+                                "type": "CurrentTile",
+                                "id": 409
+                            },
+                            {
+                                "type": "ValueChangedTo",
+                                "sram_offset": "0x401",
+                                "sram_mask": "0x80",
+                                "sram_value": "0x80"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Ice Palacw - Ice Rink <-> South of Ice Rink - Door Opened",
+        "id": 88,
+        "conditions": [
+            {
+                "type": "Any",
+                "subconditions": [
+                    {
+                        "type": "All",
+                        "note": "Opened from ice rink",
+                        "subconditions": [
+                            {
+                                "type": "CurrentTile",
+                                "id": 415
+                            },
+                            {
+                                "type": "ValueChangedTo",
+                                "sram_offset": "0x401",
+                                "sram_mask": "0x80",
+                                "sram_value": "0x80"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "All",
+                        "note": "Opened from hub side",
+                        "subconditions": [
+                            {
+                                "type": "CurrentTile",
+                                "id": 416
+                            },
+                            {
+                                "type": "ValueChangedTo",
+                                "sram_offset": "0x401",
+                                "sram_mask": "0x80",
+                                "sram_value": "0x80"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Ice Palace - Fallen Block <-> Stock & Switch - Door opened",
+        "id": 89,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 425
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_mask": "0x40",
+                "sram_value": "0x40"
+            }
+        ]
+    },
+    {
+        "name": "Ice Palace - Block Drop <-> Fairy Drop - Door opened",
+        "id": 90,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 420
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_mask": "0x40",
+                "sram_value": "0x40"
+            }
+        ]
+    },
+    {
+        "name": "Ice Palace - Fairy Drop <-> Fairy Pot Room - Door opened",
+        "id": 91,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 422
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_mask": "0x80",
+                "sram_value": "0x80"
+            }
+        ]
+    },
+    {
+        "name": "Saw Zora Ledge",
+        "id": 92,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 90
+            },
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "CRange",
+                        "x": "814-900",
+                        "y": "581-813"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Saw Desert Ledge",
+        "id": 93,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 99
+            },
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "CRange",
+                        "x": "100-235",
+                        "y": "3623-3839"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Saw Lost Woods Mushroom Spot",
+        "id": 99,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 3
+            },
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "CRange",
+                        "x": "330-612",
+                        "y": "210-460"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Saw Bumper Ledge",
+        "id": 100,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 121
+            },
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "CRange",
+                        "x": "1269-1500",
+                        "y": "520-744"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Saw Lumberjack Item",
+        "id": 101,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 27
+            },
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "CRange",
+                        "x": "1424-1440",
+                        "y": "7494-7544"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Saw Spectacle Rock Item",
+        "id": 102,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 57
+            },
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "CRange",
+                        "x": "1944-2193",
+                        "y": "264-458"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Saw Spectacle Rock Cave Item",
+        "id": 103,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 72
+            },
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "CRange",
+                        "x": "5190-5500",
+                        "y": "7000-7466"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Saw Floating Isle Item",
+        "id": 104,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 58
+            },
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "CRange",
+                        "x": "3242-3441",
+                        "y": "1-163"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Saw Turtle Rock Medallion",
+        "id": 105,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 152
+            },
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "CRange",
+                        "x": "3712-3977",
+                        "y": "143-351"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Saw Misery Mire Medallion",
+        "id": 112,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 181
+            },
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "CRange",
+                        "x": "176-437",
+                        "y": "3196-3430"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Saw Race Game Item",
+        "id": 130,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 13
+            },
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "CRange",
+                        "x": "0-245",
+                        "y": "2744-3000"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Saw Hylia Isle Item",
+        "id": 131,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 101
+            },
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "CRange",
+                        "x": "2856-3096",
+                        "y": "3260-3472"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Desert Palace - East Wing <-> Pre Big Chest Key - Door Opened",
+        "id": 94,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 252
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_mask": "0x40",
+                "sram_value": "0x40"
+            }
+        ]
+    },
+    {
+        "name": "Desert Palace - Tile Room 1 <-> Bridge - Door Opened",
+        "id": 95,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 258
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_mask": "0x80",
+                "sram_value": "0x80"
+            }
+        ]
+    },
+    {
+        "name": "Desert Palace - Key Pot Hallway <-> Tile Room 2 - Door Opened",
+        "id": 96,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 261
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_mask": "0x20",
+                "sram_value": "0x20"
+            }
+        ]
+    },
+    {
+        "name": "Desert Palace - Tie Room 2 <-> Boss Approach - Door Opened",
+        "id": 97,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 262
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_mask": "0x20",
+                "sram_value": "0x20"
+            }
+        ]
+    },
+    {
+        "name": "Skull Woods - Bridge <-> Jellyfish Floor Switch Room - Door opened",
+        "id": 110,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 367
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_mask": "0x80",
+                "sram_value": "0x80"
+            }
+        ]
+    },
+    {
+        "name": "Skull Woods - Drape Vine <-> Key Mummy - Vine Slashed",
+        "id": 156,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 369
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_mask": "0x80",
+                "sram_value": "0x80"
+            }
+        ]
+    },
+    {
+        "name": "Skull Woods - Key Mummy <-> Boss Approach - Door opened",
+        "id": 111,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 370
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_mask": "0x40",
+                "sram_value": "0x40"
+            }
+        ]
+    },
+    {
+        "name": "Misery Mire - Hub <-> Switch Room - Door opened",
+        "id": 113,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 433
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_mask": "0x40",
+                "sram_value": "0x40"
+            }
+        ]
+    },
+    {
+        "name": "Misery Mire - Switch <-> Tile Room - Door opened",
+        "id": 114,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 434
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_mask": "0x80",
+                "sram_value": "0x80"
+            }
+        ]
+    },
+    {
+        "name": "Misery Mire - Wizrobe Torches - Cutscene",
+        "id": 115,
+        "conditions": [
+            {
+                "type": "Any",
+                "subconditions": [
+                    {
+                        "type": "CurrentTile",
+                        "id": 442
+                    },
+                    {
+                        "type": "CurrentTile",
+                        "id": 443
+                    }
+                ]
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x403",
+                "sram_mask": "0x10",
+                "sram_value": "0x10"
+            }
+        ]
+    },
+    {
+        "name": "Misery Mire - Portal in Front of Big Key Door - Door opened",
+        "id": 116,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 440
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_mask": "0x80",
+                "sram_value": "0x80"
+            }
+        ]
+    },
+    {
+        "name": "Misery Mire - Hub <-> Map Chest Room - Door Opened",
+        "id": 117,
+        "conditions": [
+            {
+                "type": "Any",
+                "subconditions": [
+                    {
+                        "type": "All",
+                        "note": "Opened from hub",
+                        "subconditions": [
+                            {
+                                "type": "CurrentTile",
+                                "id": 433
+                            },
+                            {
+                                "type": "ValueChangedTo",
+                                "sram_offset": "0x401",
+                                "sram_mask": "0x80",
+                                "sram_value": "0x80"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "All",
+                        "note": "Opened from map chest side",
+                        "subconditions": [
+                            {
+                                "type": "CurrentTile",
+                                "id": 462
+                            },
+                            {
+                                "type": "ValueChangedTo",
+                                "sram_offset": "0x401",
+                                "sram_mask": "0x80",
+                                "sram_value": "0x80"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Misery Mire - Spike Chest <-> Southeast of Bridges - Door Opened",
+        "id": 118,
+        "conditions": [
+            {
+                "type": "Any",
+                "subconditions": [
+                    {
+                        "type": "All",
+                        "note": "Opened from spike side",
+                        "subconditions": [
+                            {
+                                "type": "CurrentTile",
+                                "id": 461
+                            },
+                            {
+                                "type": "ValueChangedTo",
+                                "sram_offset": "0x401",
+                                "sram_mask": "0x80",
+                                "sram_value": "0x80"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "All",
+                        "note": "Opened from SE of bridge side",
+                        "subconditions": [
+                            {
+                                "type": "CurrentTile",
+                                "id": 464
+                            },
+                            {
+                                "type": "ValueChangedTo",
+                                "sram_offset": "0x401",
+                                "sram_mask": "0x80",
+                                "sram_value": "0x80"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Misery Mire - Spooky Action Room - Wall Destroyed",
+        "id": 119,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 453
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_mask": "0x40",
+                "sram_value": "0x40"
+            }
+        ]
+    },
+    {
+        "name": "Turtle Rock - Hub <-> Cheese Ball Key Room - Door opened",
+        "id": 132,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 468
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_mask": "0x80",
+                "sram_value": "0x80"
+            }
+        ]
+    },
+    {
+        "name": "Turtle Rock - Cheese Ball Key <-> Chain Chomp Room - Door opened",
+        "id": 133,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 474
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_mask": "0x10",
+                "sram_value": "0x10"
+            }
+        ]
+    },
+    {
+        "name": "Turtle Rock - Chain Chomp <-> Below Chain Chomp Room - Door opened",
+        "id": 134,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 475
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_mask": "0x80",
+                "sram_value": "0x80"
+            }
+        ]
+    },
+    {
+        "name": "Turtle Rock - Quad Anti Fairy <-> Lava Chest Room - Door opened",
+        "id": 135,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 478
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_mask": "0x80",
+                "sram_value": "0x80"
+            }
+        ]
+    },
+    {
+        "name": "Turtle Rock - Laser Pots <-> OW balcony - Wall destroyed",
+        "id": 136,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 483
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_mask": "0x80",
+                "sram_value": "0x80"
+            }
+        ]
+    },
+    {
+        "name": "Turtle Rock - Big Key Door <-> Lava Chest Room - Door opened",
+        "id": 137,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 482
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_mask": "0x80",
+                "sram_value": "0x80"
+            }
+        ]
+    },
+    {
+        "name": "Turtle Rock - Bonk Wall <-> Crystaroller Room - Wall Destroyed",
+        "id": 138,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 484
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_mask": "0x40",
+                "sram_value": "0x40"
+            }
+        ]
+    },
+    {
+        "name": "Turtle Rock - Crystaroller <-> Dark Rail Labyrinth - Door opened",
+        "id": 139,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 488
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_mask": "0x80",
+                "sram_value": "0x80"
+            }
+        ]
+    },
+    {
+        "name": "Turtle Rock - Laser Bridge <-> OW - Door opened",
+        "id": 140,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 493
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_mask": "0x80",
+                "sram_value": "0x80"
+            }
+        ]
+    },
+    {
+        "name": "Turtle Rock - Minihelma Bridge <-> Crystal Switch Grid Room - Door opened",
+        "id": 141,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 489
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_mask": "0x80",
+                "sram_value": "0x80"
+            }
+        ]
+    },
+    {
+        "name": "Turtle Rock - Boss Approach <-> Boss - Door opened",
+        "id": 142,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 491
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_mask": "0x80",
+                "sram_value": "0x80"
+            }
+        ]
+    },
+    {
+        "name": "Ganon's Tower - Hook Shot <-> Map Chest Room - Door opened",
+        "id": 143,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 497
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_mask": "0x40",
+                "sram_value": "0x40"
+            }
+        ]
+    },
+    {
+        "name": "Ganon's Tower - Hook Extend <-> Spike Switch Room - Door opened",
+        "id": 144,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 500
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_mask": "0x80",
+                "sram_value": "0x80"
+            }
+        ]
+    },
+    {
+        "name": "Ganon's Tower - Firesnake <-> Portal Labyrinth - Door opened",
+        "id": 145,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 502
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_mask": "0x20",
+                "sram_value": "0x20"
+            }
+        ]
+    },
+    {
+        "name": "Ganon's Tower - Portal Labyrinth <-> Randomizer Room - Wall Destroyed",
+        "id": 146,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 503
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_mask": "0x40",
+                "sram_value": "0x40"
+            }
+        ]
+    },
+    {
+        "name": "Ganon's Tower - Bob's Torch <-> Hope Room - Do keys hold no value to you?",
+        "id": 147,
+        "conditions": [
+            {
+                "type": "Any",
+                "subconditions": [
+                    {
+                        "type": "All",
+                        "note": "Opened from bob's torch side",
+                        "subconditions": [
+                            {
+                                "type": "CurrentTile",
+                                "id": 495
+                            },
+                            {
+                                "type": "ValueChangedTo",
+                                "sram_offset": "0x401",
+                                "sram_mask": "0x20",
+                                "sram_value": "0x20"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "All",
+                        "note": "Opened from hope side",
+                        "subconditions": [
+                            {
+                                "type": "CurrentTile",
+                                "id": 513
+                            },
+                            {
+                                "type": "ValueChangedTo",
+                                "sram_offset": "0x401",
+                                "sram_mask": "0x20",
+                                "sram_value": "0x20"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "name": "Ganon's Tower - Tile Room <-> Basement Timed Torches - Door opened",
+        "id": 148,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 514
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_mask": "0x40",
+                "sram_value": "0x40"
+            }
+        ]
+    },
+    {
+        "name": "Ganon's Tower - Conveyor Key Pot <-> Basement Falling Bridge - Door opened",
+        "id": 149,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 521
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_mask": "0x40",
+                "sram_value": "0x40"
+            }
+        ]
+    },
+    {
+        "name": "Ganon's Tower - Big Key Door - Door opened",
+        "id": 150,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 529
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_mask": "0x80",
+                "sram_value": "0x80"
+            }
+        ]
+    },
+    {
+        "name": "Ganon's Tower - Minihelma <-> Spike Conveyor Bomb Wall - Door opened",
+        "id": 151,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 546
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_mask": "0x40",
+                "sram_value": "0x40"
+            }
+        ]
+    },
+    {
+        "name": "Ganon's Tower - Spike Conveyor Bomb Wall <-> Moldorm Approach - Wall Destroyed",
+        "id": 152,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 547
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_mask": "0x10",
+                "sram_value": "0x10"
+            }
+        ]
+    },
+    {
+        "name": "Ganon's Tower - Moldorm Approach <-> Moldorm - Door opened",
+        "id": 153,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 547
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_mask": "0x20",
+                "sram_value": "0x20"
+            }
+        ]
+    },
+    {
+        "name": "Ganon's Tower - Boss Approach <-> Boss - Door opened",
+        "id": 154,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 552
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x401",
+                "sram_mask": "0x80",
+                "sram_value": "0x80"
+            }
+        ]
+    },
+    {
+        "name": "Pyramid - Ganon Drop Opened",
+        "id": 155,
+        "conditions": [
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0xf2db",
+                "sram_mask": "0x20",
+                "sram_value": "0x20"
+            }
+        ]
+    }
+]

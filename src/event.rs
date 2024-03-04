@@ -299,7 +299,7 @@ impl EventCompactor for Vec<EventEnum> {
                 EventEnum::Action(_) | EventEnum::Transition(_) | EventEnum::Composite(_) => {
                     new.push(event);
                     previous_val = None;
-                },
+                }
             }
         }
         new
@@ -314,7 +314,7 @@ pub enum EventEnum {
     Other(Check),
     Action(Check),
     Command(Check),
-    Composite((String, Check, Check))
+    Composite((String, Check, Check)),
 }
 
 impl EventEnum {
@@ -333,10 +333,12 @@ impl EventEnum {
 
 #[derive(Debug, Clone, PartialEq)]
 pub enum CommandState {
+    StartRecording,
     RecordingInProgress(Check),
     RunStarted(usize),
     SegmentRecorded,
     RunFinished,
+    ClearEventLog,
     None
 }
 
@@ -482,7 +484,7 @@ impl From<&EventEnum> for Event {
 impl Default for Event {
     fn default() -> Self {
         Self {
-            timestamp: chrono::Utc.timestamp_millis(0),
+            timestamp: chrono::Utc.timestamp_millis_opt(0).unwrap(),
             indoors: Default::default(),
             tile_id: Default::default(),
             location_id: Default::default(),
@@ -521,12 +523,12 @@ mod tests {
                 name: "Mushroom".to_string(),
                 sram_offset: Some(0x411),
                 sram_mask: Some(0x10),
-                time_of_check: Some(Utc.timestamp_millis(200)),
+                time_of_check: Some(Utc.timestamp_millis_opt(200).unwrap()),
                 ..Default::default()
             },
             Event {
                 location_id: Some(0),
-                timestamp: Utc.timestamp_millis(200),
+                timestamp: Utc.timestamp_millis_opt(200).unwrap(),
                 ..Default::default()
             }
         ),
@@ -536,13 +538,13 @@ mod tests {
                 name: "Hookshot".to_string(),
                 sram_offset: Some(0x342),
                 sram_mask: Some(0x01),
-                time_of_check: Some(Utc.timestamp_millis(200)),
+                time_of_check: Some(Utc.timestamp_millis_opt(200).unwrap()),
                 is_item: true,
                 ..Default::default()
             },
             Event {
                 item_id: Some(4),
-                timestamp: Utc.timestamp_millis(200),
+                timestamp: Utc.timestamp_millis_opt(200).unwrap(),
                 ..Default::default()
             }
         ),
@@ -552,7 +554,7 @@ mod tests {
                 name: "Progressive Sword".to_string(),
                 sram_offset: Some(0x342),
                 sram_mask: Some(0x01),
-                time_of_check: Some(Utc.timestamp_millis(200)),
+                time_of_check: Some(Utc.timestamp_millis_opt(200).unwrap()),
                 is_item: true,
                 is_progressive: true,
                 progressive_level: 3,
@@ -560,7 +562,7 @@ mod tests {
             },
             Event {
                 item_id: Some(27),
-                timestamp: Utc.timestamp_millis(200),
+                timestamp: Utc.timestamp_millis_opt(200).unwrap(),
                 ..Default::default()
             }
         ),
@@ -568,12 +570,12 @@ mod tests {
             Tile {
                 id: 1337,
                 region: "A great region".to_string(),
-                timestamp: Some(Utc.timestamp_millis(200)),
+                timestamp: Some(Utc.timestamp_millis_opt(200).unwrap()),
                 ..Default::default()
             },
             Event {
                 tile_id: Some(1337),
-                timestamp: Utc.timestamp_millis(200),
+                timestamp: Utc.timestamp_millis_opt(200).unwrap(),
                 indoors: Some(false),
                 ..Default::default()
             }

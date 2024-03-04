@@ -1,8 +1,10 @@
 pub mod write;
+pub mod state;
 
 use std::collections::VecDeque;
 use std::fs::File;
 use std::io::{stdin, Write};
+use std::sync::Arc;
 
 use colored::Colorize;
 use lttp_autotimer::check::{Check, deserialize_event_checks, deserialize_location_checks, deserialize_item_checks};
@@ -22,15 +24,16 @@ use lttp_autotimer::{
     request,
     sni::{api::device_memory_client::DeviceMemoryClient, get_device, read_snes_ram}, event::{EventEnum, CommandState, EventCompactor}, time::{SingleRunStats, RunStatistics}, output::{format_duration, format_gold_duration, format_red_duration, TimeFormat},
 };
-use tauri::AppHandle;
-use tokio::sync::mpsc;
+use state::AppState;
+use tauri::{AppHandle, Manager};
+use tokio::sync::{mpsc, Mutex};
 
 use crate::write::AppHandleWrapper;
 
 
-pub async fn connect_to_sni(cli_config: lttp_autotimer::CliConfig, handle: AppHandle) -> anyhow::Result<()> {
+pub async fn connect_to_sni(cli_config: lttp_autotimer::CliConfig, handle: AppHandle, state: Arc<Mutex<AppState>>) -> anyhow::Result<()> {
 
-    let snes_handle = AppHandleWrapper::new(handle);
+    let snes_handle = AppHandleWrapper::new(handle.clone());
     println!("Connecting to sni");
     let connected_device = get_device(&cli_config.sni_url()).await?;
     let mut client = DeviceMemoryClient::connect(cli_config.sni_url()).await?;
@@ -81,15 +84,6 @@ pub async fn connect_to_sni(cli_config: lttp_autotimer::CliConfig, handle: AppHa
     let csv_name = Utc::now().format("%Y%m%d_%H%M%S.csv").to_string();
     let mut f = File::create(&csv_name)?;
 
-    match write_metadata_to_csv(&mut f, permalink, meta_data, read_times) {
-        Ok(_) => print.debug(format!(
-            "{} metadata to {}",
-            "Wrote".green().bold(),
-            csv_name
-        )),
-        Err(e) => println!("Failed fetching and/or writing metadata: {:?}", e),
-    };
-
     // let mut writer = csv::WriterBuilder::new().from_writer(f);
     let mut writer = snes_handle;
 
@@ -101,9 +95,6 @@ pub async fn connect_to_sni(cli_config: lttp_autotimer::CliConfig, handle: AppHa
 
     // segment recorder states
     let mut command_state: CommandState = CommandState::None;
-    let mut segment_objectives: Vec<EventEnum> = vec![];
-    let mut finished_objectives: Vec<(EventEnum, DateTime<Utc>)> = vec![];
-    let mut finished_runs: Vec<Vec<(EventEnum, DateTime<Utc>)>> = vec![];
 
     let mut subscribed_events: Vec<Check> = deserialize_event_checks()?;
     let mut locations: Vec<Check> = deserialize_location_checks()?
@@ -113,198 +104,102 @@ pub async fn connect_to_sni(cli_config: lttp_autotimer::CliConfig, handle: AppHa
         .collect();
     let mut items: Vec<Check> = deserialize_item_checks()?.into_iter().collect();
     let mut actions: Vec<Check> = deserialize_actions()?.into_iter().collect();
-    let mut commands: Vec<Check> = deserialize_commands()?.into_iter().collect();
 
     while let Some((time_of_read, snes_ram)) = rx.recv().await {
         if !game_started {
             game_started = snes_ram.game_has_started();
-        } else {
-            // command mode
-            if cli_config.segment_run_mode {
-                let input_command = check_for_commands(
+            continue;
+        } 
+        // command mode
+
+        {
+            let mut state_unlocked = state.lock().await;
+            match state_unlocked.command {
+                CommandState::ClearEventLog => {
+                    events = EventTracker::new();
+                    locations = deserialize_location_checks()?;
+                    subscribed_events = deserialize_event_checks()?
+                        .into_iter()
+                        .map(|e| {
+                            if e.is_checked {
+                                println!("Somehow {} is already checked, even though resetting", e.name);
+                            }
+                            e
+                        })
+                        .collect();
+                    items = deserialize_item_checks()?.into_iter().collect();
+                    actions = deserialize_actions()?.into_iter().collect();
+
+                    state_unlocked.command = CommandState::None;
+                }
+                _ => ()
+            }
+        }
+
+        let should_print = !(matches!(command_state, CommandState::RunStarted(_))
+             || matches!(command_state, CommandState::RunFinished));
+        // checks
+        game_started = check_for_events(
+            &snes_ram,
+            &mut ram_history,
+            &mut subscribed_events,
+            &mut writer,
+            &mut events,
+            &mut print,
+            &time_of_read,
+            should_print || cli_config._verbosity > 0
+        )?;
+        if game_started {
+            if cli_config._verbosity > 1 {
+                check_for_actions(
                     &snes_ram,
                     &mut ram_history,
-                    &mut commands,
+                    &mut actions,
                     &mut writer,
                     &mut events,
                     &mut print,
                     &time_of_read,
-                    true
+                    should_print
                 )?;
-                let input_cmd = input_command.unwrap_or(Check::new(0));
-                match command_state {
-                    CommandState::None => {
-                        match &input_cmd.id {
-                            1 => {
-                                command_state = CommandState::RecordingInProgress(input_cmd);
-                            },
-                            _ => ()
-                        }
-                    },
-                    CommandState::RecordingInProgress(ref start_check) => {
-                        match &input_cmd.id {
-                            1 => {
-                                command_state = CommandState::RecordingInProgress(input_cmd);
-                            },
-                            2 => {
-                                if start_check.id == 1 {
-                                    segment_objectives = events
-                                        .objectives_between(Command(start_check.clone()), Some(Command(input_cmd)))
-                                        .compact();
-                                    println!("Segments: {:?}", segment_objectives);
-                                    command_state = CommandState::SegmentRecorded;
-                                }
-                            },
-                            _ => ()
-                        }
-                    },
-                    CommandState::SegmentRecorded if segment_objectives.len() > 0 => {
-                        match &input_cmd.id {
-                            1 => {
-                                command_state = CommandState::RecordingInProgress(input_cmd);
-                            },
-                            _ => {
-                                let objective = segment_objectives.first().expect("Length should be > 0 here").clone().to_owned();
-
-                                if check_for_segment_objective(
-                                    &snes_ram,
-                                    &mut ram_history,
-                                    &objective,
-                                    &mut events
-                                )? {
-                                    // TODO: reset ram_history and item checks
-                                    ram_history = VecDeque::new();
-                                    items = deserialize_item_checks()?.into_iter().collect();
-                                    locations = deserialize_location_checks()?
-                                        .into_iter()
-                                        // 0 offset checks without conditions hasn't been given a proper value in checks.json yet
-                                        .filter(|check| check.sram_offset.unwrap_or_default() != 0 || check.conditions.is_some())
-                                        .collect();
-
-                                    finished_objectives.push((objective, time_of_read.clone()));
-                                    println!("Run start");
-                                    command_state = CommandState::RunStarted(1)
-                                }
-                            }
-                        }
-                    },
-                    CommandState::RunStarted(current_objective_idx) => {
-                        match &input_cmd.id {
-                            1 => {
-                                finished_objectives = vec![];
-                                command_state = CommandState::RecordingInProgress(input_cmd);
-                            },
-                            2 => {
-                                println!("Stopped current run");
-                                finished_objectives = vec![];
-                                command_state = CommandState::SegmentRecorded;
-                            },
-                            _ => {
-                                if segment_objectives.len() <= current_objective_idx {
-                                    // Run finished
-                                    command_state = CommandState::RunFinished;
-                                } else {
-                                    let objective = &segment_objectives[current_objective_idx];
-                                    if check_for_segment_objective(
-                                        &snes_ram,
-                                        &mut ram_history,
-                                        &objective,
-                                        &mut events
-                                    )? {
-                                        finished_objectives.push((objective.clone(), time_of_read.clone()));
-                                        let otime = finished_objectives.objective_duration(current_objective_idx).unwrap();
-                                        match finished_runs.objective_time_verdict(current_objective_idx, &otime) {
-                                            time::TimeVerdict::Bad(diff) => println!("{}/{} - {}: {} (+ {})", current_objective_idx, segment_objectives.len() - 1, objective.name(), format_red_duration(otime), format_red_duration(diff)),
-                                            time::TimeVerdict::Ok(skew) => println!("{}/{} - {}: {} (± {})", current_objective_idx, segment_objectives.len() - 1, objective.name(), format_duration(otime), format_duration(skew)),
-                                            time::TimeVerdict::Best(diff) => println!("{}/{} - {}: {} (- {})", current_objective_idx, segment_objectives.len() - 1, objective.name(), format_gold_duration(otime), format_gold_duration(diff)),
-                                        }
-                                        command_state = CommandState::RunStarted(current_objective_idx + 1)
-                                    }
-                                }
-                            }
-                        }
-                    },
-                    CommandState::SegmentRecorded => {
-                        command_state = CommandState::None;
-                    },
-                    CommandState::RunFinished => {
-                        // TODO: print to csv/persist runs
-                        let time = finished_objectives.to_duration();
-                        println!("{}", finished_runs.fmt_new_time(&time));
-                        finished_runs.push(finished_objectives);
-                        println!("{}", finished_runs.fmt_avg());
-                        println!("{}", finished_runs.fmt_rolling_avg(5));
-                        finished_objectives = vec![];
-                        command_state = CommandState::SegmentRecorded;
-                        events = EventTracker::new();
-                    }
-                }
             }
-            let should_print = !(matches!(command_state, CommandState::RunStarted(_))
-                 || matches!(command_state, CommandState::RunFinished));
-            // checks
-            game_started = check_for_events(
+            check_for_transitions(
                 &snes_ram,
-                &mut ram_history,
-                &mut subscribed_events,
                 &mut writer,
                 &mut events,
                 &mut print,
                 &time_of_read,
                 should_print || cli_config._verbosity > 0
             )?;
-            if game_started {
-                if cli_config._verbosity > 1 {
-                    check_for_actions(
-                        &snes_ram,
-                        &mut ram_history,
-                        &mut actions,
-                        &mut writer,
-                        &mut events,
-                        &mut print,
-                        &time_of_read,
-                        should_print
-                    )?;
-                }
-                check_for_transitions(
-                    &snes_ram,
-                    &mut writer,
-                    &mut events,
-                    &mut print,
-                    &time_of_read,
-                    should_print || cli_config._verbosity > 0
-                )?;
-                check_for_location_checks(
-                    &snes_ram,
-                    &mut ram_history,
-                    &mut locations,
-                    &mut writer,
-                    &mut events,
-                    &mut print,
-                    &time_of_read,
-                    should_print || cli_config._verbosity > 0
-                )?;
-                check_for_item_checks(
-                    &snes_ram,
-                    &mut ram_history,
-                    &mut items,
-                    &mut writer,
-                    &mut events,
-                    &mut print,
-                    &time_of_read,
-                    should_print || cli_config._verbosity > 0
-                )?;
-            }
-            ram_history.push_back(snes_ram);
+            check_for_location_checks(
+                &snes_ram,
+                &mut ram_history,
+                &mut locations,
+                &mut writer,
+                &mut events,
+                &mut print,
+                &time_of_read,
+                should_print || cli_config._verbosity > 0
+            )?;
+            check_for_item_checks(
+                &snes_ram,
+                &mut ram_history,
+                &mut items,
+                &mut writer,
+                &mut events,
+                &mut print,
+                &time_of_read,
+                should_print || cli_config._verbosity > 0
+            )?;
         }
+        ram_history.push_back(snes_ram);
 
         // Only keep the last few responses to decrease memory usage
         if ram_history.len() > 60 {
             ram_history.pop_front();
         }
 
-        // check if recording segment
-
+        // checks to see if Ganon was just defeated.
+        // basically, don't check for events in end credits
         if events
             .latest_other_event()
             .map(|event| event.id == 5)
@@ -314,8 +209,7 @@ pub async fn connect_to_sni(cli_config: lttp_autotimer::CliConfig, handle: AppHa
                 .map(|tile| tile.id == 556)
                 .unwrap_or(false)
         {
-            // Game is finished
-            break;
+            game_started = false;
         }
     }
 

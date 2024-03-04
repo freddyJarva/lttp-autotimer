@@ -1,0 +1,2554 @@
+[
+    {
+        "name": "Mushroom",
+        "sram_offset": "0xf411",
+        "sram_mask": "0x10",
+        "id": 0
+    },
+    {
+        "name": "Bottle Merchant",
+        "sram_offset": "0xf3c9",
+        "sram_mask": "0x02",
+        "id": 1
+    },
+    {
+        "name": "Flute Spot",
+        "sram_offset": "0xf2aa",
+        "sram_mask": "0x40",
+        "id": 2
+    },
+    {
+        "name": "Sunken Treasure",
+        "sram_offset": "0xf2bb",
+        "sram_mask": "0x40",
+        "id": 3
+    },
+    {
+        "name": "Purple Chest",
+        "sram_offset": "0xf3c9",
+        "sram_mask": "0x10",
+        "id": 4
+    },
+    {
+        "name": "Blind's Hideout - Top",
+        "sram_offset": "0xf23a",
+        "sram_mask": "0x10",
+        "id": 5
+    },
+    {
+        "name": "Blind's Hideout - Left",
+        "sram_offset": "0xf23a",
+        "sram_mask": "0x20",
+        "id": 6
+    },
+    {
+        "name": "Blind's Hideout - Right",
+        "sram_offset": "0xf23a",
+        "sram_mask": "0x40",
+        "id": 7
+    },
+    {
+        "name": "Blind's Hideout - Far Left",
+        "sram_offset": "0xf23a",
+        "sram_mask": "0x80",
+        "id": 8
+    },
+    {
+        "name": "Blind's Hideout - Far Right",
+        "sram_offset": "0xf23b",
+        "sram_mask": "0x01",
+        "id": 9
+    },
+    {
+        "name": "Link's Uncle",
+        "sram_offset": "0xf3c6",
+        "sram_mask": "0x01",
+        "id": 10
+    },
+    {
+        "name": "Secret Passage",
+        "sram_offset": "0xf0aa",
+        "sram_mask": "0x10",
+        "id": 11
+    },
+    {
+        "name": "King Zora",
+        "sram_offset": "0xf410",
+        "sram_mask": "0x02",
+        "id": 12
+    },
+    {
+        "name": "Zora's Ledge",
+        "sram_offset": "0xf301",
+        "sram_mask": "0x40",
+        "id": 13
+    },
+    {
+        "name": "Waterfall Fairy - Left",
+        "sram_offset": "0xf228",
+        "sram_mask": "0x10",
+        "id": 14
+    },
+    {
+        "name": "Waterfall Fairy - Right",
+        "sram_offset": "0xf228",
+        "sram_mask": "0x20",
+        "id": 15
+    },
+    {
+        "name": "King's Tomb",
+        "sram_offset": "0xf226",
+        "sram_mask": "0x10",
+        "id": 16
+    },
+    {
+        "name": "Floodgate Chest",
+        "sram_offset": "0xf216",
+        "sram_mask": "0x10",
+        "id": 17
+    },
+    {
+        "name": "Link's House",
+        "sram_offset": "0xf208",
+        "sram_mask": "0x10",
+        "id": 18
+    },
+    {
+        "name": "Kakariko Tavern",
+        "sram_offset": "0xf206",
+        "sram_mask": "0x10",
+        "id": 19
+    },
+    {
+        "name": "Chicken House",
+        "sram_offset": "0xf210",
+        "sram_mask": "0x10",
+        "id": 20
+    },
+    {
+        "name": "Aginah's Cave",
+        "sram_offset": "0xf214",
+        "sram_mask": "0x10",
+        "id": 21
+    },
+    {
+        "name": "Sahasrahla's Hut - Left",
+        "sram_offset": "0xf20a",
+        "sram_mask": "0x10",
+        "id": 22
+    },
+    {
+        "name": "Sahasrahla's Hut - Middle",
+        "sram_offset": "0xf20a",
+        "sram_mask": "0x20",
+        "id": 23
+    },
+    {
+        "name": "Sahasrahla's Hut - Right",
+        "sram_offset": "0xf20a",
+        "sram_mask": "0x40",
+        "id": 24
+    },
+    {
+        "name": "Sahasrahla",
+        "sram_offset": "0xf410",
+        "sram_mask": "0x10",
+        "id": 25
+    },
+    {
+        "name": "Kakariko Well - Top",
+        "sram_offset": "0xf05e",
+        "sram_mask": "0x10",
+        "id": 26
+    },
+    {
+        "name": "Kakariko Well - Left",
+        "sram_offset": "0xf05e",
+        "sram_mask": "0x20",
+        "id": 27
+    },
+    {
+        "name": "Kakariko Well - Middle",
+        "sram_offset": "0xf05e",
+        "sram_mask": "0x40",
+        "id": 28
+    },
+    {
+        "name": "Kakariko Well - Right",
+        "sram_offset": "0xf05e",
+        "sram_mask": "0x80",
+        "id": 29
+    },
+    {
+        "name": "Kakariko Well - Bottom",
+        "sram_offset": "0xf05f",
+        "sram_mask": "0x01",
+        "id": 30
+    },
+    {
+        "name": "Blacksmith",
+        "sram_offset": "0xf411",
+        "sram_mask": "0x04",
+        "id": 31
+    },
+    {
+        "name": "Magic Bat",
+        "sram_offset": "0xf411",
+        "sram_mask": "0x80",
+        "id": 32
+    },
+    {
+        "name": "Sick Kid",
+        "sram_offset": "0xf410",
+        "sram_mask": "0x04",
+        "id": 33
+    },
+    {
+        "name": "Hobo",
+        "sram_offset": "0xf3c9",
+        "sram_mask": "0x01",
+        "id": 34
+    },
+    {
+        "name": "Lost Woods Hideout",
+        "id": 35,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 51
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x403",
+                "sram_mask": "0x20",
+                "sram_value": "0x20"
+            }
+        ]
+    },
+    {
+        "name": "Lumberjack Tree",
+        "sram_offset": "0xf1c5",
+        "sram_mask": "0x02",
+        "id": 36
+    },
+    {
+        "name": "Cave 45",
+        "id": 37,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 41
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x403",
+                "sram_mask": "0x40",
+                "sram_value": "0x40"
+            }
+        ]
+    },
+    {
+        "name": "Graveyard Cave",
+        "id": 38,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 42
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x403",
+                "sram_mask": "0x20",
+                "sram_value": "0x20"
+            }
+        ]
+    },
+    {
+        "name": "Checkerboard Cave",
+        "sram_offset": "0xf24d",
+        "sram_mask": "0x02",
+        "id": 39
+    },
+    {
+        "name": "Mini Moldorm Cave - Far Left",
+        "sram_offset": "0xf246",
+        "sram_mask": "0x10",
+        "id": 40
+    },
+    {
+        "name": "Mini Moldorm Cave - Left",
+        "sram_offset": "0xf246",
+        "sram_mask": "0x20",
+        "id": 41
+    },
+    {
+        "name": "Mini Moldorm Cave - Right",
+        "sram_offset": "0xf246",
+        "sram_mask": "0x40",
+        "id": 42
+    },
+    {
+        "name": "Mini Moldorm Cave - Far Right",
+        "sram_offset": "0xf246",
+        "sram_mask": "0x80",
+        "id": 43
+    },
+    {
+        "name": "Mini Moldorm Cave - Generous Guy",
+        "id": 44,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 116
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x403",
+                "sram_mask": "0x40",
+                "sram_value": "0x40"
+            }
+        ]
+    },
+    {
+        "name": "Ice Rod Cave",
+        "sram_offset": "0xf240",
+        "sram_mask": "0x10",
+        "id": 45
+    },
+    {
+        "name": "Bonk Rock Cave",
+        "sram_offset": "0xf248",
+        "sram_mask": "0x10",
+        "id": 46
+    },
+    {
+        "name": "Library",
+        "sram_offset": "0xf410",
+        "sram_mask": "0x80",
+        "id": 47
+    },
+    {
+        "name": "Potion Shop",
+        "sram_offset": "0xf411",
+        "sram_mask": "0x20",
+        "id": 48
+    },
+    {
+        "name": "Lake Hylia Island",
+        "sram_offset": "0xf2b5",
+        "sram_mask": "0x40",
+        "id": 49
+    },
+    {
+        "name": "Maze Race",
+        "sram_offset": "0xf2a8",
+        "sram_mask": "0x40",
+        "id": 50
+    },
+    {
+        "name": "Desert Ledge",
+        "sram_offset": "0xf2b0",
+        "sram_mask": "0x40",
+        "id": 51
+    },
+    {
+        "name": "Desert Palace - Big Chest",
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 247
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf435"
+            }
+        ],
+        "id": 52
+    },
+    {
+        "name": "Desert Palace - Torch",
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 245
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf435"
+            }
+        ],
+        "id": 53
+    },
+    {
+        "name": "Desert Palace - Map Chest",
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 249
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf435"
+            }
+        ],
+        "id": 54
+    },
+    {
+        "name": "Desert Palace - Compass Chest",
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 255
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf435"
+            }
+        ],
+        "id": 55
+    },
+    {
+        "name": "Desert Palace - Big Key Chest",
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 256
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf435"
+            }
+        ],
+        "id": 56
+    },
+    {
+        "name": "Desert Palace - Boss",
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 264
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf435"
+            }
+        ],
+        "id": 57
+    },
+    {
+        "name": "Eastern Palace - Compass Chest",
+        "conditions": [
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf436"
+            },
+            {
+                "type": "CurrentTile",
+                "id": 228
+            }
+        ],
+        "id": 58
+    },
+    {
+        "name": "Eastern Palace - Big Chest",
+        "conditions": [
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf436"
+            },
+            {
+                "type": "CurrentTile",
+                "id": 222
+            }
+        ],
+        "id": 59
+    },
+    {
+        "name": "Eastern Palace - Cannonball Chest",
+        "conditions": [
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf436"
+            },
+            {
+                "type": "Underworld"
+            },
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Chest",
+                        "x": "5008",
+                        "y": "5928"
+                    }
+                ]
+            }
+        ],
+        "id": 60
+    },
+    {
+        "name": "Eastern Palace - Big Key Chest",
+        "conditions": [
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf436"
+            },
+            {
+                "type": "CurrentTile",
+                "id": 231
+            }
+        ],
+        "id": 61
+    },
+    {
+        "name": "Eastern Palace - Map Chest",
+        "conditions": [
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf436"
+            },
+            {
+                "type": "CurrentTile",
+                "id": 225
+            }
+        ],
+        "id": 62
+    },
+    {
+        "name": "Eastern Palace - Boss",
+        "conditions": [
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf436"
+            },
+            {
+                "type": "CurrentTile",
+                "id": 240
+            }
+        ],
+        "id": 63
+    },
+    {
+        "name": "Master Sword Pedestal",
+        "sram_offset": "0xf300",
+        "sram_mask": "0x40",
+        "id": 64
+    },
+    {
+        "name": "Hyrule Castle - Boomerang Chest",
+        "sram_offset": "0xf0e2",
+        "sram_mask": "0x10",
+        "id": 65
+    },
+    {
+        "name": "Hyrule Castle - Map Chest",
+        "sram_offset": "0xf0e4",
+        "sram_mask": "0x10",
+        "id": 66
+    },
+    {
+        "name": "Hyrule Castle - Zelda's Chest",
+        "sram_offset": "0xf100",
+        "sram_mask": "0x10",
+        "id": 67
+    },
+    {
+        "name": "Sewers - Dark Cross",
+        "sram_offset": "0xf064",
+        "sram_mask": "0x10",
+        "id": 68
+    },
+    {
+        "name": "Sewers - Secret Room - Left",
+        "sram_offset": "0xf022",
+        "sram_mask": "0x10",
+        "id": 69
+    },
+    {
+        "name": "Sewers - Secret Room - Middle",
+        "sram_offset": "0xf022",
+        "sram_mask": "0x20",
+        "id": 70
+    },
+    {
+        "name": "Sewers - Secret Room - Right",
+        "sram_offset": "0xf022",
+        "sram_mask": "0x40",
+        "id": 71
+    },
+    {
+        "name": "Sanctuary",
+        "sram_offset": "0xf024",
+        "sram_mask": "0x10",
+        "id": 72
+    },
+    {
+        "name": "Castle Tower - Room 03",
+        "conditions": [
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf435"
+            },
+            {
+                "type": "CurrentTile",
+                "id": 278
+            }
+        ],
+        "id": 73
+    },
+    {
+        "name": "Castle Tower - Dark Maze",
+        "conditions": [
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf435"
+            },
+            {
+                "type": "CurrentTile",
+                "id": 280
+            }
+        ],
+        "id": 74
+    },
+    {
+        "name": "Old Man",
+        "sram_offset": "0xf410",
+        "sram_mask": "0x01",
+        "id": 75
+    },
+    {
+        "name": "Spectacle Rock Cave",
+        "id": 76,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 72
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x403",
+                "sram_mask": "0x40",
+                "sram_value": "0x40"
+            }
+        ]
+    },
+    {
+        "name": "Paradox Cave Lower - Far Left",
+        "sram_offset": "0xf1de",
+        "sram_mask": "0x10",
+        "id": 77
+    },
+    {
+        "name": "Paradox Cave Lower - Left",
+        "sram_offset": "0xf1de",
+        "sram_mask": "0x20",
+        "id": 78
+    },
+    {
+        "name": "Paradox Cave Lower - Right",
+        "sram_offset": "0xf1de",
+        "sram_mask": "0x40",
+        "id": 79
+    },
+    {
+        "name": "Paradox Cave Lower - Far Right",
+        "sram_offset": "0xf1de",
+        "sram_mask": "0x80",
+        "id": 80
+    },
+    {
+        "name": "Paradox Cave Lower - Middle",
+        "sram_offset": "0xf1df",
+        "sram_mask": "0x01",
+        "id": 81
+    },
+    {
+        "name": "Paradox Cave Upper - Left",
+        "sram_offset": "0xf1fe",
+        "sram_mask": "0x10",
+        "id": 82
+    },
+    {
+        "name": "Paradox Cave Upper - Right",
+        "sram_offset": "0xf1fe",
+        "sram_mask": "0x20",
+        "id": 83
+    },
+    {
+        "name": "Spiral Cave",
+        "sram_offset": "0xf1fc",
+        "sram_mask": "0x10",
+        "id": 84
+    },
+    {
+        "name": "Ether Tablet",
+        "sram_offset": "0xf411",
+        "sram_mask": "0x01",
+        "id": 85
+    },
+    {
+        "name": "Spectacle Rock",
+        "sram_offset": "0xf283",
+        "sram_mask": "0x40",
+        "id": 86
+    },
+    {
+        "name": "Tower of Hera - Basement Cage",
+        "conditions": [
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf435"
+            },
+            {
+                "type": "CurrentTile",
+                "id": 270
+            }
+        ],
+        "id": 87
+    },
+    {
+        "name": "Tower of Hera - Map Chest",
+        "conditions": [
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf435"
+            },
+            {
+                "type": "CurrentTile",
+                "id": 266
+            }
+        ],
+        "id": 88
+    },
+    {
+        "name": "Tower of Hera - Big Key Chest",
+        "conditions": [
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf435"
+            },
+            {
+                "type": "CurrentTile",
+                "id": 269
+            }
+        ],
+        "id": 89
+    },
+    {
+        "name": "Tower of Hera - Compass Chest",
+        "conditions": [
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf435"
+            },
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Chest",
+                        "x": "3832",
+                        "y": "1320"
+                    }
+                ]
+            }
+        ],
+        "id": 90
+    },
+    {
+        "name": "Tower of Hera - Big Chest",
+        "conditions": [
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf435"
+            },
+            {
+                "type": "Underworld"
+            },
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Chest",
+                        "x": "3832",
+                        "y": "1112"
+                    }
+                ]
+            }
+        ],
+        "id": 91
+    },
+    {
+        "name": "Tower of Hera - Boss",
+        "conditions": [
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf435"
+            },
+            {
+                "type": "CurrentTile",
+                "id": 276
+            }
+        ],
+        "id": 92
+    },
+    {
+        "name": "Pyramid",
+        "sram_offset": "0xf2db",
+        "sram_mask": "0x40",
+        "id": 93
+    },
+    {
+        "name": "Catfish",
+        "sram_offset": "0xf410",
+        "sram_mask": "0x20",
+        "id": 94
+    },
+    {
+        "name": "Stumpy",
+        "sram_offset": "0xf410",
+        "sram_mask": "0x08",
+        "id": 95
+    },
+    {
+        "name": "Digging Game",
+        "sram_offset": "0xf2e8",
+        "sram_mask": "0x40",
+        "id": 96
+    },
+    {
+        "name": "Bombos Tablet",
+        "sram_offset": "0xf411",
+        "sram_mask": "0x02",
+        "id": 97
+    },
+    {
+        "name": "Hype Cave - Top",
+        "sram_offset": "0xf23c",
+        "sram_mask": "0x10",
+        "id": 98
+    },
+    {
+        "name": "Hype Cave - Middle Left",
+        "sram_offset": "0xf23c",
+        "sram_mask": "0x20",
+        "id": 99
+    },
+    {
+        "name": "Hype Cave - Middle Right",
+        "sram_offset": "0xf23c",
+        "sram_mask": "0x40",
+        "id": 100
+    },
+    {
+        "name": "Hype Cave - Bottom",
+        "sram_offset": "0xf23c",
+        "sram_mask": "0x80",
+        "id": 101
+    },
+    {
+        "name": "Hype Cave - Generous Guy",
+        "id": 102,
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 182
+            },
+            {
+                "type": "ValueChangedTo",
+                "sram_offset": "0x403",
+                "sram_mask": "0x40",
+                "sram_value": "0x40"
+            }
+        ]
+    },
+    {
+        "name": "Peg Cave",
+        "sram_offset": "0xf24f",
+        "sram_mask": "0x04",
+        "id": 103
+    },
+    {
+        "name": "Pyramid Fairy - Left",
+        "sram_offset": "0xf22c",
+        "sram_mask": "0x10",
+        "id": 104
+    },
+    {
+        "name": "Pyramid Fairy - Right",
+        "sram_offset": "0xf22c",
+        "sram_mask": "0x20",
+        "id": 105
+    },
+    {
+        "name": "Brewery",
+        "sram_offset": "0xf20c",
+        "sram_mask": "0x10",
+        "id": 106
+    },
+    {
+        "name": "C-Shaped House",
+        "sram_offset": "0xf238",
+        "sram_mask": "0x10",
+        "id": 107
+    },
+    {
+        "name": "Chest Game",
+        "sram_offset": "0xf20d",
+        "sram_mask": "0x04",
+        "id": 108
+    },
+    {
+        "name": "Bumper Cave Ledge",
+        "sram_offset": "0xf2ca",
+        "sram_mask": "0x40",
+        "id": 109
+    },
+    {
+        "name": "Mire Shed - Left",
+        "sram_offset": "0xf21a",
+        "sram_mask": "0x10",
+        "id": 110
+    },
+    {
+        "name": "Mire Shed - Right",
+        "sram_offset": "0xf21a",
+        "sram_mask": "0x20",
+        "id": 111
+    },
+    {
+        "name": "Superbunny Cave - Top",
+        "sram_offset": "0xf1f0",
+        "sram_mask": "0x10",
+        "id": 112
+    },
+    {
+        "name": "Superbunny Cave - Bottom",
+        "sram_offset": "0xf1f0",
+        "sram_mask": "0x20",
+        "id": 113
+    },
+    {
+        "name": "Spike Cave",
+        "sram_offset": "0xf22e",
+        "sram_mask": "0x10",
+        "id": 114
+    },
+    {
+        "name": "Hookshot Cave - Top Right",
+        "sram_offset": "0xf078",
+        "sram_mask": "0x10",
+        "id": 115
+    },
+    {
+        "name": "Hookshot Cave - Top Left",
+        "sram_offset": "0xf078",
+        "sram_mask": "0x20",
+        "id": 116
+    },
+    {
+        "name": "Hookshot Cave - Bottom Left",
+        "sram_offset": "0xf078",
+        "sram_mask": "0x40",
+        "id": 117
+    },
+    {
+        "name": "Hookshot Cave - Bottom Right",
+        "sram_offset": "0xf078",
+        "sram_mask": "0x80",
+        "id": 118
+    },
+    {
+        "name": "Floating Island",
+        "sram_offset": "0xf285",
+        "sram_mask": "0x40",
+        "id": 119
+    },
+    {
+        "name": "Mimic Cave",
+        "sram_offset": "0xf218",
+        "sram_mask": "0x10",
+        "id": 120
+    },
+    {
+        "name": "Swamp Palace - Entrance",
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 320
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf439"
+            }
+        ],
+        "id": 121
+    },
+    {
+        "name": "Swamp Palace - Map Chest",
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 322
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf439"
+            }
+        ],
+        "id": 122
+    },
+    {
+        "name": "Swamp Palace - Big Chest",
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 326
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf439"
+            }
+        ],
+        "id": 123
+    },
+    {
+        "name": "Swamp Palace - Compass Chest",
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 327
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf439"
+            }
+        ],
+        "id": 124
+    },
+    {
+        "name": "Swamp Palace - Big Key Chest",
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 336
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf439"
+            }
+        ],
+        "id": 125
+    },
+    {
+        "name": "Swamp Palace - West Chest",
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 334
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf439"
+            }
+        ],
+        "id": 126
+    },
+    {
+        "name": "Swamp Palace - Flooded Room - Left",
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Chest",
+                        "x": "3456",
+                        "y": "3928"
+                    }
+                ]
+            },
+            {
+                "type": "Underworld"
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf439"
+            }
+        ],
+        "id": 127
+    },
+    {
+        "name": "Swamp Palace - Flooded Room - Right",
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Chest",
+                        "x": "3408",
+                        "y": "3928"
+                    }
+                ]
+            },
+            {
+                "type": "Underworld"
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf439"
+            }
+        ],
+        "id": 128
+    },
+    {
+        "name": "Swamp Palace - Waterfall Room",
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 344
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf439"
+            }
+        ],
+        "id": 129
+    },
+    {
+        "name": "Swamp Palace - Boss",
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 351
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf439"
+            }
+        ],
+        "id": 130
+    },
+    {
+        "name": "Thieves' Town - Big Key Chest",
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Chest",
+                        "x": "6024",
+                        "y": "7016"
+                    }
+                ]
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf437"
+            }
+        ],
+        "id": 131
+    },
+    {
+        "name": "Thieves' Town - Map Chest",
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Chest",
+                        "x": "5760",
+                        "y": "6824"
+                    }
+                ]
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf437"
+            }
+        ],
+        "id": 132
+    },
+    {
+        "name": "Thieves' Town - Compass Chest",
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 376
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf437"
+            }
+        ],
+        "id": 133
+    },
+    {
+        "name": "Thieves' Town - Ambush Chest",
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 374
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf437"
+            }
+        ],
+        "id": 134
+    },
+    {
+        "name": "Thieves' Town - Attic",
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 385
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf437"
+            }
+        ],
+        "id": 135
+    },
+    {
+        "name": "Thieves' Town - Big Chest",
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 391
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf437"
+            }
+        ],
+        "id": 136
+    },
+    {
+        "name": "Thieves' Town - Blind's Cell",
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 393
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf437"
+            }
+        ],
+        "id": 137
+    },
+    {
+        "name": "Thieves' Town - Boss",
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 394
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf437"
+            }
+        ],
+        "id": 138
+    },
+    {
+        "name": "Skull Woods - Compass Chest",
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 355
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf437"
+            }
+        ],
+        "id": 139
+    },
+    {
+        "name": "Skull Woods - Map Chest",
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 353
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf437"
+            }
+        ],
+        "id": 140
+    },
+    {
+        "name": "Skull Woods - Big Chest",
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 352
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf437"
+            }
+        ],
+        "id": 141
+    },
+    {
+        "name": "Skull Woods - Pot Prison",
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 356
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf437"
+            }
+        ],
+        "id": 142
+    },
+    {
+        "name": "Skull Woods - Pinball Room",
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 357
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf437"
+            }
+        ],
+        "id": 143
+    },
+    {
+        "name": "Skull Woods - Big Key Chest",
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 359
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf437"
+            }
+        ],
+        "id": 144
+    },
+    {
+        "name": "Skull Woods - Bridge Room",
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 364
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf437"
+            }
+        ],
+        "id": 145
+    },
+    {
+        "name": "Skull Woods - Boss",
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 372
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf437"
+            }
+        ],
+        "id": 146
+    },
+    {
+        "name": "Ice Palace - Compass Chest",
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 401
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf438"
+            }
+        ],
+        "id": 147
+    },
+    {
+        "name": "Ice Palace - Freezor Chest",
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 427
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf438"
+            }
+        ],
+        "id": 148
+    },
+    {
+        "name": "Ice Palace - Big Chest",
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 428
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf438"
+            }
+        ],
+        "id": 149
+    },
+    {
+        "name": "Ice Palace - Iced T Room",
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 417
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf438"
+            }
+        ],
+        "id": 150
+    },
+    {
+        "name": "Ice Palace - Spike Room",
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 409
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf438"
+            }
+        ],
+        "id": 151
+    },
+    {
+        "name": "Ice Palace - Big Key Chest",
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 400
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf438"
+            }
+        ],
+        "id": 152
+    },
+    {
+        "name": "Ice Palace - Map Chest",
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 410
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf438"
+            }
+        ],
+        "id": 153
+    },
+    {
+        "name": "Ice Palace - Boss",
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 430
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf438"
+            }
+        ],
+        "id": 154
+    },
+    {
+        "name": "Misery Mire - Big Chest",
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 463
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf438"
+            }
+        ],
+        "id": 155
+    },
+    {
+        "name": "Misery Mire - Map Chest",
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 462
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf438"
+            }
+        ],
+        "id": 156
+    },
+    {
+        "name": "Misery Mire - Main Lobby",
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 433
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf438"
+            }
+        ],
+        "id": 157
+    },
+    {
+        "name": "Misery Mire - Bridge Chest",
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 449
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf438"
+            }
+        ],
+        "id": 158
+    },
+    {
+        "name": "Misery Mire - Spike Chest",
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 461
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf438"
+            }
+        ],
+        "id": 159
+    },
+    {
+        "name": "Misery Mire - Compass Chest",
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 437
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf438"
+            }
+        ],
+        "id": 160
+    },
+    {
+        "name": "Misery Mire - Big Key Chest",
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 445
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf438"
+            }
+        ],
+        "id": 161
+    },
+    {
+        "name": "Misery Mire - Boss",
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 457
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf438"
+            }
+        ],
+        "id": 162
+    },
+    {
+        "name": "Turtle Rock - Compass Chest",
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 471
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf439"
+            }
+        ],
+        "id": 163
+    },
+    {
+        "name": "Turtle Rock - Roller Room - Left",
+        "conditions": [
+            {
+                "type": "Underworld"
+            },
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Chest",
+                        "x": "3680",
+                        "y": "5720"
+                    }
+                ]
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf439"
+            }
+        ],
+        "id": 164
+    },
+    {
+        "name": "Turtle Rock - Roller Room - Right",
+        "conditions": [
+            {
+                "type": "Underworld"
+            },
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Chest",
+                        "x": "3728",
+                        "y": "5720"
+                    }
+                ]
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf439"
+            }
+        ],
+        "id": 165
+    },
+    {
+        "name": "Turtle Rock - Chain Chomps",
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 475
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf439"
+            }
+        ],
+        "id": 166
+    },
+    {
+        "name": "Turtle Rock - Big Key Chest",
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 477
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf439"
+            }
+        ],
+        "id": 167
+    },
+    {
+        "name": "Turtle Rock - Big Chest",
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 481
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf439"
+            }
+        ],
+        "id": 168
+    },
+    {
+        "name": "Turtle Rock - Crystaroller Room",
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 487
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf439"
+            }
+        ],
+        "id": 169
+    },
+    {
+        "name": "Turtle Rock - Eye Bridge - Bottom Left",
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Chest",
+                        "x": "2608",
+                        "y": "6968"
+                    }
+                ]
+            },
+            {
+                "type": "Underworld"
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf439"
+            }
+        ],
+        "id": 170
+    },
+    {
+        "name": "Turtle Rock - Eye Bridge - Bottom Right",
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Chest",
+                        "x": "2752",
+                        "y": "6904"
+                    }
+                ]
+            },
+            {
+                "type": "Underworld"
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf439"
+            }
+        ],
+        "id": 171
+    },
+    {
+        "name": "Turtle Rock - Eye Bridge - Top Left",
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Chest",
+                        "x": "2608",
+                        "y": "6840"
+                    }
+                ]
+            },
+            {
+                "type": "Underworld"
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf439"
+            }
+        ],
+        "id": 172
+    },
+    {
+        "name": "Turtle Rock - Eye Bridge - Top Right",
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Chest",
+                        "x": "2752",
+                        "y": "6776"
+                    }
+                ]
+            },
+            {
+                "type": "Underworld"
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf439"
+            }
+        ],
+        "id": 173
+    },
+    {
+        "name": "Turtle Rock - Boss",
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 492
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf439"
+            }
+        ],
+        "id": 174
+    },
+    {
+        "name": "Palace of Darkness - Shooter Room",
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 296
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf434"
+            }
+        ],
+        "id": 175
+    },
+    {
+        "name": "Palace of Darkness - The Arena - Bridge",
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Chest",
+                        "x": "5488",
+                        "y": "1384"
+                    }
+                ]
+            },
+            {
+                "type": "Underworld"
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf434"
+            }
+        ],
+        "id": 176
+    },
+    {
+        "name": "Palace of Darkness - Stalfos Basement",
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 298
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf434"
+            }
+        ],
+        "id": 177
+    },
+    {
+        "name": "Palace of Darkness - Big Key Chest",
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 297
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf434"
+            }
+        ],
+        "id": 178
+    },
+    {
+        "name": "Palace of Darkness - The Arena - Ledge",
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Chest",
+                        "x": "5568",
+                        "y": "1392"
+                    }
+                ]
+            },
+            {
+                "type": "Underworld"
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf434"
+            }
+        ],
+        "id": 179
+    },
+    {
+        "name": "Palace of Darkness - Map Chest",
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 304
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf434"
+            }
+        ],
+        "id": 180
+    },
+    {
+        "name": "Palace of Darkness - Compass Chest",
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 307
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf434"
+            }
+        ],
+        "id": 181
+    },
+    {
+        "name": "Palace of Darkness - Dark Basement - Left",
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Chest",
+                        "x": "5424",
+                        "y": "3448"
+                    }
+                ]
+            },
+            {
+                "type": "Underworld"
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf434"
+            }
+        ],
+        "id": 182
+    },
+    {
+        "name": "Palace of Darkness - Dark Basement - Right",
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Chest",
+                        "x": "5568",
+                        "y": "3448"
+                    }
+                ]
+            },
+            {
+                "type": "Underworld"
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf434"
+            }
+        ],
+        "id": 183
+    },
+    {
+        "name": "Palace of Darkness - Dark Maze - Top",
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Chest",
+                        "x": "4872",
+                        "y": "592"
+                    }
+                ]
+            },
+            {
+                "type": "Underworld"
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf434"
+            }
+        ],
+        "id": 184
+    },
+    {
+        "name": "Palace of Darkness - Dark Maze - Bottom",
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Chest",
+                        "x": "5056",
+                        "y": "944"
+                    }
+                ]
+            },
+            {
+                "type": "Underworld"
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf434"
+            }
+        ],
+        "id": 185
+    },
+    {
+        "name": "Palace of Darkness - Big Chest",
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 306
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf434"
+            }
+        ],
+        "id": 186
+    },
+    {
+        "name": "Palace of Darkness - Harmless Hellway",
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 309
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf434"
+            }
+        ],
+        "id": 187
+    },
+    {
+        "name": "Palace of Darkness - Boss",
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 318
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf434"
+            }
+        ],
+        "id": 188
+    },
+    {
+        "name": "Ganons Tower - Bob's Torch",
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 495
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf436"
+            }
+        ],
+        "id": 189
+    },
+    {
+        "name": "Ganons Tower - Hope Room - Left",
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Chest",
+                        "x": "6448",
+                        "y": "4168"
+                    }
+                ]
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf436"
+            }
+        ],
+        "id": 190
+    },
+    {
+        "name": "Ganons Tower - Hope Room - Right",
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Chest",
+                        "x": "6592",
+                        "y": "4168"
+                    }
+                ]
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf436"
+            }
+        ],
+        "id": 191
+    },
+    {
+        "name": "Ganons Tower - Tile Room",
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 514
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf436"
+            }
+        ],
+        "id": 192
+    },
+    {
+        "name": "Ganons Tower - Compass Room - Top Left",
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Chest",
+                        "x": "6752",
+                        "y": "4712"
+                    }
+                ]
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf436"
+            }
+        ],
+        "id": 193
+    },
+    {
+        "name": "Ganons Tower - Compass Room - Top Right",
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Chest",
+                        "x": "6800",
+                        "y": "4712"
+                    }
+                ]
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf436"
+            }
+        ],
+        "id": 194
+    },
+    {
+        "name": "Ganons Tower - Compass Room - Bottom Left",
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Chest",
+                        "x": "6752",
+                        "y": "4776"
+                    }
+                ]
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf436"
+            }
+        ],
+        "id": 195
+    },
+    {
+        "name": "Ganons Tower - Compass Room - Bottom Right",
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Chest",
+                        "x": "6800",
+                        "y": "4776"
+                    }
+                ]
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf436"
+            }
+        ],
+        "id": 196
+    },
+    {
+        "name": "Ganons Tower - DMs Room - Top Left",
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Chest",
+                        "x": "5680",
+                        "y": "3912"
+                    }
+                ]
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf436"
+            }
+        ],
+        "id": 197
+    },
+    {
+        "name": "Ganons Tower - DMs Room - Top Right",
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Chest",
+                        "x": "5824",
+                        "y": "3912"
+                    }
+                ]
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf436"
+            }
+        ],
+        "id": 198
+    },
+    {
+        "name": "Ganons Tower - DMs Room - Bottom Left",
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Chest",
+                        "x": "5680",
+                        "y": "3976"
+                    }
+                ]
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf436"
+            }
+        ],
+        "id": 199
+    },
+    {
+        "name": "Ganons Tower - DMs Room - Bottom Right",
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Chest",
+                        "x": "5824",
+                        "y": "3976"
+                    }
+                ]
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf436"
+            }
+        ],
+        "id": 200
+    },
+    {
+        "name": "Ganons Tower - Map Chest",
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 499
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf436"
+            }
+        ],
+        "id": 201
+    },
+    {
+        "name": "Ganons Tower - Firesnake Room",
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 502
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf436"
+            }
+        ],
+        "id": 202
+    },
+    {
+        "name": "Ganons Tower - Randomizer Room - Top Left",
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Chest",
+                        "x": "6496",
+                        "y": "3720"
+                    }
+                ]
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf436"
+            }
+        ],
+        "id": 203
+    },
+    {
+        "name": "Ganons Tower - Randomizer Room - Top Right",
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Chest",
+                        "x": "6544",
+                        "y": "3720"
+                    }
+                ]
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf436"
+            }
+        ],
+        "id": 204
+    },
+    {
+        "name": "Ganons Tower - Randomizer Room - Bottom Left",
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Chest",
+                        "x": "6496",
+                        "y": "3768"
+                    }
+                ]
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf436"
+            }
+        ],
+        "id": 205
+    },
+    {
+        "name": "Ganons Tower - Randomizer Room - Bottom Right",
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Chest",
+                        "x": "6544",
+                        "y": "3768"
+                    }
+                ]
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf436"
+            }
+        ],
+        "id": 206
+    },
+    {
+        "name": "Ganons Tower - Bob's Chest",
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 507
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf436"
+            }
+        ],
+        "id": 207
+    },
+    {
+        "name": "Ganons Tower - Big Chest",
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 512
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf436"
+            }
+        ],
+        "id": 208
+    },
+    {
+        "name": "Ganons Tower - Big Key Room - Left",
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Chest",
+                        "x": "6496",
+                        "y": "584"
+                    }
+                ]
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf436"
+            }
+        ],
+        "id": 209
+    },
+    {
+        "name": "Ganons Tower - Big Key Room - Right",
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Chest",
+                        "x": "6544",
+                        "y": "584"
+                    }
+                ]
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf436"
+            }
+        ],
+        "id": 210
+    },
+    {
+        "name": "Ganons Tower - Big Key Chest",
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Chest",
+                        "x": "6520",
+                        "y": "616"
+                    }
+                ]
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf436"
+            }
+        ],
+        "id": 211
+    },
+    {
+        "name": "Ganons Tower - Mini Helmasaur Room - Left",
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Chest",
+                        "x": "6960",
+                        "y": "1608"
+                    }
+                ]
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf436"
+            }
+        ],
+        "id": 212
+    },
+    {
+        "name": "Ganons Tower - Mini Helmasaur Room - Right",
+        "conditions": [
+            {
+                "type": "Coordinates",
+                "coordinates": [
+                    {
+                        "type": "Chest",
+                        "x": "7104",
+                        "y": "1608"
+                    }
+                ]
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf436"
+            }
+        ],
+        "id": 213
+    },
+    {
+        "name": "Ganons Tower - Pre-Moldorm Chest",
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 548
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf436"
+            }
+        ],
+        "id": 214
+    },
+    {
+        "name": "Ganons Tower - Validation Chest",
+        "conditions": [
+            {
+                "type": "CurrentTile",
+                "id": 549
+            },
+            {
+                "type": "DungeonCounterIncreased",
+                "sram_offset": "0xf436"
+            }
+        ],
+        "id": 215
+    }
+]

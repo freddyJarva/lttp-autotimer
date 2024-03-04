@@ -20,8 +20,10 @@
 			objectives: [],
 			finalized: false
 		};
-	let /** @type {SnesEvent[]} */ currentRun = [];
 	let currentObjective = 0;
+	let /** @type {SnesEvent[]} */ currentRun = [];
+    let /** @type {number[][]} */ times = [];
+
 	let runStarted = false;
 	let runFinished = false;
 
@@ -87,6 +89,23 @@
 	}
 
 	function finishRun() {
+        let /** @type {number[][]} */ newTimes = []
+        console.log("HERE WE AT BABY")
+        if (times.length > 0) {
+            newTimes = [...times]
+        }
+        for (let i = 1; i < currentRun.length; i++) {
+            if (newTimes[i-1] === undefined) {
+                console.log("HELL YEAH")
+                newTimes[i-1] = [currentRun[i].timestamp - currentRun[i-1].timestamp]
+            } else {
+                console.log("HELL NO")
+                let segmentTimes = newTimes[i-1];
+                newTimes[i-1] = [...segmentTimes, currentRun[i].timestamp - currentRun[i-1].timestamp]
+            }
+        }
+        console.log("NEW TIMES", newTimes)
+        times = newTimes;
 		runStarted = false;
 		runFinished = true;
 	}
@@ -101,6 +120,8 @@
 		// let rust backend reset event log
 		// and read in previous events again before recording
 		await new Promise((r) => setTimeout(r, 100));
+        runFinished = false;
+        runStarted = false;
 		isRecording = true;
 	}
 
@@ -116,9 +137,6 @@
 
 			if (runStarted) {
 				let objective = runObjectives.objectives[currentObjective];
-				if (!objective) {
-					console.log(`HEEEEY currentObject ${currentObjective} is ${objective} `);
-				}
 				if (objectiveCleared(objective, snesEvent)) {
 					progressRun(snesEvent);
 				}
@@ -127,7 +145,6 @@
 				runObjectives.start_tile === current_tile_idx &&
 				objectiveCleared(runObjectives.objectives[0], snesEvent)
 			) {
-				console.log('Why is this triggering');
 				startRun(snesEvent);
 			} else if (runObjectives.finalized && snesEvent.tile_id === runObjectives.start_tile) {
                 untriggerEvents();
@@ -216,9 +233,9 @@
         <div style="grid-column: 3; grid-row: 2;">
             <h3>Best times</h3>
             <ul>
-                <li>0.00</li>
-                <li>13.24</li>
-                <li>2.20</li>
+                {#each times as segmentTimes}
+                    <li>{fmTime(Math.min(...segmentTimes))}</li>
+                {/each}
             </ul>
         </div>
     </div>

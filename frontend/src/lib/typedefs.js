@@ -4,8 +4,18 @@
  * @property {string} name
  */
 
+/**
+ * @typedef {Object} Tile
+ * @property {string} region
+ * @property {boolean} is_indoor
+ */
+
+/**
+ * @typedef {Tile & JsonEvent} TileEvent
+ */
+
 /** 
- * @typedef {Object<number,JsonEvent>} JsonEvents
+ * @typedef {Object<number,TileEvent|JsonEvent>} JsonEvents
  */
 
 /** 

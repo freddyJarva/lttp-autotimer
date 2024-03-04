@@ -5,29 +5,7 @@
 	import { onMount } from 'svelte';
 	import { listen } from '@tauri-apps/api/event';
 	import { invoke } from '@tauri-apps/api/tauri';
-	import tilesJson from '../events/tiles.json';
-	import eventJson from '../events/events.json';
-	import checksJson from '../events/checks.json';
-	import itemsJson from '../events/items.json';
-	import { fmtDelta, runTime, fmTime } from '$lib/util';
-	import Timer from './timer.svelte';
-
-	/**
-	 * @param {JsonEvent[]} o
-	 * @returns {JsonEvents}
-	 */
-	function toIdObjectMap(o) {
-		let /** @type {JsonEvents} */ objects = {};
-		o.forEach(function (/** @type {JsonEvent} */ val) {
-			objects[val.id] = val;
-		});
-		return objects;
-	}
-
-	let /** @type {JsonEvents} */ tiles = toIdObjectMap(tilesJson);
-	let /** @type {JsonEvents} */ events = toIdObjectMap(eventJson);
-	let /** @type {JsonEvents} */ checks = toIdObjectMap(checksJson);
-	let /** @type {JsonEvents} */ items = toIdObjectMap(itemsJson);
+	import { fmtDelta, fmtObjective, runTime, fmTime, tiles, eventInfo } from '$lib/util';
 
 	let unlisten_snes_events;
 
@@ -35,9 +13,10 @@
 
 	let /** @type {SnesEvent[]} */ snesEvents = [];
 
-	let current_tile = -1;
+	let current_tile_idx = -1;
+    $: currentTile = tiles[current_tile_idx] ?? null;
 	let /** @type {RunObjectives} */ runObjectives = {
-			start_tile: current_tile,
+			start_tile: current_tile_idx,
 			objectives: [],
 			finalized: false
 		};
@@ -112,31 +91,9 @@
 		runFinished = true;
 	}
 
-	/**
-	 * Parses snes event and returns info
-	 *
-	 * @param {SnesEvent} e - event data returned from rust
-	 * @returns {JsonEvent?}
-	 */
-	function eventInfo(e) {
-		if (e.tile_id) {
-			return tiles[e.tile_id];
-		}
-		if (e.item_id) {
-			return items[e.item_id];
-		}
-		if (e.event_id) {
-			return events[e.event_id];
-		}
-		if (e.location_id) {
-			return checks[e.location_id];
-		}
-		return null;
-	}
-
 	async function startRecording() {
 		runObjectives = {
-			start_tile: current_tile,
+			start_tile: current_tile_idx,
 			objectives: [],
 			finalized: false
 		};
@@ -167,14 +124,16 @@
 				}
 			} else if (
 				runObjectives.finalized &&
-				runObjectives.start_tile === current_tile &&
+				runObjectives.start_tile === current_tile_idx &&
 				objectiveCleared(runObjectives.objectives[0], snesEvent)
 			) {
 				console.log('Why is this triggering');
 				startRun(snesEvent);
-			}
+			} else if (runObjectives.finalized && snesEvent.tile_id === runObjectives.start_tile) {
+                untriggerEvents();
+            }
 			if (snesEvent.tile_id) {
-				current_tile = snesEvent.tile_id;
+				current_tile_idx = snesEvent.tile_id;
 			}
 			snesEvents = [...snesEvents, event.payload];
 			if (isRecording) {
@@ -201,52 +160,75 @@
 		<button disabled={!runStarted} on:click={abortRun}>Abort run</button>
 	</div>
 
-	<div style="grid-column: 1; grid-row: 2;">
-		<h3>Objectives</h3>
-		{#if runObjectives.start_tile !== -1}
-			<p>Start: {tiles[runObjectives.start_tile].name}</p>
-			<ol>
-				{#each runObjectives.objectives as o}
-					<li>{eventInfo(o)?.name}</li>
-				{/each}
-			</ol>
-		{/if}
-	</div>
+    <div class="run-times">
 
-	<div class="run-times" style="grid-column: 2; grid-row: 2;">
-		{#if runStarted}
-			<h3>Current Run</h3>
-			<br />
-			<ul>
-				{#each currentRun as cleared, idx}
-					<li>{fmtDelta(cleared.timestamp, currentRun[idx - 1]?.timestamp)}</li>
-				{/each}
-			</ul>
-		{:else if runFinished}
-			<h3>Finished {fmTime(runTime(currentRun) ?? 0)}</h3>
-			<br />
-			<ul>
-				{#each currentRun as cleared, idx}
-					<li>{fmtDelta(cleared.timestamp, currentRun[idx - 1]?.timestamp)}</li>
-				{/each}
-			</ul>
-		{:else}
-			<h3>No Active Run</h3>
-		{/if}
-	</div>
+        <div style="grid-column: span 3 ; grid-row: 1;">
+            {#if runObjectives.objectives.length > 0}
+                <p>Start Location: {tiles[runObjectives.start_tile].name}</p>
+                <p>Trigger: {fmtObjective(runObjectives.objectives[0])}</p>
+            {:else}
+                <p>Start Location: not recorded</p>
+            {/if}
+        </div>
 
-	<div style="grid-column: 3; grid-row: 2;">
-		<h3>Best times</h3>
-	</div>
+        <div style="grid-column: 1; grid-row: 2;">
+            <h3>Objectives</h3>
+            {#if runObjectives.objectives.length > 1}
+                <ol>
+                    {#each runObjectives.objectives.slice(1) as o}
+                        <li>{fmtObjective(o)}</li>
+                    {/each}
+                </ol>
+            {:else}
+                <ol>
+                    <li>Eat a berry</li>
+                    <li>Sing a song</li>
+                    <li>Fuck the police</li>
+                </ol>
+            {/if}
+        </div>
 
-	<div style="grid-column: 1; grid-row: 3;">
-		<h3>Current Tile</h3>
-		{#if current_tile !== -1}
-			{#each Object.entries(tiles[current_tile]) as [k, data]}
-				<p>{k}: {data}</p>
-			{/each}
+        <div style="grid-column: 2; grid-row: 2;">
+            {#if runStarted}
+                <h3>Current Run</h3>
+                <ul>
+                    {#each currentRun.slice(1) as cleared, idx}
+                        <li>{fmtDelta(cleared.timestamp, currentRun[idx]?.timestamp)}</li>
+                    {/each}
+                </ul>
+            {:else if runFinished}
+                <h3>Finished {fmTime(runTime(currentRun) ?? 0)}</h3>
+                <ul>
+                    {#each currentRun.slice(1) as cleared, idx}
+                        <li>{fmtDelta(cleared.timestamp, currentRun[idx]?.timestamp)}</li>
+                    {/each}
+                </ul>
+            {:else}
+                <h3>No Active Run</h3>
+                <ul>
+                    <li>0.00</li>
+                    <li>13.24</li>
+                    <li>2.20</li>
+                </ul>
+            {/if}
+        </div>
+
+        <div style="grid-column: 3; grid-row: 2;">
+            <h3>Best times</h3>
+            <ul>
+                <li>0.00</li>
+                <li>13.24</li>
+                <li>2.20</li>
+            </ul>
+        </div>
+    </div>
+
+    <footer style="grid-column: 1 / span 3; grid-row: 4;">
+		{#if currentTile}
+            <p>{currentTile.region} - {currentTile.name}</p>
 		{/if}
-	</div>
+    </footer>
+
 </div>
 
 <style>
@@ -255,6 +237,21 @@
 	}
 
 	.run-times {
-		text-align: left;
+        grid-column: 1 / span 3;
+        grid-row: 2;
+        display: grid;
+        grid-template-columns: auto auto;
+        font-size: 1.8em;
 	}
+
+    /* Footer will be like a console output line in the bottom */    
+    footer {
+        text-align: center;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        padding: 2px;
+        border-top: 1px solid #e7e7e7;
+        font-size: 1.8em;
+    }
 </style>

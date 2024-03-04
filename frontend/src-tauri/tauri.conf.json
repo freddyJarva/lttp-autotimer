@@ -55,7 +55,7 @@
     "windows": [
       {
         "fullscreen": false,
-        "height": 600,
+        "height": 900,
         "resizable": true,
         "title": "ALttP Timer",
         "width": 800

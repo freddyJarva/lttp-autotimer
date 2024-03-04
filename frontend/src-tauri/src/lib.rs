@@ -105,6 +105,8 @@ pub async fn connect_to_sni(cli_config: lttp_autotimer::CliConfig, handle: AppHa
     let mut items: Vec<Check> = deserialize_item_checks()?.into_iter().collect();
     let mut actions: Vec<Check> = deserialize_actions()?.into_iter().collect();
 
+    let mut last_event_log_clear = Utc::now();
+
     while let Some((time_of_read, snes_ram)) = rx.recv().await {
         if !game_started {
             game_started = snes_ram.game_has_started();
@@ -116,19 +118,26 @@ pub async fn connect_to_sni(cli_config: lttp_autotimer::CliConfig, handle: AppHa
             let mut state_unlocked = state.lock().await;
             match state_unlocked.command {
                 CommandState::ClearEventLog => {
-                    events = EventTracker::new();
-                    locations = deserialize_location_checks()?;
-                    subscribed_events = deserialize_event_checks()?
-                        .into_iter()
-                        .map(|e| {
-                            if e.is_checked {
-                                println!("Somehow {} is already checked, even though resetting", e.name);
-                            }
-                            e
-                        })
-                        .collect();
-                    items = deserialize_item_checks()?.into_iter().collect();
-                    actions = deserialize_actions()?.into_iter().collect();
+                    // check delta
+                    let delta = Utc::now() - last_event_log_clear;
+                    if delta.num_seconds() > 1 {
+                        events = EventTracker::new();
+                        locations = deserialize_location_checks()?;
+                        subscribed_events = deserialize_event_checks()?
+                            .into_iter()
+                            .map(|e| {
+                                if e.is_checked {
+                                    println!("Somehow {} is already checked, even though resetting", e.name);
+                                }
+                                e
+                            })
+                            .collect();
+                        items = deserialize_item_checks()?.into_iter().collect();
+                        actions = deserialize_actions()?.into_iter().collect();
+                        last_event_log_clear = Utc::now();
+                    } else {
+                        println!("Not clearing event log, too soon since last clear");
+                    }
 
                     state_unlocked.command = CommandState::None;
                 }

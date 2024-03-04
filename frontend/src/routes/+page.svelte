@@ -14,7 +14,7 @@
 	let /** @type {SnesEvent[]} */ snesEvents = [];
 
 	let current_tile_idx = -1;
-    $: currentTile = tiles[current_tile_idx] ?? null;
+	$: currentTile = tiles[current_tile_idx] ?? null;
 	let /** @type {RunObjectives} */ runObjectives = {
 			start_tile: current_tile_idx,
 			objectives: [],
@@ -22,7 +22,7 @@
 		};
 	let currentObjective = 0;
 	let /** @type {SnesEvent[]} */ currentRun = [];
-    let /** @type {number[][]} */ times = [];
+	let /** @type {number[][]} */ times = [];
 
 	let runStarted = false;
 	let runFinished = false;
@@ -89,25 +89,32 @@
 	}
 
 	function finishRun() {
-        let /** @type {number[][]} */ newTimes = []
-        console.log("HERE WE AT BABY")
-        if (times.length > 0) {
-            newTimes = [...times]
-        }
-        for (let i = 1; i < currentRun.length; i++) {
-            if (newTimes[i-1] === undefined) {
-                console.log("HELL YEAH")
-                newTimes[i-1] = [currentRun[i].timestamp - currentRun[i-1].timestamp]
-            } else {
-                console.log("HELL NO")
-                let segmentTimes = newTimes[i-1];
-                newTimes[i-1] = [...segmentTimes, currentRun[i].timestamp - currentRun[i-1].timestamp]
-            }
-        }
-        console.log("NEW TIMES", newTimes)
-        times = newTimes;
+		updateTimes(currentRun);
 		runStarted = false;
 		runFinished = true;
+	}
+
+    /**
+     * update the times array with the new run
+     *
+     * @param {SnesEvent[]} run
+     */
+	function updateTimes(run) {
+		let /** @type {number[][]} */ newTimes = [];
+		if (times.length > 0) {
+			newTimes = [...times];
+		}
+		for (let i = 1; i < run.length; i++) {
+			if (newTimes[i - 1] === undefined) {
+				console.log('HELL YEAH');
+				newTimes[i - 1] = [run[i].timestamp - run[i - 1].timestamp];
+			} else {
+				console.log('HELL NO');
+				let segmentTimes = newTimes[i - 1];
+				newTimes[i - 1] = [...segmentTimes, run[i].timestamp - run[i - 1].timestamp];
+			}
+		}
+		times = newTimes;
 	}
 
 	async function startRecording() {
@@ -120,14 +127,15 @@
 		// let rust backend reset event log
 		// and read in previous events again before recording
 		await new Promise((r) => setTimeout(r, 100));
-        runFinished = false;
-        runStarted = false;
+		runFinished = false;
+		runStarted = false;
 		isRecording = true;
 	}
 
 	function stopRecording() {
 		isRecording = false;
 		runObjectives.finalized = true;
+        updateTimes(runObjectives.objectives);
 	}
 
 	onMount(async () => {
@@ -147,16 +155,14 @@
 			) {
 				startRun(snesEvent);
 			} else if (runObjectives.finalized && snesEvent.tile_id === runObjectives.start_tile) {
-                untriggerEvents();
-            }
+				untriggerEvents();
+			}
 			if (snesEvent.tile_id) {
 				current_tile_idx = snesEvent.tile_id;
 			}
 			snesEvents = [...snesEvents, event.payload];
 			if (isRecording) {
 				runObjectives.objectives = [...runObjectives.objectives, snesEvent];
-				if (snesEvent.tile_id) {
-				}
 			}
 		});
 	});
@@ -164,7 +170,7 @@
 
 <h1>A Link to The Past Autotimer</h1>
 
-<div style="display:grid; grid-template-columns: auto auto;">
+<div class="page-container" style="display:grid; grid-template-columns: auto auto;">
 	<div style="grid-column: 1; grid-row: 1;">
 		{#if isRecording}
 			<button on:click={stopRecording}>Stop Recording</button>
@@ -177,75 +183,67 @@
 		<button disabled={!runStarted} on:click={abortRun}>Abort run</button>
 	</div>
 
-    <div class="run-times">
+	<div class="run-times">
+		<div style="grid-column: span 3 ; grid-row: 1;">
+			{#if runObjectives.objectives.length > 0}
+				<p>Start Location: {tiles[runObjectives.start_tile].name}</p>
+				<p>Trigger: {fmtObjective(runObjectives.objectives[0])}</p>
+			{:else}
+				<p>Start Location: not recorded</p>
+			{/if}
+		</div>
 
-        <div style="grid-column: span 3 ; grid-row: 1;">
-            {#if runObjectives.objectives.length > 0}
-                <p>Start Location: {tiles[runObjectives.start_tile].name}</p>
-                <p>Trigger: {fmtObjective(runObjectives.objectives[0])}</p>
-            {:else}
-                <p>Start Location: not recorded</p>
+		<div style="grid-column: 1; grid-row: 2 / span 4;">
+			<h3>Objectives</h3>
+			{#if runObjectives.objectives.length > 1}
+				<ol>
+					{#each runObjectives.objectives.slice(1) as o}
+						<li>{fmtObjective(o)}</li>
+					{/each}
+				</ol>
+			{/if}
+		</div>
+
+		<div style="grid-column: 2; grid-row: 2 / span 4;">
+			{#if runStarted || runFinished}
+				<h3>Current Run</h3>
+				<ul>
+					{#each currentRun.slice(1) as cleared, idx}
+						<li>{fmtDelta(cleared.timestamp, currentRun[idx]?.timestamp)}</li>
+					{/each}
+				</ul>
+                {#if runFinished}
+                    <p>Total: {fmTime(runTime(currentRun) ?? 0)}</p>
+                {/if}
+			{:else if runObjectives.objectives.length > 1}
+				<h3>Initial run</h3>
+				<ul>
+					{#each runObjectives.objectives.slice(1) as cleared, idx}
+						<li>{fmtDelta(cleared.timestamp, runObjectives.objectives[idx]?.timestamp)}</li>
+					{/each}
+				</ul>
+                <p>Total: {fmTime(runTime(runObjectives.objectives) ?? 0)}</p>
+			{/if}
+		</div>
+
+		<div style="grid-column: 3; grid-row: 2 / span 5;">
+			<h3>Best times</h3>
+			<ul>
+				{#each times as segmentTimes}
+					<li>{fmTime(Math.min(...segmentTimes))}</li>
+				{/each}
+			</ul>
+            {#if times.length > 0}
+                <p>Best possible: {fmTime(times.reduce((acc, val) => acc + Math.min(...val), 0))}</p>
             {/if}
-        </div>
+		</div>
+	</div>
 
-        <div style="grid-column: 1; grid-row: 2;">
-            <h3>Objectives</h3>
-            {#if runObjectives.objectives.length > 1}
-                <ol>
-                    {#each runObjectives.objectives.slice(1) as o}
-                        <li>{fmtObjective(o)}</li>
-                    {/each}
-                </ol>
-            {:else}
-                <ol>
-                    <li>Eat a berry</li>
-                    <li>Sing a song</li>
-                    <li>Fuck the police</li>
-                </ol>
-            {/if}
-        </div>
-
-        <div style="grid-column: 2; grid-row: 2;">
-            {#if runStarted}
-                <h3>Current Run</h3>
-                <ul>
-                    {#each currentRun.slice(1) as cleared, idx}
-                        <li>{fmtDelta(cleared.timestamp, currentRun[idx]?.timestamp)}</li>
-                    {/each}
-                </ul>
-            {:else if runFinished}
-                <h3>Finished {fmTime(runTime(currentRun) ?? 0)}</h3>
-                <ul>
-                    {#each currentRun.slice(1) as cleared, idx}
-                        <li>{fmtDelta(cleared.timestamp, currentRun[idx]?.timestamp)}</li>
-                    {/each}
-                </ul>
-            {:else}
-                <h3>No Active Run</h3>
-                <ul>
-                    <li>0.00</li>
-                    <li>13.24</li>
-                    <li>2.20</li>
-                </ul>
-            {/if}
-        </div>
-
-        <div style="grid-column: 3; grid-row: 2;">
-            <h3>Best times</h3>
-            <ul>
-                {#each times as segmentTimes}
-                    <li>{fmTime(Math.min(...segmentTimes))}</li>
-                {/each}
-            </ul>
-        </div>
-    </div>
-
-    <footer style="grid-column: 1 / span 3; grid-row: 4;">
+	<footer style="grid-column: 1 / span 3; grid-row: 8;">
 		{#if currentTile}
-            <p>{currentTile.region} - {currentTile.name}</p>
+			<p>{currentTile.region} - {currentTile.name}</p>
 		{/if}
-    </footer>
-
+	</footer>
 </div>
 
 <style>
@@ -254,21 +252,26 @@
 	}
 
 	.run-times {
-        grid-column: 1 / span 3;
-        grid-row: 2;
-        display: grid;
-        grid-template-columns: auto auto;
-        font-size: 1.8em;
+		grid-column: 1 / span 3;
+		grid-row: 2;
+		display: grid;
+		grid-template-columns: auto auto;
+		font-size: 1.8em;
 	}
 
-    /* Footer will be like a console output line in the bottom */    
-    footer {
-        text-align: center;
-        position: fixed;
-        bottom: 0;
-        width: 100%;
-        padding: 2px;
-        border-top: 1px solid #e7e7e7;
-        font-size: 1.8em;
+    .page-container {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        min-height: 100vh;
     }
+
+	/* Footer will be like a console output line in the bottom, occlude things that go into it */
+	footer {
+		text-align: center;
+		bottom: 0;
+		padding: 2px;
+		border-top: 1px solid #e7e7e7;
+		font-size: 1.8em;
+		background-color: #0f0f0f;
+	}
 </style>

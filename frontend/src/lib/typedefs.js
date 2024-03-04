@@ -7,7 +7,7 @@
 /**
  * @typedef {Object} Tile
  * @property {string} region
- * @property {boolean} is_indoor
+ * @property {boolean} indoors
  */
 
 /**

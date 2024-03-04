@@ -64,22 +64,31 @@ function runTime(run) {
 }
 
 /**
+ * Find best run from a list of runs
+ *
+ * @param {number[][]} runTimes
+ */
+function bestRun(runTimes) {
+
+}
+
+/**
  * Parses snes event and returns info
  *
  * @param {SnesEvent} e - event data returned from rust
  * @returns {JsonEvent?}
  */
 function eventInfo(e) {
-    if (e.tile_id) {
+    if (e.tile_id !== null) {
         return tiles[e.tile_id];
     }
-    if (e.item_id) {
+    if (e.item_id !== null) {
         return items[e.item_id];
     }
-    if (e.event_id) {
+    if (e.event_id !== null) {
         return events[e.event_id];
     }
-    if (e.location_id) {
+    if (e.location_id !== null) {
         return checks[e.location_id];
     }
     return null;
@@ -95,6 +104,8 @@ function fmtObjective(o) {
         prefix = 'Get'
     } else if (o.tile_id) {
         prefix = 'Go to'
+        let info = eventInfo(o)
+        console.log(`Objective with id ${o.tile_id} is ` + info?.name)
     } else if (o.location_id) {
         prefix = 'Check'
     }

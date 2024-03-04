@@ -94,27 +94,21 @@
 		runFinished = true;
 	}
 
-    /**
-     * update the times array with the new run
-     *
-     * @param {SnesEvent[]} run
-     */
+	/**
+	 * update the times array with the new run
+	 *
+	 * @param {SnesEvent[]} run
+	 */
 	function updateTimes(run) {
-		let /** @type {number[][]} */ newTimes = [];
-		if (times.length > 0) {
-			newTimes = [...times];
-		}
 		for (let i = 1; i < run.length; i++) {
-			if (newTimes[i - 1] === undefined) {
-				console.log('HELL YEAH');
-				newTimes[i - 1] = [run[i].timestamp - run[i - 1].timestamp];
+			if (times[i - 1] === undefined) {
+				times[i - 1] = [run[i].timestamp - run[i - 1].timestamp];
 			} else {
-				console.log('HELL NO');
-				let segmentTimes = newTimes[i - 1];
-				newTimes[i - 1] = [...segmentTimes, run[i].timestamp - run[i - 1].timestamp];
+				let segmentTimes = times[i - 1];
+				times[i - 1] = [...segmentTimes, run[i].timestamp - run[i - 1].timestamp];
 			}
 		}
-		times = newTimes;
+		times = times;
 	}
 
 	async function startRecording() {
@@ -135,7 +129,7 @@
 	function stopRecording() {
 		isRecording = false;
 		runObjectives.finalized = true;
-        updateTimes(runObjectives.objectives);
+		updateTimes(runObjectives.objectives);
 	}
 
 	onMount(async () => {
@@ -157,7 +151,7 @@
 			} else if (runObjectives.finalized && snesEvent.tile_id === runObjectives.start_tile) {
 				untriggerEvents();
 			}
-			if (snesEvent.tile_id) {
+			if (snesEvent.tile_id !== null) {
 				current_tile_idx = snesEvent.tile_id;
 			}
 			snesEvents = [...snesEvents, event.payload];
@@ -193,55 +187,64 @@
 			{/if}
 		</div>
 
-		<div style="grid-column: 1; grid-row: 2 / span 4;">
+		<div class="run-column">
 			<h3>Objectives</h3>
 			{#if runObjectives.objectives.length > 1}
-				<ol>
+				<ul>
 					{#each runObjectives.objectives.slice(1) as o}
 						<li>{fmtObjective(o)}</li>
 					{/each}
-				</ol>
+				</ul>
 			{/if}
 		</div>
 
-		<div style="grid-column: 2; grid-row: 2 / span 4;">
-			{#if runStarted || runFinished}
+		<div class="run-column">
+			{#if runStarted || runFinished || runObjectives.objectives.length > 1}
 				<h3>Current Run</h3>
 				<ul>
 					{#each currentRun.slice(1) as cleared, idx}
 						<li>{fmtDelta(cleared.timestamp, currentRun[idx]?.timestamp)}</li>
 					{/each}
+					{#if runFinished}
+						<li class="run-total">{fmTime(runTime(currentRun) ?? 0)}</li>
+					{/if}
 				</ul>
-                {#if runFinished}
-                    <p>Total: {fmTime(runTime(currentRun) ?? 0)}</p>
-                {/if}
 			{:else if runObjectives.objectives.length > 1}
 				<h3>Initial run</h3>
 				<ul>
 					{#each runObjectives.objectives.slice(1) as cleared, idx}
 						<li>{fmtDelta(cleared.timestamp, runObjectives.objectives[idx]?.timestamp)}</li>
 					{/each}
+					{#if runObjectives.finalized}
+						<li class="run-total">{fmTime(runTime(runObjectives.objectives) ?? 0)}</li>
+					{/if}
 				</ul>
-                <p>Total: {fmTime(runTime(runObjectives.objectives) ?? 0)}</p>
+			{:else}
+				<h3>No run recorded</h3>
 			{/if}
 		</div>
 
-		<div style="grid-column: 3; grid-row: 2 / span 5;">
-			<h3>Best times</h3>
+		<div class="run-column">
+			<h3>Best</h3>
 			<ul>
 				{#each times as segmentTimes}
 					<li>{fmTime(Math.min(...segmentTimes))}</li>
 				{/each}
+				{#if times.length > 0}
+					<li style="border-top: 1px solid #e7e7e7; margin-top: 10px;"></li>
+					<li class="run-total">{fmTime(times.reduce((acc, val) => acc + Math.min(...val), 0))}</li>
+				{/if}
 			</ul>
-            {#if times.length > 0}
-                <p>Best possible: {fmTime(times.reduce((acc, val) => acc + Math.min(...val), 0))}</p>
-            {/if}
 		</div>
 	</div>
 
-	<footer style="grid-column: 1 / span 3; grid-row: 8;">
+	<footer style="grid-column: 1 / span 3; grid-row: 6;">
 		{#if currentTile}
-			<p>{currentTile.region} - {currentTile.name}</p>
+			{#if currentTile.indoors}
+				<p>{currentTile.name}</p>
+			{:else}
+				<p>{currentTile.region} - {currentTile.name}</p>
+			{/if}
 		{/if}
 	</footer>
 </div>
@@ -249,6 +252,7 @@
 <style>
 	ul {
 		list-style: none;
+		padding: 0;
 	}
 
 	.run-times {
@@ -259,17 +263,29 @@
 		font-size: 1.8em;
 	}
 
-    .page-container {
-        display: grid;
-        grid-template-columns: 1fr auto;
-        min-height: 100vh;
-    }
+	.page-container {
+		display: grid;
+		grid-template-columns: 1fr auto;
+		min-height: 100vh;
+	}
+
+	.run-total {
+		color: rgb(255, 255, 255);
+		text-align: left;
+	}
+
+	.run-column {
+		grid-column: auto;
+		grid-row: span 3;
+		/* border: 1px solid #e7e7e7; */
+		padding: 10px;
+		border-radius: 5px;
+		margin: 10px;
+	}
 
 	/* Footer will be like a console output line in the bottom, occlude things that go into it */
 	footer {
 		text-align: center;
-		bottom: 0;
-		padding: 2px;
 		border-top: 1px solid #e7e7e7;
 		font-size: 1.8em;
 		background-color: #0f0f0f;

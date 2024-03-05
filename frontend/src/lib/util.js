@@ -155,8 +155,9 @@ function isCombinedEvent(l, r) {
         || (r.location_id === null && r.item_id === null)) {
         return false
     }
-    return (l.location_id !== null && r.item_id !== null)
-        || (l.item_id !== null && r.location_id !== null)
+    return ((l.location_id !== null && r.item_id !== null)
+        || (l.item_id !== null && r.location_id !== null))
+        && l.timestamp === r.timestamp
 }
 
 /**

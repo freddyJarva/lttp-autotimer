@@ -135,6 +135,7 @@ pub async fn connect_to_sni(cli_config: lttp_autotimer::CliConfig, handle: AppHa
                         items = deserialize_item_checks()?.into_iter().collect();
                         actions = deserialize_actions()?.into_iter().collect();
                         last_event_log_clear = Utc::now();
+                        ram_history.clear();
                     } else {
                         println!("Not clearing event log, too soon since last clear");
                     }

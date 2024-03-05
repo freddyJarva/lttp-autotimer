@@ -421,7 +421,8 @@ pub fn match_condition(
             sram_mask,
         } => {
             ram.get_byte(*sram_offset) & sram_mask == *sram_value & sram_mask
-                && ram_value_change_condition_met(previous_values, ram, sram_offset, sram_mask)
+                && (previous_values.is_empty()
+                    || ram_value_change_condition_met(previous_values, ram, sram_offset, sram_mask))
         }
         Conditions::CurrentTile(condition) => {
             let current_tile = &events

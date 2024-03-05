@@ -64,12 +64,40 @@ function runTime(run) {
 }
 
 /**
+ * sums up numbers in a list
+ *
+ * @param {number[]} nums
+ * @returns {number}
+ */
+function sum(...nums) {
+    return nums.reduce((a, b) => a + b, 0)
+}
+
+/**
  * Find best run from a list of runs
  *
  * @param {number[][]} runTimes
+ * @returns {number[]?} best run from the list, or null if the list is empty
  */
-function bestRun(runTimes) {
-
+function getBestRun(runTimes) {
+    if (runTimes.length === 0 || runTimes[0].length === 0) {
+        return null
+    }
+    let /** @type {number[] | null} */ best = null
+    for (let i = 0; i < runTimes[0].length; i++) {
+        let run = []
+        for (let j = 0; j < runTimes.length; j++) {
+            run.push(runTimes[j][i])
+        }
+        if (best === null) {
+            best = run
+            continue
+        }
+        if (sum(...run) < sum(...best)) {
+            best = run
+        }
+    }
+    return best
 }
 
 /**
@@ -121,5 +149,7 @@ export {
     checks,
     items,
     eventInfo,
-    fmtObjective
+    fmtObjective,
+    getBestRun,
+    sum,
 }

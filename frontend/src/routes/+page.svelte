@@ -5,7 +5,7 @@
 	import { onMount } from 'svelte';
 	import { listen } from '@tauri-apps/api/event';
 	import { invoke } from '@tauri-apps/api/tauri';
-	import { fmtDelta, fmtObjective, runTime, fmTime, tiles, eventInfo } from '$lib/util';
+	import { fmtDelta, fmtObjective, runTime, fmTime, tiles, getBestRun, sum } from '$lib/util';
 
 	let unlisten_snes_events;
 
@@ -22,6 +22,7 @@
 		};
 	let currentObjective = 0;
 	let /** @type {SnesEvent[]} */ currentRun = [];
+    let /** @type {number[]} */ bestRun = [];
 	let /** @type {number[][]} */ times = [];
 
 	let runStarted = false;
@@ -109,6 +110,7 @@
 			}
 		}
 		times = times;
+        bestRun = getBestRun(times);
 	}
 
 	async function startRecording() {
@@ -117,6 +119,8 @@
 			objectives: [],
 			finalized: false
 		};
+        bestRun = [];
+        currentRun = []
 		untriggerEvents();
 		// let rust backend reset event log
 		// and read in previous events again before recording
@@ -199,7 +203,7 @@
 		</div>
 
 		<div class="run-column">
-			{#if runStarted || runFinished || runObjectives.objectives.length > 1}
+			{#if runStarted || runFinished}
 				<h3>Current Run</h3>
 				<ul>
 					{#each currentRun.slice(1) as cleared, idx}
@@ -216,6 +220,7 @@
 						<li>{fmtDelta(cleared.timestamp, runObjectives.objectives[idx]?.timestamp)}</li>
 					{/each}
 					{#if runObjectives.finalized}
+                        <li style="border-top: 1px solid #e7e7e7; margin-top: 10px;"></li>
 						<li class="run-total">{fmTime(runTime(runObjectives.objectives) ?? 0)}</li>
 					{/if}
 				</ul>
@@ -227,12 +232,12 @@
 		<div class="run-column">
 			<h3>Best</h3>
 			<ul>
-				{#each times as segmentTimes}
-					<li>{fmTime(Math.min(...segmentTimes))}</li>
+				{#each bestRun as segmentTime}
+					<li>{fmTime(segmentTime)}</li>
 				{/each}
 				{#if times.length > 0}
 					<li style="border-top: 1px solid #e7e7e7; margin-top: 10px;"></li>
-					<li class="run-total">{fmTime(times.reduce((acc, val) => acc + Math.min(...val), 0))}</li>
+					<li class="run-total">{fmTime(sum(...bestRun))}</li>
 				{/if}
 			</ul>
 		</div>

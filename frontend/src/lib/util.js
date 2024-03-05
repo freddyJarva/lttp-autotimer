@@ -11,7 +11,7 @@ const FIXED_FRACTION = 2
  */
 function toIdObjectMap(o) {
     let /** @type {JsonEvents | Object<number, TileEvent>} */ objects = {};
-    o.forEach(function (val) {
+    o.forEach(function(val) {
         objects[val.id] = val;
     });
     return objects;
@@ -123,6 +123,43 @@ function eventInfo(e) {
 }
 
 /**
+ * @param {SnesEvent?} l
+ * @param {SnesEvent?} r
+ * @returns {boolean}
+ */
+function isDuplicateEvent(l, r) {
+    if (l === null || r === null) {
+        return false
+    }
+    return l.timestamp === r.timestamp
+        && l.event_id === r.event_id
+        && l.location_id === r.location_id
+        && l.item_id === r.item_id
+        && l.tile_id === r.tile_id
+}
+
+/**
+ * Checks if the two events are triggers for the same objective
+ *
+ * We only consider them a combined event if it's a check + item combo
+ *
+ * @param {SnesEvent?} l
+ * @param {SnesEvent?} r
+ * @returns {boolean}
+ */
+function isCombinedEvent(l, r) {
+    if (l === null || r === null) {
+        return false
+    }
+    if ((l.location_id === null && l.item_id === null)
+        || (r.location_id === null && r.item_id === null)) {
+        return false
+    }
+    return (l.location_id !== null && r.item_id !== null)
+        || (l.item_id !== null && r.location_id !== null)
+}
+
+/**
  * @param {SnesEvent} o
  * @returns {string} string representation the objective 
  */
@@ -152,4 +189,6 @@ export {
     fmtObjective,
     getBestRun,
     sum,
+    isDuplicateEvent,
+    isCombinedEvent,
 }

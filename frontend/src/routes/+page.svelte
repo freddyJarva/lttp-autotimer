@@ -5,24 +5,34 @@
 	import { onMount } from 'svelte';
 	import { listen } from '@tauri-apps/api/event';
 	import { invoke } from '@tauri-apps/api/tauri';
-	import { fmtDelta, fmtObjective, runTime, fmTime, tiles, getBestRun, sum } from '$lib/util';
+	import {
+		fmtDelta,
+		fmtObjective,
+		runTime,
+		fmTime,
+		tiles,
+		getBestRun,
+		sum,
+		isDuplicateEvent,
+		isCombinedEvent
+	} from '$lib/util';
 
 	let unlisten_snes_events;
 
 	let isRecording = false;
 
-	let /** @type {SnesEvent[]} */ snesEvents = [];
-
 	let current_tile_idx = -1;
 	$: currentTile = tiles[current_tile_idx] ?? null;
+
 	let /** @type {RunObjectives} */ runObjectives = {
 			start_tile: current_tile_idx,
 			objectives: [],
 			finalized: false
 		};
+	$: lastObjective = runObjectives.objectives.length ? runObjectives.objectives[runObjectives.objectives.length - 1] : null;
 	let currentObjective = 0;
 	let /** @type {SnesEvent[]} */ currentRun = [];
-    let /** @type {number[]} */ bestRun = [];
+    $: bestRun = getBestRun(times) ?? [];
 	let /** @type {number[][]} */ times = [];
 
 	let runStarted = false;
@@ -110,7 +120,7 @@
 			}
 		}
 		times = times;
-        bestRun = getBestRun(times);
+		bestRun = getBestRun(times);
 	}
 
 	async function startRecording() {
@@ -119,8 +129,8 @@
 			objectives: [],
 			finalized: false
 		};
-        bestRun = [];
-        currentRun = []
+		bestRun = [];
+		currentRun = [];
 		untriggerEvents();
 		// let rust backend reset event log
 		// and read in previous events again before recording
@@ -158,8 +168,14 @@
 			if (snesEvent.tile_id !== null) {
 				current_tile_idx = snesEvent.tile_id;
 			}
-			snesEvents = [...snesEvents, event.payload];
 			if (isRecording) {
+				// TODO: combine objectives instead of ignoring if they occur at the same time
+				if (
+					isDuplicateEvent(lastObjective, snesEvent) ||
+					isCombinedEvent(lastObjective, snesEvent)
+				) {
+					return;
+				}
 				runObjectives.objectives = [...runObjectives.objectives, snesEvent];
 			}
 		});
@@ -210,6 +226,7 @@
 						<li>{fmtDelta(cleared.timestamp, currentRun[idx]?.timestamp)}</li>
 					{/each}
 					{#if runFinished}
+						<li style="border-top: 1px solid #e7e7e7; margin-top: 10px;"></li>
 						<li class="run-total">{fmTime(runTime(currentRun) ?? 0)}</li>
 					{/if}
 				</ul>
@@ -220,7 +237,7 @@
 						<li>{fmtDelta(cleared.timestamp, runObjectives.objectives[idx]?.timestamp)}</li>
 					{/each}
 					{#if runObjectives.finalized}
-                        <li style="border-top: 1px solid #e7e7e7; margin-top: 10px;"></li>
+						<li style="border-top: 1px solid #e7e7e7; margin-top: 10px;"></li>
 						<li class="run-total">{fmTime(runTime(runObjectives.objectives) ?? 0)}</li>
 					{/if}
 				</ul>

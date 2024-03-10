@@ -11,18 +11,17 @@ use lttp_autotimer::check::{Check, deserialize_event_checks, deserialize_locatio
 use lttp_autotimer::event::{EventTracker, EventLog};
 use lttp_autotimer::output::StdoutPrinter;
 use lttp_autotimer::snes::SnesRam;
-use lttp_autotimer::{sni, time};
-use chrono::{DateTime, Utc};
-use lttp_autotimer::event::EventEnum::Command;
+use lttp_autotimer::sni;
+use chrono::Utc;
 
 use lttp_autotimer::{
-    check::{deserialize_actions, deserialize_commands},
+    check::deserialize_actions,
     parse_ram::{
         check_for_actions, check_for_events, check_for_item_checks, check_for_location_checks,
-        check_for_transitions, check_for_commands, check_for_segment_objective,
+        check_for_transitions,
     },
     request,
-    sni::{api::device_memory_client::DeviceMemoryClient, get_device, read_snes_ram}, event::{EventEnum, CommandState, EventCompactor}, time::{SingleRunStats, RunStatistics}, output::{format_duration, format_gold_duration, format_red_duration, TimeFormat},
+    sni::{api::device_memory_client::DeviceMemoryClient, get_device, read_snes_ram}, event::CommandState,
 };
 use state::AppState;
 use tauri::{AppHandle, Manager};
@@ -34,10 +33,14 @@ use crate::write::AppHandleWrapper;
 pub async fn connect_to_sni(cli_config: lttp_autotimer::CliConfig, handle: AppHandle, state: Arc<Mutex<AppState>>) -> anyhow::Result<()> {
 
     let snes_handle = AppHandleWrapper::new(handle.clone());
+    handle.emit_all("debug", "attempting to connect to sni".to_string()).expect("Should emit without fail");
     println!("Connecting to sni");
     let connected_device = get_device(&cli_config.sni_url()).await?;
+
+    handle.emit_all("debug", format!("connecting to device: {:?}", connected_device)).expect("Should emit without fail");
     let mut client = DeviceMemoryClient::connect(cli_config.sni_url()).await?;
     let read_times = sni::check_read_times(&mut client, &connected_device).await?;
+    handle.emit_all("debug", format!("read times: {:?}", read_times)).expect("Should emit without fail");
 
     let allow_output = match sni::is_race_rom(&connected_device, &mut client).await {
         Ok(is_race_rom) => !is_race_rom && cli_config.non_race_mode,
@@ -56,13 +59,14 @@ pub async fn connect_to_sni(cli_config: lttp_autotimer::CliConfig, handle: AppHa
     };
 
     let rom_hash = sni::read_rom_hash(&connected_device, &mut client).await?;
-    let permalink = request::permalink_for(&rom_hash);
+    let _permalink = request::permalink_for(&rom_hash);
     let meta_data: Option<request::MetaData>;
     if cli_config.segment_run_mode {
         meta_data = None;
     } else {
         meta_data = match request::fetch_metadata_for(rom_hash).await {
             Ok(meta) => Some(meta.spoiler.meta),
+
             Err(e) => {
                 println!("Request for metadata failed, skipping. Cause: {:?}", e);
                 None
@@ -93,9 +97,6 @@ pub async fn connect_to_sni(cli_config: lttp_autotimer::CliConfig, handle: AppHa
     // This is to ensure it only checks for events - especially transitions - while in-game.
     let mut game_started = false;
 
-    // segment recorder states
-    let mut command_state: CommandState = CommandState::None;
-
     let mut subscribed_events: Vec<Check> = deserialize_event_checks()?;
     let mut locations: Vec<Check> = deserialize_location_checks()?
         .into_iter()
@@ -107,6 +108,8 @@ pub async fn connect_to_sni(cli_config: lttp_autotimer::CliConfig, handle: AppHa
 
     let mut last_event_log_clear = Utc::now();
 
+    let debug_handle = handle.clone();
+    debug_handle.emit_all("debug", "Connected to sni".to_string()).expect("Should emit without fail");
     while let Some((time_of_read, snes_ram)) = rx.recv().await {
         if !game_started {
             game_started = snes_ram.game_has_started();
@@ -136,7 +139,10 @@ pub async fn connect_to_sni(cli_config: lttp_autotimer::CliConfig, handle: AppHa
                         actions = deserialize_actions()?.into_iter().collect();
                         last_event_log_clear = Utc::now();
                         ram_history.clear();
+                        debug_handle.emit_all("debug", "Cleared event log".to_string()).expect("Should emit without fail");
                     } else {
+
+                        debug_handle.emit_all("debug", "Not clearing event log, too soon since last clear".to_string()).expect("Should emit without fail");
                         println!("Not clearing event log, too soon since last clear");
                     }
 
@@ -146,8 +152,6 @@ pub async fn connect_to_sni(cli_config: lttp_autotimer::CliConfig, handle: AppHa
             }
         }
 
-        let should_print = !(matches!(command_state, CommandState::RunStarted(_))
-             || matches!(command_state, CommandState::RunFinished));
         // checks
         game_started = check_for_events(
             &snes_ram,
@@ -157,7 +161,7 @@ pub async fn connect_to_sni(cli_config: lttp_autotimer::CliConfig, handle: AppHa
             &mut events,
             &mut print,
             &time_of_read,
-            should_print || cli_config._verbosity > 0
+            true
         )?;
         if game_started {
             if cli_config._verbosity > 1 {
@@ -169,7 +173,7 @@ pub async fn connect_to_sni(cli_config: lttp_autotimer::CliConfig, handle: AppHa
                     &mut events,
                     &mut print,
                     &time_of_read,
-                    should_print
+                    true
                 )?;
             }
             check_for_transitions(
@@ -178,7 +182,7 @@ pub async fn connect_to_sni(cli_config: lttp_autotimer::CliConfig, handle: AppHa
                 &mut events,
                 &mut print,
                 &time_of_read,
-                should_print || cli_config._verbosity > 0
+                true
             )?;
             check_for_location_checks(
                 &snes_ram,
@@ -188,7 +192,7 @@ pub async fn connect_to_sni(cli_config: lttp_autotimer::CliConfig, handle: AppHa
                 &mut events,
                 &mut print,
                 &time_of_read,
-                should_print || cli_config._verbosity > 0
+                true
             )?;
             check_for_item_checks(
                 &snes_ram,
@@ -198,7 +202,7 @@ pub async fn connect_to_sni(cli_config: lttp_autotimer::CliConfig, handle: AppHa
                 &mut events,
                 &mut print,
                 &time_of_read,
-                should_print || cli_config._verbosity > 0
+                true
             )?;
         }
         ram_history.push_back(snes_ram);

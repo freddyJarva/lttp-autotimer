@@ -5,7 +5,7 @@ mod write;
 
 use std::sync::Arc;
 
-use app::{connect_to_sni, write::AppHandleWrapper, state::AppState};
+use app::{connect_to_sni, state::AppState};
 use clap::{Arg, ArgMatches};
 use lttp_autotimer::event::CommandState;
 use tauri::Manager;
@@ -43,9 +43,9 @@ fn get_args() -> ArgMatches {
                 .short('m')
                 .help("Only check for updates when user presses a key. Useful when debugging.")
         ).arg(
-            Arg::new("Round times")
-                .long("--round-times")
-                .help("Show output on game events in app window. NOTE: This flag will have no effect when playing a race rom.")
+            Arg::new("Do not round times")
+                .long("--no-round-times")
+                .help("Do not round times to nearest 50ms. Useful for debugging.")
         )
         .arg(
             Arg::new("port")
@@ -129,8 +129,9 @@ async fn main() {
                     ),
                     _verbosity: args.occurrences_of("v"),
                     segment_run_mode: true,
-                    round_times: args.is_present("Round times"),
+                    round_times: !args.is_present("Do not round times"),
                 };
+
                 let _ = connect_to_sni(cfg, snes_reader_handle, snes_reader_state).await;
             });
 

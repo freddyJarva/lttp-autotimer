@@ -18,6 +18,7 @@
 	} from '$lib/util';
 
 	let unlisten_snes_events;
+    let unlisten_debug_events;
 
 	let isRecording = false;
 
@@ -74,8 +75,6 @@
 	 * @param {SnesEvent} e - The event that triggered the run
 	 */
 	function startRun(e) {
-		console.log('STARTING THE RUN OOO');
-		untriggerEvents();
 		currentRun = [e];
 		currentObjective = 1;
 		runStarted = true;
@@ -120,7 +119,7 @@
 			}
 		}
 		times = times;
-		bestRun = getBestRun(times);
+		bestRun = getBestRun(times) ?? [];
 	}
 
 	async function startRecording() {
@@ -148,8 +147,14 @@
 
 	onMount(async () => {
 		untriggerEvents();
+
+        unlisten_debug_events = await listen('debug', (event) => {
+            console.log("debug:", event.payload);
+        });
+
 		unlisten_snes_events = await listen('snes_event', (event) => {
 			let /** @type {SnesEvent} */ snesEvent = JSON.parse(event.payload);
+            console.log(snesEvent);
 
 			if (runStarted) {
 				let objective = runObjectives.objectives[currentObjective];
@@ -179,6 +184,7 @@
 				runObjectives.objectives = [...runObjectives.objectives, snesEvent];
 			}
 		});
+
 	});
 </script>
 

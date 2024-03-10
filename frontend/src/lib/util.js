@@ -9,7 +9,7 @@ const FIXED_FRACTION = 2
  * @param {JsonEvent[] | TileEvent[]} o
  * @returns JsonEvents | Object<number, TileEvent>
  */
-function toIdObjectMap(o) {
+function toIdObjectMap(o, /** @type {string} */ type = '') {
     let /** @type {JsonEvents | Object<number, TileEvent>} */ objects = {};
     o.forEach(function(val) {
         objects[val.id] = val;
@@ -18,10 +18,10 @@ function toIdObjectMap(o) {
 }
 
 // @ts-ignore
-const /** @type {Object<number, TileEvent>} */ tiles = toIdObjectMap(tilesJson);
-const /** @type {JsonEvents} */ events = toIdObjectMap(eventJson);
-const /** @type {JsonEvents} */ checks = toIdObjectMap(checksJson);
-const /** @type {JsonEvents} */ items = toIdObjectMap(itemsJson);
+const /** @type {Object<number, TileEvent>} */ tiles = toIdObjectMap(tilesJson, 'tile');
+const /** @type {JsonEvents} */ events = toIdObjectMap(eventJson, 'event');
+const /** @type {JsonEvents} */ checks = toIdObjectMap(checksJson, 'check');
+const /** @type {JsonEvents} */ items = toIdObjectMap(itemsJson, 'item');
 
 /**
  * Take two unix times with millisecond precision and format them.
@@ -101,23 +101,29 @@ function getBestRun(runTimes) {
 }
 
 /**
+ * @typedef {Object} EventWithType
+ * @property {JsonEvent} event
+ * @property {string} type
+ */
+
+/**
  * Parses snes event and returns info
  *
  * @param {SnesEvent} e - event data returned from rust
- * @returns {JsonEvent?}
+ * @returns {EventWithType?} info about the event}
  */
 function eventInfo(e) {
     if (e.tile_id !== null) {
-        return tiles[e.tile_id];
+        return {event: tiles[e.tile_id], type: 'tile'};
     }
     if (e.item_id !== null) {
-        return items[e.item_id];
+        return {event: items[e.item_id], type: 'item'};
     }
     if (e.event_id !== null) {
-        return events[e.event_id];
+        return {event: events[e.event_id], type: 'event'};
     }
     if (e.location_id !== null) {
-        return checks[e.location_id];
+        return {event: checks[e.location_id], type: 'check'};
     }
     return null;
 }
@@ -171,11 +177,47 @@ function fmtObjective(o) {
     } else if (o.tile_id) {
         prefix = 'Go to'
         let info = eventInfo(o)
-        console.log(`Objective with id ${o.tile_id} is ` + info?.name)
+        console.log(`Objective with id ${o.tile_id} is ` + info?.event.name)
     } else if (o.location_id) {
         prefix = 'Check'
     }
-    return `${prefix} ${eventInfo(o)?.name ?? 'I am Error'}`
+    return `${prefix} ${eventInfo(o)?.event.name ?? 'I am Error'}`
+}
+
+
+class RunSegment {
+    constructor(/** @type {SnesEvent} */ event) {
+        /** @type {SnesEvent} */
+        this.event = event
+        /** @type {number[]} */
+        this.times = [event.timestamp]
+        /** @type {EventWithType?} */
+        this.info = eventInfo(event)
+    }
+
+    get avg() {
+        return this.times.reduce((a, b) => a + b, 0) / this.times.length
+    }
+
+    get max() {
+        return Math.max(...this.times)
+    }
+
+    get min() {
+        return Math.min(...this.times)
+    }
+
+    get type() {
+        return this.info?.type ?? 'I am Error'
+    }
+
+    get name() {
+        return this.info?.event.name ?? 'I am Error'
+    }
+
+    get id() {
+        return this.info?.event.id ?? -1
+    }
 }
 
 export {
